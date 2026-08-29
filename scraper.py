@@ -7,25 +7,19 @@ from datetime import datetime
 
 DATA_FILE = "data.json"
 
+# Strict filtering keywords for qualifying public governance meetings
 KEYWORDS = [
     "city commission", "county commissioners", "bcc", "city council", 
     "town council", "regular meeting", "special meeting", "workshop", "budget hearing"
 ]
 
+# Non-qualifying events to filter out
 EXCLUDE_KEYWORDS = [
     "parks", "recreation", "code compliance", "pension", "police", "firefighters", "advisory"
 ]
 
-def load_existing_data():
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, "r") as f:
-            try:
-                return json.load(f)
-            except json.JSONDecodeError:
-                return []
-    return []
-
 def save_data(data):
+    """Overwrites data.json completely with fresh results."""
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
@@ -38,7 +32,6 @@ def is_qualifying_event(title):
 def normalize_date(date_str):
     """Converts various date text formats into ISO format YYYY-MM-DD"""
     try:
-        # Match pattern like "August 29, 2026" or "Aug 29, 2026"
         match = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', date_str)
         if match:
             month, day, year = match.groups()
@@ -46,10 +39,9 @@ def normalize_date(date_str):
             return dt.strftime("%Y-%m-%d")
     except Exception:
         pass
-    # Fallback default to current date if unparseable
-    return datetime.now().strftime("%Y-%m-%d")
+    return None
 
-# --- BOCA RATON SCRAPER ---
+# --- 1. BOCA RATON (HTML Calendar Scraper) ---
 def scrape_boca_raton():
     events = []
     url = "https://www.myboca.us/calendar.aspx?view=list&CID=0"
@@ -65,7 +57,7 @@ def scrape_boca_raton():
                     title = title_elem.text.strip()
                     raw_date = date_elem.text.strip()
                     if is_qualifying_event(title):
-                        iso_date = normalize_date(raw_date)
+                        iso_date = normalize_date(raw_date) or raw_date
                         events.append({
                             "id": f"boca-{hash(title_elem['href'])}",
                             "muni_short": "BOCA",
@@ -77,10 +69,10 @@ def scrape_boca_raton():
                             "summary": "Parsed dynamically from City of Boca Raton calendar."
                         })
     except Exception as e:
-        print(f"Boca scraper error: {e}")
+        print(f"Error scraping Boca Raton: {e}")
     return events
 
-# --- PALM BEACH COUNTY SCRAPER ---
+# --- 2. PALM BEACH COUNTY (BCC Agenda Scraper) ---
 def scrape_palm_beach_county():
     events = []
     url = "https://discover.pbc.gov/countycommissioners/pages/agendaarchive-html.aspx"
@@ -94,7 +86,7 @@ def scrape_palm_beach_county():
                 href = a_tag['href']
                 if is_qualifying_event(title) or "BCC" in title:
                     full_link = href if href.startswith("http") else f"https://discover.pbc.gov{href}"
-                    iso_date = normalize_date(title)
+                    iso_date = normalize_date(title) or title
                     events.append({
                         "id": f"pbc-{hash(full_link)}",
                         "muni_short": "PBC",
@@ -106,10 +98,10 @@ def scrape_palm_beach_county():
                         "summary": "Board of County Commissioners Agenda Item."
                     })
     except Exception as e:
-        print(f"PBC scraper error: {e}")
+        print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- WEST PALM BEACH SCRAPER ---
+# --- 3. WEST PALM BEACH (HTML Agenda Scraper) ---
 def scrape_west_palm_beach():
     events = []
     url = "https://www.wpb.org/Our-City/Calendars/Meetings"
@@ -123,7 +115,7 @@ def scrape_west_palm_beach():
                 href = item['href']
                 if is_qualifying_event(title) or "Commission" in title:
                     full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
-                    iso_date = normalize_date(title)
+                    iso_date = normalize_date(title) or title
                     events.append({
                         "id": f"wpb-{hash(full_link)}",
                         "muni_short": "WPB",
@@ -135,23 +127,22 @@ def scrape_west_palm_beach():
                         "summary": "Regular City Commission Meeting parsed from City calendar."
                     })
     except Exception as e:
-        print(f"WPB scraper error: {e}")
+        print(f"Error scraping West Palm Beach: {e}")
     return events
 
+# --- MAIN CONTROLLER ---
 def run():
-    existing_events = {e["id"]: e for e in load_existing_data()}
-    scraped_data = []
+    # Fresh initialization: Start with an empty list for every run
+    fresh_events = []
     
-    scraped_data.extend(scrape_boca_raton())
-    scraped_data.extend(scrape_palm_beach_county())
-    scraped_data.extend(scrape_west_palm_beach())
+    # Run scrapers
+    fresh_events.extend(scrape_boca_raton())
+    fresh_events.extend(scrape_palm_beach_county())
+    fresh_events.extend(scrape_west_palm_beach())
 
-    for event in scraped_data:
-        existing_events[event["id"]] = event
-
-    final_list = list(existing_events.values())
-    save_data(final_list)
-    print(f"Scraper execution complete. Saved {len(final_list)} normalized events to {DATA_FILE}.")
+    # Completely overwrite data.json
+    save_data(fresh_events)
+    print(f"Wiped old data and saved {len(fresh_events)} fresh scraped events to {DATA_FILE}.")
 
 if __name__ == "__main__":
     run()
