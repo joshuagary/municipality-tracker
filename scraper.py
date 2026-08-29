@@ -128,10 +128,10 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH MODULE (ROBUST DUAL ENGINE) ---
+# --- 3. WEST PALM BEACH MODULE (FIXED HYBRID ENGINE) ---
 def scrape_west_palm_beach():
     events = []
-    url = "https://www.wpb.org/Our-City/Meetings-Agendas"
+    url = "[https://www.wpb.org/Our-City/Meetings-Agendas](https://www.wpb.org/Our-City/Meetings-Agendas)"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     hf_token = os.environ.get("HF_TOKEN")
     current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
@@ -143,34 +143,38 @@ def scrape_west_palm_beach():
 
         soup = BeautifulSoup(res.text, "html.parser")
 
-        # --- ENGINE A: FREE LLM CHAT COMPLETION ROUTER ---
+        # --- ENGINE A: HUGGING FACE INFERENCE ROUTER ---
         if hf_token:
             try:
-                # Clean HTML for LLM context
                 clean_soup = BeautifulSoup(res.text, "html.parser")
                 for tag in clean_soup(["script", "style", "nav", "footer"]):
                     tag.decompose()
 
-                page_text = clean_soup.get_text(separator="\n", strip=True)[:3500]
+                page_text = clean_soup.get_text(separator="\n", strip=True)[:4000]
 
-                router_url = "https://router.huggingface.co/v1/chat/completions"
+                router_url = "[https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3.1-8B-Instruct/v1/chat/completions](https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3.1-8B-Instruct/v1/chat/completions)"
                 payload = {
-                    "model": "meta-llama/Llama-3.1-8B-Instruct",
+                    "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
                     "messages": [
                         {
+                            "role": "system",
+                            "content": "You are a JSON extractor. Output valid, raw JSON arrays ONLY. Do not include markdown code blocks, intros, or explanations."
+                        },
+                        {
                             "role": "user",
-                            "content": f"""Extract all municipal public meetings from this text.
-Return ONLY a raw JSON array matching this exact schema:
+                            "content": f"""Extract all public municipal meetings listed in this text.
+
+Schema format:
 [
-  {{"title": "Title", "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "link": "URL"}}
+  {{"title": "Meeting Title", "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "link": "URL"}}
 ]
 
-Page Content:
+Text:
 {page_text}"""
                         }
                     ],
-                    "temperature": 0.0,
-                    "max_tokens": 1000
+                    "temperature": 0.01,
+                    "max_tokens": 1200
                 }
 
                 hf_headers = {
@@ -181,13 +185,15 @@ Page Content:
                 hf_res = requests.post(router_url, headers=hf_headers, json=payload, timeout=15)
                 if hf_res.status_code == 200:
                     content = hf_res.json()['choices'][0]['message']['content'].strip()
-                    content = re.sub(r'^```json\s*', '', content)
-                    content = re.sub(r'\s*```$', '', content)
+                    # Clean out any leftover markdown code blocks
+                    content = re.sub(r'^```(?:json)?\s*', '', content, flags=re.MULTILINE)
+                    content = re.sub(r'\s*```$', '', content, flags=re.MULTILINE)
+                    
                     llm_data = json.loads(content)
 
                     for item in llm_data:
                         href = item.get("link", "")
-                        full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
+                        full_link = href if href.startswith("http") else f"[https://www.wpb.org](https://www.wpb.org){href}"
                         events.append({
                             "id": f"wpb-{item['date']}-{hash(full_link)}",
                             "muni_short": "WPB",
@@ -202,41 +208,51 @@ Page Content:
                         print(f"LLM Engine successfully extracted {len(events)} events for WPB.")
                         return events
             except Exception as e:
-                print(f"LLM Router failed ({e}). Falling back to BeautifulSoup engine...")
+                print(f"LLM Engine failed ({e}). Falling back to BeautifulSoup engine...")
 
-        # --- ENGINE B: DETERMINISTIC BEAUTIFULSOUP FALLBACK ---
-        print("Running BeautifulSoup fallback for West Palm Beach...")
-        for container in soup.select("a[href]"):
-            href = container['href']
-            title = container.text.strip()
+        # --- ENGINE B: CARD-LEVEL BEAUTIFULSOUP FALLBACK ---
+        print("Running Card-Level BeautifulSoup fallback for West Palm Beach...")
+        
+        # Select entire card containers instead of individual <a> tags
+        cards = soup.select("li, tr, article, .widget-item, .item-container, .calendar-item")
+        
+        for card in cards:
+            card_text = card.get_text(separator=" ", strip=True)
             
-            # Context from parent/sibling
-            parent = container.find_parent(["div", "li", "tr", "article"])
-            parent_text = parent.text.strip() if parent else ""
-            full_context = f"{title} {parent_text}"
+            # Find the primary meeting hyperlink in the card
+            a_tag = card.select_one("a[href]")
+            if not a_tag:
+                continue
 
-            iso_date = extract_date_from_text(full_context)
+            title = a_tag.text.strip()
+            href = a_tag['href']
+
+            # Skip noise/navigation links
+            if len(title) < 4 or title.lower() in ["meeting", "agenda", "8 more dates", "tagged as: meeting", "view all"]:
+                continue
+
+            # Extract date from full card container text
+            iso_date = extract_date_from_text(card_text)
+            
             if iso_date:
                 dt = datetime.strptime(iso_date, "%Y-%m-%d")
                 if dt >= current_month_start:
-                    # Ignore generic links
-                    if len(title) > 3 and title.lower() not in ["meeting", "agenda", "8 more dates", "tagged as: meeting"]:
-                        full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
-                        
-                        # Extract exact start time if available
-                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', full_context)
-                        m_time = time_match.group(1).upper() if time_match else "5:00 PM"
+                    full_link = href if href.startswith("http") else f"[https://www.wpb.org](https://www.wpb.org){href}"
+                    
+                    # Extract start time (e.g. "05:00 PM", "01:30 PM")
+                    time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', card_text)
+                    m_time = time_match.group(1).upper() if time_match else "5:00 PM"
 
-                        events.append({
-                            "id": f"wpb-{iso_date}-{hash(full_link)}",
-                            "muni_short": "WPB",
-                            "muni_full": "City of West Palm Beach",
-                            "title": title,
-                            "date": iso_date,
-                            "time": m_time,
-                            "link": full_link,
-                            "summary": f"Official {title} parsed from West Palm Beach portal."
-                        })
+                    events.append({
+                        "id": f"wpb-{iso_date}-{hash(full_link)}",
+                        "muni_short": "WPB",
+                        "muni_full": "City of West Palm Beach",
+                        "title": title,
+                        "date": iso_date,
+                        "time": m_time,
+                        "link": full_link,
+                        "summary": f"Official {title} parsed from West Palm Beach portal."
+                    })
 
     except Exception as e:
         print(f"Error scraping West Palm Beach: {e}")
