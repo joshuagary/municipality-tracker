@@ -249,98 +249,82 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (DIRECT ICALENDAR ENGINE) ---
+# --- 4. DELRAY BEACH MODULE (STABLE CURRENT-MONTH SCRAPER) ---
 def scrape_delray_beach():
     events = []
+    url = "https://delraybeach.legistar.com/Calendar.aspx"
     
     now = datetime.now()
-    curr_year = now.year
-    curr_month = now.month
-
-    # Current month start (Aug 1, 2026)
-    start_date = datetime(curr_year, curr_month, 1)
-
-    # Cutoff for end of next month (Oct 1, 2026)
-    if curr_month == 11:
-        end_date = datetime(curr_year + 1, 1, 1)
-    elif curr_month == 12:
-        end_date = datetime(curr_year + 1, 2, 1)
-    else:
-        end_date = datetime(curr_year, curr_month + 2, 1)
-
-    # Legistar Direct iCal Endpoint
-    ical_url = f"https://delraybeach.legistar.com/iCalendar.ashx?From={start_date.strftime('%m/%d/%Y')}&To={end_date.strftime('%m/%d/%Y')}"
+    # Lock lower bound to the 1st day of the current month
+    current_month_start = datetime(now.year, now.month, 1)
 
     try:
-        res = requests.get(ical_url, impersonate="chrome124", timeout=15)
-        print(f"[Delray iCal] HTTP Status: {res.status_code}")
+        res = requests.get(url, impersonate="chrome124", timeout=15)
+        print(f"[Delray] HTTP Status Code: {res.status_code}")
+        
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            rows = soup.find_all("tr")
 
-        if res.status_code == 200 and "BEGIN:VCALENDAR" in res.text:
-            raw_ics = res.text
-            # Split into individual VEVENT blocks
-            vevents = raw_ics.split("BEGIN:VEVENT")
+            for row in rows:
+                cols = row.find_all("td")
+                if len(cols) < 3:
+                    continue
 
-            seen_keys = set()
-
-            for vevent in vevents[1:]:
-                # Extract Summary / Title
-                summary_match = re.search(r'SUMMARY:(.*?)(?:\r?\n[A-Z]|\r?\n$)', vevent, re.S)
-                raw_title = summary_match.group(1).replace("\r\n ", "").strip() if summary_match else ""
+                raw_title = cols[0].text.strip()
                 clean_title = clean_event_title(raw_title)
+                
+                raw_date = cols[1].text.strip() if len(cols) > 1 else ""
+                raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                # Extract DTSTART (e.g., 20260811T190000Z or 20260811T150000)
-                dtstart_match = re.search(r'DTSTART.*?:(\d{8})(?:T(\d{4,6}))?', vevent)
-                iso_date = None
-                meeting_time = "4:00 PM"
-
-                if dtstart_match:
-                    date_str = dtstart_match.group(1) # YYYYMMDD
-                    time_str = dtstart_match.group(2) # HHMMSS
-
-                    iso_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
-
-                    if time_str:
-                        hh = int(time_str[:2])
-                        mm = time_str[2:4]
-                        am_pm = "AM" if hh < 12 else "PM"
-                        hh_12 = hh if 1 <= hh <= 12 else (hh - 12 if hh > 12 else 12)
-                        meeting_time = f"{hh_12}:{mm} {am_pm}"
-
-                # Extract URL or construct Agenda Link
-                url_match = re.search(r'URL;.*?:(https?://[^\s\r\n]+)', vevent)
-                href = url_match.group(1).strip() if url_match else ""
+                # Target direct PDF Agenda link (View.ashx?M=A), fallback to Meeting Details page
+                href = ""
+                agenda_a = row.select_one("a[href*='View.ashx?M=A']")
+                if agenda_a and agenda_a.get('href'):
+                    href = agenda_a['href'].strip()
+                else:
+                    detail_a = row.select_one("a[href*='MeetingDetail.aspx']")
+                    if detail_a and detail_a.get('href'):
+                        href = detail_a['href'].strip()
 
                 if not href:
-                    href = "https://delraybeach.legistar.com/Calendar.aspx"
+                    href = "Calendar.aspx"
 
-                # Convert iCal invite parameter (M=IC) to direct Agenda PDF parameter (M=A)
-                href = href.replace("M=IC", "M=A")
+                # Standard M/D/YYYY date extraction
+                iso_date = None
+                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
+                if date_match:
+                    m, d, y = date_match.groups()
+                    iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
 
-                # Filter and qualify
+                # Apply qualification filter for clean current-month dataset
                 if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                    if start_date <= dt < end_date:
-                        dedup_key = (clean_title, iso_date)
-                        if dedup_key not in seen_keys:
-                            seen_keys.add(dedup_key)
-                            events.append({
-                                "id": f"delray-{iso_date}-{hash(href)}",
-                                "muni_short": "DELRAY",
-                                "muni_full": "City of Delray Beach",
-                                "title": clean_title,
-                                "date": iso_date,
-                                "time": meeting_time,
-                                "link": href,
-                                "summary": f"Official {clean_title} meeting."
-                            })
+                    
+                    if dt >= current_month_start:
+                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time)
+                        meeting_time = time_match.group(1).strip().upper() if time_match else "4:00 PM"
+                        if "AM" not in meeting_time and "PM" not in meeting_time:
+                            meeting_time += " PM"
 
-            print(f"[Delray iCal] Successfully parsed {len(events)} qualifying events across August and September.")
+                        full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
 
+                        events.append({
+                            "id": f"delray-{iso_date}-{hash(full_link)}",
+                            "muni_short": "DELRAY",
+                            "muni_full": "City of Delray Beach",
+                            "title": clean_title,
+                            "date": iso_date,
+                            "time": meeting_time,
+                            "link": full_link,
+                            "summary": f"Official {clean_title} meeting."
+                        })
+
+            print(f"[Delray] Successfully saved {len(events)} current-month events.")
     except Exception as e:
-        print(f"[Delray iCal] Error parsing iCalendar feed: {e}")
+        print(f"[Delray] Exception: {e}")
 
     return events
-
 
 
 
