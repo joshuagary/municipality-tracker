@@ -1,506 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Municipality Meeting Tracking System</title>
-    <style>
-        :root {
-            --bg-color: #F4F4F0;
-            --card-bg: #FFFFFF;
-            --text-main: #000000;
-            --accent-red: #D92323;
-            --border-dark: #121212;
-            --border-light: #E0E0E0;
-            --font-serif: "Playfair Display", "Georgia", serif;
-            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Municipal Governance Tracker</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FullCalendar v6 Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
-        * { box-sizing: border-box; }
-
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            padding: 12px;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        header {
-            border-bottom: 4px solid var(--border-dark);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
-        }
-
-        header h1 {
-            font-family: var(--font-serif);
-            font-size: clamp(1.4rem, 3.5vw, 2rem);
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        .sub-header {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-red);
-            margin-bottom: 4px;
-        }
-
-        .tab-bar {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 12px;
-        }
-
-        .tab-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-dark);
-            padding: 8px 16px;
-            font-family: var(--font-sans);
-            font-weight: 800;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        .tab-btn.active {
-            background: var(--border-dark);
-            color: #FFFFFF;
-        }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        .controls-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 8px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-dark);
-            padding: 10px;
-            margin-bottom: 12px;
-        }
-
-        select, input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid var(--border-dark);
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            background: var(--card-bg);
-            border-radius: 0;
-            -webkit-appearance: none;
-        }
-
-        .month-header-banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--card-bg);
-            border: 1px solid var(--border-dark);
-            border-bottom: none;
-            padding: 8px 12px;
-        }
-
-        .month-title {
-            font-family: var(--font-serif);
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .nav-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-dark);
-            padding: 6px 14px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            touch-action: manipulation;
-        }
-
-        .calendar-wrapper { width: 100%; }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 1px;
-            background: var(--border-dark);
-            border: 1px solid var(--border-dark);
-            width: 100%;
-        }
-
-        .day-header {
-            background: #000;
-            color: #fff;
-            padding: 6px 2px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .day-box {
-            background: var(--card-bg);
-            min-height: 95px;
-            padding: 4px;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .day-box.empty { background: #EAEAEA; }
-
-        .day-num {
-            font-weight: 800;
-            font-size: 0.8rem;
-            margin-bottom: 4px;
-            font-family: var(--font-serif);
-        }
-
-        .event-tag {
-            background-color: #F8F8F8;
-            border-left: 3px solid var(--accent-red);
-            border-top: 1px solid var(--border-light);
-            border-right: 1px solid var(--border-light);
-            border-bottom: 1px solid var(--border-light);
-            padding: 4px;
-            font-size: 0.65rem;
-            line-height: 1.1;
-            margin-bottom: 3px;
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--text-main);
-            display: block;
-            word-break: break-word;
-        }
-
-        .event-muni {
-            font-weight: 800;
-            color: var(--accent-red);
-            margin-right: 2px;
-        }
-
-        .event-time {
-            display: block;
-            color: #555;
-            font-size: 0.6rem;
-            margin-top: 2px;
-        }
-
-        .report-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-dark);
-            padding: 16px;
-        }
-
-        .report-summary {
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .report-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-        }
-
-        .report-table th, .report-table td {
-            border: 1px solid var(--border-dark);
-            padding: 8px;
-            text-align: left;
-        }
-
-        .report-table th {
-            background: #000;
-            color: #FFF;
-            font-family: var(--font-serif);
-            text-transform: uppercase;
-        }
-
-        .badge-error {
-            background: var(--accent-red);
-            color: #FFF;
-            padding: 2px 6px;
-            font-weight: bold;
-            font-size: 0.7rem;
-        }
-
-        .tooltip {
-            display: none;
-            position: absolute;
-            z-index: 100;
-            background: #000000;
-            color: #FFFFFF;
-            padding: 10px;
-            width: 220px;
-            font-size: 0.75rem;
-            box-shadow: 4px 4px 0px rgba(217, 35, 35, 0.8);
-            pointer-events: none;
-        }
-
-        .tooltip h4 {
-            margin: 0 0 4px 0;
-            font-family: var(--font-serif);
-            color: #FFF;
-        }
-    </style>
+  <style>
+    /* Custom CSS Overrides for FullCalendar v6 Modernization */
+    .fc {
+      --fc-border-color: #e2e8f0;
+      --fc-button-bg-color: #0f172a;
+      --fc-button-border-color: #0f172a;
+      --fc-button-hover-bg-color: #1e293b;
+      --fc-button-hover-border-color: #1e293b;
+      --fc-button-active-bg-color: #334155;
+      --fc-button-active-border-color: #334155;
+      --fc-today-bg-color: #f8fafc;
+      font-family: inherit;
+    }
+    .fc-toolbar-title {
+      font-size: 1.25rem !important;
+      font-weight: 700 !important;
+      color: #0f172a;
+    }
+    .fc-event {
+      border-radius: 6px !important;
+      padding: 2px 4px !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      border: none !important;
+      cursor: pointer;
+    }
+    .fc-theme-standard td, .fc-theme-standard th {
+      border-color: #f1f5f9;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen p-4 md:p-8">
 
-    <header>
-        <div class="sub-header">Florida Real Estate & Government Intelligence</div>
-        <h1>Municipality Tracker</h1>
+  <div class="max-w-6xl mx-auto space-y-6">
+    
+    <!-- Header & Controls -->
+    <header class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Municipal Governance Tracker</h1>
+        <p class="text-xs text-slate-500 mt-1">Real-time public hearings, commission meetings & zoning board schedules</p>
+      </div>
+
+      <!-- Filter Badges -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <button onclick="applyFilter('ALL')" id="btn-ALL" class="filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 text-white shadow-sm transition">All</button>
+        <button onclick="applyFilter('WPB')" id="btn-WPB" class="filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">West Palm Beach</button>
+        <button onclick="applyFilter('BOCA')" id="btn-BOCA" class="filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Boca Raton</button>
+        <button onclick="applyFilter('PBC')" id="btn-PBC" class="filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Palm Beach County</button>
+      </div>
     </header>
 
-    <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchTab('calendar-tab', this)">Calendar View</button>
-        <button class="tab-btn" onclick="switchTab('report-tab', this)">Accuracy Report <span id="errorBadgeCount"></span></button>
+    <!-- Calendar Card Container -->
+    <main class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+      <div id="calendar"></div>
+    </main>
+
+  </div>
+
+  <!-- Event Detail Modal -->
+  <div id="eventModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl border border-slate-100 space-y-4 relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold text-lg">&times;</button>
+      
+      <div class="flex items-center gap-2">
+        <span id="modalBadge" class="px-2.5 py-0.5 text-[11px] font-bold tracking-wider rounded-md border"></span>
+        <span id="modalTime" class="text-xs text-slate-500 font-medium"></span>
+      </div>
+
+      <div>
+        <h3 id="modalTitle" class="text-lg font-bold text-slate-900 leading-snug"></h3>
+        <p id="modalMuni" class="text-xs text-slate-500 mt-0.5"></p>
+      </div>
+
+      <p id="modalSummary" class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 leading-relaxed"></p>
+
+      <div class="pt-2 flex justify-end gap-2">
+        <button onclick="closeModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition">Close</button>
+        <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition inline-flex items-center gap-1">
+          Open Official Agenda &rarr;
+        </a>
+      </div>
     </div>
+  </div>
 
-    <div id="calendar-tab" class="tab-content active">
-        <div class="controls-bar">
-            <select id="muniFilter" onchange="renderEvents()">
-                <option value="ALL">All Municipalities</option>
-                <option value="WPB">City of West Palm Beach</option>
-                <option value="PBC">Palm Beach County</option>
-                <option value="BOCA">City of Boca Raton</option>
-            </select>
-            <select id="monthFilter" onchange="handleDropdownMonthChange()"></select>
-            <input type="text" id="searchInput" placeholder="Search keywords..." onkeyup="renderEvents()">
-        </div>
+  <script>
+    let calendar;
+    let rawEventsData = [];
+    let activeFilter = 'ALL';
 
-        <div class="month-header-banner">
-            <button class="nav-btn" onclick="changeMonth(-1)">&lt;</button>
-            <div class="month-title" id="displayMonthLabel"></div>
-            <button class="nav-btn" onclick="changeMonth(1)">&gt;</button>
-        </div>
+    // Color definitions for municipality tags
+    const muniColors = {
+      WPB: { bg: '#eff6ff', text: '#1d4ed8', border: '#bfdbfe', eventBg: '#3b82f6', eventText: '#ffffff' },
+      BOCA: { bg: '#ecfdf5', text: '#047857', border: '#a7f3d0', eventBg: '#10b981', eventText: '#ffffff' },
+      PBC: { bg: '#f3e8ff', text: '#6b21a8', border: '#e9d5ff', eventBg: '#8b5cf6', eventText: '#ffffff' }
+    };
 
-        <div class="calendar-wrapper">
-            <div class="calendar-grid">
-                <div class="day-header">Sun</div>
-                <div class="day-header">Mon</div>
-                <div class="day-header">Tue</div>
-                <div class="day-header">Wed</div>
-                <div class="day-header">Thu</div>
-                <div class="day-header">Fri</div>
-                <div class="day-header">Sat</div>
-            </div>
-            
-            <div class="calendar-grid" id="calendar"></div>
-        </div>
-    </div>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const calendarEl = document.getElementById('calendar');
 
-    <div id="report-tab" class="tab-content">
-        <div class="report-card">
-            <div class="report-summary" id="reportSummaryText">Auditing data.json records...</div>
-            <table class="report-table">
-                <thead>
-                    <tr>
-                        <th>Muni</th>
-                        <th>Scraped Event Title</th>
-                        <th>Raw Date String</th>
-                        <th>Issue Identified</th>
-                        <th>Source URL</th>
-                    </tr>
-                </thead>
-                <tbody id="reportTableBody"></tbody>
-            </table>
-        </div>
-    </div>
+      calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,listMonth'
+        },
+        buttonText: {
+          today: 'Today',
+          dayGridMonth: 'Grid View',
+          listMonth: 'Agenda List'
+        },
+        height: 'auto',
+        eventTimeFormat: {
+          hour: 'numeric',
+          minute: '2-digit',
+          meridiem: 'short'
+        },
+        eventClick: (info) => showModal(info.event.extendedProps)
+      });
 
-    <div id="tooltip" class="tooltip"></div>
+      calendar.render();
+      await fetchAndLoadData();
+    });
 
-    <script>
-        let events = [];
-        let currentDate = new Date(2026, 7, 1); // Default August 2026
+    async function fetchAndLoadData() {
+      try {
+        const res = await fetch('data.json');
+        rawEventsData = await res.json();
+        renderFilteredEvents();
+      } catch (err) {
+        console.error('Failed to fetch data.json:', err);
+      }
+    }
 
-        const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", 
-                            "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+    function renderFilteredEvents() {
+      calendar.removeAllEvents();
 
-        async function loadData() {
-            try {
-                const res = await fetch('data.json');
-                events = await res.json();
-                populateDynamicMonthDropdown();
-                renderEvents();
-                generateAccuracyReport();
-            } catch (e) {
-                console.error("Failed to load data.json", e);
-            }
-        }
+      const filtered = activeFilter === 'ALL' 
+        ? rawEventsData 
+        : rawEventsData.filter(item => item.muni_short === activeFilter);
 
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
-        }
+      const fcEvents = filtered.map(item => {
+        const colorConfig = muniColors[item.muni_short] || { eventBg: '#64748b', eventText: '#ffffff' };
+        
+        return {
+          title: `[${item.muni_short}] ${item.title}`,
+          start: `${item.date}T${parseTo24Hour(item.time)}`,
+          backgroundColor: colorConfig.eventBg,
+          textColor: colorConfig.eventText,
+          extendedProps: item
+        };
+      });
 
-        function populateDynamicMonthDropdown() {
-            const select = document.getElementById('monthFilter');
-            select.innerHTML = '';
-            
-            // Generate dropdown entries around current date
-            let tempDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 2, 1);
-            
-            for (let i = 0; i < 12; i++) {
-                const yr = tempDate.getFullYear();
-                const mo = tempDate.getMonth();
-                // Format dropdown value as YYYY-MM (e.g. 2026-08)
-                const optVal = `${yr}-${String(mo + 1).padStart(2, '0')}`;
-                
-                const opt = document.createElement('option');
-                opt.value = optVal;
-                opt.innerText = `${monthNames[mo]} ${yr}`;
-                select.appendChild(opt);
+      calendar.addEventSource(fcEvents);
+    }
 
-                tempDate.setMonth(tempDate.getMonth() + 1);
-            }
-            syncDropdownWithDate();
-        }
+    function applyFilter(muni) {
+      activeFilter = muni;
 
-        function changeMonth(delta) {
-            currentDate.setMonth(currentDate.getMonth() + delta);
-            syncDropdownWithDate();
-            renderEvents();
-        }
+      // Update button styling
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.className = 'filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition';
+      });
 
-        function handleDropdownMonthChange() {
-            const val = document.getElementById('monthFilter').value.split('-');
-            currentDate = new Date(parseInt(val[0]), parseInt(val[1]) - 1, 1);
-            renderEvents();
-        }
+      const activeBtn = document.getElementById(`btn-${muni}`);
+      if (activeBtn) {
+        activeBtn.className = 'filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 text-white shadow-sm transition';
+      }
 
-        function syncDropdownWithDate() {
-            const yr = currentDate.getFullYear();
-            const mo = String(currentDate.getMonth() + 1).padStart(2, '0');
-            const targetVal = `${yr}-${mo}`;
-            const select = document.getElementById('monthFilter');
-            if (select && select.querySelector(`option[value="${targetVal}"]`)) {
-                select.value = targetVal;
-            }
-        }
+      renderFilteredEvents();
+    }
 
-        function renderEvents() {
-            const year = currentDate.getFullYear();
-            const monthIdx = currentDate.getMonth();
-            
-            document.getElementById('displayMonthLabel').innerText = `${monthNames[monthIdx]} ${year}`;
+    function showModal(data) {
+      const modal = document.getElementById('eventModal');
+      const config = muniColors[data.muni_short] || { bg: '#f1f5f9', text: '#475569', border: '#cbd5e1' };
 
-            const muni = document.getElementById('muniFilter').value;
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            const grid = document.getElementById('calendar');
-            grid.innerHTML = '';
+      const badge = document.getElementById('modalBadge');
+      badge.textContent = data.muni_short;
+      badge.style.backgroundColor = config.bg;
+      badge.style.color = config.text;
+      badge.style.borderColor = config.border;
 
-            const firstDayIndex = new Date(year, monthIdx, 1).getDay();
-            const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
+      document.getElementById('modalTime').textContent = `${data.date} • ${data.time}`;
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalMuni').textContent = data.muni_full;
+      document.getElementById('modalSummary').textContent = data.summary;
+      document.getElementById('modalLink').href = data.link;
 
-            // 1. Padding cells before day 1
-            for (let i = 0; i < firstDayIndex; i++) {
-                const emptyBox = document.createElement('div');
-                emptyBox.className = 'day-box empty';
-                grid.appendChild(emptyBox);
-            }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
 
-            // 2. Day grid rendering with strict YYYY-MM-DD match
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayBox = document.createElement('div');
-                dayBox.className = 'day-box';
-                dayBox.innerHTML = `<div class="day-num">${day}</div>`;
+    function closeModal() {
+      const modal = document.getElementById('eventModal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
 
-                // Target string YYYY-MM-DD
-                const targetDateStr = `${year}-${String(monthIdx + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    function parseTo24Hour(timeStr) {
+      if (!timeStr) return "17:00:00";
+      const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+      if (!match) return "17:00:00";
+      let hours = parseInt(match[1]);
+      const minutes = match[2];
+      const modifier = match[3].toUpperCase();
 
-                events.forEach(item => {
-                    const matchesMuni = (muni === 'ALL' || item.muni_short === muni);
-                    const matchesSearch = item.title.toLowerCase().includes(search) || item.summary.toLowerCase().includes(search);
-                    
-                    // Exact match against event date string
-                    const matchesDate = (item.date === targetDateStr);
+      if (modifier === 'PM' && hours < 12) hours += 12;
+      if (modifier === 'AM' && hours === 12) hours = 0;
 
-                    if (matchesMuni && matchesSearch && matchesDate) {
-                        const tag = document.createElement('a');
-                        tag.className = 'event-tag';
-                        tag.href = item.link;
-                        tag.target = '_blank';
-                        tag.innerHTML = `<span class="event-muni">[${item.muni_short}]</span>${item.title}<span class="event-time">${item.time}</span>`;
-                        
-                        tag.onmousemove = (e) => showTooltip(e, item);
-                        tag.onmouseleave = hideTooltip;
-
-                        dayBox.appendChild(tag);
-                    }
-                });
-
-                grid.appendChild(dayBox);
-            }
-        }
-
-        function generateAccuracyReport() {
-            const tbody = document.getElementById('reportTableBody');
-            tbody.innerHTML = '';
-            let unrenderedCount = 0;
-
-            events.forEach(item => {
-                let issue = null;
-                if (!item.date || !item.date.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                    issue = "Invalid Date String";
-                }
-
-                if (issue) {
-                    unrenderedCount++;
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td><strong>[${item.muni_short || 'N/A'}]</strong></td>
-                        <td>${item.title || 'Untitled Event'}</td>
-                        <td><code>${item.date || 'EMPTY'}</code></td>
-                        <td><span class="badge-error">${issue}</span></td>
-                        <td><a href="${item.link}" target="_blank">View Source Link</a></td>
-                    `;
-                    tbody.appendChild(row);
-                }
-            });
-
-            const summaryEl = document.getElementById('reportSummaryText');
-            const badgeCountEl = document.getElementById('errorBadgeCount');
-
-            if (unrenderedCount === 0) {
-                summaryEl.innerText = `Audit Passed: All ${events.length} records in data.json are validly formatted and renderable.`;
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:green; padding: 16px;"><strong>No parsing issues detected.</strong> All scraped events are successfully displaying.</td></tr>`;
-                badgeCountEl.innerText = `(0)`;
-            } else {
-                summaryEl.innerText = `Audit Alert: Found ${unrenderedCount} event(s) out of ${events.length} total that cannot render.`;
-                badgeCountEl.innerText = `(${unrenderedCount})`;
-            }
-        }
-
-        function showTooltip(e, item) {
-            const tt = document.getElementById('tooltip');
-            tt.style.display = 'block';
-            tt.style.left = Math.min(e.pageX + 10, window.innerWidth - 230) + 'px';
-            tt.style.top = (e.pageY + 10) + 'px';
-            tt.innerHTML = `<h4>${item.muni_full}</h4><strong>${item.title}</strong><br><br>${item.summary}`;
-        }
-
-        function hideTooltip() {
-            document.getElementById('tooltip').style.display = 'none';
-        }
-
-        loadData();
-    </script>
+      return `${hours.toString().padStart(2, '0')}:${minutes}:00`;
+    }
+  </script>
 </body>
 </html>
