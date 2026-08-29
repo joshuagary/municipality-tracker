@@ -345,6 +345,89 @@ Text:
 
     return events
 
+# --- 4. DELRAY BEACH MODULE (LEGISTAR CURRENT + NEXT MONTH PARSER) ---
+def scrape_delray_beach():
+    events = []
+    url = "https://delraybeach.legistar.com/Calendar.aspx"
+    
+    now = datetime.now()
+    current_month_start = datetime(now.year, now.month, 1)
+
+    # 1. Calculate Current Month & Next Month boundaries
+    curr_year = now.year
+    curr_month = now.month
+
+    if curr_month == 12:
+        next_year = curr_year + 1
+        next_month = 1
+    else:
+        next_year = curr_year
+        next_month = curr_month + 1
+
+    # End boundary for the 1-month lookahead window (last day of next month)
+    # E.g., if now is August 2026, lookahead captures through end of September 2026
+    if next_month == 12:
+        lookahead_end = datetime(next_year + 1, 1, 1)
+    else:
+        lookahead_end = datetime(next_year, next_month + 1, 1)
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    }
+
+    try:
+        # Legistar defaults to displaying upcoming meetings for the active calendar year
+        res = requests.get(url, headers=headers, timeout=12)
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            rows = soup.select(".rgMasterTable tbody tr, .rgRow, .rgAltRow")
+
+            for row in rows:
+                cols = row.find_all("td")
+                if len(cols) < 4:
+                    continue
+
+                # Legistar Column Structure: [0: Name, 1: Date, 2: Time, 3: Location]
+                raw_title = cols[0].text.strip()
+                clean_title = clean_event_title(raw_title)
+                
+                raw_date = cols[1].text.strip()
+                raw_time = cols[2].text.strip()
+
+                a_tag = cols[0].find("a") or row.find("a", href=True)
+                href = a_tag['href'] if a_tag else ""
+
+                if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                    iso_date = extract_date_from_text(raw_date) or extract_date_from_text(clean_title)
+
+                    if iso_date:
+                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                        
+                        # Filter strictly: From 1st of current month through end of next month
+                        if current_month_start <= dt < lookahead_end:
+                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_time)
+                            meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
+
+                            full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href}"
+
+                            events.append({
+                                "id": f"delray-{iso_date}-{hash(full_link)}",
+                                "muni_short": "DELRAY",
+                                "muni_full": "City of Delray Beach",
+                                "title": clean_title,
+                                "date": iso_date,
+                                "time": meeting_time,
+                                "link": full_link,
+                                "summary": f"Official {clean_title} meeting."
+                            })
+
+            print(f"Delray Beach Scraper successfully extracted {len(events)} events for window ({curr_month}/{curr_year} to {next_month}/{next_year}).")
+    except Exception as e:
+        print(f"Error scraping Delray Beach: {e}")
+
+    return events
+
+
 # --- DEDUPLICATION CONTROLLER ---
 def run():
     raw_events = []
