@@ -90,35 +90,44 @@ def extract_pdf_first_pages_text(url):
         print(f"PDF extraction error on {url}: {e}")
     return None
 
-# --- 1. BOCA RATON MODULE (DYNAMIC URL & SHARED KEYWORD LOGIC) ---
+# --- 1. BOCA RATON MODULE (MULTI-VIEW & SHARED KEYWORD LOGIC) ---
 def scrape_boca_raton():
     events = []
     
-    # Dynamically compute year and month URL for current execution date
+    # Dynamically compute year and month for current execution date
     now = datetime.now()
-    url = f"https://www.myboca.us/calendar.aspx?view=month&year={now.year}&month={now.month}&CID=0"
     current_month_start = datetime(now.year, now.month, 1)
 
-    try:
-        res = requests.get(url, impersonate="chrome124", timeout=12)
-        if res.status_code == 200:
+    # Fallback view URLs to ensure zero missed events across table & list views
+    urls = [
+        f"https://www.myboca.us/calendar.aspx?view=list&year={now.year}&month={now.month}&CID=0",
+        f"https://www.myboca.us/calendar.aspx?view=month&year={now.year}&month={now.month}&CID=0"
+    ]
+
+    for url in urls:
+        try:
+            res = requests.get(url, impersonate="chrome124", timeout=12)
+            if res.status_code != 200:
+                continue
+
             soup = BeautifulSoup(res.text, "html.parser")
             
-            elements = soup.select(".calendarRow, .detail-list-item, .calendarEvent, tr, li")
+            # Select event elements across all CivicPlus grid, table, and list containers
+            elements = soup.select(".calendarRow, .calendarCell, .calendarEvent, .detail-list-item, td, tr, li")
             
             for item in elements:
-                title_elem = item.select_one(".calendarTitle a, a[href*='calendar']")
-                date_elem = item.select_one(".calendarDate, .date")
+                # Find direct link or inner link to calendar event
+                title_elem = item if (item.name == 'a' and 'calendar' in item.get('href', '')) else item.select_one("a[href*='calendar.aspx?EID='], a[href*='Calendar.aspx?EID='], .calendarTitle a")
+                date_elem = item.select_one(".calendarDate, .date, .calendarDay")
                 
                 if not title_elem:
                     continue
 
                 raw_title = title_elem.text.strip()
                 clean_title = clean_event_title(raw_title)
-                href = title_elem['href']
+                href = title_elem['href'] if title_elem.name == 'a' else title_elem.get('href', '')
                 raw_context = item.get_text(separator=" ", strip=True)
 
-                # Shared Keyword & Exclude Matching (Same as WPB logic)
                 if (is_qualifying_event(clean_title) or is_qualifying_event(raw_context)) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     raw_date = date_elem.text.strip() if date_elem else raw_context
                     iso_date = extract_date_from_text(raw_date) or extract_date_from_text(clean_title)
@@ -141,10 +150,14 @@ def scrape_boca_raton():
                                 "link": full_link,
                                 "summary": f"Official {clean_title} meeting."
                             })
-
-            print(f"Boca Raton Scraper dynamically loaded ({url}) and extracted {len(events)} events.")
-    except Exception as e:
-        print(f"Error scraping Boca Raton: {e}")
+            
+            # If events were captured from the primary list view, exit loop
+            if len(events) > 0:
+                print(f"Boca Raton Scraper successfully extracted {len(events)} events from {url}.")
+                break
+                
+        except Exception as e:
+            print(f"Error scraping Boca Raton from {url}: {e}")
 
     return events
 
