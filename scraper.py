@@ -327,57 +327,67 @@ def scrape_delray_beach():
     return events
 
 
-# --- 5. PALM BEACH GARDENS MODULE (CIVICPLUS HTML PARSER) ---
+# --- 5. PALM BEACH GARDENS MODULE (CIVICPLUS MASTER CALENDAR SCRAPER) ---
 def scrape_palm_beach_gardens():
     events = []
     base_url = "https://www.pbgfl.gov"
-    target_url = "https://www.pbgfl.gov/482/Agendas"
+    # Target the direct Master Calendar URL with specified Category IDs
+    calendar_url = "https://www.pbgfl.gov/calendar.aspx?CID=41,42,37,44,45,46,47,48,43"
     
     now = datetime.now()
-    # Filter for current month onwards
-    current_month_start = datetime(now.year, now.month, 1)
+    curr_year = now.year
+    curr_month = now.month
+
+    # Dual-Month Range: August 1 through October 1 boundary
+    current_month_start = datetime(curr_year, curr_month, 1)
+    if curr_month == 11:
+        lookahead_end = datetime(curr_year + 1, 1, 1)
+    elif curr_month == 12:
+        lookahead_end = datetime(curr_year + 1, 2, 1)
+    else:
+        lookahead_end = datetime(curr_year, curr_month + 2, 1)
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     }
 
     try:
-        res = requests.get(target_url, headers=headers, timeout=15)
-        print(f"[PBG] HTTP Status Code: {res.status_code}")
+        res = requests.get(calendar_url, headers=headers, timeout=15)
+        print(f"[PBG Calendar] HTTP Status Code: {res.status_code}")
 
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             
-            # CivicPlus structures agendas in tables or row blocks (tr / div.agendaRow)
-            rows = soup.find_all("tr")
-            print(f"[PBG] Found {len(rows)} raw table rows.")
+            # CivicPlus master calendar renders events in table rows or list items with class 'calendarItem' or 'event'
+            event_items = soup.select("tr, div.calendarItem, li.eventItem, div.event")
+            print(f"[PBG Calendar] Found {len(event_items)} raw calendar elements.")
 
             seen_keys = set()
 
-            for row in rows:
-                row_text = row.text.strip()
-                if not row_text:
+            for item in event_items:
+                item_text = item.text.strip()
+                if not item_text:
                     continue
 
-                # 1. Extract Title
-                title_elem = row.find(["strong", "b", "h3", "a"])
-                raw_title = title_elem.text.strip() if title_elem else ""
-                
-                # Fallback to text before date if element not found
-                if not raw_title and "\n" in row_text:
-                    raw_title = row_text.split("\n")[0].strip()
+                # 1. Extract Event Title & Link (EID= link)
+                link_elem = item.select_one("a[href*='calendar.aspx?EID='], a[href*='Calendar.aspx?EID='], a.calendarHead")
+                if not link_elem:
+                    continue
 
+                raw_title = link_elem.text.strip()
                 clean_title = clean_event_title(raw_title)
+
+                href = link_elem.get("href", "").strip()
+                full_link = href if href.startswith("http") else f"{base_url}/{href.lstrip('/')}"
 
                 # 2. Extract Date (M/D/YYYY or Month DD, YYYY)
                 iso_date = None
-                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', row_text)
+                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', item_text)
                 if date_match:
                     m, d, y = date_match.groups()
                     iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
                 else:
-                    # Text date fallback (e.g., August 13, 2026)
-                    text_date_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', row_text, re.I)
+                    text_date_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', item_text, re.I)
                     if text_date_match:
                         try:
                             dt_parsed = datetime.strptime(text_date_match.group(0).replace(",", ""), "%B %d %Y")
@@ -385,47 +395,38 @@ def scrape_palm_beach_gardens():
                         except ValueError:
                             pass
 
-                # 3. Extract Direct PDF Link
-                pdf_a = row.select_one("a[href*='ViewFile/Agenda'], a[href*='.pdf'], a[href*='AgendaCenter']")
-                href = ""
-                if pdf_a and pdf_a.get("href"):
-                    href = pdf_a["href"].strip()
-                    if not href.startswith("http"):
-                        href = f"{base_url}/{href.lstrip('/')}"
-                else:
-                    href = target_url
+                # 3. Extract Time
+                time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', item_text)
+                meeting_time = time_match.group(1).strip().upper() if time_match else "6:00 PM"
+                if "AM" not in meeting_time and "PM" not in meeting_time:
+                    meeting_time += " PM"
 
-                # 4. Filter and Qualify
+                # 4. Strict Qualification & Dual-Month Filter (Aug 1 <= Date < Oct 1)
                 if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
 
-                    if dt >= current_month_start:
-                        # Extract Meeting Time if available
-                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', row_text)
-                        meeting_time = time_match.group(1).strip().upper() if time_match else "6:00 PM"
-                        if "AM" not in meeting_time and "PM" not in meeting_time:
-                            meeting_time += " PM"
-
+                    if current_month_start <= dt < lookahead_end:
                         dedup_key = (clean_title, iso_date)
                         if dedup_key not in seen_keys:
                             seen_keys.add(dedup_key)
                             events.append({
-                                "id": f"pbg-{iso_date}-{hash(href)}",
+                                "id": f"pbg-{iso_date}-{hash(full_link)}",
                                 "muni_short": "PBG",
                                 "muni_full": "City of Palm Beach Gardens",
                                 "title": clean_title,
                                 "date": iso_date,
                                 "time": meeting_time,
-                                "link": href,
+                                "link": full_link,
                                 "summary": f"Official {clean_title} meeting."
                             })
 
-            print(f"[PBG] Successfully parsed {len(events)} qualifying events.")
+            print(f"[PBG Calendar] Saved {len(events)} qualifying events across August and September.")
 
     except Exception as e:
-        print(f"[PBG] Error scraping Palm Beach Gardens: {e}")
+        print(f"[PBG Calendar] Error parsing master calendar: {e}")
 
     return events
+
 
 
 
