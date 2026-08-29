@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
   <style>
-    /* Custom CSS Overrides for FullCalendar v6 Modernization */
+    /* Custom Overrides for FullCalendar v6 Modernization */
     .fc {
       --fc-border-color: #e2e8f0;
       --fc-button-bg-color: #0f172a;
@@ -31,7 +31,7 @@
     }
     .fc-event {
       border-radius: 6px !important;
-      padding: 2px 4px !important;
+      padding: 2px 5px !important;
       font-size: 0.75rem !important;
       font-weight: 600 !important;
       border: none !important;
@@ -39,6 +39,35 @@
     }
     .fc-theme-standard td, .fc-theme-standard th {
       border-color: #f1f5f9;
+    }
+    
+    /* Popover Styling for +More Events */
+    .fc-popover {
+      border-radius: 12px !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.1) !important;
+      background: #ffffff !important;
+      z-index: 40 !important;
+    }
+    .fc-popover-header {
+      background: #f8fafc !important;
+      padding: 8px 12px !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      border-top-left-radius: 12px !important;
+      border-top-right-radius: 12px !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+    }
+    .fc-more-link {
+      font-size: 0.75rem !important;
+      font-weight: 700 !important;
+      color: #2563eb !important;
+      padding: 1px 4px !important;
+      border-radius: 4px !important;
+    }
+    .fc-more-link:hover {
+      background-color: #eff6ff !important;
+      text-decoration: none !important;
     }
   </style>
 </head>
@@ -62,7 +91,7 @@
       </div>
     </header>
 
-    <!-- Calendar Card Container -->
+    <!-- Calendar Container -->
     <main class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
       <div id="calendar"></div>
     </main>
@@ -100,7 +129,6 @@
     let rawEventsData = [];
     let activeFilter = 'ALL';
 
-    // Color definitions for municipality tags
     const muniColors = {
       WPB: { bg: '#eff6ff', text: '#1d4ed8', border: '#bfdbfe', eventBg: '#3b82f6', eventText: '#ffffff' },
       BOCA: { bg: '#ecfdf5', text: '#047857', border: '#a7f3d0', eventBg: '#10b981', eventText: '#ffffff' },
@@ -112,6 +140,12 @@
 
       calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        
+        // --- OVERFLOW & POPOVER CONFIGURATION ---
+        dayMaxEvents: 3,           // Caps visible events to 3 per cell
+        moreLinkClick: 'popover',  // Opens styled popover for remaining events
+        height: 'auto',
+        
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
@@ -122,7 +156,6 @@
           dayGridMonth: 'Grid View',
           listMonth: 'Agenda List'
         },
-        height: 'auto',
         eventTimeFormat: {
           hour: 'numeric',
           minute: '2-digit',
@@ -170,7 +203,6 @@
     function applyFilter(muni) {
       activeFilter = muni;
 
-      // Update button styling
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.className = 'filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition';
       });
