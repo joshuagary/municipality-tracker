@@ -249,29 +249,37 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (ACCURATE TIME & DIRECT LINK PARSER) ---
+# --- 4. DELRAY BEACH MODULE (EXACT 1-MONTH LOOKAHEAD ENGINE) ---
 def scrape_delray_beach():
     events = []
-    url = "https://delraybeach.legistar.com/Calendar.aspx"
     
     now = datetime.now()
     current_month_start = datetime(now.year, now.month, 1)
 
     curr_year = now.year
     curr_month = now.month
-    next_year = curr_year + 1 if curr_month == 12 else curr_year
-    next_month = 1 if curr_month == 12 else curr_month + 1
 
-    if next_month == 12:
-        lookahead_end = datetime(next_year + 1, 1, 1)
+    # Calculate 1st day of the month after next (e.g., Aug -> Oct 1, so Sept 30 is included)
+    if curr_month == 11:
+        lookahead_end = datetime(curr_year + 1, 1, 1)
+    elif curr_month == 12:
+        lookahead_end = datetime(curr_year + 1, 2, 1)
     else:
-        lookahead_end = datetime(next_year, next_month + 1, 1)
+        lookahead_end = datetime(curr_year, curr_month + 2, 1)
 
-    try:
-        res = requests.get(url, impersonate="chrome124", timeout=15)
-        print(f"[Delray Scraper] HTTP Response Status: {res.status_code}")
-        
-        if res.status_code == 200:
+    urls = [
+        "https://delraybeach.legistar.com/Calendar.aspx",
+        f"https://delraybeach.legistar.com/Calendar.aspx?Mode=Year&Years={curr_year}"
+    ]
+
+    seen_event_keys = set()
+
+    for url in urls:
+        try:
+            res = requests.get(url, impersonate="chrome124", timeout=15)
+            if res.status_code != 200:
+                continue
+
             soup = BeautifulSoup(res.text, "html.parser")
             rows = soup.find_all("tr")
 
@@ -286,33 +294,28 @@ def scrape_delray_beach():
                 raw_date = cols[1].text.strip() if len(cols) > 1 else ""
                 raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                # --- 1. EXTRACT DIRECT AGENDA LINK ---
+                # Extract Direct Agenda Link
                 raw_href = ""
-                
-                # Check for direct anchor tags with View.ashx?M=A in the row
                 for a_tag in row.find_all("a", href=True):
                     href_val = a_tag['href'].strip()
                     if "View.ashx?M=A" in href_val or (href_val.endswith(".pdf") and "Agenda" in a_tag.text):
                         raw_href = href_val
                         break
                 
-                # Fallback to column index 5 (Agenda column) if no explicit M=A tag matched
                 if not raw_href and len(cols) >= 6:
                     agenda_col = cols[5]
                     col_a = agenda_col.find("a", href=True)
                     if col_a:
                         raw_href = col_a['href'].strip()
 
-                # --- 2. EXTRACT PRECISE MEETING TIME ---
+                # Extract Meeting Time
                 meeting_time = None
                 if raw_time:
-                    # Robust regex capturing patterns like "3:00 PM", "3:00PM", "03:00 pm"
                     time_match = re.search(r'(\d{1,2}:\d{2})\s*([AaPp][Mm])', raw_time)
                     if time_match:
                         t_str, am_pm = time_match.group(1), time_match.group(2).upper()
                         meeting_time = f"{t_str} {am_pm}"
 
-                # Fallback check against full row text if column parsing yielded no time match
                 if not meeting_time:
                     row_text = row.get_text(separator=" ", strip=True)
                     time_match = re.search(r'(\d{1,2}:\d{2})\s*([AaPp][Mm])', row_text)
@@ -333,25 +336,31 @@ def scrape_delray_beach():
 
                     if iso_date:
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                        
+                        # STRICT FILTER: Only include events from start of current month up to end of next month
                         if current_month_start <= dt < lookahead_end:
                             full_link = raw_href if raw_href.startswith("http") else f"https://delraybeach.legistar.com/{raw_href.lstrip('/')}"
+                            
+                            dedup_key = (clean_title, iso_date, full_link)
+                            if dedup_key not in seen_event_keys:
+                                seen_event_keys.add(dedup_key)
+                                events.append({
+                                    "id": f"delray-{iso_date}-{hash(full_link)}",
+                                    "muni_short": "DELRAY",
+                                    "muni_full": "City of Delray Beach",
+                                    "title": clean_title,
+                                    "date": iso_date,
+                                    "time": meeting_time,
+                                    "link": full_link,
+                                    "summary": f"Official {clean_title} meeting."
+                                })
 
-                            events.append({
-                                "id": f"delray-{iso_date}-{hash(full_link)}",
-                                "muni_short": "DELRAY",
-                                "muni_full": "City of Delray Beach",
-                                "title": clean_title,
-                                "date": iso_date,
-                                "time": meeting_time,
-                                "link": full_link,
-                                "summary": f"Official {clean_title} meeting."
-                            })
+        except Exception as e:
+            print(f"[Delray Scraper] Error scraping {url}: {e}")
 
-            print(f"[Delray Scraper] Successfully extracted {len(events)} events with direct links and verified times.")
-    except Exception as e:
-        print(f"[Delray Scraper] Error: {e}")
-
+    print(f"[Delray Scraper] Successfully extracted {len(events)} events for current month + 1 month ahead.")
     return events
+
 
 
 # --- DEDUPLICATION & MAIN CONTROLLER ---
