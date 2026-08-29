@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Municipal Public Meetings Portal</title>
+    
+    <!-- FullCalendar 6 Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+    
     <style>
         :root {
             --primary: #1e3a8a;
@@ -27,7 +31,7 @@
             background-color: var(--bg);
             color: var(--text-main);
             padding: 24px 16px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -46,7 +50,7 @@
             font-size: 0.95rem;
         }
 
-        /* SEARCH & FILTER CONTROLS */
+        /* CONTROLS CARD */
         .controls-card {
             background: var(--card-bg);
             padding: 16px;
@@ -56,23 +60,52 @@
             margin-bottom: 24px;
         }
 
+        .search-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
         .search-box {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 1rem;
+            flex: 1;
+            padding: 10px 14px;
+            font-size: 0.95rem;
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            margin-bottom: 16px;
             outline: none;
-            transition: border-color 0.2s;
         }
 
         .search-box:focus {
             border-color: var(--primary);
         }
 
-        .filter-label {
+        .view-toggle {
+            display: flex;
+            background: #f1f5f9;
+            padding: 2px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .toggle-btn {
+            padding: 8px 14px;
+            border: none;
+            background: none;
             font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-muted);
+            border-radius: 6px;
+        }
+
+        .toggle-btn.active {
+            background: #ffffff;
+            color: var(--primary);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .filter-label {
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -80,29 +113,22 @@
             margin-bottom: 8px;
         }
 
-        /* FLEX WRAP FIX FOR MUNICIPALITY BUTTONS */
         .muni-filter-wrapper {
             display: flex;
-            flex-wrap: wrap; /* Allows all buttons to wrap into extra rows cleanly */
-            gap: 8px;
-            width: 100%;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
         .filter-btn {
             background-color: #f1f5f9;
             color: var(--text-main);
             border: 1px solid var(--border);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .filter-btn:hover {
-            background-color: #e2e8f0;
         }
 
         .filter-btn.active {
@@ -111,15 +137,22 @@
             border-color: var(--primary);
         }
 
-        /* EVENT CARDS DISPLAY */
-        .results-info {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
+        /* CALENDAR CONTAINER */
+        #calendar-wrapper {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        .events-grid {
-            display: flex;
+        #calendar {
+            min-height: 650px;
+        }
+
+        /* LIST VIEW CONTAINER */
+        #list-wrapper {
+            display: none;
             flex-direction: column;
             gap: 12px;
         }
@@ -131,15 +164,13 @@
             padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            gap: 6px;
         }
 
         .event-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            gap: 12px;
+            align-items: center;
         }
 
         .muni-badge {
@@ -147,29 +178,19 @@
             color: var(--primary);
             font-size: 0.75rem;
             font-weight: 700;
-            padding: 4px 8px;
+            padding: 3px 8px;
             border-radius: 4px;
             text-transform: uppercase;
         }
 
         .event-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .event-details {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            display: flex;
-            gap: 16px;
         }
 
         .event-link {
-            align-self: flex-start;
-            margin-top: 4px;
             color: var(--primary-hover);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
             text-decoration: none;
         }
@@ -178,13 +199,9 @@
             text-decoration: underline;
         }
 
-        .no-results {
-            text-align: center;
-            padding: 32px;
-            color: var(--text-muted);
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
+        .fc-event {
+            cursor: pointer;
+            padding: 2px 4px;
         }
     </style>
 </head>
@@ -196,71 +213,109 @@
     </header>
 
     <section class="controls-card">
-        <input type="text" id="searchInput" class="search-box" placeholder="Search by topic, keyword, or board name (e.g. Zoning, CRA, Commission)...">
+        <div class="search-row">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search by topic, board, or keyword (e.g. Zoning, CRA, Commission)...">
+            <div class="view-toggle">
+                <button class="toggle-btn active" id="btnCalendarView">Calendar</button>
+                <button class="toggle-btn" id="btnListView">List View</button>
+            </div>
+        </div>
         
         <div class="filter-label">Filter by Municipality:</div>
         <div class="muni-filter-wrapper" id="muniFilterContainer">
-            <button class="filter-btn active" data-muni="ALL">All Municipalities</button>
-            <button class="filter-btn" data-muni="BOCA">Boca Raton</button>
-            <button class="filter-btn" data-muni="BOYNTON">Boynton Beach</button>
-            <button class="filter-btn" data-muni="DELRAY">Delray Beach</button>
-            <button class="filter-btn" data-muni="PALMBEACH">Palm Beach</button>
+            <!-- Buttons generated dynamically -->
         </div>
     </section>
 
-    <div class="results-info" id="resultsCount">Loading public meetings...</div>
+    <!-- CALENDAR DISPLAY -->
+    <main id="calendar-wrapper">
+        <div id="calendar"></div>
+    </main>
 
-    <main class="events-grid" id="eventsContainer">
-        <!-- Event cards render dynamically here -->
+    <!-- LIST DISPLAY -->
+    <main id="list-wrapper">
+        <!-- Rendered when List View is active -->
     </main>
 
     <script>
         let allEvents = [];
+        let calendar = null;
         let selectedMuni = "ALL";
 
         document.addEventListener("DOMContentLoaded", () => {
+            initCalendar();
             fetchEvents();
-            setupFilterListeners();
+
+            document.getElementById("searchInput").addEventListener("input", updateViews);
+            document.getElementById("btnCalendarView").addEventListener("click", () => switchView("calendar"));
+            document.getElementById("btnListView").addEventListener("click", () => switchView("list"));
         });
+
+        function initCalendar() {
+            const calendarEl = document.getElementById("calendar");
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,listMonth'
+                },
+                events: [],
+                eventClick: function(info) {
+                    if (info.event.url) {
+                        info.jsEvent.preventDefault();
+                        window.open(info.event.url, "_blank");
+                    }
+                }
+            });
+            calendar.render();
+        }
 
         async function fetchEvents() {
             try {
                 const response = await fetch("data.json");
                 if (!response.ok) throw new Error("Failed to load data.json");
                 allEvents = await response.json();
-                renderEvents();
+                
+                buildMunicipalityButtons();
+                updateViews();
             } catch (error) {
                 console.error("Error loading events:", error);
-                document.getElementById("eventsContainer").innerHTML = `
-                    <div class="no-results">Unable to load meeting data. Please verify data.json is present.</div>
-                `;
             }
         }
 
-        function setupFilterListeners() {
-            // Search input handler
-            document.getElementById("searchInput").addEventListener("input", renderEvents);
+        function buildMunicipalityButtons() {
+            const container = document.getElementById("muniFilterContainer");
+            const muniMap = {};
+            allEvents.forEach(e => {
+                if (e.muni_short) {
+                    muniMap[e.muni_short] = e.muni_full || e.muni_short;
+                }
+            });
 
-            // Municipality filter buttons handler
-            document.getElementById("muniFilterContainer").addEventListener("click", (e) => {
+            const sortedKeys = Object.keys(muniMap).sort();
+            let buttonsHTML = `<button class="filter-btn active" data-muni="ALL">All Municipalities</button>`;
+            
+            sortedKeys.forEach(code => {
+                buttonsHTML += `<button class="filter-btn" data-muni="${code}">${muniMap[code]}</button>`;
+            });
+
+            container.innerHTML = buttonsHTML;
+
+            container.addEventListener("click", (e) => {
                 if (e.target.classList.contains("filter-btn")) {
                     document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
                     e.target.classList.add("active");
                     selectedMuni = e.target.getAttribute("data-muni");
-                    renderEvents();
+                    updateViews();
                 }
             });
         }
 
-        function renderEvents() {
-            const searchTerm = document.getElementById("searchInput").value.toLowerCase().strip ? 
-                               document.getElementById("searchInput").value.toLowerCase().strip() : 
-                               document.getElementById("searchInput").value.toLowerCase().trim();
-                               
-            const container = document.getElementById("eventsContainer");
-            const countDisplay = document.getElementById("resultsCount");
-
-            const filtered = allEvents.filter(event => {
+        function getFilteredEvents() {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
+            
+            return allEvents.filter(event => {
                 const matchesMuni = (selectedMuni === "ALL") || (event.muni_short === selectedMuni);
                 const matchesSearch = !searchTerm || 
                                       event.title.toLowerCase().includes(searchTerm) || 
@@ -269,26 +324,72 @@
 
                 return matchesMuni && matchesSearch;
             });
+        }
 
-            countDisplay.textContent = `Showing ${filtered.length} upcoming meeting${filtered.length === 1 ? '' : 's'}`;
+        function updateViews() {
+            const filtered = getFilteredEvents();
 
+            // 1. Update FullCalendar Events
+            const fcEvents = filtered.map(e => ({
+                title: `[${e.muni_short}] ${e.title}`,
+                start: `${e.date}T${formatTimeTo24H(e.time)}`,
+                url: e.link
+            }));
+
+            calendar.removeAllEvents();
+            calendar.addEventSource(fcEvents);
+
+            // 2. Update List View HTML
+            const listWrapper = document.getElementById("list-wrapper");
             if (filtered.length === 0) {
-                container.innerHTML = `<div class="no-results">No upcoming meetings match your search criteria.</div>`;
-                return;
+                listWrapper.innerHTML = `<div class="event-card">No meetings match your filters.</div>`;
+            } else {
+                listWrapper.innerHTML = filtered.map(e => `
+                    <article class="event-card">
+                        <div class="event-header">
+                            <span class="muni-badge">${e.muni_short}</span>
+                            <span style="font-size:0.85rem; color: var(--text-muted);">${e.date} &bull; ${e.time}</span>
+                        </div>
+                        <div class="event-title">${e.title}</div>
+                        <a href="${e.link}" target="_blank" rel="noopener noreferrer" class="event-link">View Agenda &rarr;</a>
+                    </article>
+                `).join("");
             }
+        }
 
-            container.innerHTML = filtered.map(event => `
-                <article class="event-card">
-                    <div class="event-header">
-                        <span class="muni-badge">${event.muni_short}</span>
-                        <span class="event-details">${event.date} &bull; ${event.time}</span>
-                    </div>
-                    <div class="event-title">${event.title}</div>
-                    <a href="${event.link}" target="_blank" rel="noopener noreferrer" class="event-link">
-                        View Agenda / Details &rarr;
-                    </a>
-                </article>
-            `).join("");
+        function switchView(viewType) {
+            const calWrapper = document.getElementById("calendar-wrapper");
+            const listWrapper = document.getElementById("list-wrapper");
+            const btnCal = document.getElementById("btnCalendarView");
+            const btnList = document.getElementById("btnListView");
+
+            if (viewType === "calendar") {
+                calWrapper.style.display = "block";
+                listWrapper.style.display = "none";
+                btnCal.classList.add("active");
+                btnList.classList.remove("active");
+                calendar.render(); // Redraw calendar view upon unhiding
+            } else {
+                calWrapper.style.display = "none";
+                listWrapper.style.display = "flex";
+                btnList.classList.add("active");
+                btnCal.classList.remove("active");
+            }
+        }
+
+        function formatTimeTo24H(timeStr) {
+            if (!timeStr) return "17:00:00";
+            const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+            if (!match) return "17:00:00";
+
+            let hours = parseInt(match[1]);
+            const minutes = match[2];
+            const ampm = match[3] ? match[3].toUpperCase() : "PM";
+
+            if (ampm === "PM" && hours < 12) hours += 12;
+            if (ampm === "AM" && hours === 12) hours = 0;
+
+            return `${hours.toString().padStart(2, '0')}:${minutes}:00`;
         }
     </script>
 </body>
