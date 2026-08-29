@@ -249,7 +249,7 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (EXACT 1-MONTH LOOKAHEAD ENGINE) ---
+# --- 4. DELRAY BEACH MODULE (ALL UPCOMING MEETINGS INCLUDING PENDING AGENDAS) ---
 def scrape_delray_beach():
     events = []
     
@@ -259,7 +259,6 @@ def scrape_delray_beach():
     curr_year = now.year
     curr_month = now.month
 
-    # Calculate 1st day of the month after next (e.g., Aug -> Oct 1, so Sept 30 is included)
     if curr_month == 11:
         lookahead_end = datetime(curr_year + 1, 1, 1)
     elif curr_month == 12:
@@ -294,21 +293,27 @@ def scrape_delray_beach():
                 raw_date = cols[1].text.strip() if len(cols) > 1 else ""
                 raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                # Extract Direct Agenda Link
+                # --- 1. EXTRACT AGENDA OR DETAIL LINK ---
                 raw_href = ""
+                
+                # Priority 1: Direct Agenda PDF Link (View.ashx?M=A)
                 for a_tag in row.find_all("a", href=True):
                     href_val = a_tag['href'].strip()
                     if "View.ashx?M=A" in href_val or (href_val.endswith(".pdf") and "Agenda" in a_tag.text):
                         raw_href = href_val
                         break
                 
-                if not raw_href and len(cols) >= 6:
-                    agenda_col = cols[5]
-                    col_a = agenda_col.find("a", href=True)
-                    if col_a:
-                        raw_href = col_a['href'].strip()
+                # Priority 2: Meeting Detail Page (MeetingDetail.aspx) if Agenda is pending
+                if not raw_href:
+                    detail_a = row.select_one("a[href*='MeetingDetail.aspx']")
+                    if detail_a and detail_a.get('href'):
+                        raw_href = detail_a['href'].strip()
 
-                # Extract Meeting Time
+                # Priority 3: Default fallback link
+                if not raw_href:
+                    raw_href = "Calendar.aspx"
+
+                # --- 2. EXTRACT MEETING TIME ---
                 meeting_time = None
                 if raw_time:
                     time_match = re.search(r'(\d{1,2}:\d{2})\s*([AaPp][Mm])', raw_time)
@@ -323,9 +328,9 @@ def scrape_delray_beach():
                         t_str, am_pm = time_match.group(1), time_match.group(2).upper()
                         meeting_time = f"{t_str} {am_pm}"
                     else:
-                        meeting_time = "Not Specified"
+                        meeting_time = "5:00 PM"
 
-                if raw_href and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     iso_date = None
                     date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
                     if date_match:
@@ -337,11 +342,11 @@ def scrape_delray_beach():
                     if iso_date:
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
                         
-                        # STRICT FILTER: Only include events from start of current month up to end of next month
+                        # STRICT FILTER: Current month through end of next month
                         if current_month_start <= dt < lookahead_end:
                             full_link = raw_href if raw_href.startswith("http") else f"https://delraybeach.legistar.com/{raw_href.lstrip('/')}"
                             
-                            dedup_key = (clean_title, iso_date, full_link)
+                            dedup_key = (clean_title, iso_date)
                             if dedup_key not in seen_event_keys:
                                 seen_event_keys.add(dedup_key)
                                 events.append({
@@ -358,7 +363,7 @@ def scrape_delray_beach():
         except Exception as e:
             print(f"[Delray Scraper] Error scraping {url}: {e}")
 
-    print(f"[Delray Scraper] Successfully extracted {len(events)} events for current month + 1 month ahead.")
+    print(f"[Delray Scraper] Successfully extracted {len(events)} events for current month + September.")
     return events
 
 
