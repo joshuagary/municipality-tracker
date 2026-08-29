@@ -9,15 +9,27 @@ from curl_cffi import requests
 
 DATA_FILE = "data.json"
 
+# Strict primary keywords for general scraping
 KEYWORDS = [
-    "commission", "commissioners", "bcc", "council", "meeting", "agenda",
-    "workshop", "hearing", "zoning", "planning", "p&z", "pz", "site plan",
-    "plat", "plats", "pprc", "redevelopment", "cra", "action", "cac", "work session",
-    "board of appeals", "downtown action"
+    "commission", "commissioners", "bcc", "council", "zoning board", 
+    "planning board", "p&z", "pz", "pprc", "redevelopment", "cra", 
+    "downtown action committee", "plans & plats", "plans and plats"
 ]
 
 EXCLUDE_KEYWORDS = [
-    "code compliance", "pension", "police", "firefighters"
+    "code compliance", "pension", "police", "firefighters", "art", "library", "parks"
+]
+
+# Explicit board title filter for West Palm Beach
+STRICT_WPB_BOARDS = [
+    "city commission",
+    "zoning board of appeals",
+    "planning board",
+    "downtown action committee",
+    "plans & plats review committee",
+    "plans and plats review committee",
+    "community redevelopment agency",
+    "cra"
 ]
 
 def save_data(data):
@@ -31,6 +43,15 @@ def is_qualifying_event(title):
     if any(ex in title_lower for ex in EXCLUDE_KEYWORDS):
         return False
     return any(kw in title_lower for kw in KEYWORDS)
+
+def is_strict_wpb_event(title):
+    """Ensures West Palm Beach events match exact target boards."""
+    if not title:
+        return False
+    title_lower = title.lower()
+    if any(ex in title_lower for ex in EXCLUDE_KEYWORDS):
+        return False
+    return any(board in title_lower for board in STRICT_WPB_BOARDS)
 
 def extract_date_from_text(text):
     if not text:
@@ -90,7 +111,7 @@ def scrape_boca_raton():
                     title = title_elem.text.strip()
                     raw_date = date_elem.text.strip() if date_elem else ""
                     iso_date = extract_date_from_text(raw_date) or extract_date_from_text(title)
-                    if iso_date:
+                    if is_qualifying_event(title) and iso_date:
                         events.append({
                             "id": f"boca-{hash(title_elem['href'])}",
                             "muni_short": "BOCA",
@@ -144,7 +165,7 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH MODULE (IMPERSONATED HYBRID ENGINE) ---
+# --- 3. WEST PALM BEACH MODULE (STRICT TOPIC ENGINE) ---
 def scrape_west_palm_beach():
     events = []
     url = "https://www.wpb.org/Our-City/Meetings-Agendas"
@@ -152,10 +173,8 @@ def scrape_west_palm_beach():
     current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
 
     try:
-        # Bypasses Akamai EdgeSuite 403 firewall via Chrome impersonation
         res = requests.get(url, impersonate="chrome124", timeout=15)
         if res.status_code != 200:
-            print(f"WPB HTTP Request failed with status {res.status_code}")
             return events
 
         soup = BeautifulSoup(res.text, "html.parser")
@@ -179,7 +198,14 @@ def scrape_west_palm_beach():
                         },
                         {
                             "role": "user",
-                            "content": f"""Extract all public municipal meetings listed in this text (City Commission, Zoning Board of Appeals, Planning Board, Downtown Action Committee, Plans & Plats Review Committee).
+                            "content": f"""Extract public meetings ONLY for these exact boards:
+- City Commission
+- Zoning Board of Appeals
+- Planning Board
+- Downtown Action Committee
+- Plans & Plats Review Committee
+
+Do NOT extract general community events, parks meetings, or advisory boards.
 
 Schema format:
 [
@@ -208,26 +234,28 @@ Text:
                     llm_data = json.loads(content)
 
                     for item in llm_data:
-                        href = item.get("link", "")
-                        full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
-                        events.append({
-                            "id": f"wpb-{item['date']}-{hash(full_link)}",
-                            "muni_short": "WPB",
-                            "muni_full": "City of West Palm Beach",
-                            "title": item["title"],
-                            "date": item["date"],
-                            "time": item.get("time", "5:00 PM"),
-                            "link": full_link,
-                            "summary": f"Official {item['title']} parsed via Llama 3.1 LLM."
-                        })
+                        title = item.get("title", "")
+                        if is_strict_wpb_event(title):
+                            href = item.get("link", "")
+                            full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
+                            events.append({
+                                "id": f"wpb-{item['date']}-{hash(full_link)}",
+                                "muni_short": "WPB",
+                                "muni_full": "City of West Palm Beach",
+                                "title": title,
+                                "date": item["date"],
+                                "time": item.get("time", "5:00 PM"),
+                                "link": full_link,
+                                "summary": f"Official {title} parsed via Llama 3.1 LLM."
+                            })
                     if len(events) > 0:
-                        print(f"Llama 3.1 successfully extracted {len(events)} events for WPB.")
+                        print(f"Llama 3.1 extracted {len(events)} strict events for WPB.")
                         return events
             except Exception as e:
                 print(f"Llama 3.1 Engine failed ({e}). Falling back to BeautifulSoup...")
 
-        # --- ENGINE B: CARD-LEVEL BEAUTIFULSOUP FALLBACK ---
-        print("Running Card-Level BeautifulSoup fallback for WPB...")
+        # --- ENGINE B: STRICT BEAUTIFULSOUP FALLBACK ---
+        print("Running Strict BeautifulSoup fallback for WPB...")
         cards = soup.find_all(["div", "li", "tr", "article"])
 
         for card in cards:
@@ -240,10 +268,8 @@ Text:
             title = a_tag.text.strip()
             href = a_tag['href']
 
-            if len(title) < 4 or title.lower() in ["meeting", "agenda", "8 more dates", "tagged as: meeting", "view all"]:
-                continue
-
-            if is_qualifying_event(title) or is_qualifying_event(card_text):
+            # Match title strictly against WPB Target Boards
+            if is_strict_wpb_event(title):
                 iso_date = extract_date_from_text(card_text)
                 if iso_date:
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
