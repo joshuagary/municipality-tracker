@@ -326,132 +326,112 @@ def scrape_delray_beach():
 
     return events
 
-# --- 5. PALM BEACH GARDENS MODULE (DIRECT CIVICPLUS API SCRAPER) ---
+# --- 5. PALM BEACH GARDENS MODULE (DYNAMIC LIST VIEW SCRAPER) ---
 def scrape_palm_beach_gardens():
     events = []
     base_url = "https://www.pbgfl.gov"
-    api_url = "https://www.pbgfl.gov/Calendar.aspx/GetEvents"
     
     now = datetime.now()
     curr_year = now.year
     curr_month = now.month
 
-    # Date Range: Current Month (Aug 1) to End of Next Month (Sept 30)
-    start_date = datetime(curr_year, curr_month, 1)
-    
-    if curr_month == 11:
-        lookahead_end = datetime(curr_year + 1, 1, 1)
-    elif curr_month == 12:
-        lookahead_end = datetime(curr_year + 1, 2, 1)
-    else:
-        lookahead_end = datetime(curr_year, curr_month + 2, 1)
+    # Determine current month and next month target parameters
+    next_month = 1 if curr_month == 12 else curr_month + 1
+    next_year = curr_year + 1 if curr_month == 12 else curr_year
 
-    end_date = lookahead_end - timedelta(days=1)
-
-    # Payload matching CivicPlus calendar API request structure
-    payload = {
-        "startDate": start_date.strftime("%Y-%m-%dT00:00:00"),
-        "endDate": end_date.strftime("%Y-%m-%dT23:59:59"),
-        "categoryIDs": "41,42,37,44,45,46,47,48,43"
-    }
+    months_to_scrape = [
+        {"year": curr_year, "month": curr_month},
+        {"year": next_year, "month": next_month}
+    ]
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Content-Type": "application/json; charset=UTF-8",
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "X-Requested-With": "XMLHttpRequest"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     }
 
-    try:
-        # POST request to fetch calendar events payload directly
-        res = requests.post(api_url, json=payload, headers=headers, timeout=15)
-        print(f"[PBG API] HTTP Status Code: {res.status_code}")
+    seen_keys = set()
 
-        items = []
-        if res.status_code == 200:
-            data = res.json()
-            # CivicPlus ASP.NET web services wrap data inside a 'd' container
-            items = data.get("d", []) if isinstance(data, dict) else data
-            if isinstance(items, str):
-                items = json.loads(items)
-        
-        # Fallback to GET endpoint if POST JSON wrapper is unavailable
-        if not items:
-            fallback_url = f"https://www.pbgfl.gov/Calendar.aspx?CID=41,42,37,44,45,46,47,48,43&startDate={start_date.strftime('%m/%d/%Y')}&endDate={end_date.strftime('%m/%d/%Y')}"
-            res_fallback = requests.get(fallback_url, headers=headers, timeout=15)
-            if res_fallback.status_code == 200:
-                soup = BeautifulSoup(res_fallback.text, "html.parser")
-                # Parse calendar event links (EID=) off rendered fallback structure
-                for a in soup.select("a[href*='Calendar.aspx?EID='], a[href*='calendar.aspx?EID=']"):
-                    title_text = a.text.strip()
-                    href_val = a.get("href", "").strip()
-                    if title_text and href_val:
-                        # Extract parent element text for date/time context
-                        parent_text = a.parent.text if a.parent else title_text
-                        items.append({
-                            "title": title_text,
-                            "link": href_val,
-                            "raw_context": parent_text
-                        })
+    for target in months_to_scrape:
+        y_val = target["year"]
+        m_val = target["month"]
 
-        print(f"[PBG API] Retrieved {len(items)} raw event records.")
-        seen_keys = set()
+        # Build dynamic list view URL including target categories
+        url = f"https://www.pbgfl.gov/calendar.aspx?view=list&year={y_val}&month={m_val}&CID=41,42,37,44,45,46,47,48,43"
 
-        for item in items:
-            raw_title = item.get("title") or item.get("Title") or item.get("eventName") or ""
-            clean_title = clean_event_title(raw_title)
+        try:
+            res = requests.get(url, headers=headers, timeout=15)
+            print(f"[PBG List] Fetching {y_val}-{m_val:02d} | Status: {res.status_code}")
 
-            # Date Extraction
-            start_str = item.get("startDate") or item.get("Start") or item.get("Date") or item.get("raw_context") or ""
-            iso_date = None
-            meeting_time = "6:00 PM"
+            if res.status_code == 200:
+                soup = BeautifulSoup(res.text, "html.parser")
 
-            if "T" in str(start_str):
-                try:
-                    dt_obj = datetime.fromisoformat(str(start_str).split(".")[0].replace("Z", ""))
-                    iso_date = dt_obj.strftime("%Y-%m-%d")
-                    meeting_time = dt_obj.strftime("%I:%M %p").lstrip("0")
-                except ValueError:
-                    pass
+                # In list view, CivicPlus renders events as table rows or calendar list items
+                event_items = soup.select("tr, div.calendarItem, li.eventItem, div.eventRow, table.calendarList tr")
 
-            if not iso_date:
-                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', str(start_str))
-                if date_match:
-                    m, d, y = date_match.groups()
-                    iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+                for item in event_items:
+                    item_text = item.text.strip()
+                    if not item_text:
+                        continue
 
-            # Link Construction
-            href = item.get("link") or item.get("Link") or item.get("url") or ""
-            if href:
-                full_link = href if href.startswith("http") else f"{base_url}/{href.lstrip('/')}"
-            else:
-                eid = item.get("eventID") or item.get("id")
-                full_link = f"{base_url}/calendar.aspx?EID={eid}" if eid else "https://www.pbgfl.gov/calendar.aspx"
+                    # 1. Extract Event Title & Detail Link (EID=)
+                    link_elem = item.select_one("a[href*='EID='], a[href*='eid='], a.calendarHead")
+                    if not link_elem:
+                        continue
 
-            # Filter for Current + Next Month
-            if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                    raw_title = link_elem.text.strip()
+                    clean_title = clean_event_title(raw_title)
 
-                if start_date <= dt < lookahead_end:
-                    dedup_key = (clean_title, iso_date)
-                    if dedup_key not in seen_keys:
-                        seen_keys.add(dedup_key)
-                        events.append({
-                            "id": f"pbg-{iso_date}-{hash(full_link)}",
-                            "muni_short": "PBG",
-                            "muni_full": "City of Palm Beach Gardens",
-                            "title": clean_title,
-                            "date": iso_date,
-                            "time": meeting_time,
-                            "link": full_link,
-                            "summary": f"Official {clean_title} meeting."
-                        })
+                    href = link_elem.get("href", "").strip()
+                    full_link = href if href.startswith("http") else f"{base_url}/{href.lstrip('/')}"
 
-        print(f"[PBG API] Successfully saved {len(events)} qualifying events across August and September.")
+                    # 2. Extract Date (M/D/YYYY or Month DD, YYYY)
+                    iso_date = None
+                    date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', item_text)
+                    if date_match:
+                        m, d, y = date_match.groups()
+                        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+                    else:
+                        text_date_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', item_text, re.I)
+                        if text_date_match:
+                            try:
+                                dt_parsed = datetime.strptime(text_date_match.group(0).replace(",", ""), "%B %d %Y")
+                                iso_date = dt_parsed.strftime("%Y-%m-%d")
+                            except ValueError:
+                                pass
 
-    except Exception as e:
-        print(f"[PBG API] Error scraping PBG via API endpoint: {e}")
+                    # Fallback date if row text didn't contain explicit string (uses current iteration month/year)
+                    if not iso_date:
+                        # Attempt day matching from day-number elements
+                        day_elem = item.select_one(".dayNumber, .date, .calendarDate")
+                        if day_elem and day_elem.text.strip().isdigit():
+                            day_num = int(day_elem.text.strip())
+                            iso_date = f"{y_val}-{m_val:02d}-{day_num:02d}"
 
+                    # 3. Extract Time
+                    time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', item_text)
+                    meeting_time = time_match.group(1).strip().upper() if time_match else "6:00 PM"
+                    if "AM" not in meeting_time and "PM" not in meeting_time:
+                        meeting_time += " PM"
+
+                    # 4. Filter & Qualify Governance Meetings
+                    if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                        dedup_key = (clean_title, iso_date)
+                        if dedup_key not in seen_keys:
+                            seen_keys.add(dedup_key)
+                            events.append({
+                                "id": f"pbg-{iso_date}-{hash(full_link)}",
+                                "muni_short": "PBG",
+                                "muni_full": "City of Palm Beach Gardens",
+                                "title": clean_title,
+                                "date": iso_date,
+                                "time": meeting_time,
+                                "link": full_link,
+                                "summary": f"Official {clean_title} meeting."
+                            })
+
+        except Exception as e:
+            print(f"[PBG List] Error scraping {y_val}-{m_val:02d}: {e}")
+
+    print(f"[PBG List] Total qualifying events saved across current and next month: {len(events)}")
     return events
 
 
