@@ -57,7 +57,6 @@
             margin-bottom: 4px;
         }
 
-        /* Navigation Tabs */
         .tab-bar {
             display: flex;
             gap: 4px;
@@ -201,7 +200,6 @@
             margin-top: 2px;
         }
 
-        /* Accuracy Table Styling */
         .report-card {
             background: var(--card-bg);
             border: 1px solid var(--border-dark);
@@ -273,7 +271,6 @@
         <button class="tab-btn" onclick="switchTab('report-tab', this)">Accuracy Report <span id="errorBadgeCount"></span></button>
     </div>
 
-    <!-- TAB 1: CALENDAR VIEW -->
     <div id="calendar-tab" class="tab-content active">
         <div class="controls-bar">
             <select id="muniFilter" onchange="renderEvents()">
@@ -307,7 +304,6 @@
         </div>
     </div>
 
-    <!-- TAB 2: ACCURACY REPORT -->
     <div id="report-tab" class="tab-content">
         <div class="report-card">
             <div class="report-summary" id="reportSummaryText">Auditing data.json records...</div>
@@ -321,9 +317,7 @@
                         <th>Source URL</th>
                     </tr>
                 </thead>
-                <tbody id="reportTableBody">
-                    <!-- Populated dynamically -->
-                </tbody>
+                <tbody id="reportTableBody"></tbody>
             </table>
         </div>
     </div>
@@ -332,24 +326,32 @@
 
     <script>
         let events = [];
-        let currentDate = new Date(2026, 7, 1); // August 2026 Default
+        let currentDate = new Date(2026, 7, 1); // August 2026
 
         const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", 
                             "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
 
+        // TIMEZONE FIX: Explicitly parse ISO YYYY-MM-DD into local Date objects
         function parseToDateObject(dateStr) {
             if (!dateStr) return null;
-            let d = new Date(dateStr);
-            if (!isNaN(d.getTime())) return d;
 
-            const match = dateStr.match(/([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})/);
-            if (match) {
-                const mIdx = monthNames.findIndex(m => m.startsWith(match[1].toUpperCase()));
+            // Handle YYYY-MM-DD format explicitly without UTC conversion
+            const isoMatch = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+            if (isoMatch) {
+                return new Date(parseInt(isoMatch[1]), parseInt(isoMatch[2]) - 1, parseInt(isoMatch[3]));
+            }
+
+            // Fallback for "Month DD, YYYY"
+            const textMatch = dateStr.match(/([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})/);
+            if (textMatch) {
+                const mIdx = monthNames.findIndex(m => m.startsWith(textMatch[1].toUpperCase()));
                 if (mIdx !== -1) {
-                    return new Date(parseInt(match[3]), mIdx, parseInt(match[2]));
+                    return new Date(parseInt(textMatch[3]), mIdx, parseInt(textMatch[2]));
                 }
             }
-            return null;
+
+            let d = new Date(dateStr);
+            return !isNaN(d.getTime()) ? d : null;
         }
 
         async function loadData() {
@@ -444,6 +446,7 @@
                     const matchesSearch = item.title.toLowerCase().includes(search) || item.summary.toLowerCase().includes(search);
                     
                     const eventDateObj = parseToDateObject(item.date);
+                    
                     const matchesDate = eventDateObj && 
                                         eventDateObj.getFullYear() === year && 
                                         eventDateObj.getMonth() === monthIdx && 
@@ -467,11 +470,9 @@
             }
         }
 
-        /* --- ACCURACY AUDITOR FUNCTION --- */
         function generateAccuracyReport() {
             const tbody = document.getElementById('reportTableBody');
             tbody.innerHTML = '';
-            
             let unrenderedCount = 0;
 
             events.forEach(item => {
@@ -502,11 +503,11 @@
             const badgeCountEl = document.getElementById('errorBadgeCount');
 
             if (unrenderedCount === 0) {
-                summaryEl.innerText = `Audit Passed: All ${events.length} records in data.json are validly formatted and renderable on the calendar.`;
+                summaryEl.innerText = `Audit Passed: All ${events.length} records in data.json are validly formatted and renderable.`;
                 tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:green; padding: 16px;"><strong>No parsing issues detected.</strong> All scraped events are successfully displaying.</td></tr>`;
                 badgeCountEl.innerText = `(0)`;
             } else {
-                summaryEl.innerText = `Audit Alert: Found ${unrenderedCount} event(s) out of ${events.length} total that cannot render on the main calendar grid.`;
+                summaryEl.innerText = `Audit Alert: Found ${unrenderedCount} event(s) out of ${events.length} total that cannot render.`;
                 badgeCountEl.innerText = `(${unrenderedCount})`;
             }
         }
