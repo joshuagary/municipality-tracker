@@ -1,13 +1,22 @@
 import json
 import re
 import os
+import io
 import requests
 from bs4 import BeautifulSoup
+import pdfplumber
 
 DATA_FILE = "data.json"
+
+# Strict filtering keywords for qualifying public governance meetings
 KEYWORDS = [
     "city commission", "county commissioners", "bcc", "city council", 
-    "town council", "regular meeting", "special meeting", "budget hearing"
+    "town council", "regular meeting", "special meeting", "workshop", "budget hearing"
+]
+
+# Non-qualifying events to filter out
+EXCLUDE_KEYWORDS = [
+    "parks", "recreation", "code compliance", "pension", "police", "firefighters", "advisory"
 ]
 
 def load_existing_data():
@@ -25,14 +34,18 @@ def save_data(data):
 
 def is_qualifying_event(title):
     title_lower = title.lower()
-    return any(keyword in title_lower for keyword in KEYWORDS)
+    if any(ex in title_lower for ex in EXCLUDE_KEYWORDS):
+        return False
+    return any(kw in title_lower for kw in KEYWORDS)
 
+# --- 1. BOCA RATON (HTML Calendar Scraper) ---
 def scrape_boca_raton():
     events = []
     url = "https://www.myboca.us/calendar.aspx?view=list&CID=0"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    
     try:
-        res = requests.get(url, headers=headers, timeout=10)
+        res = requests.get(url, headers=headers, timeout=12)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             for item in soup.select(".calendarRow"):
@@ -49,71 +62,110 @@ def scrape_boca_raton():
                             "date": date_elem.text.strip(),
                             "time": "1:30 PM",
                             "link": f"https://www.myboca.us{title_elem['href']}",
-                            "summary": "Official meeting parsed from City of Boca Raton calendar portal."
+                            "summary": "Official meeting parsed from City of Boca Raton calendar."
                         })
     except Exception as e:
-        print(f"Error parsing Boca Raton: {e}")
+        print(f"Error scraping Boca Raton: {e}")
     return events
 
-def get_seed_data():
-    """Generates structured seed data representing Florida Municipality Calendars"""
-    return [
-        {
-            "id": "wpb-2026-08-31",
-            "muni_short": "WPB",
-            "muni_full": "City of West Palm Beach",
-            "title": "City Commission Meeting",
-            "date": "August 31, 2026",
-            "time": "5:00 PM",
-            "link": "https://www.wpb.org/Our-City/Meetings-Agendas",
-            "summary": "Regular City Commission Meeting held in Commission Chambers, 401 Clematis Street."
-        },
-        {
-            "id": "pbc-2026-09-01",
-            "muni_short": "PBC",
-            "muni_full": "Palm Beach County",
-            "title": "BCC Regular Meeting",
-            "date": "September 1, 2026",
-            "time": "9:30 AM",
-            "link": "https://discover.pbc.gov/countycommissioners/pages/meeting-dates.aspx",
-            "summary": "Board of County Commissioners Regular Meeting, Governmental Center."
-        },
-        {
-            "id": "wpb-2026-09-08",
-            "muni_short": "WPB",
-            "muni_full": "City of West Palm Beach",
-            "title": "Special City Commission Meeting: First Public Hearing",
-            "date": "September 8, 2026",
-            "time": "5:01 PM",
-            "link": "https://www.wpb.org/Our-City/Meetings-Agendas",
-            "summary": "First Public Hearing for Fiscal Year Budget & Millage Rate."
-        },
-        {
-            "id": "boca-2026-09-15",
-            "muni_short": "BOCA",
-            "muni_full": "City of Boca Raton",
-            "title": "City Council Workshop",
-            "date": "September 15, 2026",
-            "time": "1:30 PM",
-            "link": "https://www.myboca.us/calendar.aspx",
-            "summary": "City Council Workshop meeting at City Hall Council Chamber."
-        }
-    ]
-
-def run():
-    existing = {e["id"]: e for e in load_existing_data()}
+# --- 2. PALM BEACH COUNTY (BCC Agenda HTML/PDF Scraper) ---
+def scrape_palm_beach_county():
+    events = []
+    url = "https://discover.pbc.gov/countycommissioners/pages/agendaarchive-html.aspx"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     
-    # 1. Load seed records
-    for event in get_seed_data():
-        existing[event["id"]] = event
-        
-    # 2. Add scraped records
-    for event in scrape_boca_raton():
-        existing[event["id"]] = event
-        
-    final_list = list(existing.values())
+    try:
+        res = requests.get(url, headers=headers, timeout=12)
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            # Locate agenda links in the archive list
+            for a_tag in soup.select("a[href*='Agenda']"):
+                title = a_tag.text.strip()
+                href = a_tag['href']
+                
+                if is_qualifying_event(title) or "BCC" in title:
+                    full_link = href if href.startswith("http") else f"https://discover.pbc.gov{href}"
+                    
+                    # Extract date string from title or link text
+                    date_match = re.search(r'([A-Za-z]+\s+\d{1,2},\s+\d{4})', title)
+                    event_date = date_match.group(1) if date_match else "Upcoming Agenda"
+
+                    events.append({
+                        "id": f"pbc-{hash(full_link)}",
+                        "muni_short": "PBC",
+                        "muni_full": "Palm Beach County Board of Commissioners",
+                        "title": f"BCC Meeting - {title}",
+                        "date": event_date,
+                        "time": "9:30 AM",
+                        "link": full_link,
+                        "summary": "Official Board of County Commissioners Agenda."
+                    })
+    except Exception as e:
+        print(f"Error scraping Palm Beach County: {e}")
+    return events
+
+# --- 3. WEST PALM BEACH (HTML & PDF Agenda Scraper) ---
+def scrape_west_palm_beach():
+    events = []
+    url = "https://www.wpb.org/Our-City/Calendars/Meetings"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    
+    try:
+        res = requests.get(url, headers=headers, timeout=12)
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            for item in soup.select("a[href*='City-Commission']"):
+                title = item.text.strip()
+                href = item['href']
+                
+                if is_qualifying_event(title) or "Commission" in title:
+                    full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
+                    
+                    events.append({
+                        "id": f"wpb-{hash(full_link)}",
+                        "muni_short": "WPB",
+                        "muni_full": "City of West Palm Beach",
+                        "title": title if title else "City Commission Meeting",
+                        "date": "Monthly Scheduled",
+                        "time": "5:00 PM",
+                        "link": full_link,
+                        "summary": "Regular City Commission Meeting parsed from City calendar."
+                    })
+    except Exception as e:
+        print(f"Error scraping West Palm Beach: {e}")
+    return events
+
+# --- 4. GENERIC PDF PARSER FUNCTION ---
+def parse_pdf_agenda(pdf_url):
+    """Downloads a PDF agenda and parses text content using pdfplumber."""
+    try:
+        response = requests.get(pdf_url, timeout=10)
+        with pdfplumber.open(io.BytesIO(response.content)) as pdf:
+            text = "\n".join([page.extract_text() for page in pdf.pages if page.extract_text()])
+            # Simple extractor example for meeting summaries
+            summary = text[:300].replace("\n", " ") + "..."
+            return summary
+    except Exception as e:
+        print(f"PDF parsing error on {pdf_url}: {e}")
+        return "PDF Agenda available at source link."
+
+# --- MAIN CONTROLLER ---
+def run():
+    existing_events = {e["id"]: e for e in load_existing_data()}
+    
+    # Run all live web scrapers
+    scraped_data = []
+    scraped_data.extend(scrape_boca_raton())
+    scraped_data.extend(scrape_palm_beach_county())
+    scraped_data.extend(scrape_west_palm_beach())
+
+    # Update master records while preserving history
+    for event in scraped_data:
+        existing_events[event["id"]] = event
+
+    final_list = list(existing_events.values())
     save_data(final_list)
-    print(f"Successfully output {len(final_list)} events to {DATA_FILE}")
+    print(f"Scraper execution complete. Updated data.json with {len(final_list)} total live events.")
 
 if __name__ == "__main__":
     run()
