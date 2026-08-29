@@ -1,102 +1,72 @@
 [
   {
-    "id": "pbc-3639805744217396386",
+    "id": "pbc-2026-09-01",
     "muni_short": "PBC",
     "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - September 1, 2026",
-    "date": "2026-09-01",
-    "time": "9:30 AM",
-    "link": "http://www.pbcgov.com/pubInf/Agenda/20260901/20260901.pdf",
-    "summary": "Official Palm Beach County Board of Commissioners Agenda."
-  },
-  {
-    "id": "pbc--1504345607198109549",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - August 25, 2026",
-    "date": "2026-08-25",
-    "time": "9:30 AM",
-    "link": "http://www.pbcgov.com/pubInf/Agenda/20260825/20260825.pdf",
-    "summary": "Official Palm Beach County Board of Commissioners Agenda."
-  },
-  {
-    "id": "pbc-5262786547904044222",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - July 7, 2026",
-    "date": "2026-07-07",
-    "time": "9:30 AM",
-    "link": "http://www.pbcgov.com/pubInf/Agenda/20260707/20260707.pdf",
-    "summary": "Official Palm Beach County Board of Commissioners Agenda."
-  },
-  {
-    "id": "pbc-5307071707545509992",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - July 9, 2024",
-    "date": "2024-07-09",
-    "time": "9:30 AM",
-    "link": "http://www.pbcgov.com/pubInf/Agenda/20240709/20240709.pdf",
-    "summary": "Official Palm Beach County Board of Commissioners Agenda."
-  },
-  {
-    "id": "pbc--1824700807053780824",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - July 2, 2024",
-    "date": "2024-07-02",
-    "time": "9:30 AM",
-    "link": "http://www.pbcgov.com/pubInf/Agenda/20240702/20240702.pdf",
-    "summary": "Official Palm Beach County Board of Commissioners Agenda."
-  },
-  {
-    "id": "pbc--6628863124156382421",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - June 18, 2024",
-    "date": "2024-06-18",
-    "time": "9:30 AM",
-    "link": "http://www.pbcgov.com/pubInf/Agenda/20240618/20240618.pdf",
-    "summary": "Official Palm Beach County Board of Commissioners Agenda."
-  },
-  {
-    "id": "pbc-7352793664147206324",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - February 24, 2020",
-    "date": "2020-02-24",
-    "time": "9:30 AM",
-    "link": "https://discover.pbc.gov/countycommissioners/Agenda_Misc_PDF/BCC-League-agenda.pdf%20target=",
-    "summary": "Official Palm Beach County Board of Commissioners Agenda."
-  },
-  {
-    "id": "pbc-2830265911388045547",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - September 01, 2026",
+    "title": "BCC Regular Meeting",
     "date": "2026-09-01",
     "time": "9:30 AM",
     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
     "summary": "Official Palm Beach County Board of Commissioners Agenda."
   },
   {
-    "id": "pbc-5166862778113117297",
+    "id": "pbc-2026-08-25",
     "muni_short": "PBC",
     "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - August 25, 2026",
+    "title": "BCC Regular Meeting",
     "date": "2026-08-25",
     "time": "9:30 AM",
     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf",
     "summary": "Official Palm Beach County Board of Commissioners Agenda."
   },
   {
-    "id": "pbc--174036963073270867",
+    "id": "pbc-2026-07-07",
     "muni_short": "PBC",
     "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Regular Meeting - July 07, 2026",
+    "title": "BCC Regular Meeting",
     "date": "2026-07-07",
     "time": "9:30 AM",
     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260707.pdf",
+    "summary": "Official Palm Beach County Board of Commissioners Agenda."
+  },
+  {
+    "id": "pbc-2024-07-09",
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County Board of Commissioners",
+    "title": "BCC Regular Meeting",
+    "date": "2024-07-09",
+    "time": "9:30 AM",
+    "link": "http://www.pbcgov.com/pubInf/Agenda/20240709/20240709.pdf",
+    "summary": "Official Palm Beach County Board of Commissioners Agenda."
+  },
+  {
+    "id": "pbc-2024-07-02",
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County Board of Commissioners",
+    "title": "BCC Regular Meeting",
+    "date": "2024-07-02",
+    "time": "9:30 AM",
+    "link": "http://www.pbcgov.com/pubInf/Agenda/20240702/20240702.pdf",
+    "summary": "Official Palm Beach County Board of Commissioners Agenda."
+  },
+  {
+    "id": "pbc-2024-06-18",
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County Board of Commissioners",
+    "title": "BCC Regular Meeting",
+    "date": "2024-06-18",
+    "time": "9:30 AM",
+    "link": "http://www.pbcgov.com/pubInf/Agenda/20240618/20240618.pdf",
+    "summary": "Official Palm Beach County Board of Commissioners Agenda."
+  },
+  {
+    "id": "pbc-2020-02-24",
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County Board of Commissioners",
+    "title": "BCC Regular Meeting",
+    "date": "2020-02-24",
+    "time": "9:30 AM",
+    "link": "https://discover.pbc.gov/countycommissioners/Agenda_Misc_PDF/BCC-League-agenda.pdf%20target=",
     "summary": "Official Palm Beach County Board of Commissioners Agenda."
   }
 ]
