@@ -250,7 +250,7 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (PUBLIC HTML PARSER) ---
+# --- 4. DELRAY BEACH MODULE (ICS CALENDAR FEED ENGINE) ---
 def scrape_delray_beach():
     events = []
     
@@ -267,73 +267,60 @@ def scrape_delray_beach():
     else:
         lookahead_end = datetime(next_year, next_month + 1, 1)
 
-    # Alternate endpoints that don't block scraping
-    urls = [
-        "https://www.delraybeachfl.gov/services/advanced-components/list-detail-pages/calendar-meeting-list",
-        "https://delraybeach.legistar.com/Calendar.aspx?Mode=List"
-    ]
+    # Legistar public iCalendar feed (Direct text stream of all meetings)
+    ics_url = "https://delraybeach.legistar.com/iCalendar.ashx?m=meetings"
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     }
 
-    for url in urls:
-        try:
-            res = requests.get(url, headers=headers, impersonate="chrome124", timeout=12)
-            if res.status_code != 200:
-                continue
+    try:
+        res = requests.get(ics_url, headers=headers, impersonate="chrome124", timeout=15)
+        print(f"[Delray ICS Scraper] HTTP Status: {res.status_code}")
 
-            soup = BeautifulSoup(res.text, "html.parser")
-            rows = soup.select("table tbody tr, tr.rgRow, tr.rgAltRow, .calendar-list-item")
+        if res.status_code == 200 and "BEGIN:VCALENDAR" in res.text:
+            # Split feed into individual VEVENT blocks
+            raw_events = res.text.split("BEGIN:VEVENT")
 
-            for row in rows:
-                cols = row.find_all("td")
+            for block in raw_events[1:]:
+                # Extract Summary (Title)
+                summary_match = re.search(r'SUMMARY:(.*?)(?:\r?\n[A-Z]+:|\r?\nEND:)', block, re.DOTALL)
+                raw_title = summary_match.group(1).replace('\r\n ', '').strip() if summary_match else ""
+                clean_title = clean_event_title(raw_title)
+
+                # Extract Start Date & Time (DTSTART)
+                dt_match = re.search(r'DTSTART(?:;TZID=.*?)*:(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})', block)
                 
-                # Format A: Web Table (Name, Date/Time, Agenda)
-                if len(cols) >= 2:
-                    raw_title = cols[0].text.strip()
-                    clean_title = clean_event_title(raw_title)
-                    
-                    raw_date_time = cols[1].text.strip()
-                    
-                    # Direct Agenda link extraction
-                    href = ""
-                    agenda_a = row.select_one("a[href*='Agenda'], a[href*='.pdf'], a[href*='MeetingDetail']")
-                    if agenda_a:
-                        href = agenda_a['href'].strip()
-                    else:
-                        title_a = cols[0].find("a", href=True)
-                        if title_a:
-                            href = title_a['href'].strip()
+                # Extract URL/Link
+                url_match = re.search(r'URL:(.*?)(?:\r?\n[A-Z]+:|\r?\nEND:)', block, re.DOTALL)
+                href = url_match.group(1).replace('\r\n ', '').strip() if url_match else ""
 
-                    if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                        iso_date = extract_date_from_text(raw_date_time) or extract_date_from_text(clean_title)
+                if dt_match and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                    year, month, day, hour, minute = dt_match.groups()
+                    iso_date = f"{year}-{month}-{day}"
+                    dt = datetime(int(year), int(month), int(day))
 
-                        if iso_date:
-                            dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                            if current_month_start <= dt < lookahead_end:
-                                time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_date_time)
-                                meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
+                    if current_month_start <= dt < lookahead_end:
+                        # Format 24hr time to AM/PM
+                        time_obj = datetime.strptime(f"{hour}:{minute}", "%H:%M")
+                        meeting_time = time_obj.strftime("%I:%M %p").lstrip("0")
 
-                                full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
+                        full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
 
-                                events.append({
-                                    "id": f"delray-{iso_date}-{hash(full_link)}",
-                                    "muni_short": "DELRAY",
-                                    "muni_full": "City of Delray Beach",
-                                    "title": clean_title,
-                                    "date": iso_date,
-                                    "time": meeting_time,
-                                    "link": full_link,
-                                    "summary": f"Official {clean_title} meeting."
-                                })
-            
-            if len(events) > 0:
-                print(f"Delray Beach Scraper successfully extracted {len(events)} events from {url}.")
-                break
+                        events.append({
+                            "id": f"delray-{iso_date}-{hash(full_link)}",
+                            "muni_short": "DELRAY",
+                            "muni_full": "City of Delray Beach",
+                            "title": clean_title,
+                            "date": iso_date,
+                            "time": meeting_time,
+                            "link": full_link if full_link else "https://delraybeach.legistar.com/Calendar.aspx",
+                            "summary": f"Official {clean_title} meeting."
+                        })
 
-        except Exception as e:
-            print(f"Error scraping Delray Beach from {url}: {e}")
+            print(f"[Delray ICS Scraper] Successfully extracted {len(events)} events.")
+    except Exception as e:
+        print(f"[Delray ICS Scraper] Error: {e}")
 
     return events
 
