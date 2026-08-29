@@ -249,7 +249,7 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE ---
+# --- 4. DELRAY BEACH MODULE (AGENDA LINK FIX) ---
 def scrape_delray_beach():
     events = []
     url = "https://delraybeach.legistar.com/Calendar.aspx"
@@ -274,7 +274,6 @@ def scrape_delray_beach():
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             rows = soup.find_all("tr")
-            print(f"[Delray Scraper] Found {len(rows)} raw <tr> table rows.")
 
             for row in rows:
                 cols = row.find_all("td")
@@ -287,14 +286,21 @@ def scrape_delray_beach():
                 raw_date = cols[1].text.strip() if len(cols) > 1 else ""
                 raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
+                # --- TARGET REAL AGENDA OR MEETING DETAIL LINK ---
                 href = ""
-                agenda_a = row.select_one("a[href*='View.ashx'], a[href*='M=A'], a[href*='agenda']")
-                if agenda_a and agenda_a.get('href'):
+                
+                # 1. Search row for direct Legistar PDF/View links (excluding .ics files)
+                agenda_a = row.select_one("a[href*='View.ashx'], a[href*='M=A'], a[href*='MeetingDetail']")
+                if agenda_a and agenda_a.get('href') and not agenda_a['href'].endswith('.ics'):
                     href = agenda_a['href'].strip()
-                else:
-                    name_a = cols[0].find("a", href=True)
-                    if name_a:
-                        href = name_a['href'].strip()
+                
+                # 2. Fallback: Search column 0 for meeting detail link (ignoring .ics)
+                if not href:
+                    for a_tag in cols[0].find_all("a", href=True):
+                        link_target = a_tag['href'].strip()
+                        if not link_target.endswith('.ics') and "iCalendar" not in link_target:
+                            href = link_target
+                            break
 
                 if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     iso_date = None
@@ -324,7 +330,7 @@ def scrape_delray_beach():
                                 "summary": f"Official {clean_title} meeting."
                             })
 
-            print(f"[Delray Scraper] Successfully extracted {len(events)} events.")
+            print(f"[Delray Scraper] Successfully extracted {len(events)} events with direct agenda/detail links.")
     except Exception as e:
         print(f"[Delray Scraper] Error: {e}")
 
