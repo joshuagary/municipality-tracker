@@ -1,70 +1,20 @@
 [
   {
-    "id": "wpb-2026-08-31",
-    "muni_short": "WPB",
-    "muni_full": "City of West Palm Beach",
-    "title": "City Commission Meeting",
-    "date": "August 31, 2026",
-    "time": "5:00 PM",
-    "link": "https://www.wpb.org/Our-City/Meetings-Agendas",
-    "summary": "Regular City Commission Meeting held in Commission Chambers, 401 Clematis Street."
-  },
-  {
-    "id": "pbc-2026-09-01",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County",
-    "title": "BCC Regular Meeting",
-    "date": "September 1, 2026",
-    "time": "9:30 AM",
-    "link": "https://discover.pbc.gov/countycommissioners/pages/meeting-dates.aspx",
-    "summary": "Board of County Commissioners Regular Meeting, Governmental Center."
-  },
-  {
-    "id": "wpb-2026-09-08",
-    "muni_short": "WPB",
-    "muni_full": "City of West Palm Beach",
-    "title": "Special City Commission Meeting: First Public Hearing",
-    "date": "September 8, 2026",
-    "time": "5:01 PM",
-    "link": "https://www.wpb.org/Our-City/Meetings-Agendas",
-    "summary": "First Public Hearing for Fiscal Year Budget & Millage Rate."
-  },
-  {
-    "id": "boca-2026-09-15",
-    "muni_short": "BOCA",
-    "muni_full": "City of Boca Raton",
-    "title": "City Council Workshop",
-    "date": "September 15, 2026",
-    "time": "1:30 PM",
-    "link": "https://www.myboca.us/calendar.aspx",
-    "summary": "City Council Workshop meeting at City Hall Council Chamber."
-  },
-  {
-    "id": "pbc--700960097087901114",
+    "id": "pbc-5260261962749903045",
     "muni_short": "PBC",
     "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Meeting - BCC Agenda",
-    "date": "Upcoming Agenda",
+    "title": "BCC Meeting - BCC Meeting Agendas",
+    "date": "BCC Meeting Agendas",
     "time": "9:30 AM",
     "link": "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx",
-    "summary": "Official Board of County Commissioners Agenda."
+    "summary": "Board of County Commissioners Agenda Item."
   },
   {
-    "id": "pbc--2995010507671384532",
+    "id": "pbc-5260261962749903045",
     "muni_short": "PBC",
     "muni_full": "Palm Beach County Board of Commissioners",
     "title": "BCC Meeting - BCC Agenda",
-    "date": "Upcoming Agenda",
-    "time": "9:30 AM",
-    "link": "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx",
-    "summary": "Official Board of County Commissioners Agenda."
-  },
-  {
-    "id": "pbc--1217292438099833626",
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County Board of Commissioners",
-    "title": "BCC Meeting - BCC Agenda",
-    "date": "2026-08-29",
+    "date": "BCC Agenda",
     "time": "9:30 AM",
     "link": "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx",
     "summary": "Board of County Commissioners Agenda Item."
