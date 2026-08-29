@@ -6,15 +6,8 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from PyPDF2 import PdfReader
-from huggingface_hub import InferenceClient
 
 DATA_FILE = "data.json"
-
-# Initialize Hugging Face Inference Client (Reads HF_TOKEN from environment)
-hf_client = InferenceClient(
-    model="meta-llama/Meta-Llama-3.1-8B-Instruct",
-    token=os.environ.get("HF_TOKEN")
-)
 
 def save_data(data):
     with open(DATA_FILE, "w") as f:
@@ -135,87 +128,118 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH MODULE (FREE LLM VIA LLAMA 3.1) ---
+# --- 3. WEST PALM BEACH MODULE (ROBUST DUAL ENGINE) ---
 def scrape_west_palm_beach():
     events = []
     url = "https://www.wpb.org/Our-City/Meetings-Agendas"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    
+    hf_token = os.environ.get("HF_TOKEN")
+    current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
+
     try:
         res = requests.get(url, headers=headers, timeout=12)
         if res.status_code != 200:
             return events
 
         soup = BeautifulSoup(res.text, "html.parser")
-        
-        for tag in soup(["script", "style", "nav", "footer"]):
-            tag.decompose()
 
-        page_content = []
-        for elem in soup.find_all(['a', 'div', 'p', 'span', 'li']):
-            text = elem.get_text(strip=True)
-            href = elem.get('href') if elem.name == 'a' else None
-            if text:
-                if href:
-                    page_content.append(f"Text: '{text}' | Link: '{href}'")
-                else:
-                    page_content.append(text)
+        # --- ENGINE A: FREE LLM CHAT COMPLETION ROUTER ---
+        if hf_token:
+            try:
+                # Clean HTML for LLM context
+                clean_soup = BeautifulSoup(res.text, "html.parser")
+                for tag in clean_soup(["script", "style", "nav", "footer"]):
+                    tag.decompose()
 
-        cleaned_text = "\n".join(page_content[:1200])
+                page_text = clean_soup.get_text(separator="\n", strip=True)[:3500]
 
-        prompt = f"""
-        Extract all public municipal meetings listed in the provided text.
-        
-        Target Topics: City Commission, Zoning Board of Appeals, Planning Board, Downtown Action Committee, Plans & Plats Review Committee (PPRC), CRA, or Community Action.
-        
-        Return ONLY a JSON list of objects matching this exact structure:
-        [
-          {{
-            "title": "Clean Official Title",
-            "date": "YYYY-MM-DD",
-            "time": "HH:MM AM/PM",
-            "link": "Relative or Absolute URL"
-          }}
-        ]
+                router_url = "https://router.huggingface.co/v1/chat/completions"
+                payload = {
+                    "model": "meta-llama/Llama-3.1-8B-Instruct",
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": f"""Extract all municipal public meetings from this text.
+Return ONLY a raw JSON array matching this exact schema:
+[
+  {{"title": "Title", "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "link": "URL"}}
+]
 
-        Rules:
-        1. Convert date to YYYY-MM-DD format (e.g. September 03, 2026 -> 2026-09-03).
-        2. Extract start time (e.g. 01:30 PM). Default to 05:00 PM if unspecified.
-        3. Do not include markdown code blocks or explanatory text. Return raw JSON string only.
+Page Content:
+{page_text}"""
+                        }
+                    ],
+                    "temperature": 0.0,
+                    "max_tokens": 1000
+                }
 
-        Page Content:
-        {cleaned_text}
-        """
+                hf_headers = {
+                    "Authorization": f"Bearer {hf_token}",
+                    "Content-Type": "application/json"
+                }
 
-        response = hf_client.text_generation(
-            prompt,
-            max_new_tokens=1024,
-            temperature=0.01
-        )
+                hf_res = requests.post(router_url, headers=hf_headers, json=payload, timeout=15)
+                if hf_res.status_code == 200:
+                    content = hf_res.json()['choices'][0]['message']['content'].strip()
+                    content = re.sub(r'^```json\s*', '', content)
+                    content = re.sub(r'\s*```$', '', content)
+                    llm_data = json.loads(content)
 
-        raw_json = response.strip()
-        raw_json = re.sub(r'^```json\s*', '', raw_json)
-        raw_json = re.sub(r'\s*```$', '', raw_json)
+                    for item in llm_data:
+                        href = item.get("link", "")
+                        full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
+                        events.append({
+                            "id": f"wpb-{item['date']}-{hash(full_link)}",
+                            "muni_short": "WPB",
+                            "muni_full": "City of West Palm Beach",
+                            "title": item["title"],
+                            "date": item["date"],
+                            "time": item.get("time", "5:00 PM"),
+                            "link": full_link,
+                            "summary": f"Official {item['title']} parsed via Llama 3.1 LLM."
+                        })
+                    if len(events) > 0:
+                        print(f"LLM Engine successfully extracted {len(events)} events for WPB.")
+                        return events
+            except Exception as e:
+                print(f"LLM Router failed ({e}). Falling back to BeautifulSoup engine...")
 
-        extracted_events = json.loads(raw_json)
+        # --- ENGINE B: DETERMINISTIC BEAUTIFULSOUP FALLBACK ---
+        print("Running BeautifulSoup fallback for West Palm Beach...")
+        for container in soup.select("a[href]"):
+            href = container['href']
+            title = container.text.strip()
+            
+            # Context from parent/sibling
+            parent = container.find_parent(["div", "li", "tr", "article"])
+            parent_text = parent.text.strip() if parent else ""
+            full_context = f"{title} {parent_text}"
 
-        for item in extracted_events:
-            href = item.get("link", "")
-            full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
+            iso_date = extract_date_from_text(full_context)
+            if iso_date:
+                dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                if dt >= current_month_start:
+                    # Ignore generic links
+                    if len(title) > 3 and title.lower() not in ["meeting", "agenda", "8 more dates", "tagged as: meeting"]:
+                        full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
+                        
+                        # Extract exact start time if available
+                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', full_context)
+                        m_time = time_match.group(1).upper() if time_match else "5:00 PM"
 
-            events.append({
-                "id": f"wpb-{item['date']}-{hash(full_link)}",
-                "muni_short": "WPB",
-                "muni_full": "City of West Palm Beach",
-                "title": item["title"],
-                "date": item["date"],
-                "time": item.get("time", "5:00 PM"),
-                "link": full_link,
-                "summary": f"Official {item['title']} parsed via Llama 3.1 LLM engine."
-            })
+                        events.append({
+                            "id": f"wpb-{iso_date}-{hash(full_link)}",
+                            "muni_short": "WPB",
+                            "muni_full": "City of West Palm Beach",
+                            "title": title,
+                            "date": iso_date,
+                            "time": m_time,
+                            "link": full_link,
+                            "summary": f"Official {title} parsed from West Palm Beach portal."
+                        })
 
     except Exception as e:
-        print(f"Llama 3.1 Error scraping West Palm Beach: {e}")
+        print(f"Error scraping West Palm Beach: {e}")
 
     return events
 
@@ -241,7 +265,6 @@ def run():
         if len(items) == 1:
             final_list.append(items[0])
         else:
-            print(f"Duplicate candidate group found for {group_key[0]} on {group_key[1]}. Resolving...")
             unique_in_group = []
             
             for item in items:
@@ -270,7 +293,7 @@ def run():
                 final_list.append(u)
 
     save_data(final_list)
-    print(f"Llama 3.1 execution finished. Saved {len(final_list)} unique matching events to {DATA_FILE}.")
+    print(f"Execution complete. Saved {len(final_list)} unique matching events to {DATA_FILE}.")
 
 if __name__ == "__main__":
     run()
