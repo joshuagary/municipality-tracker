@@ -128,73 +128,93 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH MODULE (DIRECT API FETCH) ---
+ # --- 3. WEST PALM BEACH MODULE (LLM PARSER WITH SERVER-RENDERED URL) ---
 def scrape_west_palm_beach():
     events = []
-    # WPB's underlying JSON data endpoint for public meetings
-    api_url = "https://www.wpb.org/api/v1/calendar/events?cid=0"
-    fallback_url = "https://www.wpb.org/Our-City/Meetings-Agendas"
+    # Using the server-rendered calendar feed URL so JavaScript execution isn't required
+    url = "https://www.wpb.org/Our-City/Calendars/Meetings"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    
-    current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
+    hf_token = os.environ.get("HF_TOKEN")
 
     try:
-        res = requests.get(api_url, headers=headers, timeout=12)
-        if res.status_code == 200 and "application/json" in res.headers.get("Content-Type", ""):
-            data = res.json()
-            for item in data.get("events", []):
-                title = item.get("title", "").strip()
-                raw_date = item.get("startDate", "")
-                link = item.get("url", fallback_url)
+        res = requests.get(url, headers=headers, timeout=12)
+        if res.status_code != 200:
+            return events
 
-                if is_qualifying_event(title):
-                    iso_date = extract_date_from_text(raw_date)
-                    if iso_date:
-                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                        if dt >= current_month_start:
-                            full_link = link if link.startswith("http") else f"https://www.wpb.org{link}"
-                            events.append({
-                                "id": f"wpb-{iso_date}-{hash(full_link)}",
-                                "muni_short": "WPB",
-                                "muni_full": "City of West Palm Beach",
-                                "title": title,
-                                "date": iso_date,
-                                "time": item.get("time", "5:00 PM"),
-                                "link": full_link,
-                                "summary": f"Official {title} parsed directly from West Palm Beach calendar API."
-                            })
-            if len(events) > 0:
-                print(f"Successfully pulled {len(events)} events via WPB Direct API.")
-                return events
+        clean_soup = BeautifulSoup(res.text, "html.parser")
+        for tag in clean_soup(["script", "style", "nav", "footer"]):
+            tag.decompose()
 
-        # FALLBACK: If API endpoint is blocked, parse list view directly
-        res_page = requests.get(fallback_url, headers=headers, timeout=12)
-        if res_page.status_code == 200:
-            soup = BeautifulSoup(res_page.text, "html.parser")
-            for a_tag in soup.select("a[href*='/Our-City/']"):
-                title = a_tag.text.strip()
-                href = a_tag['href']
-                parent_text = a_tag.parent.text.strip() if a_tag.parent else ""
-                full_text = f"{title} {parent_text} {href}"
+        # Extract textual content including links for the LLM
+        page_content = []
+        for elem in clean_soup.find_all(['a', 'div', 'p', 'span', 'li']):
+            text = elem.get_text(strip=True)
+            href = elem.get('href') if elem.name == 'a' else None
+            if text and len(text) > 2:
+                if href:
+                    page_content.append(f"Text: '{text}' | Link: '{href}'")
+                else:
+                    page_content.append(text)
 
-                iso_date = extract_date_from_text(full_text)
-                if iso_date and len(title) > 3:
-                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                    if dt >= current_month_start:
-                        full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
-                        events.append({
-                            "id": f"wpb-{iso_date}-{hash(full_link)}",
-                            "muni_short": "WPB",
-                            "muni_full": "City of West Palm Beach",
-                            "title": title,
-                            "date": iso_date,
-                            "time": "5:00 PM",
-                            "link": full_link,
-                            "summary": f"Official {title} parsed from West Palm Beach portal."
-                        })
+        cleaned_text = "\n".join(page_content[:2000])
+
+        if hf_token:
+            router_url = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3.1-8B-Instruct/v1/chat/completions"
+            payload = {
+                "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are a precise data extractor. Extract municipal meetings and return ONLY a valid JSON array. Do not include markdown ticks, conversational text, or explanations."
+                    },
+                    {
+                        "role": "user",
+                        "content": f"""Extract all municipal public meetings from this text.
+Target boards: City Commission, Zoning Board of Appeals, Planning Board, Downtown Action Committee, Plans & Plats Review Committee.
+
+Schema format:
+[
+  {{"title": "Clean Title", "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "link": "URL"}}
+]
+
+Text:
+{cleaned_text}"""
+                    }
+                ],
+                "temperature": 0.01,
+                "max_tokens": 1200
+            }
+
+            hf_headers = {
+                "Authorization": f"Bearer {hf_token}",
+                "Content-Type": "application/json"
+            }
+
+            hf_res = requests.post(router_url, headers=hf_headers, json=payload, timeout=15)
+            if hf_res.status_code == 200:
+                content = hf_res.json()['choices'][0]['message']['content'].strip()
+                content = re.sub(r'^```(?:json)?\s*', '', content, flags=re.MULTILINE)
+                content = re.sub(r'\s*```$', '', content, flags=re.MULTILINE)
+                
+                llm_data = json.loads(content)
+
+                for item in llm_data:
+                    href = item.get("link", "")
+                    full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
+                    events.append({
+                        "id": f"wpb-{item['date']}-{hash(full_link)}",
+                        "muni_short": "WPB",
+                        "muni_full": "City of West Palm Beach",
+                        "title": item["title"],
+                        "date": item["date"],
+                        "time": item.get("time", "5:00 PM"),
+                        "link": full_link,
+                        "summary": f"Official {item['title']} parsed via Llama 3.1 engine."
+                    })
+                print(f"Llama 3.1 successfully returned {len(events)} events for WPB.")
 
     except Exception as e:
-        print(f"Error scraping West Palm Beach: {e}")
+        print(f"Error in LLM WPB parsing: {e}")
 
     return events
 
