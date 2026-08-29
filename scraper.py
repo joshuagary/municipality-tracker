@@ -412,11 +412,9 @@ def scrape_delray_beach():
 
     return events
     
-# --- 4. DELRAY BEACH MODULE (DIRECT LEGISTAR GATEWAY API) ---
+# --- 4. DELRAY BEACH MODULE (ROBUST LEGISTAR RSS ENGINE) ---
 def scrape_delray_beach():
     events = []
-    # Official Legistar client API endpoint for Delray Beach
-    api_url = "https://delraybeach.legistar.com/gateway.aspx?m=meetings"
     
     now = datetime.now()
     current_month_start = datetime(now.year, now.month, 1)
@@ -436,37 +434,41 @@ def scrape_delray_beach():
     else:
         lookahead_end = datetime(next_year, next_month + 1, 1)
 
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Accept": "application/json, text/javascript, */*; q=0.01"
-    }
+    # Public Legistar RSS feed endpoint
+    rss_url = "https://delraybeach.legistar.com/rss.aspx?m=meetings"
 
     try:
-        res = requests.get(api_url, headers=headers, timeout=12)
+        res = requests.get(rss_url, impersonate="chrome124", timeout=15)
+        print(f"[Delray Scraper] RSS HTTP Status: {res.status_code}")
         
-        # If the direct gateway responds with JSON data
-        if res.status_code == 200 and "application/json" in res.headers.get("Content-Type", ""):
-            data = res.json()
-            for item in data:
-                raw_title = item.get("EventBodyName", "")
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            items = soup.find_all("item")
+            print(f"[Delray Scraper] Found {len(items)} raw RSS items.")
+
+            for item in items:
+                title_elem = item.find("title")
+                raw_title = title_elem.text.strip() if title_elem else ""
                 clean_title = clean_event_title(raw_title)
 
-                raw_date = item.get("EventDate", "")
-                raw_time = item.get("EventTime", "")
-                
-                # Direct Agenda PDF URL from Legistar payload
-                agenda_url = item.get("EventAgendaFile", "") or item.get("EventInsiteURL", "")
+                link_elem = item.find("link")
+                href = link_elem.text.strip() if link_elem else ""
+
+                desc_elem = item.find("description")
+                desc_text = desc_elem.text if desc_elem else ""
+
+                full_text_context = f"{clean_title} {desc_text}"
 
                 if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                    iso_date = extract_date_from_text(raw_date) or extract_date_from_text(clean_title)
+                    iso_date = extract_date_from_text(full_text_context)
 
                     if iso_date:
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
                         if current_month_start <= dt < lookahead_end:
-                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_time)
+                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', full_text_context)
                             meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
 
-                            full_link = agenda_url if agenda_url.startswith("http") else f"https://delraybeach.legistar.com/{agenda_url}"
+                            full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href}"
 
                             events.append({
                                 "id": f"delray-{iso_date}-{hash(full_link)}",
@@ -478,60 +480,10 @@ def scrape_delray_beach():
                                 "link": full_link,
                                 "summary": f"Official {clean_title} meeting."
                             })
-                            
-        # Fallback: HTML iframe parsing if API payload is not enabled
-        else:
-            iframe_url = "https://delraybeach.legistar.com/MainBody.aspx?M=c"
-            res_iframe = requests.get(iframe_url, headers=headers, timeout=12)
-            if res_iframe.status_code == 200:
-                soup = BeautifulSoup(res_iframe.text, "html.parser")
-                rows = soup.select(".rgMasterTable tbody tr, .rgRow, .rgAltRow")
 
-                for row in rows:
-                    cols = row.find_all("td")
-                    if len(cols) < 4:
-                        continue
-
-                    raw_title = cols[0].text.strip()
-                    clean_title = clean_event_title(raw_title)
-                    raw_date = cols[1].text.strip()
-                    raw_time = cols[2].text.strip()
-
-                    href = ""
-                    if len(cols) >= 6:
-                        agenda_a = cols[5].find("a", href=True)
-                        if agenda_a:
-                            href = agenda_a['href'].strip()
-                    if not href:
-                        name_a = cols[0].find("a", href=True)
-                        if name_a:
-                            href = name_a['href'].strip()
-
-                    if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                        iso_date = extract_date_from_text(raw_date) or extract_date_from_text(clean_title)
-
-                        if iso_date:
-                            dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                            if current_month_start <= dt < lookahead_end:
-                                time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_time)
-                                meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
-
-                                full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href}"
-
-                                events.append({
-                                    "id": f"delray-{iso_date}-{hash(full_link)}",
-                                    "muni_short": "DELRAY",
-                                    "muni_full": "City of Delray Beach",
-                                    "title": clean_title,
-                                    "date": iso_date,
-                                    "time": meeting_time,
-                                    "link": full_link,
-                                    "summary": f"Official {clean_title} meeting."
-                                })
-
-        print(f"Delray Beach Scraper successfully extracted {len(events)} events.")
+            print(f"[Delray Scraper] Successfully extracted {len(events)} events for window.")
     except Exception as e:
-        print(f"Error scraping Delray Beach: {e}")
+        print(f"[Delray Scraper] Error: {e}")
 
     return events
 
