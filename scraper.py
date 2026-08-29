@@ -7,19 +7,16 @@ from datetime import datetime
 
 DATA_FILE = "data.json"
 
-# Strict filtering keywords for qualifying public governance meetings
 KEYWORDS = [
     "city commission", "county commissioners", "bcc", "city council", 
     "town council", "regular meeting", "special meeting", "workshop", "budget hearing"
 ]
 
-# Non-qualifying events to filter out
 EXCLUDE_KEYWORDS = [
     "parks", "recreation", "code compliance", "pension", "police", "firefighters", "advisory"
 ]
 
 def save_data(data):
-    """Overwrites data.json completely with fresh results."""
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
@@ -30,7 +27,6 @@ def is_qualifying_event(title):
     return any(kw in title_lower for kw in KEYWORDS)
 
 def normalize_date(date_str):
-    """Converts various date text formats into ISO format YYYY-MM-DD"""
     try:
         match = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', date_str)
         if match:
@@ -41,7 +37,6 @@ def normalize_date(date_str):
         pass
     return None
 
-# --- 1. BOCA RATON (HTML Calendar Scraper) ---
 def scrape_boca_raton():
     events = []
     url = "https://www.myboca.us/calendar.aspx?view=list&CID=0"
@@ -72,31 +67,26 @@ def scrape_boca_raton():
         print(f"Error scraping Boca Raton: {e}")
     return events
 
- # --- 2. PALM BEACH COUNTY (Targeted Meeting Scraper) ---
 def scrape_palm_beach_county():
     events = []
     url = "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    headers = {"User-Agent": "Mozilla/5.0"}
     
     try:
-        res = requests.get(url, headers=headers, timeout=12)
+        res = requests.get(url, headers=headers, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             
-            # Target hyperlinks inside content areas containing explicit date strings
             for a_tag in soup.select("a[href]"):
                 text = a_tag.text.strip()
                 href = a_tag['href']
                 
-                # Ignore top-level menu/navigation links
                 if text.lower() in ["bcc agenda", "bcc meeting agendas", "agenda", "home"]:
                     continue
 
-                # Search for specific meeting date pattern (e.g. "September 1, 2026")
                 date_match = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', text)
-                
                 if date_match:
-                    full_link = href if href.startswith("http") else f"https://discover.pbc.gov{href}"
+                    full_link = href if href.startswith("http") else f"http://www.pbcgov.com{href}" if href.startswith("/pubInf") else f"https://discover.pbc.gov{href}"
                     iso_date = normalize_date(text)
                     
                     if iso_date:
@@ -114,7 +104,6 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH (HTML Agenda Scraper) ---
 def scrape_west_palm_beach():
     events = []
     url = "https://www.wpb.org/Our-City/Calendars/Meetings"
@@ -143,19 +132,22 @@ def scrape_west_palm_beach():
         print(f"Error scraping West Palm Beach: {e}")
     return events
 
-# --- MAIN CONTROLLER ---
 def run():
-    # Fresh initialization: Start with an empty list for every run
-    fresh_events = []
-    
-    # Run scrapers
-    fresh_events.extend(scrape_boca_raton())
-    fresh_events.extend(scrape_palm_beach_county())
-    fresh_events.extend(scrape_west_palm_beach())
+    raw_events = []
+    raw_events.extend(scrape_boca_raton())
+    raw_events.extend(scrape_palm_beach_county())
+    raw_events.extend(scrape_west_palm_beach())
 
-    # Completely overwrite data.json
-    save_data(fresh_events)
-    print(f"Wiped old data and saved {len(fresh_events)} fresh scraped events to {DATA_FILE}.")
+    # --- DEDUPLICATION LOGIC ---
+    unique_events = {}
+    for event in raw_events:
+        # Key on municipality + date + link to deduplicate
+        dedup_key = f"{event['muni_short']}_{event['date']}_{event['link']}"
+        unique_events[dedup_key] = event
+
+    final_list = list(unique_events.values())
+    save_data(final_list)
+    print(f"Deduplication complete. Saved {len(final_list)} unique events to {DATA_FILE}.")
 
 if __name__ == "__main__":
     run()
