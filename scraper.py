@@ -249,122 +249,93 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (COMPLETE AUG + SEPT CAPTURE) ---
+# --- 4. DELRAY BEACH MODULE (DIRECT LEGISTAR GATEWAY API) ---
 def scrape_delray_beach():
     events = []
     
     now = datetime.now()
-    # Lock start to August 1st, 2026 (or current month 1st)
-    current_month_start = datetime(now.year, now.month, 1)
-
-    # Set end bound to November 1st, 2026 so ALL of August and ALL of September are captured
     curr_year = now.year
     curr_month = now.month
-    
-    if curr_month == 12:
-        lookahead_end = datetime(curr_year + 1, 2, 1)
-    elif curr_month == 11:
-        lookahead_end = datetime(curr_year + 1, 1, 1)
+
+    # Set start to 1st of current month
+    start_date = datetime(curr_year, curr_month, 1)
+
+    # Set end to 1st of month after next (covers full current month + full next month)
+    if curr_month == 11:
+        end_date = datetime(curr_year + 1, 1, 1)
+    elif curr_month == 12:
+        end_date = datetime(curr_year + 1, 2, 1)
     else:
-        lookahead_end = datetime(curr_year, curr_month + 2, 1)
+        end_date = datetime(curr_year, curr_month + 2, 1)
 
-    urls = [
-        "https://delraybeach.legistar.com/Calendar.aspx",
-        f"https://delraybeach.legistar.com/Calendar.aspx?Mode=Year&Years={curr_year}",
-        f"https://delraybeach.legistar.com/Calendar.aspx?View=Year"
-    ]
+    # Legistar public JSON gateway endpoint used by calendar widgets
+    api_url = f"https://delraybeach.legistar.com/Gateway.ashx?m=meetings&from={start_date.strftime('%Y-%m-%d')}&to={end_date.strftime('%Y-%m-%d')}"
 
-    seen_event_keys = set()
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/javascript, */*; q=0.01"
+    }
 
-    for url in urls:
-        try:
-            res = requests.get(url, impersonate="chrome124", timeout=15)
-            if res.status_code != 200:
-                continue
+    try:
+        res = requests.get(api_url, headers=headers, impersonate="chrome124", timeout=15)
+        print(f"[Delray API Scraper] HTTP Status: {res.status_code}")
 
-            soup = BeautifulSoup(res.text, "html.parser")
-            rows = soup.find_all("tr")
+        if res.status_code == 200:
+            data = res.json()
+            print(f"[Delray API Scraper] Fetched {len(data)} raw records from API.")
 
-            for row in rows:
-                cols = row.find_all("td")
-                if len(cols) < 3:
-                    continue
-
-                raw_title = cols[0].text.strip()
+            for item in data:
+                # Extract fields directly from JSON
+                raw_title = item.get("Name") or item.get("Title") or ""
                 clean_title = clean_event_title(raw_title)
+
+                raw_date_str = item.get("Start") or item.get("MeetingDate") or ""
                 
-                raw_date = cols[1].text.strip() if len(cols) > 1 else ""
-                raw_time = cols[2].text.strip() if len(cols) > 2 else ""
+                # Extract links (Agenda PDF preferred, fallback to Meeting Details)
+                agenda_url = item.get("AgendaUrl") or item.get("AgendaLink") or ""
+                detail_url = item.get("Url") or item.get("MeetingDetailUrl") or ""
 
-                # --- 1. LINK EXTRACTION ---
-                raw_href = ""
-                # Check for direct Agenda link
-                for a_tag in row.find_all("a", href=True):
-                    href_val = a_tag['href'].strip()
-                    if "View.ashx?M=A" in href_val or (href_val.endswith(".pdf") and "Agenda" in a_tag.text):
-                        raw_href = href_val
-                        break
-                
-                # Fallback to Meeting Details link if Agenda not yet published (common for September)
-                if not raw_href:
-                    detail_a = row.select_one("a[href*='MeetingDetail.aspx']")
-                    if detail_a and detail_a.get('href'):
-                        raw_href = detail_a['href'].strip()
-
-                if not raw_href:
-                    raw_href = "Calendar.aspx"
-
-                # --- 2. TIME EXTRACTION ---
-                meeting_time = None
-                if raw_time:
-                    time_match = re.search(r'(\d{1,2}:\d{2})\s*([AaPp][Mm])', raw_time)
-                    if time_match:
-                        t_str, am_pm = time_match.group(1), time_match.group(2).upper()
-                        meeting_time = f"{t_str} {am_pm}"
-
-                if not meeting_time:
-                    row_text = row.get_text(separator=" ", strip=True)
-                    time_match = re.search(r'(\d{1,2}:\d{2})\s*([AaPp][Mm])', row_text)
-                    if time_match:
-                        t_str, am_pm = time_match.group(1), time_match.group(2).upper()
-                        meeting_time = f"{t_str} {am_pm}"
-                    else:
-                        meeting_time = "5:00 PM"
+                if agenda_url and "M=A" in agenda_url:
+                    href = agenda_url
+                elif detail_url:
+                    href = detail_url
+                else:
+                    href = "Calendar.aspx"
 
                 if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     iso_date = None
-                    date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
-                    if date_match:
-                        m, d, y = date_match.groups()
-                        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
-                    else:
-                        iso_date = extract_date_from_text(raw_date) or extract_date_from_text(clean_title)
+                    meeting_time = "5:00 PM"
+
+                    if raw_date_str:
+                        # Parse ISO timestamp returned by API (e.g. "2026-09-15T17:00:00")
+                        try:
+                            dt_obj = datetime.fromisoformat(raw_date_str.replace("Z", ""))
+                            iso_date = dt_obj.strftime("%Y-%m-%d")
+                            meeting_time = dt_obj.strftime("%I:%M %p").lstrip("0")
+                        except ValueError:
+                            iso_date = extract_date_from_text(raw_date_str)
 
                     if iso_date:
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                        
-                        # INCLUDES ALL AUGUST AND ALL SEPTEMBER MEETINGS
-                        if current_month_start <= dt < lookahead_end:
-                            full_link = raw_href if raw_href.startswith("http") else f"https://delraybeach.legistar.com/{raw_href.lstrip('/')}"
-                            
-                            dedup_key = (clean_title, iso_date)
-                            if dedup_key not in seen_event_keys:
-                                seen_event_keys.add(dedup_key)
-                                events.append({
-                                    "id": f"delray-{iso_date}-{hash(full_link)}",
-                                    "muni_short": "DELRAY",
-                                    "muni_full": "City of Delray Beach",
-                                    "title": clean_title,
-                                    "date": iso_date,
-                                    "time": meeting_time,
-                                    "link": full_link,
-                                    "summary": f"Official {clean_title} meeting."
-                                })
+                        if start_date <= dt < end_date:
+                            full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
 
-        except Exception as e:
-            print(f"[Delray Scraper] Error scraping {url}: {e}")
+                            events.append({
+                                "id": f"delray-{iso_date}-{hash(full_link)}",
+                                "muni_short": "DELRAY",
+                                "muni_full": "City of Delray Beach",
+                                "title": clean_title,
+                                "date": iso_date,
+                                "time": meeting_time,
+                                "link": full_link,
+                                "summary": f"Official {clean_title} meeting."
+                            })
 
-    print(f"[Delray Scraper] Successfully extracted {len(events)} total events for August + September.")
+            print(f"[Delray API Scraper] Successfully extracted {len(events)} events across August and September.")
+
+    except Exception as e:
+        print(f"[Delray API Scraper] Error querying Gateway API: {e}")
+
     return events
 
 
