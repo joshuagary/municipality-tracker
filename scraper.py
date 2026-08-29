@@ -249,19 +249,19 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (DIRECT HTML 90-DAY SCHEDULE) ---
+# --- 4. DELRAY BEACH MODULE (ASP.NET POSTBACK ENGINE FOR MULTI-MONTH) ---
 def scrape_delray_beach():
     events = []
-    # Target 90-day window URL to force Legistar to output September in raw HTML
-    url = "https://delraybeach.legistar.com/Calendar.aspx?Last=90"
+    base_url = "https://delraybeach.legistar.com/Calendar.aspx"
     
     now = datetime.now()
-    current_month_start = datetime(now.year, now.month, 1)
-
     curr_year = now.year
     curr_month = now.month
-    
-    # Calculate end of next month (Sept 30 / Oct 1 boundary)
+
+    next_month = 1 if curr_month == 12 else curr_month + 1
+    next_year = curr_year + 1 if curr_month == 12 else curr_year
+
+    current_month_start = datetime(curr_year, curr_month, 1)
     if curr_month == 11:
         lookahead_end = datetime(curr_year + 1, 1, 1)
     elif curr_month == 12:
@@ -269,12 +269,47 @@ def scrape_delray_beach():
     else:
         lookahead_end = datetime(curr_year, curr_month + 2, 1)
 
+    seen_event_keys = set()
+    session = requests.Session()
+    session.headers.update({
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    })
+
     try:
-        res = requests.get(url, impersonate="chrome124", timeout=15)
-        print(f"[Delray] HTTP Status Code: {res.status_code}")
+        # 1. GET initial page to capture current month HTML & ASP.NET hidden tokens
+        res_aug = session.get(base_url, timeout=15)
+        pages_html = []
         
-        if res.status_code == 200:
-            soup = BeautifulSoup(res.text, "html.parser")
+        if res_aug.status_code == 200:
+            pages_html.append(res_aug.text)
+            soup_aug = BeautifulSoup(res_aug.text, "html.parser")
+
+            # Extract ASP.NET hidden form fields needed to execute postbacks
+            viewstate = soup_aug.find("input", {"id": "__VIEWSTATE"})
+            eventvalidation = soup_aug.find("input", {"id": "__EVENTVALIDATION"})
+            viewstategenerator = soup_aug.find("input", {"id": "__VIEWSTATEGENERATOR"})
+
+            if viewstate and eventvalidation:
+                payload = {
+                    "__EVENTTARGET": "ctl00$ContentPlaceHolder1$lstMonths",
+                    "__EVENTARGUMENT": "",
+                    "__VIEWSTATE": viewstate.get("value", ""),
+                    "__EVENTVALIDATION": eventvalidation.get("value", ""),
+                    "ctl00$ContentPlaceHolder1$lstYears": str(curr_year if next_month != 1 else next_year),
+                    "ctl00$ContentPlaceHolder1$lstMonths": f"{next_month:02d}" if isinstance(next_month, int) else str(next_month)
+                }
+
+                if viewstategenerator:
+                    payload["__VIEWSTATEGENERATOR"] = viewstategenerator.get("value", "")
+
+                # 2. POST to trigger September calendar view server-side
+                res_sept = session.post(base_url, data=payload, timeout=15)
+                if res_sept.status_code == 200:
+                    pages_html.append(res_sept.text)
+
+        # 3. Parse extracted HTML responses
+        for html in pages_html:
+            soup = BeautifulSoup(html, "html.parser")
             rows = soup.find_all("tr")
 
             for row in rows:
@@ -288,7 +323,7 @@ def scrape_delray_beach():
                 raw_date = cols[1].text.strip() if len(cols) > 1 else ""
                 raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                # Target Agenda PDF link (View.ashx?M=A), fallback to Meeting Details page
+                # Target direct PDF Agenda link (M=A) or fallback to Meeting Details page
                 href = ""
                 agenda_a = row.select_one("a[href*='View.ashx?M=A']")
                 if agenda_a and agenda_a.get('href'):
@@ -301,18 +336,15 @@ def scrape_delray_beach():
                 if not href:
                     href = "Calendar.aspx"
 
-                # Standard M/D/YYYY date extraction
                 iso_date = None
                 date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
                 if date_match:
                     m, d, y = date_match.groups()
                     iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
 
-                # Apply strict qualification filter to eliminate garbage/irrelevant meetings
                 if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
                     
-                    # Strictly filter for current month through end of next month (Aug + Sept)
                     if current_month_start <= dt < lookahead_end:
                         time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time)
                         meeting_time = time_match.group(1).strip().upper() if time_match else "4:00 PM"
@@ -320,21 +352,25 @@ def scrape_delray_beach():
                             meeting_time += " PM"
 
                         full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
+                        
+                        dedup_key = (clean_title, iso_date)
+                        if dedup_key not in seen_event_keys:
+                            seen_event_keys.add(dedup_key)
+                            events.append({
+                                "id": f"delray-{iso_date}-{hash(full_link)}",
+                                "muni_short": "DELRAY",
+                                "muni_full": "City of Delray Beach",
+                                "title": clean_title,
+                                "date": iso_date,
+                                "time": meeting_time,
+                                "link": full_link,
+                                "summary": f"Official {clean_title} meeting."
+                            })
 
-                        events.append({
-                            "id": f"delray-{iso_date}-{hash(full_link)}",
-                            "muni_short": "DELRAY",
-                            "muni_full": "City of Delray Beach",
-                            "title": clean_title,
-                            "date": iso_date,
-                            "time": meeting_time,
-                            "link": full_link,
-                            "summary": f"Official {clean_title} meeting."
-                        })
+        print(f"[Delray] Successfully saved {len(events)} qualifying events across August and September.")
 
-            print(f"[Delray] Successfully saved {len(events)} qualifying events across August and September.")
     except Exception as e:
-        print(f"[Delray] Exception: {e}")
+        print(f"[Delray] Error running ASP.NET postback scraper: {e}")
 
     return events
 
