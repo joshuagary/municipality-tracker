@@ -20,7 +20,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 pdfplumber
+          pip install requests beautifulsoup4 pdfplumber PyPDF2
 
       - name: Execute Scraper
         run: python scraper.py
