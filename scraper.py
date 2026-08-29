@@ -7,13 +7,27 @@ from datetime import datetime
 
 DATA_FILE = "data.json"
 
+# Expanded Keywords: Governance, Zoning, Planning, Redevelopment, & Committees
 KEYWORDS = [
+    # Governance & Council Meetings
     "city commission", "county commissioners", "bcc", "city council", 
-    "town council", "regular meeting", "special meeting", "workshop", "budget hearing"
+    "town council", "regular meeting", "special meeting", "workshop", "budget hearing",
+    
+    # Zoning & Planning
+    "zoning", "planning", "planning and zoning", "p&z", "p&z board", "pz",
+    "site plan", "land development", "variance", "comprehensive plan",
+    
+    # Plans, Plats, & PPRC
+    "plans and plats", "plan and plat", "plat", "plats", "pprc",
+    
+    # Community Redevelopment & Committees
+    "community redevelopment", "community redevelopment agency", "cra",
+    "community action", "community action committee", "cac"
 ]
 
+# Non-qualifying events to filter out noise
 EXCLUDE_KEYWORDS = [
-    "parks", "recreation", "code compliance", "pension", "police", "firefighters", "advisory"
+    "parks", "recreation", "code compliance", "pension", "police", "firefighters", "advisory board"
 ]
 
 def save_data(data):
@@ -24,7 +38,15 @@ def is_qualifying_event(title):
     title_lower = title.lower()
     if any(ex in title_lower for ex in EXCLUDE_KEYWORDS):
         return False
-    return any(kw in title_lower for kw in KEYWORDS)
+    
+    # Regex word-boundary search to match standalone acronyms like CRA, CAC, PPRC, BCC
+    for kw in KEYWORDS:
+        if len(kw) <= 4:  # Short acronym check (e.g., CRA, PPRC, CAC, PZ)
+            if re.search(r'\b' + re.escape(kw) + r'\b', title_lower):
+                return True
+        elif kw in title_lower:
+            return True
+    return False
 
 def normalize_date(date_str):
     try:
@@ -37,6 +59,7 @@ def normalize_date(date_str):
         pass
     return None
 
+# --- 1. BOCA RATON SCRAPER ---
 def scrape_boca_raton():
     events = []
     url = "https://www.myboca.us/calendar.aspx?view=list&CID=0"
@@ -61,12 +84,13 @@ def scrape_boca_raton():
                             "date": iso_date,
                             "time": "1:30 PM",
                             "link": f"https://www.myboca.us{title_elem['href']}",
-                            "summary": "Parsed dynamically from City of Boca Raton calendar."
+                            "summary": "Official meeting parsed from City of Boca Raton portal."
                         })
     except Exception as e:
         print(f"Error scraping Boca Raton: {e}")
     return events
 
+# --- 2. PALM BEACH COUNTY SCRAPER ---
 def scrape_palm_beach_county():
     events = []
     url = "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx"
@@ -84,26 +108,27 @@ def scrape_palm_beach_county():
                 if text.lower() in ["bcc agenda", "bcc meeting agendas", "agenda", "home"]:
                     continue
 
-                date_match = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', text)
-                if date_match:
-                    full_link = href if href.startswith("http") else f"http://www.pbcgov.com{href}" if href.startswith("/pubInf") else f"https://discover.pbc.gov{href}"
-                    iso_date = normalize_date(text)
+                if is_qualifying_event(text):
+                    date_match = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', text)
+                    iso_date = normalize_date(text) if date_match else None
                     
                     if iso_date:
+                        full_link = href if href.startswith("http") else f"http://www.pbcgov.com{href}" if href.startswith("/pubInf") else f"https://discover.pbc.gov{href}"
                         events.append({
                             "id": f"pbc-{iso_date}",
                             "muni_short": "PBC",
                             "muni_full": "Palm Beach County Board of Commissioners",
-                            "title": f"BCC Regular Meeting",
+                            "title": text,
                             "date": iso_date,
                             "time": "9:30 AM",
                             "link": full_link,
-                            "summary": "Official Palm Beach County Board of Commissioners Agenda."
+                            "summary": "Official Palm Beach County Board/Committee Agenda Item."
                         })
     except Exception as e:
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
+# --- 3. WEST PALM BEACH SCRAPER ---
 def scrape_west_palm_beach():
     events = []
     url = "https://www.wpb.org/Our-City/Calendars/Meetings"
@@ -112,21 +137,21 @@ def scrape_west_palm_beach():
         res = requests.get(url, headers=headers, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
-            for item in soup.select("a[href*='City-Commission']"):
+            for item in soup.select("a[href]"):
                 title = item.text.strip()
                 href = item['href']
-                if is_qualifying_event(title) or "Commission" in title:
+                if is_qualifying_event(title):
                     full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
                     iso_date = normalize_date(title) or title
                     events.append({
                         "id": f"wpb-{hash(full_link)}",
                         "muni_short": "WPB",
                         "muni_full": "City of West Palm Beach",
-                        "title": title if title else "City Commission Meeting",
+                        "title": title if title else "Public Governance Meeting",
                         "date": iso_date,
                         "time": "5:00 PM",
                         "link": full_link,
-                        "summary": "Regular City Commission Meeting parsed from City calendar."
+                        "summary": "Public meeting parsed from West Palm Beach calendar portal."
                     })
     except Exception as e:
         print(f"Error scraping West Palm Beach: {e}")
@@ -138,8 +163,7 @@ def run():
     raw_events.extend(scrape_palm_beach_county())
     raw_events.extend(scrape_west_palm_beach())
 
-    # --- ENHANCED DEDUPLICATION LOGIC ---
-    # Deduplicates strictly on Municipality + Date + Title
+    # Deduplicate based on Municipality + Date + Cleaned Title
     unique_events = {}
     for event in raw_events:
         clean_title = re.sub(r'\s+', ' ', event['title']).strip().lower()
@@ -148,7 +172,7 @@ def run():
 
     final_list = list(unique_events.values())
     save_data(final_list)
-    print(f"Strict deduplication complete. Saved {len(final_list)} unique events to {DATA_FILE}.")
+    print(f"Expanded search complete. Saved {len(final_list)} unique matching events to {DATA_FILE}.")
 
 if __name__ == "__main__":
     run()
