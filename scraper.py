@@ -34,6 +34,7 @@ def is_qualifying_event(title):
 def extract_date_from_text(text):
     if not text:
         return None
+        
     m1 = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', text)
     if m1:
         month_str, day_str, year_str = m1.group(1), m1.group(2), m1.group(3)
@@ -43,10 +44,21 @@ def extract_date_from_text(text):
                 return dt.strftime("%Y-%m-%d")
             except ValueError:
                 pass
+
     m2 = re.search(r'(20\d{2})[-_]?([0-1]\d)[-_]?([0-3]\d)', text)
     if m2:
         return f"{m2.group(1)}-{m2.group(2)}-{m2.group(3)}"
+
     return None
+
+def normalize_title_for_grouping(title):
+    """Standardizes titles by stripping leading zeros in day dates and cleaning whitespace."""
+    if not title:
+        return ""
+    title_clean = title.lower().strip()
+    # Convert "september 01" -> "september 1"
+    title_clean = re.sub(r'([a-z]+)\s+0(\d)', r'\1 \2', title_clean)
+    return re.sub(r'\s+', ' ', title_clean)
 
 def extract_pdf_first_pages_text(url):
     """Downloads a PDF and extracts text from the first 2 pages for content comparison."""
@@ -64,13 +76,12 @@ def extract_pdf_first_pages_text(url):
                 text = reader.pages[i].extract_text()
                 if text:
                     extracted_text += text
-            # Normalize whitespace for clean comparison
             return re.sub(r'\s+', ' ', extracted_text).strip().lower()
     except Exception as e:
         print(f"PDF extraction error on {url}: {e}")
     return None
 
-# --- 1. BOCA RATON SCRAPER ---
+# --- 1. BOCA RATON MODULE ---
 def scrape_boca_raton():
     events = []
     url = "https://www.myboca.us/calendar.aspx?view=list&CID=0"
@@ -86,6 +97,7 @@ def scrape_boca_raton():
                     title = title_elem.text.strip()
                     raw_date = date_elem.text.strip() if date_elem else ""
                     iso_date = extract_date_from_text(raw_date) or extract_date_from_text(title)
+                    
                     if is_qualifying_event(title) and iso_date:
                         events.append({
                             "id": f"boca-{hash(title_elem['href'])}",
@@ -101,22 +113,25 @@ def scrape_boca_raton():
         print(f"Error scraping Boca Raton: {e}")
     return events
 
-# --- 2. PALM BEACH COUNTY SCRAPER ---
+# --- 2. PALM BEACH COUNTY MODULE ---
 def scrape_palm_beach_county():
     events = []
     url = "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    
     current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
 
     try:
         res = requests.get(url, headers=headers, timeout=12)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
+            
             for a_tag in soup.select("a[href]"):
                 href = a_tag['href']
                 link_text = a_tag.text.strip()
                 parent_text = a_tag.parent.text.strip() if a_tag.parent else ""
                 full_context = f"{link_text} {parent_text} {href}"
+                
                 iso_date_str = extract_date_from_text(full_context)
                 
                 if iso_date_str:
@@ -124,6 +139,7 @@ def scrape_palm_beach_county():
                     if event_date >= current_month_start:
                         if "agenda" in full_context.lower() or "bcc" in full_context.lower():
                             full_link = href if href.startswith("http") else f"http://www.pbcgov.com{href}" if href.startswith("/pubInf") else f"https://discover.pbc.gov{href}"
+                            
                             date_match = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', full_context)
                             m_label = date_match.group(0) if date_match else iso_date_str
 
@@ -141,14 +157,15 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH SCRAPER ---
+# --- 3. WEST PALM BEACH MODULE ---
 def scrape_west_palm_beach():
     events = []
     urls = [
         "https://www.wpb.org/Our-City/Meetings-Agendas",
         "https://www.wpb.org/Our-City/Calendars/Meetings"
     ]
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    
     current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
 
     for url in urls:
@@ -156,6 +173,7 @@ def scrape_west_palm_beach():
             res = requests.get(url, headers=headers, timeout=12)
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, "html.parser")
+                
                 for a_tag in soup.select("a[href]"):
                     title = a_tag.text.strip()
                     href = a_tag['href']
@@ -165,6 +183,7 @@ def scrape_west_palm_beach():
 
                     if is_qualifying_event(title) or is_qualifying_event(parent_text):
                         iso_date = extract_date_from_text(full_text)
+                        
                         if iso_date:
                             event_date = datetime.strptime(iso_date, "%Y-%m-%d")
                             if event_date >= current_month_start:
@@ -191,19 +210,20 @@ def scrape_west_palm_beach():
                                 })
         except Exception as e:
             print(f"Error scraping West Palm Beach from {url}: {e}")
+            
     return events
 
-# --- DEEP CONTENT DEDUPLICATION CONTROLLER ---
+# --- DEDUPLICATION CONTROLLER ---
 def run():
     raw_events = []
     raw_events.extend(scrape_boca_raton())
     raw_events.extend(scrape_palm_beach_county())
     raw_events.extend(scrape_west_palm_beach())
 
-    # Group events by (muni_short, date, time, clean_title)
+    # Group events by (muni_short, date, time, normalized_title)
     grouped_events = {}
     for event in raw_events:
-        clean_title = re.sub(r'\s+', ' ', event['title']).strip().lower()
+        clean_title = normalize_title_for_grouping(event['title'])
         group_key = (event['muni_short'], event['date'], event['time'], clean_title)
         
         if group_key not in grouped_events:
@@ -212,45 +232,43 @@ def run():
 
     final_list = []
 
-    # Inspect groups with potential duplicates
     for group_key, items in grouped_events.items():
         if len(items) == 1:
             final_list.append(items[0])
         else:
-            print(f"Comparing {len(items)} matching candidates for {group_key[0]} on {group_key[1]}...")
+            print(f"Duplicate candidate group found for {group_key[0]} on {group_key[1]}. Resolving...")
             unique_in_group = []
             
             for item in items:
-                # Extract content signature from first 2 pages if PDF
-                content_text = extract_pdf_first_pages_text(item['link'])
+                # Normalize legacy link paths for direct URL equality matching
+                clean_link = item['link'].replace("http://www.pbcgov.com/pubInf/Agenda", "https://discover.pbc.gov/countycommissioners/Agenda_Master")
                 
                 is_duplicate = False
                 for existing in unique_in_group:
-                    existing_text = existing.get('_pdf_content')
+                    existing_clean_link = existing['link'].replace("http://www.pbcgov.com/pubInf/Agenda", "https://discover.pbc.gov/countycommissioners/Agenda_Master")
                     
-                    # If both PDFs have extracted text and share identical or 95%+ similar content
-                    if content_text and existing_text:
-                        # Check substring/exact match on the first 500 characters
-                        if content_text[:500] == existing_text[:500]:
-                            is_duplicate = True
-                            print(f"Eliminated duplicate agenda PDF: {item['link']}")
-                            break
-                    # Fallback link-equality check
-                    elif item['link'] == existing['link']:
+                    # 1. Canonical URL match
+                    if clean_link == existing_clean_link:
+                        is_duplicate = True
+                        break
+
+                    # 2. PDF Content Signature comparison
+                    content_text = extract_pdf_first_pages_text(item['link'])
+                    existing_text = existing.get('_pdf_content')
+                    if content_text and existing_text and (content_text[:500] == existing_text[:500]):
                         is_duplicate = True
                         break
 
                 if not is_duplicate:
-                    item['_pdf_content'] = content_text  # Store temporary signature
+                    item['_pdf_content'] = extract_pdf_first_pages_text(item['link'])
                     unique_in_group.append(item)
 
-            # Strip temporary content signature before saving
             for u in unique_in_group:
                 u.pop('_pdf_content', None)
                 final_list.append(u)
 
     save_data(final_list)
-    print(f"Deep comparison complete. Saved {len(final_list)} unique events to {DATA_FILE}.")
+    print(f"Complete run finished. Saved {len(final_list)} unique matching events to {DATA_FILE}.")
 
 if __name__ == "__main__":
     run()
