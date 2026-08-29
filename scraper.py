@@ -72,31 +72,44 @@ def scrape_boca_raton():
         print(f"Error scraping Boca Raton: {e}")
     return events
 
-# --- 2. PALM BEACH COUNTY (BCC Agenda Scraper) ---
+ # --- 2. PALM BEACH COUNTY (Targeted Meeting Scraper) ---
 def scrape_palm_beach_county():
     events = []
-    url = "https://discover.pbc.gov/countycommissioners/pages/agendaarchive-html.aspx"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    url = "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    
     try:
-        res = requests.get(url, headers=headers, timeout=10)
+        res = requests.get(url, headers=headers, timeout=12)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
-            for a_tag in soup.select("a[href*='Agenda']"):
-                title = a_tag.text.strip()
+            
+            # Target hyperlinks inside content areas containing explicit date strings
+            for a_tag in soup.select("a[href]"):
+                text = a_tag.text.strip()
                 href = a_tag['href']
-                if is_qualifying_event(title) or "BCC" in title:
+                
+                # Ignore top-level menu/navigation links
+                if text.lower() in ["bcc agenda", "bcc meeting agendas", "agenda", "home"]:
+                    continue
+
+                # Search for specific meeting date pattern (e.g. "September 1, 2026")
+                date_match = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', text)
+                
+                if date_match:
                     full_link = href if href.startswith("http") else f"https://discover.pbc.gov{href}"
-                    iso_date = normalize_date(title) or title
-                    events.append({
-                        "id": f"pbc-{hash(full_link)}",
-                        "muni_short": "PBC",
-                        "muni_full": "Palm Beach County Board of Commissioners",
-                        "title": f"BCC Meeting - {title}",
-                        "date": iso_date,
-                        "time": "9:30 AM",
-                        "link": full_link,
-                        "summary": "Board of County Commissioners Agenda Item."
-                    })
+                    iso_date = normalize_date(text)
+                    
+                    if iso_date:
+                        events.append({
+                            "id": f"pbc-{hash(full_link)}",
+                            "muni_short": "PBC",
+                            "muni_full": "Palm Beach County Board of Commissioners",
+                            "title": f"BCC Regular Meeting - {date_match.group(0)}",
+                            "date": iso_date,
+                            "time": "9:30 AM",
+                            "link": full_link,
+                            "summary": "Official Palm Beach County Board of Commissioners Agenda."
+                        })
     except Exception as e:
         print(f"Error scraping Palm Beach County: {e}")
     return events
