@@ -249,7 +249,7 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (OFFICIAL LEGISTAR PUBLIC ODATA API) ---
+# --- 4. DELRAY BEACH MODULE (RELIABLE LEGISTAR API PARSER) ---
 def scrape_delray_beach():
     events = []
     
@@ -257,10 +257,10 @@ def scrape_delray_beach():
     curr_year = now.year
     curr_month = now.month
 
-    # Current month start (e.g., 2026-08-01)
+    # Start date: 1st of current month
     start_date = datetime(curr_year, curr_month, 1)
 
-    # Next month end cutoff (e.g., 2026-10-01)
+    # End date cutoff: 1st of month after next (Covers current month + full next month)
     if curr_month == 11:
         end_date = datetime(curr_year + 1, 1, 1)
     elif curr_month == 12:
@@ -268,7 +268,7 @@ def scrape_delray_beach():
     else:
         end_date = datetime(curr_year, curr_month + 2, 1)
 
-    # Official Legistar OData Endpoint
+    # Official Legistar REST API Endpoint
     api_url = f"https://webapi.legistar.com/v1/delraybeach/events?$filter=EventDate ge datetime'{start_date.strftime('%Y-%m-%d')}' and EventDate lt datetime'{end_date.strftime('%Y-%m-%d')}'"
 
     try:
@@ -277,55 +277,66 @@ def scrape_delray_beach():
 
         if res.status_code == 200:
             data = res.json()
-            print(f"[Delray API Scraper] Fetched {len(data)} raw events from official Legistar API.")
+            print(f"[Delray API Scraper] Received {len(data)} raw records from API.")
 
             for item in data:
-                raw_title = item.get("EventBodyName") or ""
+                # 1. Title Extraction
+                raw_title = item.get("EventBodyName") or item.get("EventComment") or ""
+                if not raw_title:
+                    continue
+
                 clean_title = clean_event_title(raw_title)
 
-                raw_date_str = item.get("EventDate") or ""
-                raw_time_str = item.get("EventTime") or ""
-                
-                # Check for direct Agenda PDF link ID
-                agenda_file = item.get("EventAgendaFile")
-                event_id = item.get("EventId")
+                # 2. Permissive Qualification Check (Check both raw and cleaned titles)
+                title_to_check = raw_title.lower() + " " + clean_title.lower()
+                is_valid = is_qualifying_event(title_to_check) or any(
+                    kw in title_to_check for kw in ["commission", "cra", "board", "council", "planning", "zoning", "meeting"]
+                )
 
-                if agenda_file:
-                    href = f"https://delraybeach.legistar.com/View.ashx?M=A&ID={event_id}&GUID={item.get('EventGuid', '')}"
-                elif event_id:
-                    href = f"https://delraybeach.legistar.com/MeetingDetail.aspx?ID={event_id}&GUID={item.get('EventGuid', '')}"
-                else:
-                    href = "https://delraybeach.legistar.com/Calendar.aspx"
+                if is_valid and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', title_to_check, re.I):
+                    # 3. Date & Time Parsing
+                    raw_date_str = item.get("EventDate") or ""
+                    raw_time_str = item.get("EventTime") or ""
+                    
+                    iso_date = raw_date_str.split("T")[0] if "T" in raw_date_str else None
 
-                if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                    iso_date = None
-                    if raw_date_str:
-                        # Extract YYYY-MM-DD from API ISO string
-                        iso_date = raw_date_str.split("T")[0]
-
-                    # Format meeting time cleanly
-                    meeting_time = "5:00 PM"
+                    meeting_time = "4:00 PM"
                     if raw_time_str:
-                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_time_str)
+                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time_str)
                         if time_match:
-                            meeting_time = time_match.group(1).upper()
+                            t_val = time_match.group(1).strip()
+                            if "AM" not in t_val.upper() and "PM" not in t_val.upper():
+                                t_val += " PM"
+                            meeting_time = t_val.upper()
+
+                    # 4. Link Construction (Direct PDF Agenda vs. Meeting Details)
+                    event_id = item.get("EventId")
+                    event_guid = item.get("EventGuid") or ""
+                    agenda_file = item.get("EventAgendaFile")
+
+                    if agenda_file:
+                        href = f"https://delraybeach.legistar.com/View.ashx?M=A&ID={event_id}&GUID={event_guid}"
+                    elif event_id:
+                        href = f"https://delraybeach.legistar.com/MeetingDetail.aspx?ID={event_id}&GUID={event_guid}"
+                    else:
+                        href = "https://delraybeach.legistar.com/Calendar.aspx"
 
                     if iso_date:
                         events.append({
                             "id": f"delray-{iso_date}-{event_id or hash(href)}",
                             "muni_short": "DELRAY",
                             "muni_full": "City of Delray Beach",
-                            "title": clean_title,
+                            "title": clean_title if len(clean_title) > 3 else raw_title,
                             "date": iso_date,
                             "time": meeting_time,
                             "link": href,
-                            "summary": f"Official {clean_title} meeting."
+                            "summary": f"Official {raw_title} meeting."
                         })
 
-            print(f"[Delray API Scraper] Successfully saved {len(events)} qualifying events for Aug & Sept.")
+            print(f"[Delray API Scraper] Successfully saved {len(events)} events for August & September.")
 
     except Exception as e:
-        print(f"[Delray API Scraper] Error querying Legistar OData API: {e}")
+        print(f"[Delray API Scraper] Error: {e}")
 
     return events
 
