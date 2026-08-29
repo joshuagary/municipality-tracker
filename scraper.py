@@ -249,7 +249,7 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (STRICT DIRECT AGENDA PDF PARSER) ---
+# --- 4. DELRAY BEACH MODULE (ACCURATE TIME & DIRECT LINK PARSER) ---
 def scrape_delray_beach():
     events = []
     url = "https://delraybeach.legistar.com/Calendar.aspx"
@@ -286,29 +286,43 @@ def scrape_delray_beach():
                 raw_date = cols[1].text.strip() if len(cols) > 1 else ""
                 raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                href = ""
-
-                # 1. SPECIFIC TARGET: Look in the Agenda Column (Column index 5 or 6 in Legistar)
-                # Matches direct Agenda links containing M=A or .pdf
-                for col in cols[3:]:
-                    agenda_a = col.select_one("a[href*='M=A'], a[href*='.pdf']")
-                    if agenda_a and agenda_a.get('href'):
-                        href = agenda_a['href'].strip()
+                # --- 1. EXTRACT DIRECT AGENDA LINK ---
+                raw_href = ""
+                
+                # Check for direct anchor tags with View.ashx?M=A in the row
+                for a_tag in row.find_all("a", href=True):
+                    href_val = a_tag['href'].strip()
+                    if "View.ashx?M=A" in href_val or (href_val.endswith(".pdf") and "Agenda" in a_tag.text):
+                        raw_href = href_val
                         break
+                
+                # Fallback to column index 5 (Agenda column) if no explicit M=A tag matched
+                if not raw_href and len(cols) >= 6:
+                    agenda_col = cols[5]
+                    col_a = agenda_col.find("a", href=True)
+                    if col_a:
+                        raw_href = col_a['href'].strip()
 
-                # 2. FALLBACK 1: Search whole row specifically for M=A (Agenda), explicitly skipping MeetingDetail
-                if not href:
-                    agenda_a = row.select_one("a[href*='M=A']")
-                    if agenda_a and agenda_a.get('href'):
-                        href = agenda_a['href'].strip()
+                # --- 2. EXTRACT PRECISE MEETING TIME ---
+                meeting_time = None
+                if raw_time:
+                    # Robust regex capturing patterns like "3:00 PM", "3:00PM", "03:00 pm"
+                    time_match = re.search(r'(\d{1,2}:\d{2})\s*([AaPp][Mm])', raw_time)
+                    if time_match:
+                        t_str, am_pm = time_match.group(1), time_match.group(2).upper()
+                        meeting_time = f"{t_str} {am_pm}"
 
-                # 3. FALLBACK 2: If only an iCal (M=IC) or Detail link was found, rewrite M=IC -> M=A
-                if not href:
-                    any_view_a = row.select_one("a[href*='View.ashx']")
-                    if any_view_a and any_view_a.get('href'):
-                        href = any_view_a['href'].strip().replace("M=IC", "M=A")
+                # Fallback check against full row text if column parsing yielded no time match
+                if not meeting_time:
+                    row_text = row.get_text(separator=" ", strip=True)
+                    time_match = re.search(r'(\d{1,2}:\d{2})\s*([AaPp][Mm])', row_text)
+                    if time_match:
+                        t_str, am_pm = time_match.group(1), time_match.group(2).upper()
+                        meeting_time = f"{t_str} {am_pm}"
+                    else:
+                        meeting_time = "Not Specified"
 
-                if href and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                if raw_href and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     iso_date = None
                     date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
                     if date_match:
@@ -320,10 +334,7 @@ def scrape_delray_beach():
                     if iso_date:
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
                         if current_month_start <= dt < lookahead_end:
-                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_time)
-                            meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
-                            
-                            full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
+                            full_link = raw_href if raw_href.startswith("http") else f"https://delraybeach.legistar.com/{raw_href.lstrip('/')}"
 
                             events.append({
                                 "id": f"delray-{iso_date}-{hash(full_link)}",
@@ -336,7 +347,7 @@ def scrape_delray_beach():
                                 "summary": f"Official {clean_title} meeting."
                             })
 
-            print(f"[Delray Scraper] Successfully extracted {len(events)} events with direct M=A agenda URLs.")
+            print(f"[Delray Scraper] Successfully extracted {len(events)} events with direct links and verified times.")
     except Exception as e:
         print(f"[Delray Scraper] Error: {e}")
 
