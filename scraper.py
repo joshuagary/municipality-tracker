@@ -165,7 +165,23 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH MODULE (STRICT TOPIC ENGINE) ---
+def clean_event_title(raw_text):
+    """Strips HTML whitespace, dates, locations, and metadata from extracted titles."""
+    if not raw_text:
+        return "Municipal Governance Meeting"
+    
+    # 1. Split by newlines and take the first non-empty line (the main title)
+    lines = [line.strip() for line in raw_text.split('\n') if line.strip()]
+    first_line = lines[0] if lines else raw_text
+    
+    # 2. Remove date strings, times, addresses, and 'Tagged as' artifacts
+    cleaned = re.sub(r'(?i)(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?,?\s*(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}.*', '', first_line)
+    cleaned = re.sub(r'(?i)Tagged as:.*', '', cleaned)
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+    
+    return cleaned if len(cleaned) > 3 else "Municipal Governance Meeting"
+
+# --- 3. WEST PALM BEACH MODULE (CLEAN TITLES & STRICT GOVERNANCE) ---
 def scrape_west_palm_beach():
     events = []
     url = "https://www.wpb.org/Our-City/Meetings-Agendas"
@@ -198,18 +214,18 @@ def scrape_west_palm_beach():
                         },
                         {
                             "role": "user",
-                            "content": f"""Extract public meetings ONLY for these exact boards:
+                            "content": f"""Extract public meetings ONLY for these exact governance boards:
 - City Commission
 - Zoning Board of Appeals
 - Planning Board
 - Downtown Action Committee
 - Plans & Plats Review Committee
 
-Do NOT extract general community events, parks meetings, or advisory boards.
+Do NOT extract bid openings, ITB/RFP notices, or general town events.
 
 Schema format:
 [
-  {{"title": "Clean Title", "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "link": "Relative or Absolute URL"}}
+  {{"title": "Clean Short Title", "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "link": "Relative or Absolute URL"}}
 ]
 
 Text:
@@ -234,42 +250,49 @@ Text:
                     llm_data = json.loads(content)
 
                     for item in llm_data:
-                        title = item.get("title", "")
-                        if is_strict_wpb_event(title):
+                        raw_title = item.get("title", "")
+                        clean_title = clean_event_title(raw_title)
+                        
+                        # Exclude ITB/RFP procurement bids
+                        if is_strict_wpb_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                             href = item.get("link", "")
                             full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
                             events.append({
                                 "id": f"wpb-{item['date']}-{hash(full_link)}",
                                 "muni_short": "WPB",
                                 "muni_full": "City of West Palm Beach",
-                                "title": title,
+                                "title": clean_title,
                                 "date": item["date"],
                                 "time": item.get("time", "5:00 PM"),
                                 "link": full_link,
-                                "summary": f"Official {title} parsed via Llama 3.1 LLM."
+                                "summary": f"Official {clean_title} meeting."
                             })
                     if len(events) > 0:
-                        print(f"Llama 3.1 extracted {len(events)} strict events for WPB.")
+                        print(f"Llama 3.1 extracted {len(events)} clean events for WPB.")
                         return events
             except Exception as e:
                 print(f"Llama 3.1 Engine failed ({e}). Falling back to BeautifulSoup...")
 
-        # --- ENGINE B: STRICT BEAUTIFULSOUP FALLBACK ---
-        print("Running Strict BeautifulSoup fallback for WPB...")
+        # --- ENGINE B: CLEAN BEAUTIFULSOUP FALLBACK ---
+        print("Running Clean BeautifulSoup fallback for WPB...")
         cards = soup.find_all(["div", "li", "tr", "article"])
 
         for card in cards:
             card_text = card.get_text(separator=" ", strip=True)
 
-            a_tag = card.select_one("a[href]")
-            if not a_tag:
+            # Look for explicit heading or primary title anchor
+            title_elem = card.select_one("h2, h3, h4, .title, .item-title, a[href]")
+            if not title_elem:
                 continue
 
-            title = a_tag.text.strip()
-            href = a_tag['href']
+            raw_title = title_elem.text.strip()
+            clean_title = clean_event_title(raw_title)
+            
+            a_tag = card.select_one("a[href]")
+            href = a_tag['href'] if a_tag else ""
 
-            # Match title strictly against WPB Target Boards
-            if is_strict_wpb_event(title):
+            # Strict governance filter: reject ITB/RFP bids & non-target boards
+            if is_strict_wpb_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', card_text, re.I):
                 iso_date = extract_date_from_text(card_text)
                 if iso_date:
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
@@ -283,11 +306,11 @@ Text:
                             "id": f"wpb-{iso_date}-{hash(full_link)}",
                             "muni_short": "WPB",
                             "muni_full": "City of West Palm Beach",
-                            "title": title,
+                            "title": clean_title,
                             "date": iso_date,
                             "time": m_time,
                             "link": full_link,
-                            "summary": f"Official {title} parsed from West Palm Beach portal."
+                            "summary": f"Official {clean_title} meeting."
                         })
 
     except Exception as e:
