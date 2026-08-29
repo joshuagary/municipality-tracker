@@ -9,32 +9,35 @@ from curl_cffi import requests
 
 DATA_FILE = "data.json"
 
-# Strict primary keywords for general scraping
+# Global Keyword Matcher (Shared across municipalities)
 KEYWORDS = [
-    "commission", "commissioners", "bcc", "council", "zoning board", 
-    "planning board", "p&z", "pz", "pprc", "redevelopment", "cra", 
-    "downtown action committee", "plans & plats", "plans and plats"
+    "commission", "commissioners", "bcc", "council", "meeting", "agenda",
+    "workshop", "hearing", "zoning", "planning", "p&z", "pz", "site plan",
+    "plat", "plats", "pprc", "redevelopment", "cra", "action", "cac", "work session",
+    "board of appeals", "downtown action", "board of adjustment", "building board"
 ]
 
 EXCLUDE_KEYWORDS = [
     "code compliance", "pension", "police", "firefighters", "art", "library", "parks"
 ]
 
-# Explicit board title filter for West Palm Beach
-STRICT_WPB_BOARDS = [
-    "city commission",
-    "zoning board of appeals",
-    "planning board",
-    "downtown action committee",
-    "plans & plats review committee",
-    "plans and plats review committee",
-    "community redevelopment agency",
-    "cra"
-]
-
 def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
+
+def clean_event_title(raw_text):
+    """Strips HTML whitespace, dates, locations, and metadata from extracted titles."""
+    if not raw_text:
+        return "Municipal Governance Meeting"
+    
+    lines = [line.strip() for line in raw_text.split('\n') if line.strip()]
+    first_line = lines[0] if lines else raw_text
+    
+    cleaned = re.sub(r'(?i)(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?,?\s*(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}.*', '', first_line)
+    cleaned = re.sub(r'(?i)Tagged as:.*', '', cleaned)
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+    
+    return cleaned if len(cleaned) > 3 else "Municipal Governance Meeting"
 
 def is_qualifying_event(title):
     if not title:
@@ -43,15 +46,6 @@ def is_qualifying_event(title):
     if any(ex in title_lower for ex in EXCLUDE_KEYWORDS):
         return False
     return any(kw in title_lower for kw in KEYWORDS)
-
-def is_strict_wpb_event(title):
-    """Ensures West Palm Beach events match exact target boards."""
-    if not title:
-        return False
-    title_lower = title.lower()
-    if any(ex in title_lower for ex in EXCLUDE_KEYWORDS):
-        return False
-    return any(board in title_lower for board in STRICT_WPB_BOARDS)
 
 def extract_date_from_text(text):
     if not text:
@@ -96,34 +90,62 @@ def extract_pdf_first_pages_text(url):
         print(f"PDF extraction error on {url}: {e}")
     return None
 
-# --- 1. BOCA RATON MODULE ---
+# --- 1. BOCA RATON MODULE (DYNAMIC URL & SHARED KEYWORD LOGIC) ---
 def scrape_boca_raton():
     events = []
-    url = "https://www.myboca.us/calendar.aspx?view=list&CID=0"
+    
+    # Dynamically compute year and month URL for current execution date
+    now = datetime.now()
+    url = f"https://www.myboca.us/calendar.aspx?view=month&year={now.year}&month={now.month}&CID=0"
+    current_month_start = datetime(now.year, now.month, 1)
+
     try:
         res = requests.get(url, impersonate="chrome124", timeout=12)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
-            for item in soup.select(".calendarRow"):
-                title_elem = item.select_one(".calendarTitle a")
-                date_elem = item.select_one(".calendarDate")
-                if title_elem:
-                    title = title_elem.text.strip()
-                    raw_date = date_elem.text.strip() if date_elem else ""
-                    iso_date = extract_date_from_text(raw_date) or extract_date_from_text(title)
-                    if is_qualifying_event(title) and iso_date:
-                        events.append({
-                            "id": f"boca-{hash(title_elem['href'])}",
-                            "muni_short": "BOCA",
-                            "muni_full": "City of Boca Raton",
-                            "title": title,
-                            "date": iso_date,
-                            "time": "1:30 PM",
-                            "link": f"https://www.myboca.us{title_elem['href']}",
-                            "summary": "Official meeting parsed from City of Boca Raton portal."
-                        })
+            
+            elements = soup.select(".calendarRow, .detail-list-item, .calendarEvent, tr, li")
+            
+            for item in elements:
+                title_elem = item.select_one(".calendarTitle a, a[href*='calendar']")
+                date_elem = item.select_one(".calendarDate, .date")
+                
+                if not title_elem:
+                    continue
+
+                raw_title = title_elem.text.strip()
+                clean_title = clean_event_title(raw_title)
+                href = title_elem['href']
+                raw_context = item.get_text(separator=" ", strip=True)
+
+                # Shared Keyword & Exclude Matching (Same as WPB logic)
+                if (is_qualifying_event(clean_title) or is_qualifying_event(raw_context)) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                    raw_date = date_elem.text.strip() if date_elem else raw_context
+                    iso_date = extract_date_from_text(raw_date) or extract_date_from_text(clean_title)
+
+                    if iso_date:
+                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                        if dt >= current_month_start:
+                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_context)
+                            meeting_time = time_match.group(1).upper() if time_match else "1:30 PM"
+
+                            full_link = href if href.startswith("http") else f"https://www.myboca.us{href}"
+
+                            events.append({
+                                "id": f"boca-{iso_date}-{hash(full_link)}",
+                                "muni_short": "BOCA",
+                                "muni_full": "City of Boca Raton",
+                                "title": clean_title,
+                                "date": iso_date,
+                                "time": meeting_time,
+                                "link": full_link,
+                                "summary": f"Official {clean_title} meeting."
+                            })
+
+            print(f"Boca Raton Scraper dynamically loaded ({url}) and extracted {len(events)} events.")
     except Exception as e:
         print(f"Error scraping Boca Raton: {e}")
+
     return events
 
 # --- 2. PALM BEACH COUNTY MODULE ---
@@ -165,23 +187,7 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-def clean_event_title(raw_text):
-    """Strips HTML whitespace, dates, locations, and metadata from extracted titles."""
-    if not raw_text:
-        return "Municipal Governance Meeting"
-    
-    # 1. Split by newlines and take the first non-empty line (the main title)
-    lines = [line.strip() for line in raw_text.split('\n') if line.strip()]
-    first_line = lines[0] if lines else raw_text
-    
-    # 2. Remove date strings, times, addresses, and 'Tagged as' artifacts
-    cleaned = re.sub(r'(?i)(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?,?\s*(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}.*', '', first_line)
-    cleaned = re.sub(r'(?i)Tagged as:.*', '', cleaned)
-    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
-    
-    return cleaned if len(cleaned) > 3 else "Municipal Governance Meeting"
-
-# --- 3. WEST PALM BEACH MODULE (CLEAN TITLES & STRICT GOVERNANCE) ---
+# --- 3. WEST PALM BEACH MODULE (CLEAN TITLES & SHARED KEYWORDS) ---
 def scrape_west_palm_beach():
     events = []
     url = "https://www.wpb.org/Our-City/Meetings-Agendas"
@@ -214,12 +220,8 @@ def scrape_west_palm_beach():
                         },
                         {
                             "role": "user",
-                            "content": f"""Extract public meetings ONLY for these exact governance boards:
-- City Commission
-- Zoning Board of Appeals
-- Planning Board
-- Downtown Action Committee
-- Plans & Plats Review Committee
+                            "content": f"""Extract public meetings ONLY for municipal boards matching these topics:
+Commission, Zoning Board of Appeals, Planning Board, Downtown Action Committee, Plans & Plats Review Committee, CRA, Development.
 
 Do NOT extract bid openings, ITB/RFP notices, or general town events.
 
@@ -252,9 +254,8 @@ Text:
                     for item in llm_data:
                         raw_title = item.get("title", "")
                         clean_title = clean_event_title(raw_title)
-                        
-                        # Exclude ITB/RFP procurement bids
-                        if is_strict_wpb_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+
+                        if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                             href = item.get("link", "")
                             full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
                             events.append({
@@ -280,19 +281,17 @@ Text:
         for card in cards:
             card_text = card.get_text(separator=" ", strip=True)
 
-            # Look for explicit heading or primary title anchor
             title_elem = card.select_one("h2, h3, h4, .title, .item-title, a[href]")
             if not title_elem:
                 continue
 
             raw_title = title_elem.text.strip()
             clean_title = clean_event_title(raw_title)
-            
+
             a_tag = card.select_one("a[href]")
             href = a_tag['href'] if a_tag else ""
 
-            # Strict governance filter: reject ITB/RFP bids & non-target boards
-            if is_strict_wpb_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', card_text, re.I):
+            if (is_qualifying_event(clean_title) or is_qualifying_event(card_text)) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', card_text, re.I):
                 iso_date = extract_date_from_text(card_text)
                 if iso_date:
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
