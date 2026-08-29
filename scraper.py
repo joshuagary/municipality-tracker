@@ -91,10 +91,10 @@ def scrape_palm_beach_county():
                     
                     if iso_date:
                         events.append({
-                            "id": f"pbc-{hash(full_link)}",
+                            "id": f"pbc-{iso_date}",
                             "muni_short": "PBC",
                             "muni_full": "Palm Beach County Board of Commissioners",
-                            "title": f"BCC Regular Meeting - {date_match.group(0)}",
+                            "title": f"BCC Regular Meeting",
                             "date": iso_date,
                             "time": "9:30 AM",
                             "link": full_link,
@@ -138,16 +138,17 @@ def run():
     raw_events.extend(scrape_palm_beach_county())
     raw_events.extend(scrape_west_palm_beach())
 
-    # --- DEDUPLICATION LOGIC ---
+    # --- ENHANCED DEDUPLICATION LOGIC ---
+    # Deduplicates strictly on Municipality + Date + Title
     unique_events = {}
     for event in raw_events:
-        # Key on municipality + date + link to deduplicate
-        dedup_key = f"{event['muni_short']}_{event['date']}_{event['link']}"
+        clean_title = re.sub(r'\s+', ' ', event['title']).strip().lower()
+        dedup_key = f"{event['muni_short']}_{event['date']}_{clean_title}"
         unique_events[dedup_key] = event
 
     final_list = list(unique_events.values())
     save_data(final_list)
-    print(f"Deduplication complete. Saved {len(final_list)} unique events to {DATA_FILE}.")
+    print(f"Strict deduplication complete. Saved {len(final_list)} unique events to {DATA_FILE}.")
 
 if __name__ == "__main__":
     run()
