@@ -1,259 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Municipal Governance Tracker</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- FullCalendar v6 Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipal Public Meetings Portal</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --radius: 8px;
+        }
 
-  <style>
-    /* Custom Overrides for FullCalendar v6 Modernization */
-    .fc {
-      --fc-border-color: #e2e8f0;
-      --fc-button-bg-color: #0f172a;
-      --fc-button-border-color: #0f172a;
-      --fc-button-hover-bg-color: #1e293b;
-      --fc-button-hover-border-color: #1e293b;
-      --fc-button-active-bg-color: #334155;
-      --fc-button-active-border-color: #334155;
-      --fc-today-bg-color: #f8fafc;
-      font-family: inherit;
-    }
-    .fc-toolbar-title {
-      font-size: 1.25rem !important;
-      font-weight: 700 !important;
-      color: #0f172a;
-    }
-    .fc-event {
-      border-radius: 6px !important;
-      padding: 2px 5px !important;
-      font-size: 0.75rem !important;
-      font-weight: 600 !important;
-      border: none !important;
-      cursor: pointer;
-    }
-    .fc-theme-standard td, .fc-theme-standard th {
-      border-color: #f1f5f9;
-    }
-    
-    /* Popover Styling for +More Events */
-    .fc-popover {
-      border-radius: 12px !important;
-      border: 1px solid #e2e8f0 !important;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.1) !important;
-      background: #ffffff !important;
-      z-index: 40 !important;
-    }
-    .fc-popover-header {
-      background: #f8fafc !important;
-      padding: 8px 12px !important;
-      border-bottom: 1px solid #e2e8f0 !important;
-      border-top-left-radius: 12px !important;
-      border-top-right-radius: 12px !important;
-      font-weight: 700 !important;
-      color: #0f172a !important;
-    }
-    .fc-more-link {
-      font-size: 0.75rem !important;
-      font-weight: 700 !important;
-      color: #2563eb !important;
-      padding: 1px 4px !important;
-      border-radius: 4px !important;
-    }
-    .fc-more-link:hover {
-      background-color: #eff6ff !important;
-      text-decoration: none !important;
-    }
-  </style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            padding: 24px 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* SEARCH & FILTER CONTROLS */
+        .controls-card {
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary);
+        }
+
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        /* FLEX WRAP FIX FOR MUNICIPALITY BUTTONS */
+        .muni-filter-wrapper {
+            display: flex;
+            flex-wrap: wrap; /* Allows all buttons to wrap into extra rows cleanly */
+            gap: 8px;
+            width: 100%;
+        }
+
+        .filter-btn {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            background-color: #e2e8f0;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        /* EVENT CARDS DISPLAY */
+        .results-info {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .events-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .event-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .muni-badge {
+            background-color: #eff6ff;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .event-details {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 16px;
+        }
+
+        .event-link {
+            align-self: flex-start;
+            margin-top: 4px;
+            color: var(--primary-hover);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .event-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 32px;
+            color: var(--text-muted);
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen p-4 md:p-8">
+<body>
 
-  <div class="max-w-6xl mx-auto space-y-6">
-    
-    <!-- Header & Controls -->
-    <header class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      <div>
-        <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Municipal Governance Tracker</h1>
-        <p class="text-xs text-slate-500 mt-1">Real-time public hearings, commission meetings & zoning board schedules</p>
-      </div>
-
-      <!-- Filter Badges -->
-      <div class="flex items-center gap-2 flex-wrap">
-        <button onclick="applyFilter('ALL')" id="btn-ALL" class="filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 text-white shadow-sm transition">All</button>
-        <button onclick="applyFilter('WPB')" id="btn-WPB" class="filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">West Palm Beach</button>
-        <button onclick="applyFilter('BOCA')" id="btn-BOCA" class="filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Boca Raton</button>
-        <button onclick="applyFilter('PBC')" id="btn-PBC" class="filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Palm Beach County</button>
-      </div>
+    <header>
+        <h1>Municipal Public Meetings</h1>
+        <p class="subtitle">Search upcoming agendas and governance schedules across Palm Beach County</p>
     </header>
 
-    <!-- Calendar Container -->
-    <main class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-      <div id="calendar"></div>
+    <section class="controls-card">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search by topic, keyword, or board name (e.g. Zoning, CRA, Commission)...">
+        
+        <div class="filter-label">Filter by Municipality:</div>
+        <div class="muni-filter-wrapper" id="muniFilterContainer">
+            <button class="filter-btn active" data-muni="ALL">All Municipalities</button>
+            <button class="filter-btn" data-muni="BOCA">Boca Raton</button>
+            <button class="filter-btn" data-muni="BOYNTON">Boynton Beach</button>
+            <button class="filter-btn" data-muni="DELRAY">Delray Beach</button>
+            <button class="filter-btn" data-muni="PALMBEACH">Palm Beach</button>
+        </div>
+    </section>
+
+    <div class="results-info" id="resultsCount">Loading public meetings...</div>
+
+    <main class="events-grid" id="eventsContainer">
+        <!-- Event cards render dynamically here -->
     </main>
 
-  </div>
+    <script>
+        let allEvents = [];
+        let selectedMuni = "ALL";
 
-  <!-- Event Detail Modal -->
-  <div id="eventModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-    <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl border border-slate-100 space-y-4 relative">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold text-lg">&times;</button>
-      
-      <div class="flex items-center gap-2">
-        <span id="modalBadge" class="px-2.5 py-0.5 text-[11px] font-bold tracking-wider rounded-md border"></span>
-        <span id="modalTime" class="text-xs text-slate-500 font-medium"></span>
-      </div>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchEvents();
+            setupFilterListeners();
+        });
 
-      <div>
-        <h3 id="modalTitle" class="text-lg font-bold text-slate-900 leading-snug"></h3>
-        <p id="modalMuni" class="text-xs text-slate-500 mt-0.5"></p>
-      </div>
+        async function fetchEvents() {
+            try {
+                const response = await fetch("data.json");
+                if (!response.ok) throw new Error("Failed to load data.json");
+                allEvents = await response.json();
+                renderEvents();
+            } catch (error) {
+                console.error("Error loading events:", error);
+                document.getElementById("eventsContainer").innerHTML = `
+                    <div class="no-results">Unable to load meeting data. Please verify data.json is present.</div>
+                `;
+            }
+        }
 
-      <p id="modalSummary" class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 leading-relaxed"></p>
+        function setupFilterListeners() {
+            // Search input handler
+            document.getElementById("searchInput").addEventListener("input", renderEvents);
 
-      <div class="pt-2 flex justify-end gap-2">
-        <button onclick="closeModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition">Close</button>
-        <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition inline-flex items-center gap-1">
-          Open Official Agenda &rarr;
-        </a>
-      </div>
-    </div>
-  </div>
+            // Municipality filter buttons handler
+            document.getElementById("muniFilterContainer").addEventListener("click", (e) => {
+                if (e.target.classList.contains("filter-btn")) {
+                    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+                    e.target.classList.add("active");
+                    selectedMuni = e.target.getAttribute("data-muni");
+                    renderEvents();
+                }
+            });
+        }
 
-  <script>
-    let calendar;
-    let rawEventsData = [];
-    let activeFilter = 'ALL';
+        function renderEvents() {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase().strip ? 
+                               document.getElementById("searchInput").value.toLowerCase().strip() : 
+                               document.getElementById("searchInput").value.toLowerCase().trim();
+                               
+            const container = document.getElementById("eventsContainer");
+            const countDisplay = document.getElementById("resultsCount");
 
-    const muniColors = {
-      WPB: { bg: '#eff6ff', text: '#1d4ed8', border: '#bfdbfe', eventBg: '#3b82f6', eventText: '#ffffff' },
-      BOCA: { bg: '#ecfdf5', text: '#047857', border: '#a7f3d0', eventBg: '#10b981', eventText: '#ffffff' },
-      PBC: { bg: '#f3e8ff', text: '#6b21a8', border: '#e9d5ff', eventBg: '#8b5cf6', eventText: '#ffffff' }
-    };
+            const filtered = allEvents.filter(event => {
+                const matchesMuni = (selectedMuni === "ALL") || (event.muni_short === selectedMuni);
+                const matchesSearch = !searchTerm || 
+                                      event.title.toLowerCase().includes(searchTerm) || 
+                                      (event.muni_full && event.muni_full.toLowerCase().includes(searchTerm)) ||
+                                      (event.summary && event.summary.toLowerCase().includes(searchTerm));
 
-    document.addEventListener('DOMContentLoaded', async () => {
-      const calendarEl = document.getElementById('calendar');
+                return matchesMuni && matchesSearch;
+            });
 
-      calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        
-        // --- OVERFLOW & POPOVER CONFIGURATION ---
-        dayMaxEvents: 3,           // Caps visible events to 3 per cell
-        moreLinkClick: 'popover',  // Opens styled popover for remaining events
-        height: 'auto',
-        
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,listMonth'
-        },
-        buttonText: {
-          today: 'Today',
-          dayGridMonth: 'Grid View',
-          listMonth: 'Agenda List'
-        },
-        eventTimeFormat: {
-          hour: 'numeric',
-          minute: '2-digit',
-          meridiem: 'short'
-        },
-        eventClick: (info) => showModal(info.event.extendedProps)
-      });
+            countDisplay.textContent = `Showing ${filtered.length} upcoming meeting${filtered.length === 1 ? '' : 's'}`;
 
-      calendar.render();
-      await fetchAndLoadData();
-    });
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="no-results">No upcoming meetings match your search criteria.</div>`;
+                return;
+            }
 
-    async function fetchAndLoadData() {
-      try {
-        const res = await fetch('data.json');
-        rawEventsData = await res.json();
-        renderFilteredEvents();
-      } catch (err) {
-        console.error('Failed to fetch data.json:', err);
-      }
-    }
-
-    function renderFilteredEvents() {
-      calendar.removeAllEvents();
-
-      const filtered = activeFilter === 'ALL' 
-        ? rawEventsData 
-        : rawEventsData.filter(item => item.muni_short === activeFilter);
-
-      const fcEvents = filtered.map(item => {
-        const colorConfig = muniColors[item.muni_short] || { eventBg: '#64748b', eventText: '#ffffff' };
-        
-        return {
-          title: `[${item.muni_short}] ${item.title}`,
-          start: `${item.date}T${parseTo24Hour(item.time)}`,
-          backgroundColor: colorConfig.eventBg,
-          textColor: colorConfig.eventText,
-          extendedProps: item
-        };
-      });
-
-      calendar.addEventSource(fcEvents);
-    }
-
-    function applyFilter(muni) {
-      activeFilter = muni;
-
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.className = 'filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition';
-      });
-
-      const activeBtn = document.getElementById(`btn-${muni}`);
-      if (activeBtn) {
-        activeBtn.className = 'filter-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 text-white shadow-sm transition';
-      }
-
-      renderFilteredEvents();
-    }
-
-    function showModal(data) {
-      const modal = document.getElementById('eventModal');
-      const config = muniColors[data.muni_short] || { bg: '#f1f5f9', text: '#475569', border: '#cbd5e1' };
-
-      const badge = document.getElementById('modalBadge');
-      badge.textContent = data.muni_short;
-      badge.style.backgroundColor = config.bg;
-      badge.style.color = config.text;
-      badge.style.borderColor = config.border;
-
-      document.getElementById('modalTime').textContent = `${data.date} • ${data.time}`;
-      document.getElementById('modalTitle').textContent = data.title;
-      document.getElementById('modalMuni').textContent = data.muni_full;
-      document.getElementById('modalSummary').textContent = data.summary;
-      document.getElementById('modalLink').href = data.link;
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('eventModal');
-      modal.classList.remove('flex');
-      modal.classList.add('hidden');
-    }
-
-    function parseTo24Hour(timeStr) {
-      if (!timeStr) return "17:00:00";
-      const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
-      if (!match) return "17:00:00";
-      let hours = parseInt(match[1]);
-      const minutes = match[2];
-      const modifier = match[3].toUpperCase();
-
-      if (modifier === 'PM' && hours < 12) hours += 12;
-      if (modifier === 'AM' && hours === 12) hours = 0;
-
-      return `${hours.toString().padStart(2, '0')}:${minutes}:00`;
-    }
-  </script>
+            container.innerHTML = filtered.map(event => `
+                <article class="event-card">
+                    <div class="event-header">
+                        <span class="muni-badge">${event.muni_short}</span>
+                        <span class="event-details">${event.date} &bull; ${event.time}</span>
+                    </div>
+                    <div class="event-title">${event.title}</div>
+                    <a href="${event.link}" target="_blank" rel="noopener noreferrer" class="event-link">
+                        View Agenda / Details &rarr;
+                    </a>
+                </article>
+            `).join("");
+        }
+    </script>
 </body>
 </html>
