@@ -326,16 +326,16 @@ def scrape_delray_beach():
 
     return events
 
-# --- 5. PALM BEACH GARDENS MODULE (DYNAMIC LIST VIEW SCRAPER - NO CID) ---
+# --- 5. PALM BEACH GARDENS MODULE (UPDATED CALENDAR BASE URL) ---
 def scrape_palm_beach_gardens():
     events = []
-    base_url = "https://www.pbgfl.gov"
+    base_domain = "https://www.pbgfl.gov"
+    calendar_base_url = "https://www.pbgfl.gov/calendar.aspx"
     
     now = datetime.now()
     curr_year = now.year
     curr_month = now.month
 
-    # Calculate next month and handle year rollover (e.g., Dec -> Jan)
     next_month = 1 if curr_month == 12 else curr_month + 1
     next_year = curr_year + 1 if curr_month == 12 else curr_year
 
@@ -354,8 +354,8 @@ def scrape_palm_beach_gardens():
         y_val = target["year"]
         m_val = target["month"]
 
-        # Exact URL format without CID pre-filtering
-        url = f"https://www.pbgfl.gov/calendar.aspx?view=list&year={y_val}&month={m_val}"
+        # Build full URL using calendar.aspx as the base
+        url = f"{calendar_base_url}?view=list&year={y_val}&month={m_val}"
 
         try:
             res = requests.get(url, headers=headers, timeout=15)
@@ -364,24 +364,28 @@ def scrape_palm_beach_gardens():
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, "html.parser")
 
-                # Parse event containers rendered in list view
-                event_items = soup.select("tr, div.calendarItem, li.eventItem, div.eventRow, table.calendarList tr")
+                event_items = soup.select("ol.calendarList > li, div.calendarItem, li.eventItem, .calendarContent li")
+                print(f"[PBG List] Found {len(event_items)} raw list nodes for {y_val}-{m_val:02d}.")
 
                 for item in event_items:
                     item_text = item.text.strip()
                     if not item_text:
                         continue
 
-                    # 1. Extract Event Title & Detail Link (EID=)
-                    link_elem = item.select_one("a[href*='EID='], a[href*='eid='], a.calendarHead")
+                    # 1. Extract Event Title & Link (EID=)
+                    link_elem = item.select_one("a[href*='calendar.aspx?EID='], a[href*='Calendar.aspx?EID='], a[href*='EID='], a[href*='eid=']")
                     if not link_elem:
                         continue
 
-                    raw_title = link_elem.text.strip()
+                    h_elem = link_elem.find(["h3", "h4", "span"])
+                    raw_title = h_elem.text.strip() if h_elem else link_elem.text.strip()
+                    
+                    # Clean out embedded date/time strings
+                    raw_title = re.sub(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.*', '', raw_title).strip()
                     clean_title = clean_event_title(raw_title)
 
                     href = link_elem.get("href", "").strip()
-                    full_link = href if href.startswith("http") else f"{base_url}/{href.lstrip('/')}"
+                    full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
 
                     # 2. Extract Date (M/D/YYYY or Month DD, YYYY)
                     iso_date = None
@@ -398,20 +402,13 @@ def scrape_palm_beach_gardens():
                             except ValueError:
                                 pass
 
-                    # Fallback date if string parsing misses explicit date text
-                    if not iso_date:
-                        day_elem = item.select_one(".dayNumber, .date, .calendarDate")
-                        if day_elem and day_elem.text.strip().isdigit():
-                            day_num = int(day_elem.text.strip())
-                            iso_date = f"{y_val}-{m_val:02d}-{day_num:02d}"
-
                     # 3. Extract Time
                     time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', item_text)
                     meeting_time = time_match.group(1).strip().upper() if time_match else "6:00 PM"
                     if "AM" not in meeting_time and "PM" not in meeting_time:
                         meeting_time += " PM"
 
-                    # 4. Filter & Qualify Governance Meetings
+                    # 4. Filter & Deduplicate Governance Meetings
                     if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                         dedup_key = (clean_title, iso_date)
                         if dedup_key not in seen_keys:
@@ -432,6 +429,7 @@ def scrape_palm_beach_gardens():
 
     print(f"[PBG List] Total qualifying events saved across current and next month: {len(events)}")
     return events
+
 
 
 
