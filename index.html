@@ -244,11 +244,29 @@
 
     <script>
         let events = [];
-        // Auto-detect current browser system date dynamically
-        let currentDate = new Date(); 
+        let currentDate = new Date(2026, 7, 1); // August 2026 default
 
         const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", 
                             "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+
+        // Universal date string parser for any format (ISO, "August 31, 2026", "08/31/2026")
+        function parseToDateObject(dateStr) {
+            if (!dateStr) return null;
+            
+            // Try standard Date parsing
+            let d = new Date(dateStr);
+            if (!isNaN(d.getTime())) return d;
+
+            // Manual regex fallback for "Month DD, YYYY"
+            const match = dateStr.match(/([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})/);
+            if (match) {
+                const mIdx = monthNames.findIndex(m => m.startsWith(match[1].toUpperCase()));
+                if (mIdx !== -1) {
+                    return new Date(parseInt(match[3]), mIdx, parseInt(match[2]));
+                }
+            }
+            return null;
+        }
 
         async function loadData() {
             try {
@@ -265,7 +283,6 @@
             const select = document.getElementById('monthFilter');
             select.innerHTML = '';
             
-            // Build 12 rolling months starting from 2 months prior to current system date
             let tempDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 2, 1);
             
             for (let i = 0; i < 12; i++) {
@@ -300,7 +317,7 @@
             const mo = String(currentDate.getMonth()).padStart(2, '0');
             const targetVal = `${yr}-${mo}`;
             const select = document.getElementById('monthFilter');
-            if (select.querySelector(`option[value="${targetVal}"]`)) {
+            if (select && select.querySelector(`option[value="${targetVal}"]`)) {
                 select.value = targetVal;
             }
         }
@@ -319,28 +336,31 @@
             const firstDayIndex = new Date(year, monthIdx, 1).getDay();
             const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
 
-            // Render empty padding cells for previous month offset
+            // 1. Render empty padding cells for days before the 1st
             for (let i = 0; i < firstDayIndex; i++) {
                 const emptyBox = document.createElement('div');
                 emptyBox.className = 'day-box empty';
                 grid.appendChild(emptyBox);
             }
 
-            // Render current month cells with date-matched events
+            // 2. Render actual day boxes
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayBox = document.createElement('div');
                 dayBox.className = 'day-box';
                 dayBox.innerHTML = `<div class="day-num">${day}</div>`;
 
-                // Target date string YYYY-MM-DD
-                const targetIsoDate = `${year}-${String(monthIdx + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-
                 events.forEach(item => {
                     const matchesMuni = (muni === 'ALL' || item.muni_short === muni);
                     const matchesSearch = item.title.toLowerCase().includes(search) || item.summary.toLowerCase().includes(search);
                     
-                    // Exact ISO Date Match Check
-                    const matchesDate = item.date === targetIsoDate;
+                    // Parse date string flexibly
+                    const eventDateObj = parseToDateObject(item.date);
+                    
+                    // Match Year, Month, and Day exactly
+                    const matchesDate = eventDateObj && 
+                                        eventDateObj.getFullYear() === year && 
+                                        eventDateObj.getMonth() === monthIdx && 
+                                        eventDateObj.getDate() === day;
 
                     if (matchesMuni && matchesSearch && matchesDate) {
                         const tag = document.createElement('a');
