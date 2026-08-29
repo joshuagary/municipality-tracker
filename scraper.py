@@ -249,7 +249,7 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (EXPLICIT AGENDA LINK PARSER) ---
+# --- 4. DELRAY BEACH MODULE (STRICT DIRECT AGENDA PDF PARSER) ---
 def scrape_delray_beach():
     events = []
     url = "https://delraybeach.legistar.com/Calendar.aspx"
@@ -286,25 +286,29 @@ def scrape_delray_beach():
                 raw_date = cols[1].text.strip() if len(cols) > 1 else ""
                 raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                # --- TARGET SPECIFIC M=A (AGENDA) OR MEETING DETAIL LINKS ---
                 href = ""
-                
-                # Priority 1: Direct Agenda link matching M=A
-                agenda_a = row.select_one("a[href*='M=A'], a[href*='MeetingDetail.aspx']")
-                if agenda_a and agenda_a.get('href'):
-                    href = agenda_a['href'].strip()
 
-                # Priority 2: Generic link in row, but convert any stray calendar invites (M=IC) to Agenda (M=A)
+                # 1. SPECIFIC TARGET: Look in the Agenda Column (Column index 5 or 6 in Legistar)
+                # Matches direct Agenda links containing M=A or .pdf
+                for col in cols[3:]:
+                    agenda_a = col.select_one("a[href*='M=A'], a[href*='.pdf']")
+                    if agenda_a and agenda_a.get('href'):
+                        href = agenda_a['href'].strip()
+                        break
+
+                # 2. FALLBACK 1: Search whole row specifically for M=A (Agenda), explicitly skipping MeetingDetail
                 if not href:
-                    any_a = row.find("a", href=True)
-                    if any_a:
-                        href = any_a['href'].strip()
+                    agenda_a = row.select_one("a[href*='M=A']")
+                    if agenda_a and agenda_a.get('href'):
+                        href = agenda_a['href'].strip()
 
-                if href:
-                    # Fix: Swap iCalendar flag (M=IC) to Agenda flag (M=A)
-                    href = href.replace("M=IC", "M=A")
+                # 3. FALLBACK 2: If only an iCal (M=IC) or Detail link was found, rewrite M=IC -> M=A
+                if not href:
+                    any_view_a = row.select_one("a[href*='View.ashx']")
+                    if any_view_a and any_view_a.get('href'):
+                        href = any_view_a['href'].strip().replace("M=IC", "M=A")
 
-                if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                if href and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     iso_date = None
                     date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
                     if date_match:
@@ -332,7 +336,7 @@ def scrape_delray_beach():
                                 "summary": f"Official {clean_title} meeting."
                             })
 
-            print(f"[Delray Scraper] Successfully extracted {len(events)} events with target M=A agenda links.")
+            print(f"[Delray Scraper] Successfully extracted {len(events)} events with direct M=A agenda URLs.")
     except Exception as e:
         print(f"[Delray Scraper] Error: {e}")
 
