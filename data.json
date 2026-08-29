@@ -1,6 +1,6 @@
 [
   {
-    "id": "pbc-2026-09-01--8050246001825194649",
+    "id": "pbc-2026-09-01-4588622573548234099",
     "muni_short": "PBC",
     "muni_full": "Palm Beach County Board of Commissioners",
     "title": "BCC Meeting - September 1, 2026",
@@ -10,7 +10,7 @@
     "summary": "Official Palm Beach County Board of Commissioners Agenda."
   },
   {
-    "id": "pbc-2026-08-25--8559864238481303256",
+    "id": "pbc-2026-08-25-3378068307525865761",
     "muni_short": "PBC",
     "muni_full": "Palm Beach County Board of Commissioners",
     "title": "BCC Meeting - August 25, 2026",
@@ -20,7 +20,7 @@
     "summary": "Official Palm Beach County Board of Commissioners Agenda."
   },
   {
-    "id": "wpb-2026-08-31-6468353499792590342",
+    "id": "wpb-2026-08-31-3605996239320172134",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "City Commission Meeting 2026",
@@ -30,7 +30,17 @@
     "summary": "Official City Commission Meeting 2026 meeting."
   },
   {
-    "id": "wpb-2026-09-03--9041547870618054550",
+    "id": "wpb-2026-09-02--794581716891265396",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "ECR Board Meeting",
+    "date": "2026-09-02",
+    "time": "09:00 AM",
+    "link": "https://www.wpb.org/Events-Folder/2026/ECR-Board-Meeting",
+    "summary": "Official ECR Board Meeting meeting."
+  },
+  {
+    "id": "wpb-2026-09-03-57913749089978056",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Zoning Board of Appeals",
@@ -40,7 +50,47 @@
     "summary": "Official Zoning Board of Appeals meeting."
   },
   {
-    "id": "wpb-2026-09-08-7628299269701980944",
+    "id": "wpb-2026-09-03--4049150182744334022",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Nominating Advisory Committee Meeting 2026",
+    "date": "2026-09-03",
+    "time": "03:00 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/Nominating-Advisory-Committee-Meeting-2026",
+    "summary": "Official Nominating Advisory Committee Meeting 2026 meeting."
+  },
+  {
+    "id": "wpb-2026-09-03--6555636257916815619",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Nuisance Abatement Board 2026",
+    "date": "2026-09-03",
+    "time": "05:00 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/Nuisance-Abatement-Board-2026",
+    "summary": "Official Nuisance Abatement Board 2026 meeting."
+  },
+  {
+    "id": "wpb-2026-09-08--5797533867210068722",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "CJAC (Criminal Justice Advisory Committee) Meeting 2026",
+    "date": "2026-09-08",
+    "time": "09:00 AM",
+    "link": "https://www.wpb.org/Events-Folder/2026/CJAC-Criminal-Justice-Advisory-Committee-Meeting-2026",
+    "summary": "Official CJAC (Criminal Justice Advisory Committee) Meeting 2026 meeting."
+  },
+  {
+    "id": "wpb-2026-09-08-7458072559622607586",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Mayor/Commission Work Session 2026",
+    "date": "2026-09-08",
+    "time": "10:00 AM",
+    "link": "https://www.wpb.org/Events-Folder/2026/MayorCommission-Work-Session-2026",
+    "summary": "Official Mayor/Commission Work Session 2026 meeting."
+  },
+  {
+    "id": "wpb-2026-09-08--838640960368237074",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Special City Commission Meeting 2026: First Public Hearing",
@@ -50,7 +100,7 @@
     "summary": "Official Special City Commission Meeting 2026: First Public Hearing meeting."
   },
   {
-    "id": "wpb-2026-09-09--8423382735972917195",
+    "id": "wpb-2026-09-09-2690376256390419521",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Downtown Action Committee",
@@ -60,7 +110,7 @@
     "summary": "Official Downtown Action Committee meeting."
   },
   {
-    "id": "wpb-2026-09-10--7350398551589268505",
+    "id": "wpb-2026-09-10--8673518025654590842",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "City Commission Agenda Review 2026",
@@ -70,7 +120,7 @@
     "summary": "Official City Commission Agenda Review 2026 meeting."
   },
   {
-    "id": "wpb-2026-09-10--1898007697406556947",
+    "id": "wpb-2026-09-10--5094127097746341998",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Plans & Plats Review Committee",
@@ -80,7 +130,17 @@
     "summary": "Official Plans & Plats Review Committee meeting."
   },
   {
-    "id": "wpb-2026-09-14--7673187553757923808",
+    "id": "wpb-2026-09-10--4192457290031074674",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Water Advisory Board Meeting 09-10-2026",
+    "date": "2026-09-10",
+    "time": "04:00 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/09-10-2026-Water-Advisory-Board-Meeting",
+    "summary": "Official Water Advisory Board Meeting 09-10-2026 meeting."
+  },
+  {
+    "id": "wpb-2026-09-14--8124011926588530918",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "CRA Meetings 2026",
@@ -90,7 +150,7 @@
     "summary": "Official CRA Meetings 2026 meeting."
   },
   {
-    "id": "wpb-2026-09-15-8908290845039410438",
+    "id": "wpb-2026-09-15--3987252259336048334",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Planning Board",
@@ -100,7 +160,57 @@
     "summary": "Official Planning Board meeting."
   },
   {
-    "id": "wpb-2026-09-23--8959611497755769129",
+    "id": "wpb-2026-09-16-8100429843015435366",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "ECR Monthly Operational Update Meeting",
+    "date": "2026-09-16",
+    "time": "09:00 AM",
+    "link": "https://www.wpb.org/Events-Folder/2026/ECR-Monthly-Operational-Update-Meeting",
+    "summary": "Official ECR Monthly Operational Update Meeting meeting."
+  },
+  {
+    "id": "wpb-2026-09-16--4850608772741029169",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "WPB Housing Authority Monthly Board Meeting 2026",
+    "date": "2026-09-16",
+    "time": "04:00 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/WPB-Housing-Authority-Monthly-Board-Meeting-2026",
+    "summary": "Official WPB Housing Authority Monthly Board Meeting 2026 meeting."
+  },
+  {
+    "id": "wpb-2026-09-17--2242278157761558592",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Construction Board of Adjustment and Appeals",
+    "date": "2026-09-17",
+    "time": "02:00 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/Construction-Board-of-Adjustment-and-Appeals-CBAA",
+    "summary": "Official Construction Board of Adjustment and Appeals meeting."
+  },
+  {
+    "id": "wpb-2026-09-22--7640461034208095734",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Historic Preservation Board",
+    "date": "2026-09-22",
+    "time": "04:30 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/092226-HPB",
+    "summary": "Official Historic Preservation Board meeting."
+  },
+  {
+    "id": "wpb-2026-09-23--7444330752503197264",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Audit Committee Meeting",
+    "date": "2026-09-23",
+    "time": "10:00 AM",
+    "link": "https://www.wpb.org/Events-Folder/2026/092326-Audit-Committee-Meeting",
+    "summary": "Official Audit Committee Meeting meeting."
+  },
+  {
+    "id": "wpb-2026-09-23-3082777200354973941",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Special City Commission Meeting 2026: Final Public Hearing",
@@ -110,7 +220,7 @@
     "summary": "Official Special City Commission Meeting 2026: Final Public Hearing meeting."
   },
   {
-    "id": "wpb-2026-09-24--6353142278926688870",
+    "id": "wpb-2026-09-24--2685303477857926966",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Plans & Plats Review Committee",
@@ -120,7 +230,7 @@
     "summary": "Official Plans & Plats Review Committee meeting."
   },
   {
-    "id": "wpb-2026-09-25-8548110284083840837",
+    "id": "wpb-2026-09-25--9083749615060242636",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "CRAAB (Community Redevelopment Agency Advisory Board) Meeting 2026",
@@ -130,7 +240,7 @@
     "summary": "Official CRAAB (Community Redevelopment Agency Advisory Board) Meeting 2026 meeting."
   },
   {
-    "id": "wpb-2026-10-01-5404908847884946755",
+    "id": "wpb-2026-10-01--6542143482446700230",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Zoning Board of Appeals",
@@ -140,7 +250,7 @@
     "summary": "Official Zoning Board of Appeals meeting."
   },
   {
-    "id": "wpb-2026-10-08-4232476211319517202",
+    "id": "wpb-2026-10-08-9007737567530425795",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Plans & Plats Review Committee",
@@ -150,7 +260,7 @@
     "summary": "Official Plans & Plats Review Committee meeting."
   },
   {
-    "id": "wpb-2026-10-14-7066834363241000247",
+    "id": "wpb-2026-10-14-3524176689758198226",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Downtown Action Committee",
@@ -160,7 +270,17 @@
     "summary": "Official Downtown Action Committee meeting."
   },
   {
-    "id": "wpb-2026-10-20--3015921329368440018",
+    "id": "wpb-2026-10-20-7203227316725527331",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "OPEB Fund",
+    "date": "2026-10-20",
+    "time": "03:30 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/102026-OPEB-Fund-Meeting",
+    "summary": "Official OPEB Fund meeting."
+  },
+  {
+    "id": "wpb-2026-10-20--778097689950234326",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Planning Board",
@@ -170,7 +290,37 @@
     "summary": "Official Planning Board meeting."
   },
   {
-    "id": "wpb-2026-11-05--8293415647049848847",
+    "id": "wpb-2026-10-27--4373445788282106242",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Historic Preservation Board",
+    "date": "2026-10-27",
+    "time": "04:30 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/102726-HPB",
+    "summary": "Official Historic Preservation Board meeting."
+  },
+  {
+    "id": "wpb-2026-10-28--1769209146414139745",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "VEBA Trust Fund",
+    "date": "2026-10-28",
+    "time": "10:00 AM",
+    "link": "https://www.wpb.org/Events-Folder/2026/10282026-VEBA-Trust-Fund",
+    "summary": "Official VEBA Trust Fund meeting."
+  },
+  {
+    "id": "wpb-2026-10-29-5002761280261364961",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "401a Plan & 457b Plan",
+    "date": "2026-10-29",
+    "time": "10:00 AM",
+    "link": "https://www.wpb.org/Events-Folder/2025/10292026-401a-Plan-457b-Plan",
+    "summary": "Official 401a Plan & 457b Plan meeting."
+  },
+  {
+    "id": "wpb-2026-11-05--5885160184969065940",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Zoning Board of Appeals",
@@ -180,7 +330,7 @@
     "summary": "Official Zoning Board of Appeals meeting."
   },
   {
-    "id": "wpb-2026-11-12-9119342422471640109",
+    "id": "wpb-2026-11-12--7154186370481711655",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Downtown Action Committee",
@@ -190,7 +340,7 @@
     "summary": "Official Downtown Action Committee meeting."
   },
   {
-    "id": "wpb-2026-11-12--7722907063769796948",
+    "id": "wpb-2026-11-12-5133992508866726946",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Plans & Plats Review Committee",
@@ -200,7 +350,7 @@
     "summary": "Official Plans & Plats Review Committee meeting."
   },
   {
-    "id": "wpb-2026-11-17--4443099463748038255",
+    "id": "wpb-2026-11-17-4880713717767111062",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Planning Board",
@@ -210,7 +360,17 @@
     "summary": "Official Planning Board meeting."
   },
   {
-    "id": "wpb-2026-12-03-8602728311194198994",
+    "id": "wpb-2026-11-24--5698559323027458748",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Historic Preservation Board",
+    "date": "2026-11-24",
+    "time": "04:30 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/112426-HPB",
+    "summary": "Official Historic Preservation Board meeting."
+  },
+  {
+    "id": "wpb-2026-12-03--4044382724550799972",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Zoning Board of Appeals",
@@ -220,7 +380,7 @@
     "summary": "Official Zoning Board of Appeals meeting."
   },
   {
-    "id": "wpb-2026-12-09--141781379162113386",
+    "id": "wpb-2026-12-09--7157000016876913873",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Downtown Action Committee",
@@ -230,7 +390,7 @@
     "summary": "Official Downtown Action Committee meeting."
   },
   {
-    "id": "wpb-2026-12-10--6901196919496826826",
+    "id": "wpb-2026-12-10-214310861977659892",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Plans & Plats Review Committee",
@@ -240,7 +400,7 @@
     "summary": "Official Plans & Plats Review Committee meeting."
   },
   {
-    "id": "wpb-2026-12-15-7790658967206261783",
+    "id": "wpb-2026-12-15-3478229403729914915",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Planning Board",
@@ -248,5 +408,15 @@
     "time": "06:00 PM",
     "link": "https://www.wpb.org/Events-Folder/2026/121526-PB",
     "summary": "Official Planning Board meeting."
+  },
+  {
+    "id": "wpb-2026-12-22-7090855014249102659",
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Historic Preservation Board",
+    "date": "2026-12-22",
+    "time": "04:30 PM",
+    "link": "https://www.wpb.org/Events-Folder/2026/122226-HPB",
+    "summary": "Official Historic Preservation Board meeting."
   }
 ]
