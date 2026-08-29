@@ -57,7 +57,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-dark);
             padding: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         select, input {
@@ -67,6 +67,39 @@
             font-size: 0.9rem;
             background: var(--card-bg);
             border-radius: 0;
+        }
+
+        /* --- Active Month Navigation Banner --- */
+        .month-header-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--card-bg);
+            border: 1px solid var(--border-dark);
+            border-bottom: none;
+            padding: 12px 20px;
+        }
+
+        .month-title {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-dark);
+            padding: 6px 16px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: var(--border-dark);
+            color: #FFF;
         }
 
         .calendar-grid {
@@ -89,16 +122,16 @@
 
         .day-box {
             background: var(--card-bg);
-            min-height: 140px;
-            padding: 10px;
+            min-height: 130px;
+            padding: 8px;
             box-sizing: border-box;
             position: relative;
         }
 
         .day-num {
             font-weight: 800;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
             font-family: var(--font-serif);
         }
 
@@ -108,19 +141,17 @@
             border-top: 1px solid var(--border-light);
             border-right: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
-            padding: 6px 8px;
+            padding: 6px;
             font-size: 0.75rem;
             margin-bottom: 6px;
             cursor: pointer;
             text-decoration: none;
             color: var(--text-main);
             display: block;
-            transition: transform 0.1s ease;
         }
 
         .event-tag:hover {
             background-color: #FFFFFF;
-            transform: translateY(-1px);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
@@ -137,7 +168,6 @@
             margin-top: 2px;
         }
 
-        /* Tooltip Popup */
         .tooltip {
             display: none;
             position: absolute;
@@ -145,7 +175,6 @@
             background: #000000;
             color: #FFFFFF;
             padding: 12px;
-            border-radius: 0px;
             width: 220px;
             font-size: 0.8rem;
             box-shadow: 4px 4px 0px rgba(217, 35, 35, 0.8);
@@ -174,12 +203,19 @@
             <option value="PBC">Palm Beach County</option>
             <option value="BOCA">City of Boca Raton</option>
         </select>
-        <select id="monthFilter" onchange="renderEvents()">
-            <option value="ALL">All Months</option>
-            <option value="August 2026">August 2026</option>
-            <option value="September 2026">September 2026</option>
+        <select id="monthFilter" onchange="handleDropdownMonthChange()">
+            <option value="2026-07">August 2026</option>
+            <option value="2026-08" selected>September 2026</option>
+            <option value="2026-09">October 2026</option>
         </select>
-        <input type="text" id="searchInput" placeholder="Search keywords (e.g. Budget, Commission)..." onkeyup="renderEvents()">
+        <input type="text" id="searchInput" placeholder="Search keywords..." onkeyup="renderEvents()">
+    </div>
+
+    <!-- Active Month Header Banner -->
+    <div class="month-header-banner">
+        <button class="nav-btn" onclick="changeMonth(-1)">&lt;</button>
+        <div class="month-title" id="displayMonthLabel">AUGUST 2026</div>
+        <button class="nav-btn" onclick="changeMonth(1)">&gt;</button>
     </div>
 
     <div class="calendar-grid">
@@ -198,6 +234,10 @@
 
     <script>
         let events = [];
+        let currentDate = new Date(2026, 7, 1); // Default August 2026
+
+        const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", 
+                            "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
 
         async function loadData() {
             try {
@@ -209,14 +249,32 @@
             }
         }
 
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            renderEvents();
+        }
+
+        function handleDropdownMonthChange() {
+            const val = document.getElementById('monthFilter').value.split('-');
+            currentDate = new Date(parseInt(val[0]), parseInt(val[1]), 1);
+            renderEvents();
+        }
+
         function renderEvents() {
+            const year = currentDate.getFullYear();
+            const monthIdx = currentDate.getMonth();
+            
+            // Update the bold Month Title Banner
+            document.getElementById('displayMonthLabel').innerText = `${monthNames[monthIdx]} ${year}`;
+
             const muni = document.getElementById('muniFilter').value;
             const search = document.getElementById('searchInput').value.toLowerCase();
             const grid = document.getElementById('calendar');
             grid.innerHTML = '';
 
-            // Generate 31 day slots for layout mockup
-            for (let day = 1; day <= 31; day++) {
+            const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
+
+            for (let day = 1; day <= daysInMonth; day++) {
                 const dayBox = document.createElement('div');
                 dayBox.className = 'day-box';
                 dayBox.innerHTML = `<div class="day-num">${day}</div>`;
@@ -225,7 +283,6 @@
                     const matchesMuni = (muni === 'ALL' || item.muni_short === muni);
                     const matchesSearch = item.title.toLowerCase().includes(search) || item.summary.toLowerCase().includes(search);
                     
-                    // Simple day placement matching
                     const dayStr = item.date.match(/\d+/);
                     const eventDay = dayStr ? parseInt(dayStr[0]) : null;
 
