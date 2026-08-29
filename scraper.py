@@ -412,78 +412,34 @@ def scrape_delray_beach():
 
     return events
     
-# --- 4. DELRAY BEACH MODULE (ROBUST LEGISTAR RSS ENGINE) ---
+# --- 4. DELRAY BEACH DIAGNOSTIC MODULE ---
 def scrape_delray_beach():
     events = []
+    # Test both RSS and Gateway endpoints
+    urls = [
+        "https://delraybeach.legistar.com/rss.aspx?m=meetings",
+        "https://delraybeach.legistar.com/Calendar.aspx"
+    ]
     
-    now = datetime.now()
-    current_month_start = datetime(now.year, now.month, 1)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    }
 
-    curr_year = now.year
-    curr_month = now.month
-
-    if curr_month == 12:
-        next_year = curr_year + 1
-        next_month = 1
-    else:
-        next_year = curr_year
-        next_month = curr_month + 1
-
-    if next_month == 12:
-        lookahead_end = datetime(next_year + 1, 1, 1)
-    else:
-        lookahead_end = datetime(next_year, next_month + 1, 1)
-
-    # Public Legistar RSS feed endpoint
-    rss_url = "https://delraybeach.legistar.com/rss.aspx?m=meetings"
-
-    try:
-        res = requests.get(rss_url, impersonate="chrome124", timeout=15)
-        print(f"[Delray Scraper] RSS HTTP Status: {res.status_code}")
-        
-        if res.status_code == 200:
-            soup = BeautifulSoup(res.text, "html.parser")
-            items = soup.find_all("item")
-            print(f"[Delray Scraper] Found {len(items)} raw RSS items.")
-
-            for item in items:
-                title_elem = item.find("title")
-                raw_title = title_elem.text.strip() if title_elem else ""
-                clean_title = clean_event_title(raw_title)
-
-                link_elem = item.find("link")
-                href = link_elem.text.strip() if link_elem else ""
-
-                desc_elem = item.find("description")
-                desc_text = desc_elem.text if desc_elem else ""
-
-                full_text_context = f"{clean_title} {desc_text}"
-
-                if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                    iso_date = extract_date_from_text(full_text_context)
-
-                    if iso_date:
-                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                        if current_month_start <= dt < lookahead_end:
-                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', full_text_context)
-                            meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
-
-                            full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href}"
-
-                            events.append({
-                                "id": f"delray-{iso_date}-{hash(full_link)}",
-                                "muni_short": "DELRAY",
-                                "muni_full": "City of Delray Beach",
-                                "title": clean_title,
-                                "date": iso_date,
-                                "time": meeting_time,
-                                "link": full_link,
-                                "summary": f"Official {clean_title} meeting."
-                            })
-
-            print(f"[Delray Scraper] Successfully extracted {len(events)} events for window.")
-    except Exception as e:
-        print(f"[Delray Scraper] Error: {e}")
+    for url in urls:
+        print(f"\n--- TESTING DELRAY URL: {url} ---")
+        try:
+            res = requests.get(url, headers=headers, impersonate="chrome124", timeout=15)
+            print(f"Status Code: {res.status_code}")
+            print(f"Response Content Length: {len(res.text)}")
+            print(f"Sample Text (First 500 chars):\n{res.text[:500]}")
+            
+            # Check for Legistar meeting keywords in raw payload
+            keywords_found = [kw for kw in ["Commission", "Board", "Meeting", "Agenda"] if kw.lower() in res.text.lower()]
+            print(f"Keywords found in payload: {keywords_found}")
+            
+        except Exception as e:
+            print(f"Error fetching {url}: {e}")
 
     return events
 
