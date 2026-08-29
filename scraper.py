@@ -89,20 +89,32 @@ def extract_pdf_first_pages_text(url):
     except Exception as e:
         print(f"PDF extraction error on {url}: {e}")
     return None
-
-# --- 1. BOCA RATON MODULE (STRICT GOVERNANCE FILTERING) ---
+    
+ # --- 1. BOCA RATON MODULE (CURRENT + NEXT MONTH LOOKAHEAD) ---
 def scrape_boca_raton():
     events = []
     
     now = datetime.now()
     current_month_start = datetime(now.year, now.month, 1)
 
+    # 1. Calculate Current Month (Year & Month)
+    curr_year = now.year
+    curr_month = now.month
+
+    # 2. Calculate Next Month (Handles December -> January Year Rollover)
+    if curr_month == 12:
+        next_year = curr_year + 1
+        next_month = 1
+    else:
+        next_year = curr_year
+        next_month = curr_month + 1
+
+    # Dynamically build target URLs for both months
     urls = [
-        f"https://www.myboca.us/calendar.aspx?view=list&year={now.year}&month={now.month}&CID=0",
-        f"https://www.myboca.us/calendar.aspx?view=month&year={now.year}&month={now.month}&CID=0"
+        f"https://www.myboca.us/calendar.aspx?view=list&year={curr_year}&month={curr_month}&CID=0",
+        f"https://www.myboca.us/calendar.aspx?view=list&year={next_year}&month={next_month}&CID=0"
     ]
 
-    # Strict list of core municipal governance terms for Boca Raton
     STRICT_GOVERNANCE_KEYWORDS = [
         "city council", "planning & zoning", "planning and zoning",
         "community redevelopment agency", "cra", "zoning board of adjustment",
@@ -132,9 +144,6 @@ def scrape_boca_raton():
                 raw_context = item.get_text(separator=" ", strip=True)
 
                 title_lower = clean_title.lower()
-
-                # Rule 1: ONLY evaluate the clean title (never raw_context)
-                # Rule 2: Must explicitly match core governance keywords
                 is_target_governance = any(kw in title_lower for kw in STRICT_GOVERNANCE_KEYWORDS)
 
                 if is_target_governance and not re.search(r'\b(ITB|RFP|RFQ|Bid|Advisory|Airport|Library|Parks)\b', clean_title, re.I):
@@ -159,10 +168,8 @@ def scrape_boca_raton():
                                 "link": full_link,
                                 "summary": f"Official {clean_title} meeting."
                             })
-            
-            if len(events) > 0:
-                print(f"Boca Raton Scraper successfully extracted {len(events)} core governance events.")
-                break
+
+        print(f"Boca Raton Scraper finished multi-month lookahead ({curr_month}/{curr_year} & {next_month}/{next_year}). Extracted {len(events)} total events.")
                 
     except Exception as e:
         print(f"Error scraping Boca Raton: {e}")
