@@ -326,33 +326,10 @@
 
     <script>
         let events = [];
-        let currentDate = new Date(2026, 7, 1); // August 2026
+        let currentDate = new Date(2026, 7, 1); // Default August 2026
 
         const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", 
                             "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-
-        // TIMEZONE FIX: Explicitly parse ISO YYYY-MM-DD into local Date objects
-        function parseToDateObject(dateStr) {
-            if (!dateStr) return null;
-
-            // Handle YYYY-MM-DD format explicitly without UTC conversion
-            const isoMatch = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-            if (isoMatch) {
-                return new Date(parseInt(isoMatch[1]), parseInt(isoMatch[2]) - 1, parseInt(isoMatch[3]));
-            }
-
-            // Fallback for "Month DD, YYYY"
-            const textMatch = dateStr.match(/([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})/);
-            if (textMatch) {
-                const mIdx = monthNames.findIndex(m => m.startsWith(textMatch[1].toUpperCase()));
-                if (mIdx !== -1) {
-                    return new Date(parseInt(textMatch[3]), mIdx, parseInt(textMatch[2]));
-                }
-            }
-
-            let d = new Date(dateStr);
-            return !isNaN(d.getTime()) ? d : null;
-        }
 
         async function loadData() {
             try {
@@ -377,12 +354,14 @@
             const select = document.getElementById('monthFilter');
             select.innerHTML = '';
             
+            // Generate dropdown entries around current date
             let tempDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 2, 1);
             
             for (let i = 0; i < 12; i++) {
                 const yr = tempDate.getFullYear();
                 const mo = tempDate.getMonth();
-                const optVal = `${yr}-${String(mo).padStart(2, '0')}`;
+                // Format dropdown value as YYYY-MM (e.g. 2026-08)
+                const optVal = `${yr}-${String(mo + 1).padStart(2, '0')}`;
                 
                 const opt = document.createElement('option');
                 opt.value = optVal;
@@ -402,13 +381,13 @@
 
         function handleDropdownMonthChange() {
             const val = document.getElementById('monthFilter').value.split('-');
-            currentDate = new Date(parseInt(val[0]), parseInt(val[1]), 1);
+            currentDate = new Date(parseInt(val[0]), parseInt(val[1]) - 1, 1);
             renderEvents();
         }
 
         function syncDropdownWithDate() {
             const yr = currentDate.getFullYear();
-            const mo = String(currentDate.getMonth()).padStart(2, '0');
+            const mo = String(currentDate.getMonth() + 1).padStart(2, '0');
             const targetVal = `${yr}-${mo}`;
             const select = document.getElementById('monthFilter');
             if (select && select.querySelector(`option[value="${targetVal}"]`)) {
@@ -430,27 +409,28 @@
             const firstDayIndex = new Date(year, monthIdx, 1).getDay();
             const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
 
+            // 1. Padding cells before day 1
             for (let i = 0; i < firstDayIndex; i++) {
                 const emptyBox = document.createElement('div');
                 emptyBox.className = 'day-box empty';
                 grid.appendChild(emptyBox);
             }
 
+            // 2. Day grid rendering with strict YYYY-MM-DD match
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayBox = document.createElement('div');
                 dayBox.className = 'day-box';
                 dayBox.innerHTML = `<div class="day-num">${day}</div>`;
 
+                // Target string YYYY-MM-DD
+                const targetDateStr = `${year}-${String(monthIdx + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
                 events.forEach(item => {
                     const matchesMuni = (muni === 'ALL' || item.muni_short === muni);
                     const matchesSearch = item.title.toLowerCase().includes(search) || item.summary.toLowerCase().includes(search);
                     
-                    const eventDateObj = parseToDateObject(item.date);
-                    
-                    const matchesDate = eventDateObj && 
-                                        eventDateObj.getFullYear() === year && 
-                                        eventDateObj.getMonth() === monthIdx && 
-                                        eventDateObj.getDate() === day;
+                    // Exact match against event date string
+                    const matchesDate = (item.date === targetDateStr);
 
                     if (matchesMuni && matchesSearch && matchesDate) {
                         const tag = document.createElement('a');
@@ -476,13 +456,9 @@
             let unrenderedCount = 0;
 
             events.forEach(item => {
-                const dateObj = parseToDateObject(item.date);
                 let issue = null;
-
-                if (!item.date) {
-                    issue = "Missing Date String";
-                } else if (!dateObj) {
-                    issue = "Unparseable Date Format";
+                if (!item.date || !item.date.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                    issue = "Invalid Date String";
                 }
 
                 if (issue) {
