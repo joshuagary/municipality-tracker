@@ -345,7 +345,7 @@ Text:
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (LEGISTAR CURRENT + NEXT MONTH PARSER) ---
+# --- 4. DELRAY BEACH MODULE (DIRECT AGENDA LINK PARSER) ---
 def scrape_delray_beach():
     events = []
     url = "https://delraybeach.legistar.com/Calendar.aspx"
@@ -353,7 +353,6 @@ def scrape_delray_beach():
     now = datetime.now()
     current_month_start = datetime(now.year, now.month, 1)
 
-    # 1. Calculate Current Month & Next Month boundaries
     curr_year = now.year
     curr_month = now.month
 
@@ -364,8 +363,6 @@ def scrape_delray_beach():
         next_year = curr_year
         next_month = curr_month + 1
 
-    # End boundary for the 1-month lookahead window (last day of next month)
-    # E.g., if now is August 2026, lookahead captures through end of September 2026
     if next_month == 12:
         lookahead_end = datetime(next_year + 1, 1, 1)
     else:
@@ -376,7 +373,6 @@ def scrape_delray_beach():
     }
 
     try:
-        # Legistar defaults to displaying upcoming meetings for the active calendar year
         res = requests.get(url, headers=headers, timeout=12)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
@@ -387,15 +383,26 @@ def scrape_delray_beach():
                 if len(cols) < 4:
                     continue
 
-                # Legistar Column Structure: [0: Name, 1: Date, 2: Time, 3: Location]
                 raw_title = cols[0].text.strip()
                 clean_title = clean_event_title(raw_title)
                 
                 raw_date = cols[1].text.strip()
                 raw_time = cols[2].text.strip()
 
-                a_tag = cols[0].find("a") or row.find("a", href=True)
-                href = a_tag['href'] if a_tag else ""
+                # --- TARGET AGENDA COLUMN LINK FIRST ---
+                href = ""
+                
+                # Check column 5 (Agenda column) for direct PDF/View links
+                if len(cols) >= 6:
+                    agenda_a = cols[5].find("a", href=True)
+                    if agenda_a and agenda_a['href'].strip():
+                        href = agenda_a['href'].strip()
+
+                # Fallback to column 0 (Name link) if Agenda link isn't available yet
+                if not href:
+                    name_a = cols[0].find("a", href=True)
+                    if name_a:
+                        href = name_a['href'].strip()
 
                 if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     iso_date = extract_date_from_text(raw_date) or extract_date_from_text(clean_title)
@@ -403,7 +410,6 @@ def scrape_delray_beach():
                     if iso_date:
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
                         
-                        # Filter strictly: From 1st of current month through end of next month
                         if current_month_start <= dt < lookahead_end:
                             time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_time)
                             meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
@@ -421,7 +427,7 @@ def scrape_delray_beach():
                                 "summary": f"Official {clean_title} meeting."
                             })
 
-            print(f"Delray Beach Scraper successfully extracted {len(events)} events for window ({curr_month}/{curr_year} to {next_month}/{next_year}).")
+            print(f"Delray Beach Scraper successfully extracted {len(events)} events with direct agenda links.")
     except Exception as e:
         print(f"Error scraping Delray Beach: {e}")
 
