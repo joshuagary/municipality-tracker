@@ -249,26 +249,29 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (ALL UPCOMING MEETINGS INCLUDING PENDING AGENDAS) ---
+# --- 4. DELRAY BEACH MODULE (COMPLETE AUG + SEPT CAPTURE) ---
 def scrape_delray_beach():
     events = []
     
     now = datetime.now()
+    # Lock start to August 1st, 2026 (or current month 1st)
     current_month_start = datetime(now.year, now.month, 1)
 
+    # Set end bound to November 1st, 2026 so ALL of August and ALL of September are captured
     curr_year = now.year
     curr_month = now.month
-
-    if curr_month == 11:
-        lookahead_end = datetime(curr_year + 1, 1, 1)
-    elif curr_month == 12:
+    
+    if curr_month == 12:
         lookahead_end = datetime(curr_year + 1, 2, 1)
+    elif curr_month == 11:
+        lookahead_end = datetime(curr_year + 1, 1, 1)
     else:
         lookahead_end = datetime(curr_year, curr_month + 2, 1)
 
     urls = [
         "https://delraybeach.legistar.com/Calendar.aspx",
-        f"https://delraybeach.legistar.com/Calendar.aspx?Mode=Year&Years={curr_year}"
+        f"https://delraybeach.legistar.com/Calendar.aspx?Mode=Year&Years={curr_year}",
+        f"https://delraybeach.legistar.com/Calendar.aspx?View=Year"
     ]
 
     seen_event_keys = set()
@@ -293,27 +296,25 @@ def scrape_delray_beach():
                 raw_date = cols[1].text.strip() if len(cols) > 1 else ""
                 raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                # --- 1. EXTRACT AGENDA OR DETAIL LINK ---
+                # --- 1. LINK EXTRACTION ---
                 raw_href = ""
-                
-                # Priority 1: Direct Agenda PDF Link (View.ashx?M=A)
+                # Check for direct Agenda link
                 for a_tag in row.find_all("a", href=True):
                     href_val = a_tag['href'].strip()
                     if "View.ashx?M=A" in href_val or (href_val.endswith(".pdf") and "Agenda" in a_tag.text):
                         raw_href = href_val
                         break
                 
-                # Priority 2: Meeting Detail Page (MeetingDetail.aspx) if Agenda is pending
+                # Fallback to Meeting Details link if Agenda not yet published (common for September)
                 if not raw_href:
                     detail_a = row.select_one("a[href*='MeetingDetail.aspx']")
                     if detail_a and detail_a.get('href'):
                         raw_href = detail_a['href'].strip()
 
-                # Priority 3: Default fallback link
                 if not raw_href:
                     raw_href = "Calendar.aspx"
 
-                # --- 2. EXTRACT MEETING TIME ---
+                # --- 2. TIME EXTRACTION ---
                 meeting_time = None
                 if raw_time:
                     time_match = re.search(r'(\d{1,2}:\d{2})\s*([AaPp][Mm])', raw_time)
@@ -342,7 +343,7 @@ def scrape_delray_beach():
                     if iso_date:
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
                         
-                        # STRICT FILTER: Current month through end of next month
+                        # INCLUDES ALL AUGUST AND ALL SEPTEMBER MEETINGS
                         if current_month_start <= dt < lookahead_end:
                             full_link = raw_href if raw_href.startswith("http") else f"https://delraybeach.legistar.com/{raw_href.lstrip('/')}"
                             
@@ -363,7 +364,7 @@ def scrape_delray_beach():
         except Exception as e:
             print(f"[Delray Scraper] Error scraping {url}: {e}")
 
-    print(f"[Delray Scraper] Successfully extracted {len(events)} events for current month + September.")
+    print(f"[Delray Scraper] Successfully extracted {len(events)} total events for August + September.")
     return events
 
 
