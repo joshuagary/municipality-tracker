@@ -20,28 +20,33 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: var(--font-sans);
-            margin: 0;
-            padding: 16px;
+            padding: 12px;
             -webkit-text-size-adjust: 100%;
         }
 
         header {
             border-bottom: 4px solid var(--border-dark);
-            padding-bottom: 12px;
-            margin-bottom: 16px;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 4px;
+            gap: 2px;
         }
 
         header h1 {
             font-family: var(--font-serif);
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
             font-weight: 900;
             letter-spacing: -0.5px;
             margin: 0;
@@ -49,36 +54,34 @@
         }
 
         .sub-header {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent-red);
         }
 
-        /* --- Flexible Responsive Controls --- */
         .controls-bar {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px;
             background: var(--card-bg);
             border: 1px solid var(--border-dark);
-            padding: 12px;
-            margin-bottom: 16px;
+            padding: 10px;
+            margin-bottom: 12px;
         }
 
         select, input {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid var(--border-dark);
             font-family: var(--font-sans);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             background: var(--card-bg);
             border-radius: 0;
             -webkit-appearance: none;
         }
 
-        /* --- Tablet & Mobile Navigation Banner --- */
         .month-header-banner {
             display: flex;
             align-items: center;
@@ -86,12 +89,12 @@
             background: var(--card-bg);
             border: 1px solid var(--border-dark);
             border-bottom: none;
-            padding: 10px 16px;
+            padding: 8px 12px;
         }
 
         .month-title {
             font-family: var(--font-serif);
-            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -101,9 +104,9 @@
         .nav-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-dark);
-            padding: 8px 16px;
+            padding: 6px 14px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             touch-action: manipulation;
         }
@@ -113,27 +116,24 @@
             color: #FFF;
         }
 
-        /* --- Responsive Grid Layout --- */
         .calendar-wrapper {
             width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         .calendar-grid {
             display: grid;
-            grid-template-columns: repeat(7, minmax(100px, 1fr));
+            grid-template-columns: repeat(7, 1fr);
             gap: 1px;
             background: var(--border-dark);
             border: 1px solid var(--border-dark);
-            min-width: 700px; /* Ensures grid readability on smaller viewports */
+            width: 100%;
         }
 
         .day-header {
             background: #000;
             color: #fff;
-            padding: 8px 4px;
-            font-size: 0.75rem;
+            padding: 6px 2px;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
             text-align: center;
@@ -141,16 +141,16 @@
 
         .day-box {
             background: var(--card-bg);
-            min-height: 110px;
-            padding: 6px;
+            min-height: 95px;
+            padding: 4px;
             box-sizing: border-box;
             position: relative;
         }
 
         .day-num {
             font-weight: 800;
-            font-size: 0.85rem;
-            margin-bottom: 6px;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
             font-family: var(--font-serif);
         }
 
@@ -160,10 +160,10 @@
             border-top: 1px solid var(--border-light);
             border-right: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
-            padding: 6px;
-            font-size: 0.7rem;
-            line-height: 1.2;
-            margin-bottom: 4px;
+            padding: 4px;
+            font-size: 0.65rem;
+            line-height: 1.1;
+            margin-bottom: 3px;
             cursor: pointer;
             text-decoration: none;
             color: var(--text-main);
@@ -174,49 +174,33 @@
         .event-muni {
             font-weight: 800;
             color: var(--accent-red);
-            margin-right: 3px;
+            margin-right: 2px;
         }
 
         .event-time {
             display: block;
             color: #555;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             margin-top: 2px;
         }
 
-        /* Tooltip Popup optimized for touch devices */
         .tooltip {
             display: none;
             position: absolute;
             z-index: 100;
             background: #000000;
             color: #FFFFFF;
-            padding: 12px;
-            width: 240px;
-            font-size: 0.8rem;
+            padding: 10px;
+            width: 220px;
+            font-size: 0.75rem;
             box-shadow: 4px 4px 0px rgba(217, 35, 35, 0.8);
             pointer-events: none;
         }
 
         .tooltip h4 {
-            margin: 0 0 6px 0;
+            margin: 0 0 4px 0;
             font-family: var(--font-serif);
             color: #FFF;
-        }
-
-        /* iPad & Mobile Overrides */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .day-box {
-                min-height: 90px;
-                padding: 4px;
-            }
-            .event-tag {
-                padding: 4px;
-                font-size: 0.65rem;
-            }
         }
     </style>
 </head>
@@ -236,7 +220,7 @@
         </select>
         <select id="monthFilter" onchange="handleDropdownMonthChange()">
             <option value="2026-07">August 2026</option>
-            <option value="2026-08" selected>September 2026</option>
+            <option value="2026-08">September 2026</option>
             <option value="2026-09">October 2026</option>
         </select>
         <input type="text" id="searchInput" placeholder="Search keywords..." onkeyup="renderEvents()">
@@ -248,7 +232,6 @@
         <button class="nav-btn" onclick="changeMonth(1)">&gt;</button>
     </div>
 
-    <!-- Scrollable container for smaller screens -->
     <div class="calendar-wrapper">
         <div class="calendar-grid">
             <div class="day-header">Sun</div>
@@ -267,7 +250,8 @@
 
     <script>
         let events = [];
-        let currentDate = new Date(2026, 7, 1); // August 2026
+        // Default initialized to August 2026 (Month index 7)
+        let currentDate = new Date(2026, 7, 1); 
 
         const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", 
                             "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
@@ -276,6 +260,7 @@
             try {
                 const res = await fetch('data.json');
                 events = await res.json();
+                syncDropdownWithDate();
                 renderEvents();
             } catch (e) {
                 console.error("Failed to load data.json", e);
@@ -284,6 +269,7 @@
 
         function changeMonth(delta) {
             currentDate.setMonth(currentDate.getMonth() + delta);
+            syncDropdownWithDate();
             renderEvents();
         }
 
@@ -291,6 +277,16 @@
             const val = document.getElementById('monthFilter').value.split('-');
             currentDate = new Date(parseInt(val[0]), parseInt(val[1]), 1);
             renderEvents();
+        }
+
+        function syncDropdownWithDate() {
+            const yr = currentDate.getFullYear();
+            const mo = String(currentDate.getMonth()).padStart(2, '0');
+            const targetVal = `${yr}-${mo}`;
+            const select = document.getElementById('monthFilter');
+            if (select.querySelector(`option[value="${targetVal}"]`)) {
+                select.value = targetVal;
+            }
         }
 
         function renderEvents() {
@@ -339,7 +335,7 @@
         function showTooltip(e, item) {
             const tt = document.getElementById('tooltip');
             tt.style.display = 'block';
-            tt.style.left = Math.min(e.pageX + 10, window.innerWidth - 250) + 'px';
+            tt.style.left = Math.min(e.pageX + 10, window.innerWidth - 230) + 'px';
             tt.style.top = (e.pageY + 10) + 'px';
             tt.innerHTML = `<h4>${item.muni_full}</h4><strong>${item.title}</strong><br><br>${item.summary}`;
         }
