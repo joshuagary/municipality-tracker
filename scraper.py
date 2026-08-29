@@ -249,7 +249,7 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (DIRECT LEGISTAR GATEWAY API) ---
+# --- 4. DELRAY BEACH MODULE (OFFICIAL LEGISTAR PUBLIC ODATA API) ---
 def scrape_delray_beach():
     events = []
     
@@ -257,10 +257,10 @@ def scrape_delray_beach():
     curr_year = now.year
     curr_month = now.month
 
-    # Set start to 1st of current month
+    # Current month start (e.g., 2026-08-01)
     start_date = datetime(curr_year, curr_month, 1)
 
-    # Set end to 1st of month after next (covers full current month + full next month)
+    # Next month end cutoff (e.g., 2026-10-01)
     if curr_month == 11:
         end_date = datetime(curr_year + 1, 1, 1)
     elif curr_month == 12:
@@ -268,73 +268,64 @@ def scrape_delray_beach():
     else:
         end_date = datetime(curr_year, curr_month + 2, 1)
 
-    # Legistar public JSON gateway endpoint used by calendar widgets
-    api_url = f"https://delraybeach.legistar.com/Gateway.ashx?m=meetings&from={start_date.strftime('%Y-%m-%d')}&to={end_date.strftime('%Y-%m-%d')}"
-
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Accept": "application/json, text/javascript, */*; q=0.01"
-    }
+    # Official Legistar OData Endpoint
+    api_url = f"https://webapi.legistar.com/v1/delraybeach/events?$filter=EventDate ge datetime'{start_date.strftime('%Y-%m-%d')}' and EventDate lt datetime'{end_date.strftime('%Y-%m-%d')}'"
 
     try:
-        res = requests.get(api_url, headers=headers, impersonate="chrome124", timeout=15)
+        res = requests.get(api_url, impersonate="chrome124", timeout=15)
         print(f"[Delray API Scraper] HTTP Status: {res.status_code}")
 
         if res.status_code == 200:
             data = res.json()
-            print(f"[Delray API Scraper] Fetched {len(data)} raw records from API.")
+            print(f"[Delray API Scraper] Fetched {len(data)} raw events from official Legistar API.")
 
             for item in data:
-                # Extract fields directly from JSON
-                raw_title = item.get("Name") or item.get("Title") or ""
+                raw_title = item.get("EventBodyName") or ""
                 clean_title = clean_event_title(raw_title)
 
-                raw_date_str = item.get("Start") or item.get("MeetingDate") or ""
+                raw_date_str = item.get("EventDate") or ""
+                raw_time_str = item.get("EventTime") or ""
                 
-                # Extract links (Agenda PDF preferred, fallback to Meeting Details)
-                agenda_url = item.get("AgendaUrl") or item.get("AgendaLink") or ""
-                detail_url = item.get("Url") or item.get("MeetingDetailUrl") or ""
+                # Check for direct Agenda PDF link ID
+                agenda_file = item.get("EventAgendaFile")
+                event_id = item.get("EventId")
 
-                if agenda_url and "M=A" in agenda_url:
-                    href = agenda_url
-                elif detail_url:
-                    href = detail_url
+                if agenda_file:
+                    href = f"https://delraybeach.legistar.com/View.ashx?M=A&ID={event_id}&GUID={item.get('EventGuid', '')}"
+                elif event_id:
+                    href = f"https://delraybeach.legistar.com/MeetingDetail.aspx?ID={event_id}&GUID={item.get('EventGuid', '')}"
                 else:
-                    href = "Calendar.aspx"
+                    href = "https://delraybeach.legistar.com/Calendar.aspx"
 
                 if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     iso_date = None
-                    meeting_time = "5:00 PM"
-
                     if raw_date_str:
-                        # Parse ISO timestamp returned by API (e.g. "2026-09-15T17:00:00")
-                        try:
-                            dt_obj = datetime.fromisoformat(raw_date_str.replace("Z", ""))
-                            iso_date = dt_obj.strftime("%Y-%m-%d")
-                            meeting_time = dt_obj.strftime("%I:%M %p").lstrip("0")
-                        except ValueError:
-                            iso_date = extract_date_from_text(raw_date_str)
+                        # Extract YYYY-MM-DD from API ISO string
+                        iso_date = raw_date_str.split("T")[0]
+
+                    # Format meeting time cleanly
+                    meeting_time = "5:00 PM"
+                    if raw_time_str:
+                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_time_str)
+                        if time_match:
+                            meeting_time = time_match.group(1).upper()
 
                     if iso_date:
-                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                        if start_date <= dt < end_date:
-                            full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
+                        events.append({
+                            "id": f"delray-{iso_date}-{event_id or hash(href)}",
+                            "muni_short": "DELRAY",
+                            "muni_full": "City of Delray Beach",
+                            "title": clean_title,
+                            "date": iso_date,
+                            "time": meeting_time,
+                            "link": href,
+                            "summary": f"Official {clean_title} meeting."
+                        })
 
-                            events.append({
-                                "id": f"delray-{iso_date}-{hash(full_link)}",
-                                "muni_short": "DELRAY",
-                                "muni_full": "City of Delray Beach",
-                                "title": clean_title,
-                                "date": iso_date,
-                                "time": meeting_time,
-                                "link": full_link,
-                                "summary": f"Official {clean_title} meeting."
-                            })
-
-            print(f"[Delray API Scraper] Successfully extracted {len(events)} events across August and September.")
+            print(f"[Delray API Scraper] Successfully saved {len(events)} qualifying events for Aug & Sept.")
 
     except Exception as e:
-        print(f"[Delray API Scraper] Error querying Gateway API: {e}")
+        print(f"[Delray API Scraper] Error querying Legistar OData API: {e}")
 
     return events
 
