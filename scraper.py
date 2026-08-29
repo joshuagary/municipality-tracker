@@ -249,17 +249,19 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (DIRECT HTML PARSER) ---
+# --- 4. DELRAY BEACH MODULE (DIRECT HTML 90-DAY SCHEDULE) ---
 def scrape_delray_beach():
     events = []
-    url = "https://delraybeach.legistar.com/Calendar.aspx"
+    # Target 90-day window URL to force Legistar to output September in raw HTML
+    url = "https://delraybeach.legistar.com/Calendar.aspx?Last=90"
     
     now = datetime.now()
-    # Force date window to capture all of current month and next month
     current_month_start = datetime(now.year, now.month, 1)
 
     curr_year = now.year
     curr_month = now.month
+    
+    # Calculate end of next month (Sept 30 / Oct 1 boundary)
     if curr_month == 11:
         lookahead_end = datetime(curr_year + 1, 1, 1)
     elif curr_month == 12:
@@ -274,7 +276,6 @@ def scrape_delray_beach():
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             rows = soup.find_all("tr")
-            print(f"[Delray] Total HTML table rows found: {len(rows)}")
 
             for row in rows:
                 cols = row.find_all("td")
@@ -287,7 +288,7 @@ def scrape_delray_beach():
                 raw_date = cols[1].text.strip() if len(cols) > 1 else ""
                 raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                # Extract Agenda Link if available, otherwise grab the Meeting Details Link
+                # Target Agenda PDF link (View.ashx?M=A), fallback to Meeting Details page
                 href = ""
                 agenda_a = row.select_one("a[href*='View.ashx?M=A']")
                 if agenda_a and agenda_a.get('href'):
@@ -300,16 +301,18 @@ def scrape_delray_beach():
                 if not href:
                     href = "Calendar.aspx"
 
-                # Parse Date (handles M/D/YYYY)
+                # Standard M/D/YYYY date extraction
                 iso_date = None
                 date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
                 if date_match:
                     m, d, y = date_match.groups()
                     iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
 
-                # Simple title check: keep anything governance related or non-empty
-                if iso_date and clean_title:
+                # Apply strict qualification filter to eliminate garbage/irrelevant meetings
+                if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                    
+                    # Strictly filter for current month through end of next month (Aug + Sept)
                     if current_month_start <= dt < lookahead_end:
                         time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time)
                         meeting_time = time_match.group(1).strip().upper() if time_match else "4:00 PM"
@@ -329,11 +332,12 @@ def scrape_delray_beach():
                             "summary": f"Official {clean_title} meeting."
                         })
 
-            print(f"[Delray] Successfully saved {len(events)} events.")
+            print(f"[Delray] Successfully saved {len(events)} qualifying events across August and September.")
     except Exception as e:
-        print(f"[Delray] Exception occurred: {e}")
+        print(f"[Delray] Exception: {e}")
 
     return events
+
 
 
 
