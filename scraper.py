@@ -26,17 +26,13 @@ def save_data(data):
         json.dump(data, f, indent=2)
 
 def clean_event_title(raw_text):
-    """Strips HTML whitespace, dates, locations, and metadata from extracted titles."""
     if not raw_text:
         return "Municipal Governance Meeting"
-    
     lines = [line.strip() for line in raw_text.split('\n') if line.strip()]
     first_line = lines[0] if lines else raw_text
-    
     cleaned = re.sub(r'(?i)(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?,?\s*(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}.*', '', first_line)
     cleaned = re.sub(r'(?i)Tagged as:.*', '', cleaned)
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
-    
     return cleaned if len(cleaned) > 3 else "Municipal Governance Meeting"
 
 def is_qualifying_event(title):
@@ -87,29 +83,20 @@ def extract_pdf_first_pages_text(url):
                     extracted_text += text
             return re.sub(r'\s+', ' ', extracted_text).strip().lower()
     except Exception as e:
-        print(f"PDF extraction error on {url}: {e}")
+        pass
     return None
-    
- # --- 1. BOCA RATON MODULE (CURRENT + NEXT MONTH LOOKAHEAD) ---
+
+# --- 1. BOCA RATON MODULE ---
 def scrape_boca_raton():
     events = []
-    
     now = datetime.now()
     current_month_start = datetime(now.year, now.month, 1)
 
-    # 1. Calculate Current Month (Year & Month)
     curr_year = now.year
     curr_month = now.month
+    next_year = curr_year + 1 if curr_month == 12 else curr_year
+    next_month = 1 if curr_month == 12 else curr_month + 1
 
-    # 2. Calculate Next Month (Handles December -> January Year Rollover)
-    if curr_month == 12:
-        next_year = curr_year + 1
-        next_month = 1
-    else:
-        next_year = curr_year
-        next_month = curr_month + 1
-
-    # Dynamically build target URLs for both months
     urls = [
         f"https://www.myboca.us/calendar.aspx?view=list&year={curr_year}&month={curr_month}&CID=0",
         f"https://www.myboca.us/calendar.aspx?view=list&year={next_year}&month={next_month}&CID=0"
@@ -155,7 +142,6 @@ def scrape_boca_raton():
                         if dt >= current_month_start:
                             time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_context)
                             meeting_time = time_match.group(1).upper() if time_match else "1:30 PM"
-
                             full_link = href if href.startswith("http") else f"https://www.myboca.us{href}"
 
                             events.append({
@@ -170,7 +156,6 @@ def scrape_boca_raton():
                             })
 
         print(f"Boca Raton Scraper finished multi-month lookahead ({curr_month}/{curr_year} & {next_month}/{next_year}). Extracted {len(events)} total events.")
-                
     except Exception as e:
         print(f"Error scraping Boca Raton: {e}")
 
@@ -215,11 +200,10 @@ def scrape_palm_beach_county():
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH MODULE (CLEAN TITLES & SHARED KEYWORDS) ---
+# --- 3. WEST PALM BEACH MODULE ---
 def scrape_west_palm_beach():
     events = []
     url = "https://www.wpb.org/Our-City/Meetings-Agendas"
-    hf_token = os.environ.get("HF_TOKEN")
     current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
 
     try:
@@ -228,87 +212,10 @@ def scrape_west_palm_beach():
             return events
 
         soup = BeautifulSoup(res.text, "html.parser")
-
-        # --- ENGINE A: Llama 3.1 LLM ---
-        if hf_token:
-            try:
-                clean_soup = BeautifulSoup(res.text, "html.parser")
-                for tag in clean_soup(["script", "style", "nav", "footer"]):
-                    tag.decompose()
-
-                page_text = clean_soup.get_text(separator="\n", strip=True)[:4500]
-
-                router_url = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3.1-8B-Instruct/v1/chat/completions"
-                payload = {
-                    "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-                    "messages": [
-                        {
-                            "role": "system",
-                            "content": "You are a JSON parser. Output ONLY a raw JSON array matching the requested schema. No code blocks, intros, or explanations."
-                        },
-                        {
-                            "role": "user",
-                            "content": f"""Extract public meetings ONLY for municipal boards matching these topics:
-Commission, Zoning Board of Appeals, Planning Board, Downtown Action Committee, Plans & Plats Review Committee, CRA, Development.
-
-Do NOT extract bid openings, ITB/RFP notices, or general town events.
-
-Schema format:
-[
-  {{"title": "Clean Short Title", "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "link": "Relative or Absolute URL"}}
-]
-
-Text:
-{page_text}"""
-                        }
-                    ],
-                    "temperature": 0.01,
-                    "max_tokens": 1200
-                }
-
-                hf_headers = {
-                    "Authorization": f"Bearer {hf_token}",
-                    "Content-Type": "application/json"
-                }
-
-                hf_res = requests.post(router_url, headers=hf_headers, json=payload, timeout=20)
-                if hf_res.status_code == 200:
-                    content = hf_res.json()['choices'][0]['message']['content'].strip()
-                    content = re.sub(r'^```(?:json)?\s*', '', content, flags=re.MULTILINE)
-                    content = re.sub(r'\s*```$', '', content, flags=re.MULTILINE)
-
-                    llm_data = json.loads(content)
-
-                    for item in llm_data:
-                        raw_title = item.get("title", "")
-                        clean_title = clean_event_title(raw_title)
-
-                        if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                            href = item.get("link", "")
-                            full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
-                            events.append({
-                                "id": f"wpb-{item['date']}-{hash(full_link)}",
-                                "muni_short": "WPB",
-                                "muni_full": "City of West Palm Beach",
-                                "title": clean_title,
-                                "date": item["date"],
-                                "time": item.get("time", "5:00 PM"),
-                                "link": full_link,
-                                "summary": f"Official {clean_title} meeting."
-                            })
-                    if len(events) > 0:
-                        print(f"Llama 3.1 extracted {len(events)} clean events for WPB.")
-                        return events
-            except Exception as e:
-                print(f"Llama 3.1 Engine failed ({e}). Falling back to BeautifulSoup...")
-
-        # --- ENGINE B: CLEAN BEAUTIFULSOUP FALLBACK ---
-        print("Running Clean BeautifulSoup fallback for WPB...")
         cards = soup.find_all(["div", "li", "tr", "article"])
 
         for card in cards:
             card_text = card.get_text(separator=" ", strip=True)
-
             title_elem = card.select_one("h2, h3, h4, .title, .item-title, a[href]")
             if not title_elem:
                 continue
@@ -325,7 +232,6 @@ Text:
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
                     if dt >= current_month_start:
                         full_link = href if href.startswith("http") else f"https://www.wpb.org{href}"
-
                         time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', card_text)
                         m_time = time_match.group(1).upper() if time_match else "5:00 PM"
 
@@ -339,60 +245,65 @@ Text:
                             "link": full_link,
                             "summary": f"Official {clean_title} meeting."
                         })
-
     except Exception as e:
         print(f"Error scraping West Palm Beach: {e}")
 
     return events
-# --- 4. DELRAY BEACH MODULE (POST SESSION PAYLOAD & API FALLBACK) ---
+
+# --- 4. DELRAY BEACH MODULE (LEGISTAR HTML ENGINE) ---
 def scrape_delray_beach():
     events = []
+    url = "https://delraybeach.legistar.com/Calendar.aspx"
     
     now = datetime.now()
     current_month_start = datetime(now.year, now.month, 1)
 
     curr_year = now.year
     curr_month = now.month
-
-    if curr_month == 12:
-        next_year = curr_year + 1
-        next_month = 1
-    else:
-        next_year = curr_year
-        next_month = curr_month + 1
+    next_year = curr_year + 1 if curr_month == 12 else curr_year
+    next_month = 1 if curr_month == 12 else curr_month + 1
 
     if next_month == 12:
         lookahead_end = datetime(next_year + 1, 1, 1)
     else:
         lookahead_end = datetime(next_year, next_month + 1, 1)
 
-    # Legistar RSS Feed URL (Always returns rendered upcoming events with direct agenda links)
-    rss_url = "https://delraybeach.legistar.com/rss.aspx?m=meetings"
-
     try:
-        res = requests.get(rss_url, impersonate="chrome124", timeout=12)
+        res = requests.get(url, impersonate="chrome124", timeout=15)
         if res.status_code == 200:
-            soup = BeautifulSoup(res.text, "xml")
-            items = soup.find_all("item")
+            soup = BeautifulSoup(res.text, "html.parser")
+            rows = soup.select("tr[id*='ctl00_ContentPlaceHolder1_gridMain'], tr.rgRow, tr.rgAltRow")
 
-            for item in items:
-                raw_title = item.find("title").text if item.find("title") else ""
+            for row in rows:
+                cols = row.find_all("td")
+                if len(cols) < 3:
+                    continue
+
+                raw_title = cols[0].text.strip()
                 clean_title = clean_event_title(raw_title)
+                
+                raw_date = cols[1].text.strip() if len(cols) > 1 else ""
+                raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                pub_date = item.find("pubDate").text if item.find("pubDate") else ""
-                description = item.find("description").text if item.find("description") else ""
-                link_elem = item.find("link")
-                href = link_elem.text.strip() if link_elem else ""
+                # Direct Agenda PDF Link capture
+                href = ""
+                if len(cols) >= 6:
+                    agenda_a = cols[5].find("a", href=True)
+                    if agenda_a:
+                        href = agenda_a['href'].strip()
+                if not href:
+                    name_a = cols[0].find("a", href=True)
+                    if name_a:
+                        href = name_a['href'].strip()
 
                 if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                    iso_date = extract_date_from_text(pub_date) or extract_date_from_text(description) or extract_date_from_text(clean_title)
+                    iso_date = extract_date_from_text(raw_date) or extract_date_from_text(clean_title)
 
                     if iso_date:
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
                         if current_month_start <= dt < lookahead_end:
-                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', description)
+                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', raw_time)
                             meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
-
                             full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href}"
 
                             events.append({
@@ -406,50 +317,21 @@ def scrape_delray_beach():
                                 "summary": f"Official {clean_title} meeting."
                             })
 
-            print(f"Delray Beach Scraper (via RSS feed) successfully extracted {len(events)} events.")
+            print(f"Delray Beach Scraper successfully extracted {len(events)} events.")
     except Exception as e:
         print(f"Error scraping Delray Beach: {e}")
 
     return events
-    
-# --- 4. DELRAY BEACH DIAGNOSTIC MODULE ---
-def scrape_delray_beach():
-    events = []
-    # Test both RSS and Gateway endpoints
-    urls = [
-        "https://delraybeach.legistar.com/rss.aspx?m=meetings",
-        "https://delraybeach.legistar.com/Calendar.aspx"
-    ]
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-    }
 
-    for url in urls:
-        print(f"\n--- TESTING DELRAY URL: {url} ---")
-        try:
-            res = requests.get(url, headers=headers, impersonate="chrome124", timeout=15)
-            print(f"Status Code: {res.status_code}")
-            print(f"Response Content Length: {len(res.text)}")
-            print(f"Sample Text (First 500 chars):\n{res.text[:500]}")
-            
-            # Check for Legistar meeting keywords in raw payload
-            keywords_found = [kw for kw in ["Commission", "Board", "Meeting", "Agenda"] if kw.lower() in res.text.lower()]
-            print(f"Keywords found in payload: {keywords_found}")
-            
-        except Exception as e:
-            print(f"Error fetching {url}: {e}")
-
-    return events
-
-
-# --- DEDUPLICATION CONTROLLER ---
+# --- DEDUPLICATION & MAIN CONTROLLER ---
 def run():
     raw_events = []
+    
+    # 1. Execute all 4 Municipality Scrapers
     raw_events.extend(scrape_boca_raton())
     raw_events.extend(scrape_palm_beach_county())
     raw_events.extend(scrape_west_palm_beach())
+    raw_events.extend(scrape_delray_beach())
 
     grouped_events = {}
     for event in raw_events:
@@ -467,7 +349,6 @@ def run():
             final_list.append(items[0])
         else:
             unique_in_group = []
-
             for item in items:
                 clean_link = item['link'].replace("http://www.pbcgov.com/pubInf/Agenda", "https://discover.pbc.gov/countycommissioners/Agenda_Master")
 
