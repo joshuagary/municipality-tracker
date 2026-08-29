@@ -249,96 +249,92 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (RELIABLE LEGISTAR API PARSER) ---
+# --- 4. DELRAY BEACH MODULE (DIRECT HTML PARSER) ---
 def scrape_delray_beach():
     events = []
+    url = "https://delraybeach.legistar.com/Calendar.aspx"
     
     now = datetime.now()
+    # Force date window to capture all of current month and next month
+    current_month_start = datetime(now.year, now.month, 1)
+
     curr_year = now.year
     curr_month = now.month
-
-    # Start date: 1st of current month
-    start_date = datetime(curr_year, curr_month, 1)
-
-    # End date cutoff: 1st of month after next (Covers current month + full next month)
     if curr_month == 11:
-        end_date = datetime(curr_year + 1, 1, 1)
+        lookahead_end = datetime(curr_year + 1, 1, 1)
     elif curr_month == 12:
-        end_date = datetime(curr_year + 1, 2, 1)
+        lookahead_end = datetime(curr_year + 1, 2, 1)
     else:
-        end_date = datetime(curr_year, curr_month + 2, 1)
-
-    # Official Legistar REST API Endpoint
-    api_url = f"https://webapi.legistar.com/v1/delraybeach/events?$filter=EventDate ge datetime'{start_date.strftime('%Y-%m-%d')}' and EventDate lt datetime'{end_date.strftime('%Y-%m-%d')}'"
+        lookahead_end = datetime(curr_year, curr_month + 2, 1)
 
     try:
-        res = requests.get(api_url, impersonate="chrome124", timeout=15)
-        print(f"[Delray API Scraper] HTTP Status: {res.status_code}")
-
+        res = requests.get(url, impersonate="chrome124", timeout=15)
+        print(f"[Delray] HTTP Status Code: {res.status_code}")
+        
         if res.status_code == 200:
-            data = res.json()
-            print(f"[Delray API Scraper] Received {len(data)} raw records from API.")
+            soup = BeautifulSoup(res.text, "html.parser")
+            rows = soup.find_all("tr")
+            print(f"[Delray] Total HTML table rows found: {len(rows)}")
 
-            for item in data:
-                # 1. Title Extraction
-                raw_title = item.get("EventBodyName") or item.get("EventComment") or ""
-                if not raw_title:
+            for row in rows:
+                cols = row.find_all("td")
+                if len(cols) < 3:
                     continue
 
+                raw_title = cols[0].text.strip()
                 clean_title = clean_event_title(raw_title)
+                
+                raw_date = cols[1].text.strip() if len(cols) > 1 else ""
+                raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                # 2. Permissive Qualification Check (Check both raw and cleaned titles)
-                title_to_check = raw_title.lower() + " " + clean_title.lower()
-                is_valid = is_qualifying_event(title_to_check) or any(
-                    kw in title_to_check for kw in ["commission", "cra", "board", "council", "planning", "zoning", "meeting"]
-                )
+                # Extract Agenda Link if available, otherwise grab the Meeting Details Link
+                href = ""
+                agenda_a = row.select_one("a[href*='View.ashx?M=A']")
+                if agenda_a and agenda_a.get('href'):
+                    href = agenda_a['href'].strip()
+                else:
+                    detail_a = row.select_one("a[href*='MeetingDetail.aspx']")
+                    if detail_a and detail_a.get('href'):
+                        href = detail_a['href'].strip()
 
-                if is_valid and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', title_to_check, re.I):
-                    # 3. Date & Time Parsing
-                    raw_date_str = item.get("EventDate") or ""
-                    raw_time_str = item.get("EventTime") or ""
-                    
-                    iso_date = raw_date_str.split("T")[0] if "T" in raw_date_str else None
+                if not href:
+                    href = "Calendar.aspx"
 
-                    meeting_time = "4:00 PM"
-                    if raw_time_str:
-                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time_str)
-                        if time_match:
-                            t_val = time_match.group(1).strip()
-                            if "AM" not in t_val.upper() and "PM" not in t_val.upper():
-                                t_val += " PM"
-                            meeting_time = t_val.upper()
+                # Parse Date (handles M/D/YYYY)
+                iso_date = None
+                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
+                if date_match:
+                    m, d, y = date_match.groups()
+                    iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
 
-                    # 4. Link Construction (Direct PDF Agenda vs. Meeting Details)
-                    event_id = item.get("EventId")
-                    event_guid = item.get("EventGuid") or ""
-                    agenda_file = item.get("EventAgendaFile")
+                # Simple title check: keep anything governance related or non-empty
+                if iso_date and clean_title:
+                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                    if current_month_start <= dt < lookahead_end:
+                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time)
+                        meeting_time = time_match.group(1).strip().upper() if time_match else "4:00 PM"
+                        if "AM" not in meeting_time and "PM" not in meeting_time:
+                            meeting_time += " PM"
 
-                    if agenda_file:
-                        href = f"https://delraybeach.legistar.com/View.ashx?M=A&ID={event_id}&GUID={event_guid}"
-                    elif event_id:
-                        href = f"https://delraybeach.legistar.com/MeetingDetail.aspx?ID={event_id}&GUID={event_guid}"
-                    else:
-                        href = "https://delraybeach.legistar.com/Calendar.aspx"
+                        full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
 
-                    if iso_date:
                         events.append({
-                            "id": f"delray-{iso_date}-{event_id or hash(href)}",
+                            "id": f"delray-{iso_date}-{hash(full_link)}",
                             "muni_short": "DELRAY",
                             "muni_full": "City of Delray Beach",
-                            "title": clean_title if len(clean_title) > 3 else raw_title,
+                            "title": clean_title,
                             "date": iso_date,
                             "time": meeting_time,
-                            "link": href,
-                            "summary": f"Official {raw_title} meeting."
+                            "link": full_link,
+                            "summary": f"Official {clean_title} meeting."
                         })
 
-            print(f"[Delray API Scraper] Successfully saved {len(events)} events for August & September.")
-
+            print(f"[Delray] Successfully saved {len(events)} events.")
     except Exception as e:
-        print(f"[Delray API Scraper] Error: {e}")
+        print(f"[Delray] Exception occurred: {e}")
 
     return events
+
 
 
 
