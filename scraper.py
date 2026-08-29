@@ -344,7 +344,74 @@ Text:
         print(f"Error scraping West Palm Beach: {e}")
 
     return events
+# --- 4. DELRAY BEACH MODULE (POST SESSION PAYLOAD & API FALLBACK) ---
+def scrape_delray_beach():
+    events = []
+    
+    now = datetime.now()
+    current_month_start = datetime(now.year, now.month, 1)
 
+    curr_year = now.year
+    curr_month = now.month
+
+    if curr_month == 12:
+        next_year = curr_year + 1
+        next_month = 1
+    else:
+        next_year = curr_year
+        next_month = curr_month + 1
+
+    if next_month == 12:
+        lookahead_end = datetime(next_year + 1, 1, 1)
+    else:
+        lookahead_end = datetime(next_year, next_month + 1, 1)
+
+    # Legistar RSS Feed URL (Always returns rendered upcoming events with direct agenda links)
+    rss_url = "https://delraybeach.legistar.com/rss.aspx?m=meetings"
+
+    try:
+        res = requests.get(rss_url, impersonate="chrome124", timeout=12)
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "xml")
+            items = soup.find_all("item")
+
+            for item in items:
+                raw_title = item.find("title").text if item.find("title") else ""
+                clean_title = clean_event_title(raw_title)
+
+                pub_date = item.find("pubDate").text if item.find("pubDate") else ""
+                description = item.find("description").text if item.find("description") else ""
+                link_elem = item.find("link")
+                href = link_elem.text.strip() if link_elem else ""
+
+                if is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                    iso_date = extract_date_from_text(pub_date) or extract_date_from_text(description) or extract_date_from_text(clean_title)
+
+                    if iso_date:
+                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                        if current_month_start <= dt < lookahead_end:
+                            time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', description)
+                            meeting_time = time_match.group(1).upper() if time_match else "4:00 PM"
+
+                            full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href}"
+
+                            events.append({
+                                "id": f"delray-{iso_date}-{hash(full_link)}",
+                                "muni_short": "DELRAY",
+                                "muni_full": "City of Delray Beach",
+                                "title": clean_title,
+                                "date": iso_date,
+                                "time": meeting_time,
+                                "link": full_link,
+                                "summary": f"Official {clean_title} meeting."
+                            })
+
+            print(f"Delray Beach Scraper (via RSS feed) successfully extracted {len(events)} events.")
+    except Exception as e:
+        print(f"Error scraping Delray Beach: {e}")
+
+    return events
+    
 # --- 4. DELRAY BEACH MODULE (DIRECT LEGISTAR GATEWAY API) ---
 def scrape_delray_beach():
     events = []
