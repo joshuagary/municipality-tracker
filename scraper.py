@@ -326,7 +326,7 @@ def scrape_delray_beach():
 
     return events
 
-# --- 5. PALM BEACH GARDENS MODULE (DYNAMIC LIST VIEW SCRAPER) ---
+# --- 5. PALM BEACH GARDENS MODULE (DYNAMIC LIST VIEW SCRAPER - NO CID) ---
 def scrape_palm_beach_gardens():
     events = []
     base_url = "https://www.pbgfl.gov"
@@ -335,7 +335,7 @@ def scrape_palm_beach_gardens():
     curr_year = now.year
     curr_month = now.month
 
-    # Determine current month and next month target parameters
+    # Calculate next month and handle year rollover (e.g., Dec -> Jan)
     next_month = 1 if curr_month == 12 else curr_month + 1
     next_year = curr_year + 1 if curr_month == 12 else curr_year
 
@@ -354,8 +354,8 @@ def scrape_palm_beach_gardens():
         y_val = target["year"]
         m_val = target["month"]
 
-        # Build dynamic list view URL including target categories
-        url = f"https://www.pbgfl.gov/calendar.aspx?view=list&year={y_val}&month={m_val}&CID=41,42,37,44,45,46,47,48,43"
+        # Exact URL format without CID pre-filtering
+        url = f"https://www.pbgfl.gov/calendar.aspx?view=list&year={y_val}&month={m_val}"
 
         try:
             res = requests.get(url, headers=headers, timeout=15)
@@ -364,7 +364,7 @@ def scrape_palm_beach_gardens():
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, "html.parser")
 
-                # In list view, CivicPlus renders events as table rows or calendar list items
+                # Parse event containers rendered in list view
                 event_items = soup.select("tr, div.calendarItem, li.eventItem, div.eventRow, table.calendarList tr")
 
                 for item in event_items:
@@ -398,9 +398,8 @@ def scrape_palm_beach_gardens():
                             except ValueError:
                                 pass
 
-                    # Fallback date if row text didn't contain explicit string (uses current iteration month/year)
+                    # Fallback date if string parsing misses explicit date text
                     if not iso_date:
-                        # Attempt day matching from day-number elements
                         day_elem = item.select_one(".dayNumber, .date, .calendarDate")
                         if day_elem and day_elem.text.strip().isdigit():
                             day_num = int(day_elem.text.strip())
