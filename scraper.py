@@ -249,18 +249,19 @@ def scrape_west_palm_beach():
 
     return events
 
-# --- 4. DELRAY BEACH MODULE (ASP.NET POSTBACK ENGINE FOR MULTI-MONTH) ---
+# --- 4. DELRAY BEACH MODULE (DIRECT LEGISTAR RSS ENGINE) ---
+import xml.etree.ElementTree as ET
+
 def scrape_delray_beach():
     events = []
-    base_url = "https://delraybeach.legistar.com/Calendar.aspx"
+    # Legistar's direct RSS calendar feed
+    rss_url = "https://delraybeach.legistar.com/CalendarRss.aspx?Type=Calendar"
     
     now = datetime.now()
     curr_year = now.year
     curr_month = now.month
 
-    next_month = 1 if curr_month == 12 else curr_month + 1
-    next_year = curr_year + 1 if curr_month == 12 else curr_year
-
+    # Date Window: Current month through end of next month (Aug 1 - Sept 30)
     current_month_start = datetime(curr_year, curr_month, 1)
     if curr_month == 11:
         lookahead_end = datetime(curr_year + 1, 1, 1)
@@ -269,88 +270,75 @@ def scrape_delray_beach():
     else:
         lookahead_end = datetime(curr_year, curr_month + 2, 1)
 
-    seen_event_keys = set()
-    session = requests.Session()
-    session.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
-    })
-
     try:
-        # 1. GET initial page to capture current month HTML & ASP.NET hidden tokens
-        res_aug = session.get(base_url, timeout=15)
-        pages_html = []
+        res = requests.get(rss_url, impersonate="chrome124", timeout=15)
+        print(f"[Delray RSS] HTTP Status Code: {res.status_code}")
         
-        if res_aug.status_code == 200:
-            pages_html.append(res_aug.text)
-            soup_aug = BeautifulSoup(res_aug.text, "html.parser")
+        if res.status_code == 200:
+            root = ET.fromstring(res.text)
+            items = root.findall(".//item")
+            print(f"[Delray RSS] Total XML meeting records found: {len(items)}")
 
-            # Extract ASP.NET hidden form fields needed to execute postbacks
-            viewstate = soup_aug.find("input", {"id": "__VIEWSTATE"})
-            eventvalidation = soup_aug.find("input", {"id": "__EVENTVALIDATION"})
-            viewstategenerator = soup_aug.find("input", {"id": "__VIEWSTATEGENERATOR"})
+            seen_event_keys = set()
 
-            if viewstate and eventvalidation:
-                payload = {
-                    "__EVENTTARGET": "ctl00$ContentPlaceHolder1$lstMonths",
-                    "__EVENTARGUMENT": "",
-                    "__VIEWSTATE": viewstate.get("value", ""),
-                    "__EVENTVALIDATION": eventvalidation.get("value", ""),
-                    "ctl00$ContentPlaceHolder1$lstYears": str(curr_year if next_month != 1 else next_year),
-                    "ctl00$ContentPlaceHolder1$lstMonths": f"{next_month:02d}" if isinstance(next_month, int) else str(next_month)
-                }
+            for item in items:
+                title_elem = item.find("title")
+                link_elem = item.find("link")
+                pubdate_elem = item.find("pubDate")
+                desc_elem = item.find("description")
 
-                if viewstategenerator:
-                    payload["__VIEWSTATEGENERATOR"] = viewstategenerator.get("value", "")
-
-                # 2. POST to trigger September calendar view server-side
-                res_sept = session.post(base_url, data=payload, timeout=15)
-                if res_sept.status_code == 200:
-                    pages_html.append(res_sept.text)
-
-        # 3. Parse extracted HTML responses
-        for html in pages_html:
-            soup = BeautifulSoup(html, "html.parser")
-            rows = soup.find_all("tr")
-
-            for row in rows:
-                cols = row.find_all("td")
-                if len(cols) < 3:
-                    continue
-
-                raw_title = cols[0].text.strip()
+                raw_title = title_elem.text.strip() if title_elem is not None and title_elem.text else ""
                 clean_title = clean_event_title(raw_title)
                 
-                raw_date = cols[1].text.strip() if len(cols) > 1 else ""
-                raw_time = cols[2].text.strip() if len(cols) > 2 else ""
+                raw_link = link_elem.text.strip() if link_elem is not None and link_elem.text else ""
+                desc_text = desc_elem.text if desc_elem is not None and desc_elem.text else ""
 
-                # Target direct PDF Agenda link (M=A) or fallback to Meeting Details page
+                # --- Extract Agenda PDF Link (M=A) or Fallback to Detail URL ---
                 href = ""
-                agenda_a = row.select_one("a[href*='View.ashx?M=A']")
-                if agenda_a and agenda_a.get('href'):
-                    href = agenda_a['href'].strip()
-                else:
-                    detail_a = row.select_one("a[href*='MeetingDetail.aspx']")
-                    if detail_a and detail_a.get('href'):
-                        href = detail_a['href'].strip()
+                if desc_text:
+                    soup_desc = BeautifulSoup(desc_text, "html.parser")
+                    agenda_a = soup_desc.select_one("a[href*='View.ashx?M=A']")
+                    if agenda_a and agenda_a.get('href'):
+                        href = agenda_a['href'].strip()
 
                 if not href:
-                    href = "Calendar.aspx"
+                    href = raw_link if raw_link else "Calendar.aspx"
 
+                # Convert M=IC calendar invite flags to M=A Agenda flags if present
+                href = href.replace("M=IC", "M=A")
+
+                # --- Date & Time Parsing ---
                 iso_date = None
-                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
-                if date_match:
-                    m, d, y = date_match.groups()
-                    iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+                meeting_time = "4:00 PM"
 
+                # Extract date from RSS pubDate or description text
+                if pubdate_elem is not None and pubdate_elem.text:
+                    try:
+                        # Standard RSS date format: "Tue, 15 Sep 2026 17:00:00 GMT"
+                        dt_pub = datetime.strptime(pubdate_elem.text[:16], "%a, %d %b %Y")
+                        iso_date = dt_pub.strftime("%Y-%m-%d")
+                    except Exception:
+                        pass
+
+                if not iso_date:
+                    date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', desc_text)
+                    if date_match:
+                        m, d, y = date_match.groups()
+                        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+
+                # Extract time string
+                time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', desc_text)
+                if time_match:
+                    t_val = time_match.group(1).strip().upper()
+                    if "AM" not in t_val and "PM" not in t_val:
+                        t_val += " PM"
+                    meeting_time = t_val
+
+                # Qualification check
                 if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                     dt = datetime.strptime(iso_date, "%Y-%m-%d")
                     
                     if current_month_start <= dt < lookahead_end:
-                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time)
-                        meeting_time = time_match.group(1).strip().upper() if time_match else "4:00 PM"
-                        if "AM" not in meeting_time and "PM" not in meeting_time:
-                            meeting_time += " PM"
-
                         full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
                         
                         dedup_key = (clean_title, iso_date)
@@ -367,10 +355,10 @@ def scrape_delray_beach():
                                 "summary": f"Official {clean_title} meeting."
                             })
 
-        print(f"[Delray] Successfully saved {len(events)} qualifying events across August and September.")
+            print(f"[Delray RSS] Successfully saved {len(events)} qualifying events for August and September.")
 
     except Exception as e:
-        print(f"[Delray] Error running ASP.NET postback scraper: {e}")
+        print(f"[Delray RSS] Error parsing RSS feed: {e}")
 
     return events
 
