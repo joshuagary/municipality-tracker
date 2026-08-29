@@ -10,7 +10,7 @@ DATA_FILE = "data.json"
 KEYWORDS = [
     "commission", "commissioners", "bcc", "council", "meeting", "agenda",
     "workshop", "hearing", "zoning", "planning", "p&z", "pz", "site plan",
-    "plat", "plats", "pprc", "redevelopment", "cra", "action", "cac"
+    "plat", "plats", "pprc", "redevelopment", "cra", "action", "cac", "work session"
 ]
 
 EXCLUDE_KEYWORDS = [
@@ -33,18 +33,18 @@ def extract_date_from_text(text):
     if not text:
         return None
         
+    # Match "September 1, 2026" or "September 01, 2026" or "Sep 1, 2026"
     m1 = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', text)
     if m1:
-        try:
-            dt = datetime.strptime(f"{m1.group(1)} {m1.group(2)} {m1.group(3)}", "%B %d %Y")
-            return dt.strftime("%Y-%m-%d")
-        except ValueError:
+        month_str, day_str, year_str = m1.group(1), m1.group(2), m1.group(3)
+        for fmt in ("%B %d %Y", "%b %d %Y", "%B %d, %Y"):
             try:
-                dt = datetime.strptime(f"{m1.group(1)} {m1.group(2)} {m1.group(3)}", "%b %d %Y")
+                dt = datetime.strptime(f"{month_str} {int(day_str)} {year_str}", "%B %d %Y")
                 return dt.strftime("%Y-%m-%d")
             except ValueError:
                 pass
 
+    # Match "2026-09-01" or "20260901" in URLs or text
     m2 = re.search(r'(20\d{2})[-_]?([0-1]\d)[-_]?([0-3]\d)', text)
     if m2:
         return f"{m2.group(1)}-{m2.group(2)}-{m2.group(3)}"
@@ -87,7 +87,7 @@ def scrape_boca_raton():
 def scrape_palm_beach_county():
     events = []
     url = "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     
     current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
 
@@ -109,69 +109,84 @@ def scrape_palm_beach_county():
                     if event_date >= current_month_start:
                         if "agenda" in full_context.lower() or "bcc" in full_context.lower():
                             full_link = href if href.startswith("http") else f"http://www.pbcgov.com{href}" if href.startswith("/pubInf") else f"https://discover.pbc.gov{href}"
+                            
+                            # Clean meeting title from match
+                            date_match = re.search(r'([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})', full_context)
+                            m_label = date_match.group(0) if date_match else iso_date_str
+
                             events.append({
-                                "id": f"pbc-{iso_date_str}",
+                                "id": f"pbc-{iso_date_str}-{hash(full_link)}",
                                 "muni_short": "PBC",
                                 "muni_full": "Palm Beach County Board of Commissioners",
-                                "title": f"BCC Regular Meeting Agenda",
+                                "title": f"BCC Meeting - {m_label}",
                                 "date": iso_date_str,
                                 "time": "9:30 AM",
                                 "link": full_link,
-                                "summary": "Official Palm Beach County Board of County Commissioners Agenda."
+                                "summary": "Official Palm Beach County Board of Commissioners Agenda."
                             })
     except Exception as e:
         print(f"Error scraping Palm Beach County: {e}")
     return events
 
-# --- 3. WEST PALM BEACH SCRAPER (UPDATED TARGET SOURCE) ---
+# --- 3. WEST PALM BEACH SCRAPER (TARGETING MEETINGS-AGENDAS & CALENDARS) ---
 def scrape_west_palm_beach():
     events = []
-    url = "https://www.wpb.org/Our-City/Meetings-Agendas"
+    urls = [
+        "https://www.wpb.org/Our-City/Meetings-Agendas",
+        "https://www.wpb.org/Our-City/Calendars/Meetings"
+    ]
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     
     current_month_start = datetime(datetime.now().year, datetime.now().month, 1)
 
-    try:
-        res = requests.get(url, headers=headers, timeout=12)
-        if res.status_code == 200:
-            soup = BeautifulSoup(res.text, "html.parser")
-            
-            # Look for meeting entries on the Meetings-Agendas page
-            for container in soup.select("li, .item-container, .event-item, tr"):
-                title_elem = container.select_one("a[href]")
-                if not title_elem:
-                    continue
-
-                title = title_elem.text.strip()
-                container_text = container.text.strip()
+    for url in urls:
+        try:
+            res = requests.get(url, headers=headers, timeout=12)
+            if res.status_code == 200:
+                soup = BeautifulSoup(res.text, "html.parser")
                 
-                if is_qualifying_event(title) or is_qualifying_event(container_text):
-                    iso_date = extract_date_from_text(title) or extract_date_from_text(container_text)
+                # Check all link elements and parent items on WPB portal
+                for a_tag in soup.select("a[href]"):
+                    title = a_tag.text.strip()
+                    href = a_tag['href']
                     
-                    # Look for direct PDF agenda link inside container
-                    pdf_link_elem = container.select_one("a[href*='.pdf']")
-                    if pdf_link_elem:
-                        target_href = pdf_link_elem['href']
-                    else:
-                        target_href = title_elem['href']
+                    # Context from surrounding item/container
+                    parent = a_tag.find_parent(["li", "tr", "div", "article"])
+                    parent_text = parent.text.strip() if parent else ""
+                    full_text = f"{title} {parent_text} {href}"
 
-                    full_link = target_href if target_href.startswith("http") else f"https://www.wpb.org{target_href}"
+                    if is_qualifying_event(title) or is_qualifying_event(parent_text):
+                        iso_date = extract_date_from_text(full_text)
+                        
+                        if iso_date:
+                            event_date = datetime.strptime(iso_date, "%Y-%m-%d")
+                            if event_date >= current_month_start:
+                                # Target direct PDF link if available, otherwise standard hyperlink
+                                target_href = href
+                                if parent:
+                                    pdf_child = parent.select_one("a[href*='.pdf']")
+                                    if pdf_child:
+                                        target_href = pdf_child['href']
 
-                    if iso_date:
-                        event_date = datetime.strptime(iso_date, "%Y-%m-%d")
-                        if event_date >= current_month_start:
-                            events.append({
-                                "id": f"wpb-{hash(full_link)}",
-                                "muni_short": "WPB",
-                                "muni_full": "City of West Palm Beach",
-                                "title": title if len(title) > 3 else "Public Governance Meeting",
-                                "date": iso_date,
-                                "time": "5:00 PM",
-                                "link": full_link,
-                                "summary": "Public meeting & agenda parsed from West Palm Beach Meetings-Agendas portal."
-                            })
-    except Exception as e:
-        print(f"Error scraping West Palm Beach: {e}")
+                                full_link = target_href if target_href.startswith("http") else f"https://www.wpb.org{target_href}"
+                                
+                                display_title = title if len(title) > 3 else parent_text.split('\n')[0]
+                                if len(display_title) > 80:
+                                    display_title = display_title[:77] + "..."
+
+                                events.append({
+                                    "id": f"wpb-{hash(full_link)}",
+                                    "muni_short": "WPB",
+                                    "muni_full": "City of West Palm Beach",
+                                    "title": display_title if display_title else "Public Governance Meeting",
+                                    "date": iso_date,
+                                    "time": "5:00 PM",
+                                    "link": full_link,
+                                    "summary": "Public meeting & agenda parsed from West Palm Beach Meetings & Agendas portal."
+                                })
+        except Exception as e:
+            print(f"Error scraping West Palm Beach from {url}: {e}")
+            
     return events
 
 # --- MAIN CONTROLLER ---
@@ -181,6 +196,7 @@ def run():
     raw_events.extend(scrape_palm_beach_county())
     raw_events.extend(scrape_west_palm_beach())
 
+    # Deduplicate strictly on Municipality + Date + Clean Title
     unique_events = {}
     for event in raw_events:
         clean_title = re.sub(r'\s+', ' ', event['title']).strip().lower()
@@ -189,7 +205,7 @@ def run():
 
     final_list = list(unique_events.values())
     save_data(final_list)
-    print(f"Updated source scraper complete. Saved {len(final_list)} unique events to {DATA_FILE}.")
+    print(f"Scraper run complete. Saved {len(final_list)} unique matching events to {DATA_FILE}.")
 
 if __name__ == "__main__":
     run()
