@@ -150,6 +150,22 @@
             min-height: 650px;
         }
 
+        /* Make all calendar day cells equal height */
+        .fc .fc-daygrid-day {
+            height: auto;
+            flex: 1 1 0;
+        }
+
+        .fc .fc-daygrid-day-frame {
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fc .fc-daygrid-day-bg {
+            flex: 1;
+        }
+
         /* STICKY CALENDAR HEADER (month/year toolbar + day-of-week row) */
         :root {
             --fc-toolbar-height: 56px; /* fallback; JS measures and overrides this */
