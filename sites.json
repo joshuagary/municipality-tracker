@@ -1,0 +1,51 @@
+[
+  {
+    "muni_code": "BB",
+    "muni_name": "Boynton Beach",
+    "type": "City",
+    "monitoring_url": "https://www.boyntonbeachfl.gov/government/meetings",
+    "status": "Active"
+  },
+  {
+    "muni_code": "DB",
+    "muni_name": "Delray Beach",
+    "type": "City",
+    "monitoring_url": "https://www.delraybeachfl.gov/government/meetings",
+    "status": "Active"
+  },
+  {
+    "muni_code": "LWB",
+    "muni_name": "Lake Worth Beach",
+    "type": "City",
+    "monitoring_url": "https://www.lakeworthbeachfl.gov/meetings",
+    "status": "Active"
+  },
+  {
+    "muni_code": "PB",
+    "muni_name": "Palm Beach",
+    "type": "Town",
+    "monitoring_url": "https://www.townofpalmbeach.com/government/meetings",
+    "status": "Active"
+  },
+  {
+    "muni_code": "PBC",
+    "muni_name": "Palm Beach County",
+    "type": "County",
+    "monitoring_url": "https://www.pbcgov.com/government/meetings",
+    "status": "Active"
+  },
+  {
+    "muni_code": "RB",
+    "muni_name": "Riviera Beach",
+    "type": "City",
+    "monitoring_url": "https://www.rivierabeachfl.gov/meetings",
+    "status": "Active"
+  },
+  {
+    "muni_code": "WPB",
+    "muni_name": "West Palm Beach",
+    "type": "City",
+    "monitoring_url": "https://www.wpb.org/government/meetings",
+    "status": "Active"
+  }
+]
