@@ -28,7 +28,7 @@ doesn't reproduce the full code.
 ## Municipality Status (as of last confirmed GitHub Actions run) {#municipality-status-as-of-last-confirmed-github-actions-run}
 
 \| Muni | Platform | Mechanism | Status |\\n| \-\-\- | \-\-\- | \-\-\- | \-\-\- |\\n| Palm Beach Gardens (PBG) | CivicPlus (`pbgfl.gov`) | `calendar.aspx?view=list&year=&month=` | ✅ Working |\\n| Delray Beach | Legistar | `webapi.legistar.com/v1/delraybeach/events` JSON API | ✅ Working (confirmed 9 events) |\\n| Palm Beach County (PBC) | SharePoint (`www.pbcgov.org`) | Regex\-parses `Agenda_Master/YYYYMMDD.pdf` links | ✅ Working (updated from discover.pbc.gov due to WAF blocking on GitHub Actions) |\\n| Boca Raton | CivicPlus (`myboca.us`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 16 events) |\\n| Boynton Beach | CivicPlus (`boynton-beach.org`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 12 events) |\\n| West Palm Beach (WPB) | Granicus OpenCities (`wpb.org`) | Static per\-series pages listing every date under a "When" heading | ✅ Working (confirmed 8 events) |\\n| Wellington | CivicPlus (`wellingtonfl.gov`) | Own function, `scrape_wellington()` — Schema.org microdata | ✅ Working (confirmed 3 events, CIP Workshop correctly excluded) |\\n| **Westlake** | **MuniCode (`meetings.municode.com`, jurisdiction `WESTLAKEFL`)** | **Own function, `scrape_westlake()` — HTML table parse, see below** | ⚠️ **First\-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |\\n| **Downtown WPB DDA** | **WordPress (`downtownwpb.com/dda/board-meetings/`)** | **Own function, `scrape_downtown_wpb_dda()` — `<li>` date\-list parse, see below** | ⚠️ **First\-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |\\n| **City of Palm Beach** (Town of Palm Beach) | **CivicClerk / CivicPlus "Meetings Select" portal (`palmbeachfl.portal.civicclerk.com`)** | **Own function, `scrape_palm_beach()` — real OData JSON API \+ user\-confirmed agenda\-link pattern, see below** | ⚠️ **Events \+ agenda links confirmed working by the user for real events (Sept 1 example) — fallback link for events with no agenda yet still unconfirmed; not yet confirmed against a full real GitHub Actions log** |\\n| **Town of Jupiter** | **CivicPlus (`jupiter.fl.us`), exact behavior unknown** | **Own function, `scrape_jupiter()` — tries both known CivicPlus shapes, see below** | ⚠️ **Least\-confirmed scraper in the project — zero network access of any kind this session, not even a rendered preview** |
-| **Town of Jupiter Inlet Colony** | **AgendaCenter (`jupiterinletcolony.gov/AgendaCenter`)** | **Own function, `scrape_jupiter_inlet_colony()` — three-strategy HTML parser (tr/li/div selectors), see below** | ✅ **Confirmed working on first real run** |\\n| **City of Riviera Beach** | **Granicus ViewPublisher (`rivierabeach.granicus.com`, embedded via iframe from `rivierabch.com/ccm`)** | **Own function, `scrape_riviera_beach()` — HTML table row parse (`listingRow`/`AgendaViewer.php`), see below** | ⚠️ **Row markup \+ agenda\-link pattern confirmed real by the user via View Page Source — sandbox never had network access to execute the fetch; not yet confirmed against a real GitHub Actions log** |\\n| **Town of Juno Beach** | **MuniCode "Meetings" portal, embedded via iframe from `juno-beach.fl.us/1203/Agendas-Minutes` \- real scrape target confirmed by the user via DOM inspection to be `legacyjuno-beach.teammunicode.com/meetings`** | **Own function, `scrape_juno_beach()` \- HTML table row parse, PDF-only Agenda-column link (never Agenda Packet, never the HTML version), see below** | ⚠️ **Wrapper page confirmed dead-end on a real GitHub Actions log; iframe target confirmed real by the user via DOM inspection; scraper now points at the correct host but its raw HTML has still never been seen \- sandbox has zero network route to teammunicode.com either** |\\n
+\| **Town of Jupiter Inlet Colony** | **AgendaCenter (`jupiterinletcolony.gov/AgendaCenter`)** | **Own function, `scrape_jupiter_inlet_colony()` — three\-strategy HTML parser (tr/li/div selectors), see below** | ✅ **Confirmed working on first real run** |\\n| **City of Riviera Beach** | **Granicus ViewPublisher (`rivierabeach.granicus.com`, embedded via iframe from `rivierabch.com/ccm`)** | **Own function, `scrape_riviera_beach()` — HTML table row parse (`listingRow`/`AgendaViewer.php`), see below** | ⚠️ **Row markup \+ agenda\-link pattern confirmed real by the user via View Page Source — sandbox never had network access to execute the fetch; not yet confirmed against a real GitHub Actions log** |\\n| **Town of Juno Beach** | **MuniCode "Meetings" portal, embedded via iframe from `juno-beach.fl.us/1203/Agendas-Minutes` \- real scrape target confirmed by the user via DOM inspection to be `legacyjuno-beach.teammunicode.com/meetings`** | **Own function, `scrape_juno_beach()` \- HTML table row parse, PDF\-only Agenda\-column link (never Agenda Packet, never the HTML version), see below** | ⚠️ **Wrapper page confirmed dead\-end on a real GitHub Actions log; iframe target confirmed real by the user via DOM inspection; scraper now points at the correct host but its raw HTML has still never been seen \- sandbox has zero network route to teammunicode.com either** |\\n
 
 ### Key Methodological Lessons (read before building the next scraper) {#key-methodological-lessons-read-before-building-the-next-scraper}
 
@@ -80,21 +80,20 @@ you'd normally use to double\-check the preview isn't available either.
 clearly renders real content, because the content lives inside an `<iframe>` pointing
 at a completely different host.** Discovered adding Juno Beach: a real GitHub Actions
 run against `juno-beach.fl.us/1203/Agendas-Minutes` returned a normal HTTP 200 with a
-real, non-trivial body (78,832 bytes) — but no table, and not even the string "Town
+real, non\-trivial body (78,832 bytes) — but no table, and not even the string "Town
 Council," existed anywhere in that raw HTML. The page LOOKS like it has a meetings
 table when viewed in a browser, but that table is rendered by a separate document
 loaded into `<iframe id="child-iframe" src="https://legacyjuno-beach.teammunicode.com/meetings">`
 — a different subdomain entirely. `fetch_hardened()` (or any plain HTTP GET) only ever
 sees the wrapper page's own markup; it never executes JS and never follows iframe
 `src` attributes the way a browser does. **When a real run's debug dump comes back
-empty/boilerplate-only despite the user seeing real content in their browser, the
+empty/boilerplate\-only despite the user seeing real content in their browser, the
 right move is to ask the user to inspect the live DOM for an `<iframe>` (search the
 Elements panel for "iframe") and report its `src` — then point the scraper at THAT
 url directly**, the same pattern already used for Riviera Beach's Granicus iframe
 (`rivierabch.com/ccm` → `rivierabeach.granicus.com/ViewPublisher.php`). Don't assume a
 wrapper page's failure means "unfixable" or "needs a real browser" — it may just mean
 the scraper is pointed at the wrong host.
-
 
 ### Key history / root causes fixed in prior sessions {#key-history-root-causes-fixed-in-prior-sessions}
 
@@ -108,10 +107,17 @@ the scraper is pointed at the wrong host.
   calendar..." with no server\-side content) \- a plain fetch can't read it. Its
   individual meeting\-series pages are static, though, and list the full year's dates.
 - **PBC's domain & WAF issue**\: `discover.pbcgov.org` → `discover.pbc.gov` → `www.pbcgov.org`. The `discover.pbc.gov` domain had a WAF (Web Application Firewall) that was blocking automated requests from GitHub Actions, causing "Connection reset by peer" errors even with `curl_cffi`. Updated scraper to use `www.pbcgov.org/countycommissioners/pages/agenda.aspx` instead. The page has no clean event list, so the scraper pulls the date straight from agenda PDF filenames.
+- **PBC regression, confirmed this session via a real GitHub Actions log the user pasted**\: `www.pbcgov.org/countycommissioners/pages/agenda.aspx` started failing the *same* way `discover.pbc.gov` originally did — `curl_cffi` (chrome124 fingerprint) returned "Connection reset by peer", and the plain\-`requests` fallback returned "Connection aborted" / `RemoteDisconnected`. Both are TLS\-level connection resets, not HTTP error codes, meaning PBC's WAF is now rejecting `www.pbcgov.org` outright too, not just the old `discover.pbc.gov` host. **Mitigation applied (UNCONFIRMED)**\: added `fetch_hardened_retry()` in `scraper.py`, which retries the same URL across four different `curl_cffi` browser TLS fingerprints (`chrome124`, `chrome120`, `safari15_5`, `edge101`) with a short backoff between attempts, in case the block is fingerprint\-specific. `scrape_palm_beach_county()` now calls this instead of a single `fetch_hardened()` call. This sandbox has no network route to pbcgov.org to test against, so **this is a reasonable next attempt, not a verified fix** — same category as every other unconfirmed scraper in this project. If every fingerprint still resets the connection identically on the next real run, that's strong evidence the block is IP\-range\-based (GitHub Actions runner IPs specifically) rather than fingerprint\-based, which no TLS fingerprint change can fix — that would need a different mitigation (e.g. a proxy/relay, or sourcing PBC's agenda data from somewhere else entirely) rather than another header/fingerprint tweak. Ask the user to run the workflow again and paste back the new `[PBC]`\-prefixed log lines.
 - **`fetch_hardened()` helper**\: uses `curl_cffi` (already in
   `requirements`/workflow deps) to impersonate a real Chrome TLS fingerprint, since
   plain `requests` gets blocked by some of these sites' WAFs on GitHub Actions IP
   ranges. Falls back to plain `requests` if `curl_cffi` isn't available.
+- **`fetch_hardened_retry()` helper (added this session)**\: wraps `fetch_hardened()`
+  with retries across a short list of curl\_cffi browser TLS fingerprints and a brief
+  backoff, for sites (like PBC) whose WAF has been observed resetting the connection
+  outright rather than returning an HTTP error code. Returns the first HTTP 200
+  response, or the last response received if none were 200, or `None` if every
+  fingerprint failed to connect at all.
 
 ### Wellington (added in an earlier session) {#wellington-added-in-an-earlier-session}
 
@@ -280,19 +286,21 @@ the scraper is pointed at the wrong host.
 
 ### City of Riviera Beach (added this session — real markup confirmed by user, sandbox execution still unconfirmed) {#city-of-riviera-beach-added-this-session}
 
-- **URL**: `https://www.rivierabch.com/ccm`. The city's own site runs QScend (not a
+- **URL**\: `https://www.rivierabch.com/ccm`. The city's own site runs QScend (not a
   platform seen elsewhere in this project), but it doesn't serve the meetings list
   itself — `/ccm` embeds an `<iframe>` pointing directly at
   `https://rivierabeach.granicus.com/ViewPublisher.php?view_id=1`, a standard
   Granicus "Legislative Management" **ViewPublisher** page — a different Granicus
-  product from WPB's OpenCities per-series static pages. This is a **sixth distinct
+  product from WPB's OpenCities per\-series static pages. This is a **sixth distinct
   platform** for this project (CivicPlus/CivicEngage, Legistar, SharePoint/PDF,
   Granicus OpenCities, MuniCode, WordPress, CivicClerk, and now Granicus
   ViewPublisher).
+
 - **Real markup confirmed directly by the user via View Page Source on the live
-  granicus.com page** (not a WebFetch rendered-preview hypothesis — same standard as
+  granicus.com page** (not a WebFetch rendered\-preview hypothesis — same standard as
   PBC/Delray/Wellington/Palm Beach's confirmed pieces). The user pasted the literal
   raw row:
+  
   ```html
   <tr class="listingRow">
     <td class="listItem" headers="Name" id="City-Council" scope="row">City Council</td>
@@ -302,29 +310,33 @@ the scraper is pointed at the wrong host.
     <td class="listItem">&nbsp;</td>  <!-- Minutes column, blank when not posted -->
   </tr>
   ```
+  
   This confirms the column layout (Name, Date, Duration, Agenda, Minutes) and the
-  real agenda-link pattern: `//rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id={N}`
-  (protocol-relative).
-- **What's NOT confirmed**: this session's sandbox has zero outbound network route to
+  real agenda\-link pattern: `//rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id={N}`
+  (protocol\-relative).
+
+- **What's NOT confirmed**\: this session's sandbox has zero outbound network route to
   `granicus.com` at all — a plain `curl` was rejected by the egress policy, and a
-  separate WebFetch rendered-preview attempt was blocked by that domain's
+  separate WebFetch rendered\-preview attempt was blocked by that domain's
   `robots.txt`. So `fetch_hardened()` in `scrape_riviera_beach()` has never actually
-  been executed against the real page — only logic-tested against a fixture built
+  been executed against the real page — only logic\-tested against a fixture built
   from the exact real row above (plus a synthetic "no agenda yet" row and an
-  out-of-range row), confirming correct date/time parsing, agenda-link construction,
-  the "No Agenda Available" fallback link, month-range filtering, and whitelist
-  filtering. **Treat this as an unconfirmed-by-execution first draft**, same
+  out\-of\-range row), confirming correct date/time parsing, agenda\-link construction,
+  the "No Agenda Available" fallback link, month\-range filtering, and whitelist
+  filtering. **Treat this as an unconfirmed\-by\-execution first draft**, same
   category as Westlake/Jupiter, but with stronger markup grounding than either.
-- **Written defensively** per Key Methodological Lesson #2: agenda detection
+
+- **Written defensively** per Key Methodological Lesson \#2: agenda detection
   searches for an `<a href>` matching `AgendaViewer\.php` anywhere in the row rather
   than a hardcoded column index, so it survives column reordering (Duration/Agenda/
   Minutes/Video order isn't guaranteed stable beyond the one confirmed sample). Falls
-  back to matching any `<td class="listItem">`-containing row if the exact
+  back to matching any `<td class="listItem">`\-containing row if the exact
   `listingRow` class doesn't match, and dumps a raw HTML slice anchored on
   `"listingRow"`/`"AgendaViewer"`/`"City Council"` if nothing is found at all. Logs
   HTTP status, row count, and the first row's raw HTML unconditionally.
-- **Whitelist note — not yet resolved, flag to user rather than guessing**: real
-  meeting-name values seen in the user's screenshot include "Utility Special
+
+- **Whitelist note — not yet resolved, flag to user rather than guessing**\: real
+  meeting\-name values seen in the user's screenshot include "Utility Special
   District", "Utility Special District Budget Workshop", "FY2027 Budget Workshop",
   and "Community Awards and Presentations Program" — none of these match any current
   `is_qualifying_event` pattern and will be silently excluded, same discipline as
@@ -332,29 +344,31 @@ the scraper is pointed at the wrong host.
   questions. "City Council", "City Council Budget Workshop" (contains "City
   Council"), "Community Redevelopment Agency", and "Planning and Zoning Board
   Meeting" all already qualify with no whitelist changes needed.
+
 - `muni_short` is `"RIVBEACH"`, `muni_full` is `"City of Riviera Beach"`.
+
 - Wired into `main()` already, so it runs as part of the normal daily job.
 
 ### Town of Juno Beach (added this session — real iframe target confirmed, table markup still unconfirmed) {#town-of-juno-beach-added-this-session}
 
-- **URL**: `https://www.juno-beach.fl.us/1203/Agendas-Minutes`. The user's own
+- **URL**\: `https://www.juno-beach.fl.us/1203/Agendas-Minutes`. The user's own
   screenshot of this page shows a table with columns Date | Meeting | Agenda | Agenda
   Packet | Minutes | Video | View — visually almost identical to Westlake's table.
-- **First-pass mistake, caught and fixed this session**: the first version of
+- **First\-pass mistake, caught and fixed this session**\: the first version of
   `scrape_juno_beach()` fetched `juno-beach.fl.us/1203/Agendas-Minutes` directly (the
   same approach that worked for Westlake). The user ran the real GitHub Actions
   workflow and pasted back the log: HTTP 200, 78,832 bytes returned, but **no table
   and not even the string "Town Council" anywhere in the raw HTML** — just
   `<head>` boilerplate (Google Tag Manager snippet, meta tags). This is the exact
-  failure mode of Key Methodological Lesson #3 (see above, added this session): the
+  failure mode of Key Methodological Lesson \#3 (see above, added this session): the
   page LOOKS like it has a meetings table in a browser, but that table is actually
   rendered inside `<iframe id="child-iframe" src="https://legacyjuno-beach.teammunicode.com/meetings">`
   — a completely different subdomain. The user found this by inspecting the live DOM
-  (Elements panel) after the wrapper-page fetch came back empty.
-- **Platform**: MuniCode's "Meetings" portal — the same underlying product family as
+  (Elements panel) after the wrapper\-page fetch came back empty.
+- **Platform**\: MuniCode's "Meetings" portal — the same underlying product family as
   Westlake (`meetings.municode.com`), just served from a `teammunicode.com` subdomain
   instead. Confirmed by (a) the iframe `src` found via the user's DOM inspection, and
-  (b) a real, user-confirmed Agenda PDF link that matches MuniCode's blob-storage
+  (b) a real, user\-confirmed Agenda PDF link that matches MuniCode's blob\-storage
   pattern exactly:
   `https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-a6ab28e22b70481881672879e8035d7d.pdf`
   (the `jnobeachfl-pubu` blob container name is the strongest single piece of evidence
@@ -364,49 +378,49 @@ the scraper is pointed at the wrong host.
   already used for Riviera Beach's Granicus iframe. This is a major, concrete fix over
   the first pass — the original scraper was pointed at a host that could never have
   worked, no matter how it was written.
-- **What's still NOT confirmed**: this session had **zero outbound network access to
+- **What's still NOT confirmed**\: this session had **zero outbound network access to
   `legacyjuno-beach.teammunicode.com` either** — a direct curl from the sandbox shell
   was rejected outright by the egress/org policy (`connect_rejected`), and a separate
   WebFetch attempt was blocked by that host's own `robots.txt`. So the actual raw HTML
   of `/meetings` on the teammunicode.com host has **never been seen this session** —
   the parser is still built only from the user's screenshot of the rendered table
-  (unconfirmed markup, per Lesson #1) plus the one confirmed real PDF link. Treat this
-  as an unconfirmed-by-execution first draft, same category as Westlake/Jupiter, but
+  (unconfirmed markup, per Lesson \#1) plus the one confirmed real PDF link. Treat this
+  as an unconfirmed\-by\-execution first draft, same category as Westlake/Jupiter, but
   now at least pointed at a host that can plausibly return real data.
-- **Explicit user instruction — Agenda column only, PDF only**: the table has two
+- **Explicit user instruction — Agenda column only, PDF only**\: the table has two
   visually adjacent columns, "Agenda" and "Agenda Packet," each showing a PDF icon and
   an HTML icon once documents are posted. Per the user: only the "Agenda" column's PDF
-  link should ever be used — never "Agenda Packet," and never the HTML-format link.
+  link should ever be used — never "Agenda Packet," and never the HTML\-format link.
   `scrape_juno_beach()` matches the "Agenda" header column exactly (excluding any
   header containing "packet") and within that cell prefers a link ending in `.pdf`,
   falling back to matching a "PDF" label/icon `alt` text, and explicitly excluding
   anything labeled "HTML."
-- **Written defensively**, same approach as `scrape_westlake()`: table-selector
-  fallbacks (id/class hints, else largest table by row count), agenda-column
-  identified by header text rather than a hardcoded index, and a raw-HTML debug dump
+- **Written defensively**, same approach as `scrape_westlake()`\: table\-selector
+  fallbacks (id/class hints, else largest table by row count), agenda\-column
+  identified by header text rather than a hardcoded index, and a raw\-HTML debug dump
   anchored on "Town Council" if no table is found at all. Logs the detected header
   row, agenda column index, row count, and a sample raw row unconditionally.
-- **No-agenda fallback link**: per the project-wide "No Agenda Available" policy,
+- **No\-agenda fallback link**\: per the project\-wide "No Agenda Available" policy,
   when no PDF link is found the event's `link` field points at the town's own public
   page (`https://www.juno-beach.fl.us/1203/Agendas-Minutes`) — never at the internal
   `teammunicode.com` scrape URL, and never a dead/guessed link.
-- **Logic smoke-tested** against a fixture built from the user's screenshot, including
+- **Logic smoke\-tested** against a fixture built from the user's screenshot, including
   a reproduction of the user's own confirmed real PDF URL — confirmed the parser
   extracts that exact PDF link (not the Agenda Packet column, not the HTML version),
   correctly falls back to the public page URL when no agenda is posted, and correctly
   passes/excludes titles through the existing whitelist ("Town Council Regular
-  Meeting," "Planning and Zoning Board," and "Town Council Budget Workshop #2" all
+  Meeting," "Planning and Zoning Board," and "Town Council Budget Workshop \#2" all
   qualify with no whitelist changes needed; a synthetic "Financial Advisory Board" row
   was correctly excluded).
 - `muni_short` is `"JUNOBEACH"`, `muni_full` is `"Town of Juno Beach"`.
 - Wired into `main()` already, so it runs as part of the normal daily job.
 
-### Town of Jupiter Inlet Colony (added in follow-up session — CONFIRMED WORKING) {#town-of-jupiter-inlet-colony-confirmed-working}
+### Town of Jupiter Inlet Colony (added in follow\-up session — CONFIRMED WORKING) {#town-of-jupiter-inlet-colony-confirmed-working}
 
-- **URL**: `https://www.jupiterinletcolony.gov/AgendaCenter`. Legally a **Town**, not a City — `muni_code` is `JUIC`, `muni_name` is `"Town of Jupiter Inlet Colony"`.
-- **Platform**: AgendaCenter — a **new platform for this project** (ninth distinct platform after CivicPlus/Legistar/SharePoint/Granicus-OpenCities/MuniCode/WordPress/CivicClerk/Granicus-ViewPublisher).
-- **Whitelist addition required**: user explicitly required "Local Planning Agency Meeting" to be included. Added to `is_qualifying_event()` as `r'\bLocal Planning Agency\b'` alongside the existing "Town Commission" pattern.
-- **`scrape_jupiter_inlet_colony()` — defensive first-pass design**:
+- **URL**\: `https://www.jupiterinletcolony.gov/AgendaCenter`. Legally a **Town**, not a City — `muni_code` is `JUIC`, `muni_name` is `"Town of Jupiter Inlet Colony"`.
+- **Platform**\: AgendaCenter — a **new platform for this project** (ninth distinct platform after CivicPlus/Legistar/SharePoint/Granicus\-OpenCities/MuniCode/WordPress/CivicClerk/Granicus\-ViewPublisher).
+- **Whitelist addition required**\: user explicitly required "Local Planning Agency Meeting" to be included. Added to `is_qualifying_event()` as `r'\bLocal Planning Agency\b'` alongside the existing "Town Commission" pattern.
+- **`scrape_jupiter_inlet_colony()` — defensive first\-pass design**\:
   - Base URL: `https://www.jupiterinletcolony.gov/AgendaCenter`
   - Three fallback strategies for row parsing: `find_all("tr")` first, then `find_all("li")`, then `find_all("div")` — handles unknown HTML table structure gracefully
   - Date pattern matching: "Month DD, YYYY" format (e.g. "August 19, 2026")
@@ -414,9 +428,23 @@ the scraper is pointed at the wrong host.
   - Deduplication by `(clean_title, iso_date, meeting_time)`
   - Event structure includes `has_agenda` field with fallback URL support (when `has_agenda: False`, link points at base AgendaCenter URL, not a guessed agenda path)
   - Heavy debug logging for first run verification
-  - ~165 lines, integrated into `main()`
-- **Added to `sites.json`**: entry positioned alphabetically between JUNOBEACH and JUPITER; increases municipality count from 13 to 14.
+  - \~165 lines, integrated into `main()`
+- **Added to `sites.json`**\: entry positioned alphabetically between JUNOBEACH and JUPITER; increases municipality count from 13 to 14.
 - **Confirmed working on first real GitHub Actions run** — scraper extracted real events with correct titles, dates/times, and agenda links. No issues detected.
+
+### Town of Manalapan (added this session — UNCONFIRMED, see Goals for Next Session) {#town-of-manalapan-added-this-session-unconfirmed}
+
+- **URL**\: `https://manalapan.org/agenda-minutes/`. `muni_code` is `MANALAPAN`, `muni_full` is `"Town of Manalapan"`.
+- **Platform**\: WordPress (meta\-generator confirms "WordPress Download Manager 3.3.68") — a **second, distinct WordPress instance** for this project. Not the same shape as Downtown WPB DDA's WordPress page (that one is a bulleted `<li>` date list, no table); Manalapan's page is HTML `<table>`s grouped by month, one row per meeting. No iframe / third\-party civic platform detected in the WebFetch preview.
+- **Per two WebFetch rendered\-preview passes** (unconfirmed against raw HTML — see Lesson 1; this sandbox also has zero direct network route to `manalapan.org`, confirmed via a plain `curl` rejected outright by the egress policy — Lesson 2):
+  - Table columns: Description | Meeting Date | Agenda | Packet | Minutes | Recording.
+  - Sample Description cell: `"01/08/2026 – Architectural Commission Meeting"` (MM/DD/YYYY, en\-dash, then body/meeting name); the separate Meeting Date cell repeats the date as `"January 8, 2026"`.
+  - Agenda/Packet/Minutes/Recording cells hold a `"Download"` link to `manalapan.org/wp-content/uploads/YYYY/MM/*.pdf` when posted, or an em\-dash placeholder when not.
+  - Real body/meeting names seen on the page: "Architectural Commission Meeting", "Town Commission Meeting", "Pension Board Meeting", "Special Magistrate Hearing", "First Budget Hearing", "Final Budget Hearing Meeting".
+- **`scrape_manalapan()` written defensively**, same pattern as Westlake/Juno Beach: iterates every `<table>` on the page rather than assuming a single one; Agenda column located by header text (excluding any header containing "packet", so the Packet column's link is never grabbed by mistake) rather than a hardcoded index; title extracted by stripping the leading `MM/DD/YYYY –` prefix off the Description cell. Logs the detected header row, agenda column index, row count, and a sample raw row unconditionally; dumps a raw HTML slice anchored on "Town Commission" (or "Agenda") if nothing qualifying is extracted. **Treat as an unconfirmed first\-pass draft**, same category Westlake/Juno Beach started in.
+- **Logic smoke\-tested** against a hand\-built HTML fixture matching the hypothesized table structure (one Town Commission row with a real agenda link, one Architectural Commission row, one Special Magistrate row) — confirmed only "Town Commission Meeting" passes the current whitelist, confirmed the agenda link is pulled from the Agenda column and not Packet/Minutes, and confirmed the "no agenda posted" fallback points at the source page. This confirms the code logic against the hypothesized shape only — not that the real site's HTML actually matches it.
+- **Whitelist note — NOT resolved, flagged rather than guessed**\: of the six real meeting/body names seen, only **"Town Commission Meeting"** currently qualifies (existing `\bTown Commission\b` pattern). "Architectural Commission Meeting", "Pension Board Meeting", "First Budget Hearing", and "Final Budget Hearing Meeting" don't match any existing pattern and will be silently excluded. "Special Magistrate Hearing" matches a body this project has explicitly and deliberately excluded before per a past user decision (see Filtering Logic section) — left out here too, consistent with that standing decision, not re\-litigated. Ask the user which (if any) of the other four should be added.
+- Added to `sites.json` (inserted alphabetically between Jupiter Inlet Colony and Palm Beach); wired into `main()`.
 
 ## Global Feature: "No Agenda Available" events (added this session, applies project\-wide) {#global-feature-no-agenda-available-events-added-this-session-applies-project-wide}
 
@@ -487,20 +515,26 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
 
 ## Frontend (`index.html`) Features {#frontend-indexhtml-features}
 
-### Admin Tab & Dynamic Sites Monitoring List (added this session)
+### Admin Tab & Dynamic Sites Monitoring List (added this session) {#admin-tab-dynamic-sites-monitoring-list-added-this-session}
 
 - **New "Admin" tab** alongside Calendar and List View — accessible via toggle buttons at the top.
-- **Admin page includes**:
+
+- **Admin page includes**\:
+  
   - Application Overview section explaining the purpose and functionality
   - Keywords & Search Terms section describing how search works and what keywords are used
-  - Monitoring Timeline section showing current monitoring window (current month + 1 month = 2 months total)
+  - Monitoring Timeline section showing current monitoring window (current month \+ 1 month \= 2 months total)
   - Update Frequency note (once daily at midnight Eastern Time)
   - **Dynamic "Sites Being Monitored" table** — see below
 
-- **Dynamic Sites Table (`sites.json` configuration)**:
-  - **File**: `sites.json` at the repository root (alongside `index.html`, `data.json`, `scraper.py`)
-  - **Purpose**: maintains a list of all municipalities being monitored by the scraper, independent of whether events currently exist for them in `data.json`. This solves a critical problem: if a municipality has no meetings in the current 2-month window, it would disappear from `data.json` and thus wouldn't appear in the Admin table — even though it's still actively being scraped. The `sites.json` configuration file ensures the Admin page always reflects the actual monitoring scope.
-  - **Structure**: JSON array of municipality objects:
+- **Dynamic Sites Table (`sites.json` configuration)**\:
+  
+  - **File**\: `sites.json` at the repository root (alongside `index.html`, `data.json`, `scraper.py`)
+  
+  - **Purpose**\: maintains a list of all municipalities being monitored by the scraper, independent of whether events currently exist for them in `data.json`. This solves a critical problem: if a municipality has no meetings in the current 2\-month window, it would disappear from `data.json` and thus wouldn't appear in the Admin table — even though it's still actively being scraped. The `sites.json` configuration file ensures the Admin page always reflects the actual monitoring scope.
+  
+  - **Structure**\: JSON array of municipality objects:
+    
     ```json
     [
       {
@@ -513,30 +547,36 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
       ...
     ]
     ```
-  - **Fields**:
-    - `muni_code`: Short 2–3 character code (e.g., "WPB", "PBC") — used internally for uniqueness
-    - `muni_name`: Full display name as it should appear in the Admin table
-    - `type`: One of "City", "Town", "County", "Village", "Authority", etc.
-    - `monitoring_url`: The URL being actively monitored by the scraper (e.g., the scraper's entry point for that municipality)
-    - `status`: "Active", "Inactive", "Suspended", etc. — controls the status badge styling (currently all are "Active" and styled green)
   
-  - **How it works**:
+  - **Fields**\:
+    
+    - `muni_code`\: Short 2–3 character code (e.g., "WPB", "PBC") — used internally for uniqueness
+    - `muni_name`\: Full display name as it should appear in the Admin table
+    - `type`\: One of "City", "Town", "County", "Village", "Authority", etc.
+    - `monitoring_url`\: The URL being actively monitored by the scraper (e.g., the scraper's entry point for that municipality)
+    - `status`\: "Active", "Inactive", "Suspended", etc. — controls the status badge styling (currently all are "Active" and styled green)
+  
+  - **How it works**\:
+    
     - `index.html` loads `sites.json` on page load via the `loadSitesTable()` JavaScript function
     - The function fetches `sites.json`, iterates over each municipality, and dynamically generates HTML table rows
     - All styling (clickable URLs, status badges, hover effects) is applied consistently
     - If `sites.json` fails to load, the table shows an error message instead of breaking
   
-  - **How to add a new municipality**:
+  - **How to add a new municipality**\:
+    
     1. Add a new object to the `sites.json` array with all five required fields
     2. Make sure the `muni_code` is unique and matches the code used in `scraper.py`
     3. The Admin table will automatically include it on the next page load — no HTML editing needed
     4. Keep the array sorted alphabetically by `muni_name` for consistency
   
-  - **How to remove a municipality**:
+  - **How to remove a municipality**\:
+    
     1. Delete its entry from the `sites.json` array
     2. The table will automatically reflect the removal on the next page load
   
   - **Example addition** (if a new municipality "Sunrise" is added to the scraper):
+    
     ```json
     {
       "muni_code": "SUNRISE",
@@ -549,6 +589,7 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
 
 - **`dayMaxEvents: 3` \+ `moreLinkClick: 'popover'`** \- days with more than 3 meetings
   collapse into a "\+N more" link with a popover, instead of listing everything inline.
+
 - **Custom styled hover tooltip** (not FullCalendar's native/browser tooltip) \- shows
   muni badge, full title, date/time, summary, and a status hint ("Click to view
   agenda" or "No Agenda Available"), positioned near the cursor and clamped to stay
@@ -556,6 +597,7 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
   `extendedProps` attached to each calendar event. **This tooltip is not itself
   hoverable/interactive** \- see the "No Agenda Available" section above before adding
   any new content to it that might read as clickable.
+
 - **Sticky calendar header:** the month/year toolbar (`.fc-header-toolbar`) is confirmed
   working with `position: sticky; top: 0`. The weekday row (Sun\-Sat) fix (targeting
   `.fc-scrollgrid-section-header` directly instead of assuming a `<td>` wrapper) was
@@ -588,7 +630,7 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
 
 ## Goals for Next Session {#goals-for-next-session}
 
-0. **`scrape_jupiter_inlet_colony()` is confirmed working** — no follow-up needed on this one.
+0. **`scrape_jupiter_inlet_colony()` is confirmed working** — no follow\-up needed on this one.
 
 1. **Confirm `scrape_palm_beach()` against a full real GitHub Actions run.** The API
    endpoint/shape AND the agenda\-link pattern are now both confirmed by the user with
@@ -601,6 +643,7 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
    prefixed log lines. Also ask the user whether "Architectural Commission Meeting"
    (the one real title seen so far, currently excluded by the whitelist) or any other
    non\-Town\-Council meeting type should qualify.
+
 2. **Confirm or fix `scrape_westlake()` against a real run.** Ask the user to run the
    GitHub Actions workflow (or `python scraper.py` locally) and paste back the
    `[Westlake]`\-prefixed log lines. The function logs the detected table header row,
@@ -613,13 +656,16 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
    `has_agenda: False`) once September's packet is posted, expect it to flip to
    `has_agenda: True` on a subsequent run. If the real `<li>` structure differs, rebuild
    from the real log output.
+
 3. Resolve whether Westlake's "Education Advisory Board Meeting" and "Local Planning
    Agency Meeting" should be added to the whitelist \- they're real recurring meeting
    types on Westlake's calendar that don't currently qualify. Ask the user rather than
    guessing.
+
 4. Add the next new municipality \- **use Key Methodological Lessons \#1 and \#2 above
    from the start**\: don't assume a web\-fetch tool's rendered preview reflects the real
    HTML, and don't assume the sandbox has live network access to the target site either
+   
    - check both explicitly. If the platform/mechanism is at all unclear, build in a
      debug\-print step early and confirm against a real GitHub Actions log before writing
      the "final" parser \- or, per what worked for Palm Beach this session, ask the user
@@ -632,16 +678,20 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
      with no agenda link, follow the "No Agenda Available" pattern above: set
      `has_agenda: False` and point `link` at the general source page, never a
      broken/guessed URL.
+
 5. If Wellington's event count ever looks wrong (too few, too many, or the CID\=22 vs
    CID\=29 mix\-up resurfaces), revisit the CID\=29\-vs\-CID\=22 scope question directly with
    the user rather than guessing which calendar is intended.
+
 6. Confirm the weekday\-header sticky fix actually renders correctly in\-browser; if not,
    get the actual class name(s) on the weekday row from browser dev tools and target
    that directly instead of guessing further.
+
 7. Keep an eye out for new false\-positive/false\-negative meeting titles as any
    municipality's calendar gets scraped over time \- extend the whitelist additively
    (never re\-add a dropped keyword, including Wellington's CIP Workshop, without being
    asked).
+
 8. General code hygiene: `scrape_civicplus_calendar()` is shared by PBG/Boca/Boynton;
    `scrape_wellington()` and `scrape_westlake()` are their own functions since their
    mechanisms don't match the generic CivicPlus list view. If a new CivicPlus
@@ -657,61 +707,87 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
    `scrape_palm_beach()`'s OData API\-query approach once it's confirmed working \-
    including its `{base_domain}/event/{id}/files/agenda/{fileId}` agenda\-link pattern,
    which is CivicClerk\-specific and confirmed real, not a guess.
-8. **`scrape_jupiter_inlet_colony()` is confirmed working** — no follow-up needed on this one.
-9. **Confirm `scrape_riviera_beach()` against a real run.** The row markup and the
-   agenda-link pattern are both confirmed real (pasted directly from the user's View
-   Page Source on `rivierabeach.granicus.com/ViewPublisher.php?view_id=1`), and the
-   parser is logic-tested against a fixture built from that exact real row — but the
-   sandbox never had network access to actually execute `fetch_hardened()` against
-   the live page this session. Ask the user to run the workflow and paste back the
-   `[Riviera Beach]`-prefixed log lines. Also ask the user whether "Utility Special
-   District" (+ its Budget Workshop variant), "FY2027 Budget Workshop", or "Community
-   Awards and Presentations Program" — real meeting types seen in the user's
-   screenshot, currently excluded by the whitelist — should qualify. If a future
-   municipality turns out to run Granicus ViewPublisher too, reuse/generalize
-   `scrape_riviera_beach()`'s `listingRow`/`AgendaViewer.php`-href approach rather
-   than writing a new Granicus parser from scratch.
-10. **Confirm `scrape_juno_beach()` against a real run.** The scraper now correctly
+
+9. **`scrape_jupiter_inlet_colony()` is confirmed working** — no follow\-up needed on this one.
+
+10. **Confirm `scrape_riviera_beach()` against a real run.** The row markup and the
+    agenda\-link pattern are both confirmed real (pasted directly from the user's View
+    Page Source on `rivierabeach.granicus.com/ViewPublisher.php?view_id=1`), and the
+    parser is logic\-tested against a fixture built from that exact real row — but the
+    sandbox never had network access to actually execute `fetch_hardened()` against
+    the live page this session. Ask the user to run the workflow and paste back the
+    `[Riviera Beach]`\-prefixed log lines. Also ask the user whether "Utility Special
+    District" (\+ its Budget Workshop variant), "FY2027 Budget Workshop", or "Community
+    Awards and Presentations Program" — real meeting types seen in the user's
+    screenshot, currently excluded by the whitelist — should qualify. If a future
+    municipality turns out to run Granicus ViewPublisher too, reuse/generalize
+    `scrape_riviera_beach()`'s `listingRow`/`AgendaViewer.php`\-href approach rather
+    than writing a new Granicus parser from scratch.
+
+11. **Confirm `scrape_juno_beach()` against a real run.** The scraper now correctly
     targets `legacyjuno-beach.teammunicode.com/meetings` (the real iframe target,
     found via the user's DOM inspection after the original `juno-beach.fl.us` wrapper
     page came back with no table in its raw HTML on a real GitHub Actions run) — but
     that host itself has never been reached from the sandbox (zero network route,
     and WebFetch blocked by its robots.txt), so the real markup is still unconfirmed.
-    Ask the user to run the workflow and paste back the `[Juno Beach]`-prefixed log
+    Ask the user to run the workflow and paste back the `[Juno Beach]`\-prefixed log
     lines — expect either a working extraction or a debug dump anchored on "Town
-    Council" if the table selectors need adjusting. Also worth double-checking on a
+    Council" if the table selectors need adjusting. Also worth double\-checking on a
     real run: that the "Agenda" vs "Agenda Packet" column distinction holds up (the
-    two columns are visually adjacent and both contain PDF+HTML icon pairs), and that
-    the PDF-only link selection doesn't accidentally grab an HTML link on a row shaped
+    two columns are visually adjacent and both contain PDF\+HTML icon pairs), and that
+    the PDF\-only link selection doesn't accidentally grab an HTML link on a row shaped
     differently than the one screenshot seen so far. If a future municipality turns
     out to run MuniCode's "Meetings" portal on a `teammunicode.com` subdomain (as
     opposed to `meetings.municode.com`, like Westlake), reuse/generalize
-    `scrape_juno_beach()`'s approach — including checking for a wrapper-page iframe
-    first (see Key Methodological Lesson #3) before assuming the municipality's own
+    `scrape_juno_beach()`'s approach — including checking for a wrapper\-page iframe
+    first (see Key Methodological Lesson \#3) before assuming the municipality's own
     domain serves the table directly.
-11. **File-delivery preference, stated by the user this session**: when only one or a
+
+12. **File\-delivery preference, stated by the user this session**\: when only one or a
     few files actually changed, deliver those specific file(s) directly — do not
-    re-zip and hand back the entire repo. Keep this in mind for every future session
+    re\-zip and hand back the entire repo. Keep this in mind for every future session
     unless the user asks for a full zip.
 
----
+13. **Confirm `scrape_manalapan()` against a real run.** Both the WordPress table
+    structure and the meeting/body names are only known from a WebFetch rendered
+    preview (unconfirmed per Lesson \#1); the sandbox had zero network route to
+    manalapan.org (Lesson \#2). Ask the user to run the workflow and paste back the
+    `[Manalapan]`\-prefixed log lines. Also ask the user whether "Architectural
+    Commission Meeting", "Pension Board Meeting", "First Budget Hearing", or "Final
+    Budget Hearing Meeting" should be added to the whitelist — none currently qualify.
+    "Special Magistrate Hearing" was deliberately left excluded, consistent with a
+    prior standing user decision to drop that body project\-wide — don't re\-add without
+    being asked again.
 
-## Latest Session Fixes (Current)
+14. **Confirm whether `fetch_hardened_retry()`'s multi\-fingerprint approach fixes the
+    PBC WAF regression**, or whether it's an IP\-range block that no fingerprint change
+    can fix (see the PBC regression note above). Ask the user to run the workflow and
+    paste back the new `[PBC]`\-prefixed log lines. If every fingerprint still resets
+    the connection identically, don't try a fifth fingerprint blind — that result
+    itself means the mitigation needs to be something other than TLS fingerprinting.
 
-### 1. Frontend Search Fix (index.html, line ~791)
+* * *
+
+## Latest Session Fixes (Current) {#latest-session-fixes-current}
+
+### 1\. Frontend Search Fix (index.html, line \~791) {#1-frontend-search-fix-indexhtml-line-791}
+
 **Problem:** Search functionality failed to find "PBC" results, even though many events have `muni_short: "PBC"`.
 
 **Root Cause:** The `getFilteredEvents()` function only searched `title`, `muni_full`, and `summary` — it never searched the `muni_short` field that the municipality filter buttons use.
 
 **Fix Applied:** Added `event.muni_short` to the search comparison:
+
 ```javascript
 (event.muni_short && event.muni_short.toLowerCase().includes(searchTerm)) ||
 ```
 
 Users can now search by municipality short codes like "PBC", "WPB", etc.
 
-### 2. Backend Scraper Fix (scraper.py, line ~310)
+### 2\. Backend Scraper Fix (scraper.py, line \~310) {#2-backend-scraper-fix-scraperpy-line-310}
+
 **Problem:** PBC scraper was failing with "Connection reset by peer" errors:
+
 ```
 [fetch_hardened] curl_cffi failed for https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx: 
 Failed to perform, curl: (56) Recv failure: Connection reset by peer...
@@ -720,7 +796,8 @@ Failed to perform, curl: (56) Recv failure: Connection reset by peer...
 
 **Root Cause:** The `discover.pbc.gov` domain has a WAF (Web Application Firewall) that actively blocks automated requests from GitHub Actions runners, even when using `curl_cffi` (which mimics a real Chrome browser).
 
-**Fix Applied:** Changed base domain from `discover.pbc.gov` to `www.pbcgov.org`:
+**Fix Applied:** Changed base domain from `discover.pbc.gov` to `www.pbcgov.org`\:
+
 ```python
 base_domain = "https://www.pbcgov.org"  # Changed from discover.pbc.gov
 target_url = f"{base_domain}/countycommissioners/pages/agenda.aspx"  # Also lowercased path
@@ -728,5 +805,6 @@ target_url = f"{base_domain}/countycommissioners/pages/agenda.aspx"  # Also lowe
 
 This bypasses the WAF and allows the scraper to fetch PBC agendas successfully.
 
-### Status
+### Status {#status}
+
 Both fixes have been tested and applied to the files. PBC search now works, and PBC scraper should resume fetching agendas on the next GitHub Actions run.
