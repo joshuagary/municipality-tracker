@@ -801,6 +801,73 @@ def scrape_westlake():
     return events
 
 
+# --- 10. CITY OF PALM BEACH MODULE (DISCOVERY MODE - NOT A REAL SCRAPER YET) ---
+def scrape_palm_beach():
+    # City of Palm Beach's meetings page (https://palmbeachfl.portal.civicclerk.com/)
+    # runs "CivicClerk" - the newer CivicPlus "Meetings Select" Angular SPA portal,
+    # NOT the same product as CivicPlus's CivicEngage calendar.aspx sites (PBG/Boca/
+    # Boynton/Wellington) or MuniCode (Westlake). A WebFetch preview of the root URL
+    # confirmed this is a client-side-rendered shell: the initial HTML has no event
+    # data at all, just "You need to enable JavaScript to run this app." Unlike
+    # Westlake (where the preview at least showed us a real HTML table to hypothesize
+    # from), there is NO markup here to build a parser against - the real data only
+    # exists after JS runs a fetch to a backend API.
+    #
+    # Per this project's Key Methodological Lesson #2: this session's sandbox has ZERO
+    # outbound network access (confirmed - a plain curl to both
+    # palmbeachfl.portal.civicclerk.com and palmbeachfl.api.civicclerk.com was rejected
+    # outright by an egress/org policy), and a WebFetch/rendered-preview tool cannot
+    # execute the SPA's JS or show us the real XHR/fetch calls it makes. So there is
+    # currently NO way from this session - neither a raw fetch nor a rendered preview -
+    # to observe the actual API endpoint URL, query parameters, or JSON response shape
+    # this portal uses. Web research found CivicPlus's *authenticated* "PublicApi"
+    # product (requires a client_id/client_secret from CivicPlus support) but that is a
+    # separate product from this public-facing portal, which is normally reachable
+    # without credentials in a browser - its real endpoint is simply unconfirmed here.
+    #
+    # Rather than hardcode a guessed endpoint/shape and claim it "works," this function
+    # is a DISCOVERY PROBE: it tries a small set of plausible unauthenticated REST
+    # endpoints (CivicClerk portals commonly expose a same-origin-looking
+    # `{subdomain}.api.civicclerk.com` API), logs the HTTP status/content-type/a text
+    # snippet for each, and returns NO events. Ask the user to run the GitHub Actions
+    # workflow and paste back every `[Palm Beach]`-prefixed log line - that will tell us
+    # which (if any) candidate URL returns real JSON, or, more usefully, the user can
+    # open the real portal in their own browser, open DevTools -> Network tab, reload,
+    # and paste back the actual request URL + response body for the events list call.
+    # That real request is what the final scrape_palm_beach() should be built from -
+    # do not treat any output of this probe as more than a lead.
+    print("[Palm Beach] DISCOVERY MODE: no confirmed API endpoint for this CivicClerk "
+          "portal yet. Probing candidate URLs and logging raw responses - see comments "
+          "in scrape_palm_beach() for why. Not extracting events until confirmed.")
+
+    base_domain = "https://palmbeachfl.portal.civicclerk.com"
+    api_domain = "https://palmbeachfl.api.civicclerk.com"
+
+    candidate_urls = [
+        f"{base_domain}/",
+        f"{api_domain}/v1/Events",
+        f"{api_domain}/v1/Meetings",
+        f"{api_domain}/api/v1/Events",
+        f"{base_domain}/api/v1/Events",
+    ]
+
+    for url in candidate_urls:
+        res = fetch_hardened(url, referer=base_domain)
+        if res is None:
+            print(f"[Palm Beach] {url} -> request failed (no response object).")
+            continue
+        content_type = res.headers.get("Content-Type", "") if hasattr(res, "headers") else "?"
+        body = res.text or ""
+        print(f"[Palm Beach] {url} -> HTTP {res.status_code}, Content-Type: {content_type}, "
+              f"body length: {len(body)}")
+        snippet = body[:400].replace("\n", " ")
+        print(f"[Palm Beach]   snippet: {snippet}")
+
+    print("[Palm Beach] Discovery probe complete. 0 events extracted (expected - this "
+          "is not a real parser yet). See Goals for Next Session in handoff.md.")
+    return []
+
+
 # --- 9. DOWNTOWN WPB DDA MODULE ---
 def scrape_downtown_wpb_dda():
     # The Downtown West Palm Beach DDA (Downtown Development Authority) isn't on
@@ -960,6 +1027,7 @@ def main():
     all_events.extend(scrape_wellington())
     all_events.extend(scrape_westlake())
     all_events.extend(scrape_downtown_wpb_dda())
+    all_events.extend(scrape_palm_beach())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
