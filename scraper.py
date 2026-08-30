@@ -297,59 +297,80 @@ def scrape_boynton_beach():
     return events
 
 
-# --- 5. DELRAY BEACH MODULE ---
+# --- 5. DELRAY BEACH MODULE (STABLE CURRENT-MONTH SCRAPER) ---
 def scrape_delray_beach():
     events = []
-    base_url = "https://delraybeach.legistar.com/"
-    target_url = f"{base_url}Calendar.aspx"
+    url = "https://delraybeach.legistar.com/Calendar.aspx"
     
-    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
-
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
-    }
+    now = datetime.now()
+    # Lock lower bound to the 1st day of the current month
+    current_month_start = datetime(now.year, now.month, 1)
 
     try:
-        res = requests.get(target_url, headers=headers, timeout=15)
-        print(f"[Delray Beach] HTTP Status: {res.status_code}")
+        res = requests.get(url, impersonate="chrome124", timeout=15)
+        print(f"[Delray] HTTP Status Code: {res.status_code}")
+        
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
-            table = soup.find("table", id=re.compile(r'.*gridCalendar.*'))
-            if table:
-                rows = table.find_all("tr")[1:]
-                for row in rows:
-                    cols = row.find_all("td")
-                    if len(cols) >= 6:
-                        raw_title = cols[0].text.strip()
-                        date_str = cols[1].text.strip()
-                        time_str = cols[3].text.strip()
-                        
-                        clean_title = clean_event_title(raw_title)
+            rows = soup.find_all("tr")
 
-                        link_a = cols[5].find("a")
-                        href = link_a.get("href", "").strip() if link_a else ""
-                        full_link = f"{base_url}{href}" if href and not href.startswith("http") else (href or target_url)
+            for row in rows:
+                cols = row.find_all("td")
+                if len(cols) < 3:
+                    continue
 
-                        try:
-                            dt = datetime.strptime(date_str, "%m/%d/%Y")
-                            iso_date = dt.strftime("%Y-%m-%d")
+                raw_title = cols[0].text.strip()
+                clean_title = clean_event_title(raw_title)
+                
+                raw_date = cols[1].text.strip() if len(cols) > 1 else ""
+                raw_time = cols[2].text.strip() if len(cols) > 2 else ""
 
-                            if current_month_start <= dt < lookahead_end and is_qualifying_event(clean_title):
-                                events.append({
-                                    "id": f"delray-{iso_date}-{hash(full_link)}",
-                                    "muni_short": "DELRAY",
-                                    "muni_full": "City of Delray Beach",
-                                    "title": clean_title,
-                                    "date": iso_date,
-                                    "time": time_str or "6:00 PM",
-                                    "link": full_link,
-                                    "summary": f"Official {clean_title} meeting."
-                                })
-                        except ValueError:
-                            continue
-        print(f"[Delray Beach] Extracted {len(events)} events.")
+                # Target direct PDF Agenda link (View.ashx?M=A), fallback to Meeting Details page
+                href = ""
+                agenda_a = row.select_one("a[href*='View.ashx?M=A']")
+                if agenda_a and agenda_a.get('href'):
+                    href = agenda_a['href'].strip()
+                else:
+                    detail_a = row.select_one("a[href*='MeetingDetail.aspx']")
+                    if detail_a and detail_a.get('href'):
+                        href = detail_a['href'].strip()
+
+                if not href:
+                    href = "Calendar.aspx"
+
+                # Standard M/D/YYYY date extraction
+                iso_date = None
+                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
+                if date_match:
+                    m, d, y = date_match.groups()
+                    iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+
+                # Apply qualification filter for clean current-month dataset
+                if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
+                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                    
+                    if dt >= current_month_start:
+                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time)
+                        meeting_time = time_match.group(1).strip().upper() if time_match else "4:00 PM"
+                        if "AM" not in meeting_time and "PM" not in meeting_time:
+                            meeting_time += " PM"
+
+                        full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
+
+                        events.append({
+                            "id": f"delray-{iso_date}-{hash(full_link)}",
+                            "muni_short": "DELRAY",
+                            "muni_full": "City of Delray Beach",
+                            "title": clean_title,
+                            "date": iso_date,
+                            "time": meeting_time,
+                            "link": full_link,
+                            "summary": f"Official {clean_title} meeting."
+                        })
+
+            print(f"[Delray] Successfully saved {len(events)} current-month events.")
     except Exception as e:
-        print(f"[Delray Beach] Error: {e}")
+        print(f"[Delray] Exception: {e}")
 
     return events
 
