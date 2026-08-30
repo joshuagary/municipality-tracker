@@ -35,6 +35,13 @@
     "status": "Active"
   },
   {
+    "muni_code": "JUIC",
+    "muni_name": "Town of Jupiter Inlet Colony",
+    "type": "Town",
+    "monitoring_url": "https://www.jupiterinletcolony.gov/AgendaCenter",
+    "status": "Active"
+  },
+  {
     "muni_code": "JUPITER",
     "muni_name": "Town of Jupiter",
     "type": "Town",
