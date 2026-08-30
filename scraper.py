@@ -40,24 +40,28 @@ def get_dual_month_bounds():
     return current_month_start, lookahead_end, curr_year, curr_month
 
 
-# --- 1. WEST PALM BEACH MODULE (FIXED USER-AGENT) ---
+# --- 1. WEST PALM BEACH MODULE (FIXES 403 FORBIDDEN) ---
 def scrape_west_palm_beach():
     events = []
     base_domain = "https://www.wpb.org"
-    target_url = f"{base_domain}/government/city-commission/agendas-and-minutes"
+    target_url = f"{base_domain}/government/city-commission/city-commission-agendas-and-minutes"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
+    # Browser stack to pass Cloudflare/CivicEngage checks on GitHub Actions
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9"
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Sec-Ch-Ua": '"Chromium";v="128", "Not;A=Brand";v="24"',
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": '"macOS"'
     }
 
     try:
         res = requests.get(target_url, headers=headers, timeout=15)
         print(f"[WPB] HTTP Status: {res.status_code}")
-        
+
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             seen_keys = set()
@@ -112,11 +116,11 @@ def scrape_west_palm_beach():
     return events
 
 
-# --- 2. PALM BEACH COUNTY MODULE (FIXED 404 URL) ---
+# --- 2. PALM BEACH COUNTY MODULE (FIXES 404 URL) ---
 def scrape_palm_beach_county():
     events = []
     base_domain = "https://discover.pbcgov.org"
-    target_url = "https://discover.pbcgov.org/countycommission/Pages/default.aspx"
+    target_url = f"{base_domain}/countycommission/Pages/BCC-Agendas.aspx"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
@@ -182,11 +186,11 @@ def scrape_palm_beach_county():
     return events
 
 
-# --- HELPER FOR LEGISTAR PORTALS (EXPLICIT ALL MONTHS QUERY) ---
+# --- HELPER FOR LEGISTAR PORTALS (FORCES FULL MONTH VIEW) ---
 def scrape_legistar_portal(muni_code, muni_name, base_url):
     events = []
-    # Query all years/months rather than defaulting to current week
-    target_url = f"{base_url}Calendar.aspx"
+    # Explicit query parameters force Legistar out of "This Week" view into full monthly search
+    target_url = f"{base_url}Calendar.aspx?View=Calendar&Mode=Month"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
