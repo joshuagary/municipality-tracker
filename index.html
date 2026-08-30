@@ -601,49 +601,8 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Boynton Beach</td>
-                            <td>City</td>
-                            <td class="url-cell"><a href="https://www.boyntonbeachfl.gov/government/meetings" target="_blank" rel="noopener noreferrer">https://www.boyntonbeachfl.gov/government/meetings</a></td>
-                            <td><span class="status-badge">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td>Delray Beach</td>
-                            <td>City</td>
-                            <td class="url-cell"><a href="https://www.delraybeachfl.gov/government/meetings" target="_blank" rel="noopener noreferrer">https://www.delraybeachfl.gov/government/meetings</a></td>
-                            <td><span class="status-badge">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td>Lake Worth Beach</td>
-                            <td>City</td>
-                            <td class="url-cell"><a href="https://www.lakeworthbeachfl.gov/meetings" target="_blank" rel="noopener noreferrer">https://www.lakeworthbeachfl.gov/meetings</a></td>
-                            <td><span class="status-badge">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td>Palm Beach</td>
-                            <td>Town</td>
-                            <td class="url-cell"><a href="https://www.townofpalmbeach.com/government/meetings" target="_blank" rel="noopener noreferrer">https://www.townofpalmbeach.com/government/meetings</a></td>
-                            <td><span class="status-badge">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td>Palm Beach County</td>
-                            <td>County</td>
-                            <td class="url-cell"><a href="https://www.pbcgov.com/government/meetings" target="_blank" rel="noopener noreferrer">https://www.pbcgov.com/government/meetings</a></td>
-                            <td><span class="status-badge">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td>Riviera Beach</td>
-                            <td>City</td>
-                            <td class="url-cell"><a href="https://www.rivierabeachfl.gov/meetings" target="_blank" rel="noopener noreferrer">https://www.rivierabeachfl.gov/meetings</a></td>
-                            <td><span class="status-badge">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td>West Palm Beach</td>
-                            <td>City</td>
-                            <td class="url-cell"><a href="https://www.wpb.org/government/meetings" target="_blank" rel="noopener noreferrer">https://www.wpb.org/government/meetings</a></td>
-                            <td><span class="status-badge">Active</span></td>
-                        </tr>
+                    <tbody id="sitesTableBody">
+                        <!-- Dynamically populated from sites.json -->
                     </tbody>
                 </table>
             </div>
@@ -658,6 +617,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             initCalendar();
             fetchEvents();
+            loadSitesTable();
 
             document.getElementById("searchInput").addEventListener("input", updateViews);
             document.getElementById("btnCalendarView").addEventListener("click", () => switchView("calendar"));
@@ -705,11 +665,32 @@
                 const response = await fetch("data.json");
                 if (!response.ok) throw new Error("Failed to load data.json");
                 allEvents = await response.json();
-                
+
                 buildMunicipalityButtons();
                 updateViews();
             } catch (error) {
                 console.error("Error loading events:", error);
+            }
+        }
+
+        async function loadSitesTable() {
+            try {
+                const response = await fetch("sites.json");
+                if (!response.ok) throw new Error("Failed to load sites.json");
+                const sites = await response.json();
+
+                const tbody = document.getElementById("sitesTableBody");
+                tbody.innerHTML = sites.map(site => `
+                    <tr>
+                        <td>${escapeHtml(site.muni_name)}</td>
+                        <td>${escapeHtml(site.type)}</td>
+                        <td class="url-cell"><a href="${escapeHtml(site.monitoring_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(site.monitoring_url)}</a></td>
+                        <td><span class="status-badge">${escapeHtml(site.status)}</span></td>
+                    </tr>
+                `).join("");
+            } catch (error) {
+                console.error("Error loading sites:", error);
+                document.getElementById("sitesTableBody").innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">Unable to load sites configuration</td></tr>`;
             }
         }
 
