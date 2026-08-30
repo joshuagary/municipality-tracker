@@ -95,6 +95,47 @@ def fetch_hardened_retry(url, referer=None, timeout=15, log_prefix="[fetch_harde
           f"IP-range block, not a fingerprint check - a fingerprint retry can't fix that).")
     return None
 
+def fetch_via_reader_proxy(url, timeout=20):
+    """
+    Zero-config fallback for a site whose WAF blocks the request outright before a
+    fingerprint even matters. Confirmed this session for PBC: fetch_hardened_retry()
+    tried 4 different real-browser curl_cffi TLS fingerprints on a real GitHub
+    Actions run and every single one TIMED OUT identically (~14.4-14.7s, no response
+    at all - not an HTTP error, not even a TLS-level reset like the block used to
+    look like). The user confirmed the site loads fine in their own regular browser
+    at the same time, which rules out a real outage - this is a block on the
+    requesting IP range (GitHub Actions runners), not anything fingerprint-detectable,
+    so no further curl_cffi fingerprint is worth trying.
+
+    This routes the request through r.jina.ai, a free public "reader" proxy that
+    fetches the target URL server-side (from its own IP ranges) and returns its
+    extracted content - no signup/credentials needed, so it's the cheapest thing to
+    try before reaching for a paid proxy service. NOT guaranteed to work (r.jina.ai
+    could be rate-limited, flaky, or itself blocked by a given WAF) - this is an
+    unconfirmed mitigation, same "first attempt, not a verified fix" category as
+    fetch_hardened_retry() was.
+
+    IMPORTANT: r.jina.ai returns a Readability-style extraction (plain/markdown-ish
+    text, e.g. "[link text](https://...)" for links), NOT the target page's raw
+    HTML. Callers must not assume BeautifulSoup <a href=...> parsing will find
+    anything in the result - match against the returned text directly instead (see
+    scrape_palm_beach_county() for the pattern this project uses).
+
+    Returns a response-like object with .status_code/.text, or None on failure.
+    """
+    reader_url = f"https://r.jina.ai/{url}"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    }
+    try:
+        res = requests.get(reader_url, headers=headers, timeout=timeout)
+        return res
+    except Exception as e:
+        print(f"[fetch_via_reader_proxy] Failed for {url}: {e}")
+        return None
+
+
 def clean_event_title(title):
     if not title:
         return "Public Meeting"
@@ -351,24 +392,38 @@ def scrape_palm_beach_county():
     # /countycommissioners/Agenda_Master/YYYYMMDD.pdf, so we pull the meeting date
     # directly out of the filename instead of parsing text.
     #
-    # As of this session, www.pbcgov.org started failing the *same* way
+    # As of last session, www.pbcgov.org started failing the *same* way
     # discover.pbc.gov originally did: a real GitHub Actions log showed
     # "Connection reset by peer" from curl_cffi AND "Connection aborted"/
     # RemoteDisconnected from the plain-requests fallback - a TLS-level reset on
-    # both paths, not an HTTP error code, meaning PBC's WAF is rejecting the
-    # connection outright rather than serving a 403/429. That's the same failure
-    # signature as the original discover.pbc.gov block, just apparently extended to
-    # www.pbcgov.org too. Switched to fetch_hardened_retry(), which tries a short
-    # list of different curl_cffi browser TLS fingerprints (chrome124/chrome120/
-    # safari15_5/edge101) with backoff, in case this is fingerprint-specific rather
-    # than a straight IP-range block. UNCONFIRMED whether this actually gets past
-    # PBC's WAF - this sandbox has no network route to pbcgov.org either, so this is
-    # a reasonable next attempt, not a verified fix. Ask the user to run the workflow
-    # and paste back the new "[PBC]"-prefixed log lines; if every fingerprint still
-    # resets the connection the same way, it's very likely an IP-range block on
-    # GitHub Actions runners specifically, which no fingerprint change can fix - that
-    # would need a different mitigation (e.g. a proxy, or scraping via a different
-    # source entirely) rather than another header/fingerprint tweak.
+    # both paths, not an HTTP error code. fetch_hardened_retry() was added to try a
+    # short list of different curl_cffi browser TLS fingerprints (chrome124/
+    # chrome120/safari15_5/edge101) with backoff, in case the block was
+    # fingerprint-specific.
+    #
+    # CONFIRMED THIS SESSION: that did not fix it, and the failure mode changed -
+    # a real GitHub Actions log showed all 4 fingerprints timing out identically
+    # (~14.4-14.7s, no response at all, not even a reset), and the user confirmed
+    # the site loads fine in their own regular browser at the same time. That rules
+    # out a real outage and rules out a fingerprint-detectable block - it's the
+    # requesting IP range itself (GitHub Actions runners) being blocked, which no
+    # TLS/header tweak can fix. So a second fallback tier was added:
+    # fetch_via_reader_proxy(), which routes the request through r.jina.ai (a free
+    # public "reader" proxy fetching from its own IP ranges, no credentials needed)
+    # when fetch_hardened_retry() fails outright. UNCONFIRMED whether r.jina.ai
+    # itself is reachable from GitHub Actions or blocked by PBC too - this sandbox
+    # still has no network route to test either fetch path directly, so this is a
+    # reasonable next attempt, not a verified fix. Ask the user to run the workflow
+    # and paste back the new "[PBC]"-prefixed log lines - look specifically for
+    # whether it says "via direct fetch" or "via reader-proxy fallback" in the
+    # success log line, or whether both tiers failed entirely.
+    #
+    # Because r.jina.ai returns extracted text/markdown rather than raw HTML (see
+    # fetch_via_reader_proxy()'s docstring), the agenda-PDF extraction below no
+    # longer parses <a href> tags via BeautifulSoup - it regex-matches the
+    # "Agenda_Master/YYYYMMDD.pdf" filename pattern directly against the raw
+    # response text instead, which works identically whether that text is real HTML
+    # (direct fetch) or reader-proxy markdown (fallback fetch).
     events = []
     base_domain = "https://www.pbcgov.org"
     target_url = f"{base_domain}/countycommissioners/pages/agenda.aspx"
@@ -376,22 +431,34 @@ def scrape_palm_beach_county():
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
     res = fetch_hardened_retry(target_url, log_prefix="[PBC]")
+    fetch_method = "direct fetch"
+    if res is None or getattr(res, "status_code", None) != 200:
+        print("[PBC] Direct fetch (all TLS fingerprints) failed or returned non-200 - "
+              "trying the r.jina.ai reader-proxy fallback (unconfirmed, see comments above).")
+        res = fetch_via_reader_proxy(target_url)
+        fetch_method = "reader-proxy fallback"
+
     if res is None:
-        print("[PBC] Request failed after retrying multiple TLS fingerprints.")
+        print("[PBC] Request failed via both direct fetch and reader-proxy fallback.")
         return events
-    print(f"[PBC] HTTP Status: {res.status_code}")
+    print(f"[PBC] HTTP Status: {res.status_code} (via {fetch_method})")
     if res.status_code != 200:
+        print(f"[PBC] Non-200 response via {fetch_method}, first 400 chars: {(res.text or '')[:400]}")
         return events
 
-    soup = BeautifulSoup(res.text, "html.parser")
     seen_keys = set()
 
-    for a in soup.find_all("a", href=re.compile(r'Agenda_Master/\d{8}\.pdf', re.I)):
-        href = a.get("href", "").strip()
-        date_match = re.search(r'(\d{4})(\d{2})(\d{2})\.pdf', href, re.I)
-        if not date_match:
-            continue
-        y, m, d = date_match.groups()
+    # Matches either a relative path ("/countycommissioners/Agenda_Master/....pdf")
+    # or a full URL, in either raw HTML (href="...") or reader-proxy markdown
+    # ("[label](https://.../Agenda_Master/....pdf)") - capturing everything from the
+    # nearest whitespace/quote/bracket boundary up through the filename itself.
+    link_pattern = re.compile(r'([^\s"\'<>\(\)]*Agenda_Master/(\d{4})(\d{2})(\d{2})\.pdf)', re.I)
+
+    matches = list(link_pattern.finditer(res.text))
+    print(f"[PBC] Found {len(matches)} Agenda_Master PDF link(s) via {fetch_method}.")
+
+    for match in matches:
+        href, y, m, d = match.group(1), match.group(2), match.group(3), match.group(4)
         iso_date = f"{y}-{m}-{d}"
         try:
             dt = datetime.strptime(iso_date, "%Y-%m-%d")
@@ -415,7 +482,7 @@ def scrape_palm_beach_county():
                     "summary": f"Official {clean_title} meeting."
                 })
 
-    print(f"[PBC] Extracted {len(events)} events.")
+    print(f"[PBC] Extracted {len(events)} events (via {fetch_method}).")
     return events
 
 
