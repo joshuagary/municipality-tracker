@@ -1330,6 +1330,173 @@ def scrape_jupiter():
     return events
 
 
+# --- 12. RIVIERA BEACH MODULE (added this session — real markup confirmed by user,
+#          sandbox execution still unconfirmed, see comments) ---
+def scrape_riviera_beach():
+    # City of Riviera Beach - https://www.rivierabch.com/ccm. The city's own site is
+    # QScend, not any platform previously seen in this project - but its meetings list
+    # isn't served there at all. /ccm embeds an <iframe> pointing directly at
+    # https://rivierabeach.granicus.com/ViewPublisher.php?view_id=1, a standard
+    # Granicus "Legislative Management" ViewPublisher page (a different Granicus
+    # product from WPB's OpenCities per-series static pages - this is the classic
+    # ViewPublisher agenda/minutes table). This is a sixth distinct platform for this
+    # project.
+    #
+    # Unlike Westlake/Jupiter, this table's real HTML was NOT hypothesized from a
+    # WebFetch rendered preview - the user pasted the literal raw <tr> from
+    # View Page Source on the live granicus.com page directly, e.g.:
+    #
+    #   <tr class="listingRow">
+    #     <td class="listItem" headers="Name" id="City-Council" scope="row">City Council</td>
+    #     <td class="listItem" headers="Date City-Council">Aug&nbsp;19,&nbsp;2026 - 06:00&nbsp;PM</td>
+    #     <td class="listItem" headers="Duration City-Council">04h&nbsp;00m</td>
+    #     <td class="listItem"><a href="//rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=626" target="_blank">Agenda</a></td>
+    #     <td class="listItem">&nbsp;</td>  <!-- Minutes column, blank when not posted -->
+    #   </tr>
+    #
+    # So the column layout (Name, Date, Duration, Agenda, Minutes) and the real agenda
+    # link pattern (`//rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=N`,
+    # protocol-relative) are both confirmed ground truth, not a guess - the same
+    # standard as PBC/Delray/Wellington/Palm Beach's confirmed pieces.
+    #
+    # What's NOT confirmed: this session's sandbox has zero outbound network route to
+    # granicus.com (a plain curl was rejected by the egress policy, and a WebFetch
+    # rendered-preview attempt was separately blocked by that domain's robots.txt) -
+    # so fetch_hardened() below has never actually been executed against the real
+    # page. Written defensively per Key Methodological Lesson #2: agenda-link
+    # detection uses a href-pattern search (not a hardcoded column index) so it
+    # survives column reordering, and heavy debug logging is included so the first
+    # real GitHub Actions run's `[Riviera Beach]`-prefixed log lines can confirm or
+    # correct anything below. Ask the user to run the workflow and paste that back.
+    #
+    # Per the project-wide "No Agenda Available" policy: a real, dated/timed meeting
+    # with no Agenda link yet (blank Minutes-style cell, no <a> match) is still
+    # included with has_agenda=False, and "link" falls back to the ViewPublisher page
+    # itself rather than a guessed/dead URL.
+    #
+    # Whitelist note (flag to user, don't silently add): real titles seen in the
+    # user's screenshot include "Utility Special District", "Utility Special District
+    # Budget Workshop", "FY2027 Budget Workshop", and "Community Awards and
+    # Presentations Program" - none of these match any current is_qualifying_event
+    # pattern and will be silently excluded, consistent with Westlake's Education
+    # Advisory Board / Palm Beach's Architectural Commission precedent. "City Council",
+    # "City Council Budget Workshop" (contains "City Council"), "Community
+    # Redevelopment Agency", and "Planning and Zoning Board Meeting" all already
+    # qualify under the existing whitelist with no changes needed.
+    events = []
+    base_domain = "https://rivierabeach.granicus.com"
+    target_url = f"{base_domain}/ViewPublisher.php?view_id=1"
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    res = fetch_hardened(target_url, referer="https://www.rivierabch.com/ccm")
+    if res is None:
+        print("[Riviera Beach] Request failed.")
+        return events
+    print(f"[Riviera Beach] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        return events
+
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    rows = soup.find_all("tr", class_="listingRow")
+    if not rows:
+        # Fall back to any <tr> containing a "listItem" cell, in case the real class
+        # name on "listingRow" differs slightly from the one confirmed row.
+        rows = soup.find_all(lambda tag: tag.name == "tr" and tag.find("td", class_="listItem"))
+    print(f"[Riviera Beach] Found {len(rows)} candidate meeting rows.")
+
+    if not rows:
+        idx = res.text.find("listingRow")
+        if idx == -1:
+            idx = res.text.find("AgendaViewer")
+        if idx == -1:
+            idx = res.text.find("City Council")
+        print(f"[Riviera Beach] No rows found. DEBUG raw HTML slice: "
+              f"{res.text[max(0, idx - 200): idx + 1000] if idx != -1 else res.text[:1000]}")
+        return events
+
+    print(f"[Riviera Beach] Sample first row raw HTML (for debugging column layout):\n{rows[0]}")
+
+    seen_keys = set()
+
+    for row in rows:
+        cells = row.find_all("td")
+        if len(cells) < 2:
+            continue
+
+        raw_title = cells[0].get_text(strip=True)
+        clean_title = clean_event_title(raw_title)
+        if not clean_title or not is_qualifying_event(clean_title):
+            continue
+
+        date_text = re.sub(r'\s+', ' ', cells[1].get_text(separator=" ", strip=True)).strip()
+        date_match = re.search(
+            r'([A-Za-z]{3,9})\s+(\d{1,2}),?\s*(\d{4}).*?(\d{1,2}:\d{2}\s*[AP]M)',
+            date_text, re.I
+        )
+        if not date_match:
+            print(f"[Riviera Beach] Could not parse date/time from cell text: {date_text!r} - skipping row.")
+            continue
+        month_str, day_str, year_str, time_str = date_match.groups()
+        time_str_compact = re.sub(r'\s+', '', time_str.upper())  # "06:00PM"
+
+        dt = None
+        for fmt in ("%b %d %Y %I:%M%p", "%B %d %Y %I:%M%p"):
+            try:
+                dt = datetime.strptime(f"{month_str} {day_str} {year_str} {time_str_compact}", fmt)
+                break
+            except ValueError:
+                continue
+        if dt is None:
+            print(f"[Riviera Beach] Date parse failed for groups {date_match.groups()} - skipping row.")
+            continue
+
+        if not (current_month_start <= dt < lookahead_end):
+            continue
+
+        iso_date = dt.strftime("%Y-%m-%d")
+        meeting_time = dt.strftime("%-I:%M %p")
+
+        # Agenda link: search by href pattern rather than a fixed column index, since
+        # the confirmed sample only shows one real row and column order beyond
+        # Name/Date isn't guaranteed stable (Duration/Agenda/Minutes/Video).
+        agenda_link_elem = row.find("a", href=re.compile(r'AgendaViewer\.php', re.I))
+        has_agenda = agenda_link_elem is not None
+        if has_agenda:
+            href = agenda_link_elem.get("href", "").strip()
+            if href.startswith("//"):
+                full_link = f"https:{href}"
+            elif href.startswith("http"):
+                full_link = href
+            else:
+                full_link = f"{base_domain}/{href.lstrip('/')}"
+        else:
+            full_link = target_url  # Source page itself, never a guessed/dead link.
+
+        dedup_key = (clean_title, iso_date, meeting_time)
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"riv-{iso_date}-{hash(clean_title + meeting_time)}",
+            "muni_short": "RIVBEACH",
+            "muni_full": "City of Riviera Beach",
+            "title": clean_title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": full_link,
+            "has_agenda": has_agenda,
+            "summary": f"Official {clean_title} meeting." if has_agenda else f"Official {clean_title} meeting. No agenda posted yet.",
+        })
+
+    print(f"[Riviera Beach] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -1347,6 +1514,7 @@ def main():
     all_events.extend(scrape_downtown_wpb_dda())
     all_events.extend(scrape_palm_beach())
     all_events.extend(scrape_jupiter())
+    all_events.extend(scrape_riviera_beach())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
