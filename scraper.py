@@ -1853,6 +1853,167 @@ def scrape_jupiter_inlet_colony():
     return events
 
 
+def scrape_manalapan():
+    # Town of Manalapan - https://manalapan.org/agenda-minutes/
+    # WordPress site (meta-generator: "WordPress Download Manager 3.3.68") - a new
+    # WordPress instance for this project, distinct from Downtown WPB DDA's WordPress
+    # page (that one's a bulleted <li> date list; this one is HTML <table>s grouped by
+    # month, per a WebFetch rendered preview). No iframe / third-party civic platform
+    # detected.
+    #
+    # Per two WebFetch rendered-preview passes of the live page (UNCONFIRMED against
+    # raw HTML - see Key Methodological Lesson #1 in handoff.md; this sandbox also has
+    # zero direct network route to manalapan.org, confirmed via a plain curl rejected
+    # by the egress policy - Lesson #2):
+    #   - Table columns: Description | Meeting Date | Agenda | Packet | Minutes | Recording
+    #   - A sample row's Description cell reads like "01/08/2026 – Architectural
+    #     Commission Meeting" (date prefix + en-dash + body/meeting name); the separate
+    #     Meeting Date cell repeats the date in "Month D, YYYY" form.
+    #   - Agenda/Packet/Minutes/Recording cells contain a "Download" link to a
+    #     wp-content/uploads/YYYY/MM/*.pdf URL when posted, or an em-dash "—" placeholder
+    #     when not.
+    #   - Real body/meeting names seen on the page: "Architectural Commission Meeting",
+    #     "Town Commission Meeting", "Pension Board Meeting", "Special Magistrate
+    #     Hearing", "First Budget Hearing", "Final Budget Hearing Meeting".
+    #
+    # Written defensively per Lesson #2: table selection tries id/class hints first,
+    # then falls back to the largest <table> by row count; the Agenda column is located
+    # by header text (never a hardcoded index, matching the Westlake/Juno Beach
+    # pattern) and explicitly excludes any header containing "packet" so the Packet
+    # column's link is never grabbed by mistake. Heavy debug logging (header row, row
+    # count, first raw row) is included so a real GitHub Actions run's
+    # "[Manalapan]"-prefixed log lines can confirm or correct this before it's trusted.
+    # Treat this as an UNCONFIRMED first-pass draft, same category as Westlake/Juno
+    # Beach at the time they were added.
+    #
+    # Whitelist note - NOT resolved, flagged rather than guessed: of the six real
+    # meeting/body names above, only "Town Commission Meeting" currently matches
+    # is_qualifying_event() (via the existing \bTown Commission\b pattern). "Architectural
+    # Commission", "Pension Board", "First/Final Budget Hearing" don't match anything,
+    # and "Special Magistrate Hearing" matches a body name this project's whitelist has
+    # explicitly and deliberately excluded before (Special Magistrate, dropped per past
+    # user request) - so it is intentionally left out here too, consistent with that
+    # standing decision. Ask the user which (if any) of the other four should be added
+    # before extending the whitelist.
+    events = []
+    base_domain = "https://manalapan.org"
+    target_url = f"{base_domain}/agenda-minutes/"
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    res = fetch_hardened(target_url)
+    if res is None:
+        print("[Manalapan] Request failed.")
+        return events
+    print(f"[Manalapan] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        return events
+
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    tables = soup.find_all("table")
+    print(f"[Manalapan] Found {len(tables)} <table> elements on the page.")
+
+    seen_keys = set()
+    date_pattern = re.compile(r'\b(\d{1,2})/(\d{1,2})/(\d{4})\b')
+
+    for table in tables:
+        header_row = table.find("tr")
+        header_texts = (
+            [c.get_text(strip=True).lower() for c in header_row.find_all(["th", "td"])]
+            if header_row else []
+        )
+        agenda_col_idx = next(
+            (i for i, h in enumerate(header_texts) if "agenda" in h and "packet" not in h),
+            None
+        )
+
+        all_rows = table.find_all("tr")
+        data_rows = all_rows[1:] if header_texts else all_rows
+        if not data_rows:
+            continue
+
+        print(f"[Manalapan] Table header row: {header_texts} | agenda column index: {agenda_col_idx} "
+              f"| {len(data_rows)} candidate data rows.")
+        print(f"[Manalapan] Sample first row raw HTML (for debugging column layout):\n{data_rows[0]}")
+
+        for row in data_rows:
+            cells = row.find_all(["td", "th"])
+            if not cells:
+                continue
+
+            row_text = row.get_text(separator=" ", strip=True)
+            date_match = date_pattern.search(row_text)
+            if not date_match:
+                continue
+            mo, day, yr = date_match.groups()
+            try:
+                dt = datetime(int(yr), int(mo), int(day))
+            except ValueError:
+                continue
+            iso_date = dt.strftime("%Y-%m-%d")
+            if not (current_month_start <= dt < lookahead_end):
+                continue
+
+            # Description cell is expected to hold "MM/DD/YYYY – Body Meeting"; strip
+            # any leading date + separator, leaving the meeting/body name.
+            desc_text = cells[0].get_text(strip=True)
+            title_text = date_pattern.sub("", desc_text).lstrip(" -–—:").strip()
+            clean_title = clean_event_title(title_text) if title_text else clean_event_title(row_text)
+            if not clean_title or not is_qualifying_event(clean_title):
+                continue
+
+            time_match = re.search(r'(\d{1,2}:\d{2}\s*[ap]m)', row_text, re.I)
+            meeting_time = time_match.group(1).upper().replace(" ", "") if time_match else "6:00 PM"
+            if len(meeting_time) > 2 and meeting_time[-2:] in ("AM", "PM") and meeting_time[-3] != " ":
+                meeting_time = meeting_time[:-2] + " " + meeting_time[-2:]
+
+            agenda_link = None
+            if agenda_col_idx is not None and agenda_col_idx < len(cells):
+                agenda_link = cells[agenda_col_idx].find("a", href=True)
+            if not agenda_link:
+                agenda_link = row.find(
+                    "a", href=re.compile(r'agenda(?!.*packet)', re.I)
+                )
+
+            has_agenda = agenda_link is not None
+            if has_agenda:
+                href = agenda_link.get("href", "").strip()
+                full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+            else:
+                full_link = target_url  # No agenda posted yet - point at the source page.
+
+            dedup_key = (clean_title, iso_date, meeting_time)
+            if dedup_key in seen_keys:
+                continue
+            seen_keys.add(dedup_key)
+
+            events.append({
+                "id": f"manalapan-{iso_date}-{hash(clean_title + meeting_time)}",
+                "muni_short": "MANALAPAN",
+                "muni_full": "Town of Manalapan",
+                "title": clean_title,
+                "date": iso_date,
+                "time": meeting_time,
+                "link": full_link,
+                "has_agenda": has_agenda,
+                "summary": f"Official {clean_title} meeting." if has_agenda else f"Official {clean_title} meeting. No agenda posted yet.",
+            })
+
+    if not tables or not events:
+        print("[Manalapan] No qualifying events extracted. Dumping a slice of raw HTML "
+              "around a known meeting-type string for debugging:")
+        idx = res.text.find("Town Commission")
+        if idx == -1:
+            idx = res.text.find("Agenda")
+        print(res.text[max(0, idx - 200): idx + 500] if idx != -1 else res.text[:700])
+
+    print(f"[Manalapan] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -1873,6 +2034,7 @@ def main():
     all_events.extend(scrape_riviera_beach())
     all_events.extend(scrape_juno_beach())
     all_events.extend(scrape_jupiter_inlet_colony())
+    all_events.extend(scrape_manalapan())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
