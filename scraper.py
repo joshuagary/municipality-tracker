@@ -599,6 +599,21 @@ def scrape_wellington():
         if res.status_code != 200:
             continue
 
+        # --- TEMPORARY DEBUG ---
+        # scrape_wellington()'s parser was built against a markdown-rendered PREVIEW of
+        # this page (from a web-fetch tool), not the real raw HTML - that preview
+        # synthesizes "[text](url)" bracket-link syntax that plain BeautifulSoup
+        # .get_text() never produces from real <a href="..."> tags, which is almost
+        # certainly why 0 event blocks were found against real output. Dumping a raw
+        # slice here so the actual structure can be confirmed before rewriting the
+        # parser properly. Remove this block once scrape_wellington() is fixed.
+        print(f"[Wellington DEBUG] Response length: {len(res.text)} chars")
+        print(f"[Wellington DEBUG] Contains 'Council': {'Council' in res.text}")
+        print(f"[Wellington DEBUG] Contains 'EID=': {'EID=' in res.text}")
+        print(f"[Wellington DEBUG] Contains an ISO timestamp pattern: {bool(re.search(r'202[0-9]-[01][0-9]-[0-3][0-9]T', res.text))}")
+        print(f"[Wellington DEBUG] First 4000 raw chars:\n{res.text[:4000]}")
+        # --- END TEMPORARY DEBUG ---
+
         soup = BeautifulSoup(res.text, "html.parser")
         page_text = soup.get_text(separator=' ')
 
