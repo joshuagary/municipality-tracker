@@ -20,7 +20,7 @@ def is_qualifying_event(title):
         r'\bCouncil\b', r'\bCommission\b', r'\bBoard\b', r'\bCommittee\b',
         r'\bAuthority\b', r'\bAgency\b', r'\bCRA\b', r'\bZoning\b', r'\bPlanning\b',
         r'\bHistoric\b', r'\bSpecial Magistrate\b', r'\bCode Enforcement\b',
-        r'\bTask Force\b', r'\bTown Hall\b', r'\bHearing\b', r'\bWorkshop\b'
+        r'\bTask Force\b', r'\bTown Hall\b', r'\bHearing\b', r'\bWorkshop\b', r'\bBCC\b'
     ]
     pattern = re.compile('|'.join(governance_keywords), re.I)
     return bool(pattern.search(title))
@@ -43,7 +43,148 @@ def get_dual_month_bounds():
     return current_month_start, lookahead_end, curr_year, curr_month
 
 
-# --- 1. BOCA RATON MODULE ---
+# --- 1. WEST PALM BEACH MODULE ---
+def scrape_west_palm_beach():
+    events = []
+    base_domain = "https://www.wpb.org"
+    target_url = f"{base_domain}/government/city-commission-agendas"
+    
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    }
+
+    try:
+        res = requests.get(target_url, headers=headers, timeout=15)
+        print(f"[WPB] HTTP Status: {res.status_code}")
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            seen_keys = set()
+            
+            # Locate agenda card blocks and document links
+            for a in soup.find_all("a"):
+                href = a.get("href", "").strip()
+                if not href:
+                    continue
+                
+                text = a.text.strip()
+                parent_text = a.parent.text.strip() if a.parent else text
+                context = f"{text} {parent_text}"
+
+                if is_qualifying_event(context) or "agenda" in href.lower() or "pdf" in href.lower():
+                    raw_title = text if len(text) > 3 else parent_text.split("\n")[0].strip()
+                    clean_title = clean_event_title(raw_title)
+
+                    date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', context)
+                    iso_date = None
+                    if date_match:
+                        m, d, y = date_match.groups()
+                        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+                    else:
+                        text_date = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', context, re.I)
+                        if text_date:
+                            try:
+                                dt_parsed = datetime.strptime(text_date.group(0).replace(",", ""), "%B %d %Y")
+                                iso_date = dt_parsed.strftime("%Y-%m-%d")
+                            except ValueError:
+                                pass
+
+                    if iso_date and is_qualifying_event(clean_title):
+                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                        if current_month_start <= dt < lookahead_end:
+                            full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+                            dedup_key = (clean_title, iso_date)
+                            if dedup_key not in seen_keys:
+                                seen_keys.add(dedup_key)
+                                events.append({
+                                    "id": f"wpb-{iso_date}-{hash(full_link)}",
+                                    "muni_short": "WPB",
+                                    "muni_full": "City of West Palm Beach",
+                                    "title": clean_title,
+                                    "date": iso_date,
+                                    "time": "5:00 PM",
+                                    "link": full_link,
+                                    "summary": f"Official {clean_title} meeting."
+                                })
+        print(f"[WPB] Extracted {len(events)} events.")
+    except Exception as e:
+        print(f"[WPB] Error: {e}")
+
+    return events
+
+
+# --- 2. PALM BEACH COUNTY MODULE ---
+def scrape_palm_beach_county():
+    events = []
+    base_domain = "https://discover.pbcgov.org"
+    target_url = f"{base_domain}/countycommission/Pages/BCC-Meeting-Agendas.aspx"
+    
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    }
+
+    try:
+        res = requests.get(target_url, headers=headers, timeout=15)
+        print(f"[PBC] HTTP Status: {res.status_code}")
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            seen_keys = set()
+
+            for a in soup.find_all("a"):
+                href = a.get("href", "").strip()
+                if not href:
+                    continue
+                
+                text = a.text.strip()
+                parent_text = a.parent.text.strip() if a.parent else text
+                context = f"{text} {parent_text}"
+
+                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', context)
+                if not date_match:
+                    date_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', context, re.I)
+
+                if date_match:
+                    if len(date_match.groups()) == 3:
+                        m, d, y = date_match.groups()
+                        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+                    else:
+                        try:
+                            dt_parsed = datetime.strptime(date_match.group(0).replace(",", ""), "%B %d %Y")
+                            iso_date = dt_parsed.strftime("%Y-%m-%d")
+                        except ValueError:
+                            continue
+
+                    raw_title = text if len(text) > 3 else "Board of County Commissioners Meeting"
+                    clean_title = clean_event_title(raw_title)
+
+                    if is_qualifying_event(clean_title) or "BCC" in context:
+                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                        if current_month_start <= dt < lookahead_end:
+                            full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+                            dedup_key = (clean_title, iso_date)
+                            if dedup_key not in seen_keys:
+                                seen_keys.add(dedup_key)
+                                events.append({
+                                    "id": f"pbc-{iso_date}-{hash(full_link)}",
+                                    "muni_short": "PBC",
+                                    "muni_full": "Palm Beach County",
+                                    "title": clean_title,
+                                    "date": iso_date,
+                                    "time": "9:30 AM",
+                                    "link": full_link,
+                                    "summary": f"Official {clean_title} meeting."
+                                })
+        print(f"[PBC] Extracted {len(events)} events.")
+    except Exception as e:
+        print(f"[PBC] Error: {e}")
+
+    return events
+
+
+# --- 3. BOCA RATON MODULE ---
 def scrape_boca_raton():
     events = []
     base_url = "https://bocaraton.legistar.com/"
@@ -100,7 +241,7 @@ def scrape_boca_raton():
     return events
 
 
-# --- 2. BOYNTON BEACH MODULE ---
+# --- 4. BOYNTON BEACH MODULE ---
 def scrape_boynton_beach():
     events = []
     base_url = "https://boyntonbeach.legistar.com/"
@@ -157,7 +298,7 @@ def scrape_boynton_beach():
     return events
 
 
-# --- 3. DELRAY BEACH MODULE ---
+# --- 5. DELRAY BEACH MODULE ---
 def scrape_delray_beach():
     events = []
     base_url = "https://delraybeach.legistar.com/"
@@ -214,7 +355,7 @@ def scrape_delray_beach():
     return events
 
 
-# --- 4. PALM BEACH GARDENS MODULE ---
+# --- 6. PALM BEACH GARDENS MODULE ---
 def scrape_palm_beach_gardens():
     events = []
     base_domain = "https://www.pbgfl.gov"
@@ -230,7 +371,6 @@ def scrape_palm_beach_gardens():
         {"year": next_year, "month": next_month}
     ]
 
-    # Header stack to bypass CivicPlus default response restriction
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -254,9 +394,7 @@ def scrape_palm_beach_gardens():
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, "html.parser")
 
-                # Match any event container row containing EID link
                 event_rows = soup.find_all(lambda tag: tag.name in ["tr", "li", "div"] and tag.find("a", href=lambda h: h and ("EID=" in h or "eid=" in h)))
-                
                 if not event_rows:
                     event_rows = soup.select(".calendarItem, .eventRow, table.calendarList tr, ol.calendarList > li")
 
@@ -267,7 +405,6 @@ def scrape_palm_beach_gardens():
                     if not row_text:
                         continue
 
-                    # 1. Extract Title & Link (EID=)
                     link_elem = row.find("a", href=lambda h: h and ("EID=" in h or "eid=" in h))
                     if not link_elem:
                         continue
@@ -276,14 +413,12 @@ def scrape_palm_beach_gardens():
                     if not raw_title and link_elem.parent:
                         raw_title = link_elem.parent.text.strip()
 
-                    # Strip embedded ISO datetimes from link text
                     raw_title = re.sub(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.*', '', raw_title).strip()
                     clean_title = clean_event_title(raw_title)
 
                     href = link_elem.get("href", "").strip()
                     full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
 
-                    # 2. Extract Date (M/D/YYYY or Month DD, YYYY)
                     iso_date = None
                     date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', row_text)
                     if date_match:
@@ -298,7 +433,6 @@ def scrape_palm_beach_gardens():
                             except ValueError:
                                 pass
 
-                    # Fallback date: day number inside row for current target month/year
                     if not iso_date:
                         day_match = re.search(r'\b(\d{1,2})\b', row_text)
                         if day_match:
@@ -306,13 +440,11 @@ def scrape_palm_beach_gardens():
                             if 1 <= d_num <= 31:
                                 iso_date = f"{y_val}-{m_val:02d}-{d_num:02d}"
 
-                    # 3. Extract Time
                     time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', row_text)
                     meeting_time = time_match.group(1).strip().upper() if time_match else "6:00 PM"
                     if "AM" not in meeting_time and "PM" not in meeting_time:
                         meeting_time += " PM"
 
-                    # 4. Qualification & Deduplication
                     if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
                         if current_month_start <= dt < lookahead_end:
@@ -343,19 +475,25 @@ def main():
     
     print("Starting Municipal Scraper Engine...")
     
-    # 1. Boca Raton
+    # 1. West Palm Beach
+    all_events.extend(scrape_west_palm_beach())
+
+    # 2. Palm Beach County
+    all_events.extend(scrape_palm_beach_county())
+
+    # 3. Boca Raton
     all_events.extend(scrape_boca_raton())
     
-    # 2. Boynton Beach
+    # 4. Boynton Beach
     all_events.extend(scrape_boynton_beach())
 
-    # 3. Delray Beach
+    # 5. Delray Beach
     all_events.extend(scrape_delray_beach())
     
-    # 4. Palm Beach Gardens
+    # 6. Palm Beach Gardens
     all_events.extend(scrape_palm_beach_gardens())
 
-    # Save to data.json
+    # Write output to data.json
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
 
