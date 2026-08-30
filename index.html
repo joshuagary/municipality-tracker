@@ -230,6 +230,16 @@
             text-decoration: underline;
         }
 
+        .event-link-disabled {
+            color: var(--text-muted);
+            cursor: default;
+            font-style: italic;
+        }
+
+        .event-link-disabled:hover {
+            text-decoration: none;
+        }
+
         .fc-event {
             cursor: pointer;
             padding: 2px 4px;
@@ -428,18 +438,22 @@
             const filtered = getFilteredEvents();
 
             // 1. Update FullCalendar Events
-            const fcEvents = filtered.map(e => ({
-                title: `[${e.muni_short}] ${e.title}`,
-                start: `${e.date}T${formatTimeTo24H(e.time)}`,
-                url: e.link,
-                extendedProps: {
-                    rawTitle: e.title,
-                    muniShort: e.muni_short,
-                    muniFull: e.muni_full,
-                    time: e.time,
-                    summary: e.summary
-                }
-            }));
+            const fcEvents = filtered.map(e => {
+                const hasAgenda = e.has_agenda !== false; // default true for scrapers that don't set this field
+                return {
+                    title: `[${e.muni_short}] ${e.title}`,
+                    start: `${e.date}T${formatTimeTo24H(e.time)}`,
+                    url: hasAgenda ? e.link : undefined, // don't make the event clickable when there's nothing to open
+                    extendedProps: {
+                        rawTitle: e.title,
+                        muniShort: e.muni_short,
+                        muniFull: e.muni_full,
+                        time: e.time,
+                        summary: e.summary,
+                        hasAgenda: hasAgenda
+                    }
+                };
+            });
 
             calendar.removeAllEvents();
             calendar.addEventSource(fcEvents);
@@ -449,16 +463,22 @@
             if (filtered.length === 0) {
                 listWrapper.innerHTML = `<div class="event-card">No meetings match your filters.</div>`;
             } else {
-                listWrapper.innerHTML = filtered.map(e => `
+                listWrapper.innerHTML = filtered.map(e => {
+                    const hasAgenda = e.has_agenda !== false;
+                    const linkHtml = hasAgenda
+                        ? `<a href="${e.link}" target="_blank" rel="noopener noreferrer" class="event-link">View Agenda &rarr;</a>`
+                        : `<span class="event-link event-link-disabled" title="No Agenda Available">No Agenda Available</span>`;
+                    return `
                     <article class="event-card">
                         <div class="event-header">
                             <span class="muni-badge">${e.muni_short}</span>
                             <span style="font-size:0.85rem; color: var(--text-muted);">${e.date} &bull; ${e.time}</span>
                         </div>
                         <div class="event-title">${e.title}</div>
-                        <a href="${e.link}" target="_blank" rel="noopener noreferrer" class="event-link">View Agenda &rarr;</a>
+                        ${linkHtml}
                     </article>
-                `).join("");
+                `;
+                }).join("");
             }
         }
 
@@ -514,7 +534,7 @@
                 <div class="tt-title">${escapeHtml(props.rawTitle)}</div>
                 <div class="tt-datetime">${dateStr}${props.time ? " &bull; " + escapeHtml(props.time) : ""}</div>
                 ${props.summary ? `<div class="tt-summary">${escapeHtml(props.summary)}</div>` : ""}
-                <div class="tt-hint">View Agenda &rarr;</div>
+                <div class="tt-hint">${props.hasAgenda ? "View Agenda &rarr;" : "No Agenda Available"}</div>
             `;
 
             tooltip.style.display = "block";
