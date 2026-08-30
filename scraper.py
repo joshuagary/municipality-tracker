@@ -15,12 +15,14 @@ except ImportError:
 
 # --- HELPER FUNCTIONS ---
 
-def fetch_hardened(url, referer=None, timeout=15):
+def fetch_hardened(url, referer=None, timeout=15, impersonate="chrome124"):
     """
     GET a URL using a real browser TLS/HTTP fingerprint (curl_cffi) when available,
     since plain `requests` is what's getting blocked by CivicPlus/Cloudflare WAFs on
     GitHub Actions IP ranges. Falls back to plain requests with browser-like headers
     if curl_cffi isn't installed, so this still runs somewhere without it.
+    `impersonate` lets a caller try a different curl_cffi browser fingerprint when
+    the default one is getting blocked (see fetch_hardened_retry below).
     Returns a response-like object with .status_code and .text, or None on failure.
     """
     headers = {
@@ -33,13 +35,14 @@ def fetch_hardened(url, referer=None, timeout=15):
 
     if HAVE_CURL_CFFI:
         try:
-            # impersonate="chrome124" gives us a genuine Chrome TLS/JA3 fingerprint,
-            # which is what actually gets past Cloudflare/CivicEngage bot checks —
-            # spoofing the User-Agent string alone on plain `requests` does not.
-            res = cf_requests.get(url, headers=headers, impersonate="chrome124", timeout=timeout)
+            # impersonate="chrome124" (default) gives us a genuine Chrome TLS/JA3
+            # fingerprint, which is what actually gets past Cloudflare/CivicEngage bot
+            # checks — spoofing the User-Agent string alone on plain `requests` does
+            # not.
+            res = cf_requests.get(url, headers=headers, impersonate=impersonate, timeout=timeout)
             return res
         except Exception as e:
-            print(f"[fetch_hardened] curl_cffi failed for {url}: {e}")
+            print(f"[fetch_hardened] curl_cffi ({impersonate}) failed for {url}: {e}")
 
     # Fallback: plain requests with a modern browser UA
     try:
@@ -51,6 +54,46 @@ def fetch_hardened(url, referer=None, timeout=15):
     except Exception as e:
         print(f"[fetch_hardened] requests fallback failed for {url}: {e}")
         return None
+
+
+def fetch_hardened_retry(url, referer=None, timeout=15, log_prefix="[fetch_hardened_retry]", attempts=None):
+    """
+    Like fetch_hardened(), but retries across a short list of curl_cffi browser
+    fingerprints (and a brief backoff) before giving up - for sites like PBC whose
+    WAF has been observed resetting the connection outright (TLS-level reset, not an
+    HTTP error code) on the default fingerprint. Returns the first response with a
+    real status_code, or None if every attempt failed to even connect.
+
+    This does not solve WAF blocking that's based on GitHub Actions' IP ranges rather
+    than TLS fingerprint - if that's the actual cause, every fingerprint here will
+    fail the same way, and that fact (all attempts producing the same
+    connection-reset error) is itself useful debugging signal to log and hand back.
+    """
+    import time
+    if attempts is None:
+        attempts = ["chrome124", "chrome120", "safari15_5", "edge101"]
+
+    last_res = None
+    for i, impersonate in enumerate(attempts):
+        res = fetch_hardened(url, referer=referer, timeout=timeout, impersonate=impersonate)
+        if res is not None and getattr(res, "status_code", None):
+            print(f"{log_prefix} Attempt {i + 1}/{len(attempts)} (impersonate={impersonate}): HTTP {res.status_code}")
+            if res.status_code == 200:
+                return res
+            last_res = res
+        else:
+            print(f"{log_prefix} Attempt {i + 1}/{len(attempts)} (impersonate={impersonate}): connection failed (no response at all).")
+        if i < len(attempts) - 1:
+            time.sleep(1.5)
+
+    if last_res is not None:
+        print(f"{log_prefix} All {len(attempts)} fingerprints connected but none returned HTTP 200; "
+              f"returning the last response (HTTP {last_res.status_code}).")
+        return last_res
+    print(f"{log_prefix} All {len(attempts)} fingerprints failed to connect at all "
+          f"(consistent connection-reset across fingerprints usually means an "
+          f"IP-range block, not a fingerprint check - a fingerprint retry can't fix that).")
+    return None
 
 def clean_event_title(title):
     if not title:
@@ -303,18 +346,38 @@ def scrape_west_palm_beach():
 # --- 2. PALM BEACH COUNTY MODULE ---
 def scrape_palm_beach_county():
     # Palm Beach County's agenda page is served from the main pbcgov.org domain
-    # (discover.pbc.gov was blocked by WAF on GitHub Actions). The page links
-    # straight to agenda PDFs under /countycommissioners/Agenda_Master/YYYYMMDD.pdf,
-    # so we pull the meeting date directly out of the filename instead of parsing text.
+    # (discover.pbc.gov was blocked by WAF on GitHub Actions in an earlier session).
+    # The page links straight to agenda PDFs under
+    # /countycommissioners/Agenda_Master/YYYYMMDD.pdf, so we pull the meeting date
+    # directly out of the filename instead of parsing text.
+    #
+    # As of this session, www.pbcgov.org started failing the *same* way
+    # discover.pbc.gov originally did: a real GitHub Actions log showed
+    # "Connection reset by peer" from curl_cffi AND "Connection aborted"/
+    # RemoteDisconnected from the plain-requests fallback - a TLS-level reset on
+    # both paths, not an HTTP error code, meaning PBC's WAF is rejecting the
+    # connection outright rather than serving a 403/429. That's the same failure
+    # signature as the original discover.pbc.gov block, just apparently extended to
+    # www.pbcgov.org too. Switched to fetch_hardened_retry(), which tries a short
+    # list of different curl_cffi browser TLS fingerprints (chrome124/chrome120/
+    # safari15_5/edge101) with backoff, in case this is fingerprint-specific rather
+    # than a straight IP-range block. UNCONFIRMED whether this actually gets past
+    # PBC's WAF - this sandbox has no network route to pbcgov.org either, so this is
+    # a reasonable next attempt, not a verified fix. Ask the user to run the workflow
+    # and paste back the new "[PBC]"-prefixed log lines; if every fingerprint still
+    # resets the connection the same way, it's very likely an IP-range block on
+    # GitHub Actions runners specifically, which no fingerprint change can fix - that
+    # would need a different mitigation (e.g. a proxy, or scraping via a different
+    # source entirely) rather than another header/fingerprint tweak.
     events = []
     base_domain = "https://www.pbcgov.org"
     target_url = f"{base_domain}/countycommissioners/pages/agenda.aspx"
 
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
-    res = fetch_hardened(target_url)
+    res = fetch_hardened_retry(target_url, log_prefix="[PBC]")
     if res is None:
-        print("[PBC] Request failed.")
+        print("[PBC] Request failed after retrying multiple TLS fingerprints.")
         return events
     print(f"[PBC] HTTP Status: {res.status_code}")
     if res.status_code != 200:
