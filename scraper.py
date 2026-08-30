@@ -4,17 +4,18 @@ import json
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-import xml.etree.ElementTree as ET
 
 # --- HELPER FUNCTIONS ---
 
 def clean_event_title(title):
+    """Clean up extra whitespaces, newlines, and common artifacts from titles."""
     if not title:
         return "Public Meeting"
     title = re.sub(r'\s+', ' ', title).strip()
     return title
 
 def is_qualifying_event(title):
+    """Filter for official governance board, council, commission, and committee meetings."""
     governance_keywords = [
         r'\bCouncil\b', r'\bCommission\b', r'\bBoard\b', r'\bCommittee\b',
         r'\bAuthority\b', r'\bAgency\b', r'\bCRA\b', r'\bZoning\b', r'\bPlanning\b',
@@ -25,6 +26,7 @@ def is_qualifying_event(title):
     return bool(pattern.search(title))
 
 def get_dual_month_bounds():
+    """Returns datetime objects for the start of the current month and the upper bound (1st of month after next)."""
     now = datetime.now()
     curr_year = now.year
     curr_month = now.month
@@ -41,7 +43,7 @@ def get_dual_month_bounds():
     return current_month_start, lookahead_end, curr_year, curr_month
 
 
-# --- 1. WEST PALM BEACH MODULE (FIXES 403 FORBIDDEN) ---
+# --- 1. WEST PALM BEACH MODULE (RESTORED ORIGINAL LOGIC) ---
 def scrape_west_palm_beach():
     events = []
     base_domain = "https://www.wpb.org"
@@ -49,11 +51,8 @@ def scrape_west_palm_beach():
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
-    # Browser stack to bypass 403 Forbidden
     headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     }
 
     try:
@@ -114,17 +113,16 @@ def scrape_west_palm_beach():
     return events
 
 
-# --- 2. PALM BEACH COUNTY MODULE (FIXES 404 NOT FOUND) ---
+# --- 2. PALM BEACH COUNTY MODULE (RESTORED ORIGINAL LOGIC) ---
 def scrape_palm_beach_county():
     events = []
     base_domain = "https://discover.pbcgov.org"
-    # Target active portal URL
-    target_url = f"{base_domain}/countycommission/Pages/default.aspx"
+    target_url = f"{base_domain}/countycommission/Pages/BCC-Meeting-Agendas.aspx"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     }
 
     try:
@@ -185,12 +183,11 @@ def scrape_palm_beach_county():
     return events
 
 
-# --- 3. BOCA RATON MODULE (LEGISTAR RSS FEED FIX) ---
+# --- 3. BOCA RATON MODULE (RESTORED ORIGINAL LOGIC) ---
 def scrape_boca_raton():
     events = []
     base_url = "https://bocaraton.legistar.com/"
-    # Legistar Direct RSS Endpoint
-    rss_url = f"{base_url}Calendar.ashx?Mode=RSS"
+    target_url = f"{base_url}Calendar.aspx"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
@@ -199,41 +196,43 @@ def scrape_boca_raton():
     }
 
     try:
-        res = requests.get(rss_url, headers=headers, timeout=15)
+        res = requests.get(target_url, headers=headers, timeout=15)
         print(f"[Boca Raton] HTTP Status: {res.status_code}")
         if res.status_code == 200:
-            root = ET.fromstring(res.text)
-            for item in root.findall(".//item"):
-                title_elem = item.find("title")
-                link_elem = item.find("link")
-                pubdate_elem = item.find("pubDate")
-                
-                raw_title = title_elem.text.strip() if title_elem is not None and title_elem.text else ""
-                clean_title = clean_event_title(raw_title)
+            soup = BeautifulSoup(res.text, "html.parser")
+            table = soup.find("table", id=re.compile(r'.*gridCalendar.*'))
+            if table:
+                rows = table.find_all("tr")[1:]
+                for row in rows:
+                    cols = row.find_all("td")
+                    if len(cols) >= 6:
+                        raw_title = cols[0].text.strip()
+                        date_str = cols[1].text.strip()
+                        time_str = cols[3].text.strip()
+                        
+                        clean_title = clean_event_title(raw_title)
 
-                full_link = link_elem.text.strip() if link_elem is not None and link_elem.text else rss_url
+                        link_a = cols[5].find("a")
+                        href = link_a.get("href", "").strip() if link_a else ""
+                        full_link = f"{base_url}{href}" if href and not href.startswith("http") else (href or target_url)
 
-                iso_date = None
-                if pubdate_elem is not None and pubdate_elem.text:
-                    try:
-                        dt = datetime.strptime(pubdate_elem.text[:16], "%a, %d %b %Y")
-                        iso_date = dt.strftime("%Y-%m-%d")
-                    except Exception:
-                        pass
+                        try:
+                            dt = datetime.strptime(date_str, "%m/%d/%Y")
+                            iso_date = dt.strftime("%Y-%m-%d")
 
-                if iso_date and is_qualifying_event(clean_title):
-                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                    if current_month_start <= dt < lookahead_end:
-                        events.append({
-                            "id": f"boca-{iso_date}-{hash(full_link)}",
-                            "muni_short": "BOCA",
-                            "muni_full": "City of Boca Raton",
-                            "title": clean_title,
-                            "date": iso_date,
-                            "time": "6:00 PM",
-                            "link": full_link,
-                            "summary": f"Official {clean_title} meeting."
-                        })
+                            if current_month_start <= dt < lookahead_end and is_qualifying_event(clean_title):
+                                events.append({
+                                    "id": f"boca-{iso_date}-{hash(full_link)}",
+                                    "muni_short": "BOCA",
+                                    "muni_full": "City of Boca Raton",
+                                    "title": clean_title,
+                                    "date": iso_date,
+                                    "time": time_str or "6:00 PM",
+                                    "link": full_link,
+                                    "summary": f"Official {clean_title} meeting."
+                                })
+                        except ValueError:
+                            continue
         print(f"[Boca Raton] Extracted {len(events)} events.")
     except Exception as e:
         print(f"[Boca Raton] Error: {e}")
@@ -241,11 +240,11 @@ def scrape_boca_raton():
     return events
 
 
-# --- 4. BOYNTON BEACH MODULE (LEGISTAR RSS FEED FIX) ---
+# --- 4. BOYNTON BEACH MODULE ---
 def scrape_boynton_beach():
     events = []
     base_url = "https://boyntonbeach.legistar.com/"
-    rss_url = f"{base_url}Calendar.ashx?Mode=RSS"
+    target_url = f"{base_url}Calendar.aspx"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
@@ -254,41 +253,43 @@ def scrape_boynton_beach():
     }
 
     try:
-        res = requests.get(rss_url, headers=headers, timeout=15)
+        res = requests.get(target_url, headers=headers, timeout=15)
         print(f"[Boynton Beach] HTTP Status: {res.status_code}")
         if res.status_code == 200:
-            root = ET.fromstring(res.text)
-            for item in root.findall(".//item"):
-                title_elem = item.find("title")
-                link_elem = item.find("link")
-                pubdate_elem = item.find("pubDate")
-                
-                raw_title = title_elem.text.strip() if title_elem is not None and title_elem.text else ""
-                clean_title = clean_event_title(raw_title)
+            soup = BeautifulSoup(res.text, "html.parser")
+            table = soup.find("table", id=re.compile(r'.*gridCalendar.*'))
+            if table:
+                rows = table.find_all("tr")[1:]
+                for row in rows:
+                    cols = row.find_all("td")
+                    if len(cols) >= 6:
+                        raw_title = cols[0].text.strip()
+                        date_str = cols[1].text.strip()
+                        time_str = cols[3].text.strip()
+                        
+                        clean_title = clean_event_title(raw_title)
 
-                full_link = link_elem.text.strip() if link_elem is not None and link_elem.text else rss_url
+                        link_a = cols[5].find("a")
+                        href = link_a.get("href", "").strip() if link_a else ""
+                        full_link = f"{base_url}{href}" if href and not href.startswith("http") else (href or target_url)
 
-                iso_date = None
-                if pubdate_elem is not None and pubdate_elem.text:
-                    try:
-                        dt = datetime.strptime(pubdate_elem.text[:16], "%a, %d %b %Y")
-                        iso_date = dt.strftime("%Y-%m-%d")
-                    except Exception:
-                        pass
+                        try:
+                            dt = datetime.strptime(date_str, "%m/%d/%Y")
+                            iso_date = dt.strftime("%Y-%m-%d")
 
-                if iso_date and is_qualifying_event(clean_title):
-                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                    if current_month_start <= dt < lookahead_end:
-                        events.append({
-                            "id": f"boynton-{iso_date}-{hash(full_link)}",
-                            "muni_short": "BOYNTON",
-                            "muni_full": "City of Boynton Beach",
-                            "title": clean_title,
-                            "date": iso_date,
-                            "time": "6:00 PM",
-                            "link": full_link,
-                            "summary": f"Official {clean_title} meeting."
-                        })
+                            if current_month_start <= dt < lookahead_end and is_qualifying_event(clean_title):
+                                events.append({
+                                    "id": f"boynton-{iso_date}-{hash(full_link)}",
+                                    "muni_short": "BOYNTON",
+                                    "muni_full": "City of Boynton Beach",
+                                    "title": clean_title,
+                                    "date": iso_date,
+                                    "time": time_str or "6:00 PM",
+                                    "link": full_link,
+                                    "summary": f"Official {clean_title} meeting."
+                                })
+                        except ValueError:
+                            continue
         print(f"[Boynton Beach] Extracted {len(events)} events.")
     except Exception as e:
         print(f"[Boynton Beach] Error: {e}")
@@ -300,7 +301,7 @@ def scrape_boynton_beach():
 def scrape_delray_beach():
     events = []
     base_url = "https://delraybeach.legistar.com/"
-    rss_url = f"{base_url}Calendar.ashx?Mode=RSS"
+    target_url = f"{base_url}Calendar.aspx"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
@@ -309,41 +310,43 @@ def scrape_delray_beach():
     }
 
     try:
-        res = requests.get(rss_url, headers=headers, timeout=15)
+        res = requests.get(target_url, headers=headers, timeout=15)
         print(f"[Delray Beach] HTTP Status: {res.status_code}")
         if res.status_code == 200:
-            root = ET.fromstring(res.text)
-            for item in root.findall(".//item"):
-                title_elem = item.find("title")
-                link_elem = item.find("link")
-                pubdate_elem = item.find("pubDate")
-                
-                raw_title = title_elem.text.strip() if title_elem is not None and title_elem.text else ""
-                clean_title = clean_event_title(raw_title)
+            soup = BeautifulSoup(res.text, "html.parser")
+            table = soup.find("table", id=re.compile(r'.*gridCalendar.*'))
+            if table:
+                rows = table.find_all("tr")[1:]
+                for row in rows:
+                    cols = row.find_all("td")
+                    if len(cols) >= 6:
+                        raw_title = cols[0].text.strip()
+                        date_str = cols[1].text.strip()
+                        time_str = cols[3].text.strip()
+                        
+                        clean_title = clean_event_title(raw_title)
 
-                full_link = link_elem.text.strip() if link_elem is not None and link_elem.text else rss_url
+                        link_a = cols[5].find("a")
+                        href = link_a.get("href", "").strip() if link_a else ""
+                        full_link = f"{base_url}{href}" if href and not href.startswith("http") else (href or target_url)
 
-                iso_date = None
-                if pubdate_elem is not None and pubdate_elem.text:
-                    try:
-                        dt = datetime.strptime(pubdate_elem.text[:16], "%a, %d %b %Y")
-                        iso_date = dt.strftime("%Y-%m-%d")
-                    except Exception:
-                        pass
+                        try:
+                            dt = datetime.strptime(date_str, "%m/%d/%Y")
+                            iso_date = dt.strftime("%Y-%m-%d")
 
-                if iso_date and is_qualifying_event(clean_title):
-                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                    if current_month_start <= dt < lookahead_end:
-                        events.append({
-                            "id": f"delray-{iso_date}-{hash(full_link)}",
-                            "muni_short": "DELRAY",
-                            "muni_full": "City of Delray Beach",
-                            "title": clean_title,
-                            "date": iso_date,
-                            "time": "6:00 PM",
-                            "link": full_link,
-                            "summary": f"Official {clean_title} meeting."
-                        })
+                            if current_month_start <= dt < lookahead_end and is_qualifying_event(clean_title):
+                                events.append({
+                                    "id": f"delray-{iso_date}-{hash(full_link)}",
+                                    "muni_short": "DELRAY",
+                                    "muni_full": "City of Delray Beach",
+                                    "title": clean_title,
+                                    "date": iso_date,
+                                    "time": time_str or "6:00 PM",
+                                    "link": full_link,
+                                    "summary": f"Official {clean_title} meeting."
+                                })
+                        except ValueError:
+                            continue
         print(f"[Delray Beach] Extracted {len(events)} events.")
     except Exception as e:
         print(f"[Delray Beach] Error: {e}")
@@ -351,7 +354,7 @@ def scrape_delray_beach():
     return events
 
 
-# --- 6. PALM BEACH GARDENS MODULE ---
+# --- 6. PALM BEACH GARDENS MODULE (CURRENT WORKING DUAL-MONTH SCRAPER) ---
 def scrape_palm_beach_gardens():
     events = []
     base_domain = "https://www.pbgfl.gov"
