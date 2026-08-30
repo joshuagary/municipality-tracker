@@ -801,6 +801,150 @@ def scrape_westlake():
     return events
 
 
+# --- 9. DOWNTOWN WPB DDA MODULE ---
+def scrape_downtown_wpb_dda():
+    # The Downtown West Palm Beach DDA (Downtown Development Authority) isn't on
+    # CivicPlus/Legistar/Granicus/MuniCode - it's a WordPress page
+    # (downtownwpb.com/dda/board-meetings/) that simply lists Board meeting packets as
+    # a bulleted list of dates, grouped by fiscal year, most recent first. Per the user
+    # (who can see the live page) and a WebFetch rendered-preview of it: meetings recur
+    # on the 3rd Tuesday of each month at 8:30 a.m.; each date is a plain list item,
+    # hyperlinked to an Issuu-hosted agenda packet (e.g.
+    # ".../dda_board_agenda_packet_august_18_2026") once posted, and left as plain
+    # unlinked text (e.g. "September 15, 2026") when the packet hasn't been posted yet.
+    #
+    # Per this project's Key Methodological Lessons: a WebFetch preview converts <a>
+    # tags into markdown bracket-links, which is NOT proof of the real underlying <li>/
+    # <a> structure - and this sandbox has no direct network route to downtownwpb.com
+    # either (confirmed: a plain curl/requests attempt was rejected by the egress
+    # proxy). So exactly like scrape_westlake(), this is an UNCONFIRMED first-pass
+    # draft: written defensively (date-pattern text matching rather than assuming a
+    # specific list/class structure) and logs heavily so a real run's log can confirm
+    # or correct it. Ask the user to run the workflow and paste back the
+    # "[Downtown WPB DDA]" log lines before trusting this fully.
+    #
+    # Title is hardcoded to include the literal phrase "Downtown Development Authority"
+    # so it passes the existing is_qualifying_event() whitelist entry for that phrase -
+    # no whitelist change needed, since the page itself never spells out a per-event
+    # title (just dates).
+    #
+    # Per the project-wide "No Agenda Available" policy: an event whose date is known
+    # but whose agenda packet isn't posted yet is still included, with has_agenda=False
+    # and "link" pointing at the board-meetings page itself (never a guessed/dead URL).
+    events = []
+    base_domain = "https://downtownwpb.com"
+    target_url = f"{base_domain}/dda/board-meetings/"
+    clean_title = "Downtown Development Authority (DDA) Board Meeting"
+    default_time = "8:30 AM"  # Per explicit user statement: "3rd Tuesday of each month at 8:30AM".
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    res = fetch_hardened(target_url)
+    if res is None:
+        print("[Downtown WPB DDA] Request failed.")
+        return events
+    print(f"[Downtown WPB DDA] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        return events
+
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    date_pattern = re.compile(
+        r'\b(January|February|March|April|May|June|July|August|September|October|November|December)'
+        r'\s+(\d{1,2}),\s*(\d{4})\b',
+        re.I
+    )
+
+    # Primary strategy: each meeting date is expected to live in its own <li>. Scan
+    # every <li> on the page (not just inside a specific <ul>, since the exact
+    # container class is unconfirmed) for one that contains a "Month DD, YYYY" date.
+    candidate_items = soup.find_all("li")
+    print(f"[Downtown WPB DDA] Found {len(candidate_items)} <li> elements on the page.")
+
+    date_items = [(li, date_pattern.search(li.get_text(" ", strip=True))) for li in candidate_items]
+    date_items = [(li, m) for li, m in date_items if m]
+    print(f"[Downtown WPB DDA] {len(date_items)} <li> elements contain a recognizable date.")
+
+    if date_items:
+        print(f"[Downtown WPB DDA] Sample matching <li> raw HTML:\n{date_items[0][0]}")
+
+    # Fallback strategy: if the site isn't using <li> for these at all, fall back to
+    # scanning every text node / link on the page directly for the same date pattern,
+    # treating any date found inside an <a> as "has agenda" and any found in plain text
+    # (outside a link) as "no agenda yet".
+    if not date_items:
+        print("[Downtown WPB DDA] No matching <li> elements found. Falling back to a "
+              "page-wide date scan. Dumping a raw HTML slice anchored on '3rd Tuesday' "
+              "for debugging:")
+        idx = res.text.find("3rd Tuesday")
+        if idx == -1:
+            idx = res.text.lower().find("board meeting")
+        print(res.text[max(0, idx - 200): idx + 500] if idx != -1 else res.text[:700])
+
+        seen_fallback = set()
+        for a in soup.find_all("a", href=True):
+            m = date_pattern.search(a.get_text(" ", strip=True))
+            if m and id(a) not in seen_fallback:
+                seen_fallback.add(id(a))
+                date_items.append((a, m))
+        for text_node in soup.find_all(string=date_pattern):
+            parent = text_node.parent
+            if parent and parent.name != "a" and not parent.find("a"):
+                m = date_pattern.search(text_node)
+                if m:
+                    date_items.append((parent, m))
+        print(f"[Downtown WPB DDA] Fallback scan found {len(date_items)} date matches.")
+
+    seen_keys = set()
+
+    for elem, m in date_items:
+        month_name, day, yr = m.groups()
+        try:
+            dt = datetime.strptime(f"{month_name} {day} {yr}", "%B %d %Y")
+        except ValueError:
+            continue
+        iso_date = dt.strftime("%Y-%m-%d")
+
+        if not (current_month_start <= dt < lookahead_end) or not is_qualifying_event(clean_title):
+            continue
+
+        # has_agenda: true if this element is (or contains/is contained by) a link to
+        # an agenda packet; false if the date is plain, unlinked text.
+        link_elem = elem if elem.name == "a" else elem.find("a", href=True)
+        if not link_elem and elem.name != "a":
+            parent_a = elem.find_parent("a", href=True)
+            link_elem = parent_a
+
+        has_agenda = link_elem is not None and link_elem.get("href")
+        if has_agenda:
+            href = link_elem.get("href", "").strip()
+            full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+        else:
+            full_link = target_url  # No agenda posted yet - point at the source page, not a dead link.
+
+        dedup_key = iso_date
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"ddawpb-{iso_date}-{hash(clean_title + iso_date)}",
+            "muni_short": "DDA-WPB",
+            "muni_full": "Downtown WPB DDA",
+            "title": clean_title,
+            "date": iso_date,
+            "time": default_time,
+            "link": full_link,
+            "has_agenda": bool(has_agenda),
+            "summary": f"Official {clean_title}." if has_agenda else f"Official {clean_title}. No agenda posted yet.",
+        })
+
+    print(f"[Downtown WPB DDA] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -815,6 +959,7 @@ def main():
     all_events.extend(scrape_palm_beach_gardens())
     all_events.extend(scrape_wellington())
     all_events.extend(scrape_westlake())
+    all_events.extend(scrape_downtown_wpb_dda())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
