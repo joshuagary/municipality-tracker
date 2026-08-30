@@ -1,51 +1,93 @@
 [
   {
-    "muni_code": "BB",
-    "muni_name": "Boynton Beach",
+    "muni_code": "BOCA",
+    "muni_name": "City of Boca Raton",
     "type": "City",
-    "monitoring_url": "https://www.boyntonbeachfl.gov/government/meetings",
+    "monitoring_url": "https://www.myboca.us/calendar.aspx",
     "status": "Active"
   },
   {
-    "muni_code": "DB",
-    "muni_name": "Delray Beach",
+    "muni_code": "BOYNTON",
+    "muni_name": "City of Boynton Beach",
     "type": "City",
-    "monitoring_url": "https://www.delraybeachfl.gov/government/meetings",
+    "monitoring_url": "https://www.boynton-beach.org/calendar.aspx",
     "status": "Active"
   },
   {
-    "muni_code": "LWB",
-    "muni_name": "Lake Worth Beach",
+    "muni_code": "DELRAY",
+    "muni_name": "City of Delray Beach",
     "type": "City",
-    "monitoring_url": "https://www.lakeworthbeachfl.gov/meetings",
+    "monitoring_url": "https://delraybeach.legistar.com/",
+    "status": "Active"
+  },
+  {
+    "muni_code": "DDA",
+    "muni_name": "Downtown West Palm Beach DDA",
+    "type": "Authority",
+    "monitoring_url": "https://downtownwpb.com/dda/board-meetings/",
+    "status": "Active"
+  },
+  {
+    "muni_code": "JUNOBEACH",
+    "muni_name": "Town of Juno Beach",
+    "type": "Town",
+    "monitoring_url": "https://legacyjuno-beach.teammunicode.com/meetings",
+    "status": "Active"
+  },
+  {
+    "muni_code": "JUPITER",
+    "muni_name": "Town of Jupiter",
+    "type": "Town",
+    "monitoring_url": "https://www.jupiter.fl.us/calendar.aspx",
     "status": "Active"
   },
   {
     "muni_code": "PB",
-    "muni_name": "Palm Beach",
+    "muni_name": "Town of Palm Beach",
     "type": "Town",
-    "monitoring_url": "https://www.townofpalmbeach.com/government/meetings",
+    "monitoring_url": "https://palmbeachfl.portal.civicclerk.com/",
     "status": "Active"
   },
   {
     "muni_code": "PBC",
     "muni_name": "Palm Beach County",
     "type": "County",
-    "monitoring_url": "https://www.pbcgov.com/government/meetings",
+    "monitoring_url": "https://discover.pbc.gov/",
     "status": "Active"
   },
   {
-    "muni_code": "RB",
-    "muni_name": "Riviera Beach",
+    "muni_code": "PBG",
+    "muni_name": "City of Palm Beach Gardens",
     "type": "City",
-    "monitoring_url": "https://www.rivierabeachfl.gov/meetings",
+    "monitoring_url": "https://www.pbgfl.gov/calendar.aspx",
+    "status": "Active"
+  },
+  {
+    "muni_code": "RIVBEACH",
+    "muni_name": "City of Riviera Beach",
+    "type": "City",
+    "monitoring_url": "https://rivierabeach.granicus.com/ViewPublisher.php",
+    "status": "Active"
+  },
+  {
+    "muni_code": "WELLINGTON",
+    "muni_name": "Village of Wellington",
+    "type": "Village",
+    "monitoring_url": "https://www.wellingtonfl.gov/calendar.aspx",
+    "status": "Active"
+  },
+  {
+    "muni_code": "WESTLAKE",
+    "muni_name": "City of Westlake",
+    "type": "City",
+    "monitoring_url": "https://www.westlakegov.com/meetings",
     "status": "Active"
   },
   {
     "muni_code": "WPB",
-    "muni_name": "West Palm Beach",
+    "muni_name": "City of West Palm Beach",
     "type": "City",
-    "monitoring_url": "https://www.wpb.org/government/meetings",
+    "monitoring_url": "https://www.wpb.org/Events-Folder/",
     "status": "Active"
   }
 ]
