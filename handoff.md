@@ -118,6 +118,7 @@ the scraper is pointed at the wrong host.
   outright rather than returning an HTTP error code. Returns the first HTTP 200
   response, or the last response received if none were 200, or `None` if every
   fingerprint failed to connect at all.
+* **PBC — CONFIRMED FIXED this session (`fetch_via_reader_proxy()` fallback).** Follow\-up to the regression above: `fetch_hardened_retry()`'s multi\-fingerprint approach did not fix it — a real GitHub Actions log showed all 4 TLS fingerprints (`chrome124`, `chrome120`, `safari15_5`, `edge101`) timing out identically (\~14.4–14.7s, no response at all, not even a reset), while the user confirmed the site loaded fine in their own regular browser at the same time. That combination meant the block was on the requesting IP range itself (GitHub Actions runners), not anything fingerprint\-detectable — no further TLS/header tweak could fix it. **Fix applied**\: added `fetch_via_reader_proxy()`, which routes the request through `r.jina.ai` (a free public "reader" proxy fetching from its own IP ranges, no credentials needed) as a second fallback tier when `fetch_hardened_retry()` fails or returns non\-200. Because `r.jina.ai` returns extracted markdown\-ish text rather than raw HTML, the agenda\-PDF extraction in `scrape_palm_beach_county()` was also rewritten from a BeautifulSoup `<a href>` search to a plain regex match on the `Agenda_Master/YYYYMMDD.pdf` filename pattern against the raw response text — this works identically whether that text came from a direct fetch (real HTML) or the reader\-proxy fallback (markdown), and the log line now states which of the two tiers actually succeeded (`via direct fetch` vs. `via reader-proxy fallback`). **User confirmed after this session's real run that PBC is working again.**
 
 ### Wellington (added in an earlier session) {#wellington-added-in-an-earlier-session}
 
@@ -446,6 +447,17 @@ the scraper is pointed at the wrong host.
 - **Whitelist note — NOT resolved, flagged rather than guessed**\: of the six real meeting/body names seen, only **"Town Commission Meeting"** currently qualifies (existing `\bTown Commission\b` pattern). "Architectural Commission Meeting", "Pension Board Meeting", "First Budget Hearing", and "Final Budget Hearing Meeting" don't match any existing pattern and will be silently excluded. "Special Magistrate Hearing" matches a body this project has explicitly and deliberately excluded before per a past user decision (see Filtering Logic section) — left out here too, consistent with that standing decision, not re\-litigated. Ask the user which (if any) of the other four should be added.
 - Added to `sites.json` (inserted alphabetically between Jupiter Inlet Colony and Palm Beach); wired into `main()`.
 
+### Town of Gulf Stream (added this session — UNCONFIRMED, see Goals for Next Session) {#town-of-gulf-stream-added-this-session-unconfirmed}
+
+- **URL**\: `https://www.gulf-stream.org/events/`. `muni_code` is `GULFSTREAM`, `muni_full` is `"Town of Gulf Stream"`.
+- **Platform**\: WordPress (WPBakery Page Builder) — per a WebFetch rendered preview only (unconfirmed against raw HTML — Lesson \#1); this session's sandbox also had zero direct network route to `gulf-stream.org` (a plain `curl` was rejected outright by the egress policy — Lesson \#2), so nothing here has been checked against the literal HTML a real scraper run receives.
+- **Real events seen in the WebFetch preview**\: Regular Town Commission Meeting (Sep 11, 4:00 pm), Town Commission Tentative Budget Hearing (Sep 11, 5:01 pm), TOWN COMMISSION FINAL BUDGET HEARING (Sep 23, 5:01 pm), Architectural Review and Planning Board Meeting (Sep 24, 8:30 am) — plus several "Town Hall CLOSED – &lt;Holiday&gt;" all\-day closures (Labor Day, Veteran's Day, Thanksgiving, Christmas), which are not meetings.
+- **Whitelist interaction, handled defensively rather than left as a silent bug**\: the existing `\bTown Hall\b` pattern would otherwise match "Town Hall CLOSED – Labor Day" and incorrectly pull holiday closures onto the calendar as if they were meetings. `scrape_gulf_stream()` explicitly excludes any title containing "CLOSED" before the whitelist check. This is a defensive fix, not a whitelist scope change — flag to the user in case there's a real "Town Hall" meeting type on this site distinct from the closures (none was seen in the preview).
+- **No per\-event agenda link exists on this page at all** — this is different from every other municipality in this project. The site states "All Minutes and Agendas can be found by going to 'Find a Town Record'", which points to a generic Laserfiche document portal (`https://portal.laserfiche.com/Portal/Browse.aspx?repo=r-430100cc`) with no per\-meeting deep link. Because of this, `has_agenda` is hardcoded `False` for every Gulf Stream event, and `link` points at the Town's own events page rather than the Laserfiche portal — worth asking the user whether they'd rather the link go straight to the Laserfiche portal instead.
+- **`scrape_gulf_stream()` written defensively**\: since the real WP events\-listing markup/plugin is unconfirmed, it parses the page's flattened text line\-by\-line (`get_text("\n")`) rather than assuming a specific plugin's selectors (e.g. "The Events Calendar") — each recognized "Month DD, YYYY" line is paired with the nearest preceding non\-date line as the title, and a time is pulled from that line or the next couple of lines. This is more tolerant of unknown markup than a hardcoded selector, at the cost of precision once the real structure is confirmed. Logs line count and dumps a raw HTML slice anchored on "Town Commission" (or "Architectural Review") if nothing qualifying is extracted.
+- **Logic smoke\-tested** against a hand\-built HTML fixture (title/date/time in separate elements, one closure) — confirmed the 4 real meeting titles all qualify, the holiday closure is correctly excluded despite containing "Town Hall", `has_agenda` is `False` for all events, and dates/times parse correctly. This confirms the code logic against a hypothesized shape only, not that the real site's HTML matches it.
+- Added to `sites.json` (inserted alphabetically between Downtown WPB DDA and Juno Beach); wired into `main()`.
+
 ## Global Feature: "No Agenda Available" events (added this session, applies project\-wide) {#global-feature-no-agenda-available-events-added-this-session-applies-project-wide}
 
 Per explicit user instruction, this is a project\-wide policy, not Westlake\-specific:
@@ -759,12 +771,30 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
     prior standing user decision to drop that body project\-wide — don't re\-add without
     being asked again.
 
-14. **Confirm whether `fetch_hardened_retry()`'s multi\-fingerprint approach fixes the
-    PBC WAF regression**, or whether it's an IP\-range block that no fingerprint change
-    can fix (see the PBC regression note above). Ask the user to run the workflow and
-    paste back the new `[PBC]`\-prefixed log lines. If every fingerprint still resets
-    the connection identically, don't try a fifth fingerprint blind — that result
-    itself means the mitigation needs to be something other than TLS fingerprinting.
+14a. **Confirm `scrape_gulf_stream()` against a real run.** Both the WordPress markup
+and the meeting names/times are only known from a WebFetch rendered preview
+(unconfirmed per Lesson \#1); the sandbox had zero network route to
+gulf\-stream.org (Lesson \#2). Ask the user to run the workflow and paste back the
+`[Gulf Stream]`\-prefixed log lines. Also worth confirming: whether "CLOSED"
+is a reliable, complete way to exclude all non\-meeting Town Hall closures (are
+there other closure\-wording variants?), and whether the user wants the event
+link pointed at the Laserfiche portal directly instead of the Town's events page,
+since no per\-event agenda link exists on the source page at all for this
+municipality (a first for this project).
+
+14. **`fetch_hardened_retry()`'s multi\-fingerprint approach did NOT fix the PBC WAF
+    regression — confirmed this session.** All 4 fingerprints failed identically with
+    connection timeouts (not resets) on a real GitHub Actions run, and independent
+    WebFetch attempts at pbcgov.org from a different network also timed out (see the
+    PBC section above). The fingerprint axis is exhausted; don't try a 5th one blind.
+    Next step is a decision, not more code: ask the user to (a) check whether
+    `www.pbcgov.org/countycommissioners/pages/agenda.aspx` loads in their own regular
+    browser right now (tells us "site\-wide outage" vs. "blocks non\-residential IPs
+    specifically"), and (b) which direction they'd rather pursue if it's confirmed as
+    a bot/datacenter\-IP block — a residential\-exit proxy/relay (needs a service \+
+    credentials from the user) or sourcing PBC's BCC agenda dates from an altogether
+    different source (e.g. checking for a Legistar/Granicus/BoardDocs/Laserfiche
+    mirror of the same meetings) rather than continuing to fight this WAF head\-on.
 
 * * *
 
