@@ -58,6 +58,10 @@ def clean_event_title(title):
     return title
 
 def is_qualifying_event(title):
+    # These broadly signal a governance/legislative meeting - but "Board" and
+    # "Committee" alone are too generic: CivicPlus files things like the Parks &
+    # Recreation Board and Financial Advisory Board under the same "Board" umbrella
+    # even though they're advisory-only and unrelated to Council/CRA/zoning business.
     governance_keywords = [
         r'\bCouncil\b', r'\bCommission\b', r'\bBoard\b', r'\bCommittee\b',
         r'\bAuthority\b', r'\bAgency\b', r'\bCRA\b', r'\bZoning\b', r'\bPlanning\b',
@@ -65,7 +69,21 @@ def is_qualifying_event(title):
         r'\bTask Force\b', r'\bTown Hall\b', r'\bHearing\b', r'\bWorkshop\b', r'\bBCC\b'
     ]
     pattern = re.compile('|'.join(governance_keywords), re.I)
-    return bool(pattern.search(title))
+
+    # A positive match above gets vetoed if the title also names one of these
+    # non-governance advisory/recreational/facility bodies. Extend this list as
+    # more false positives turn up for other municipalities.
+    non_governance_keywords = [
+        r'\bParks?\s*(?:&|and)?\s*Recreation\b', r'\bRecreation Advisory\b',
+        r'\bFinancial Advisory\b', r'\bLibrary\b', r'\bArts?\s*Advisory\b',
+        r'\bPublic Art\b', r'\bCultural\b', r'\bTennis\b', r'\bGolf\b',
+        r'\bAquatics?\b', r'\bYouth\b', r'\bSenior(?:s)?\b',
+        r'\bRetirement System\b', r'\bPension\b', r'\bBeautification\b',
+        r'\bEnvironmental Advisory\b', r'\bSister Cities?\b'
+    ]
+    exclude_pattern = re.compile('|'.join(non_governance_keywords), re.I)
+
+    return bool(pattern.search(title)) and not bool(exclude_pattern.search(title))
 
 def get_dual_month_bounds():
     now = datetime.now()
