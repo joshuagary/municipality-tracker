@@ -302,13 +302,13 @@ def scrape_west_palm_beach():
 
 # --- 2. PALM BEACH COUNTY MODULE ---
 def scrape_palm_beach_county():
-    # discover.pbcgov.org is dead (404/timeout) - the county migrated this site to
-    # discover.pbc.gov. That page also doesn't have a clean event list; it links
+    # Palm Beach County's agenda page is served from the main pbcgov.org domain
+    # (discover.pbc.gov was blocked by WAF on GitHub Actions). The page links
     # straight to agenda PDFs under /countycommissioners/Agenda_Master/YYYYMMDD.pdf,
     # so we pull the meeting date directly out of the filename instead of parsing text.
     events = []
-    base_domain = "https://discover.pbc.gov"
-    target_url = f"{base_domain}/countycommissioners/Pages/Agenda.aspx"
+    base_domain = "https://www.pbcgov.org"
+    target_url = f"{base_domain}/countycommissioners/pages/agenda.aspx"
 
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
