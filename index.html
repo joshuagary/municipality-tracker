@@ -290,7 +290,8 @@
         .event-tooltip .tt-hint {
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--primary-hover);
+            font-style: italic;
+            color: var(--text-muted);
         }
     </style>
 </head>
@@ -533,7 +534,7 @@
                 <div class="tt-title">${escapeHtml(props.rawTitle)}</div>
                 <div class="tt-datetime">${dateStr}${props.time ? " &bull; " + escapeHtml(props.time) : ""}</div>
                 ${props.summary ? `<div class="tt-summary">${escapeHtml(props.summary)}</div>` : ""}
-                <div class="tt-hint">${props.hasAgenda ? "View Agenda &rarr;" : "No Agenda Available"}</div>
+                <div class="tt-hint">${props.hasAgenda ? "Click to view agenda" : "No Agenda Available"}</div>
             `;
 
             tooltip.style.display = "block";
