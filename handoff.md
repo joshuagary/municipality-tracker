@@ -35,6 +35,7 @@ doesn't reproduce the full code.
 | West Palm Beach (WPB) | Granicus OpenCities (`wpb.org`) | Static per-series pages listing every date under a "When" heading | ✅ Working (confirmed 8 events) |
 | Wellington | CivicPlus (`wellingtonfl.gov`) | Own function, `scrape_wellington()` — Schema.org microdata | ✅ Working (confirmed 3 events, CIP Workshop correctly excluded) |
 | **Westlake** | **MuniCode (`meetings.municode.com`, jurisdiction `WESTLAKEFL`)** | **Own function, `scrape_westlake()` — HTML table parse, see below** | ⚠️ **First-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |
+| **Downtown WPB DDA** | **WordPress (`downtownwpb.com/dda/board-meetings/`)** | **Own function, `scrape_downtown_wpb_dda()` — `<li>` date-list parse, see below** | ⚠️ **First-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |
 
 ### Key Methodological Lessons (read before building the next scraper)
 
@@ -165,6 +166,44 @@ you'd normally use to double-check the preview isn't available either.
   any existing pattern) — worth asking the user whether either should qualify, since
   they did appear on Westlake's real meetings list.
 
+### Downtown WPB DDA (added this session — UNCONFIRMED, see Goals for Next Session)
+- **Downtown West Palm Beach DDA** (Downtown Development Authority),
+  `downtownwpb.com/dda/board-meetings/` — a WordPress page, not any platform used
+  elsewhere in this project. Meets the **3rd Tuesday of each month at 8:30 a.m.**, per
+  the user (who confirmed this live from the page).
+- **Per the user + a rendered-preview fetch** (unconfirmed against raw HTML — see
+  Lesson 1/2 above): the page lists Board meeting packets as a bulleted list of dates,
+  grouped by fiscal year. Each date is hyperlinked to an Issuu-hosted agenda packet
+  (e.g. `issuu.com/westpalmdda/docs/dda_board_agenda_packet_august_18_2026`) once
+  posted, and left as plain unlinked text (e.g. "September 15, 2026") when the packet
+  hasn't been posted yet — as of this session, August has an agenda, September doesn't.
+- **This session's sandbox again had no direct network route to `downtownwpb.com`**
+  (plain `curl`/`requests` rejected by the egress proxy, same as Westlake) — so
+  `scrape_downtown_wpb_dda()` could only be built against a WebFetch rendered preview,
+  not real raw HTML. **Treat it as an unconfirmed first draft**, exactly like Westlake.
+- **Written defensively**: primary strategy scans every `<li>` on the page for a
+  "Month DD, YYYY" text pattern (not assuming a specific `<ul>`/class); if none match,
+  it falls back to a page-wide scan of `<a>` tags and bare text nodes for the same date
+  pattern, and dumps a raw HTML slice anchored on "3rd Tuesday" (or "board meeting") to
+  the log for debugging. Logs the `<li>` count, matched-date count, and a sample raw
+  `<li>` unconditionally so the first real run's log can confirm or correct this.
+- **Title is hardcoded** to `"Downtown Development Authority (DDA) Board Meeting"`
+  (the page itself never states a per-event title, only dates) — chosen deliberately to
+  contain the literal phrase "Downtown Development Authority" so it passes the
+  *existing* whitelist entry for that phrase with no `is_qualifying_event` changes
+  needed.
+- **Time is hardcoded to "8:30 AM"** per the user's direct statement — this is the one
+  piece of this scraper resting on a stated fact rather than an unverified page-structure
+  guess.
+- Follows the project-wide "No Agenda Available" pattern: `has_agenda: False` +
+  `link` pointing at the board-meetings page itself (never a guessed/dead Issuu URL)
+  when a date's packet isn't posted yet.
+- **Mock-tested end-to-end** against a hand-built HTML fixture matching the
+  hypothesized structure (one unlinked `<li>` date, two linked `<li>` dates) —
+  confirmed it correctly extracts has_agenda True/False, the right ISO dates, the
+  8:30 AM time, and the fixed title. This confirms the *code logic*, not that the real
+  site's HTML actually matches the hypothesis.
+
 ## Global Feature: "No Agenda Available" events (added this session, applies project-wide)
 Per explicit user instruction, this is a project-wide policy, not Westlake-specific:
 **an event with confirmed date/time/title but no agenda document yet posted should
@@ -276,6 +315,12 @@ abandoned as an unmaintainable whack-a-mole). Current whitelist:
    row count, agenda-column index, and a sample raw row specifically for this purpose.
    If the real structure differs from what's assumed, rebuild the selectors from that
    real log output, not from another rendered-preview guess.
+1b. **Confirm or fix `scrape_downtown_wpb_dda()` against a real run**, the same way.
+   Ask the user to run the workflow and paste back the `[Downtown WPB DDA]`-prefixed
+   log lines; expect 2 events (August with an Issuu agenda link, September with
+   `has_agenda: False`) once September's packet is posted, expect it to flip to
+   `has_agenda: True` on a subsequent run. If the real `<li>` structure differs, rebuild
+   from the real log output.
 2. Resolve whether Westlake's "Education Advisory Board Meeting" and "Local Planning
    Agency Meeting" should be added to the whitelist - they're real recurring meeting
    types on Westlake's calendar that don't currently qualify. Ask the user rather than
