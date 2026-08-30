@@ -4,6 +4,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
+import xml.etree.ElementTree as ET
 
 # --- HELPER FUNCTIONS ---
 
@@ -40,7 +41,7 @@ def get_dual_month_bounds():
     return current_month_start, lookahead_end, curr_year, curr_month
 
 
-# --- 1. WEST PALM BEACH MODULE (FIXED 403 VIA SESSION & CLOUDFLARE HEADERS) ---
+# --- 1. WEST PALM BEACH MODULE ---
 def scrape_west_palm_beach():
     events = []
     base_domain = "https://www.wpb.org"
@@ -51,15 +52,12 @@ def scrape_west_palm_beach():
     session = requests.Session()
     session.headers.update({
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Sec-Ch-Ua": '"Chromium";v="128", "Not;A=Brand";v="24"',
-        "Sec-Ch-Ua-Mobile": "?0",
-        "Sec-Ch-Ua-Platform": '"Windows"'
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9"
     })
 
     try:
-        res = session.get(target_url, timeout=15)
+        res = session.get(target_url, timeout=10)
         print(f"[WPB] HTTP Status: {res.status_code}")
 
         if res.status_code == 200:
@@ -116,11 +114,11 @@ def scrape_west_palm_beach():
     return events
 
 
-# --- 2. PALM BEACH COUNTY MODULE (FIXED 404 TARGET ENDPOINT) ---
+# --- 2. PALM BEACH COUNTY MODULE ---
 def scrape_palm_beach_county():
     events = []
     base_domain = "https://discover.pbcgov.org"
-    target_url = "https://discover.pbcgov.org/countycommission/Pages/default.aspx"
+    target_url = f"{base_domain}/countycommission/Pages/default.aspx"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
@@ -129,7 +127,7 @@ def scrape_palm_beach_county():
     }
 
     try:
-        res = requests.get(target_url, headers=headers, timeout=15)
+        res = requests.get(target_url, headers=headers, timeout=10)
         print(f"[PBC] HTTP Status: {res.status_code}")
 
         if res.status_code == 200:
@@ -186,21 +184,65 @@ def scrape_palm_beach_county():
     return events
 
 
-# --- HELPER FOR LEGISTAR PORTALS (FORCES FULL MONTH LOOKAHEAD) ---
+# --- HELPER FOR LEGISTAR PORTALS (PARSES BOTH HTML GRID AND DIRECT RSS FEED) ---
 def scrape_legistar_portal(muni_code, muni_name, base_url):
     events = []
-    # Explicit query parameters force Legistar to serve full monthly grids
-    target_url = f"{base_url}Calendar.aspx?View=Calendar&Mode=Month"
-    
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     }
 
+    # 1. Primary Attempt: Legistar RSS Feed Endpoint
+    rss_url = f"{base_url}Calendar.ashx?Mode=RSS"
     try:
-        res = requests.get(target_url, headers=headers, timeout=15)
-        print(f"[{muni_name}] HTTP Status: {res.status_code}")
+        res = requests.get(rss_url, headers=headers, timeout=10)
+        print(f"[{muni_name} RSS] Status: {res.status_code}")
+        if res.status_code == 200 and res.text.strip().startswith("<?xml"):
+            root = ET.fromstring(res.text)
+            for item in root.findall(".//item"):
+                title_elem = item.find("title")
+                link_elem = item.find("link")
+                pubdate_elem = item.find("pubDate")
+
+                raw_title = title_elem.text.strip() if title_elem is not None and title_elem.text else ""
+                clean_title = clean_event_title(raw_title)
+
+                full_link = link_elem.text.strip() if link_elem is not None and link_elem.text else rss_url
+
+                iso_date = None
+                if pubdate_elem is not None and pubdate_elem.text:
+                    try:
+                        # Parse RFC 822 date format from RSS
+                        dt_parsed = datetime.strptime(pubdate_elem.text[:16], "%a, %d %b %Y")
+                        iso_date = dt_parsed.strftime("%Y-%m-%d")
+                    except Exception:
+                        pass
+
+                if iso_date and is_qualifying_event(clean_title):
+                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                    if current_month_start <= dt < lookahead_end:
+                        events.append({
+                            "id": f"{muni_code.lower()}-{iso_date}-{hash(full_link)}",
+                            "muni_short": muni_code,
+                            "muni_full": muni_name,
+                            "title": clean_title,
+                            "date": iso_date,
+                            "time": "6:00 PM",
+                            "link": full_link,
+                            "summary": f"Official {clean_title} meeting."
+                        })
+            if events:
+                print(f"[{muni_name}] Extracted {len(events)} events via RSS.")
+                return events
+    except Exception as e:
+        print(f"[{muni_name} RSS] Failed: {e}")
+
+    # 2. Secondary Fallback: Standard HTML Calendar Parsing
+    target_url = f"{base_url}Calendar.aspx"
+    try:
+        res = requests.get(target_url, headers=headers, timeout=10)
+        print(f"[{muni_name} HTML] Status: {res.status_code}")
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             table = soup.find("table", id=re.compile(r'.*gridCalendar.*'))
@@ -212,7 +254,7 @@ def scrape_legistar_portal(muni_code, muni_name, base_url):
                         raw_title = cols[0].text.strip()
                         date_str = cols[1].text.strip()
                         time_str = cols[3].text.strip()
-                        
+
                         clean_title = clean_event_title(raw_title)
 
                         link_a = cols[5].find("a")
@@ -236,9 +278,9 @@ def scrape_legistar_portal(muni_code, muni_name, base_url):
                                 })
                         except ValueError:
                             continue
-        print(f"[{muni_name}] Extracted {len(events)} events.")
+        print(f"[{muni_name} HTML] Extracted {len(events)} events.")
     except Exception as e:
-        print(f"[{muni_name}] Error: {e}")
+        print(f"[{muni_name} HTML] Error: {e}")
 
     return events
 
