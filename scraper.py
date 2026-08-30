@@ -68,13 +68,15 @@ def is_qualifying_event(title):
     qualifying_keywords = [
         # Core elected legislative bodies
         r'\bCity Council\b', r'\bCity Commission\b', r'\bTown Council\b',
+        r'\bTown Commission\b',  # Jupiter Inlet Colony uses "Town Commission" instead of Council
         r'\bVillage Council\b',  # Wellington is a Village, not City/Town - "Wellington
         # Village Council Meeting"/"...Workshop" wouldn't qualify without this.
         r'\bBoard of County Commissioners\b', r'\bBCC\b',
         # Redevelopment
         r'\bCommunity Redevelopment Agency\b', r'\bCRA\b',
-        # Land use / zoning
+        # Land use / zoning / planning
         r'\bPlanning (?:and|&)\s*Zoning\b', r'\bPlanning (?:Board|Commission)\b',
+        r'\bLocal Planning Agency\b',  # Jupiter Inlet Colony has "Local Planning Agency Meeting"
         r'\bZoning (?:Board|Commission|Board of Appeals)\b',
         r'\bBoard of Adjustment\b',
         # Quasi-governmental authorities tied to city/county government
@@ -1693,6 +1695,164 @@ def scrape_juno_beach():
     return events
 
 
+# --- 14. JUPITER INLET COLONY MODULE ---
+def scrape_jupiter_inlet_colony():
+    # Town of Jupiter Inlet Colony - https://www.jupiterinletcolony.gov/AgendaCenter
+    # This is an AgendaCenter platform (a new platform for this project, not CivicPlus/
+    # Legistar/Granicus/MuniCode/CivicClerk/WordPress/Granicus). The page displays a
+    # searchable agenda/minutes interface with collapsible sections per governing body.
+    #
+    # From the user's screenshot (real AgendaCenter page capture, not a rendered-preview
+    # hypothesis): the main content shows a "Town Commission" section with a table listing
+    # meetings by date. Each row contains:
+    #   - Date (e.g. "Aug 19, 2026")
+    #   - Meeting Title (e.g. "Town Commission Budget Workshop", "Regular Town Commission Meeting")
+    #   - Agenda link (in "Agenda" column, with a "Download" button or link when posted)
+    #   - Minutes column (when available)
+    #   - Media column (when available)
+    #   - Download button (for the agenda document)
+    #
+    # This first-pass scraper is UNCONFIRMED against real raw HTML from a GitHub Actions run.
+    # Per Key Methodological Lesson #1/2 in handoff.md: a screenshot is a hypothesis about
+    # markup, not ground truth. This is written defensively with heavy logging so a real run's
+    # output can confirm or correct the selectors/structure. Ask the user to run the workflow
+    # and paste back the [Jupiter Inlet Colony]-prefixed log lines if the extracted count
+    # looks wrong.
+    #
+    # Whitelist note: "Local Planning Agency Meeting" is included per explicit user request
+    # (added to is_qualifying_event whitelist above).
+    events = []
+    base_domain = "https://www.jupiterinletcolony.gov"
+    target_url = f"{base_domain}/AgendaCenter"
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    res = fetch_hardened(target_url)
+    if res is None:
+        print("[Jupiter Inlet Colony] Request failed.")
+        return events
+    print(f"[Jupiter Inlet Colony] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        return events
+
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    # AgendaCenter typically structures agendas in a table or list. Look for rows/items
+    # that contain meeting information. Since the exact structure is unconfirmed, try
+    # multiple selectors: look for table rows first, then fall back to list items or divs.
+
+    # Strategy 1: Look for table rows (most likely based on the screenshot showing a table)
+    rows = soup.find_all("tr")
+    if not rows:
+        # Strategy 2: Look for list items (if it's a list-based layout instead)
+        rows = soup.find_all("li")
+    if not rows:
+        # Strategy 3: Look for divs that might contain meeting data (generic fallback)
+        rows = soup.find_all("div", class_=re.compile(r'meeting|agenda|row', re.I))
+
+    print(f"[Jupiter Inlet Colony] Found {len(rows)} candidate rows/items on the page.")
+
+    if not rows:
+        print("[Jupiter Inlet Colony] No rows found. Dumping a slice of raw HTML "
+              "around a known meeting-type string for debugging:")
+        idx = res.text.find("Town Commission")
+        print(res.text[max(0, idx - 200): idx + 500] if idx != -1 else res.text[:700])
+        return events
+
+    if rows:
+        print(f"[Jupiter Inlet Colony] Sample first row raw HTML (for debugging):\n{rows[0]}")
+
+    seen_keys = set()
+    date_pattern = re.compile(
+        r'\b(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)'
+        r'\.?\s+(\d{1,2}),?\s*(\d{4})\b',
+        re.I
+    )
+
+    for row in rows:
+        row_text = row.get_text(separator=" ", strip=True)
+        if not row_text or len(row_text) < 5:
+            continue
+
+        # Try to extract a date in "Month DD, YYYY" format from the row
+        date_match = date_pattern.search(row_text)
+        if not date_match:
+            continue
+
+        try:
+            month_name, day, year = date_match.groups()
+            # Normalize abbreviated month names to full names for strptime
+            month_map = {
+                'jan': 'January', 'feb': 'February', 'mar': 'March', 'apr': 'April',
+                'may': 'May', 'jun': 'June', 'jul': 'July', 'aug': 'August',
+                'sep': 'September', 'oct': 'October', 'nov': 'November', 'dec': 'December'
+            }
+            month_full = month_map.get(month_name.lower()[:3], month_name)
+            dt = datetime.strptime(f"{month_full} {day} {year}", "%B %d %Y")
+        except ValueError:
+            continue
+
+        iso_date = dt.strftime("%Y-%m-%d")
+        if not (current_month_start <= dt < lookahead_end):
+            continue
+
+        # Extract the meeting title - look for text between the date and any link/button
+        # In AgendaCenter, the title typically appears right after the date
+        clean_title = "Town Commission Meeting"  # Default fallback
+
+        # Try to find a more specific title from the row text
+        # Look for common patterns like "Regular Town Commission Meeting", "Special Town Commission Meeting", etc.
+        title_patterns = [
+            r'(?:Regular|Special|Emergency)?\s*Town Commission\s+(?:Meeting|Hearing|Workshop|Retreat)',
+            r'Town Commission\s+(?:Budget\s+)?Workshop',
+            r'Local Planning Agency\s+Meeting',
+        ]
+        for pattern_str in title_patterns:
+            title_match = re.search(pattern_str, row_text, re.I)
+            if title_match:
+                clean_title = clean_event_title(title_match.group(0))
+                break
+
+        if not clean_title or not is_qualifying_event(clean_title):
+            continue
+
+        # Try to extract time if present; AgendaCenter may or may not show times prominently
+        time_match = re.search(r'(\d{1,2}):(\d{2})\s*([AP]M)', row_text, re.I)
+        meeting_time = time_match.group(0).upper() if time_match else "6:00 PM"
+
+        # Check if an agenda is available by looking for a link in the row
+        agenda_link = row.find("a", href=True) if hasattr(row, 'find') else None
+        has_agenda = agenda_link is not None
+
+        if has_agenda:
+            href = agenda_link.get("href", "").strip()
+            full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+        else:
+            full_link = target_url  # Fall back to the main AgendaCenter page
+
+        dedup_key = (clean_title, iso_date, meeting_time)
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"juic-{iso_date}-{hash(clean_title + meeting_time)}",
+            "muni_short": "JUIC",
+            "muni_full": "Town of Jupiter Inlet Colony",
+            "title": clean_title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": full_link,
+            "has_agenda": has_agenda,
+            "summary": f"Official {clean_title} meeting." if has_agenda else f"Official {clean_title} meeting. No agenda posted yet.",
+        })
+
+    print(f"[Jupiter Inlet Colony] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -1712,6 +1872,7 @@ def main():
     all_events.extend(scrape_jupiter())
     all_events.extend(scrape_riviera_beach())
     all_events.extend(scrape_juno_beach())
+    all_events.extend(scrape_jupiter_inlet_colony())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
