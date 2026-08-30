@@ -165,15 +165,18 @@
             margin-bottom: 0 !important;
         }
 
-        .fc .fc-scrollgrid-section-header > td {
+        .fc .fc-scrollgrid-section-header {
             position: sticky;
             top: var(--fc-toolbar-height);
             z-index: 15;
+        }
+
+        .fc .fc-scrollgrid-section-header > * {
             background: var(--card-bg);
         }
 
         /* Keep the day-name cells themselves opaque too, in case FullCalendar's
-           inner header table doesn't inherit the background from the td above */
+           inner header table doesn't inherit the background from the row above */
         .fc .fc-col-header-cell {
             background: var(--card-bg);
         }
