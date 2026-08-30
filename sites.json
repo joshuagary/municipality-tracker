@@ -28,6 +28,13 @@
     "status": "Active"
   },
   {
+    "muni_code": "GULFSTREAM",
+    "muni_name": "Town of Gulf Stream",
+    "type": "Town",
+    "monitoring_url": "https://www.gulf-stream.org/events/",
+    "status": "Active"
+  },
+  {
     "muni_code": "JUNOBEACH",
     "muni_name": "Town of Juno Beach",
     "type": "Town",
