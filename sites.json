@@ -49,6 +49,13 @@
     "status": "Active"
   },
   {
+    "muni_code": "MANALAPAN",
+    "muni_name": "Town of Manalapan",
+    "type": "Town",
+    "monitoring_url": "https://manalapan.org/agenda-minutes/",
+    "status": "Active"
+  },
+  {
     "muni_code": "PB",
     "muni_name": "Town of Palm Beach",
     "type": "Town",
