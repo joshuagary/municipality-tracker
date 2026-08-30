@@ -309,6 +309,172 @@
             font-style: italic;
             color: var(--text-muted);
         }
+
+        /* ADMIN VIEW STYLES */
+        #admin-wrapper {
+            display: none;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .admin-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .admin-section h2 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .admin-section h3 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-top: 16px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .admin-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .keyword-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .keyword-item {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .keyword-item strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .keyword-item span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .monitoring-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .info-card {
+            background: #f1f5f9;
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .info-card .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .info-card .value {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .update-frequency {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-top: 12px;
+            color: var(--text-main);
+        }
+
+        .update-frequency strong {
+            color: var(--primary);
+        }
+
+        /* SITES MONITORING TABLE */
+        .sites-table-wrapper {
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+
+        .sites-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .sites-table thead {
+            background: #f1f5f9;
+        }
+
+        .sites-table th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .sites-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .sites-table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .sites-table .url-cell {
+            font-family: "Courier New", monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+        }
+
+        .sites-table .url-cell a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .sites-table .url-cell a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .sites-table .status-badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -327,6 +493,7 @@
             <div class="view-toggle">
                 <button class="toggle-btn active" id="btnCalendarView">Calendar</button>
                 <button class="toggle-btn" id="btnListView">List View</button>
+                <button class="toggle-btn" id="btnAdminView">Admin</button>
             </div>
         </div>
         
@@ -346,6 +513,143 @@
         <!-- Rendered when List View is active -->
     </main>
 
+    <!-- ADMIN DISPLAY -->
+    <main id="admin-wrapper">
+        <!-- Application Overview -->
+        <section class="admin-section">
+            <h2>Application Overview</h2>
+            <p class="admin-description">
+                The Municipal Public Meetings Portal is a comprehensive application designed to aggregate, organize, and display public meeting schedules across Palm Beach County municipalities. It scrapes and monitors official municipal websites to provide residents, officials, and stakeholders with a centralized, searchable interface for discovering upcoming governance meetings and accessing related agendas.
+            </p>
+            <p class="admin-description" style="margin-top: 12px;">
+                This tool enables transparency and civic engagement by consolidating meeting information that would otherwise be scattered across multiple municipal websites.
+            </p>
+        </section>
+
+        <!-- Keywords & Search Terms -->
+        <section class="admin-section">
+            <h2>Keywords & Search Terms</h2>
+            <p class="admin-description">
+                The following keywords are used to identify and categorize relevant meeting types. These terms are matched against meeting titles, agendas, and summaries to help users discover meetings by topic or governance area:
+            </p>
+            <div class="keyword-list">
+                <div class="keyword-item">
+                    <strong>Zoning</strong>
+                    <span>Zoning board meetings, variance requests, land use decisions</span>
+                </div>
+                <div class="keyword-item">
+                    <strong>CRA</strong>
+                    <span>Community Redevelopment Agency meetings</span>
+                </div>
+                <div class="keyword-item">
+                    <strong>Commission</strong>
+                    <span>City/County commission and council meetings</span>
+                </div>
+                <div class="keyword-item">
+                    <strong>Planning</strong>
+                    <span>Planning board and development meetings</span>
+                </div>
+                <div class="keyword-item">
+                    <strong>Budget</strong>
+                    <span>Financial and budget-related meetings</span>
+                </div>
+                <div class="keyword-item">
+                    <strong>Board</strong>
+                    <span>General board meetings across departments</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monitoring Timeline -->
+        <section class="admin-section">
+            <h2>Monitoring Timeline</h2>
+            <p class="admin-description">
+                The application monitors meeting schedules across a rolling two-month window consisting of the current month and the following month:
+            </p>
+            <div class="monitoring-info">
+                <div class="info-card">
+                    <div class="label">Current Month</div>
+                    <div class="value">1</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">Lookahead Month</div>
+                    <div class="value">1</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">Total Monitoring Window</div>
+                    <div class="value">2 Months</div>
+                </div>
+            </div>
+            <div class="update-frequency">
+                <strong>Update Frequency:</strong> Once daily at midnight (12:00 AM Eastern Time)
+            </div>
+        </section>
+
+        <!-- Sites Being Monitored -->
+        <section class="admin-section">
+            <h2>Sites Being Monitored</h2>
+            <p class="admin-description">
+                The following municipalities and sources are monitored for public meeting information:
+            </p>
+            <div class="sites-table-wrapper">
+                <table class="sites-table">
+                    <thead>
+                        <tr>
+                            <th>Municipality</th>
+                            <th>Type</th>
+                            <th>Monitoring URL</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Boynton Beach</td>
+                            <td>City</td>
+                            <td class="url-cell"><a href="https://www.boyntonbeachfl.gov/government/meetings" target="_blank" rel="noopener noreferrer">https://www.boyntonbeachfl.gov/government/meetings</a></td>
+                            <td><span class="status-badge">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>Delray Beach</td>
+                            <td>City</td>
+                            <td class="url-cell"><a href="https://www.delraybeachfl.gov/government/meetings" target="_blank" rel="noopener noreferrer">https://www.delraybeachfl.gov/government/meetings</a></td>
+                            <td><span class="status-badge">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>Lake Worth Beach</td>
+                            <td>City</td>
+                            <td class="url-cell"><a href="https://www.lakeworthbeachfl.gov/meetings" target="_blank" rel="noopener noreferrer">https://www.lakeworthbeachfl.gov/meetings</a></td>
+                            <td><span class="status-badge">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>Palm Beach</td>
+                            <td>Town</td>
+                            <td class="url-cell"><a href="https://www.townofpalmbeach.com/government/meetings" target="_blank" rel="noopener noreferrer">https://www.townofpalmbeach.com/government/meetings</a></td>
+                            <td><span class="status-badge">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>Palm Beach County</td>
+                            <td>County</td>
+                            <td class="url-cell"><a href="https://www.pbcgov.com/government/meetings" target="_blank" rel="noopener noreferrer">https://www.pbcgov.com/government/meetings</a></td>
+                            <td><span class="status-badge">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>Riviera Beach</td>
+                            <td>City</td>
+                            <td class="url-cell"><a href="https://www.rivierabeachfl.gov/meetings" target="_blank" rel="noopener noreferrer">https://www.rivierabeachfl.gov/meetings</a></td>
+                            <td><span class="status-badge">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>West Palm Beach</td>
+                            <td>City</td>
+                            <td class="url-cell"><a href="https://www.wpb.org/government/meetings" target="_blank" rel="noopener noreferrer">https://www.wpb.org/government/meetings</a></td>
+                            <td><span class="status-badge">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
     <script>
         let allEvents = [];
         let calendar = null;
@@ -358,6 +662,7 @@
             document.getElementById("searchInput").addEventListener("input", updateViews);
             document.getElementById("btnCalendarView").addEventListener("click", () => switchView("calendar"));
             document.getElementById("btnListView").addEventListener("click", () => switchView("list"));
+            document.getElementById("btnAdminView").addEventListener("click", () => switchView("admin"));
         });
 
         function initCalendar() {
@@ -502,21 +807,31 @@
             hideEventTooltip();
             const calWrapper = document.getElementById("calendar-wrapper");
             const listWrapper = document.getElementById("list-wrapper");
+            const adminWrapper = document.getElementById("admin-wrapper");
             const btnCal = document.getElementById("btnCalendarView");
             const btnList = document.getElementById("btnListView");
+            const btnAdmin = document.getElementById("btnAdminView");
 
+            // Hide all views
+            calWrapper.style.display = "none";
+            listWrapper.style.display = "none";
+            adminWrapper.style.display = "none";
+            btnCal.classList.remove("active");
+            btnList.classList.remove("active");
+            btnAdmin.classList.remove("active");
+
+            // Show selected view
             if (viewType === "calendar") {
                 calWrapper.style.display = "block";
-                listWrapper.style.display = "none";
                 btnCal.classList.add("active");
-                btnList.classList.remove("active");
                 calendar.render(); // Redraw calendar view upon unhiding
                 updateStickyToolbarOffset();
-            } else {
-                calWrapper.style.display = "none";
+            } else if (viewType === "list") {
                 listWrapper.style.display = "flex";
                 btnList.classList.add("active");
-                btnCal.classList.remove("active");
+            } else if (viewType === "admin") {
+                adminWrapper.style.display = "flex";
+                btnAdmin.classList.add("active");
             }
         }
 
