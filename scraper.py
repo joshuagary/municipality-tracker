@@ -926,19 +926,29 @@ def scrape_palm_beach():
         event_id = ev.get("id")
         has_agenda = bool(ev.get("hasAgenda"))
 
-        agenda_url = None
+        # CONFIRMED (user-provided real example, Sept 1 event): the portal's actual
+        # agenda deep-link is NOT built from publishedFiles[].url (that's a relative
+        # blob-storage path, e.g. "stream/PALMBEACHFL/<uuid>.pdf", which is NOT what
+        # the portal links to - that was an incorrect guess in the first pass and
+        # produced a dead/wrong URL). The real, working link pattern is a portal page:
+        #   {base_domain}/event/{event_id}/files/agenda/{fileId}
+        # e.g. https://palmbeachfl.portal.civicclerk.com/event/11384/files/agenda/16662
+        # where {fileId} is the "Agenda"-typed entry's `fileId` (NOT `id`, which is
+        # always 0 on these sub-objects) from publishedFiles.
+        agenda_file_id = None
         for f in (ev.get("publishedFiles") or []):
-            if (f.get("type") or "").strip().lower() == "agenda" and f.get("url"):
-                agenda_url = f["url"]
+            if (f.get("type") or "").strip().lower() == "agenda" and f.get("fileId"):
+                agenda_file_id = f["fileId"]
                 break
-        if has_agenda and agenda_url:
-            full_link = f"{api_domain}/{agenda_url.lstrip('/')}"
-        elif has_agenda and event_id is not None:
-            # hasAgenda is True per the API but no "Agenda"-typed file was in
-            # publishedFiles for this event (e.g. only an "Agenda Packet") - fall back
-            # to the event's portal page rather than guessing a different file's URL.
-            full_link = f"{base_domain}/event/{event_id}"
+
+        if has_agenda and agenda_file_id and event_id is not None:
+            full_link = f"{base_domain}/event/{event_id}/files/agenda/{agenda_file_id}"
         elif event_id is not None:
+            # hasAgenda True but no "Agenda"-typed file found (e.g. only an "Agenda
+            # Packet"), or hasAgenda False - fall back to the event's portal page
+            # rather than guessing a file URL. This fallback pattern
+            # ({base_domain}/event/{id}) is still itself unconfirmed - flag if a real
+            # run shows it 404ing too.
             full_link = f"{base_domain}/event/{event_id}"
         else:
             full_link = base_domain
