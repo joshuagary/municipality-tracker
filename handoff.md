@@ -470,6 +470,66 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
 
 ## Frontend (`index.html`) Features {#frontend-indexhtml-features}
 
+### Admin Tab & Dynamic Sites Monitoring List (added this session)
+
+- **New "Admin" tab** alongside Calendar and List View — accessible via toggle buttons at the top.
+- **Admin page includes**:
+  - Application Overview section explaining the purpose and functionality
+  - Keywords & Search Terms section describing how search works and what keywords are used
+  - Monitoring Timeline section showing current monitoring window (current month + 1 month = 2 months total)
+  - Update Frequency note (once daily at midnight Eastern Time)
+  - **Dynamic "Sites Being Monitored" table** — see below
+
+- **Dynamic Sites Table (`sites.json` configuration)**:
+  - **File**: `sites.json` at the repository root (alongside `index.html`, `data.json`, `scraper.py`)
+  - **Purpose**: maintains a list of all municipalities being monitored by the scraper, independent of whether events currently exist for them in `data.json`. This solves a critical problem: if a municipality has no meetings in the current 2-month window, it would disappear from `data.json` and thus wouldn't appear in the Admin table — even though it's still actively being scraped. The `sites.json` configuration file ensures the Admin page always reflects the actual monitoring scope.
+  - **Structure**: JSON array of municipality objects:
+    ```json
+    [
+      {
+        "muni_code": "WPB",
+        "muni_name": "West Palm Beach",
+        "type": "City",
+        "monitoring_url": "https://www.wpb.org/government/meetings",
+        "status": "Active"
+      },
+      ...
+    ]
+    ```
+  - **Fields**:
+    - `muni_code`: Short 2–3 character code (e.g., "WPB", "PBC") — used internally for uniqueness
+    - `muni_name`: Full display name as it should appear in the Admin table
+    - `type`: One of "City", "Town", "County", "Village", "Authority", etc.
+    - `monitoring_url`: The URL being actively monitored by the scraper (e.g., the scraper's entry point for that municipality)
+    - `status`: "Active", "Inactive", "Suspended", etc. — controls the status badge styling (currently all are "Active" and styled green)
+  
+  - **How it works**:
+    - `index.html` loads `sites.json` on page load via the `loadSitesTable()` JavaScript function
+    - The function fetches `sites.json`, iterates over each municipality, and dynamically generates HTML table rows
+    - All styling (clickable URLs, status badges, hover effects) is applied consistently
+    - If `sites.json` fails to load, the table shows an error message instead of breaking
+  
+  - **How to add a new municipality**:
+    1. Add a new object to the `sites.json` array with all five required fields
+    2. Make sure the `muni_code` is unique and matches the code used in `scraper.py`
+    3. The Admin table will automatically include it on the next page load — no HTML editing needed
+    4. Keep the array sorted alphabetically by `muni_name` for consistency
+  
+  - **How to remove a municipality**:
+    1. Delete its entry from the `sites.json` array
+    2. The table will automatically reflect the removal on the next page load
+  
+  - **Example addition** (if a new municipality "Sunrise" is added to the scraper):
+    ```json
+    {
+      "muni_code": "SUNRISE",
+      "muni_name": "City of Sunrise",
+      "type": "City",
+      "monitoring_url": "https://www.sunrisefl.gov/meetings",
+      "status": "Active"
+    }
+    ```
+
 - **`dayMaxEvents: 3` \+ `moreLinkClick: 'popover'`** \- days with more than 3 meetings
   collapse into a "\+N more" link with a popover, instead of listing everything inline.
 - **Custom styled hover tooltip** (not FullCalendar's native/browser tooltip) \- shows
