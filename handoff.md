@@ -2,19 +2,19 @@
 
 ## Your Role
 You are a coding assistant helping build and debug **`municipality-tracker`**, a Python
-scraper + static HTML frontend that tracks public government meetings across seven
-South Florida municipalities. The person you're working with is non-technical-ish but
-hands-on: they paste real GitHub Actions logs, spot specific wrong meetings by name,
-and want precise, tested fixes — not guesses. Verify claims (fetch real pages, test
-regex against real HTML, not just a rendered preview of it) before asserting something
-works, and be upfront when something can't be verified without a live browser or the
-user's own CI logs. See "Key Methodological Lesson" below before writing any new
-scraper — it covers a real mistake made (and caught) this session that's worth not
-repeating.
+scraper + static HTML frontend that tracks public government meetings across South
+Florida municipalities (plus Westlake, added this session — see below). The person
+you're working with is non-technical-ish but hands-on: they paste real GitHub Actions
+logs, spot specific wrong meetings by name, and want precise, tested fixes — not
+guesses. Verify claims (fetch real pages, test regex against real HTML, not just a
+rendered preview of it) before asserting something works, and be upfront when
+something can't be verified without a live browser or the user's own CI logs. See
+"Key Methodological Lessons" below before writing any new scraper — it covers real
+mistakes made (and caught) across sessions that are worth not repeating.
 
 ## Project Overview
 `scraper.py` runs daily via GitHub Actions (`.github/workflows/scrape.yml`), fetches
-public meeting schedules for seven municipalities, filters for governance-relevant
+public meeting schedules for each municipality, filters for governance-relevant
 meetings, normalizes dates/times to ISO format, and writes `data.json`. `index.html` is
 a static frontend (FullCalendar 6 + vanilla JS) that reads `data.json` and renders a
 searchable calendar/list view, hosted directly from the repo (e.g. GitHub Pages).
@@ -33,9 +33,12 @@ doesn't reproduce the full code.
 | Boca Raton | CivicPlus (`myboca.us`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 16 events) |
 | Boynton Beach | CivicPlus (`boynton-beach.org`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 12 events) |
 | West Palm Beach (WPB) | Granicus OpenCities (`wpb.org`) | Static per-series pages listing every date under a "When" heading | ✅ Working (confirmed 8 events) |
-| **Wellington** | **CivicPlus (`wellingtonfl.gov`)** | **Own function, `scrape_wellington()` - see below** | ✅ **Working (confirmed 3 events, CIP Workshop correctly excluded)** |
+| Wellington | CivicPlus (`wellingtonfl.gov`) | Own function, `scrape_wellington()` — Schema.org microdata | ✅ Working (confirmed 3 events, CIP Workshop correctly excluded) |
+| **Westlake** | **MuniCode (`meetings.municode.com`, jurisdiction `WESTLAKEFL`)** | **Own function, `scrape_westlake()` — HTML table parse, see below** | ⚠️ **First-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |
 
-### Key Methodological Lesson From This Session (read before building the next scraper)
+### Key Methodological Lessons (read before building the next scraper)
+
+**Lesson 1 — a web-fetch/browsing tool's rendered output is not raw HTML.**
 While adding Wellington, an early attempt built a regex parser by fetching the live
 page through a **web-fetch/browsing tool** and reasoning about the markdown-rendered
 text it returned (e.g. `[Event Title](url)` bracket-link syntax). That regex found 0
@@ -66,6 +69,19 @@ childcare sign-up disclaimer sitting between the visible date and the visible ti
 repeat, which broke an earlier regex-based attempt by sweeping that whole disclaimer
 into the "title" capture).
 
+**Lesson 2 — the coding sandbox itself may have no outbound network access at all**
+(discovered when adding Westlake). Even a plain `curl` to the target domain from the
+assistant's own shell can fail outright (connection rejected by an egress/organization
+policy), meaning *neither* the rendered-preview tool's output *nor* a live raw-HTML
+fetch may be available to build against in a given session — only the rendered-preview
+tool. When that happens, say so explicitly, write the scraper defensively (multiple
+selector/fallback strategies, generous debug `print()`s of header rows / row counts /
+a sample raw row), and be explicit with the user that the function is an **unconfirmed
+first-pass draft** until they run it for real (GitHub Actions or locally) and paste
+back the log. Don't imply a scraper "works" when its only grounding is a rendered
+preview — this is the same lesson as #1, just for a session where even the raw fetch
+you'd normally use to double-check the preview isn't available either.
+
 ### Key history / root causes fixed in prior sessions
 - **Boca & Boynton were never Legistar clients.** The original code (from an earlier
   Gemini session) wired them up as Legistar, which is why they returned 500s/404s/0
@@ -83,7 +99,7 @@ into the "title" capture).
   plain `requests` gets blocked by some of these sites' WAFs on GitHub Actions IP
   ranges. Falls back to plain `requests` if `curl_cffi` isn't available.
 
-### This session: Wellington added
+### Wellington (added in an earlier session)
 - **Confirmed live**: Wellington runs standard CivicPlus ("Government Websites by
   CivicPlus®" in the footer), using the exact `calendar.aspx?startDate=&enddate=&CID=&
   showPastEvents=false` URL format the user provided.
@@ -116,41 +132,120 @@ into the "title" capture).
   keeping an eye on if Wellington's event count ever looks off (e.g. events appearing
   from the "Meetings" calendar that shouldn't be in scope, or events disappearing).
 
+### Westlake (added this session — UNCONFIRMED, see Goals for Next Session)
+- **City of Westlake**, `westlakegov.com/meetings`. Identified via a rendered-preview
+  fetch as running **MuniCode's meetings portal** (`meetings.municode.com`, jurisdiction
+  slug `WESTLAKEFL`) — evidence: "a municode design" in the footer, document URLs on
+  `mccmeetings.blob.core.usgovcloudapi.net`, agenda HTML links of the form
+  `meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=<meeting_id>&ip=...`.
+  This is a brand-new platform for this project (not CivicPlus/Legistar/Granicus).
+- **Per the rendered preview** (unconfirmed — see Lesson 2 above): the page is a single
+  server-rendered HTML `<table>` (no iframe, no separate JS-driven API call was
+  detected) with columns Date, Meeting, Agendas, Packets, Minutes, Video/Audio, View.
+  Sample row: `09/01/2026 - 6:00pm | City Council Regular Meeting | [agenda links] | ...`.
+- **`scrape_westlake()` was written defensively** against this unconfirmed structure:
+  it tries several table-selector fallbacks (id/class containing "meeting", else the
+  largest `<table>` on the page by row count), locates the "Agendas" column by matching
+  header cell text rather than a hardcoded column index, and — if no table is found at
+  all — dumps a raw HTML slice anchored on the string `"City Council"` to the log for
+  debugging. It also prints the detected header row, row count, and the first data
+  row's raw HTML unconditionally, specifically so the first real run's log can confirm
+  or correct these assumptions.
+- **This session's sandbox had no direct network route to `westlakegov.com`** (a plain
+  `curl` from the assistant's shell was rejected by an egress/org policy) — meaning
+  `scrape_westlake()` could not be checked against real raw HTML at all this session,
+  only against a rendered-preview tool's summary of the page. **Treat it as an
+  unconfirmed first draft.** See Goals for Next Session, item 1.
+- No new whitelist entries were needed — Westlake's visible meeting types (City
+  Council Regular/Special Meeting, City Council Workshop, City Council Budget
+  Workshop/Hearing, Education Advisory Board Meeting, Local Planning Agency Meeting)
+  are covered by the existing `City Council` / `Planning ... ` patterns already in
+  `is_qualifying_event`. **Education Advisory Board** and **Local Planning Agency**
+  meetings will currently be *excluded* by the whitelist as written (neither matches
+  any existing pattern) — worth asking the user whether either should qualify, since
+  they did appear on Westlake's real meetings list.
+
+## Global Feature: "No Agenda Available" events (added this session, applies project-wide)
+Per explicit user instruction, this is a project-wide policy, not Westlake-specific:
+**an event with confirmed date/time/title but no agenda document yet posted should
+still be included on the calendar**, not dropped — flagged so the frontend can be
+honest about it instead of showing a dead/broken link.
+
+- **Data contract**: every event dict in `scraper.py` may include `"has_agenda":
+  True/False`. All pre-existing scrapers (PBG/Boca/Boynton/Delray/PBC/WPB/Wellington)
+  don't set this field and are treated as `True` by default in the frontend, since they
+  have always resolved to a usable link. `scrape_westlake()` sets it explicitly per
+  event based on whether a real `<a>` link was found in that row's Agendas column.
+- **Critical detail — the fallback link, not just the flag**: when `has_agenda` is
+  `False`, `"link"` must NOT be left pointing at a dead/guessed agenda URL. It should
+  point at **the general source page the event was found on** (e.g. for Westlake,
+  `https://www.westlakegov.com/meetings` itself) so the event stays genuinely
+  clickable and useful instead of leading to a bad page. This was a real bug caught and
+  fixed this session: an earlier version made the frontend not-clickable when there was
+  no agenda, which was actually *worse* than just pointing at the source page.
+- **Frontend (`index.html`)**: `has_agenda !== false` gates all of this (defends
+  against old scrapers that never set the field). When false:
+  - The FullCalendar event's `url` is still set to `e.link` (the source page) — it
+    stays clickable, it just doesn't go to a specific agenda doc.
+  - The list view renders the link as `<a>` text reading "No Agenda Available" instead
+    of "View Agenda →", styled muted/italic via a `.event-link-disabled` class — still
+    a real, clickable anchor to `e.link`, not a disabled/dead span.
+  - The custom hover tooltip's bottom line reads "No Agenda Available" instead of the
+    agenda hint.
+- **Tooltip hint wording lesson (also caught and fixed this session)**: the hover
+  tooltip is a non-interactive popup — the user's mouse cannot move onto it before it
+  closes (it hides on the underlying event's `mouseleave`), so anything in it that
+  *looks* like a clickable link/button is deceptive. The `.tt-hint` line originally
+  read "View Agenda →" styled in the same blue as real links, which read as a broken
+  clickable element. Fixed by (a) rewording to **"Click to view agenda"** — describing
+  the action on the actual calendar event, not implying the tooltip itself is
+  clickable — and (b) restyling `.tt-hint` to muted/italic (`var(--text-muted)`)
+  instead of the link-blue (`var(--primary-hover)`), so nothing inside the tooltip
+  visually implies it's interactive. **Apply this same standard to any other
+  tooltip/hint text added in the future**: never word or style static, non-hoverable
+  UI as if it's clickable.
+
 ## Filtering Logic (`is_qualifying_event`)
 Inclusive whitelist only - matches specific named governance bodies instead of generic
 words, to stay maintainable (an earlier broad-keyword + exclude-list approach was
 abandoned as an unmaintainable whack-a-mole). Current whitelist:
-- City Council, City Commission, Town Council, **Village Council** (added for Wellington)
+- City Council, City Commission, Town Council, Village Council (added for Wellington)
 - Board of County Commissioners, BCC
 - Community Redevelopment Agency, CRA
 - Planning and Zoning, Planning Board/Commission, Zoning Board/Commission/Board of
   Appeals, Board of Adjustment
 - Downtown Development Authority, Housing Authority, Airport Authority
-- Council/Commission Workshop, **Council/Commission Agenda Review** (added for
+- Council/Commission Workshop, Council/Commission Agenda Review (added for
   Wellington), Mayor/Commission Work Session, Public Hearing, Town Hall (all qualified
   by the body name so bare "Workshop"/"Hearing"/"Agenda Review" can't match alone)
 - **Explicitly dropped per user request - not to be re-added unless asked:** Special
   Magistrate, Code Enforcement Board, Historic Preservation Board, Community Appearance
-  Board, **CIP Workshop** (Wellington-specific)
+  Board, CIP Workshop (Wellington-specific)
 - Tested against 24+ real titles from PBG/Boca/Boynton/PBC/Delray in an earlier session,
-  plus all 4 real Wellington Council-calendar titles this session (3 qualify, CIP
-  Workshop correctly excluded) - verified via an end-to-end mocked test of
-  `scrape_wellington()`, not just the regex in isolation.
+  plus all 4 real Wellington Council-calendar titles (3 qualify, CIP Workshop correctly
+  excluded) - verified via an end-to-end mocked test of `scrape_wellington()`, not just
+  the regex in isolation.
+- **Not yet resolved**: Westlake's real "Education Advisory Board Meeting" and "Local
+  Planning Agency Meeting" titles don't match any current pattern and will be silently
+  excluded as of this handoff — flag to the user rather than guessing whether to add
+  patterns for these.
 
-## Frontend (`index.html`) Features (unchanged this session - carried from prior handoff)
+## Frontend (`index.html`) Features
 - **`dayMaxEvents: 3` + `moreLinkClick: 'popover'`** - days with more than 3 meetings
   collapse into a "+N more" link with a popover, instead of listing everything inline.
 - **Custom styled hover tooltip** (not FullCalendar's native/browser tooltip) - shows
-  muni badge, full title, date/time, summary, and a "View Agenda →" hint, positioned
-  near the cursor and clamped to stay within the viewport. Wired via
-  `eventMouseEnter`/`eventMouseLeave`, using `extendedProps` attached to each calendar
-  event.
+  muni badge, full title, date/time, summary, and a status hint ("Click to view
+  agenda" or "No Agenda Available"), positioned near the cursor and clamped to stay
+  within the viewport. Wired via `eventMouseEnter`/`eventMouseLeave`, using
+  `extendedProps` attached to each calendar event. **This tooltip is not itself
+  hoverable/interactive** - see the "No Agenda Available" section above before adding
+  any new content to it that might read as clickable.
 - **Sticky calendar header:** the month/year toolbar (`.fc-header-toolbar`) is confirmed
   working with `position: sticky; top: 0`. The weekday row (Sun-Sat) fix (targeting
   `.fc-scrollgrid-section-header` directly instead of assuming a `<td>` wrapper) was
-  applied but **still not yet visually confirmed by the user** as of last handoff - if
-  raised again, ask for the actual class name(s) on the weekday row from browser dev
-  tools rather than guessing further.
+  applied but **still not yet visually confirmed by the user** - if raised again, ask
+  for the actual class name(s) on the weekday row from browser dev tools rather than
+  guessing further.
 
 ## Known Limitations / Things I Can't Verify From My End
 - No live browser available in my working environment - all frontend changes are
@@ -162,34 +257,55 @@ abandoned as an unmaintainable whack-a-mole). Current whitelist:
 - **Any web-fetch/browsing tool used to "verify live" is rendering a converted preview
   (e.g. markdown), not raw HTML** - treat anything learned that way as a hypothesis
   about page structure, not a confirmed fact, until it's checked against the literal
-  `res.text` a real scraper run receives (see Key Methodological Lesson above). This
-  bit Wellington once already this session.
-- No live network access from the sandboxed code-execution tool (bash) - all research
-  into actual site structures was done via web search/fetch tools or the user's own
-  real GitHub Actions logs, not by running the scraper live end-to-end myself. The most
-  trustworthy confirmations (PBC, Delray, and ultimately Wellington) all came from the
-  user's own GitHub Actions log output, not from my own test runs.
+  `res.text` a real scraper run receives (see Key Methodological Lesson #1 above). This
+  bit Wellington once already, and is the reason Westlake's scraper is flagged
+  unconfirmed.
+- **The coding sandbox's own shell may have zero outbound network access**, separate
+  from and in addition to the above - confirmed this session when a plain `curl` to
+  `westlakegov.com` was rejected outright by an egress/org policy. Don't assume a
+  direct fetch is possible just because a rendered-preview tool is; check explicitly,
+  and say plainly when neither raw-HTML fetch nor test-execution against the live site
+  was possible. The most trustworthy confirmations (PBC, Delray, Wellington) all came
+  from the user's own GitHub Actions log output, not from the assistant's own test
+  runs, and that remains the reliable path.
 
 ## Goals for Next Session
-1. Add the next new municipality - **use the Key Methodological Lesson above from the
-   start**: don't assume a web-fetch tool's rendered preview reflects the real HTML;
-   if the platform/mechanism is at all unclear, build in a debug-print step early and
-   confirm against a real GitHub Actions log before writing the "final" parser.
-2. If Wellington's event count ever looks wrong (too few, too many, or the CID=22 vs
+1. **Confirm or fix `scrape_westlake()` against a real run.** Ask the user to run the
+   GitHub Actions workflow (or `python scraper.py` locally) and paste back the
+   `[Westlake]`-prefixed log lines. The function logs the detected table header row,
+   row count, agenda-column index, and a sample raw row specifically for this purpose.
+   If the real structure differs from what's assumed, rebuild the selectors from that
+   real log output, not from another rendered-preview guess.
+2. Resolve whether Westlake's "Education Advisory Board Meeting" and "Local Planning
+   Agency Meeting" should be added to the whitelist - they're real recurring meeting
+   types on Westlake's calendar that don't currently qualify. Ask the user rather than
+   guessing.
+3. Add the next new municipality - **use Key Methodological Lessons #1 and #2 above
+   from the start**: don't assume a web-fetch tool's rendered preview reflects the real
+   HTML, and don't assume the sandbox has live network access to the target site either
+   - check both explicitly. If the platform/mechanism is at all unclear, build in a
+   debug-print step early and confirm against a real GitHub Actions log before writing
+   the "final" parser. When adding an event with no agenda link, follow the "No Agenda
+   Available" pattern above: set `has_agenda: False` and point `link` at the general
+   source page, never a broken/guessed URL.
+4. If Wellington's event count ever looks wrong (too few, too many, or the CID=22 vs
    CID=29 mix-up resurfaces), revisit the CID=29-vs-CID=22 scope question directly with
    the user rather than guessing which calendar is intended.
-3. Confirm the weekday-header sticky fix actually renders correctly in-browser; if not,
+5. Confirm the weekday-header sticky fix actually renders correctly in-browser; if not,
    get the actual class name(s) on the weekday row from browser dev tools and target
    that directly instead of guessing further.
-4. Keep an eye out for new false-positive/false-negative meeting titles as any
+6. Keep an eye out for new false-positive/false-negative meeting titles as any
    municipality's calendar gets scraped over time - extend the whitelist additively
    (never re-add a dropped keyword, including Wellington's CIP Workshop, without being
    asked).
-5. General code hygiene: `scrape_civicplus_calendar()` is shared by PBG/Boca/Boynton;
-   `scrape_wellington()` is its own function since Wellington's list-view mechanism
-   doesn't match. If a new CivicPlus municipality's `?view=list&year=&month=` genuinely
-   returns a full month list (like PBG/Boca/Boynton), prefer reusing
-   `scrape_civicplus_calendar()` with an optional parameter over forking it again; if it
-   behaves like Wellington's (single-day drilldown), a bespoke function following
-   `scrape_wellington()`'s Schema.org-microdata approach is the proven pattern to reach
-   for first.
+7. General code hygiene: `scrape_civicplus_calendar()` is shared by PBG/Boca/Boynton;
+   `scrape_wellington()` and `scrape_westlake()` are their own functions since their
+   mechanisms don't match the generic CivicPlus list view. If a new CivicPlus
+   municipality's `?view=list&year=&month=` genuinely returns a full month list (like
+   PBG/Boca/Boynton), prefer reusing `scrape_civicplus_calendar()` with an optional
+   parameter over forking it again; if it behaves like Wellington's (single-day
+   drilldown), a bespoke function following `scrape_wellington()`'s Schema.org-microdata
+   approach is the proven pattern to reach for first. If a new municipality turns out
+   to run MuniCode's meetings portal (like Westlake), reuse/generalize
+   `scrape_westlake()`'s table-parsing approach once it's confirmed working, rather
+   than writing a third HTML-table parser from scratch.
