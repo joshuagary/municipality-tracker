@@ -785,11 +785,12 @@
 
         function getFilteredEvents() {
             const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
-            
+
             return allEvents.filter(event => {
                 const matchesMuni = (selectedMuni === "ALL") || (event.muni_short === selectedMuni);
-                const matchesSearch = !searchTerm || 
-                                      event.title.toLowerCase().includes(searchTerm) || 
+                const matchesSearch = !searchTerm ||
+                                      event.title.toLowerCase().includes(searchTerm) ||
+                                      (event.muni_short && event.muni_short.toLowerCase().includes(searchTerm)) ||
                                       (event.muni_full && event.muni_full.toLowerCase().includes(searchTerm)) ||
                                       (event.summary && event.summary.toLowerCase().includes(searchTerm));
 
