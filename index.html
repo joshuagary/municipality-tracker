@@ -150,6 +150,34 @@
             min-height: 650px;
         }
 
+        /* STICKY CALENDAR HEADER (month/year toolbar + day-of-week row) */
+        :root {
+            --fc-toolbar-height: 56px; /* fallback; JS measures and overrides this */
+        }
+
+        .fc .fc-toolbar.fc-header-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: var(--card-bg);
+            padding-top: 4px;
+            padding-bottom: 12px;
+            margin-bottom: 0 !important;
+        }
+
+        .fc .fc-scrollgrid-section-header > td {
+            position: sticky;
+            top: var(--fc-toolbar-height);
+            z-index: 15;
+            background: var(--card-bg);
+        }
+
+        /* Keep the day-name cells themselves opaque too, in case FullCalendar's
+           inner header table doesn't inherit the background from the td above */
+        .fc .fc-col-header-cell {
+            background: var(--card-bg);
+        }
+
         /* LIST VIEW CONTAINER */
         #list-wrapper {
             display: none;
@@ -326,9 +354,16 @@
                 },
                 eventMouseLeave: function() {
                     hideEventTooltip();
+                },
+                datesSet: function() {
+                    // Toolbar height can change slightly (e.g. button wrapping on
+                    // narrow screens), so re-measure whenever the view redraws.
+                    updateStickyToolbarOffset();
                 }
             });
             calendar.render();
+            updateStickyToolbarOffset();
+            window.addEventListener('resize', updateStickyToolbarOffset);
         }
 
         async function fetchEvents() {
@@ -437,11 +472,21 @@
                 btnCal.classList.add("active");
                 btnList.classList.remove("active");
                 calendar.render(); // Redraw calendar view upon unhiding
+                updateStickyToolbarOffset();
             } else {
                 calWrapper.style.display = "none";
                 listWrapper.style.display = "flex";
                 btnList.classList.add("active");
                 btnCal.classList.remove("active");
+            }
+        }
+
+        function updateStickyToolbarOffset() {
+            const toolbar = document.querySelector('#calendar .fc-header-toolbar');
+            if (!toolbar) return;
+            const height = toolbar.getBoundingClientRect().height;
+            if (height > 0) {
+                document.documentElement.style.setProperty('--fc-toolbar-height', `${height}px`);
             }
         }
 
