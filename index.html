@@ -36,7 +36,14 @@
         }
 
         header {
-            margin-bottom: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        header > div:first-child {
+            flex: 1;
         }
 
         h1 {
@@ -50,6 +57,37 @@
             font-size: 0.95rem;
         }
 
+        /* TOP NAVIGATION */
+        .top-nav {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
         /* CONTROLS CARD */
         .controls-card {
             background: var(--card-bg);
@@ -58,6 +96,11 @@
             border: 1px solid var(--border);
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             margin-bottom: 24px;
+            display: block;
+        }
+
+        .controls-card.hidden {
+            display: none;
         }
 
         .search-row {
@@ -349,27 +392,31 @@
 
         .keyword-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 12px;
             margin-top: 12px;
         }
 
         .keyword-item {
-            background: #f1f5f9;
-            padding: 12px;
-            border-radius: 6px;
-            border-left: 3px solid var(--primary);
+            background: #ffffff;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .keyword-item strong {
             color: var(--primary);
-            display: block;
-            margin-bottom: 4px;
+            font-size: 0.95rem;
+            font-weight: 700;
         }
 
         .keyword-item span {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            line-height: 1.4;
         }
 
         .monitoring-info {
@@ -380,10 +427,15 @@
         }
 
         .info-card {
-            background: #f1f5f9;
-            padding: 16px;
-            border-radius: 6px;
+            background: #ffffff;
+            padding: 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .info-card .label {
@@ -392,26 +444,29 @@
             letter-spacing: 0.5px;
             color: var(--text-muted);
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .info-card .value {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: var(--primary);
             font-weight: 700;
         }
 
         .update-frequency {
-            background: #eff6ff;
-            border-left: 4px solid var(--primary);
-            padding: 12px 16px;
-            border-radius: 6px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 14px 16px;
+            border-radius: 8px;
             margin-top: 12px;
             color: var(--text-main);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .update-frequency strong {
             color: var(--primary);
+            font-weight: 600;
         }
 
         /* SITES MONITORING TABLE */
@@ -483,17 +538,22 @@
     <div id="eventTooltip" class="event-tooltip"></div>
 
     <header>
-        <h1>Municipal Public Meetings</h1>
-        <p class="subtitle">Search upcoming agendas and governance schedules across Palm Beach County</p>
+        <div>
+            <h1>Municipal Public Meetings</h1>
+            <p class="subtitle">Search upcoming agendas and governance schedules across Palm Beach County</p>
+        </div>
+        <nav class="top-nav">
+            <button class="nav-btn active" id="btnAdminToggleOff">Meetings</button>
+            <button class="nav-btn" id="btnAdminToggleOn">Admin</button>
+        </nav>
     </header>
 
-    <section class="controls-card">
+    <section class="controls-card" id="meetingsControls">
         <div class="search-row">
             <input type="text" id="searchInput" class="search-box" placeholder="Search by topic, board, or keyword (e.g. Zoning, CRA, Commission)...">
             <div class="view-toggle">
                 <button class="toggle-btn active" id="btnCalendarView">Calendar</button>
                 <button class="toggle-btn" id="btnListView">List View</button>
-                <button class="toggle-btn" id="btnAdminView">Admin</button>
             </div>
         </div>
         
@@ -622,7 +682,8 @@
             document.getElementById("searchInput").addEventListener("input", updateViews);
             document.getElementById("btnCalendarView").addEventListener("click", () => switchView("calendar"));
             document.getElementById("btnListView").addEventListener("click", () => switchView("list"));
-            document.getElementById("btnAdminView").addEventListener("click", () => switchView("admin"));
+            document.getElementById("btnAdminToggleOn").addEventListener("click", () => switchView("admin"));
+            document.getElementById("btnAdminToggleOff").addEventListener("click", () => switchView("calendar"));
         });
 
         function initCalendar() {
@@ -789,30 +850,37 @@
             const calWrapper = document.getElementById("calendar-wrapper");
             const listWrapper = document.getElementById("list-wrapper");
             const adminWrapper = document.getElementById("admin-wrapper");
+            const controlsCard = document.getElementById("meetingsControls");
             const btnCal = document.getElementById("btnCalendarView");
             const btnList = document.getElementById("btnListView");
-            const btnAdmin = document.getElementById("btnAdminView");
+            const btnAdminOn = document.getElementById("btnAdminToggleOn");
+            const btnAdminOff = document.getElementById("btnAdminToggleOff");
 
-            // Hide all views
+            // Hide all views and controls
             calWrapper.style.display = "none";
             listWrapper.style.display = "none";
             adminWrapper.style.display = "none";
+            controlsCard.classList.remove("hidden");
             btnCal.classList.remove("active");
             btnList.classList.remove("active");
-            btnAdmin.classList.remove("active");
+            btnAdminOn.classList.remove("active");
+            btnAdminOff.classList.remove("active");
 
-            // Show selected view
+            // Show selected view and update navigation
             if (viewType === "calendar") {
                 calWrapper.style.display = "block";
                 btnCal.classList.add("active");
+                btnAdminOff.classList.add("active");
                 calendar.render(); // Redraw calendar view upon unhiding
                 updateStickyToolbarOffset();
             } else if (viewType === "list") {
                 listWrapper.style.display = "flex";
                 btnList.classList.add("active");
+                btnAdminOff.classList.add("active");
             } else if (viewType === "admin") {
                 adminWrapper.style.display = "flex";
-                btnAdmin.classList.add("active");
+                btnAdminOn.classList.add("active");
+                controlsCard.classList.add("hidden");
             }
         }
 
