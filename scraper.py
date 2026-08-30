@@ -801,71 +801,169 @@ def scrape_westlake():
     return events
 
 
-# --- 10. CITY OF PALM BEACH MODULE (DISCOVERY MODE - NOT A REAL SCRAPER YET) ---
+# --- 10. CITY OF PALM BEACH MODULE ---
 def scrape_palm_beach():
-    # City of Palm Beach's meetings page (https://palmbeachfl.portal.civicclerk.com/)
-    # runs "CivicClerk" - the newer CivicPlus "Meetings Select" Angular SPA portal,
-    # NOT the same product as CivicPlus's CivicEngage calendar.aspx sites (PBG/Boca/
-    # Boynton/Wellington) or MuniCode (Westlake). A WebFetch preview of the root URL
-    # confirmed this is a client-side-rendered shell: the initial HTML has no event
-    # data at all, just "You need to enable JavaScript to run this app." Unlike
-    # Westlake (where the preview at least showed us a real HTML table to hypothesize
-    # from), there is NO markup here to build a parser against - the real data only
-    # exists after JS runs a fetch to a backend API.
+    # City of Palm Beach runs CivicClerk / CivicPlus "Meetings Select" - a JS SPA
+    # portal (palmbeachfl.portal.civicclerk.com) backed by a JSON REST/OData API at
+    # palmbeachfl.api.civicclerk.com. Confirmed directly by the user via their own
+    # browser DevTools Network tab capture (not a guess/rendered-preview hypothesis -
+    # this is the real request the portal's own JS makes):
+    #   GET https://palmbeachfl.api.civicclerk.com/v1/Events
+    #       ?$filter=startDateTime+lt+2026-08-30
+    #       &$orderby=startDateTime+desc,+eventName+desc
+    # returning an OData JSON body: {"@odata.context": ..., "value": [ {event}, ... ]}.
+    # No auth header was needed - this is a public, unauthenticated read endpoint.
     #
-    # Per this project's Key Methodological Lesson #2: this session's sandbox has ZERO
-    # outbound network access (confirmed - a plain curl to both
-    # palmbeachfl.portal.civicclerk.com and palmbeachfl.api.civicclerk.com was rejected
-    # outright by an egress/org policy), and a WebFetch/rendered-preview tool cannot
-    # execute the SPA's JS or show us the real XHR/fetch calls it makes. So there is
-    # currently NO way from this session - neither a raw fetch nor a rendered preview -
-    # to observe the actual API endpoint URL, query parameters, or JSON response shape
-    # this portal uses. Web research found CivicPlus's *authenticated* "PublicApi"
-    # product (requires a client_id/client_secret from CivicPlus support) but that is a
-    # separate product from this public-facing portal, which is normally reachable
-    # without credentials in a browser - its real endpoint is simply unconfirmed here.
+    # Confirmed real fields on each event object (from the user's captured sample,
+    # an "Architectural Commission Meeting" on 2026-08-26):
+    #   id, eventName, eventDate, startDateTime (UTC, trailing "Z"), isDeleted,
+    #   isPublished ("Published"/other), hasAgenda (bool - the API gives us this
+    #   directly, no need to infer it from link presence like Westlake/DDA),
+    #   eventLocation {address1, address2, city, state, zipCode},
+    #   publishedFiles: [ {type: "Agenda"/"Agenda Packet"/"Supplemental Backup"/...,
+    #                       url: "stream/PALMBEACHFL/<uuid>.pdf", ...}, ... ]
     #
-    # Rather than hardcode a guessed endpoint/shape and claim it "works," this function
-    # is a DISCOVERY PROBE: it tries a small set of plausible unauthenticated REST
-    # endpoints (CivicClerk portals commonly expose a same-origin-looking
-    # `{subdomain}.api.civicclerk.com` API), logs the HTTP status/content-type/a text
-    # snippet for each, and returns NO events. Ask the user to run the GitHub Actions
-    # workflow and paste back every `[Palm Beach]`-prefixed log line - that will tell us
-    # which (if any) candidate URL returns real JSON, or, more usefully, the user can
-    # open the real portal in their own browser, open DevTools -> Network tab, reload,
-    # and paste back the actual request URL + response body for the events list call.
-    # That real request is what the final scrape_palm_beach() should be built from -
-    # do not treat any output of this probe as more than a lead.
-    print("[Palm Beach] DISCOVERY MODE: no confirmed API endpoint for this CivicClerk "
-          "portal yet. Probing candidate URLs and logging raw responses - see comments "
-          "in scrape_palm_beach() for why. Not extracting events until confirmed.")
-
+    # Two things below are NOT yet directly confirmed and are handled defensively:
+    #  1. publishedFiles[].url is relative (e.g. "stream/PALMBEACHFL/xxx.pdf") with no
+    #     domain in the captured sample. Guessing it resolves against the API origin
+    #     (api_domain + "/" + url) since the JSON itself came from that origin with no
+    #     auth - if a real run's agenda links 404, this is the first thing to check
+    #     against another DevTools capture (right-click the agenda link in the portal
+    #     UI -> Copy Link, or Network-tab the actual PDF request).
+    #  2. The exact portal URL pattern for a human-facing event detail page (used as
+    #     the has_agenda=False fallback link, and if publishedFiles has no "Agenda"
+    #     entry) - other CivicClerk portals were seen using `/event/{id}/files` and
+    #     `/event/{id}/media` patterns during research, so `/event/{id}` (the portal
+    #     event's base page) is used here as the safest general fallback.
+    events = []
     base_domain = "https://palmbeachfl.portal.civicclerk.com"
     api_domain = "https://palmbeachfl.api.civicclerk.com"
 
-    candidate_urls = [
-        f"{base_domain}/",
-        f"{api_domain}/v1/Events",
-        f"{api_domain}/v1/Meetings",
-        f"{api_domain}/api/v1/Events",
-        f"{base_domain}/api/v1/Events",
-    ]
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+    start_str = current_month_start.strftime("%Y-%m-%d")
+    end_str = lookahead_end.strftime("%Y-%m-%d")
 
-    for url in candidate_urls:
-        res = fetch_hardened(url, referer=base_domain)
-        if res is None:
-            print(f"[Palm Beach] {url} -> request failed (no response object).")
+    # OData $filter/$orderby, URL-encoded the same way the real captured request was
+    # (spaces as "+"). ge/lt bound the query to the current + next month window this
+    # project uses everywhere else (get_dual_month_bounds()), ascending so the closest
+    # upcoming meetings come first.
+    odata_filter = f"startDateTime+ge+{start_str}+and+startDateTime+lt+{end_str}"
+    odata_orderby = "startDateTime+asc"
+    target_url = f"{api_domain}/v1/Events?$filter={odata_filter}&$orderby={odata_orderby}"
+
+    res = fetch_hardened(target_url, referer=base_domain)
+    if res is None:
+        print("[Palm Beach] Request failed.")
+        return events
+    print(f"[Palm Beach] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        print(f"[Palm Beach] Non-200 response, first 400 chars: {(res.text or '')[:400]}")
+        return events
+
+    try:
+        payload = json.loads(res.text)
+    except (json.JSONDecodeError, TypeError) as e:
+        print(f"[Palm Beach] Failed to parse JSON response: {e}. "
+              f"First 400 chars: {(res.text or '')[:400]}")
+        return events
+
+    raw_events = payload.get("value", [])
+    print(f"[Palm Beach] API returned {len(raw_events)} raw event(s) in this window "
+          f"({start_str} to {end_str}).")
+    if raw_events:
+        print(f"[Palm Beach] Sample raw event keys: {sorted(raw_events[0].keys())}")
+
+    # Eastern-time conversion for the UTC startDateTime the API returns. Uses stdlib
+    # zoneinfo (Python 3.9+) when available; falls back to a manual US DST calculation
+    # (2nd Sunday in March - 1st Sunday in November is EDT/UTC-4, else EST/UTC-5) if
+    # the zoneinfo tzdata isn't present on the runner, so this doesn't hard-fail.
+    def to_eastern(dt_utc):
+        try:
+            from zoneinfo import ZoneInfo
+            return dt_utc.replace(tzinfo=ZoneInfo("UTC")).astimezone(ZoneInfo("America/New_York"))
+        except Exception:
+            year = dt_utc.year
+            # 2nd Sunday of March
+            d = datetime(year, 3, 1)
+            d += timedelta(days=(6 - d.weekday()) % 7 + 7)
+            dst_start = d
+            # 1st Sunday of November
+            d = datetime(year, 11, 1)
+            d += timedelta(days=(6 - d.weekday()) % 7)
+            dst_end = d
+            offset_hours = 4 if dst_start <= dt_utc < dst_end else 5
+            return dt_utc - timedelta(hours=offset_hours)
+
+    seen_keys = set()
+
+    for ev in raw_events:
+        if ev.get("isDeleted"):
             continue
-        content_type = res.headers.get("Content-Type", "") if hasattr(res, "headers") else "?"
-        body = res.text or ""
-        print(f"[Palm Beach] {url} -> HTTP {res.status_code}, Content-Type: {content_type}, "
-              f"body length: {len(body)}")
-        snippet = body[:400].replace("\n", " ")
-        print(f"[Palm Beach]   snippet: {snippet}")
+        if ev.get("isPublished") not in (None, "Published"):
+            # Be permissive if the field is missing/unrecognized rather than dropping
+            # everything, but skip anything explicitly marked as not published.
+            continue
 
-    print("[Palm Beach] Discovery probe complete. 0 events extracted (expected - this "
-          "is not a real parser yet). See Goals for Next Session in handoff.md.")
-    return []
+        raw_title = ev.get("eventName", "")
+        clean_title = clean_event_title(raw_title)
+        if not clean_title or not is_qualifying_event(clean_title):
+            continue
+
+        start_raw = ev.get("startDateTime") or ev.get("eventDate")
+        if not start_raw:
+            continue
+        try:
+            dt_utc = datetime.strptime(start_raw.replace("Z", ""), "%Y-%m-%dT%H:%M:%S")
+        except ValueError:
+            print(f"[Palm Beach] Could not parse startDateTime '{start_raw}' for "
+                  f"'{clean_title}', skipping.")
+            continue
+
+        dt_local = to_eastern(dt_utc)
+        iso_date = dt_local.strftime("%Y-%m-%d")
+        meeting_time = dt_local.strftime("%-I:%M %p") if os.name != "nt" else dt_local.strftime("%I:%M %p").lstrip("0")
+
+        event_id = ev.get("id")
+        has_agenda = bool(ev.get("hasAgenda"))
+
+        agenda_url = None
+        for f in (ev.get("publishedFiles") or []):
+            if (f.get("type") or "").strip().lower() == "agenda" and f.get("url"):
+                agenda_url = f["url"]
+                break
+        if has_agenda and agenda_url:
+            full_link = f"{api_domain}/{agenda_url.lstrip('/')}"
+        elif has_agenda and event_id is not None:
+            # hasAgenda is True per the API but no "Agenda"-typed file was in
+            # publishedFiles for this event (e.g. only an "Agenda Packet") - fall back
+            # to the event's portal page rather than guessing a different file's URL.
+            full_link = f"{base_domain}/event/{event_id}"
+        elif event_id is not None:
+            full_link = f"{base_domain}/event/{event_id}"
+        else:
+            full_link = base_domain
+
+        dedup_key = (clean_title, iso_date, meeting_time)
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"palmbeach-{event_id if event_id is not None else iso_date}",
+            "muni_short": "PALMBEACH",
+            "muni_full": "Town of Palm Beach",
+            "title": clean_title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": full_link,
+            "has_agenda": has_agenda,
+            "summary": f"Official {clean_title} meeting." if has_agenda else f"Official {clean_title} meeting. No agenda posted yet.",
+        })
+
+    print(f"[Palm Beach] Extracted {len(events)} qualifying event(s) "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
 
 
 # --- 9. DOWNTOWN WPB DDA MODULE ---
