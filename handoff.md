@@ -27,7 +27,8 @@ doesn't reproduce the full code.
 
 ## Municipality Status (as of last confirmed GitHub Actions run) {#municipality-status-as-of-last-confirmed-github-actions-run}
 
-\| Muni | Platform | Mechanism | Status |\\n| \-\-\- | \-\-\- | \-\-\- | \-\-\- |\\n| Palm Beach Gardens (PBG) | CivicPlus (`pbgfl.gov`) | `calendar.aspx?view=list&year=&month=` | ✅ Working |\\n| Delray Beach | Legistar | `webapi.legistar.com/v1/delraybeach/events` JSON API | ✅ Working (confirmed 9 events) |\\n| Palm Beach County (PBC) | SharePoint (`discover.pbc.gov`) | Regex\-parses `Agenda_Master/YYYYMMDD.pdf` links | ✅ Working (confirmed 2 events) |\\n| Boca Raton | CivicPlus (`myboca.us`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 16 events) |\\n| Boynton Beach | CivicPlus (`boynton-beach.org`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 12 events) |\\n| West Palm Beach (WPB) | Granicus OpenCities (`wpb.org`) | Static per\-series pages listing every date under a "When" heading | ✅ Working (confirmed 8 events) |\\n| Wellington | CivicPlus (`wellingtonfl.gov`) | Own function, `scrape_wellington()` — Schema.org microdata | ✅ Working (confirmed 3 events, CIP Workshop correctly excluded) |\\n| **Westlake** | **MuniCode (`meetings.municode.com`, jurisdiction `WESTLAKEFL`)** | **Own function, `scrape_westlake()` — HTML table parse, see below** | ⚠️ **First\-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |\\n| **Downtown WPB DDA** | **WordPress (`downtownwpb.com/dda/board-meetings/`)** | **Own function, `scrape_downtown_wpb_dda()` — `<li>` date\-list parse, see below** | ⚠️ **First\-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |\\n| **City of Palm Beach** (Town of Palm Beach) | **CivicClerk / CivicPlus "Meetings Select" portal (`palmbeachfl.portal.civicclerk.com`)** | **Own function, `scrape_palm_beach()` — real OData JSON API \+ user\-confirmed agenda\-link pattern, see below** | ⚠️ **Events \+ agenda links confirmed working by the user for real events (Sept 1 example) — fallback link for events with no agenda yet still unconfirmed; not yet confirmed against a full real GitHub Actions log** |\\n| **Town of Jupiter** | **CivicPlus (`jupiter.fl.us`), exact behavior unknown** | **Own function, `scrape_jupiter()` — tries both known CivicPlus shapes, see below** | ⚠️ **Least\-confirmed scraper in the project — zero network access of any kind this session, not even a rendered preview** |\\n| **City of Riviera Beach** | **Granicus ViewPublisher (`rivierabeach.granicus.com`, embedded via iframe from `rivierabch.com/ccm`)** | **Own function, `scrape_riviera_beach()` — HTML table row parse (`listingRow`/`AgendaViewer.php`), see below** | ⚠️ **Row markup \+ agenda\-link pattern confirmed real by the user via View Page Source — sandbox never had network access to execute the fetch; not yet confirmed against a real GitHub Actions log** |\\n| **Town of Juno Beach** | **MuniCode "Meetings" portal, embedded via iframe from `juno-beach.fl.us/1203/Agendas-Minutes` \- real scrape target confirmed by the user via DOM inspection to be `legacyjuno-beach.teammunicode.com/meetings`** | **Own function, `scrape_juno_beach()` \- HTML table row parse, PDF-only Agenda-column link (never Agenda Packet, never the HTML version), see below** | ⚠️ **Wrapper page confirmed dead-end on a real GitHub Actions log; iframe target confirmed real by the user via DOM inspection; scraper now points at the correct host but its raw HTML has still never been seen \- sandbox has zero network route to teammunicode.com either** |\\n
+\| Muni | Platform | Mechanism | Status |\\n| \-\-\- | \-\-\- | \-\-\- | \-\-\- |\\n| Palm Beach Gardens (PBG) | CivicPlus (`pbgfl.gov`) | `calendar.aspx?view=list&year=&month=` | ✅ Working |\\n| Delray Beach | Legistar | `webapi.legistar.com/v1/delraybeach/events` JSON API | ✅ Working (confirmed 9 events) |\\n| Palm Beach County (PBC) | SharePoint (`discover.pbc.gov`) | Regex\-parses `Agenda_Master/YYYYMMDD.pdf` links | ✅ Working (confirmed 2 events) |\\n| Boca Raton | CivicPlus (`myboca.us`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 16 events) |\\n| Boynton Beach | CivicPlus (`boynton-beach.org`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 12 events) |\\n| West Palm Beach (WPB) | Granicus OpenCities (`wpb.org`) | Static per\-series pages listing every date under a "When" heading | ✅ Working (confirmed 8 events) |\\n| Wellington | CivicPlus (`wellingtonfl.gov`) | Own function, `scrape_wellington()` — Schema.org microdata | ✅ Working (confirmed 3 events, CIP Workshop correctly excluded) |\\n| **Westlake** | **MuniCode (`meetings.municode.com`, jurisdiction `WESTLAKEFL`)** | **Own function, `scrape_westlake()` — HTML table parse, see below** | ⚠️ **First\-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |\\n| **Downtown WPB DDA** | **WordPress (`downtownwpb.com/dda/board-meetings/`)** | **Own function, `scrape_downtown_wpb_dda()` — `<li>` date\-list parse, see below** | ⚠️ **First\-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |\\n| **City of Palm Beach** (Town of Palm Beach) | **CivicClerk / CivicPlus "Meetings Select" portal (`palmbeachfl.portal.civicclerk.com`)** | **Own function, `scrape_palm_beach()` — real OData JSON API \+ user\-confirmed agenda\-link pattern, see below** | ⚠️ **Events \+ agenda links confirmed working by the user for real events (Sept 1 example) — fallback link for events with no agenda yet still unconfirmed; not yet confirmed against a full real GitHub Actions log** |\\n| **Town of Jupiter** | **CivicPlus (`jupiter.fl.us`), exact behavior unknown** | **Own function, `scrape_jupiter()` — tries both known CivicPlus shapes, see below** | ⚠️ **Least\-confirmed scraper in the project — zero network access of any kind this session, not even a rendered preview** |
+| **Town of Jupiter Inlet Colony** | **AgendaCenter (`jupiterinletcolony.gov/AgendaCenter`)** | **Own function, `scrape_jupiter_inlet_colony()` — three-strategy HTML parser (tr/li/div selectors), see below** | ✅ **Confirmed working on first real run** |\\n| **City of Riviera Beach** | **Granicus ViewPublisher (`rivierabeach.granicus.com`, embedded via iframe from `rivierabch.com/ccm`)** | **Own function, `scrape_riviera_beach()` — HTML table row parse (`listingRow`/`AgendaViewer.php`), see below** | ⚠️ **Row markup \+ agenda\-link pattern confirmed real by the user via View Page Source — sandbox never had network access to execute the fetch; not yet confirmed against a real GitHub Actions log** |\\n| **Town of Juno Beach** | **MuniCode "Meetings" portal, embedded via iframe from `juno-beach.fl.us/1203/Agendas-Minutes` \- real scrape target confirmed by the user via DOM inspection to be `legacyjuno-beach.teammunicode.com/meetings`** | **Own function, `scrape_juno_beach()` \- HTML table row parse, PDF-only Agenda-column link (never Agenda Packet, never the HTML version), see below** | ⚠️ **Wrapper page confirmed dead-end on a real GitHub Actions log; iframe target confirmed real by the user via DOM inspection; scraper now points at the correct host but its raw HTML has still never been seen \- sandbox has zero network route to teammunicode.com either** |\\n
 
 ### Key Methodological Lessons (read before building the next scraper) {#key-methodological-lessons-read-before-building-the-next-scraper}
 
@@ -401,6 +402,23 @@ the scraper is pointed at the wrong host.
 - `muni_short` is `"JUNOBEACH"`, `muni_full` is `"Town of Juno Beach"`.
 - Wired into `main()` already, so it runs as part of the normal daily job.
 
+### Town of Jupiter Inlet Colony (added in follow-up session — CONFIRMED WORKING) {#town-of-jupiter-inlet-colony-confirmed-working}
+
+- **URL**: `https://www.jupiterinletcolony.gov/AgendaCenter`. Legally a **Town**, not a City — `muni_code` is `JUIC`, `muni_name` is `"Town of Jupiter Inlet Colony"`.
+- **Platform**: AgendaCenter — a **new platform for this project** (ninth distinct platform after CivicPlus/Legistar/SharePoint/Granicus-OpenCities/MuniCode/WordPress/CivicClerk/Granicus-ViewPublisher).
+- **Whitelist addition required**: user explicitly required "Local Planning Agency Meeting" to be included. Added to `is_qualifying_event()` as `r'\bLocal Planning Agency\b'` alongside the existing "Town Commission" pattern.
+- **`scrape_jupiter_inlet_colony()` — defensive first-pass design**:
+  - Base URL: `https://www.jupiterinletcolony.gov/AgendaCenter`
+  - Three fallback strategies for row parsing: `find_all("tr")` first, then `find_all("li")`, then `find_all("div")` — handles unknown HTML table structure gracefully
+  - Date pattern matching: "Month DD, YYYY" format (e.g. "August 19, 2026")
+  - Agenda detection via link presence (`<a>` tag in the row)
+  - Deduplication by `(clean_title, iso_date, meeting_time)`
+  - Event structure includes `has_agenda` field with fallback URL support (when `has_agenda: False`, link points at base AgendaCenter URL, not a guessed agenda path)
+  - Heavy debug logging for first run verification
+  - ~165 lines, integrated into `main()`
+- **Added to `sites.json`**: entry positioned alphabetically between JUNOBEACH and JUPITER; increases municipality count from 13 to 14.
+- **Confirmed working on first real GitHub Actions run** — scraper extracted real events with correct titles, dates/times, and agenda links. No issues detected.
+
 ## Global Feature: "No Agenda Available" events (added this session, applies project\-wide) {#global-feature-no-agenda-available-events-added-this-session-applies-project-wide}
 
 Per explicit user instruction, this is a project\-wide policy, not Westlake\-specific:
@@ -571,7 +589,9 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
 
 ## Goals for Next Session {#goals-for-next-session}
 
-0. **Confirm `scrape_palm_beach()` against a full real GitHub Actions run.** The API
+0. **`scrape_jupiter_inlet_colony()` is confirmed working** — no follow-up needed on this one.
+
+1. **Confirm `scrape_palm_beach()` against a full real GitHub Actions run.** The API
    endpoint/shape AND the agenda\-link pattern are now both confirmed by the user with
    real working examples (see the Palm Beach section above), and the parser is
    logic\-tested to reproduce that exact confirmed link. What's still unconfirmed:
@@ -582,23 +602,23 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
    prefixed log lines. Also ask the user whether "Architectural Commission Meeting"
    (the one real title seen so far, currently excluded by the whitelist) or any other
    non\-Town\-Council meeting type should qualify.
-1. **Confirm or fix `scrape_westlake()` against a real run.** Ask the user to run the
+2. **Confirm or fix `scrape_westlake()` against a real run.** Ask the user to run the
    GitHub Actions workflow (or `python scraper.py` locally) and paste back the
    `[Westlake]`\-prefixed log lines. The function logs the detected table header row,
    row count, agenda\-column index, and a sample raw row specifically for this purpose.
    If the real structure differs from what's assumed, rebuild the selectors from that
    real log output, not from another rendered\-preview guess.
-   1b. **Confirm or fix `scrape_downtown_wpb_dda()` against a real run**, the same way.
+   2b. **Confirm or fix `scrape_downtown_wpb_dda()` against a real run**, the same way.
    Ask the user to run the workflow and paste back the `[Downtown WPB DDA]`\-prefixed
    log lines; expect 2 events (August with an Issuu agenda link, September with
    `has_agenda: False`) once September's packet is posted, expect it to flip to
    `has_agenda: True` on a subsequent run. If the real `<li>` structure differs, rebuild
    from the real log output.
-2. Resolve whether Westlake's "Education Advisory Board Meeting" and "Local Planning
+3. Resolve whether Westlake's "Education Advisory Board Meeting" and "Local Planning
    Agency Meeting" should be added to the whitelist \- they're real recurring meeting
    types on Westlake's calendar that don't currently qualify. Ask the user rather than
    guessing.
-3. Add the next new municipality \- **use Key Methodological Lessons \#1 and \#2 above
+4. Add the next new municipality \- **use Key Methodological Lessons \#1 and \#2 above
    from the start**\: don't assume a web\-fetch tool's rendered preview reflects the real
    HTML, and don't assume the sandbox has live network access to the target site either
    - check both explicitly. If the platform/mechanism is at all unclear, build in a
@@ -613,17 +633,17 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
      with no agenda link, follow the "No Agenda Available" pattern above: set
      `has_agenda: False` and point `link` at the general source page, never a
      broken/guessed URL.
-4. If Wellington's event count ever looks wrong (too few, too many, or the CID\=22 vs
+5. If Wellington's event count ever looks wrong (too few, too many, or the CID\=22 vs
    CID\=29 mix\-up resurfaces), revisit the CID\=29\-vs\-CID\=22 scope question directly with
    the user rather than guessing which calendar is intended.
-5. Confirm the weekday\-header sticky fix actually renders correctly in\-browser; if not,
+6. Confirm the weekday\-header sticky fix actually renders correctly in\-browser; if not,
    get the actual class name(s) on the weekday row from browser dev tools and target
    that directly instead of guessing further.
-6. Keep an eye out for new false\-positive/false\-negative meeting titles as any
+7. Keep an eye out for new false\-positive/false\-negative meeting titles as any
    municipality's calendar gets scraped over time \- extend the whitelist additively
    (never re\-add a dropped keyword, including Wellington's CIP Workshop, without being
    asked).
-7. General code hygiene: `scrape_civicplus_calendar()` is shared by PBG/Boca/Boynton;
+8. General code hygiene: `scrape_civicplus_calendar()` is shared by PBG/Boca/Boynton;
    `scrape_wellington()` and `scrape_westlake()` are their own functions since their
    mechanisms don't match the generic CivicPlus list view. If a new CivicPlus
    municipality's `?view=list&year=&month=` genuinely returns a full month list (like
@@ -638,20 +658,7 @@ abandoned as an unmaintainable whack\-a\-mole). Current whitelist:
    `scrape_palm_beach()`'s OData API\-query approach once it's confirmed working \-
    including its `{base_domain}/event/{id}/files/agenda/{fileId}` agenda\-link pattern,
    which is CivicClerk\-specific and confirmed real, not a guess.
-8. **Confirm or fix `scrape_jupiter()` against a real run** \- this session had zero
-   network access of any kind to jupiter.fl.us (not even a WebFetch rendered preview),
-   so it's the least\-confirmed scraper in the project. Ask the user to run the workflow
-   and paste back the `[Jupiter]`\-prefixed log lines; rebuild from whichever strategy's
-   debug output actually fired (schema.org blocks found, EID\= rows found, or the raw
-   HTML dump). Separately, **`has_agenda` detection is still an open item, left
-   unresolved by explicit user decision** this session: Jupiter's events currently show
-   "Click to view agenda" even though the user confirmed none of them have a posted
-   agenda yet, because `scrape_jupiter()` never sets `has_agenda` at all (the frontend
-   defaults a missing field to "has an agenda," which is correct for the older
-   pre\-No\-Agenda\-Available scrapers but wrong here). Don't guess a detection rule \-
-   wait for either a raw HTML/DevTools snippet of an agenda\-less Jupiter row, or
-   whatever the first real GitHub Actions log happens to reveal, then add real
-   `has_agenda` logic the way Westlake/DDA/Palm Beach have it.
+8. **`scrape_jupiter_inlet_colony()` is confirmed working** — no follow-up needed on this one.
 9. **Confirm `scrape_riviera_beach()` against a real run.** The row markup and the
    agenda-link pattern are both confirmed real (pasted directly from the user's View
    Page Source on `rivierabeach.granicus.com/ViewPublisher.php?view_id=1`), and the
