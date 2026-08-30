@@ -1497,6 +1497,184 @@ def scrape_riviera_beach():
     return events
 
 
+# --- 13. TOWN OF JUNO BEACH MODULE ---
+def scrape_juno_beach():
+    # Town of Juno Beach, https://www.juno-beach.fl.us/1203/Agendas-Minutes - runs
+    # MuniCode's "Meetings" portal, the same platform family as Westlake
+    # (meetings.municode.com), confirmed by the user via a real screenshot of the
+    # page AND a real confirmed Agenda PDF link:
+    #   https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-<hash>.pdf
+    # (the "jnobeachfl-pubu" blob container name is the strongest confirmation this is
+    # MuniCode, same blob-storage host pattern as Westlake's mccmeetings.blob... links).
+    #
+    # Per the user's screenshot, the table columns are:
+    #   Date | Meeting | Agenda | Agenda Packet | Minutes | Video | View
+    # with the Agenda AND Agenda Packet columns each showing two icons (PDF, HTML)
+    # once a document is posted, and both blank when nothing is posted yet. Per
+    # explicit user instruction: only the "Agenda" column's PDF link should be used -
+    # never "Agenda Packet", and never the HTML version.
+    #
+    # Per Key Methodological Lesson #2: this session had ZERO outbound access to
+    # juno-beach.fl.us - a direct curl from the sandbox shell got no response at all,
+    # and a WebFetch attempt failed outright (robots.txt fetch itself timed out,
+    # confirmed WebFetch works fine generally against other sites). So unlike
+    # Westlake (which at least had a WebFetch rendered preview to hypothesize from),
+    # this parser is built purely from the user's screenshot + one confirmed real PDF
+    # link, with NO view of the actual HTML at all. Treat this as an unconfirmed
+    # first-pass draft - even more speculative than Westlake, similar footing to
+    # Jupiter. Written defensively and logging heavily so a real run's log can
+    # confirm/correct these assumptions.
+    events = []
+    base_domain = "https://www.juno-beach.fl.us"
+    target_url = f"{base_domain}/1203/Agendas-Minutes"
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    res = fetch_hardened(target_url)
+    if res is None:
+        print("[Juno Beach] Request failed.")
+        return events
+    print(f"[Juno Beach] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        return events
+
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    # Same defensive table-finding approach as scrape_westlake(): try id/class hints
+    # first, then fall back to the largest table on the page by row count.
+    table = soup.find("table", id=re.compile(r'meeting', re.I))
+    if not table:
+        table = soup.find("table", class_=re.compile(r'meeting', re.I))
+    if not table:
+        candidate_tables = soup.find_all("table")
+        if candidate_tables:
+            table = max(candidate_tables, key=lambda t: len(t.find_all("tr")))
+
+    if not table:
+        print("[Juno Beach] No table found on the page at all. Dumping a slice of raw "
+              "HTML around a known meeting-type string for debugging:")
+        idx = res.text.find("Town Council")
+        print(res.text[max(0, idx - 200): idx + 500] if idx != -1 else res.text[:700])
+        return events
+
+    header_cells = table.find("tr")
+    header_texts = [c.get_text(strip=True).lower() for c in header_cells.find_all(["th", "td"])] if header_cells else []
+    # Match the "Agenda" column exactly (not "Agenda Packet", which also contains the
+    # substring "agenda" - the two are visually adjacent columns per the user's
+    # screenshot and must not be confused).
+    agenda_col_idx = next(
+        (i for i, h in enumerate(header_texts) if h.strip() == "agenda"), None
+    )
+    if agenda_col_idx is None:
+        # Fallback: first column whose header contains "agenda" but not "packet".
+        agenda_col_idx = next(
+            (i for i, h in enumerate(header_texts) if "agenda" in h and "packet" not in h),
+            None,
+        )
+    print(f"[Juno Beach] Table header row: {header_texts} | agenda column index: {agenda_col_idx}")
+
+    all_rows = table.find_all("tr")
+    data_rows = all_rows[1:] if header_texts else all_rows
+    print(f"[Juno Beach] Found {len(data_rows)} candidate data rows.")
+
+    if data_rows:
+        print(f"[Juno Beach] Sample first row raw HTML (for debugging column layout):\n{data_rows[0]}")
+
+    seen_keys = set()
+
+    for row in data_rows:
+        cells = row.find_all(["td", "th"])
+        if len(cells) < 2:
+            continue
+
+        row_text = row.get_text(separator=" ", strip=True)
+
+        # Date+time observed in the screenshot as e.g. "09/23/2026 - 5:30pm".
+        date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', row_text)
+        if not date_match:
+            continue
+        m, d, y = date_match.groups()
+        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+        try:
+            dt = datetime.strptime(iso_date, "%Y-%m-%d")
+        except ValueError:
+            continue
+        if not (current_month_start <= dt < lookahead_end):
+            continue
+
+        time_match = re.search(r'(\d{1,2}:\d{2}\s*[ap]m)', row_text, re.I)
+        meeting_time = time_match.group(1).upper().replace(" ", "") if time_match else "6:00 PM"
+        if len(meeting_time) > 2 and meeting_time[-2:] in ("AM", "PM") and meeting_time[-3] != " ":
+            meeting_time = meeting_time[:-2] + " " + meeting_time[-2:]
+
+        raw_title = cells[1].get_text(strip=True) if len(cells) > 1 else ""
+        clean_title = clean_event_title(raw_title)
+        if not clean_title or not is_qualifying_event(clean_title):
+            continue
+
+        # Agenda availability: look ONLY in the identified "Agenda" column (never
+        # "Agenda Packet") for a link that points at a PDF - MuniCode's real confirmed
+        # PDF links look like
+        # https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-<hash>.pdf,
+        # while the HTML-version icon in the same cell links to an HTML document
+        # instead - per explicit user instruction, only the PDF link should be used.
+        agenda_link = None
+        if agenda_col_idx is not None and agenda_col_idx < len(cells):
+            agenda_cell = cells[agenda_col_idx]
+            # Prefer a link that explicitly points at a .pdf.
+            agenda_link = agenda_cell.find("a", href=re.compile(r'\.pdf(\?|$)', re.I))
+            if not agenda_link:
+                # Fall back to any link in the cell whose text/title/icon suggests PDF
+                # (e.g. an <img alt="PDF">) rather than HTML.
+                for a in agenda_cell.find_all("a", href=True):
+                    label = a.get_text(strip=True).lower()
+                    img_alt = " ".join(img.get("alt", "") for img in a.find_all("img")).lower()
+                    if "pdf" in label or "pdf" in img_alt:
+                        agenda_link = a
+                        break
+            if not agenda_link:
+                # Last resort: take the first link in the cell, but only if there's no
+                # sign it's specifically an HTML-labeled one (to avoid grabbing the
+                # wrong icon when the PDF-detection heuristics above don't match).
+                candidates = agenda_cell.find_all("a", href=True)
+                non_html_candidates = [
+                    a for a in candidates
+                    if "html" not in a.get_text(strip=True).lower()
+                    and "html" not in " ".join(img.get("alt", "") for img in a.find_all("img")).lower()
+                ]
+                if non_html_candidates:
+                    agenda_link = non_html_candidates[0]
+
+        has_agenda = agenda_link is not None
+        if has_agenda:
+            href = agenda_link.get("href", "").strip()
+            full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+        else:
+            full_link = target_url  # Fall back to the Agendas & Minutes page itself, not a dead link.
+
+        dedup_key = (clean_title, iso_date, meeting_time)
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"junobeach-{iso_date}-{hash(clean_title + meeting_time)}",
+            "muni_short": "JUNOBEACH",
+            "muni_full": "Town of Juno Beach",
+            "title": clean_title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": full_link,
+            "has_agenda": has_agenda,
+            "summary": f"Official {clean_title} meeting." if has_agenda else f"Official {clean_title} meeting. No agenda posted yet.",
+        })
+
+    print(f"[Juno Beach] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -1515,6 +1693,7 @@ def main():
     all_events.extend(scrape_palm_beach())
     all_events.extend(scrape_jupiter())
     all_events.extend(scrape_riviera_beach())
+    all_events.extend(scrape_juno_beach())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
