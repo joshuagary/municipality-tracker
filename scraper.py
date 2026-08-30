@@ -2077,6 +2077,166 @@ def scrape_manalapan():
     return events
 
 
+def scrape_gulf_stream():
+    # Town of Gulf Stream - https://www.gulf-stream.org/events/
+    # WordPress site (WPBakery Page Builder), per a WebFetch rendered preview - NOT
+    # confirmed against raw HTML, and this sandbox has zero direct network route to
+    # gulf-stream.org either (a plain curl was rejected outright by the egress
+    # policy), so per this project's Key Methodological Lessons #1/#2 (handoff.md),
+    # this is an UNCONFIRMED first-pass draft, same category Westlake/Manalapan/DDA
+    # started in. Ask the user to run the workflow and paste back the
+    # "[Gulf Stream]"-prefixed log lines before trusting this fully.
+    #
+    # Real events seen in the WebFetch preview (title | date | time):
+    #   Regular Town Commission Meeting | Sep 11, 2026 | 4:00 pm
+    #   Town Commission Tentative Budget Hearing | Sep 11, 2026 | 5:01 pm
+    #   TOWN COMMISSION FINAL BUDGET HEARING | Sep 23, 2026 | 5:01 pm
+    #   Architectural Review and Planning Board Meeting | Sep 24, 2026 | 8:30 am
+    #   (plus several "Town Hall CLOSED - <Holiday>" all-day closures, which are not
+    #   meetings and must NOT be swept in by the "Town Hall" whitelist pattern - see
+    #   the CLOSED exclusion below, a deliberate fix, not a whitelist change.)
+    #
+    # IMPORTANT - no per-event agenda link exists on this page at all. Per the user's
+    # own site (confirmed via WebFetch, not a guess): "All Minutes and Agendas can be
+    # found by going to 'Find a Town Record'", which links to a generic Laserfiche
+    # document portal (https://portal.laserfiche.com/Portal/Browse.aspx?repo=r-430100cc)
+    # with no per-meeting deep link - unlike every other muni in this project (even
+    # the ones with a "No Agenda Available" fallback still have a *specific* agenda
+    # link once one is posted). So has_agenda is hardcoded False for every Gulf
+    # Stream event, and "link" points at the town's own events page (not the
+    # Laserfiche portal directly) to match this project's existing "point at the
+    # general source page, never a guessed/dead URL" convention - flag to the user
+    # if they'd rather this link straight to the Laserfiche portal instead.
+    #
+    # Written defensively per Lesson #2: since the exact WP events-listing plugin/
+    # markup on this page is unconfirmed, this parses the page's flattened text
+    # line-by-line (BeautifulSoup get_text("\n")) rather than assuming specific
+    # selectors (e.g. a "The Events Calendar" plugin's classes) - each recognized
+    # "Month DD, YYYY" date line is paired with the nearest preceding non-date/
+    # non-time line as the event title, and a time is pulled from that same line or
+    # the following couple of lines. This is more failure-tolerant across WP themes
+    # than a hardcoded selector, at the cost of being less precise than a real
+    # selector would be once the actual markup is confirmed. Logs line count and
+    # dumps a raw HTML slice anchored on a known meeting-type string if nothing
+    # qualifying is extracted.
+    events = []
+    base_domain = "https://www.gulf-stream.org"
+    target_url = f"{base_domain}/events/"
+    muni_code = "GULFSTREAM"
+    muni_name = "Town of Gulf Stream"
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    res = fetch_hardened(target_url)
+    if res is None:
+        print("[Gulf Stream] Request failed.")
+        return events
+    print(f"[Gulf Stream] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        return events
+
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    date_pattern = re.compile(
+        r'\b(January|February|March|April|May|June|July|August|September|October|November|December)'
+        r'\s+(\d{1,2})(?:\s*[-–]\s*\d{1,2})?,\s*(\d{4})\b', re.I
+    )
+    time_pattern = re.compile(r'(\d{1,2}:\d{2}\s*[ap]\.?m\.?)', re.I)
+    closed_pattern = re.compile(r'\bCLOSED\b', re.I)
+
+    lines = [l.strip() for l in soup.get_text("\n").split("\n") if l.strip()]
+    print(f"[Gulf Stream] Page text has {len(lines)} non-empty lines after flattening.")
+
+    seen_keys = set()
+
+    for i, line in enumerate(lines):
+        date_match = date_pattern.search(line)
+        if not date_match:
+            continue
+
+        month_name, day, yr = date_match.groups()
+        try:
+            dt = datetime.strptime(f"{month_name} {day} {yr}", "%B %d %Y")
+        except ValueError:
+            continue
+        iso_date = dt.strftime("%Y-%m-%d")
+        if not (current_month_start <= dt < lookahead_end):
+            continue
+
+        # Title: nearest preceding line that isn't itself a date/pure-time line and
+        # is a plausible title length - handles both "Title" then "Date" on separate
+        # lines, and a title immediately followed by "Date @ Time" on the next line.
+        raw_title = None
+        for back in range(1, 4):
+            idx = i - back
+            if idx < 0:
+                break
+            candidate = lines[idx]
+            if date_pattern.search(candidate):
+                continue
+            if time_pattern.fullmatch(candidate):
+                continue
+            if len(candidate) < 4 or len(candidate) > 120:
+                continue
+            raw_title = candidate
+            break
+        if not raw_title:
+            continue
+
+        clean_title = clean_event_title(raw_title)
+        if closed_pattern.search(clean_title):
+            continue  # e.g. "Town Hall CLOSED - Labor Day" - a holiday closure, not
+            # a meeting; would otherwise false-positive against the "Town Hall"
+            # whitelist pattern in is_qualifying_event().
+        if not is_qualifying_event(clean_title):
+            continue
+
+        meeting_time = "6:00 PM"
+        for fwd in range(0, 3):
+            idx = i + fwd
+            if idx >= len(lines):
+                break
+            t_match = time_pattern.search(lines[idx])
+            if t_match:
+                meeting_time = t_match.group(1).upper().replace(".", "")
+                if len(meeting_time) > 2 and meeting_time[-2:] in ("AM", "PM") and meeting_time[-3] != " ":
+                    meeting_time = meeting_time[:-2] + " " + meeting_time[-2:]
+                break
+
+        dedup_key = (clean_title, iso_date)
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"gulfstream-{iso_date}-{hash(clean_title)}",
+            "muni_short": muni_code,
+            "muni_full": muni_name,
+            "title": clean_title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": target_url,
+            "has_agenda": False,
+            "summary": (
+                f"Official {clean_title} meeting. Agendas and minutes are posted to "
+                f"the Town's Laserfiche records portal rather than linked per-event "
+                f"on the Town website."
+            ),
+        })
+
+    if not events:
+        print("[Gulf Stream] No qualifying events extracted. Dumping a slice of raw HTML "
+              "around a known meeting-type string for debugging:")
+        idx = res.text.find("Town Commission")
+        if idx == -1:
+            idx = res.text.find("Architectural Review")
+        print(res.text[max(0, idx - 200): idx + 500] if idx != -1 else res.text[:700])
+
+    print(f"[Gulf Stream] Extracted {len(events)} events (has_agenda always False - "
+          f"no per-event agenda link exists on the source page, see note above).")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -2098,6 +2258,7 @@ def main():
     all_events.extend(scrape_juno_beach())
     all_events.extend(scrape_jupiter_inlet_colony())
     all_events.extend(scrape_manalapan())
+    all_events.extend(scrape_gulf_stream())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
