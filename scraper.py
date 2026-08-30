@@ -662,12 +662,151 @@ def scrape_wellington():
     return events
 
 
+# --- 8. WESTLAKE MODULE ---
+def scrape_westlake():
+    # Westlake runs MuniCode's "Meetings" portal (meetings.municode.com), a platform
+    # not seen elsewhere in this project (not CivicPlus/Legistar/Granicus). Per a
+    # WebFetch preview of https://www.westlakegov.com/meetings, the page is a single
+    # server-rendered HTML table (columns: Date, Meeting, Agendas, Packets, Minutes,
+    # Video/Audio, View) rather than a JS-driven widget - no iframe/API call was found,
+    # data appeared directly in the table markup. Per this project's Key Methodological
+    # Lesson, that WebFetch preview is a HYPOTHESIS, not confirmed ground truth: this
+    # first pass is written defensively (multiple table-selector fallbacks, an
+    # agenda-column-by-header lookup instead of a hardcoded index) and logs heavily so
+    # a real run's output can confirm or correct the actual selectors/markup before
+    # this is considered final. Ask the user to run the workflow (or run scraper.py
+    # locally) and paste back the printed log if the extracted count/fields look wrong.
+    #
+    # Per explicit user instruction (applies project-wide, not just Westlake): an event
+    # with confirmed date/time details but no agenda link yet is still included, with
+    # has_agenda=False so the frontend can show a "No Agenda Available" hover instead
+    # of a broken/missing "View Agenda" link.
+    events = []
+    base_domain = "https://www.westlakegov.com"
+    target_url = f"{base_domain}/meetings"
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    res = fetch_hardened(target_url)
+    if res is None:
+        print("[Westlake] Request failed.")
+        return events
+    print(f"[Westlake] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        return events
+
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    # Try to find the meetings table a few different ways, since the real id/class
+    # names on MuniCode's grid are unconfirmed as of this first pass.
+    table = soup.find("table", id=re.compile(r'meeting', re.I))
+    if not table:
+        table = soup.find("table", class_=re.compile(r'meeting', re.I))
+    if not table:
+        # Fall back to the largest table on the page (by row count) - meetings tables
+        # are typically the dominant table on a page like this.
+        candidate_tables = soup.find_all("table")
+        if candidate_tables:
+            table = max(candidate_tables, key=lambda t: len(t.find_all("tr")))
+
+    if not table:
+        print("[Westlake] No table found on the page at all. Dumping a slice of raw HTML "
+              "around a known meeting-type string for debugging:")
+        idx = res.text.find("City Council")
+        print(res.text[max(0, idx - 200): idx + 500] if idx != -1 else res.text[:700])
+        return events
+
+    header_cells = table.find("tr")
+    header_texts = [c.get_text(strip=True).lower() for c in header_cells.find_all(["th", "td"])] if header_cells else []
+    agenda_col_idx = next((i for i, h in enumerate(header_texts) if "agenda" in h), None)
+    print(f"[Westlake] Table header row: {header_texts} | agenda column index: {agenda_col_idx}")
+
+    all_rows = table.find_all("tr")
+    data_rows = all_rows[1:] if header_texts else all_rows
+    print(f"[Westlake] Found {len(data_rows)} candidate data rows.")
+
+    if data_rows:
+        print(f"[Westlake] Sample first row raw HTML (for debugging column layout):\n{data_rows[0]}")
+
+    seen_keys = set()
+
+    for row in data_rows:
+        cells = row.find_all(["td", "th"])
+        if len(cells) < 2:
+            continue
+
+        row_text = row.get_text(separator=" ", strip=True)
+
+        # Date+time cell observed as e.g. "09/01/2026 - 6:00pm" in the WebFetch preview.
+        date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', row_text)
+        if not date_match:
+            continue
+        m, d, y = date_match.groups()
+        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+        try:
+            dt = datetime.strptime(iso_date, "%Y-%m-%d")
+        except ValueError:
+            continue
+        if not (current_month_start <= dt < lookahead_end):
+            continue
+
+        time_match = re.search(r'(\d{1,2}:\d{2}\s*[ap]m)', row_text, re.I)
+        meeting_time = time_match.group(1).upper().replace(" ", "") if time_match else "6:00 PM"
+        if len(meeting_time) > 2 and meeting_time[-2:] in ("AM", "PM") and meeting_time[-3] != " ":
+            meeting_time = meeting_time[:-2] + " " + meeting_time[-2:]
+
+        raw_title = cells[1].get_text(strip=True) if len(cells) > 1 else ""
+        clean_title = clean_event_title(raw_title)
+        if not clean_title or not is_qualifying_event(clean_title):
+            continue
+
+        # Agenda availability: look in the identified "Agendas" column for this row;
+        # fall back to scanning the whole row for any link whose text/href mentions
+        # "agenda" if the header lookup didn't find a column index.
+        agenda_link = None
+        if agenda_col_idx is not None and agenda_col_idx < len(cells):
+            agenda_link = cells[agenda_col_idx].find("a", href=True)
+        if not agenda_link:
+            agenda_link = row.find("a", href=True, string=re.compile(r'agenda', re.I))
+        if not agenda_link:
+            agenda_link = row.find("a", href=re.compile(r'agenda', re.I))
+
+        has_agenda = agenda_link is not None
+        if has_agenda:
+            href = agenda_link.get("href", "").strip()
+            full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+        else:
+            full_link = target_url  # Fall back to the meetings page itself, not a dead link.
+
+        dedup_key = (clean_title, iso_date, meeting_time)
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"westlake-{iso_date}-{hash(clean_title + meeting_time)}",
+            "muni_short": "WESTLAKE",
+            "muni_full": "City of Westlake",
+            "title": clean_title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": full_link,
+            "has_agenda": has_agenda,
+            "summary": f"Official {clean_title} meeting." if has_agenda else f"Official {clean_title} meeting. No agenda posted yet.",
+        })
+
+    print(f"[Westlake] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
-    
+
     print("Starting Municipal Scraper Engine...")
-    
+
     all_events.extend(scrape_west_palm_beach())
     all_events.extend(scrape_palm_beach_county())
     all_events.extend(scrape_boca_raton())
@@ -675,6 +814,7 @@ def main():
     all_events.extend(scrape_delray_beach())
     all_events.extend(scrape_palm_beach_gardens())
     all_events.extend(scrape_wellington())
+    all_events.extend(scrape_westlake())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
