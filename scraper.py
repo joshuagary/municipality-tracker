@@ -84,34 +84,34 @@ def get_dual_month_bounds():
     return current_month_start, lookahead_end, curr_year, curr_month
 
 
-# --- 1. WEST PALM BEACH MODULE ---
-def scrape_west_palm_beach():
-    # The old target (wpb.org/government/city-commission-agendas) is stale and returns
-    # a 403 from a WAF challenge page, not a real content 403. WPB runs the same
-    # CivicPlus platform as Palm Beach Gardens, so try the same calendar list-view
-    # mechanism first (clean EID links + dates, no PDF parsing needed). If that comes
-    # back empty, fall back to the City Clerk's "Commission & CRA Agendas" hub, which
-    # lists agenda PDFs named like "04_13_26_FINAL-City-Commission-Agenda.pdf".
+# --- GENERIC CIVICPLUS "calendar.aspx?view=list" SCRAPER ---
+# Palm Beach Gardens, Boca Raton (myboca.us), and Boynton Beach (boynton-beach.org)
+# all turned out to run the same CivicPlus/CivicEngage platform - Boca and Boynton
+# were originally (wrongly) wired up as Legistar clients, which is why they always
+# returned 0 events. This one function now backs all three.
+def scrape_civicplus_calendar(muni_code, muni_name, base_domain, default_time="6:00 PM", exclude_pattern=None):
     events = []
-    base_domain = "https://www.wpb.org"
+    calendar_base_url = f"{base_domain}/calendar.aspx"
+
     current_month_start, lookahead_end, curr_year, curr_month = get_dual_month_bounds()
     next_month = 1 if curr_month == 12 else curr_month + 1
     next_year = curr_year + 1 if curr_month == 12 else curr_year
     months_to_scrape = [
         {"year": curr_year, "month": curr_month},
-        {"year": next_year, "month": next_month},
+        {"year": next_year, "month": next_month}
     ]
+
     seen_keys = set()
 
-    # --- Attempt 1: CivicPlus calendar list view (mirrors the working PBG mechanism) ---
     for target in months_to_scrape:
         y_val, m_val = target["year"], target["month"]
-        url = f"{base_domain}/calendar.aspx?view=list&year={y_val}&month={m_val}"
-        res = fetch_hardened(url, referer=f"{base_domain}/calendar.aspx")
+        url = f"{calendar_base_url}?view=list&year={y_val}&month={m_val}"
+
+        res = fetch_hardened(url, referer=calendar_base_url)
         if res is None:
-            print(f"[WPB Calendar] Request failed for {y_val}-{m_val:02d}")
+            print(f"[{muni_name} List] Request failed for {y_val}-{m_val:02d}")
             continue
-        print(f"[WPB Calendar] Fetching {y_val}-{m_val:02d} | HTTP Status: {res.status_code}")
+        print(f"[{muni_name} List] Fetching {y_val}-{m_val:02d} | HTTP Status: {res.status_code}")
         if res.status_code != 200:
             continue
 
@@ -120,15 +120,20 @@ def scrape_west_palm_beach():
         if not event_rows:
             event_rows = soup.select(".calendarItem, .eventRow, table.calendarList tr, ol.calendarList > li")
 
+        print(f"[{muni_name} List] Found {len(event_rows)} matching event rows for {y_val}-{m_val:02d}.")
+
         for row in event_rows:
             row_text = row.text.strip()
             if not row_text:
                 continue
+
             link_elem = row.find("a", href=lambda h: h and ("EID=" in h or "eid=" in h))
             if not link_elem:
                 continue
 
-            raw_title = link_elem.text.strip() or (link_elem.parent.text.strip() if link_elem.parent else "")
+            raw_title = link_elem.text.strip()
+            if not raw_title and link_elem.parent:
+                raw_title = link_elem.parent.text.strip()
             raw_title = re.sub(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.*', '', raw_title).strip()
             clean_title = clean_event_title(raw_title)
 
@@ -149,76 +154,123 @@ def scrape_west_palm_beach():
                     except ValueError:
                         pass
 
+            if not iso_date:
+                day_match = re.search(r'\b(\d{1,2})\b', row_text)
+                if day_match:
+                    d_num = int(day_match.group(1))
+                    if 1 <= d_num <= 31:
+                        iso_date = f"{y_val}-{m_val:02d}-{d_num:02d}"
+
             time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', row_text)
-            meeting_time = time_match.group(1).strip().upper() if time_match else "5:00 PM"
+            meeting_time = time_match.group(1).strip().upper() if time_match else default_time
             if "AM" not in meeting_time and "PM" not in meeting_time:
                 meeting_time += " PM"
 
-            if iso_date and is_qualifying_event(clean_title):
-                dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                if current_month_start <= dt < lookahead_end:
-                    dedup_key = (clean_title, iso_date)
-                    if dedup_key not in seen_keys:
-                        seen_keys.add(dedup_key)
-                        events.append({
-                            "id": f"wpb-{iso_date}-{hash(full_link)}",
-                            "muni_short": "WPB",
-                            "muni_full": "City of West Palm Beach",
-                            "title": clean_title,
-                            "date": iso_date,
-                            "time": meeting_time,
-                            "link": full_link,
-                            "summary": f"Official {clean_title} meeting."
-                        })
+            if not iso_date or not is_qualifying_event(clean_title):
+                continue
+            if exclude_pattern and re.search(exclude_pattern, clean_title, re.I):
+                continue
 
-    if events:
-        print(f"[WPB] Extracted {len(events)} events via calendar list view.")
-        return events
-
-    # --- Attempt 2 (fallback): City Clerk Commission & CRA Agendas hub, PDF filenames ---
-    print("[WPB] Calendar list view returned nothing, falling back to Agendas hub.")
-    hub_url = f"{base_domain}/Our-City/City-Clerk/Commission-CRA-Agendas/City-Commission-Agendas"
-    res = fetch_hardened(hub_url)
-    if res is None:
-        print("[WPB Agendas] Request failed.")
-        return events
-    print(f"[WPB Agendas] HTTP Status: {res.status_code}")
-    if res.status_code != 200:
-        return events
-
-    soup = BeautifulSoup(res.text, "html.parser")
-    for a in soup.find_all("a", href=re.compile(r'\.pdf', re.I)):
-        href = a.get("href", "").strip()
-        # Filenames look like: 04_13_26_FINAL-City-Commission-Agenda.pdf
-        fname_match = re.search(r'(\d{2})_(\d{2})_(\d{2})[_-].*(?:Commission|CRA|Agenda)', href, re.I)
-        if not fname_match:
-            continue
-        mm, dd, yy = fname_match.groups()
-        iso_date = f"20{yy}-{mm}-{dd}"
-        try:
             dt = datetime.strptime(iso_date, "%Y-%m-%d")
-        except ValueError:
-            continue
-        if not (current_month_start <= dt < lookahead_end):
-            continue
+            if current_month_start <= dt < lookahead_end:
+                dedup_key = (clean_title, iso_date)
+                if dedup_key not in seen_keys:
+                    seen_keys.add(dedup_key)
+                    events.append({
+                        "id": f"{muni_code.lower()}-{iso_date}-{hash(full_link)}",
+                        "muni_short": muni_code,
+                        "muni_full": muni_name,
+                        "title": clean_title,
+                        "date": iso_date,
+                        "time": meeting_time,
+                        "link": full_link,
+                        "summary": f"Official {clean_title} meeting."
+                    })
 
-        clean_title = "City Commission Meeting"
-        full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
-        dedup_key = (clean_title, iso_date)
-        if dedup_key not in seen_keys:
-            seen_keys.add(dedup_key)
-            events.append({
-                "id": f"wpb-{iso_date}-{hash(full_link)}",
-                "muni_short": "WPB",
-                "muni_full": "City of West Palm Beach",
-                "title": clean_title,
-                "date": iso_date,
-                "time": "5:00 PM",
-                "link": full_link,
-                "summary": f"Official {clean_title} meeting."
-            })
+    print(f"[{muni_name} List] Extracted {len(events)} events.")
+    return events
 
-    print(f"[WPB] Extracted {len(events)} events via Agendas hub fallback.")
+
+# --- 1. WEST PALM BEACH MODULE ---
+def scrape_west_palm_beach():
+    # WPB runs Granicus OpenCities, NOT CivicPlus - a different product from PBG/Boca/
+    # Boynton, which is why calendar.aspx 404s here. OpenCities' main calendar page
+    # ("Our-City/Calendars/Meetings") is JS-rendered client-side and returns no usable
+    # HTML. However each recurring meeting series has its own static, server-rendered
+    # page (e.g. Events-Folder/2026/City-Commission-Meeting-2026) that lists every
+    # occurrence for the year under a "When" section as plain text - no JS needed.
+    events = []
+    base_domain = "https://www.wpb.org"
+    current_month_start, lookahead_end, curr_year, curr_month = get_dual_month_bounds()
+    next_year = curr_year + 1 if curr_month == 12 else curr_year
+    years_to_check = sorted(set([curr_year, next_year]))
+
+    # Slugs for the recurring governance meeting series known to exist on this pattern.
+    series = [
+        ("City-Commission-Meeting", "City Commission Meeting"),
+        ("Community-Redevelopment-Agency-Meeting", "Community Redevelopment Agency Meeting"),
+        ("MayorCommission-Work-Session", "Mayor / Commission Work Session"),
+    ]
+
+    seen_keys = set()
+
+    for slug, fallback_title in series:
+        for year in years_to_check:
+            url = f"{base_domain}/Events-Folder/{year}/{slug}-{year}"
+            res = fetch_hardened(url)
+            if res is None:
+                print(f"[WPB {fallback_title}] Request failed for {year}")
+                continue
+            if res.status_code == 404:
+                # This series may not exist under this slug/year - not a failure.
+                continue
+            print(f"[WPB {fallback_title}] Fetching {year} | HTTP Status: {res.status_code}")
+            if res.status_code != 200:
+                continue
+
+            soup = BeautifulSoup(res.text, "html.parser")
+            page_title_elem = soup.find("h1")
+            clean_title = clean_event_title(page_title_elem.text.strip()) if page_title_elem else fallback_title
+            # Strip a trailing year off the title, e.g. "City Commission Meeting 2026"
+            clean_title = re.sub(r'\s+\d{4}$', '', clean_title).strip() or fallback_title
+
+            page_text = soup.get_text(separator=' ')
+            # Matches lines like: "Monday, August 31, 2026 | 05:00 PM"
+            date_pattern = re.compile(
+                r'(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s*'
+                r'(January|February|March|April|May|June|July|August|September|October|November|December)'
+                r'\s+(\d{1,2}),\s*(\d{4})\s*\|\s*(\d{1,2}:\d{2}\s*[AP]M)',
+                re.I
+            )
+
+            for match in date_pattern.finditer(page_text):
+                month_name, day, yr, time_str = match.groups()
+                try:
+                    dt = datetime.strptime(f"{month_name} {day} {yr}", "%B %d %Y")
+                except ValueError:
+                    continue
+                iso_date = dt.strftime("%Y-%m-%d")
+
+                if not (current_month_start <= dt < lookahead_end):
+                    continue
+                if not is_qualifying_event(clean_title):
+                    continue
+
+                dedup_key = (clean_title, iso_date)
+                if dedup_key not in seen_keys:
+                    seen_keys.add(dedup_key)
+                    events.append({
+                        "id": f"wpb-{iso_date}-{hash(url + clean_title)}",
+                        "muni_short": "WPB",
+                        "muni_full": "City of West Palm Beach",
+                        "title": clean_title,
+                        "date": iso_date,
+                        "time": time_str.strip().upper(),
+                        "link": url,
+                        "summary": f"Official {clean_title} meeting."
+                    })
+
+    print(f"[WPB] Extracted {len(events)} events.")
     return events
 
 
@@ -440,127 +492,28 @@ def scrape_legistar_portal(muni_code, muni_name, base_url):
 
 
 def scrape_boca_raton():
-    return scrape_legistar_portal("BOCA", "City of Boca Raton", "https://bocaraton.legistar.com/")
+    # Boca Raton runs CivicPlus (myboca.us), not Legistar - "Government Websites by
+    # CivicPlus" is stated right on the site, and myboca.us/calendar.aspx?view=list
+    # works exactly like PBG's. The original Legistar wiring here was simply wrong,
+    # which is why it always returned 0 events.
+    return scrape_civicplus_calendar("BOCA", "City of Boca Raton", "https://www.myboca.us", default_time="6:00 PM")
 
 def scrape_boynton_beach():
-    return scrape_legistar_portal("BOYNTON", "City of Boynton Beach", "https://boyntonbeach.legistar.com/")
+    # Same story as Boca: Boynton Beach runs CivicPlus/CivicEngage at boynton-beach.org
+    # with the same calendar.aspx?view=list mechanism, not Legistar.
+    return scrape_civicplus_calendar("BOYNTON", "City of Boynton Beach", "https://www.boynton-beach.org", default_time="6:00 PM")
 
 def scrape_delray_beach():
+    # Delray Beach is the one municipality here that's genuinely on Legistar.
     return scrape_legistar_portal("DELRAY", "City of Delray Beach", "https://delraybeach.legistar.com/")
 
 
 # --- 6. PALM BEACH GARDENS MODULE ---
 def scrape_palm_beach_gardens():
-    events = []
-    base_domain = "https://www.pbgfl.gov"
-    calendar_base_url = "https://www.pbgfl.gov/calendar.aspx"
-    
-    current_month_start, lookahead_end, curr_year, curr_month = get_dual_month_bounds()
-
-    next_month = 1 if curr_month == 12 else curr_month + 1
-    next_year = curr_year + 1 if curr_month == 12 else curr_year
-
-    months_to_scrape = [
-        {"year": curr_year, "month": curr_month},
-        {"year": next_year, "month": next_month}
-    ]
-
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Referer": "https://www.pbgfl.gov/calendar.aspx",
-        "Connection": "keep-alive"
-    }
-
-    seen_keys = set()
-
-    for target in months_to_scrape:
-        y_val = target["year"]
-        m_val = target["month"]
-
-        url = f"{calendar_base_url}?view=list&year={y_val}&month={m_val}"
-
-        try:
-            res = requests.get(url, headers=headers, timeout=15)
-            print(f"[PBG List] Fetching {y_val}-{m_val:02d} | HTTP Status: {res.status_code}")
-
-            if res.status_code == 200:
-                soup = BeautifulSoup(res.text, "html.parser")
-
-                event_rows = soup.find_all(lambda tag: tag.name in ["tr", "li", "div"] and tag.find("a", href=lambda h: h and ("EID=" in h or "eid=" in h)))
-                if not event_rows:
-                    event_rows = soup.select(".calendarItem, .eventRow, table.calendarList tr, ol.calendarList > li")
-
-                print(f"[PBG List] Found {len(event_rows)} matching event rows for {y_val}-{m_val:02d}.")
-
-                for row in event_rows:
-                    row_text = row.text.strip()
-                    if not row_text:
-                        continue
-
-                    link_elem = row.find("a", href=lambda h: h and ("EID=" in h or "eid=" in h))
-                    if not link_elem:
-                        continue
-
-                    raw_title = link_elem.text.strip()
-                    if not raw_title and link_elem.parent:
-                        raw_title = link_elem.parent.text.strip()
-
-                    raw_title = re.sub(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.*', '', raw_title).strip()
-                    clean_title = clean_event_title(raw_title)
-
-                    href = link_elem.get("href", "").strip()
-                    full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
-
-                    iso_date = None
-                    date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', row_text)
-                    if date_match:
-                        m, d, y = date_match.groups()
-                        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
-                    else:
-                        text_date_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', row_text, re.I)
-                        if text_date_match:
-                            try:
-                                dt_parsed = datetime.strptime(text_date_match.group(0).replace(",", ""), "%B %d %Y")
-                                iso_date = dt_parsed.strftime("%Y-%m-%d")
-                            except ValueError:
-                                pass
-
-                    if not iso_date:
-                        day_match = re.search(r'\b(\d{1,2})\b', row_text)
-                        if day_match:
-                            d_num = int(day_match.group(1))
-                            if 1 <= d_num <= 31:
-                                iso_date = f"{y_val}-{m_val:02d}-{d_num:02d}"
-
-                    time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', row_text)
-                    meeting_time = time_match.group(1).strip().upper() if time_match else "6:00 PM"
-                    if "AM" not in meeting_time and "PM" not in meeting_time:
-                        meeting_time += " PM"
-
-                    if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                        if current_month_start <= dt < lookahead_end:
-                            dedup_key = (clean_title, iso_date)
-                            if dedup_key not in seen_keys:
-                                seen_keys.add(dedup_key)
-                                events.append({
-                                    "id": f"pbg-{iso_date}-{hash(full_link)}",
-                                    "muni_short": "PBG",
-                                    "muni_full": "City of Palm Beach Gardens",
-                                    "title": clean_title,
-                                    "date": iso_date,
-                                    "time": meeting_time,
-                                    "link": full_link,
-                                    "summary": f"Official {clean_title} meeting."
-                                })
-
-        except Exception as e:
-            print(f"[PBG List] Error scraping {y_val}-{m_val:02d}: {e}")
-
-    print(f"[PBG List] Extracted {len(events)} events.")
-    return events
+    return scrape_civicplus_calendar(
+        "PBG", "City of Palm Beach Gardens", "https://www.pbgfl.gov",
+        default_time="6:00 PM", exclude_pattern=r'\b(ITB|RFP|RFQ|Bid)\b'
+    )
 
 
 # --- MAIN ENGINE RUNNER ---
