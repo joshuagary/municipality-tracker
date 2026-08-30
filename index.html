@@ -232,12 +232,11 @@
 
         .event-link-disabled {
             color: var(--text-muted);
-            cursor: default;
             font-style: italic;
         }
 
         .event-link-disabled:hover {
-            text-decoration: none;
+            text-decoration: underline;
         }
 
         .fc-event {
@@ -443,7 +442,7 @@
                 return {
                     title: `[${e.muni_short}] ${e.title}`,
                     start: `${e.date}T${formatTimeTo24H(e.time)}`,
-                    url: hasAgenda ? e.link : undefined, // don't make the event clickable when there's nothing to open
+                    url: e.link, // when has_agenda is false, e.link is the general source/meetings page the event was found on, not a dead link
                     extendedProps: {
                         rawTitle: e.title,
                         muniShort: e.muni_short,
@@ -467,7 +466,7 @@
                     const hasAgenda = e.has_agenda !== false;
                     const linkHtml = hasAgenda
                         ? `<a href="${e.link}" target="_blank" rel="noopener noreferrer" class="event-link">View Agenda &rarr;</a>`
-                        : `<span class="event-link event-link-disabled" title="No Agenda Available">No Agenda Available</span>`;
+                        : `<a href="${e.link}" target="_blank" rel="noopener noreferrer" class="event-link event-link-disabled" title="No Agenda Available">No Agenda Available</a>`;
                     return `
                     <article class="event-card">
                         <div class="event-header">
