@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import calendar
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
@@ -67,6 +68,8 @@ def is_qualifying_event(title):
     qualifying_keywords = [
         # Core elected legislative bodies
         r'\bCity Council\b', r'\bCity Commission\b', r'\bTown Council\b',
+        r'\bVillage Council\b',  # Wellington is a Village, not City/Town - "Wellington
+        # Village Council Meeting"/"...Workshop" wouldn't qualify without this.
         r'\bBoard of County Commissioners\b', r'\bBCC\b',
         # Redevelopment
         r'\bCommunity Redevelopment Agency\b', r'\bCRA\b',
@@ -80,6 +83,8 @@ def is_qualifying_event(title):
         # Council/Commission-specific sessions (qualified by the body name so bare
         # "Workshop" or "Hearing" alone can't match an unrelated event)
         r'\b(?:Council|Commission)\s+Workshop\b',
+        r'\b(?:Council|Commission)\s+Agenda Review\b',  # Wellington's "Council Agenda
+        # Review Meeting" - added per user request; CIP Workshop intentionally left out.
         r'\bMayor\s*/?\s*Commission Work\s*Session\b',
         r'\bPublic Hearing\b', r'\bTown Hall\b',
     ]
@@ -535,6 +540,122 @@ def scrape_palm_beach_gardens():
     )
 
 
+# --- 7. WELLINGTON MODULE ---
+def scrape_wellington():
+    # Wellington runs CivicPlus (confirmed live: "Government Websites by CivicPlus"
+    # appears on wellingtonfl.gov), but its calendar behaves differently from PBG/Boca/
+    # Boynton's: ?view=list is a single-day drilldown here, not a full-month list, so
+    # scrape_civicplus_calendar() doesn't fit. The reliable single-request-per-month
+    # source is the plain calendar page (startDate/enddate/CID/showPastEvents, matching
+    # the URL format provided) - CivicPlus embeds each event's title, time, and a clean
+    # ISO 8601 timestamp directly in the page's HTML (as hover/click-popup content) even
+    # though it renders visually as a month grid, no JS execution needed to read it.
+    #
+    # NOTE: on one manual verification fetch, requesting CID=29 unexpectedly returned a
+    # different calendar (CID=22, "Meetings") instead - a possible session/redirect
+    # quirk on Wellington's CivicPlus install that couldn't be fully diagnosed without
+    # raw HTML/browser access. Confirm with a real GitHub Actions log before trusting
+    # this scraper the way PBG/Delray/PBC are already trusted.
+    events = []
+    base_domain = "https://www.wellingtonfl.gov"
+    calendar_cid = "29"  # "Council Meetings" calendar, per the user-provided URL
+
+    current_month_start, lookahead_end, curr_year, curr_month = get_dual_month_bounds()
+    next_month = 1 if curr_month == 12 else curr_month + 1
+    next_year = curr_year + 1 if curr_month == 12 else curr_year
+    months_to_scrape = [
+        {"year": curr_year, "month": curr_month},
+        {"year": next_year, "month": next_month},
+    ]
+
+    # Each event's title appears cleanly right after the day number, in a
+    # "[<Title>Category: <Calendar Name>](#)" anchor - BEFORE any freeform "Location"
+    # text (which can be empty, or a long multi-sentence disclaimer, as with the
+    # Village Council Meeting's childcare sign-up notice). Extracting the title from
+    # this early anchor, then searching only within that event's own slice of text for
+    # the "More Details" link and the trailing ISO 8601 timestamp, avoids an earlier bug
+    # where long Location text got swept into the title capture for events that had it.
+    title_delim_pattern = re.compile(r'\[([^\]]*?)\s*Category:\s*[^\]]+\]\(#\)')
+    link_pattern = re.compile(r'\[More Details\]\((https://www\.wellingtonfl\.gov/Calendar\.aspx\?EID=\d+[^\)]*)\)')
+    iso_pattern = re.compile(r'(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})')
+
+    seen_keys = set()
+
+    for target in months_to_scrape:
+        y_val, m_val = target["year"], target["month"]
+        last_day = calendar.monthrange(y_val, m_val)[1]
+        start_str = f"{m_val:02d}/01/{y_val}"
+        end_str = f"{m_val:02d}/{last_day:02d}/{y_val}"
+        url = (
+            f"{base_domain}/calendar.aspx?Keywords=&startDate={start_str}"
+            f"&enddate={end_str}&CID={calendar_cid}&showPastEvents=false"
+        )
+
+        res = fetch_hardened(url, referer=f"{base_domain}/calendar.aspx")
+        if res is None:
+            print(f"[Wellington] Request failed for {y_val}-{m_val:02d}")
+            continue
+        print(f"[Wellington] Fetching {y_val}-{m_val:02d} | HTTP Status: {res.status_code}")
+        if res.status_code != 200:
+            continue
+
+        soup = BeautifulSoup(res.text, "html.parser")
+        page_text = soup.get_text(separator=' ')
+
+        title_starts = list(title_delim_pattern.finditer(page_text))
+        print(f"[Wellington] Found {len(title_starts)} raw event blocks for {y_val}-{m_val:02d}.")
+
+        for i, title_match in enumerate(title_starts):
+            raw_title = title_match.group(1)
+            block_start = title_match.end()
+            block_end = title_starts[i + 1].start() if i + 1 < len(title_starts) else len(page_text)
+            block_text = page_text[block_start:block_end]
+
+            link_match = link_pattern.search(block_text)
+            iso_match = iso_pattern.search(block_text)
+            if not link_match or not iso_match:
+                continue
+
+            full_link = link_match.group(1)
+            iso_date, iso_time_raw = iso_match.groups()
+            clean_title = clean_event_title(raw_title)
+
+            if not is_qualifying_event(clean_title):
+                continue
+
+            try:
+                dt = datetime.strptime(iso_date, "%Y-%m-%d")
+            except ValueError:
+                continue
+            if not (current_month_start <= dt < lookahead_end):
+                continue
+
+            try:
+                time_obj = datetime.strptime(iso_time_raw, "%H:%M:%S")
+                meeting_time = time_obj.strftime("%-I:%M %p")
+            except ValueError:
+                meeting_time = "6:00 PM"
+
+            dedup_key = (clean_title, iso_date)
+            if dedup_key in seen_keys:
+                continue
+            seen_keys.add(dedup_key)
+
+            events.append({
+                "id": f"wellington-{iso_date}-{hash(full_link)}",
+                "muni_short": "WELL",
+                "muni_full": "Village of Wellington",
+                "title": clean_title,
+                "date": iso_date,
+                "time": meeting_time,
+                "link": full_link,
+                "summary": f"Official {clean_title} meeting."
+            })
+
+    print(f"[Wellington] Extracted {len(events)} events.")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -547,6 +668,7 @@ def main():
     all_events.extend(scrape_boynton_beach())
     all_events.extend(scrape_delray_beach())
     all_events.extend(scrape_palm_beach_gardens())
+    all_events.extend(scrape_wellington())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
