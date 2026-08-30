@@ -1120,6 +1120,216 @@ def scrape_downtown_wpb_dda():
     return events
 
 
+# --- 11. JUPITER MODULE (added this session — UNCONFIRMED, see comments) ---
+def scrape_jupiter():
+    # Town of Jupiter, FL - https://www.jupiter.fl.us/calendar.aspx?CID=35. The
+    # calendar.aspx?CID=N URL shape is the same CivicPlus/CivicEngage pattern used by
+    # PBG/Boca/Boynton (?view=list) and Wellington (?CID=29, startDate/enddate),
+    # strongly suggesting this is another CivicPlus site - but which of the two
+    # observed CivicPlus behaviors it uses (PBG/Boca/Boynton's full-month ?view=list,
+    # or Wellington's single-day-drilldown grid requiring the Schema.org microdata
+    # parse) is NOT confirmed. This session's sandbox had no outbound network route to
+    # jupiter.fl.us at all - both a direct `curl` and the WebFetch rendered-preview
+    # tool failed outright (WebFetch couldn't even fetch/parse robots.txt), so there
+    # was no rendered preview to hypothesize from this time, per Key Methodological
+    # Lesson #2 in handoff.md. Nothing below has been checked against real HTML.
+    #
+    # Written defensively to try both known CivicPlus shapes and log everything needed
+    # to fix it from one real GitHub Actions run:
+    #   1. Wellington-style: fetch calendar.aspx with startDate/enddate/CID=35 and look
+    #      for <div itemscope itemtype="http://schema.org/Event"> blocks.
+    #   2. If none found, fall back to the PBG/Boca/Boynton-style ?view=list&CID=35
+    #      page and look for EID= row links (scrape_civicplus_calendar()'s approach,
+    #      inlined here rather than reused since that helper doesn't accept a CID param).
+    #   3. If neither yields anything, dump a raw HTML slice anchored on "Jupiter" (a
+    #      guaranteed real string on the page) plus the row/block counts found by each
+    #      strategy, so the real structure can be identified from the log.
+    #
+    # muni_full is set to "Town of Jupiter" - Jupiter, FL is legally a Town, not a
+    # City, even though the user referred to it as "City of Jupiter" when requesting
+    # it; flag to the user if "City of Jupiter" is actually the preferred display name.
+    events = []
+    base_domain = "https://www.jupiter.fl.us"
+    calendar_cid = "35"
+
+    current_month_start, lookahead_end, curr_year, curr_month = get_dual_month_bounds()
+    next_month = 1 if curr_month == 12 else curr_month + 1
+    next_year = curr_year + 1 if curr_month == 12 else curr_year
+    months_to_scrape = [
+        {"year": curr_year, "month": curr_month},
+        {"year": next_year, "month": next_month},
+    ]
+
+    seen_keys = set()
+
+    for target in months_to_scrape:
+        y_val, m_val = target["year"], target["month"]
+        last_day = calendar.monthrange(y_val, m_val)[1]
+        start_str = f"{m_val:02d}/01/{y_val}"
+        end_str = f"{m_val:02d}/{last_day:02d}/{y_val}"
+
+        # --- Strategy 1: Wellington-style schema.org microdata grid ---
+        schema_url = (
+            f"{base_domain}/calendar.aspx?Keywords=&startDate={start_str}"
+            f"&enddate={end_str}&CID={calendar_cid}&showPastEvents=false"
+        )
+        res = fetch_hardened(schema_url, referer=f"{base_domain}/calendar.aspx")
+        if res is None:
+            print(f"[Jupiter] Request failed (schema.org attempt) for {y_val}-{m_val:02d}")
+        else:
+            print(f"[Jupiter] Fetching {y_val}-{m_val:02d} (schema.org attempt) | HTTP Status: {res.status_code}")
+
+        found_this_month = False
+        if res is not None and res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            event_divs = soup.find_all("div", itemtype="http://schema.org/Event")
+            print(f"[Jupiter] Found {len(event_divs)} schema.org event blocks for {y_val}-{m_val:02d}.")
+
+            for ev_div in event_divs:
+                name_span = ev_div.find("span", itemprop="name")
+                date_span = ev_div.find("span", itemprop="startDate")
+                if not name_span or not date_span:
+                    continue
+
+                raw_title = name_span.get_text(strip=True)
+                iso_datetime_str = date_span.get_text(strip=True)
+                clean_title = clean_event_title(raw_title)
+
+                if not is_qualifying_event(clean_title):
+                    continue
+
+                try:
+                    dt = datetime.strptime(iso_datetime_str, "%Y-%m-%dT%H:%M:%S")
+                except ValueError:
+                    continue
+                if not (current_month_start <= dt < lookahead_end):
+                    continue
+
+                iso_date = dt.strftime("%Y-%m-%d")
+                meeting_time = dt.strftime("%-I:%M %p")
+
+                full_link = f"{base_domain}/Calendar.aspx"
+                parent_item = ev_div.find_parent("div", class_="monthItem")
+                if parent_item and parent_item.get("id"):
+                    eid_match = re.match(r'parentdiv(\d+)_', parent_item["id"])
+                    if eid_match:
+                        eid = eid_match.group(1)
+                        full_link = (
+                            f"{base_domain}/Calendar.aspx?EID={eid}"
+                            f"&month={dt.month}&year={dt.year}&day={dt.day}&calType=0"
+                        )
+
+                dedup_key = (clean_title, iso_date)
+                if dedup_key in seen_keys:
+                    continue
+                seen_keys.add(dedup_key)
+                found_this_month = True
+
+                events.append({
+                    "id": f"jup-{iso_date}-{hash(full_link)}",
+                    "muni_short": "JUP",
+                    "muni_full": "Town of Jupiter",
+                    "title": clean_title,
+                    "date": iso_date,
+                    "time": meeting_time,
+                    "link": full_link,
+                    "summary": f"Official {clean_title} meeting."
+                })
+
+        # --- Strategy 2: PBG/Boca/Boynton-style ?view=list EID= row parse ---
+        # Only attempted if strategy 1 found nothing for this month, since a real
+        # schema.org match is the stronger signal when both happen to fire.
+        if not found_this_month:
+            list_url = f"{base_domain}/calendar.aspx?view=list&year={y_val}&month={m_val}&CID={calendar_cid}"
+            res2 = fetch_hardened(list_url, referer=f"{base_domain}/calendar.aspx")
+            if res2 is None:
+                print(f"[Jupiter] Request failed (list-view attempt) for {y_val}-{m_val:02d}")
+                continue
+            print(f"[Jupiter] Fetching {y_val}-{m_val:02d} (list-view attempt) | HTTP Status: {res2.status_code}")
+            if res2.status_code != 200:
+                continue
+
+            soup2 = BeautifulSoup(res2.text, "html.parser")
+            event_rows = soup2.find_all(lambda tag: tag.name in ["tr", "li", "div"] and tag.find("a", href=lambda h: h and ("EID=" in h or "eid=" in h)))
+            print(f"[Jupiter] Found {len(event_rows)} EID= row matches (list-view attempt) for {y_val}-{m_val:02d}.")
+
+            if not event_rows:
+                # Nothing from either strategy - dump a raw slice for debugging,
+                # anchored on a guaranteed real string rather than the page head.
+                anchor_idx = res2.text.find("Jupiter")
+                if anchor_idx == -1:
+                    anchor_idx = 0
+                print(f"[Jupiter] DEBUG raw HTML slice (list-view attempt): "
+                      f"{res2.text[anchor_idx:anchor_idx + 1500]}")
+                continue
+
+            for row in event_rows:
+                row_text = row.text.strip()
+                if not row_text:
+                    continue
+
+                link_elem = row.find("a", href=lambda h: h and ("EID=" in h or "eid=" in h))
+                if not link_elem:
+                    continue
+
+                raw_title = link_elem.text.strip()
+                if not raw_title and link_elem.parent:
+                    raw_title = link_elem.parent.text.strip()
+                raw_title = re.sub(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.*', '', raw_title).strip()
+                clean_title = clean_event_title(raw_title)
+
+                href = link_elem.get("href", "").strip()
+                full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+
+                iso_date = None
+                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', row_text)
+                if date_match:
+                    m, d, y = date_match.groups()
+                    iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+                else:
+                    text_date_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', row_text, re.I)
+                    if text_date_match:
+                        try:
+                            dt_parsed = datetime.strptime(text_date_match.group(0).replace(",", ""), "%B %d %Y")
+                            iso_date = dt_parsed.strftime("%Y-%m-%d")
+                        except ValueError:
+                            pass
+
+                if not iso_date:
+                    day_match = re.search(r'\b(\d{1,2})\b', row_text)
+                    if day_match:
+                        d_num = int(day_match.group(1))
+                        if 1 <= d_num <= 31:
+                            iso_date = f"{y_val}-{m_val:02d}-{d_num:02d}"
+
+                time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', row_text)
+                meeting_time = time_match.group(1).strip().upper() if time_match else "6:00 PM"
+                if "AM" not in meeting_time and "PM" not in meeting_time:
+                    meeting_time += " PM"
+
+                if not iso_date or not is_qualifying_event(clean_title):
+                    continue
+
+                dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                if current_month_start <= dt < lookahead_end:
+                    dedup_key = (clean_title, iso_date)
+                    if dedup_key not in seen_keys:
+                        seen_keys.add(dedup_key)
+                        events.append({
+                            "id": f"jup-{iso_date}-{hash(full_link)}",
+                            "muni_short": "JUP",
+                            "muni_full": "Town of Jupiter",
+                            "title": clean_title,
+                            "date": iso_date,
+                            "time": meeting_time,
+                            "link": full_link,
+                            "summary": f"Official {clean_title} meeting."
+                        })
+
+    print(f"[Jupiter] Extracted {len(events)} events.")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -1136,6 +1346,7 @@ def main():
     all_events.extend(scrape_westlake())
     all_events.extend(scrape_downtown_wpb_dda())
     all_events.extend(scrape_palm_beach())
+    all_events.extend(scrape_jupiter())
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
