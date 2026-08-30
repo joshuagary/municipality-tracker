@@ -40,25 +40,24 @@ def get_dual_month_bounds():
     return current_month_start, lookahead_end, curr_year, curr_month
 
 
-# --- 1. WEST PALM BEACH MODULE ---
+# --- 1. WEST PALM BEACH MODULE (FIXED USER-AGENT) ---
 def scrape_west_palm_beach():
     events = []
     base_domain = "https://www.wpb.org"
-    target_url = f"{base_domain}/government/city-commission/city-commission-agendas-and-minutes"
+    target_url = f"{base_domain}/government/city-commission/agendas-and-minutes"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
-    session = requests.Session()
-    session.headers.update({
+    headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9"
-    })
+    }
 
     try:
-        res = session.get(target_url, timeout=15)
+        res = requests.get(target_url, headers=headers, timeout=15)
         print(f"[WPB] HTTP Status: {res.status_code}")
-
+        
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             seen_keys = set()
@@ -113,11 +112,11 @@ def scrape_west_palm_beach():
     return events
 
 
-# --- 2. PALM BEACH COUNTY MODULE ---
+# --- 2. PALM BEACH COUNTY MODULE (FIXED 404 URL) ---
 def scrape_palm_beach_county():
     events = []
     base_domain = "https://discover.pbcgov.org"
-    target_url = f"{base_domain}/countycommission/Pages/BCC-Agendas.aspx"
+    target_url = "https://discover.pbcgov.org/countycommission/Pages/default.aspx"
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
@@ -128,11 +127,6 @@ def scrape_palm_beach_county():
     try:
         res = requests.get(target_url, headers=headers, timeout=15)
         print(f"[PBC] HTTP Status: {res.status_code}")
-        
-        if res.status_code != 200:
-            target_url = f"{base_domain}/countycommission/Pages/default.aspx"
-            res = requests.get(target_url, headers=headers, timeout=15)
-            print(f"[PBC Fallback] HTTP Status: {res.status_code}")
 
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
@@ -188,12 +182,13 @@ def scrape_palm_beach_county():
     return events
 
 
-# --- HELPER FOR LEGISTAR PORTALS ---
+# --- HELPER FOR LEGISTAR PORTALS (EXPLICIT ALL MONTHS QUERY) ---
 def scrape_legistar_portal(muni_code, muni_name, base_url):
     events = []
+    # Query all years/months rather than defaulting to current week
     target_url = f"{base_url}Calendar.aspx"
     
-    current_month_start, lookahead_end, curr_year, curr_month = get_dual_month_bounds()
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
@@ -374,22 +369,11 @@ def main():
     
     print("Starting Municipal Scraper Engine...")
     
-    # 1. West Palm Beach
     all_events.extend(scrape_west_palm_beach())
-
-    # 2. Palm Beach County
     all_events.extend(scrape_palm_beach_county())
-
-    # 3. Boca Raton
     all_events.extend(scrape_boca_raton())
-    
-    # 4. Boynton Beach
     all_events.extend(scrape_boynton_beach())
-
-    # 5. Delray Beach
     all_events.extend(scrape_delray_beach())
-    
-    # 6. Palm Beach Gardens
     all_events.extend(scrape_palm_beach_gardens())
 
     with open("data.json", "w", encoding="utf-8") as f:
