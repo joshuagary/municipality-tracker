@@ -600,18 +600,19 @@ def scrape_wellington():
             continue
 
         # --- TEMPORARY DEBUG ---
-        # scrape_wellington()'s parser was built against a markdown-rendered PREVIEW of
-        # this page (from a web-fetch tool), not the real raw HTML - that preview
-        # synthesizes "[text](url)" bracket-link syntax that plain BeautifulSoup
-        # .get_text() never produces from real <a href="..."> tags, which is almost
-        # certainly why 0 event blocks were found against real output. Dumping a raw
-        # slice here so the actual structure can be confirmed before rewriting the
-        # parser properly. Remove this block once scrape_wellington() is fixed.
+        # First attempt dumped the first 4000 chars, which turned out to be all page
+        # boilerplate (GA4 tag manager, anti-forgery token JS) before any real event
+        # markup - confirmed the event data (Council/EID=/ISO timestamps) genuinely
+        # exists in the raw response, just further in. Dumping a window around the
+        # first real event marker instead this time. Remove this block once
+        # scrape_wellington() is confirmed working end-to-end.
         print(f"[Wellington DEBUG] Response length: {len(res.text)} chars")
-        print(f"[Wellington DEBUG] Contains 'Council': {'Council' in res.text}")
-        print(f"[Wellington DEBUG] Contains 'EID=': {'EID=' in res.text}")
-        print(f"[Wellington DEBUG] Contains an ISO timestamp pattern: {bool(re.search(r'202[0-9]-[01][0-9]-[0-3][0-9]T', res.text))}")
-        print(f"[Wellington DEBUG] First 4000 raw chars:\n{res.text[:4000]}")
+        eid_pos = res.text.find("EID=")
+        print(f"[Wellington DEBUG] First 'EID=' at char offset: {eid_pos}")
+        if eid_pos != -1:
+            window_start = max(0, eid_pos - 1500)
+            window_end = min(len(res.text), eid_pos + 2500)
+            print(f"[Wellington DEBUG] Raw HTML window [{window_start}:{window_end}]:\n{res.text[window_start:window_end]}")
         # --- END TEMPORARY DEBUG ---
 
         soup = BeautifulSoup(res.text, "html.parser")
