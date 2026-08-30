@@ -8,14 +8,12 @@ from datetime import datetime, timedelta
 # --- HELPER FUNCTIONS ---
 
 def clean_event_title(title):
-    """Clean up extra whitespaces, newlines, and common artifacts from titles."""
     if not title:
         return "Public Meeting"
     title = re.sub(r'\s+', ' ', title).strip()
     return title
 
 def is_qualifying_event(title):
-    """Filter for official governance board, council, commission, and committee meetings."""
     governance_keywords = [
         r'\bCouncil\b', r'\bCommission\b', r'\bBoard\b', r'\bCommittee\b',
         r'\bAuthority\b', r'\bAgency\b', r'\bCRA\b', r'\bZoning\b', r'\bPlanning\b',
@@ -26,7 +24,6 @@ def is_qualifying_event(title):
     return bool(pattern.search(title))
 
 def get_dual_month_bounds():
-    """Returns datetime objects for the start of the current month and the upper bound (1st of month after next)."""
     now = datetime.now()
     curr_year = now.year
     curr_month = now.month
@@ -43,7 +40,7 @@ def get_dual_month_bounds():
     return current_month_start, lookahead_end, curr_year, curr_month
 
 
-# --- 1. WEST PALM BEACH MODULE (RESTORED ORIGINAL LOGIC) ---
+# --- 1. WEST PALM BEACH MODULE (HEADER-ENABLED SCRAPER) ---
 def scrape_west_palm_beach():
     events = []
     base_domain = "https://www.wpb.org"
@@ -51,13 +48,24 @@ def scrape_west_palm_beach():
     
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
+    # Browser headers required to bypass 403 response
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://www.wpb.org/"
     }
 
     try:
         res = requests.get(target_url, headers=headers, timeout=15)
         print(f"[WPB] HTTP Status: {res.status_code}")
+        
+        # Fallback to homepage root if subpage changes
+        if res.status_code != 200:
+            target_url = f"{base_domain}/Government/City-Commission"
+            res = requests.get(target_url, headers=headers, timeout=15)
+            print(f"[WPB Retry] HTTP Status: {res.status_code}")
+
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             seen_keys = set()
@@ -71,9 +79,83 @@ def scrape_west_palm_beach():
                 parent_text = a.parent.text.strip() if a.parent else text
                 context = f"{text} {parent_text}"
 
-                if is_qualifying_event(context) or "agenda" in href.lower() or "pdf" in href.lower():
-                    raw_title = text if len(text) > 3 else parent_text.split("\n")[0].strip()
-                    clean_title = clean_event_title(raw_title)
+                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', context)
+                iso_date = None
+                if date_match:
+                    m, d, y = date_match.groups()
+                    iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
+                else:
+                    text_date = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', context, re.I)
+                    if text_date:
+                        try:
+                            dt_parsed = datetime.strptime(text_date.group(0).replace(",", ""), "%B %d %Y")
+                            iso_date = dt_parsed.strftime("%Y-%m-%d")
+                        except ValueError:
+                            pass
+
+                raw_title = text if len(text) > 3 else "City Commission Meeting"
+                clean_title = clean_event_title(raw_title)
+
+                if iso_date and (is_qualifying_event(clean_title) or "Commission" in context or "Agenda" in context):
+                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                    if current_month_start <= dt < lookahead_end:
+                        full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+                        dedup_key = (clean_title, iso_date)
+                        if dedup_key not in seen_keys:
+                            seen_keys.add(dedup_key)
+                            events.append({
+                                "id": f"wpb-{iso_date}-{hash(full_link)}",
+                                "muni_short": "WPB",
+                                "muni_full": "City of West Palm Beach",
+                                "title": clean_title,
+                                "date": iso_date,
+                                "time": "5:00 PM",
+                                "link": full_link,
+                                "summary": f"Official {clean_title} meeting."
+                            })
+        print(f"[WPB] Extracted {len(events)} events.")
+    except Exception as e:
+        print(f"[WPB] Error: {e}")
+
+    return events
+
+
+# --- 2. PALM BEACH COUNTY MODULE (ROBUST URL SCANNER) ---
+def scrape_palm_beach_county():
+    events = []
+    base_domain = "https://discover.pbcgov.org"
+    
+    # Check primary BCC Agenda URL and fallback root
+    urls_to_try = [
+        f"{base_domain}/countycommission/Pages/BCC-Meeting-Agendas.aspx",
+        f"{base_domain}/countycommission/Pages/default.aspx"
+    ]
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    }
+
+    seen_keys = set()
+
+    for target_url in urls_to_try:
+        try:
+            res = requests.get(target_url, headers=headers, timeout=15)
+            print(f"[PBC] Fetching {target_url} | Status: {res.status_code}")
+            
+            if res.status_code == 200:
+                soup = BeautifulSoup(res.text, "html.parser")
+
+                for a in soup.find_all("a"):
+                    href = a.get("href", "").strip()
+                    if not href:
+                        continue
+                    
+                    text = a.text.strip()
+                    parent_text = a.parent.text.strip() if a.parent else text
+                    context = f"{text} {parent_text}"
 
                     date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', context)
                     iso_date = None
@@ -89,77 +171,10 @@ def scrape_west_palm_beach():
                             except ValueError:
                                 pass
 
-                    if iso_date and is_qualifying_event(clean_title):
-                        dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                        if current_month_start <= dt < lookahead_end:
-                            full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
-                            dedup_key = (clean_title, iso_date)
-                            if dedup_key not in seen_keys:
-                                seen_keys.add(dedup_key)
-                                events.append({
-                                    "id": f"wpb-{iso_date}-{hash(full_link)}",
-                                    "muni_short": "WPB",
-                                    "muni_full": "City of West Palm Beach",
-                                    "title": clean_title,
-                                    "date": iso_date,
-                                    "time": "5:00 PM",
-                                    "link": full_link,
-                                    "summary": f"Official {clean_title} meeting."
-                                })
-        print(f"[WPB] Extracted {len(events)} events.")
-    except Exception as e:
-        print(f"[WPB] Error: {e}")
-
-    return events
-
-
-# --- 2. PALM BEACH COUNTY MODULE (RESTORED ORIGINAL LOGIC) ---
-def scrape_palm_beach_county():
-    events = []
-    base_domain = "https://discover.pbcgov.org"
-    target_url = f"{base_domain}/countycommission/Pages/BCC-Meeting-Agendas.aspx"
-    
-    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
-
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
-    }
-
-    try:
-        res = requests.get(target_url, headers=headers, timeout=15)
-        print(f"[PBC] HTTP Status: {res.status_code}")
-        if res.status_code == 200:
-            soup = BeautifulSoup(res.text, "html.parser")
-            seen_keys = set()
-
-            for a in soup.find_all("a"):
-                href = a.get("href", "").strip()
-                if not href:
-                    continue
-                
-                text = a.text.strip()
-                parent_text = a.parent.text.strip() if a.parent else text
-                context = f"{text} {parent_text}"
-
-                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', context)
-                if not date_match:
-                    date_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),?\s+(\d{4})', context, re.I)
-
-                if date_match:
-                    if len(date_match.groups()) == 3:
-                        m, d, y = date_match.groups()
-                        iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
-                    else:
-                        try:
-                            dt_parsed = datetime.strptime(date_match.group(0).replace(",", ""), "%B %d %Y")
-                            iso_date = dt_parsed.strftime("%Y-%m-%d")
-                        except ValueError:
-                            continue
-
                     raw_title = text if len(text) > 3 else "Board of County Commissioners Meeting"
                     clean_title = clean_event_title(raw_title)
 
-                    if is_qualifying_event(clean_title) or "BCC" in context:
+                    if iso_date and (is_qualifying_event(clean_title) or "BCC" in context or "Commission" in context):
                         dt = datetime.strptime(iso_date, "%Y-%m-%d")
                         if current_month_start <= dt < lookahead_end:
                             full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
@@ -176,14 +191,16 @@ def scrape_palm_beach_county():
                                     "link": full_link,
                                     "summary": f"Official {clean_title} meeting."
                                 })
-        print(f"[PBC] Extracted {len(events)} events.")
-    except Exception as e:
-        print(f"[PBC] Error: {e}")
+                if events:
+                    break
+        except Exception as e:
+            print(f"[PBC] Error on {target_url}: {e}")
 
+    print(f"[PBC] Extracted {len(events)} events.")
     return events
 
 
-# --- 3. BOCA RATON MODULE (RESTORED ORIGINAL LOGIC) ---
+# --- 3. BOCA RATON MODULE (LEGISTAR CALENDAR SCRAPER) ---
 def scrape_boca_raton():
     events = []
     base_url = "https://bocaraton.legistar.com/"
@@ -297,85 +314,64 @@ def scrape_boynton_beach():
     return events
 
 
-# --- 5. DELRAY BEACH MODULE (STABLE CURRENT-MONTH SCRAPER) ---
+# --- 5. DELRAY BEACH MODULE ---
 def scrape_delray_beach():
     events = []
-    url = "https://delraybeach.legistar.com/Calendar.aspx"
+    base_url = "https://delraybeach.legistar.com/"
+    target_url = f"{base_url}Calendar.aspx"
     
-    now = datetime.now()
-    # Lock lower bound to the 1st day of the current month
-    current_month_start = datetime(now.year, now.month, 1)
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    }
 
     try:
-        res = requests.get(url, impersonate="chrome124", timeout=15)
-        print(f"[Delray] HTTP Status Code: {res.status_code}")
-        
+        res = requests.get(target_url, headers=headers, timeout=15)
+        print(f"[Delray Beach] HTTP Status: {res.status_code}")
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
-            rows = soup.find_all("tr")
+            table = soup.find("table", id=re.compile(r'.*gridCalendar.*'))
+            if table:
+                rows = table.find_all("tr")[1:]
+                for row in rows:
+                    cols = row.find_all("td")
+                    if len(cols) >= 6:
+                        raw_title = cols[0].text.strip()
+                        date_str = cols[1].text.strip()
+                        time_str = cols[3].text.strip()
+                        
+                        clean_title = clean_event_title(raw_title)
 
-            for row in rows:
-                cols = row.find_all("td")
-                if len(cols) < 3:
-                    continue
+                        link_a = cols[5].find("a")
+                        href = link_a.get("href", "").strip() if link_a else ""
+                        full_link = f"{base_url}{href}" if href and not href.startswith("http") else (href or target_url)
 
-                raw_title = cols[0].text.strip()
-                clean_title = clean_event_title(raw_title)
-                
-                raw_date = cols[1].text.strip() if len(cols) > 1 else ""
-                raw_time = cols[2].text.strip() if len(cols) > 2 else ""
+                        try:
+                            dt = datetime.strptime(date_str, "%m/%d/%Y")
+                            iso_date = dt.strftime("%Y-%m-%d")
 
-                # Target direct PDF Agenda link (View.ashx?M=A), fallback to Meeting Details page
-                href = ""
-                agenda_a = row.select_one("a[href*='View.ashx?M=A']")
-                if agenda_a and agenda_a.get('href'):
-                    href = agenda_a['href'].strip()
-                else:
-                    detail_a = row.select_one("a[href*='MeetingDetail.aspx']")
-                    if detail_a and detail_a.get('href'):
-                        href = detail_a['href'].strip()
-
-                if not href:
-                    href = "Calendar.aspx"
-
-                # Standard M/D/YYYY date extraction
-                iso_date = None
-                date_match = re.search(r'(\d{1,2})/(\d{1,2})/(\d{4})', raw_date)
-                if date_match:
-                    m, d, y = date_match.groups()
-                    iso_date = f"{y}-{int(m):02d}-{int(d):02d}"
-
-                # Apply qualification filter for clean current-month dataset
-                if iso_date and is_qualifying_event(clean_title) and not re.search(r'\b(ITB|RFP|RFQ|Bid)\b', clean_title, re.I):
-                    dt = datetime.strptime(iso_date, "%Y-%m-%d")
-                    
-                    if dt >= current_month_start:
-                        time_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', raw_time)
-                        meeting_time = time_match.group(1).strip().upper() if time_match else "4:00 PM"
-                        if "AM" not in meeting_time and "PM" not in meeting_time:
-                            meeting_time += " PM"
-
-                        full_link = href if href.startswith("http") else f"https://delraybeach.legistar.com/{href.lstrip('/')}"
-
-                        events.append({
-                            "id": f"delray-{iso_date}-{hash(full_link)}",
-                            "muni_short": "DELRAY",
-                            "muni_full": "City of Delray Beach",
-                            "title": clean_title,
-                            "date": iso_date,
-                            "time": meeting_time,
-                            "link": full_link,
-                            "summary": f"Official {clean_title} meeting."
-                        })
-
-            print(f"[Delray] Successfully saved {len(events)} current-month events.")
+                            if current_month_start <= dt < lookahead_end and is_qualifying_event(clean_title):
+                                events.append({
+                                    "id": f"delray-{iso_date}-{hash(full_link)}",
+                                    "muni_short": "DELRAY",
+                                    "muni_full": "City of Delray Beach",
+                                    "title": clean_title,
+                                    "date": iso_date,
+                                    "time": time_str or "6:00 PM",
+                                    "link": full_link,
+                                    "summary": f"Official {clean_title} meeting."
+                                })
+                        except ValueError:
+                            continue
+        print(f"[Delray Beach] Extracted {len(events)} events.")
     except Exception as e:
-        print(f"[Delray] Exception: {e}")
+        print(f"[Delray Beach] Error: {e}")
 
     return events
 
 
-# --- 6. PALM BEACH GARDENS MODULE (CURRENT WORKING DUAL-MONTH SCRAPER) ---
+# --- 6. PALM BEACH GARDENS MODULE ---
 def scrape_palm_beach_gardens():
     events = []
     base_domain = "https://www.pbgfl.gov"
