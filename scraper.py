@@ -599,20 +599,24 @@ def scrape_wellington():
         if res.status_code != 200:
             continue
 
-        # --- TEMPORARY DEBUG ---
-        # First attempt dumped the first 4000 chars, which turned out to be all page
-        # boilerplate (GA4 tag manager, anti-forgery token JS) before any real event
-        # markup - confirmed the event data (Council/EID=/ISO timestamps) genuinely
-        # exists in the raw response, just further in. Dumping a window around the
-        # first real event marker instead this time. Remove this block once
-        # scrape_wellington() is confirmed working end-to-end.
+        # --- TEMPORARY DEBUG (attempt 3) ---
+        # The first "EID=" in the page turned out to belong to an unrelated "Featured
+        # Events" carousel widget near the top of the page (a concert flyer), not the
+        # actual Council Meetings day-grid - so that window never reached real event
+        # markup. Anchoring on a known real meeting title substring instead. Remove
+        # this block once scrape_wellington() is confirmed working end-to-end.
         print(f"[Wellington DEBUG] Response length: {len(res.text)} chars")
-        eid_pos = res.text.find("EID=")
-        print(f"[Wellington DEBUG] First 'EID=' at char offset: {eid_pos}")
-        if eid_pos != -1:
-            window_start = max(0, eid_pos - 1500)
-            window_end = min(len(res.text), eid_pos + 2500)
+        anchor_pos = res.text.find("Village Council")
+        if anchor_pos == -1:
+            anchor_pos = res.text.find("Council Meetings")
+        print(f"[Wellington DEBUG] Anchor found at char offset: {anchor_pos}")
+        if anchor_pos != -1:
+            window_start = max(0, anchor_pos - 2000)
+            window_end = min(len(res.text), anchor_pos + 5000)
             print(f"[Wellington DEBUG] Raw HTML window [{window_start}:{window_end}]:\n{res.text[window_start:window_end]}")
+        else:
+            print("[Wellington DEBUG] Anchor not found - dumping chars 40000-48000 as a fallback:")
+            print(res.text[40000:48000])
         # --- END TEMPORARY DEBUG ---
 
         soup = BeautifulSoup(res.text, "html.parser")
