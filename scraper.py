@@ -1499,15 +1499,26 @@ def scrape_riviera_beach():
 
 # --- 13. TOWN OF JUNO BEACH MODULE ---
 def scrape_juno_beach():
-    # Town of Juno Beach, https://www.juno-beach.fl.us/1203/Agendas-Minutes - runs
-    # MuniCode's "Meetings" portal, the same platform family as Westlake
-    # (meetings.municode.com), confirmed by the user via a real screenshot of the
-    # page AND a real confirmed Agenda PDF link:
-    #   https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-<hash>.pdf
-    # (the "jnobeachfl-pubu" blob container name is the strongest confirmation this is
-    # MuniCode, same blob-storage host pattern as Westlake's mccmeetings.blob... links).
+    # Town of Juno Beach - IMPORTANT: the town's own page,
+    # https://www.juno-beach.fl.us/1203/Agendas-Minutes, does NOT contain the meetings
+    # table in its server-rendered HTML at all. This was discovered on a real GitHub
+    # Actions run: HTTP 200, 78,832 bytes returned, but no table and no "Town Council"
+    # string anywhere in the raw response - the debug dump showed only <head>
+    # boilerplate (GTM snippet, meta tags). The user then inspected the live page and
+    # found the real content is loaded via a same-page wrapper that embeds:
+    #   <iframe id="child-iframe" src="https://legacyjuno-beach.teammunicode.com/meetings" ...>
+    # So the real source to scrape is that iframe's target directly - MuniCode's
+    # "Meetings" portal on a "teammunicode.com" subdomain, the same underlying
+    # platform/product as Westlake (meetings.municode.com), just a different hostname
+    # scheme. This is confirmed by the user's own live inspection (real DOM, not a
+    # rendered-preview hypothesis) - this project's Key Methodological Lesson #1
+    # standard (page-wrapper JS content isn't visible in the wrapper's own raw HTML).
     #
-    # Per the user's screenshot, the table columns are:
+    # The user also confirmed a real Agenda PDF link, which matches MuniCode's blob
+    # storage pattern exactly (same host family as Westlake's mccmeetings.blob... URLs):
+    #   https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-<hash>.pdf
+    #
+    # Per the user's screenshot of the rendered table, the columns are:
     #   Date | Meeting | Agenda | Agenda Packet | Minutes | Video | View
     # with the Agenda AND Agenda Packet columns each showing two icons (PDF, HTML)
     # once a document is posted, and both blank when nothing is posted yet. Per
@@ -1515,22 +1526,26 @@ def scrape_juno_beach():
     # never "Agenda Packet", and never the HTML version.
     #
     # Per Key Methodological Lesson #2: this session had ZERO outbound access to
-    # juno-beach.fl.us - a direct curl from the sandbox shell got no response at all,
-    # and a WebFetch attempt failed outright (robots.txt fetch itself timed out,
-    # confirmed WebFetch works fine generally against other sites). So unlike
-    # Westlake (which at least had a WebFetch rendered preview to hypothesize from),
-    # this parser is built purely from the user's screenshot + one confirmed real PDF
-    # link, with NO view of the actual HTML at all. Treat this as an unconfirmed
-    # first-pass draft - even more speculative than Westlake, similar footing to
-    # Jupiter. Written defensively and logging heavily so a real run's log can
-    # confirm/correct these assumptions.
+    # legacyjuno-beach.teammunicode.com either - a direct curl from the sandbox shell
+    # was rejected outright by the egress/org policy (connect_rejected), and a WebFetch
+    # attempt was blocked by that host's robots.txt. So the actual raw HTML of
+    # /meetings on the teammunicode.com host has still never been seen this session -
+    # only the wrapper page's failure (confirmed real) and the user's screenshot of the
+    # rendered table (still a hypothesis about markup, per Lesson #1). This function
+    # now targets the CORRECT real host, which is a major improvement over the first
+    # pass (which was fetching a page that could never have worked), but the table
+    # markup itself is still unconfirmed. Written defensively and logging heavily so a
+    # real run's log can confirm/correct these assumptions.
     events = []
-    base_domain = "https://www.juno-beach.fl.us"
-    target_url = f"{base_domain}/1203/Agendas-Minutes"
+    base_domain = "https://legacyjuno-beach.teammunicode.com"
+    target_url = f"{base_domain}/meetings"
+    # Kept for the "no agenda yet" fallback link and for user-facing context - this is
+    # the page a human should land on, even though it's not what gets scraped.
+    public_page_url = "https://www.juno-beach.fl.us/1203/Agendas-Minutes"
 
     current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
 
-    res = fetch_hardened(target_url)
+    res = fetch_hardened(target_url, referer=public_page_url)
     if res is None:
         print("[Juno Beach] Request failed.")
         return events
@@ -1650,7 +1665,10 @@ def scrape_juno_beach():
             href = agenda_link.get("href", "").strip()
             full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
         else:
-            full_link = target_url  # Fall back to the Agendas & Minutes page itself, not a dead link.
+            # Fall back to the town's own public Agendas & Minutes page (not the raw
+            # teammunicode.com scrape target) - that's the page a human visitor
+            # actually lands on and can browse from, never a dead/internal link.
+            full_link = public_page_url
 
         dedup_key = (clean_title, iso_date, meeting_time)
         if dedup_key in seen_keys:
