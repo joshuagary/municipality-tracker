@@ -547,15 +547,27 @@ def scrape_wellington():
     # Boynton's: ?view=list is a single-day drilldown here, not a full-month list, so
     # scrape_civicplus_calendar() doesn't fit. The reliable single-request-per-month
     # source is the plain calendar page (startDate/enddate/CID/showPastEvents, matching
-    # the URL format provided) - CivicPlus embeds each event's title, time, and a clean
-    # ISO 8601 timestamp directly in the page's HTML (as hover/click-popup content) even
-    # though it renders visually as a month grid, no JS execution needed to read it.
+    # the URL format provided), which server-renders a full month grid.
     #
-    # NOTE: on one manual verification fetch, requesting CID=29 unexpectedly returned a
-    # different calendar (CID=22, "Meetings") instead - a possible session/redirect
-    # quirk on Wellington's CivicPlus install that couldn't be fully diagnosed without
-    # raw HTML/browser access. Confirm with a real GitHub Actions log before trusting
-    # this scraper the way PBG/Delray/PBC are already trusted.
+    # Confirmed against a real GitHub Actions log dump of the actual raw HTML: each
+    # event's day cell embeds a Schema.org microdata block -
+    #   <div itemscope itemtype="http://schema.org/Event">
+    #     <span itemprop="name">...</span>
+    #     <span itemprop="startDate">2026-08-11T18:30:00</span>
+    #     ...
+    #   </div>
+    # - which is far more reliable than text-scraping the visible tooltip markup: it
+    # sidesteps freeform "Location" text entirely (one real event, the Village Council
+    # Meeting, has a multi-sentence childcare sign-up disclaimer sitting between the
+    # visible date and the visible title repeat - an earlier text-flattening regex
+    # approach mangled that event's title because of it; this schema-based approach
+    # never touches that text at all, since itemprop="name" and itemprop="startDate"
+    # are read directly, independent of surrounding freeform content).
+    #
+    # NOTE: on one manual (non-CI) verification fetch, requesting CID=29 unexpectedly
+    # returned a different calendar (CID=22, "Meetings") - a possible session/redirect
+    # quirk that wasn't reproduced in the real GitHub Actions run used to build this
+    # version, but worth watching for if event counts ever look off.
     events = []
     base_domain = "https://www.wellingtonfl.gov"
     calendar_cid = "29"  # "Council Meetings" calendar, per the user-provided URL
@@ -567,17 +579,6 @@ def scrape_wellington():
         {"year": curr_year, "month": curr_month},
         {"year": next_year, "month": next_month},
     ]
-
-    # Each event's title appears cleanly right after the day number, in a
-    # "[<Title>Category: <Calendar Name>](#)" anchor - BEFORE any freeform "Location"
-    # text (which can be empty, or a long multi-sentence disclaimer, as with the
-    # Village Council Meeting's childcare sign-up notice). Extracting the title from
-    # this early anchor, then searching only within that event's own slice of text for
-    # the "More Details" link and the trailing ISO 8601 timestamp, avoids an earlier bug
-    # where long Location text got swept into the title capture for events that had it.
-    title_delim_pattern = re.compile(r'\[([^\]]*?)\s*Category:\s*[^\]]+\]\(#\)')
-    link_pattern = re.compile(r'\[More Details\]\((https://www\.wellingtonfl\.gov/Calendar\.aspx\?EID=\d+[^\)]*)\)')
-    iso_pattern = re.compile(r'(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})')
 
     seen_keys = set()
 
@@ -599,62 +600,47 @@ def scrape_wellington():
         if res.status_code != 200:
             continue
 
-        # --- TEMPORARY DEBUG (attempt 3) ---
-        # The first "EID=" in the page turned out to belong to an unrelated "Featured
-        # Events" carousel widget near the top of the page (a concert flyer), not the
-        # actual Council Meetings day-grid - so that window never reached real event
-        # markup. Anchoring on a known real meeting title substring instead. Remove
-        # this block once scrape_wellington() is confirmed working end-to-end.
-        print(f"[Wellington DEBUG] Response length: {len(res.text)} chars")
-        anchor_pos = res.text.find("Village Council")
-        if anchor_pos == -1:
-            anchor_pos = res.text.find("Council Meetings")
-        print(f"[Wellington DEBUG] Anchor found at char offset: {anchor_pos}")
-        if anchor_pos != -1:
-            window_start = max(0, anchor_pos - 2000)
-            window_end = min(len(res.text), anchor_pos + 5000)
-            print(f"[Wellington DEBUG] Raw HTML window [{window_start}:{window_end}]:\n{res.text[window_start:window_end]}")
-        else:
-            print("[Wellington DEBUG] Anchor not found - dumping chars 40000-48000 as a fallback:")
-            print(res.text[40000:48000])
-        # --- END TEMPORARY DEBUG ---
-
         soup = BeautifulSoup(res.text, "html.parser")
-        page_text = soup.get_text(separator=' ')
+        event_divs = soup.find_all("div", itemtype="http://schema.org/Event")
+        print(f"[Wellington] Found {len(event_divs)} schema.org event blocks for {y_val}-{m_val:02d}.")
 
-        title_starts = list(title_delim_pattern.finditer(page_text))
-        print(f"[Wellington] Found {len(title_starts)} raw event blocks for {y_val}-{m_val:02d}.")
-
-        for i, title_match in enumerate(title_starts):
-            raw_title = title_match.group(1)
-            block_start = title_match.end()
-            block_end = title_starts[i + 1].start() if i + 1 < len(title_starts) else len(page_text)
-            block_text = page_text[block_start:block_end]
-
-            link_match = link_pattern.search(block_text)
-            iso_match = iso_pattern.search(block_text)
-            if not link_match or not iso_match:
+        for ev_div in event_divs:
+            name_span = ev_div.find("span", itemprop="name")
+            date_span = ev_div.find("span", itemprop="startDate")
+            if not name_span or not date_span:
                 continue
 
-            full_link = link_match.group(1)
-            iso_date, iso_time_raw = iso_match.groups()
+            raw_title = name_span.get_text(strip=True)
+            iso_datetime_str = date_span.get_text(strip=True)
             clean_title = clean_event_title(raw_title)
 
             if not is_qualifying_event(clean_title):
                 continue
 
             try:
-                dt = datetime.strptime(iso_date, "%Y-%m-%d")
+                dt = datetime.strptime(iso_datetime_str, "%Y-%m-%dT%H:%M:%S")
             except ValueError:
                 continue
             if not (current_month_start <= dt < lookahead_end):
                 continue
 
-            try:
-                time_obj = datetime.strptime(iso_time_raw, "%H:%M:%S")
-                meeting_time = time_obj.strftime("%-I:%M %p")
-            except ValueError:
-                meeting_time = "6:00 PM"
+            iso_date = dt.strftime("%Y-%m-%d")
+            meeting_time = dt.strftime("%-I:%M %p")
+
+            # Reconstruct the canonical event page link from the enclosing "monthItem"
+            # div's id ("parentdiv{EID}_{sequence}") - more reliable than hunting for
+            # the right "More Details" link when a day happens to have more than one
+            # event, since each event's schema block sits inside its own monthItem.
+            full_link = f"{base_domain}/Calendar.aspx"
+            parent_item = ev_div.find_parent("div", class_="monthItem")
+            if parent_item and parent_item.get("id"):
+                eid_match = re.match(r'parentdiv(\d+)_', parent_item["id"])
+                if eid_match:
+                    eid = eid_match.group(1)
+                    full_link = (
+                        f"{base_domain}/Calendar.aspx?EID={eid}"
+                        f"&month={dt.month}&year={dt.year}&day={dt.day}&calType=0"
+                    )
 
             dedup_key = (clean_title, iso_date)
             if dedup_key in seen_keys:
