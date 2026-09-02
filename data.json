@@ -1,6 +1,6 @@
 [
   {
-    "id": "wpb-2026-09-14-2377579434436860358",
+    "id": "wpb-2026-09-14--4505720505309158924",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "City Commission Meeting",
@@ -10,7 +10,7 @@
     "summary": "Official City Commission Meeting meeting."
   },
   {
-    "id": "wpb-2026-09-28-2377579434436860358",
+    "id": "wpb-2026-09-28--4505720505309158924",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "City Commission Meeting",
@@ -20,7 +20,7 @@
     "summary": "Official City Commission Meeting meeting."
   },
   {
-    "id": "wpb-2026-10-13-2377579434436860358",
+    "id": "wpb-2026-10-13--4505720505309158924",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "City Commission Meeting",
@@ -30,7 +30,7 @@
     "summary": "Official City Commission Meeting meeting."
   },
   {
-    "id": "wpb-2026-10-26-2377579434436860358",
+    "id": "wpb-2026-10-26--4505720505309158924",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "City Commission Meeting",
@@ -40,7 +40,7 @@
     "summary": "Official City Commission Meeting meeting."
   },
   {
-    "id": "wpb-2026-10-05-7029729351308565266",
+    "id": "wpb-2026-10-05--8584809181080688116",
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Mayor/Commission Work Session",
@@ -50,7 +50,7 @@
     "summary": "Official Mayor/Commission Work Session meeting."
   },
   {
-    "id": "pbc-2026-09-01-4539207820359432274",
+    "id": "pbc-2026-09-01--2114000892016490307",
     "muni_short": "PBC",
     "muni_full": "Palm Beach County",
     "title": "Board of County Commissioners Meeting",
@@ -60,267 +60,277 @@
     "summary": "Official Board of County Commissioners Meeting meeting."
   },
   {
-    "id": "boca-2026-09-03-574023521864171226",
+    "id": "boca-2026-09-03--3980009405045050952",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Planning & Zoning Board",
     "date": "2026-09-03",
     "time": "6:00 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=13977&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=13977&month=9&year=2026&day=1&calType=0",
     "summary": "Official Planning & Zoning Board meeting."
   },
   {
-    "id": "boca-2026-09-08-3698127531098395132",
+    "id": "boca-2026-09-08-7991271640866118020",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting",
     "date": "2026-09-08",
     "time": "10:00 AM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=12836&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=12836&month=9&year=2026&day=1&calType=0",
     "summary": "Official Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting meeting."
   },
   {
-    "id": "boca-2026-09-17-580359493315688622",
+    "id": "boca-2026-09-17-134937971283389925",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Planning & Zoning Board",
     "date": "2026-09-17",
     "time": "6:00 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=13964&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=13964&month=9&year=2026&day=1&calType=0",
     "summary": "Official Planning & Zoning Board meeting."
   },
   {
-    "id": "boca-2026-09-22-8349548105993500086",
+    "id": "boca-2026-09-22--8565084881464746569",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting",
     "date": "2026-09-22",
     "time": "10:00 AM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=12838&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=12838&month=9&year=2026&day=1&calType=0",
     "summary": "Official Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting meeting."
   },
   {
-    "id": "boca-2026-09-23-2699538218636517535",
+    "id": "boca-2026-09-23-19050214815217157",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Boca Raton Airport Authority",
     "date": "2026-09-23",
     "time": "5:00 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=13067&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=13067&month=9&year=2026&day=1&calType=0",
     "summary": "Official Boca Raton Airport Authority meeting."
   },
   {
-    "id": "boca-2026-09-29-4870778207478388154",
+    "id": "boca-2026-09-29--8174392722132216891",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Boca Raton Housing Authority Workshop",
     "date": "2026-09-29",
     "time": "5:30 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=14941&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=14941&month=9&year=2026&day=1&calType=0",
     "summary": "Official Boca Raton Housing Authority Workshop meeting."
   },
   {
-    "id": "boca-2026-09-30-2262948510584153420",
+    "id": "boca-2026-09-30-9218511603226520284",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Boca Raton Housing Authority",
     "date": "2026-09-30",
     "time": "5:30 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=14942&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=14942&month=9&year=2026&day=1&calType=0",
     "summary": "Official Boca Raton Housing Authority meeting."
   },
   {
-    "id": "boca-2026-10-01--5861781340515783607",
+    "id": "boca-2026-10-01--2472633881918175859",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Planning & Zoning Board",
     "date": "2026-10-01",
     "time": "6:00 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=13978&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=13978&month=10&year=2026&day=1&calType=0",
     "summary": "Official Planning & Zoning Board meeting."
   },
   {
-    "id": "boca-2026-10-13-2268128450903116135",
+    "id": "boca-2026-10-13-5346656416279272735",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting",
     "date": "2026-10-13",
     "time": "10:00 AM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=12842&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=12842&month=10&year=2026&day=1&calType=0",
     "summary": "Official Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting meeting."
   },
   {
-    "id": "boca-2026-10-15-4443547646614430769",
+    "id": "boca-2026-10-15-8857628160949322519",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Planning & Zoning Board",
     "date": "2026-10-15",
     "time": "6:00 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=13965&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=13965&month=10&year=2026&day=1&calType=0",
     "summary": "Official Planning & Zoning Board meeting."
   },
   {
-    "id": "boca-2026-10-21-2457943793986729949",
+    "id": "boca-2026-10-21-4764661446985851413",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Boca Raton Airport Authority",
     "date": "2026-10-21",
     "time": "5:00 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=13069&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=13069&month=10&year=2026&day=1&calType=0",
     "summary": "Official Boca Raton Airport Authority meeting."
   },
   {
-    "id": "boca-2026-10-26--2670740980541921815",
+    "id": "boca-2026-10-26--2183051805492738346",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Community Redevelopment Agency/City Council Workshop",
     "date": "2026-10-26",
     "time": "1:30 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=12843&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=12843&month=10&year=2026&day=1&calType=0",
     "summary": "Official Community Redevelopment Agency/City Council Workshop meeting."
   },
   {
-    "id": "boca-2026-10-27-2943119153034126851",
+    "id": "boca-2026-10-27-662698765503052513",
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "City Council Regular Meeting",
     "date": "2026-10-27",
     "time": "6:00 PM",
-    "link": "https://www.myboca.us/Calendar.aspx?EID=12887&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.myboca.us/Calendar.aspx?EID=12887&month=10&year=2026&day=1&calType=0",
     "summary": "Official City Council Regular Meeting meeting."
   },
   {
-    "id": "boynton-2026-09-01--2630155050675505291",
+    "id": "boynton-2026-09-01--3894385065027269672",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Meeting - CANCELLED September 1, 2026 100 E. Ocean Avenue Event Details",
     "date": "2026-09-01",
-    "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=688&month=9&year=2026&day=31&calType=0",
+    "time": "5:30 PM",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=688&month=9&year=2026&day=1&calType=0",
     "summary": "Official City Commission Meeting - CANCELLED September 1, 2026 100 E. Ocean Avenue Event Details meeting."
   },
   {
-    "id": "boynton-2026-09-01--2630155050675505291",
+    "id": "boynton-2026-09-08-1823043166947481646",
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting September 8, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2460&month=9&year=2026&day=1&calType=0",
+    "summary": "Official Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting September 8, 2026 100 E. Ocean Avenue Event Details meeting."
+  },
+  {
+    "id": "boynton-2026-09-01--3894385065027269672",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Meeting - CANCELLED",
     "date": "2026-09-01",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=688&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=688&month=9&year=2026&day=1&calType=0",
     "summary": "Official City Commission Meeting - CANCELLED meeting."
   },
   {
-    "id": "boynton-2026-09-08-9143690618636421228",
+    "id": "boynton-2026-09-08-1823043166947481646",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
     "date": "2026-09-08",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2460&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2460&month=9&year=2026&day=1&calType=0",
     "summary": "Official Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting meeting."
   },
   {
-    "id": "boynton-2026-09-10--800159301387489945",
+    "id": "boynton-2026-09-10-7546038501768135163",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Agenda Review Workshop",
     "date": "2026-09-10",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2122&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2122&month=9&year=2026&day=1&calType=0",
     "summary": "Official City Commission Agenda Review Workshop meeting."
   },
   {
-    "id": "boynton-2026-09-15--6775932614660067544",
+    "id": "boynton-2026-09-15--8966953686312344278",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Meeting",
     "date": "2026-09-15",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=728&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=728&month=9&year=2026&day=1&calType=0",
     "summary": "Official City Commission Meeting meeting."
   },
   {
-    "id": "boynton-2026-09-16-8947070078531220424",
+    "id": "boynton-2026-09-16-2940989797823097923",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "CRA Advisory Board Meeting",
     "date": "2026-09-16",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2231&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2231&month=9&year=2026&day=1&calType=0",
     "summary": "Official CRA Advisory Board Meeting meeting."
   },
   {
-    "id": "boynton-2026-09-24-900991419746218661",
+    "id": "boynton-2026-09-24-5810077863730641047",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Agenda Review Workshop",
     "date": "2026-09-24",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2123&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2123&month=9&year=2026&day=1&calType=0",
     "summary": "Official City Commission Agenda Review Workshop meeting."
   },
   {
-    "id": "boynton-2026-10-06--164389241334128555",
+    "id": "boynton-2026-10-06-88830396638278010",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Meeting",
     "date": "2026-10-06",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=689&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=689&month=10&year=2026&day=1&calType=0",
     "summary": "Official City Commission Meeting meeting."
   },
   {
-    "id": "boynton-2026-10-08-3308826953880564459",
+    "id": "boynton-2026-10-08--8559645922726466217",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Agenda Review Workshop",
     "date": "2026-10-08",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2124&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2124&month=10&year=2026&day=1&calType=0",
     "summary": "Official City Commission Agenda Review Workshop meeting."
   },
   {
-    "id": "boynton-2026-10-13--8531608918806662184",
+    "id": "boynton-2026-10-13-4264146114264853187",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
     "date": "2026-10-13",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2461&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2461&month=10&year=2026&day=1&calType=0",
     "summary": "Official Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting meeting."
   },
   {
-    "id": "boynton-2026-10-20--5776796438264113786",
+    "id": "boynton-2026-10-20-4559426414511326268",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Meeting",
     "date": "2026-10-20",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=729&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=729&month=10&year=2026&day=1&calType=0",
     "summary": "Official City Commission Meeting meeting."
   },
   {
-    "id": "boynton-2026-10-21-7948778783803684789",
+    "id": "boynton-2026-10-21-3289695556348548288",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "CRA Advisory Board Meeting",
     "date": "2026-10-21",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2232&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2232&month=10&year=2026&day=1&calType=0",
     "summary": "Official CRA Advisory Board Meeting meeting."
   },
   {
-    "id": "boynton-2026-10-22--58944973188745829",
+    "id": "boynton-2026-10-22-3640228955356944258",
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Agenda Review Workshop",
     "date": "2026-10-22",
     "time": "6:00 PM",
-    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2125&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2125&month=10&year=2026&day=1&calType=0",
     "summary": "Official City Commission Agenda Review Workshop meeting."
   },
   {
-    "id": "delray-2026-09-03-8558189981208290583",
+    "id": "delray-2026-09-03--4493697316250290425",
     "muni_short": "DELRAY",
     "muni_full": "City of Delray Beach",
     "title": "Board of Adjustment",
@@ -330,7 +340,27 @@
     "summary": "Official Board of Adjustment meeting."
   },
   {
-    "id": "delray-2026-09-01--8481368506107569943",
+    "id": "delray-2026-09-08-6190604158803257088",
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "City Commission",
+    "date": "2026-09-08",
+    "time": "5:01 PM",
+    "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4627&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+    "summary": "Official City Commission meeting."
+  },
+  {
+    "id": "delray-2026-09-08-7254244814246083137",
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "City Commission",
+    "date": "2026-09-08",
+    "time": "4:00 PM",
+    "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4675&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+    "summary": "Official City Commission meeting."
+  },
+  {
+    "id": "delray-2026-09-01--4457685853333817851",
     "muni_short": "DELRAY",
     "muni_full": "City of Delray Beach",
     "title": "City Commission",
@@ -340,37 +370,77 @@
     "summary": "Official City Commission meeting."
   },
   {
-    "id": "pbg-2026-09-10--4761860650259644273",
+    "id": "pbg-2026-09-10-5808941547723702097",
     "muni_short": "PBG",
     "muni_full": "City of Palm Beach Gardens",
     "title": "City Council Meeting",
     "date": "2026-09-10",
     "time": "6:00 PM",
-    "link": "https://www.pbgfl.gov/Calendar.aspx?EID=3839&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.pbgfl.gov/Calendar.aspx?EID=3839&month=9&year=2026&day=1&calType=0",
     "summary": "Official City Council Meeting meeting."
   },
   {
-    "id": "pbg-2026-09-24--250631791453713825",
+    "id": "pbg-2026-09-24-1486179399971026795",
     "muni_short": "PBG",
     "muni_full": "City of Palm Beach Gardens",
     "title": "City Council Meeting",
     "date": "2026-09-24",
     "time": "6:00 PM",
-    "link": "https://www.pbgfl.gov/Calendar.aspx?EID=4177&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.pbgfl.gov/Calendar.aspx?EID=4177&month=9&year=2026&day=1&calType=0",
     "summary": "Official City Council Meeting meeting."
   },
   {
-    "id": "pbg-2026-10-01-3199127418914215602",
+    "id": "pbg-2026-10-01--5236501191125372687",
     "muni_short": "PBG",
     "muni_full": "City of Palm Beach Gardens",
     "title": "City Council Meeting",
     "date": "2026-10-01",
     "time": "6:00 PM",
-    "link": "https://www.pbgfl.gov/Calendar.aspx?EID=3840&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.pbgfl.gov/Calendar.aspx?EID=3840&month=10&year=2026&day=1&calType=0",
     "summary": "Official City Council Meeting meeting."
   },
   {
-    "id": "westlake-2026-09-14--5640030017735724926",
+    "id": "wellington-2026-09-03--7464422671981045939",
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-09-03",
+    "time": "4:30 PM",
+    "link": "https://www.wellingtonfl.gov/Calendar.aspx?EID=3131&month=9&year=2026&day=3&calType=0",
+    "summary": "Official Wellington Council Agenda Review Meeting meeting."
+  },
+  {
+    "id": "wellington-2026-09-08-2393609257680687615",
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-09-08",
+    "time": "6:30 PM",
+    "link": "https://www.wellingtonfl.gov/Calendar.aspx?EID=3133&month=9&year=2026&day=8&calType=0",
+    "summary": "Official Wellington Village Council Meeting meeting."
+  },
+  {
+    "id": "wellington-2026-09-17--1299803918137270145",
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-09-17",
+    "time": "4:30 PM",
+    "link": "https://www.wellingtonfl.gov/Calendar.aspx?EID=3139&month=9&year=2026&day=17&calType=0",
+    "summary": "Official Wellington Council Agenda Review Meeting meeting."
+  },
+  {
+    "id": "wellington-2026-09-22-3480901695371451742",
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-09-22",
+    "time": "6:30 PM",
+    "link": "https://www.wellingtonfl.gov/Calendar.aspx?EID=3140&month=9&year=2026&day=22&calType=0",
+    "summary": "Official Wellington Village Council Meeting meeting."
+  },
+  {
+    "id": "westlake-2026-09-14--103003634447210035",
     "muni_short": "WESTLAKE",
     "muni_full": "City of Westlake",
     "title": "City Council Final Budget Hearing",
@@ -381,7 +451,7 @@
     "summary": "Official City Council Final Budget Hearing meeting. No agenda posted yet."
   },
   {
-    "id": "westlake-2026-09-14--4859840032681335376",
+    "id": "westlake-2026-09-14-649375082413375477",
     "muni_short": "WESTLAKE",
     "muni_full": "City of Westlake",
     "title": "City Council Special Meeting",
@@ -392,7 +462,7 @@
     "summary": "Official City Council Special Meeting meeting. No agenda posted yet."
   },
   {
-    "id": "westlake-2026-09-08-1786448032653383109",
+    "id": "westlake-2026-09-08-9152048873004179243",
     "muni_short": "WESTLAKE",
     "muni_full": "City of Westlake",
     "title": "City Council First Budget Hearing",
@@ -403,7 +473,7 @@
     "summary": "Official City Council First Budget Hearing meeting. No agenda posted yet."
   },
   {
-    "id": "westlake-2026-09-08-1935729482070357795",
+    "id": "westlake-2026-09-08--4601003954656264802",
     "muni_short": "WESTLAKE",
     "muni_full": "City of Westlake",
     "title": "City Council Workshop - Strategic Planning",
@@ -414,7 +484,7 @@
     "summary": "Official City Council Workshop - Strategic Planning meeting. No agenda posted yet."
   },
   {
-    "id": "westlake-2026-09-01--2417728874797332200",
+    "id": "westlake-2026-09-01--8483385794547694513",
     "muni_short": "WESTLAKE",
     "muni_full": "City of Westlake",
     "title": "City Council Regular Meeting",
@@ -425,7 +495,7 @@
     "summary": "Official City Council Regular Meeting meeting."
   },
   {
-    "id": "ddawpb-2026-09-15--4221255102947895036",
+    "id": "ddawpb-2026-09-15--3976020437548260241",
     "muni_short": "DDA-WPB",
     "muni_full": "Downtown WPB DDA",
     "title": "Downtown Development Authority (DDA) Board Meeting",
@@ -546,57 +616,57 @@
     "summary": "Official Local Planning Agency (LPA) meeting. No agenda posted yet."
   },
   {
-    "id": "jup-2026-09-08-6011034281014576399",
+    "id": "jup-2026-09-08--2698426288020779489",
     "muni_short": "JUP",
     "muni_full": "Town of Jupiter",
     "title": "Community Redevelopment Agency (CRA) Regular Meeting",
     "date": "2026-09-08",
     "time": "6:00 PM",
-    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=25005&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=25005&month=9&year=2026&day=8&calType=0",
     "summary": "Official Community Redevelopment Agency (CRA) Regular Meeting meeting."
   },
   {
-    "id": "jup-2026-09-08--9114605229806717996",
+    "id": "jup-2026-09-08-8731231437560559794",
     "muni_short": "JUP",
     "muni_full": "Town of Jupiter",
     "title": "Town Council Special Meeting",
     "date": "2026-09-08",
     "time": "7:00 PM",
-    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=22391&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=22391&month=9&year=2026&day=8&calType=0",
     "summary": "Official Town Council Special Meeting meeting."
   },
   {
-    "id": "jup-2026-09-22-4034300906457572889",
+    "id": "jup-2026-09-22--1795868853733208677",
     "muni_short": "JUP",
     "muni_full": "Town of Jupiter",
     "title": "Town Council Special Meeting",
     "date": "2026-09-22",
     "time": "7:00 PM",
-    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=22403&month=9&year=2026&day=31&calType=0",
+    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=22403&month=9&year=2026&day=22&calType=0",
     "summary": "Official Town Council Special Meeting meeting."
   },
   {
-    "id": "jup-2026-10-06-4537256096694208873",
+    "id": "jup-2026-10-06--6221401563612748564",
     "muni_short": "JUP",
     "muni_full": "Town of Jupiter",
     "title": "Town Council Regular Meeting",
     "date": "2026-10-06",
     "time": "7:00 PM",
-    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=22392&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=22392&month=10&year=2026&day=1&calType=0",
     "summary": "Official Town Council Regular Meeting meeting."
   },
   {
-    "id": "jup-2026-10-20-709669964018818417",
+    "id": "jup-2026-10-20-772299074196690212",
     "muni_short": "JUP",
     "muni_full": "Town of Jupiter",
     "title": "Town Council Regular Meeting",
     "date": "2026-10-20",
     "time": "7:00 PM",
-    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=22404&month=10&year=2026&day=31&calType=0",
+    "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=22404&month=10&year=2026&day=1&calType=0",
     "summary": "Official Town Council Regular Meeting meeting."
   },
   {
-    "id": "riv-2026-09-02-4347803800032515531",
+    "id": "riv-2026-09-02-824634339755845950",
     "muni_short": "RIVBEACH",
     "muni_full": "City of Riviera Beach",
     "title": "City Council",
@@ -607,7 +677,7 @@
     "summary": "Official City Council meeting."
   },
   {
-    "id": "junobeach-2026-09-30--9083623660265824058",
+    "id": "junobeach-2026-09-30--6068832462803217207",
     "muni_short": "JUNOBEACH",
     "muni_full": "Town of Juno Beach",
     "title": "Town Council Workshop - Strategic Plan",
@@ -618,7 +688,7 @@
     "summary": "Official Town Council Workshop - Strategic Plan meeting. No agenda posted yet."
   },
   {
-    "id": "junobeach-2026-09-23--6330552719678185443",
+    "id": "junobeach-2026-09-23--1113977978382158239",
     "muni_short": "JUNOBEACH",
     "muni_full": "Town of Juno Beach",
     "title": "Town Council Regular Meeting",
@@ -629,7 +699,7 @@
     "summary": "Official Town Council Regular Meeting meeting. No agenda posted yet."
   },
   {
-    "id": "junobeach-2026-09-21-8371460368958503466",
+    "id": "junobeach-2026-09-21--3174870158241716736",
     "muni_short": "JUNOBEACH",
     "muni_full": "Town of Juno Beach",
     "title": "Planning and Zoning Board",
@@ -640,18 +710,29 @@
     "summary": "Official Planning and Zoning Board meeting. No agenda posted yet."
   },
   {
-    "id": "junobeach-2026-09-08--6330552719678185443",
+    "id": "junobeach-2026-09-08--1113977978382158239",
     "muni_short": "JUNOBEACH",
     "muni_full": "Town of Juno Beach",
     "title": "Town Council Regular Meeting",
     "date": "2026-09-08",
     "time": "5:30 PM",
-    "link": "https://www.juno-beach.fl.us/1203/Agendas-Minutes",
-    "has_agenda": false,
-    "summary": "Official Town Council Regular Meeting meeting. No agenda posted yet."
+    "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-09b0f941f990484ebb1dd6f9e38acf19.pdf",
+    "has_agenda": true,
+    "summary": "Official Town Council Regular Meeting meeting."
   },
   {
-    "id": "manalapan-2026-10-13-5706839255566009669",
+    "id": "juic-2026-09-08--1320068932396191174",
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-66",
+    "has_agenda": true,
+    "summary": "Official Town Commission Meeting meeting."
+  },
+  {
+    "id": "manalapan-2026-10-13--1320068932396191174",
     "muni_short": "MANALAPAN",
     "muni_full": "Town of Manalapan",
     "title": "Town Commission Meeting",
@@ -662,7 +743,7 @@
     "summary": "Official Town Commission Meeting meeting. No agenda posted yet."
   },
   {
-    "id": "gulfstream-2026-09-11--2309706861633860406",
+    "id": "gulfstream-2026-09-11-4902986974257062658",
     "muni_short": "GULFSTREAM",
     "muni_full": "Town of Gulf Stream",
     "title": "Regular Town Commission Meeting",
@@ -673,7 +754,7 @@
     "summary": "Official Regular Town Commission Meeting meeting. Agendas and minutes are posted to the Town's Laserfiche records portal rather than linked per-event on the Town website."
   },
   {
-    "id": "gulfstream-2026-09-11--1231341232027984951",
+    "id": "gulfstream-2026-09-11--4111580281112865994",
     "muni_short": "GULFSTREAM",
     "muni_full": "Town of Gulf Stream",
     "title": "Town Commission Tentative Budget Hearing",
@@ -684,7 +765,7 @@
     "summary": "Official Town Commission Tentative Budget Hearing meeting. Agendas and minutes are posted to the Town's Laserfiche records portal rather than linked per-event on the Town website."
   },
   {
-    "id": "gulfstream-2026-09-23-5988428893603440683",
+    "id": "gulfstream-2026-09-23--6212683660411223570",
     "muni_short": "GULFSTREAM",
     "muni_full": "Town of Gulf Stream",
     "title": "TOWN COMMISSION FINAL BUDGET HEARING",
@@ -695,7 +776,7 @@
     "summary": "Official TOWN COMMISSION FINAL BUDGET HEARING meeting. Agendas and minutes are posted to the Town's Laserfiche records portal rather than linked per-event on the Town website."
   },
   {
-    "id": "gulfstream-2026-09-24-3784041504152386027",
+    "id": "gulfstream-2026-09-24-6502922572718675612",
     "muni_short": "GULFSTREAM",
     "muni_full": "Town of Gulf Stream",
     "title": "Architectural Review and Planning Board Meeting",
