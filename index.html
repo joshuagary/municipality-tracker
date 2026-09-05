@@ -716,6 +716,235 @@
             font-size: 0.75rem;
             text-transform: uppercase;
         }
+
+        /* --- INSIGHTS TAB --- */
+        #insights-wrapper {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 900px;
+            margin: 24px auto;
+            padding: 0 20px 40px;
+        }
+
+        .insights-header p.admin-description {
+            margin-top: 6px;
+        }
+
+        .insights-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .insights-meta-row span {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 4px 10px;
+        }
+
+        .insight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .insight-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .insight-rank {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .insight-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .insight-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .insight-star {
+            color: #d97706;
+            font-size: 1rem;
+            cursor: default;
+        }
+
+        .insight-confidence {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 999px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .confidence-high { background: #dcfce7; color: #166534; }
+        .confidence-medium { background: #fef9c3; color: #854d0e; }
+        .confidence-low { background: #f1f5f9; color: #475569; }
+
+        .insight-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .insight-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #eff6ff;
+            color: var(--primary);
+        }
+
+        .insight-tag.muni-tag {
+            background: #f1f5f9;
+            color: var(--text-muted);
+        }
+
+        .insight-summary {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .insight-details-toggle {
+            font-size: 0.8rem;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            text-align: left;
+            width: fit-content;
+        }
+        .insight-details-toggle:hover { text-decoration: underline; }
+
+        .insight-meetings-list {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 4px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+        .insight-meetings-list.expanded { display: flex; }
+
+        .insight-meeting-row {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: baseline;
+        }
+        .insight-meeting-row a {
+            color: var(--primary-hover);
+            text-decoration: none;
+        }
+        .insight-meeting-row a:hover { text-decoration: underline; }
+
+        .insight-web-sources {
+            margin-top: 4px;
+            font-size: 0.8rem;
+        }
+        .insight-web-sources .web-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #ecfdf5;
+            color: #047857;
+            margin-bottom: 4px;
+        }
+        .insight-web-sources ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .insight-web-sources a {
+            color: var(--primary-hover);
+            font-size: 0.8rem;
+        }
+
+        .insights-empty, .insights-loading, .insights-error {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .insights-history-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+        }
+
+        .insights-history-day {
+            border-top: 1px solid var(--border);
+            padding: 10px 0;
+        }
+        .insights-history-day:first-of-type { border-top: none; }
+
+        .insights-history-day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .insights-history-day-body {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 8px;
+            padding-left: 4px;
+        }
+        .insights-history-day-body.expanded { display: flex; }
+
+        .insights-history-item {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 6px;
+            align-items: baseline;
+        }
     </style>
 </head>
 <body>
@@ -730,6 +959,7 @@
         </div>
         <nav class="top-nav">
             <button class="nav-btn active" id="btnAdminToggleOff">Meetings</button>
+            <button class="nav-btn" id="btnInsightsToggle">Insights</button>
             <button class="nav-btn" id="btnAdminToggleOn">Admin</button>
             <div class="profile-switcher">
                 <button class="profile-btn" id="profileBtn">
@@ -880,11 +1110,36 @@
         </section>
     </main>
 
+    <!-- INSIGHTS DISPLAY -->
+    <main id="insights-wrapper">
+        <section class="admin-section insights-header">
+            <h2>Insights</h2>
+            <p class="admin-description">
+                Recurring governance topics surfaced by reading back through each municipality's
+                meeting history (agendas, titles, and posted minutes) for the subject areas this
+                tracker cares about &mdash; zoning &amp; land use, community redevelopment (CRA),
+                downtown development (DDA/DAC), data centers, and related matters &mdash; then
+                cross-checked against independent web coverage to gauge how notable each topic
+                really is. Ranked most-confident first. A &#9733; marks a topic that keeps coming
+                back across multiple days of analysis.
+            </p>
+            <div class="insights-meta-row" id="insightsMetaRow"></div>
+        </section>
+
+        <div id="insightsList"></div>
+
+        <section class="insights-history-section">
+            <h2 style="margin-bottom: 10px;">Past 7 Days</h2>
+            <div id="insightsHistoryList"></div>
+        </section>
+    </main>
+
     <script>
         let allEvents = [];
         let allChanges = [];
         let calendar = null;
         let selectedMuni = "ALL";
+        let insightsLoaded = false;
 
         // --- PROFILE (cosmetic identity, no real auth - see NOTIFICATIONS below) ---
         let currentProfile = localStorage.getItem("currentProfile") || "alissa";
@@ -903,6 +1158,7 @@
             document.getElementById("btnListView").addEventListener("click", () => switchView("list"));
             document.getElementById("btnAdminToggleOn").addEventListener("click", () => switchView("admin"));
             document.getElementById("btnAdminToggleOff").addEventListener("click", () => switchView("calendar"));
+            document.getElementById("btnInsightsToggle").addEventListener("click", () => switchView("insights"));
         });
 
         // --- PROFILE SWITCHER ---
@@ -1225,21 +1481,25 @@
             const calWrapper = document.getElementById("calendar-wrapper");
             const listWrapper = document.getElementById("list-wrapper");
             const adminWrapper = document.getElementById("admin-wrapper");
+            const insightsWrapper = document.getElementById("insights-wrapper");
             const controlsCard = document.getElementById("meetingsControls");
             const btnCal = document.getElementById("btnCalendarView");
             const btnList = document.getElementById("btnListView");
             const btnAdminOn = document.getElementById("btnAdminToggleOn");
             const btnAdminOff = document.getElementById("btnAdminToggleOff");
+            const btnInsights = document.getElementById("btnInsightsToggle");
 
             // Hide all views and controls
             calWrapper.style.display = "none";
             listWrapper.style.display = "none";
             adminWrapper.style.display = "none";
+            insightsWrapper.style.display = "none";
             controlsCard.classList.remove("hidden");
             btnCal.classList.remove("active");
             btnList.classList.remove("active");
             btnAdminOn.classList.remove("active");
             btnAdminOff.classList.remove("active");
+            btnInsights.classList.remove("active");
 
             // Show selected view and update navigation
             if (viewType === "calendar") {
@@ -1256,6 +1516,13 @@
                 adminWrapper.style.display = "flex";
                 btnAdminOn.classList.add("active");
                 controlsCard.classList.add("hidden");
+            } else if (viewType === "insights") {
+                insightsWrapper.style.display = "flex";
+                btnInsights.classList.add("active");
+                controlsCard.classList.add("hidden");
+                if (!insightsLoaded) {
+                    fetchInsights();
+                }
             }
         }
 
@@ -1331,6 +1598,157 @@
             if (ampm === "AM" && hours === 12) hours = 0;
 
             return `${hours.toString().padStart(2, '0')}:${minutes}:00`;
+        }
+
+        // --- INSIGHTS TAB ---
+        async function fetchInsights() {
+            const listEl = document.getElementById("insightsList");
+            const metaEl = document.getElementById("insightsMetaRow");
+            listEl.innerHTML = `<div class="insights-loading">Loading insights&hellip;</div>`;
+
+            try {
+                const res = await fetch("insights.json", { cache: "no-store" });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                insightsLoaded = true;
+                renderInsightsMeta(data);
+                renderInsightsList(data.insights || []);
+            } catch (err) {
+                listEl.innerHTML = `<div class="insights-error">Insights haven't been generated yet for this repo (insights.json not found or unreadable). This tab populates after the daily workflow runs the Insights Engine at least once.</div>`;
+                metaEl.innerHTML = "";
+            }
+
+            try {
+                const histRes = await fetch("insights_history.json", { cache: "no-store" });
+                if (histRes.ok) {
+                    const histData = await histRes.json();
+                    renderInsightsHistory(histData.runs || []);
+                } else {
+                    document.getElementById("insightsHistoryList").innerHTML =
+                        `<div class="insights-empty">No history yet.</div>`;
+                }
+            } catch (err) {
+                document.getElementById("insightsHistoryList").innerHTML =
+                    `<div class="insights-empty">No history yet.</div>`;
+            }
+        }
+
+        function renderInsightsMeta(data) {
+            const metaEl = document.getElementById("insightsMetaRow");
+            const generated = data.generated_at ? new Date(data.generated_at).toLocaleString() : "Unknown";
+            const scanned = data.historical_meetings_scanned ?? "?";
+            const lookback = data.lookback_months ?? "?";
+            metaEl.innerHTML = `
+                <span>Last analyzed: ${generated}</span>
+                <span>${scanned} historical meeting(s) scanned</span>
+                <span>${lookback}-month lookback window</span>
+            `;
+        }
+
+        function confidenceClass(score) {
+            if (score >= 65) return "confidence-high";
+            if (score >= 35) return "confidence-medium";
+            return "confidence-low";
+        }
+
+        function renderInsightsList(insights) {
+            const listEl = document.getElementById("insightsList");
+            if (!insights.length) {
+                listEl.innerHTML = `<div class="insights-empty">No recurring topics identified yet. Check back after the next daily run.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = insights.map((insight, idx) => {
+                const star = insight.starred ? `<span class="insight-star" title="Recurring topic across multiple days">&#9733;</span>` : "";
+                const muniTags = (insight.municipalities || []).map(m => `<span class="insight-tag muni-tag">${m}</span>`).join("");
+                const categoryTag = `<span class="insight-tag">${insight.category || "Uncategorized"}</span>`;
+
+                const meetingsHtml = (insight.meetings || []).map(m => `
+                    <div class="insight-meeting-row">
+                        <span class="muni-badge" style="font-size:0.7rem;">${m.muni_short || ""}</span>
+                        <span>${m.title || ""}</span>
+                        <span>&bull; ${m.date || ""}</span>
+                        ${m.link ? `<a href="${m.link}" target="_blank" rel="noopener noreferrer">source &rarr;</a>` : ""}
+                    </div>
+                `).join("");
+
+                const web = insight.web_notability || {};
+                let webHtml = "";
+                if (web.checked && web.corroborated && (web.sources || []).length) {
+                    webHtml = `
+                        <div class="insight-web-sources">
+                            <span class="web-badge">&#10003; Corroborated by independent web coverage</span>
+                            <ul>
+                                ${web.sources.slice(0, 3).map(s => `<li><a href="${s.link}" target="_blank" rel="noopener noreferrer">${s.title || s.link}</a></li>`).join("")}
+                            </ul>
+                        </div>`;
+                } else if (web.checked) {
+                    webHtml = `<div class="insight-web-sources" style="color: var(--text-muted);">No independent web coverage found &mdash; based on internal meeting records only.</div>`;
+                }
+
+                const detailsId = `insight-details-${idx}`;
+                const summary = insight.meetings && insight.meetings[0] && insight.meetings[0].description
+                    ? insight.meetings[0].description
+                    : `Raised in ${insight.occurrence_count || (insight.meetings || []).length} meeting(s) across ${(insight.municipalities || []).length} municipality/municipalities.`;
+
+                return `
+                <article class="insight-card">
+                    <div class="insight-card-top">
+                        <div class="insight-title-row">
+                            <span class="insight-rank">${insight.rank ?? (idx + 1)}</span>
+                            <span class="insight-title">${insight.theme_title || "Untitled topic"}</span>
+                            ${star}
+                        </div>
+                        <span class="insight-confidence ${confidenceClass(insight.confidence || 0)}">${insight.confidence ?? 0}% confidence</span>
+                    </div>
+                    <div class="insight-tags">${categoryTag}${muniTags}</div>
+                    <div class="insight-summary">${summary}</div>
+                    ${webHtml}
+                    <button class="insight-details-toggle" onclick="toggleInsightDetails('${detailsId}')">Show source meetings (${(insight.meetings || []).length}) &#9662;</button>
+                    <div class="insight-meetings-list" id="${detailsId}">${meetingsHtml}</div>
+                </article>`;
+            }).join("");
+        }
+
+        function toggleInsightDetails(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.toggle("expanded");
+        }
+
+        function renderInsightsHistory(runs) {
+            const el = document.getElementById("insightsHistoryList");
+            if (!runs.length) {
+                el.innerHTML = `<div class="insights-empty">No prior runs recorded yet.</div>`;
+                return;
+            }
+
+            // Most recent first
+            const sorted = [...runs].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+            el.innerHTML = sorted.map((run, idx) => {
+                const dayId = `insight-history-day-${idx}`;
+                const items = (run.insights || []).map(i => `
+                    <div class="insights-history-item">
+                        ${i.starred ? `<span class="insight-star">&#9733;</span>` : ""}
+                        <span>#${i.rank} ${i.theme_title}</span>
+                        <span>&bull; ${i.category}</span>
+                        <span>&bull; ${i.confidence}% confidence</span>
+                    </div>
+                `).join("");
+                return `
+                    <div class="insights-history-day">
+                        <div class="insights-history-day-header" onclick="toggleHistoryDay('${dayId}')">
+                            <span>${run.date} &mdash; ${(run.insights || []).length} insight(s)</span>
+                            <span>&#9662;</span>
+                        </div>
+                        <div class="insights-history-day-body" id="${dayId}">${items || '<div class="insights-empty">No insights recorded this day.</div>'}</div>
+                    </div>`;
+            }).join("");
+        }
+
+        function toggleHistoryDay(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.toggle("expanded");
         }
     </script>
 </body>
