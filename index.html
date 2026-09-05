@@ -88,6 +88,192 @@
             border-color: var(--primary);
         }
 
+        /* PROFILE SWITCHER (cosmetic identity - no real auth) */
+        .profile-switcher {
+            position: relative;
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px 6px 6px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .profile-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 42px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            min-width: 150px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            z-index: 20;
+            overflow: hidden;
+        }
+
+        .profile-menu.open {
+            display: block;
+        }
+
+        .profile-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .profile-menu button:hover {
+            background: #f1f5f9;
+        }
+
+        /* ONE-TIME FEATURE TEASER (points at the profile badge on first visit) */
+        .feature-teaser {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 42px;
+            width: 240px;
+            background: var(--text-main);
+            color: #ffffff;
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            font-size: 0.82rem;
+            line-height: 1.4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 21;
+        }
+
+        .feature-teaser.open {
+            display: block;
+        }
+
+        .feature-teaser .teaser-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .feature-teaser button {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            text-decoration: underline;
+        }
+
+        .feature-teaser button.teaser-dismiss-forever {
+            opacity: 0.75;
+            text-decoration: none;
+        }
+
+        /* NEW RECORDS BANNER */
+        .updates-banner {
+            display: none;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: var(--radius);
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+
+        .updates-banner.visible {
+            display: block;
+        }
+
+        .updates-banner-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .updates-banner-chevron {
+            transition: transform 0.15s ease;
+            font-size: 0.75rem;
+        }
+
+        .updates-banner-chevron.open {
+            transform: rotate(180deg);
+        }
+
+        .updates-banner-list {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #bfdbfe;
+        }
+
+        .updates-banner-list.open {
+            display: block;
+        }
+
+        .update-item {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        .update-tag {
+            flex-shrink: 0;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 7px;
+            border-radius: 4px;
+        }
+
+        .update-tag.added {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .update-tag.modified {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .update-tag.removed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
         /* CONTROLS CARD */
         .controls-card {
             background: var(--card-bg);
@@ -545,8 +731,33 @@
         <nav class="top-nav">
             <button class="nav-btn active" id="btnAdminToggleOff">Meetings</button>
             <button class="nav-btn" id="btnAdminToggleOn">Admin</button>
+            <div class="profile-switcher">
+                <button class="profile-btn" id="profileBtn">
+                    <span class="profile-avatar" id="profileAvatar">A</span>
+                    <span id="profileLabel">Alissa</span>
+                </button>
+                <div class="profile-menu" id="profileMenu">
+                    <button id="switchToGuest">Switch to guest</button>
+                    <button id="switchToAlissa" style="display:none;">Switch to Alissa</button>
+                </div>
+                <div class="feature-teaser" id="featureTeaser">
+                    New: this badge will tell you when meetings are added or updated since your last visit.
+                    <div class="teaser-actions">
+                        <button id="teaserGotIt">Got it</button>
+                        <button class="teaser-dismiss-forever" id="teaserDismissForever">Don't show this again</button>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
+
+    <div class="updates-banner" id="updatesBanner">
+        <div class="updates-banner-row">
+            <span id="updatesBannerText"></span>
+            <span class="updates-banner-chevron" id="updatesBannerChevron">&#9660;</span>
+        </div>
+        <div class="updates-banner-list" id="updatesBannerList"></div>
+    </div>
 
     <section class="controls-card" id="meetingsControls">
         <div class="search-row">
@@ -671,13 +882,21 @@
 
     <script>
         let allEvents = [];
+        let allChanges = [];
         let calendar = null;
         let selectedMuni = "ALL";
+
+        // --- PROFILE (cosmetic identity, no real auth - see NOTIFICATIONS below) ---
+        let currentProfile = localStorage.getItem("currentProfile") || "alissa";
 
         document.addEventListener("DOMContentLoaded", () => {
             initCalendar();
             fetchEvents();
+            fetchChanges();
             loadSitesTable();
+            initProfileSwitcher();
+            initFeatureTeaser();
+            initUpdatesBanner();
 
             document.getElementById("searchInput").addEventListener("input", updateViews);
             document.getElementById("btnCalendarView").addEventListener("click", () => switchView("calendar"));
@@ -685,6 +904,161 @@
             document.getElementById("btnAdminToggleOn").addEventListener("click", () => switchView("admin"));
             document.getElementById("btnAdminToggleOff").addEventListener("click", () => switchView("calendar"));
         });
+
+        // --- PROFILE SWITCHER ---
+        function applyProfileDisplay() {
+            const avatar = document.getElementById("profileAvatar");
+            const label = document.getElementById("profileLabel");
+            const toGuestBtn = document.getElementById("switchToGuest");
+            const toAlissaBtn = document.getElementById("switchToAlissa");
+
+            if (currentProfile === "alissa") {
+                avatar.textContent = "A";
+                label.textContent = "Alissa";
+                toGuestBtn.style.display = "block";
+                toAlissaBtn.style.display = "none";
+            } else {
+                avatar.textContent = "G";
+                label.textContent = "Guest";
+                toGuestBtn.style.display = "none";
+                toAlissaBtn.style.display = "block";
+            }
+        }
+
+        function setProfile(profile) {
+            currentProfile = profile;
+            localStorage.setItem("currentProfile", profile);
+            applyProfileDisplay();
+            document.getElementById("profileMenu").classList.remove("open");
+            renderUpdatesBanner();
+        }
+
+        function initProfileSwitcher() {
+            applyProfileDisplay();
+            const btn = document.getElementById("profileBtn");
+            const menu = document.getElementById("profileMenu");
+
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                menu.classList.toggle("open");
+            });
+            document.getElementById("switchToGuest").addEventListener("click", () => setProfile("guest"));
+            document.getElementById("switchToAlissa").addEventListener("click", () => setProfile("alissa"));
+            document.addEventListener("click", () => menu.classList.remove("open"));
+        }
+
+        // --- ONE-TIME FEATURE TEASER ---
+        // Reappears on every visit until the user explicitly clicks "Don't show
+        // this again" - just clicking "Got it" or navigating away does NOT
+        // permanently dismiss it.
+        function initFeatureTeaser() {
+            const teaser = document.getElementById("featureTeaser");
+            if (localStorage.getItem("featureTeaserDismissed") === "true") return;
+
+            teaser.classList.add("open");
+            document.getElementById("teaserGotIt").addEventListener("click", (e) => {
+                e.stopPropagation();
+                teaser.classList.remove("open");
+            });
+            document.getElementById("teaserDismissForever").addEventListener("click", (e) => {
+                e.stopPropagation();
+                localStorage.setItem("featureTeaserDismissed", "true");
+                teaser.classList.remove("open");
+            });
+            teaser.addEventListener("click", (e) => e.stopPropagation());
+        }
+
+        // --- NEW RECORDS BANNER ---
+        function lastSeenKey() {
+            return `lastSeen_${currentProfile}`;
+        }
+
+        function getLastSeen() {
+            const stored = localStorage.getItem(lastSeenKey());
+            if (stored) return stored;
+            // First time this profile has ever been seen on this browser -
+            // baseline to "now" so they aren't shown the entire historical
+            // changes.json backlog on their very first visit.
+            const now = new Date().toISOString();
+            localStorage.setItem(lastSeenKey(), now);
+            return now;
+        }
+
+        function markAllSeen() {
+            localStorage.setItem(lastSeenKey(), new Date().toISOString());
+        }
+
+        async function fetchChanges() {
+            try {
+                const response = await fetch("changes.json");
+                if (!response.ok) throw new Error("Failed to load changes.json");
+                allChanges = await response.json();
+            } catch (error) {
+                console.error("Error loading changes:", error);
+                allChanges = [];
+            }
+            renderUpdatesBanner();
+        }
+
+        function describeChange(c) {
+            if (c.type === "added") {
+                return `${c.title}, ${c.date} at ${c.time || "TBD"}`;
+            }
+            if (c.type === "removed") {
+                return `${c.title}, ${c.date} was removed from the calendar`;
+            }
+            // modified
+            const parts = [];
+            if (c.fields_changed && c.fields_changed.time) {
+                parts.push(`time changed ${c.fields_changed.time.old || "?"} &rarr; ${c.fields_changed.time.new || "?"}`);
+            }
+            if (c.fields_changed && c.fields_changed.has_agenda) {
+                parts.push(c.fields_changed.has_agenda.new ? "agenda now posted" : "agenda removed");
+            }
+            return `${c.title}, ${c.date} &mdash; ${parts.join(", ") || "updated"}`;
+        }
+
+        function renderUpdatesBanner() {
+            const banner = document.getElementById("updatesBanner");
+            const bannerText = document.getElementById("updatesBannerText");
+            const bannerList = document.getElementById("updatesBannerList");
+
+            const lastSeen = getLastSeen();
+            const unseen = allChanges.filter(c => c.detected_at > lastSeen);
+
+            if (unseen.length === 0) {
+                banner.classList.remove("visible");
+                return;
+            }
+
+            banner.classList.add("visible");
+            bannerText.textContent = `${unseen.length} update${unseen.length === 1 ? "" : "s"} since your last visit`;
+
+            bannerList.innerHTML = unseen.map(c => `
+                <div class="update-item">
+                    <span class="update-tag ${c.type}">${c.type}</span>
+                    <span>${c.muni_short ? `<span style="color:var(--text-muted);">${c.muni_short}</span> &mdash; ` : ""}${describeChange(c)}</span>
+                </div>
+            `).join("");
+        }
+
+        function initUpdatesBanner() {
+            const banner = document.getElementById("updatesBanner");
+            const list = document.getElementById("updatesBannerList");
+            const chevron = document.getElementById("updatesBannerChevron");
+
+            banner.addEventListener("click", () => {
+                const opening = !list.classList.contains("open");
+                list.classList.toggle("open");
+                chevron.classList.toggle("open");
+                if (opening) {
+                    // Expanding the banner marks everything as seen. If a
+                    // per-item "acknowledge" model is preferred instead, this
+                    // is the spot to change.
+                    markAllSeen();
+                }
+            });
+        }
 
         function initCalendar() {
             const calendarEl = document.getElementById("calendar");
