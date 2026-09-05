@@ -201,6 +201,35 @@ def _add_months(dt, n):
     return datetime(year, month, 1)
 
 
+# --- NOISE FILTERS (added per user request: cancelled meetings and mere
+# schedule-day deviations are not insights, and are excluded before any
+# analysis happens - not just hidden at display time, so they never cost an
+# LLM call either) ---
+
+CANCELLATION_PATTERN = re.compile(r'\bCANCEL(?:L)?ED\b', re.I)
+
+# Matches parenthetical asides that only exist to note a scheduling quirk,
+# e.g. "(March meeting is on a Monday, not the usual Tuesday)" or
+# "(Will Follow the Joint Meeting)" - real examples seen in the first real
+# run's log. These describe WHEN a meeting happens, not WHAT it's about, so
+# they're stripped before topic extraction rather than mined as if they were
+# substantive content.
+SCHEDULE_NOTE_PATTERN = re.compile(
+    r'\(\s*[^()]*\b(?:usual|instead of|rather than|moved from|different day|'
+    r'not the usual|will follow|is on a)\b[^()]*\)',
+    re.I,
+)
+
+
+def is_cancelled_event(title):
+    return bool(CANCELLATION_PATTERN.search(title or ""))
+
+
+def strip_schedule_notes(title):
+    cleaned = SCHEDULE_NOTE_PATTERN.sub("", title or "")
+    return re.sub(r'\s+', ' ', cleaned).strip()
+
+
 def gather_historical_events(months_back=HISTORICAL_MONTHS_BACK):
     """Returns a deduplicated list of qualifying events from the last
     `months_back` months, reusing scraper.py's own scrape functions and
@@ -260,9 +289,22 @@ def gather_historical_events(months_back=HISTORICAL_MONTHS_BACK):
         if cutoff <= ev_dt <= now:
             filtered.append(ev)
 
+    # Drop cancelled meetings entirely - per explicit user decision, a
+    # cancellation is not unique or insightful and shouldn't consume an LLM
+    # call or appear in any theme's citation list.
+    cancelled_count = sum(1 for ev in filtered if is_cancelled_event(ev.get("title")))
+    filtered = [ev for ev in filtered if not is_cancelled_event(ev.get("title"))]
+
+    # Strip pure schedule-deviation asides from titles (in place) so neither
+    # the heuristic nor the LLM path can mistake "meets on an unusual day
+    # this month" for a real topic.
+    for ev in filtered:
+        ev["title"] = strip_schedule_notes(ev.get("title", ""))
+
     print(f"[Insights History] Gathered {len(filtered)} unique qualifying "
           f"historical events across {months_back} months "
-          f"(from {len(all_events)} raw rows before dedup).")
+          f"(from {len(all_events)} raw rows before dedup, "
+          f"{cancelled_count} cancelled meeting(s) excluded).")
     return filtered
 
 
@@ -388,8 +430,19 @@ def _llm_topics(client, muni_full, title, date, text_blob):
         return None  # already know this run's credits are gone - don't waste a call finding out again
 
     categories = ", ".join(TOPIC_TAXONOMY.keys())
-    doc_excerpt = text_blob[:MAX_LLM_DOC_CHARS] if text_blob else "(No document text available - base this only on the meeting title.)"
-    prompt = f"""You are analyzing a public government meeting record for topic extraction.
+
+    if not text_blob:
+        # No real document text to ground a specific finding in - per user
+        # decision, we should NOT manufacture a generic "topic" out of just
+        # the meeting title (that's exactly the noise this rewrite is meant
+        # to eliminate). Returning an empty list is a legitimate, successful
+        # LLM outcome (not a failure) - it means "nothing specific to report
+        # for this meeting," and the event correctly contributes zero
+        # candidate topics rather than a fake one.
+        return []
+
+    doc_excerpt = text_blob[:MAX_LLM_DOC_CHARS]
+    prompt = f"""You are extracting SPECIFIC, NAMEABLE agenda items from a public government meeting document, for the purpose of detecting when the SAME real-world matter comes up again in a later meeting (same city or a different one).
 
 Municipality: {muni_full}
 Meeting title: {title}
@@ -397,12 +450,22 @@ Date: {date}
 Document excerpt:
 \"\"\"{doc_excerpt}\"\"\"
 
-Identify up to {MAX_TOPICS_PER_MEETING} SPECIFIC, CONCRETE topics or agenda items actually discussed (not generic restatements of the meeting title). For each, assign the closest category from this list if it fits: {categories}. If none fit, use "{FALLBACK_CATEGORY}".
+Extract up to {MAX_TOPICS_PER_MEETING} items that meet ALL of these rules:
+- Each item must be a SPECIFIC, real thing being decided or discussed: an ordinance or resolution number, a named development/project, a specific applicant or company, a street address, a dollar figure, a case/permit number, or similar concrete detail actually present in the excerpt.
+- If the same matter has an identifying number or name (e.g. "Ordinance No. 4316", "Case No. 2026-014", "Riverwalk Plaza project"), use that EXACT identifier verbatim as the topic_title every time it appears, so the same matter can be recognized as recurring later.
+- Assign the closest category from this list if it fits: {categories}. If none fit, use "{FALLBACK_CATEGORY}".
+- description must state the concrete action or substance (what is being proposed/approved/discussed), grounded only in the excerpt - do not speculate beyond it.
+
+DO NOT include:
+- Generic restatements of the meeting type/title (e.g. "City Council Meeting", "Board discussed zoning matters")
+- Routine procedural items: call to order, roll call, pledge of allegiance, approval of minutes, adjournment, general public comment period
+- Anything about WHEN the meeting happens (rescheduling, unusual day/time, "will follow the joint meeting", etc.) - scheduling logistics are never a topic
+- Vague catch-alls with no identifiable specific subject
+
+If nothing in the excerpt meets these rules, return an empty JSON array: []
 
 Respond with ONLY a JSON array, no other text, in this exact shape:
-[{{"topic_title": "short specific topic", "category": "one of the categories above", "description": "1-2 sentence factual description grounded in the excerpt"}}]
-
-If the excerpt gives no real substance beyond the title, return a single item summarizing the meeting title itself."""
+[{{"topic_title": "specific identifier or subject", "category": "one of the categories above", "description": "1-2 sentence factual description grounded in the excerpt"}}]"""
 
     try:
         response = client.chat_completion(
@@ -425,7 +488,7 @@ If the excerpt gives no real substance beyond the title, return a single item su
                 "description": item.get("description", "")[:500],
                 "method": "llm",
             })
-        return topics or None
+        return topics  # may legitimately be [] - "successfully analyzed, nothing specific found" is NOT a failure
     except Exception as e:
         err_text = str(e)
         if "402" in err_text or "Payment Required" in err_text or "depleted" in err_text.lower():
@@ -446,11 +509,16 @@ def extract_meeting_topics(event, text_blob):
     muni_full = event.get("muni_full", "")
     date = event.get("date", "")
 
-    topics = None
+    llm_result = None
     if client is not None:
-        topics = _llm_topics(client, muni_full, title, date, text_blob)
-    if topics is None:
+        llm_result = _llm_topics(client, muni_full, title, date, text_blob)
+
+    if llm_result is not None:
+        topics = llm_result  # may be [] - a legitimate "nothing specific found" LLM outcome
+        used_llm = True
+    else:
         topics = _heuristic_topics(muni_full, title, text_blob)
+        used_llm = False
 
     for t in topics:
         t["muni_short"] = event.get("muni_short")
@@ -458,7 +526,7 @@ def extract_meeting_topics(event, text_blob):
         t["event_title"] = title
         t["date"] = date
         t["link"] = event.get("link")
-    return topics
+    return topics, used_llm
 
 
 # --- TOPIC CACHE (makes LLM analysis affordable on a $0.10/month budget) --
@@ -514,11 +582,16 @@ def _similarity(a, b):
     return inter / union if union else 0.0
 
 
-def cluster_recurring_themes(topic_entries, similarity_threshold=0.35):
+def cluster_recurring_themes(topic_entries, similarity_threshold=0.5):
     """Groups topic entries into themes: first by category, then by word-
     overlap similarity of topic_title within that category. Simple and
     dependency-free (no embeddings needed) - good enough to surface real
-    recurring subjects without over-engineering the clustering step."""
+    recurring subjects without over-engineering the clustering step.
+
+    Threshold raised from 0.35 to 0.5 now that the LLM prompt asks for
+    specific, verbatim identifiers (ordinance numbers, project names) rather
+    than generic category restatements - tighter matching avoids merging
+    genuinely unrelated items that happen to share common words."""
     by_category = defaultdict(list)
     for entry in topic_entries:
         by_category[entry["category"]].append(entry)
@@ -544,12 +617,15 @@ def cluster_recurring_themes(topic_entries, similarity_threshold=0.35):
             # Use the longest topic_title as the representative label - tends
             # to be the most descriptive of the cluster.
             representative = max(entries_in_cluster, key=lambda e: len(e["topic_title"]))
+            sorted_entries = sorted(entries_in_cluster, key=lambda e: e.get("date") or "", reverse=True)
+
             themes.append({
                 "theme_title": representative["topic_title"],
                 "category": category,
                 "municipalities": municipalities,
                 "cross_municipality": len(municipalities) > 1,
                 "occurrence_count": len(entries_in_cluster),
+                "citation_summary": _build_citation_summary(sorted_entries),
                 "meetings": [
                     {
                         "muni_short": e.get("muni_short"),
@@ -560,10 +636,22 @@ def cluster_recurring_themes(topic_entries, similarity_threshold=0.35):
                         "description": e.get("description"),
                         "method": e.get("method"),
                     }
-                    for e in sorted(entries_in_cluster, key=lambda e: e.get("date") or "", reverse=True)
+                    for e in sorted_entries
                 ],
             })
     return themes
+
+
+def _build_citation_summary(sorted_entries):
+    """Builds a plain-language 'why this is flagged' citation trail, e.g.
+    'Previously discussed: City of Boca Raton (2026-07-13), City of Boca
+    Raton (2026-06-09)' - used so a recurring theme states its evidence
+    rather than just asserting recurrence."""
+    if len(sorted_entries) < 2:
+        return None
+    prior = sorted_entries[1:]  # entries[0] is the most recent occurrence
+    parts = [f"{e.get('muni_full', e.get('muni_short', '?'))} ({e.get('date', '?')})" for e in prior]
+    return "Previously discussed: " + ", ".join(parts)
 
 
 # --- STEP 5: WEB CROSS-REFERENCE (notability check) -------------------------
@@ -612,6 +700,39 @@ def compute_confidence(theme, web_result):
     except (ValueError, TypeError):
         pass
     return min(score, 100)
+
+
+# --- STEP 6b: INSIGHT-WORTHINESS FILTER ------------------------------------
+# Per explicit user decision: a single, un-corroborated mention of something
+# is "a meeting happened," not an insight. A theme only earns a place in
+# insights.json if EITHER:
+#   (a) it's genuinely recurring - the same specific matter came up in 2+
+#       meetings, whether repeat sessions in one city (e.g. an ordinance's
+#       first reading, hearing, and adoption) or the same subject surfacing
+#       in multiple municipalities, OR
+#   (b) it's independently corroborated by web search, even as a single
+#       occurrence - e.g. a specific named ordinance real enough to show up
+#       in independent coverage. This is deliberately modeled on the
+#       "Ordinance Number 4316" example the user flagged as the right shape
+#       of insight (which in practice satisfied both (a) and (b) at once -
+#       it recurred across 3 meetings AND was web-corroborated).
+# Everything else - a single, un-corroborated mention - is dropped rather
+# than shown as a low-value "a meeting happened" card.
+
+def is_insight_worthy(theme):
+    return theme["occurrence_count"] >= 2 or theme["web_notability"].get("corroborated", False)
+
+
+def assign_reason(theme):
+    reasons = []
+    if theme["occurrence_count"] >= 2:
+        if theme["cross_municipality"]:
+            reasons.append("recurring_across_municipalities")
+        else:
+            reasons.append("recurring_over_time")
+    if theme["web_notability"].get("corroborated"):
+        reasons.append("corroborated_by_web_search")
+    theme["reasons"] = reasons
 
 
 def load_insight_history(path=INSIGHTS_HISTORY_PATH):
@@ -720,12 +841,12 @@ def generate_insights_output():
             docs_fetched += 1
         else:
             docs_unavailable += 1
-        topics = extract_meeting_topics(event, doc_text)
+        topics, used_llm = extract_meeting_topics(event, doc_text)
         topic_entries.extend(topics)
 
-        if topics and all(t.get("method") == "llm" for t in topics):
-            cache[key] = topics  # only persist real LLM results, so heuristic
-            llm_hits += 1        # ones stay eligible for a retry later
+        if used_llm:
+            cache[key] = topics  # cache even if [] - avoids re-spending a
+            llm_hits += 1        # credit re-confirming "nothing here" every day
         else:
             heuristic_hits += 1
 
@@ -756,6 +877,18 @@ def generate_insights_output():
     print(f"[Insights Search] {search_checked}/{len(themes)} theme(s) queried, "
           f"{search_corroborated} corroborated by independent web results, "
           f"{search_errors} request(s) failed.")
+
+    # Per explicit user decision: drop anything that's neither recurring
+    # (2+ occurrences) nor independently corroborated - a single,
+    # un-corroborated mention is "a meeting happened," not an insight.
+    pre_filter_count = len(themes)
+    themes = [t for t in themes if is_insight_worthy(t)]
+    for t in themes:
+        assign_reason(t)
+    print(f"[Insights] Insight-worthiness filter: kept {len(themes)} of "
+          f"{pre_filter_count} candidate theme(s) (dropped "
+          f"{pre_filter_count - len(themes)} single-occurrence, "
+          f"non-corroborated mention(s)).")
 
     history = load_insight_history()
     apply_star_flags(themes, history)
