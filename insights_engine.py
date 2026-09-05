@@ -82,15 +82,43 @@ HISTORICAL_MONTHS_BACK = 6  # per user decision, 2026-09-05
 
 INSIGHTS_OUTPUT_PATH = "insights.json"
 INSIGHTS_HISTORY_PATH = "insights_history.json"
+TOPIC_CACHE_PATH = "topic_cache.json"
 HISTORY_RETENTION_RUNS = 7  # rolling 7-day window, per user request
 
-MAX_DOC_CHARS = 8000       # cap extracted document text fed to the LLM
+MAX_DOC_CHARS = 8000        # cap for heuristic path (cheap, no cost concern)
+MAX_LLM_DOC_CHARS = 3000    # smaller cap specifically for what's sent to the
+                            # LLM - every character is billed input tokens,
+                            # and free-tier HF credit is extremely small
+                            # ($0.10/month) - see cost note below.
+MAX_LLM_RESPONSE_TOKENS = 400  # trimmed from 800 - 6 short topics don't need more
 MAX_TOPICS_PER_MEETING = 6
 
+# --- COST NOTE (added after the first real run exhausted free HF credits) ---
+# Hugging Face's free-tier accounts get a flat $0.10/month in Inference
+# Provider credits, hard stop, no rollover. A 70B-class model burns through
+# that in well under 100 calls, which is exactly what happened on the first
+# real run (243 calls, all failed with 402 Payment Required once the $0.10
+# was gone). Two things below exist specifically to make LLM-based analysis
+# actually sustainable on that tiny budget:
+#   1. A persistent topic cache (see TOPIC_CACHE_PATH below) so a given
+#      historical meeting is only ever sent to the LLM ONCE, successfully -
+#      not re-analyzed from scratch every single day.
+#   2. A much smaller default model than the original 70B choice. Smaller
+#      instruct models are typically several times cheaper per call. This
+#      default is a reasonable guess, NOT a confirmed-cheapest option for
+#      your account's current provider routing - check the next real run's
+#      "[Insights LLM]" log lines (and your HF billing dashboard) to see how
+#      many calls it got through before (if ever) hitting 402 again, and swap
+#      via the INSIGHTS_LLM_MODEL env var if a different model fits better.
+
 # Configurable so a model swap never requires touching code - see the
-# "STATUS" note above. Override via repo/workflow env var if this model
-# isn't available on your HF_TOKEN's Inference Providers routing.
-HF_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "meta-llama/Llama-3.3-70B-Instruct")
+# "STATUS" note above. The first real run exhausted the free $0.10/month HF
+# credit using a 70B model after only ~100 calls. This default switches to a
+# much smaller, typically far cheaper instruct model to stretch that budget
+# further - UNCONFIRMED against real current provider pricing (couldn't be
+# tested live this session). Override via repo/workflow env var if this
+# model isn't routable, or if you find a cheaper one on your account.
+HF_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "Qwen/Qwen2.5-7B-Instruct")
 
 SERPER_API_KEY = os.environ.get("SERPER_API_KEY")
 HF_TOKEN = os.environ.get("HF_TOKEN")
@@ -301,6 +329,10 @@ def _extract_pdf_text(pdf_bytes):
 
 _hf_client = None
 _hf_client_attempted = False
+_hf_credits_exhausted = False  # set True the first time HF returns 402 -
+# once true, every subsequent meeting in this run skips straight to
+# heuristic extraction instead of making (and waiting on) a doomed call.
+# Resets naturally on the next process run (i.e. the next day).
 
 
 def get_hf_client():
@@ -351,8 +383,12 @@ def _heuristic_topics(muni_full, title, text_blob):
 
 
 def _llm_topics(client, muni_full, title, date, text_blob):
+    global _hf_credits_exhausted
+    if _hf_credits_exhausted:
+        return None  # already know this run's credits are gone - don't waste a call finding out again
+
     categories = ", ".join(TOPIC_TAXONOMY.keys())
-    doc_excerpt = text_blob[:MAX_DOC_CHARS] if text_blob else "(No document text available - base this only on the meeting title.)"
+    doc_excerpt = text_blob[:MAX_LLM_DOC_CHARS] if text_blob else "(No document text available - base this only on the meeting title.)"
     prompt = f"""You are analyzing a public government meeting record for topic extraction.
 
 Municipality: {muni_full}
@@ -371,7 +407,7 @@ If the excerpt gives no real substance beyond the title, return a single item su
     try:
         response = client.chat_completion(
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=800,
+            max_tokens=MAX_LLM_RESPONSE_TOKENS,
             temperature=0.2,
         )
         content = response.choices[0].message.content.strip()
@@ -391,8 +427,16 @@ If the excerpt gives no real substance beyond the title, return a single item su
             })
         return topics or None
     except Exception as e:
-        print(f"[Insights LLM] Extraction failed for {muni_full} "
-              f"'{title}' ({date}): {e} - falling back to heuristic extraction.")
+        err_text = str(e)
+        if "402" in err_text or "Payment Required" in err_text or "depleted" in err_text.lower():
+            if not _hf_credits_exhausted:
+                print(f"[Insights LLM] HF credits appear exhausted ({err_text[:200]}) - "
+                      f"skipping all further LLM calls this run and falling back to heuristic "
+                      f"extraction for every remaining meeting.")
+            _hf_credits_exhausted = True
+        else:
+            print(f"[Insights LLM] Extraction failed for {muni_full} "
+                  f"'{title}' ({date}): {e} - falling back to heuristic extraction.")
         return None
 
 
@@ -415,6 +459,42 @@ def extract_meeting_topics(event, text_blob):
         t["date"] = date
         t["link"] = event.get("link")
     return topics
+
+
+# --- TOPIC CACHE (makes LLM analysis affordable on a $0.10/month budget) --
+# Past meeting minutes never change once posted, so there's no reason to
+# re-spend credits re-analyzing the same historical meeting every single
+# day. Only LLM-derived results are cached as "done" - results that fell
+# back to heuristic extraction are deliberately left OUT of the cache, so
+# they stay eligible to be retried (and hopefully upgraded to real LLM
+# analysis) on a future run once credits refill or a cheaper model is
+# configured. This means the LLM-covered share of your 6-month history
+# should gradually grow over time rather than being stuck at whatever the
+# first run's $0.10 happened to cover.
+
+def load_topic_cache(path=TOPIC_CACHE_PATH):
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def save_topic_cache(cache, path=TOPIC_CACHE_PATH):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=2)
+
+
+def _cache_key(event):
+    return "|".join(sc.compute_change_key(event))
+
+
+def prune_topic_cache(cache, valid_keys):
+    """Drops cache entries for meetings that have aged out of the 6-month
+    historical window, so the file doesn't grow forever."""
+    return {k: v for k, v in cache.items() if k in valid_keys}
 
 
 # --- STEP 4: CLUSTER RECURRING THEMES (within and across municipalities) ---
@@ -610,13 +690,54 @@ def generate_insights_output():
 
     historical_events = gather_historical_events()
 
+    cache = load_topic_cache()
+    valid_keys = {_cache_key(ev) for ev in historical_events}
+    cache = prune_topic_cache(cache, valid_keys)
+
     topic_entries = []
+    cache_hits = 0
+    llm_hits = 0
+    heuristic_hits = 0
+    docs_fetched = 0
+    docs_unavailable = 0
+
     for event in historical_events:
+        key = _cache_key(event)
+        cached = cache.get(key)
+
+        if cached is not None:
+            # Already analyzed by the LLM in a prior run - past meeting
+            # minutes don't change, so there's no reason to re-spend
+            # credits on this one. Heuristic-only results are deliberately
+            # never cached (see prune/cache-write logic below), so if we're
+            # here, `cached` is guaranteed to be LLM-derived.
+            topic_entries.extend(cached)
+            cache_hits += 1
+            continue
+
         doc_text = fetch_document_text(event)
+        if doc_text:
+            docs_fetched += 1
+        else:
+            docs_unavailable += 1
         topics = extract_meeting_topics(event, doc_text)
         topic_entries.extend(topics)
+
+        if topics and all(t.get("method") == "llm" for t in topics):
+            cache[key] = topics  # only persist real LLM results, so heuristic
+            llm_hits += 1        # ones stay eligible for a retry later
+        else:
+            heuristic_hits += 1
+
         time.sleep(0.1)  # gentle pacing against source sites / the LLM API
 
+    save_topic_cache(cache)
+    print(f"[Insights Docs] Read real document text for {docs_fetched} "
+          f"meeting(s); {docs_unavailable} had no agenda/minutes available "
+          f"or the fetch failed (analyzed from title only).")
+    print(f"[Insights] Topic extraction: {cache_hits} from cache (already "
+          f"LLM-analyzed in a prior run), {llm_hits} newly LLM-analyzed this "
+          f"run, {heuristic_hits} fell back to heuristic this run.")
     print(f"[Insights] Extracted {len(topic_entries)} raw topic entries "
           f"from {len(historical_events)} historical meetings.")
 
@@ -628,6 +749,13 @@ def generate_insights_output():
         theme["web_notability"] = web_result
         theme["confidence"] = compute_confidence(theme, web_result)
         time.sleep(0.2)  # gentle pacing against the search API
+
+    search_checked = sum(1 for t in themes if t["web_notability"].get("checked"))
+    search_corroborated = sum(1 for t in themes if t["web_notability"].get("corroborated"))
+    search_errors = sum(1 for t in themes if t["web_notability"].get("error"))
+    print(f"[Insights Search] {search_checked}/{len(themes)} theme(s) queried, "
+          f"{search_corroborated} corroborated by independent web results, "
+          f"{search_errors} request(s) failed.")
 
     history = load_insight_history()
     apply_star_flags(themes, history)
