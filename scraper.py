@@ -177,7 +177,31 @@ def is_qualifying_event(title):
     pattern = re.compile('|'.join(qualifying_keywords), re.I)
     return bool(pattern.search(title))
 
+# --- INSIGHTS ENGINE HOOK ---
+# Every scraper function derives its fetch/filter window by calling
+# get_dual_month_bounds() fresh at the top of its own body. That single choke
+# point means insights_engine.py can reuse EVERY existing scraper's own
+# parsing logic to pull historical months (instead of duplicating 14 parsers)
+# by temporarily overriding what this function returns before calling a
+# scraper, then clearing the override. Defaults to None, so normal daily
+# scraper.py runs (which never touch this) are completely unaffected -
+# get_dual_month_bounds() behaves exactly as before unless something has
+# explicitly called set_date_window_override().
+_DATE_WINDOW_OVERRIDE = None  # None, or (start_datetime, end_datetime)
+
+def set_date_window_override(start_dt, end_dt):
+    global _DATE_WINDOW_OVERRIDE
+    _DATE_WINDOW_OVERRIDE = (start_dt, end_dt)
+
+def clear_date_window_override():
+    global _DATE_WINDOW_OVERRIDE
+    _DATE_WINDOW_OVERRIDE = None
+
 def get_dual_month_bounds():
+    if _DATE_WINDOW_OVERRIDE is not None:
+        start, end = _DATE_WINDOW_OVERRIDE
+        return start, end, start.year, start.month
+
     now = datetime.now()
     curr_year = now.year
     curr_month = now.month
