@@ -1115,13 +1115,13 @@
         <section class="admin-section insights-header">
             <h2>Insights</h2>
             <p class="admin-description">
-                Recurring governance topics surfaced by reading back through each municipality's
-                meeting history (agendas, titles, and posted minutes) for the subject areas this
-                tracker cares about &mdash; zoning &amp; land use, community redevelopment (CRA),
-                downtown development (DDA/DAC), data centers, and related matters &mdash; then
-                cross-checked against independent web coverage to gauge how notable each topic
-                really is. Ranked most-confident first. A &#9733; marks a topic that keeps coming
-                back across multiple days of analysis.
+                Specific governance topics that either <strong>recurred across multiple meetings</strong>
+                (the same ordinance, project, or matter coming up again &mdash; in one city over time,
+                or across different municipalities) or were <strong>independently confirmed by web
+                search</strong> as a real, notable matter. A single, unconfirmed mention of something
+                isn't shown here on its own &mdash; only things with real evidence behind them. Ranked
+                most-confident first. A &#9733; marks a topic that keeps coming back across multiple
+                days of analysis.
             </p>
             <div class="insights-meta-row" id="insightsMetaRow"></div>
         </section>
@@ -1651,10 +1651,19 @@
             return "confidence-low";
         }
 
+        function reasonLabel(reason) {
+            const labels = {
+                recurring_across_municipalities: "Recurring across municipalities",
+                recurring_over_time: "Recurring over time",
+                corroborated_by_web_search: "Confirmed by web search",
+            };
+            return labels[reason] || reason;
+        }
+
         function renderInsightsList(insights) {
             const listEl = document.getElementById("insightsList");
             if (!insights.length) {
-                listEl.innerHTML = `<div class="insights-empty">No recurring topics identified yet. Check back after the next daily run.</div>`;
+                listEl.innerHTML = `<div class="insights-empty">No recurring or independently-confirmed topics identified yet. This tab only surfaces topics that either came up in multiple meetings or were independently verified via web search &mdash; check back after the next daily run.</div>`;
                 return;
             }
 
@@ -1662,6 +1671,7 @@
                 const star = insight.starred ? `<span class="insight-star" title="Recurring topic across multiple days">&#9733;</span>` : "";
                 const muniTags = (insight.municipalities || []).map(m => `<span class="insight-tag muni-tag">${m}</span>`).join("");
                 const categoryTag = `<span class="insight-tag">${insight.category || "Uncategorized"}</span>`;
+                const reasonTags = (insight.reasons || []).map(r => `<span class="insight-tag" style="background:#fef3c7; color:#92400e;">${reasonLabel(r)}</span>`).join("");
 
                 const meetingsHtml = (insight.meetings || []).map(m => `
                     <div class="insight-meeting-row">
@@ -1682,14 +1692,16 @@
                                 ${web.sources.slice(0, 3).map(s => `<li><a href="${s.link}" target="_blank" rel="noopener noreferrer">${s.title || s.link}</a></li>`).join("")}
                             </ul>
                         </div>`;
-                } else if (web.checked) {
-                    webHtml = `<div class="insight-web-sources" style="color: var(--text-muted);">No independent web coverage found &mdash; based on internal meeting records only.</div>`;
                 }
 
                 const detailsId = `insight-details-${idx}`;
                 const summary = insight.meetings && insight.meetings[0] && insight.meetings[0].description
                     ? insight.meetings[0].description
                     : `Raised in ${insight.occurrence_count || (insight.meetings || []).length} meeting(s) across ${(insight.municipalities || []).length} municipality/municipalities.`;
+
+                const citationHtml = insight.citation_summary
+                    ? `<div class="insight-summary" style="color: var(--text-muted); font-size: 0.85rem;">${insight.citation_summary}</div>`
+                    : "";
 
                 return `
                 <article class="insight-card">
@@ -1701,8 +1713,9 @@
                         </div>
                         <span class="insight-confidence ${confidenceClass(insight.confidence || 0)}">${insight.confidence ?? 0}% confidence</span>
                     </div>
-                    <div class="insight-tags">${categoryTag}${muniTags}</div>
+                    <div class="insight-tags">${categoryTag}${muniTags}${reasonTags}</div>
                     <div class="insight-summary">${summary}</div>
+                    ${citationHtml}
                     ${webHtml}
                     <button class="insight-details-toggle" onclick="toggleInsightDetails('${detailsId}')">Show source meetings (${(insight.meetings || []).length}) &#9662;</button>
                     <div class="insight-meetings-list" id="${detailsId}">${meetingsHtml}</div>
