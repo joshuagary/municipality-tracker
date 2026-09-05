@@ -4,7 +4,7 @@ import json
 import calendar
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import xml.etree.ElementTree as ET
 
 try:
@@ -192,6 +192,137 @@ def get_dual_month_bounds():
         lookahead_end = datetime(curr_year, curr_month + 2, 1)
 
     return current_month_start, lookahead_end, curr_year, curr_month
+
+
+# --- CHANGE DETECTION ("new records" banner/badge feature) ---
+# Compares this run's freshly scraped events against the previous data.json
+# (loaded before it gets overwritten) and writes a rolling changes.json log
+# that the frontend reads to show "N updates since your last visit".
+#
+# NOTE ON THE PRIMARY KEY: this deliberately excludes time from the key
+# (muni_short + date + normalized title only) so that a meeting whose time
+# changes (e.g. 6:00 PM -> 6:30 PM) is detected as one "modified" event
+# instead of looking like an unrelated add+remove pair. Date IS part of the
+# key, which means a meeting that gets rescheduled to a different date will
+# currently show up as a "removed" (old date) + "added" (new date) pair
+# rather than a single "modified: date changed" entry - date can't be left
+# out of the key without risking false matches between distinct occurrences
+# of the same recurring meeting (e.g. three separate "City Commission
+# Meeting" events on three different dates would otherwise collide onto one
+# key). Flag to the user if reschedules showing as add+remove instead of a
+# single "date changed" entry becomes a real annoyance - a smarter
+# nearest-date fuzzy-match pass could pair those up later, but isn't built
+# here yet.
+
+def _normalize_title_for_key(title):
+    if not title:
+        return ""
+    # Lowercase + collapse whitespace + strip trailing punctuation, so trivial
+    # formatting differences between runs (extra space, a trailing period)
+    # don't register as a different meeting.
+    t = title.lower().strip()
+    t = re.sub(r'\s+', ' ', t)
+    t = re.sub(r'[.\s]+$', '', t)
+    return t
+
+def compute_change_key(event):
+    return (
+        (event.get("muni_short") or "").strip().upper(),
+        (event.get("date") or "").strip(),
+        _normalize_title_for_key(event.get("title")),
+    )
+
+def load_previous_events(path="data.json"):
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except (json.JSONDecodeError, OSError):
+        # Corrupt/missing previous file shouldn't block the scrape - just
+        # means this run's diff will look like everything was "added".
+        return []
+
+def diff_events(old_events, new_events):
+    old_map = {compute_change_key(e): e for e in old_events}
+    new_map = {compute_change_key(e): e for e in new_events}
+
+    changes = []
+
+    for key, new_ev in new_map.items():
+        old_ev = old_map.get(key)
+        base = {
+            "muni_short": new_ev.get("muni_short"),
+            "muni_full": new_ev.get("muni_full"),
+            "title": new_ev.get("title"),
+            "date": new_ev.get("date"),
+        }
+        if old_ev is None:
+            changes.append({**base, "type": "added", "time": new_ev.get("time")})
+            continue
+
+        old_has_agenda = old_ev.get("has_agenda", True) is not False
+        new_has_agenda = new_ev.get("has_agenda", True) is not False
+
+        fields_changed = {}
+        if old_ev.get("time") != new_ev.get("time"):
+            fields_changed["time"] = {"old": old_ev.get("time"), "new": new_ev.get("time")}
+        if old_has_agenda != new_has_agenda:
+            fields_changed["has_agenda"] = {"old": old_has_agenda, "new": new_has_agenda}
+
+        if fields_changed:
+            changes.append({
+                **base,
+                "type": "modified",
+                "time": new_ev.get("time"),
+                "fields_changed": fields_changed,
+            })
+
+    for key, old_ev in old_map.items():
+        if key not in new_map:
+            changes.append({
+                "muni_short": old_ev.get("muni_short"),
+                "muni_full": old_ev.get("muni_full"),
+                "title": old_ev.get("title"),
+                "date": old_ev.get("date"),
+                "time": old_ev.get("time"),
+                "type": "removed",
+            })
+
+    return changes
+
+def update_changes_log(new_changes, path="changes.json", retention_days=45):
+    now = datetime.now(timezone.utc)
+    run_timestamp = now.isoformat()
+
+    existing = []
+    if os.path.exists(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+            if not isinstance(existing, list):
+                existing = []
+        except (json.JSONDecodeError, OSError):
+            existing = []
+
+    cutoff = now - timedelta(days=retention_days)
+    kept = []
+    for entry in existing:
+        try:
+            entry_time = datetime.fromisoformat(entry.get("detected_at", ""))
+        except (ValueError, TypeError):
+            continue
+        if entry_time >= cutoff:
+            kept.append(entry)
+
+    for change in new_changes:
+        kept.append({**change, "detected_at": run_timestamp})
+
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(kept, f, indent=2)
+
+    return len(new_changes)
 
 
 # --- GENERIC CIVICPLUS "calendar.aspx?view=list" SCRAPER ---
@@ -2326,6 +2457,16 @@ def main():
     all_events.extend(scrape_jupiter_inlet_colony())
     all_events.extend(scrape_manalapan())
     all_events.extend(scrape_gulf_stream())
+
+    # Load the PREVIOUS run's output before it gets overwritten, so we can
+    # diff old vs. new and log what changed for the "new records" banner.
+    previous_events = load_previous_events("data.json")
+    changes = diff_events(previous_events, all_events)
+    num_logged = update_changes_log(changes)
+    print(f"[changes] Detected {num_logged} change(s) this run "
+          f"({sum(1 for c in changes if c['type']=='added')} added, "
+          f"{sum(1 for c in changes if c['type']=='modified')} modified, "
+          f"{sum(1 for c in changes if c['type']=='removed')} removed).")
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, indent=2)
