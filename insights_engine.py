@@ -114,9 +114,21 @@ MAX_TOPICS_PER_MEETING = 6
 # rate-limit handling below are built from current documentation, not a
 # live test. Ask for the "[Insights LLM]"-prefixed log lines on the first
 # real run, same as always.
-GEMINI_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "gemini-2.5-flash-lite")
+#
+# 2026-09-06 update: the first real Gemini run confirmed the transport works
+# (auth, endpoint, request/response shape all correct) but hit an HTTP 404 -
+# "gemini-2.5-flash-lite is no longer available to new users... use
+# gemini-3.5-flash-lite instead." Gemini's free-tier model lineup moves
+# faster than expected; default updated accordingly, AND the retry-on-
+# suggested-replacement logic below (see _extract_suggested_replacement_model)
+# now means a future rename like this shouldn't need another round-trip - it
+# self-heals within the same run and logs plainly when it does.
+GEMINI_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "gemini-3.5-flash-lite")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+def _gemini_endpoint():
+    # A function rather than a fixed string, since GEMINI_MODEL can be
+    # updated mid-run by the self-healing retry below.
+    return f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 
 # Free-tier Flash-Lite is documented around 15 requests/minute. Pacing calls
 # at this interval keeps every run comfortably under that ceiling without
@@ -434,12 +446,81 @@ def _heuristic_topics(muni_full, title, text_blob):
     return hits[:MAX_TOPICS_PER_MEETING]
 
 
+def _extract_suggested_replacement_model(err_text):
+    """Gemini's 404 errors for a deprecated/retired model often name the
+    exact replacement inline, e.g. '...no longer available to new users.
+    Please update your code to use models/gemini-3.5-flash-lite for...' -
+    if we can find that, the pipeline can self-heal within the same run
+    instead of needing another round-trip to fix a hardcoded default."""
+    m = re.search(r"use models/([a-zA-Z0-9\-\.]+)", err_text)
+    return m.group(1) if m else None
+
+
+def _call_gemini_once(prompt, title):
+    """Makes exactly one Gemini API call. Returns (topics, None) on success
+    (topics may legitimately be [] - a valid 'nothing specific found'
+    result) or (None, exception) on failure."""
+    global _last_gemini_call_time
+
+    # Pace calls to stay comfortably under the free tier's ~15 requests/
+    # minute cap. Only applies around real API calls, never around cache
+    # hits or heuristic fallbacks.
+    elapsed = time.time() - _last_gemini_call_time
+    if elapsed < GEMINI_MIN_SECONDS_BETWEEN_CALLS:
+        time.sleep(GEMINI_MIN_SECONDS_BETWEEN_CALLS - elapsed)
+
+    try:
+        resp = requests.post(
+            _gemini_endpoint(),
+            params={"key": GEMINI_API_KEY},
+            headers={"Content-Type": "application/json"},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "maxOutputTokens": MAX_LLM_RESPONSE_TOKENS,
+                    "temperature": 0.2,
+                },
+            },
+            timeout=30,
+        )
+        _last_gemini_call_time = time.time()
+
+        if resp.status_code != 200:
+            raise requests.HTTPError(f"HTTP {resp.status_code}: {resp.text[:300]}", response=resp)
+
+        data = resp.json()
+        candidates = data.get("candidates", [])
+        if not candidates:
+            # Gemini can return zero candidates when its safety filters
+            # block a response - treat as "nothing found" rather than a
+            # hard failure, since retrying won't help for this meeting.
+            return [], None
+        content = candidates[0]["content"]["parts"][0]["text"].strip()
+        content = re.sub(r"^```(json)?|```$", "", content.strip(), flags=re.MULTILINE).strip()
+        parsed = json.loads(content)
+        if not isinstance(parsed, list):
+            raise ValueError("LLM did not return a JSON array")
+
+        topics = []
+        for item in parsed[:MAX_TOPICS_PER_MEETING]:
+            if not isinstance(item, dict) or "topic_title" not in item:
+                continue
+            topics.append({
+                "topic_title": item.get("topic_title", title)[:200],
+                "category": item.get("category", FALLBACK_CATEGORY),
+                "description": item.get("description", "")[:500],
+                "method": "llm",
+            })
+        return topics, None  # topics may legitimately be [] - not a failure
+    except Exception as e:
+        _last_gemini_call_time = time.time()
+        return None, e
+
+
 def _llm_topics(muni_full, title, date, text_blob):
-    global _gemini_unavailable, _last_gemini_call_time
+    global _gemini_unavailable, GEMINI_MODEL
     if _gemini_unavailable:
         return None  # already know this run can't use the LLM - don't waste a call finding out again
-
-    categories = ", ".join(TOPIC_TAXONOMY.keys())
 
     if not text_blob:
         # No real document text to ground a specific finding in - per user
@@ -452,6 +533,7 @@ def _llm_topics(muni_full, title, date, text_blob):
         # since we never make a network call for it.
         return []
 
+    categories = ", ".join(TOPIC_TAXONOMY.keys())
     doc_excerpt = text_blob[:MAX_LLM_DOC_CHARS]
     prompt = f"""You are extracting SPECIFIC, NAMEABLE agenda items from a public government meeting document, for the purpose of detecting when the SAME real-world matter comes up again in a later meeting (same city or a different one).
 
@@ -478,83 +560,53 @@ If nothing in the excerpt meets these rules, return an empty JSON array: []
 Respond with ONLY a JSON array, no other text, in this exact shape:
 [{{"topic_title": "specific identifier or subject", "category": "one of the categories above", "description": "1-2 sentence factual description grounded in the excerpt"}}]"""
 
-    # Pace calls to stay comfortably under the free tier's ~15 requests/minute
-    # cap. Only applies around real API calls, never around cache hits or
-    # heuristic fallbacks.
-    elapsed = time.time() - _last_gemini_call_time
-    if elapsed < GEMINI_MIN_SECONDS_BETWEEN_CALLS:
-        time.sleep(GEMINI_MIN_SECONDS_BETWEEN_CALLS - elapsed)
+    topics, err = _call_gemini_once(prompt, title)
+    if err is None:
+        return topics
 
-    try:
-        resp = requests.post(
-            GEMINI_ENDPOINT,
-            params={"key": GEMINI_API_KEY},
-            headers={"Content-Type": "application/json"},
-            json={
-                "contents": [{"parts": [{"text": prompt}]}],
-                "generationConfig": {
-                    "maxOutputTokens": MAX_LLM_RESPONSE_TOKENS,
-                    "temperature": 0.2,
-                },
-            },
-            timeout=30,
-        )
-        _last_gemini_call_time = time.time()
+    err_text = str(err)
+    status_code = getattr(getattr(err, "response", None), "status_code", None)
 
-        if resp.status_code != 200:
-            raise requests.HTTPError(f"HTTP {resp.status_code}: {resp.text[:300]}", response=resp)
+    # Self-heal once: Gemini's own 404 for a deprecated model often names
+    # the exact replacement inline (this happened for real on 2026-09-06 -
+    # gemini-2.5-flash-lite was retired mid-project and the error message
+    # named gemini-3.5-flash-lite as the fix). Try the suggested model
+    # immediately rather than failing this whole run over a stale default.
+    if status_code == 404:
+        replacement = _extract_suggested_replacement_model(err_text)
+        if replacement and replacement != GEMINI_MODEL:
+            print(f"[Insights LLM] Model '{GEMINI_MODEL}' appears deprecated; Gemini's own "
+                  f"error suggested '{replacement}' - switching to it automatically for the "
+                  f"rest of this run. Consider updating INSIGHTS_LLM_MODEL to match permanently.")
+            GEMINI_MODEL = replacement
+            topics, err = _call_gemini_once(prompt, title)
+            if err is None:
+                return topics
+            err_text = str(err)
+            status_code = getattr(getattr(err, "response", None), "status_code", None)
 
-        data = resp.json()
-        candidates = data.get("candidates", [])
-        if not candidates:
-            # Gemini can return zero candidates when its safety filters
-            # block a response - treat as "nothing found" rather than a
-            # hard failure, since retrying won't help for this meeting.
-            return []
-        content = candidates[0]["content"]["parts"][0]["text"].strip()
-        content = re.sub(r"^```(json)?|```$", "", content.strip(), flags=re.MULTILINE).strip()
-        parsed = json.loads(content)
-        if not isinstance(parsed, list):
-            raise ValueError("LLM did not return a JSON array")
+    is_quota_issue = status_code == 429 or "RESOURCE_EXHAUSTED" in err_text
+    is_auth_or_config_issue = status_code in (400, 403, 404)
 
-        topics = []
-        for item in parsed[:MAX_TOPICS_PER_MEETING]:
-            if not isinstance(item, dict) or "topic_title" not in item:
-                continue
-            topics.append({
-                "topic_title": item.get("topic_title", title)[:200],
-                "category": item.get("category", FALLBACK_CATEGORY),
-                "description": item.get("description", "")[:500],
-                "method": "llm",
-            })
-        return topics  # may legitimately be [] - "successfully analyzed, nothing specific found" is NOT a failure
-    except Exception as e:
-        _last_gemini_call_time = time.time()
-        err_text = str(e)
-        status_code = getattr(getattr(e, "response", None), "status_code", None)
-
-        is_quota_issue = status_code == 429 or "RESOURCE_EXHAUSTED" in err_text
-        is_auth_or_config_issue = status_code in (400, 403, 404)
-
-        if is_quota_issue:
-            if not _gemini_unavailable:
-                print(f"[Insights LLM] Gemini free-tier quota appears exhausted for today "
-                      f"({err_text[:200]}) - skipping all further LLM calls this run and "
-                      f"falling back to heuristic extraction for every remaining meeting. "
-                      f"This resets daily, so tomorrow's run should have a fresh quota.")
-            _gemini_unavailable = True
-        elif is_auth_or_config_issue:
-            if not _gemini_unavailable:
-                print(f"[Insights LLM] Gemini rejected the request, likely a config problem "
-                      f"(bad API key, or model '{GEMINI_MODEL}' not found/available) "
-                      f"({err_text[:200]}). Skipping all further LLM calls this run and "
-                      f"falling back to heuristic extraction. Check GEMINI_API_KEY and that "
-                      f"the model name matches one listed at https://ai.google.dev/gemini-api/docs/models.")
-            _gemini_unavailable = True
-        else:
-            print(f"[Insights LLM] Extraction failed for {muni_full} "
-                  f"'{title}' ({date}): {e} - falling back to heuristic extraction.")
-        return None
+    if is_quota_issue:
+        if not _gemini_unavailable:
+            print(f"[Insights LLM] Gemini free-tier quota appears exhausted for today "
+                  f"({err_text[:200]}) - skipping all further LLM calls this run and "
+                  f"falling back to heuristic extraction for every remaining meeting. "
+                  f"This resets daily, so tomorrow's run should have a fresh quota.")
+        _gemini_unavailable = True
+    elif is_auth_or_config_issue:
+        if not _gemini_unavailable:
+            print(f"[Insights LLM] Gemini rejected the request, likely a config problem "
+                  f"(bad API key, or model '{GEMINI_MODEL}' not found/available) "
+                  f"({err_text[:200]}). Skipping all further LLM calls this run and "
+                  f"falling back to heuristic extraction. Check GEMINI_API_KEY and that "
+                  f"the model name matches one listed at https://ai.google.dev/gemini-api/docs/models.")
+        _gemini_unavailable = True
+    else:
+        print(f"[Insights LLM] Extraction failed for {muni_full} "
+              f"'{title}' ({date}): {err} - falling back to heuristic extraction.")
+    return None
 
 
 def extract_meeting_topics(event, text_blob):
