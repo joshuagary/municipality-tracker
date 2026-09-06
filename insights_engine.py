@@ -762,11 +762,56 @@ def _build_citation_summary(sorted_entries):
 
 # --- STEP 5: WEB CROSS-REFERENCE (notability check) -------------------------
 
+# Matches "Ordinance No. 4316", "Resolution 2026-014", "Case No. ABC-123",
+# etc. - if the theme's title names a specific identifier like this, a
+# search result only counts as real corroboration if it actually contains
+# that same identifier (not just any page that happens to rank for the
+# query - see the notes on _source_actually_corroborates below).
+_IDENTIFIER_PATTERN = re.compile(
+    r'\b(?:ordinance|resolution|case|permit)\s*(?:no\.?|number|#)?\s*[:#]?\s*([\w-]{2,})',
+    re.I,
+)
+
+
+def _extract_identifier(text):
+    m = _IDENTIFIER_PATTERN.search(text or "")
+    return m.group(1) if m else None
+
+
+def _source_actually_corroborates(theme_title, source):
+    """A search result only counts as genuine corroboration if it's
+    actually ABOUT this specific matter, not just any page Google happened
+    to return for a loosely-constructed query. Google almost never returns
+    zero results for a non-empty query, so 'a result exists' is not a real
+    notability signal on its own - this was confirmed empirically: two
+    separate real runs with very different topic composition (one nearly
+    all heuristic, one mostly LLM-derived) both came back with EXACTLY
+    100% of themes 'corroborated,' which is a strong sign the check wasn't
+    discriminating at all rather than a sign every topic was genuinely
+    notable."""
+    combined = f"{source.get('title', '')} {source.get('snippet', '')}".lower()
+    identifier = _extract_identifier(theme_title)
+    if identifier:
+        # Specific identifier named (e.g. an ordinance number) - require it
+        # to actually appear in the result, not just generic city/category
+        # words.
+        return identifier.lower() in combined
+    # No specific identifier in the theme title - fall back to requiring
+    # meaningful word overlap between the theme and the result, using the
+    # same similarity measure already used for clustering.
+    return _similarity(_normalize_topic_key(theme_title), _normalize_topic_key(combined)) >= 0.3
+
+
 def web_cross_reference(theme, num_results=5):
     if not SERPER_API_KEY:
         return {"checked": False, "corroborated": False, "sources": []}
 
-    muni_hint = theme["municipalities"][0] if theme["municipalities"] else ""
+    # Use the real municipality name, not the internal short code
+    # (e.g. "Riviera Beach", not "RIVBEACH") - the short codes are this
+    # project's own tracker shorthand and hurt search relevance.
+    muni_hint = ""
+    if theme.get("meetings"):
+        muni_hint = theme["meetings"][0].get("muni_full") or ""
     query = f"{theme['theme_title']} {muni_hint} Florida"
     try:
         resp = requests.post(
@@ -780,11 +825,12 @@ def web_cross_reference(theme, num_results=5):
             return {"checked": True, "corroborated": False, "sources": [], "error": f"HTTP {resp.status_code}"}
         data = resp.json()
         organic = data.get("organic", [])[:num_results]
-        sources = [
+        all_sources = [
             {"title": r.get("title"), "link": r.get("link"), "snippet": r.get("snippet")}
             for r in organic
         ]
-        return {"checked": True, "corroborated": len(sources) > 0, "sources": sources}
+        matching_sources = [s for s in all_sources if _source_actually_corroborates(theme["theme_title"], s)]
+        return {"checked": True, "corroborated": len(matching_sources) > 0, "sources": matching_sources}
     except Exception as e:
         print(f"[Insights Search] Serper request failed for query '{query}': {e}")
         return {"checked": True, "corroborated": False, "sources": [], "error": str(e)}
@@ -826,20 +872,24 @@ def compute_confidence(theme, web_result):
 # than shown as a low-value "a meeting happened" card.
 
 def is_insight_worthy(theme):
-    if theme["occurrence_count"] >= 2:
-        return True
-    # Singleton (occurred once): web corroboration can justify it ONLY when
-    # the topic is a specific, LLM-derived finding (e.g. "Ordinance No.
-    # 4316"). A generic heuristic restatement like "City Council Regular
-    # Meeting" will trivially return search results for the city's own
-    # recurring meeting page - that's not corroboration of anything
-    # specific, it's just confirming a city council exists. Without this
-    # guard, EVERY heuristic-only singleton "corroborates" and the filter
-    # does nothing - this is exactly what happened on a real run where an
-    # LLM outage forced all-heuristic extraction and 54/54 candidate themes
-    # came back "corroborated."
+    # Heuristic mode can only ever restate the meeting's own title/category -
+    # it has no way to identify a specific recurring MATTER, only a
+    # recurring MEETING TYPE. Real example that exposed this: "Regular Town
+    # Commission Meeting" clustered across Manalapan and Jupiter Inlet
+    # Colony purely because both towns happen to use nearly identical
+    # boilerplate meeting names - that's not a topic recurring, it's just
+    # two unrelated towns each having a normal meeting. Per explicit user
+    # decision, heuristic-only themes must NEVER qualify as an insight,
+    # regardless of how many times they "recur" or whether they trivially
+    # "corroborate" - only the LLM path can actually name a specific,
+    # identifiable matter (an ordinance, a named project) that legitimately
+    # means something when it reappears.
     if theme.get("all_heuristic", True):
         return False
+    if theme["occurrence_count"] >= 2:
+        return True
+    # Singleton (occurred once, LLM-derived): web corroboration can justify
+    # it (e.g. "Ordinance No. 4316" confirmed by independent coverage).
     return theme["web_notability"].get("corroborated", False)
 
 
@@ -986,10 +1036,18 @@ def generate_insights_output():
     print(f"[Insights] Clustered into {len(themes)} candidate theme(s).")
 
     for theme in themes:
-        web_result = web_cross_reference(theme)
+        if theme.get("all_heuristic"):
+            # An all-heuristic theme can never pass is_insight_worthy() now
+            # (see that function's docstring) - skip the web lookup
+            # entirely rather than spending Serper quota and runtime
+            # confirming something that will be discarded regardless of
+            # the result.
+            web_result = {"checked": False, "corroborated": False, "sources": []}
+        else:
+            web_result = web_cross_reference(theme)
+            time.sleep(0.2)  # gentle pacing against the search API
         theme["web_notability"] = web_result
         theme["confidence"] = compute_confidence(theme, web_result)
-        time.sleep(0.2)  # gentle pacing against the search API
 
     search_checked = sum(1 for t in themes if t["web_notability"].get("checked"))
     search_corroborated = sum(1 for t in themes if t["web_notability"].get("corroborated"))
