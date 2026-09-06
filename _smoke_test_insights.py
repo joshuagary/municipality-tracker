@@ -218,6 +218,31 @@ assert ie._gemini_unavailable is True
 print("Test 17d (404 model-not-found correctly short-circuits further calls) passed.")
 ie._gemini_unavailable = False
 
+# --- Test 17e: self-healing retry when Gemini's 404 names the exact
+# replacement model (this happened for real: gemini-2.5-flash-lite was
+# retired mid-project and the error named gemini-3.5-flash-lite as the fix) ---
+ie.GEMINI_MODEL = "gemini-2.5-flash-lite"  # simulate a stale/deprecated default
+call_log = []
+def _self_heal_mock(*a, **kw):
+    call_log.append(1)
+    if len(call_log) == 1:
+        return FakeGeminiResponse(
+            404,
+            text='{"error": {"code": 404, "message": "This model models/gemini-2.5-flash-lite '
+                 'is no longer available to new users. Please update your code to use '
+                 'models/gemini-3.5-flash-lite for this."}}'
+        )
+    return _gemini_text_response('[{"topic_title": "Resolution No. 99", "category": "Other Governance Matters", "description": "x"}]')
+
+ie.requests.post = _self_heal_mock
+result = ie._llm_topics("Test City", "Some Meeting", "2026-01-01", "some real document text")
+assert result is not None and len(result) == 1 and result[0]["topic_title"] == "Resolution No. 99", result
+assert ie.GEMINI_MODEL == "gemini-3.5-flash-lite", f"Expected auto-switch to the suggested model, got {ie.GEMINI_MODEL}"
+assert ie._gemini_unavailable is False, "A successful self-heal must NOT mark Gemini unavailable"
+assert len(call_log) == 2, "Expected exactly one retry after the self-heal"
+print("Test 17e (self-heals to Gemini's suggested replacement model on a deprecated-model 404) passed.")
+ie._gemini_unavailable = False
+
 # --- Test 13: insight-worthiness filter - the core behavior change requested ---
 noise_theme = {"occurrence_count": 1, "cross_municipality": False, "all_heuristic": True,
                "web_notability": {"checked": True, "corroborated": False, "sources": []}}
