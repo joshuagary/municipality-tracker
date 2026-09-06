@@ -1,7 +1,7 @@
 """Local smoke test - not part of the shipped app. Exercises
 insights_engine's clustering/scoring/history/filtering logic against
 hand-built fixtures, since this sandbox has no network access to test the
-real HF/Serper/live-site calls. Run: python3 _smoke_test_insights.py
+real Gemini/Serper/live-site calls. Run: python3 _smoke_test_insights.py
 """
 import os
 import json
@@ -11,9 +11,9 @@ os.chdir(tempfile.mkdtemp())
 
 import insights_engine as ie
 
-# --- Test 1: heuristic topic extraction (no HF client available) ---
-ie._hf_client_attempted = True
-ie._hf_client = None
+# --- Test 1: heuristic topic extraction (no Gemini key configured) ---
+ie.GEMINI_API_KEY = None
+ie._gemini_checked_available = False
 
 fake_event_1 = {"muni_short": "BOCA", "muni_full": "City of Boca Raton",
                 "title": "Community Redevelopment Agency Meeting", "date": "2026-04-10",
@@ -99,13 +99,11 @@ result = ie.web_cross_reference(themes[0])
 assert result == {"checked": False, "corroborated": False, "sources": []}
 print("Test 8 (search graceful degradation, no key) passed.")
 
-# --- Test 6: get_hf_client gracefully degrades with no token ---
-ie._hf_client_attempted = False
-ie._hf_client = None
-ie.HF_TOKEN = None
-client = ie.get_hf_client()
-assert client is None
-print("Test 9 (LLM graceful degradation, no token) passed.")
+# --- Test 6: Gemini path gracefully degrades with no API key ---
+ie.GEMINI_API_KEY = None
+ie._gemini_checked_available = False
+assert ie.gemini_available() is False
+print("Test 9 (LLM graceful degradation, no key) passed.")
 
 # --- Test 7: topic cache round-trips and only persists LLM-derived results ---
 cache_path = "topic_cache.json"
@@ -135,12 +133,12 @@ pruned = ie.prune_topic_cache({key_llm: llm_topics, "stale|key|here": [{"x": 1}]
 assert key_llm in pruned and "stale|key|here" not in pruned
 print("Test 11 (cache pruning drops aged-out keys) passed.")
 
-# --- Test 9: credits-exhausted flag short-circuits further LLM calls ---
-ie._hf_credits_exhausted = True
-result = ie._llm_topics(object(), "Test City", "Some Meeting", "2026-01-01", "text")
+# --- Test 9: unavailable flag short-circuits further LLM calls ---
+ie._gemini_unavailable = True
+result = ie._llm_topics("Test City", "Some Meeting", "2026-01-01", "text")
 assert result is None
-print("Test 12 (credits-exhausted short-circuit) passed.")
-ie._hf_credits_exhausted = False  # reset for cleanliness
+print("Test 12 (gemini-unavailable short-circuit) passed.")
+ie._gemini_unavailable = False  # reset for cleanliness
 
 # --- Test 10: cancelled meetings are detected and excluded ---
 assert ie.is_cancelled_event("**CANCELED - City Council Regular Meeting") is True
@@ -165,31 +163,37 @@ assert "Will Follow" not in stripped2
 print(f"Test 14b (schedule-note stripping, second phrasing) passed: '{stripped2}'")
 
 # --- Test 12: LLM returning an empty list is a SUCCESS, not a fallback trigger ---
-class FakeChoice:
-    def __init__(self, content):
-        self.message = type("obj", (), {"content": content})
+# Mock requests.post since _llm_topics now calls the Gemini REST API directly
+# rather than going through an SDK client object.
+class FakeGeminiResponse:
+    def __init__(self, status_code, json_body=None, text=""):
+        self.status_code = status_code
+        self._json_body = json_body or {}
+        self.text = text
+    def json(self):
+        return self._json_body
 
-class FakeResponse:
-    def __init__(self, content):
-        self.choices = [FakeChoice(content)]
+def _gemini_text_response(text):
+    return FakeGeminiResponse(200, {"candidates": [{"content": {"parts": [{"text": text}]}}]})
 
-class FakeClient:
-    def __init__(self, content):
-        self._content = content
-    def chat_completion(self, **kwargs):
-        return FakeResponse(self._content)
+ie._gemini_unavailable = False
+ie._last_gemini_call_time = 0.0
+ie.GEMINI_MIN_SECONDS_BETWEEN_CALLS = 0  # don't actually sleep during tests
 
-ie._hf_credits_exhausted = False
-empty_result = ie._llm_topics(FakeClient("[]"), "Test City", "Routine Meeting", "2026-01-01", "Approval of minutes. Adjournment.")
+ie.requests.post = lambda *a, **kw: _gemini_text_response("[]")
+empty_result = ie._llm_topics("Test City", "Routine Meeting", "2026-01-01", "Approval of minutes. Adjournment.")
 assert empty_result == [], f"Expected empty list (success, nothing specific), got {empty_result}"
 print("Test 15 (LLM empty result treated as success, not failure) passed.")
 
-no_doc_result = ie._llm_topics(FakeClient("should never be called"), "Test City", "Some Meeting", "2026-01-01", None)
+ie.requests.post = lambda *a, **kw: (_ for _ in ()).throw(AssertionError("should never be called - no doc text"))
+no_doc_result = ie._llm_topics("Test City", "Some Meeting", "2026-01-01", None)
 assert no_doc_result == [], "No document text should short-circuit to [] without calling the LLM"
 print("Test 16 (no document text -> empty result, no fabricated topic) passed.")
 
+ie.requests.post = lambda *a, **kw: _gemini_text_response(
+    '[{"topic_title": "Ordinance No. 4316", "category": "Other Governance Matters", "description": "Grants a franchise to a utility company."}]'
+)
 real_result = ie._llm_topics(
-    FakeClient('[{"topic_title": "Ordinance No. 4316", "category": "Other Governance Matters", "description": "Grants a franchise to a utility company."}]'),
     "City of Riviera Beach", "City Council Meeting", "2026-08-19",
     "The council considered Ordinance No. 4316 granting a franchise to Florida Public Utilities."
 )
@@ -197,43 +201,22 @@ assert len(real_result) == 1 and real_result[0]["topic_title"] == "Ordinance No.
 assert real_result[0]["method"] == "llm"
 print("Test 17 (specific real LLM extraction parses correctly) passed.")
 
-# --- Test 17b: error classification correctly distinguishes credits-exhausted
-# from model-not-supported (these were conflated in a real run and produced a
-# misleading "credits exhausted" message for what was actually a model/
-# provider routing mismatch) ---
-class FakeHttpError(Exception):
-    def __init__(self, message, status_code):
-        super().__init__(message)
-        self.response = type("Resp", (), {"status_code": status_code})()
-
-class FailingClient:
-    def __init__(self, exc):
-        self._exc = exc
-    def chat_completion(self, **kwargs):
-        raise self._exc
-
-ie._hf_credits_exhausted = False
-ie._hf_model_unsupported = False
-credits_exc = FakeHttpError("Bad request: {'message': 'You have depleted your monthly included credits.'}", 402)
-result = ie._llm_topics(FailingClient(credits_exc), "Test City", "Some Meeting", "2026-01-01", "some real document text")
+# --- Test 17b: error classification correctly distinguishes quota exhaustion
+# from an auth/config problem (bad key or bad model name) ---
+ie._gemini_unavailable = False
+ie.requests.post = lambda *a, **kw: FakeGeminiResponse(429, text="RESOURCE_EXHAUSTED: quota exceeded")
+result = ie._llm_topics("Test City", "Some Meeting", "2026-01-01", "some real document text")
 assert result is None
-assert ie._hf_credits_exhausted is True and ie._hf_model_unsupported is False
-print("Test 17c (real 402 correctly classified as credits-exhausted) passed.")
+assert ie._gemini_unavailable is True
+print("Test 17c (429 quota exhaustion correctly short-circuits further calls) passed.")
 
-ie._hf_credits_exhausted = False
-ie._hf_model_unsupported = False
-model_exc = FakeHttpError("Bad request: {'message': \"The requested model 'X' is not supported by any provider you have enabled.\", 'code': 'model_not_supported'}", 400)
-result = ie._llm_topics(FailingClient(model_exc), "Test City", "Some Meeting", "2026-01-01", "some real document text")
+ie._gemini_unavailable = False
+ie.requests.post = lambda *a, **kw: FakeGeminiResponse(404, text="model not found")
+result = ie._llm_topics("Test City", "Some Meeting", "2026-01-01", "some real document text")
 assert result is None
-assert ie._hf_model_unsupported is True and ie._hf_credits_exhausted is False, (
-    "A 400 model_not_supported error must NOT be misclassified as a 402 credits "
-    "issue - this exact confusion happened on a real run and produced a "
-    "misleading 'credits exhausted' message when the real problem was an "
-    "unsupported model."
-)
-print("Test 17d (400 model_not_supported correctly classified, NOT as credits) passed.")
-ie._hf_credits_exhausted = False
-ie._hf_model_unsupported = False
+assert ie._gemini_unavailable is True
+print("Test 17d (404 model-not-found correctly short-circuits further calls) passed.")
+ie._gemini_unavailable = False
 
 # --- Test 13: insight-worthiness filter - the core behavior change requested ---
 noise_theme = {"occurrence_count": 1, "cross_municipality": False, "all_heuristic": True,
