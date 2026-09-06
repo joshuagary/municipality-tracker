@@ -856,7 +856,7 @@
     },
     {
       "date": "2026-09-06",
-      "generated_at": "2026-09-06T01:37:51.818306+00:00",
+      "generated_at": "2026-09-06T10:15:38.421997+00:00",
       "theme_keys": [
         [
           "Other Governance Matters",
@@ -995,16 +995,16 @@
           "adjustmentboard"
         ],
         [
+          "Budget & Finance",
+          "boardcommissionerscountymeeting"
+        ],
+        [
           "Other Governance Matters",
           "adjustmentboard"
         ],
         [
           "Zoning & Land Use",
           "budgetcommissiontownworkshop"
-        ],
-        [
-          "Budget & Finance",
-          "boardcommissionerscountymeeting"
         ],
         [
           "Community Redevelopment (CRA)",
@@ -1432,6 +1432,17 @@
         },
         {
           "rank": 35,
+          "theme_title": "Board of County Commissioners Meeting",
+          "category": "Budget & Finance",
+          "confidence": 65,
+          "starred": true,
+          "municipalities": [
+            "PBC"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 36,
           "theme_title": "Board of Adjustment",
           "category": "Other Governance Matters",
           "confidence": 60,
@@ -1442,24 +1453,13 @@
           "occurrence_count": 3
         },
         {
-          "rank": 36,
+          "rank": 37,
           "theme_title": "Town Commission Budget Workshop",
           "category": "Zoning & Land Use",
           "confidence": 50,
           "starred": true,
           "municipalities": [
             "JUIC"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 37,
-          "theme_title": "Board of County Commissioners Meeting",
-          "category": "Budget & Finance",
-          "confidence": 50,
-          "starred": true,
-          "municipalities": [
-            "PBC"
           ],
           "occurrence_count": 2
         },

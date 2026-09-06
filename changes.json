@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Regular Meeting",
+    "date": "2026-10-06",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-06T10:09:15.890305+00:00"
+  }
+]
