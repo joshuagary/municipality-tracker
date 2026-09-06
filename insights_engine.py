@@ -112,13 +112,20 @@ MAX_TOPICS_PER_MEETING = 6
 #      via the INSIGHTS_LLM_MODEL env var if a different model fits better.
 
 # Configurable so a model swap never requires touching code - see the
-# "STATUS" note above. The first real run exhausted the free $0.10/month HF
-# credit using a 70B model after only ~100 calls. This default switches to a
-# much smaller, typically far cheaper instruct model to stretch that budget
-# further - UNCONFIRMED against real current provider pricing (couldn't be
-# tested live this session). Override via repo/workflow env var if this
-# model isn't routable, or if you find a cheaper one on your account.
-HF_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "Qwen/Qwen2.5-7B-Instruct")
+# "STATUS" note above. The first attempt (a 70B model) exhausted the free
+# $0.10/month HF credit in ~100 calls. The second attempt
+# (Qwen/Qwen2.5-7B-Instruct) failed differently and immediately: HF returned
+# "not supported by any provider you have enabled" on every call - a
+# model/provider routing mismatch, not a billing issue. Switched to
+# Qwen/Qwen3-32B per Hugging Face's own published guidance for exactly this
+# error (a real HF repo commit replaced an unsupported model with this one
+# specifically for broader Inference Providers compatibility). STILL
+# UNCONFIRMED against this specific account's enabled providers - if it
+# fails too, check https://huggingface.co/settings/inference-providers to
+# see which providers are enabled, open the candidate model's page on
+# huggingface.co and look for its "Inference Providers" panel to see which
+# providers actually serve it, then set INSIGHTS_LLM_MODEL to a match.
+HF_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "Qwen/Qwen3-32B")
 
 SERPER_API_KEY = os.environ.get("SERPER_API_KEY")
 HF_TOKEN = os.environ.get("HF_TOKEN")
@@ -371,10 +378,14 @@ def _extract_pdf_text(pdf_bytes):
 
 _hf_client = None
 _hf_client_attempted = False
-_hf_credits_exhausted = False  # set True the first time HF returns 402 -
+_hf_credits_exhausted = False  # set True on a real 402 (billing credits gone) -
 # once true, every subsequent meeting in this run skips straight to
 # heuristic extraction instead of making (and waiting on) a doomed call.
 # Resets naturally on the next process run (i.e. the next day).
+_hf_model_unsupported = False  # set True when HF returns 400 model_not_supported
+# (the chosen model isn't served by any Inference Provider enabled on this
+# account) - a completely different problem from credits, but the correct
+# response is the same: stop calling the LLM for the rest of this run.
 
 
 def get_hf_client():
@@ -425,9 +436,9 @@ def _heuristic_topics(muni_full, title, text_blob):
 
 
 def _llm_topics(client, muni_full, title, date, text_blob):
-    global _hf_credits_exhausted
-    if _hf_credits_exhausted:
-        return None  # already know this run's credits are gone - don't waste a call finding out again
+    global _hf_credits_exhausted, _hf_model_unsupported
+    if _hf_credits_exhausted or _hf_model_unsupported:
+        return None  # already know this run can't use the LLM - don't waste a call finding out again
 
     categories = ", ".join(TOPIC_TAXONOMY.keys())
 
@@ -491,12 +502,42 @@ Respond with ONLY a JSON array, no other text, in this exact shape:
         return topics  # may legitimately be [] - "successfully analyzed, nothing specific found" is NOT a failure
     except Exception as e:
         err_text = str(e)
-        if "402" in err_text or "Payment Required" in err_text or "depleted" in err_text.lower():
+        # Prefer the actual HTTP status code when the exception exposes one
+        # (huggingface_hub's HfHubHTTPError carries a `.response`) - string-
+        # matching alone previously misclassified a 400 "model not
+        # supported" error as a 402 "credits exhausted" one, since both
+        # error bodies happened to share enough text to confuse a loose
+        # substring check. Status codes don't lie the way truncated error
+        # text can.
+        status_code = getattr(getattr(e, "response", None), "status_code", None)
+
+        is_credits_issue = (
+            status_code == 402
+            or "Payment Required" in err_text
+            or "depleted your monthly included credits" in err_text.lower()
+        )
+        is_model_unsupported = (
+            status_code == 400 and "model_not_supported" in err_text
+        ) or "is not supported by any provider you have enabled" in err_text
+
+        if is_credits_issue:
             if not _hf_credits_exhausted:
                 print(f"[Insights LLM] HF credits appear exhausted ({err_text[:200]}) - "
                       f"skipping all further LLM calls this run and falling back to heuristic "
                       f"extraction for every remaining meeting.")
             _hf_credits_exhausted = True
+        elif is_model_unsupported:
+            if not _hf_model_unsupported:
+                print(f"[Insights LLM] Model '{HF_MODEL}' is not served by any Inference "
+                      f"Provider enabled on this HF account (this is a model/provider "
+                      f"mismatch, NOT a billing or credits issue). Skipping all further LLM "
+                      f"calls this run and falling back to heuristic extraction. To fix: check "
+                      f"https://huggingface.co/settings/inference-providers to see which "
+                      f"providers are enabled, open the model's page on huggingface.co to see "
+                      f"which providers actually serve it (look for the 'Inference Providers' "
+                      f"panel), then set INSIGHTS_LLM_MODEL to a model at least one enabled "
+                      f"provider supports.")
+            _hf_model_unsupported = True
         else:
             print(f"[Insights LLM] Extraction failed for {muni_full} "
                   f"'{title}' ({date}): {e} - falling back to heuristic extraction.")
@@ -625,6 +666,7 @@ def cluster_recurring_themes(topic_entries, similarity_threshold=0.5):
                 "municipalities": municipalities,
                 "cross_municipality": len(municipalities) > 1,
                 "occurrence_count": len(entries_in_cluster),
+                "all_heuristic": all(e.get("method") == "heuristic" for e in entries_in_cluster),
                 "citation_summary": _build_citation_summary(sorted_entries),
                 "meetings": [
                     {
@@ -720,7 +762,21 @@ def compute_confidence(theme, web_result):
 # than shown as a low-value "a meeting happened" card.
 
 def is_insight_worthy(theme):
-    return theme["occurrence_count"] >= 2 or theme["web_notability"].get("corroborated", False)
+    if theme["occurrence_count"] >= 2:
+        return True
+    # Singleton (occurred once): web corroboration can justify it ONLY when
+    # the topic is a specific, LLM-derived finding (e.g. "Ordinance No.
+    # 4316"). A generic heuristic restatement like "City Council Regular
+    # Meeting" will trivially return search results for the city's own
+    # recurring meeting page - that's not corroboration of anything
+    # specific, it's just confirming a city council exists. Without this
+    # guard, EVERY heuristic-only singleton "corroborates" and the filter
+    # does nothing - this is exactly what happened on a real run where an
+    # LLM outage forced all-heuristic extraction and 54/54 candidate themes
+    # came back "corroborated."
+    if theme.get("all_heuristic", True):
+        return False
+    return theme["web_notability"].get("corroborated", False)
 
 
 def assign_reason(theme):
