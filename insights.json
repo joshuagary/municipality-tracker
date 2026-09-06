@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T00:26:40.522533+00:00",
+  "generated_at": "2026-09-06T01:37:51.811042+00:00",
   "lookback_months": 6,
   "historical_meetings_scanned": 254,
   "insights": [
@@ -13,18 +13,10 @@
         "PALMBEACH"
       ],
       "cross_municipality": true,
-      "occurrence_count": 21,
-      "citation_summary": "Previously discussed: Town of Jupiter (2026-08-18), City of Boca Raton (2026-07-28), Town of Jupiter (2026-07-21), Town of Jupiter (2026-07-07), Town of Juno Beach (2026-06-24), Town of Jupiter (2026-06-16), Town of Jupiter (2026-06-02), Town of Jupiter (2026-05-19), City of Boca Raton (2026-05-12), Town of Jupiter (2026-05-05), City of Boca Raton (2026-04-28), Town of Jupiter (2026-04-21), City of Boca Raton (2026-04-14), Town of Palm Beach (2026-04-14), Town of Jupiter (2026-04-07), City of Boca Raton (2026-03-31), City of Boca Raton (2026-03-24), Town of Jupiter (2026-03-17), Town of Jupiter (2026-03-03), Town of Palm Beach (2026-03-03)",
+      "occurrence_count": 20,
+      "all_heuristic": true,
+      "citation_summary": "Previously discussed: City of Boca Raton (2026-07-28), Town of Jupiter (2026-07-21), Town of Jupiter (2026-07-07), Town of Juno Beach (2026-06-24), Town of Jupiter (2026-06-16), Town of Jupiter (2026-06-02), Town of Jupiter (2026-05-19), City of Boca Raton (2026-05-12), Town of Jupiter (2026-05-05), City of Boca Raton (2026-04-28), Town of Jupiter (2026-04-21), City of Boca Raton (2026-04-14), Town of Palm Beach (2026-04-14), Town of Jupiter (2026-04-07), City of Boca Raton (2026-03-31), City of Boca Raton (2026-03-24), Town of Jupiter (2026-03-17), Town of Jupiter (2026-03-03), Town of Palm Beach (2026-03-03)",
       "meetings": [
-        {
-          "muni_short": "BOCA",
-          "muni_full": "City of Boca Raton",
-          "title": "City Council Regular Meeting",
-          "date": "2026-08-25",
-          "link": "https://www.myboca.us/Calendar.aspx?EID=12923&month=8&year=2026&day=5&calType=0",
-          "description": "City Council Regular Meeting (no specific tracked topic keyword matched).",
-          "method": "heuristic"
-        },
         {
           "muni_short": "JUP",
           "muni_full": "Town of Jupiter",
@@ -213,12 +205,12 @@
           {
             "title": "Calendar \u2022 City Council Organizational Meeting",
             "link": "https://myboca.us/Calendar.aspx?EID=12857",
-            "snippet": "City Council Organizational Meeting \u00b7 Tuesday, March 31, 2026 \u00b7 Featured Events \u00b7 Contact Us \u00b7 Community Links \u00b7 Using this Site \u00b7 City of Boca Raton Home Page."
+            "snippet": "City Council Organizational Meeting Tuesday, March 31, 2026 Agendas available online generally the Thursday before a scheduled meeting. (Boca Raton city limits ..."
           },
           {
             "title": "City Meetings",
             "link": "https://www.youtube.com/playlist?list=PL1LiP0tiQOPXqbSknDshfgF59lAxmcA_P",
-            "snippet": "City of Boca Raton - City Council Regular Meeting 08.25.2026. City of Boca Raton Government. 256 views \u2022 Streamed 1 day ago."
+            "snippet": "City of Boca Raton - City Council Regular Meeting 08.25.2026. City of Boca Raton - City Council Organizational Meeting 03.31.2026"
           },
           {
             "title": "City of Boca Raton, FL: Public Meetings New (Videos Feed)",
@@ -228,12 +220,12 @@
           {
             "title": "Calendar \u2022 City Council Organizational Meeting",
             "link": "https://www.myboca.us/Calendar.aspx?EID=5805",
-            "snippet": "Wednesday, March 31, 2021 ... The purpose of the organizational meeting is to recognize outgoing and newly-elected Council Members, as well as ..."
+            "snippet": "Wednesday, March 31, 2021 The purpose of the organizational meeting is to recognize outgoing and newly-elected Council Members, Boca Raton, ..."
           },
           {
             "title": "City of Boca Raton, FL Government",
             "link": "https://www.facebook.com/BocaRatonCity/",
-            "snippet": "Stop by, have some fun and see how a little space can make a big difference! Friday, September 18 | 3:00\u20137:00 PM In front of Sloan's, Mizner Park More info: ..."
+            "snippet": "City Council Regular Meeting 08.25.2026. Public welcome at 6500 Congress Ave. \ud83d\udda5\ufe0f Streaming & agenda"
           }
         ]
       },
@@ -256,6 +248,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 19,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Boynton Beach (2026-08-11), Town of Manalapan (2026-08-11), Town of Jupiter Inlet Colony (2026-08-10), City of Boynton Beach (2026-07-07), City of Boynton Beach (2026-06-16), Town of Jupiter Inlet Colony (2026-06-03), City of Boynton Beach (2026-06-02), City of Delray Beach (2026-06-02), City of Boynton Beach (2026-05-19), City of Delray Beach (2026-05-08), City of Boynton Beach (2026-05-05), City of Boynton Beach (2026-04-21), City of Boynton Beach (2026-04-07), City of Delray Beach (2026-03-31), City of Boynton Beach (2026-03-23), City of Delray Beach (2026-03-13), Town of Manalapan (2026-03-10), City of Boynton Beach (2026-03-03)",
       "meetings": [
         {
@@ -435,29 +428,29 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Agendas & Minutes | Boynton Beach, FL",
-            "link": "https://www.boynton-beach.org/129/Agendas-Minutes",
-            "snippet": "Access easily searchable meeting agendas and minutes for various boards, commissions, and committees. City Commission City Commission Meetings"
-          },
-          {
-            "title": "Meeting Calendar",
+            "title": "Meeting Calendar - Boynton-Beach.org",
             "link": "https://www.boynton-beach.org/calendar.aspx?CID=23",
             "snippet": "City Commission Meeting. September 16, 2026, 6:00 PM. @. City Commission ... City Hall Commission Chambers. 100 E. Ocean Ave.Boynton BeachFL33435. Makes ..."
           },
           {
-            "title": "City of Boynton Beach",
+            "title": "City of Boynton Beach, FL July 14, 2026 Special Commission Meeting",
+            "link": "https://www.youtube.com/watch?v=M7ruYHFHpQI",
+            "snippet": "Discussion of Municipal Affairs. Agenda can be accessed at: https://d3n9y02raazwpg... To contribute \"Public Comments\" to this live broadcast ..."
+          },
+          {
+            "title": "City of Boynton Beach - YouTube",
             "link": "https://www.youtube.com/user/cityofboynton",
-            "snippet": "City Commission Meetings 48:46 December 27, 2023 - City of Boynton Beach Special Commission Meeting City of Boynton Beach 933 views Streamed 2 years ago"
+            "snippet": "History of Boynton Beach Florida. 20K views. 12 years ago \u00b7 City ... December 27, 2023 - City of Boynton Beach Special Commission Meeting. City of ..."
           },
           {
-            "title": "BBCRA BOARD MEETING AGENDAS & MINUTES",
-            "link": "https://www.boyntonbeachcra.com/about-bbcra/meeting-agendas-minutes/bbcra-board-meeting-agendas-minutes",
-            "snippet": "The Boynton Beach CRA Board holds public meetings on the second Tuesday of the month at 6:00 PM in Commission Chambers at City Hall located at 100 E. Ocean ..."
+            "title": "Agendas & Minutes | Boynton Beach, FL",
+            "link": "https://www.boynton-beach.org/129/Agendas-Minutes",
+            "snippet": "Access easily searchable meeting agendas and minutes for various boards, commissions, and committees."
           },
           {
-            "title": "City Commission Meetings",
-            "link": "https://www.youtube.com/playlist?list=PLBk9PjCmoctcCZR6Hh-BbGSnf9-dyhoIv",
-            "snippet": "December 27, 2023 - City of Boynton Beach Special Commission Meeting \u00b7 December 19, 2023 - Boynton Beach City Commission Meeting - GoTo Webinar \u00b7 December 19, ..."
+            "title": "City of Boynton Beach, FL July 7, 2026 Regular Commission Meeting",
+            "link": "https://www.youtube.com/watch?v=kpeoSMmfRdk",
+            "snippet": "Discussion of Municipal Affairs. Agenda can be accessed at: ..."
           }
         ]
       },
@@ -479,6 +472,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 9,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: Town of Juno Beach (2026-07-29), Town of Juno Beach (2026-07-01), Town of Juno Beach (2026-06-03), Town of Jupiter (2026-05-19), Town of Juno Beach (2026-04-15), Town of Juno Beach (2026-04-07), Town of Palm Beach (2026-03-30), Town of Palm Beach (2026-03-04)",
       "meetings": [
         {
@@ -570,22 +564,22 @@
           {
             "title": "Calendar \u2022 Town Council Development Review Meeting",
             "link": "https://www.townofpalmbeach.com/calendar.aspx?EID=3283",
-            "snippet": "Town Council Development Review Meeting \u00b7 Wednesday, March 4, 2026 \u00b7 Contact Us \u00b7 Quick Links \u00b7 Site Links."
+            "snippet": "Town Council Development Review Meeting Wednesday, March 4, 2026 Date: March 4, 360 South County Road P.O. Box 2029 Palm Beach, FL 33480"
           },
           {
             "title": "Public Meetings - Town of Palm Beach, FL",
             "link": "https://palmbeachfl.portal.civicclerk.com/event/46/media",
-            "snippet": "Public Meetings - Town of Palm Beach, FL. Town Council Development Review Meeting - December 10, 2025. Sign In. Meeting Overview Meeting Media"
+            "snippet": "Town Council Development Review Meeting - December 10, 2025. January 14, 2026, Town Council meeting, pending architectural design review."
           },
           {
             "title": "Ongoing Projects in Town | Juno Beach, FL",
             "link": "https://www.juno-beach.fl.us/1271/Ongoing-Projects-in-Town",
-            "snippet": "On April 16th, 2026, the Development Review Committee (DRC) provided its first round of comments on the applicant's application submittal. THE 700'S AT OCEAN ..."
+            "snippet": "Town Council held a public Meeting on September 25th, 2024, and the request was approved with conditions."
           },
           {
             "title": "Juno Beach",
             "link": "https://pbcfllegalnotices.com/juno-beach",
-            "snippet": "A voluntary pre-quote meeting will be held at the Town Center, 340 Ocean Drive, Juno Beach, FL 33408 on Monday, October 28, 2024, at 10:00 a.m. at the Town ..."
+            "snippet": "The public hearing will be held on Wednesday, April 22, 2026 at 5:30 p.m. at Juno Beach Town Center, 340 Ocean Drive, Juno Beach, Florida."
           },
           {
             "title": "Town Council Regular Meeting 10/22/2025 05:00 PM",
@@ -611,6 +605,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 18,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of West Palm Beach (2026-08-17), City of Delray Beach (2026-08-11), City of West Palm Beach (2026-08-03), City of Delray Beach (2026-07-21), City of West Palm Beach (2026-07-20), City of West Palm Beach (2026-07-06), City of West Palm Beach (2026-06-22), City of West Palm Beach (2026-06-08), City of West Palm Beach (2026-05-26), City of Delray Beach (2026-05-26), City of West Palm Beach (2026-05-11), City of West Palm Beach (2026-04-27), City of West Palm Beach (2026-04-13), City of West Palm Beach (2026-03-30), City of Delray Beach (2026-03-26), City of West Palm Beach (2026-03-16), City of West Palm Beach (2026-03-02)",
       "meetings": [
         {
@@ -824,6 +819,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 14,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-08-27), City of Riviera Beach (2026-08-12), City of Delray Beach (2026-07-23), City of Riviera Beach (2026-07-08), City of Riviera Beach (2026-06-10), City of Delray Beach (2026-05-26), City of Riviera Beach (2026-05-21), City of Delray Beach (2026-05-13), City of Riviera Beach (2026-05-13), City of Delray Beach (2026-04-28), City of Riviera Beach (2026-04-22), City of Riviera Beach (2026-03-25), City of Delray Beach (2026-03-24)",
       "meetings": [
         {
@@ -958,24 +954,24 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Delray Beach Community Redevelopment Agency",
+            "title": "Delray Beach Community Redevelopment Agency: Home",
             "link": "https://delraycra.org/",
             "snippet": "Collaborating with our community to foster redevelopment."
           },
           {
-            "title": "Delray Beach Community Redevelopment Agency - Facebook",
+            "title": "Delray Beach Community Redevelopment Agency",
             "link": "https://www.facebook.com/DelrayBeachCRA/",
             "snippet": "Community Redevelopment Agency, Building a better community since 1985! Contact info (561) 276-8640 Posts"
           },
           {
-            "title": "Delray Beach Community Redevelopment Agency | LinkedIn",
-            "link": "https://www.linkedin.com/company/delray-cra",
-            "snippet": "Our mission is to foster and directly assist in the redevelopment of the Community Redevelopment Area in order to eliminate blight, create a sustainable ..."
+            "title": "delraybeachcra",
+            "link": "https://www.instagram.com/delraybeachcra/?hl=en",
+            "snippet": "Suite 201 Delray Beach, FL 33444 \u2026 20 North Swinton Avenue, Delray Beach, FL 33444 Email: tibbsc@mydelraybeach.com | Phone: 561-276-8640"
           },
           {
-            "title": "Delray Beach Community Redevelopment Agency ... - Instagram",
-            "link": "https://www.instagram.com/delraybeachcra/?hl=en",
-            "snippet": "201 Delray Beach, FL 33444 \u2026 20 North Swinton Avenue, Delray Beach, FL 33444 Email: tibbsc@mydelraybeach.com | Phone: 561-276-8640"
+            "title": "Delray Beach Community Redevelopment Agency",
+            "link": "https://www.linkedin.com/company/delray-cra",
+            "snippet": "Our mission is to foster and directly assist in the redevelopment of the Community Redevelopment Area in order to eliminate blight, create a sustainable ..."
           },
           {
             "title": "CRA - Community Redevelopment Agency",
@@ -1004,6 +1000,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 22,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-08-13), Town of Juno Beach (2026-08-03), City of Delray Beach (2026-07-20), City of Boca Raton (2026-07-16), Town of Juno Beach (2026-07-06), City of Delray Beach (2026-06-15), Town of Juno Beach (2026-06-01), City of Delray Beach (2026-05-18), City of Riviera Beach (2026-05-14), City of Boca Raton (2026-05-07), Town of Juno Beach (2026-05-04), City of Delray Beach (2026-04-20), City of Boca Raton (2026-04-16), Town of Palm Beach (2026-04-07), Town of Juno Beach (2026-04-06), City of Riviera Beach (2026-03-26), City of Boca Raton (2026-03-19), City of Delray Beach (2026-03-16), City of Riviera Beach (2026-03-12), City of Boca Raton (2026-03-05), Town of Palm Beach (2026-03-02)",
       "meetings": [
         {
@@ -1212,27 +1209,27 @@
           {
             "title": "Planning & Zoning Board | Boca Raton, FL",
             "link": "https://www.myboca.us/591/Planning-Zoning-Board",
-            "snippet": "Meeting Location. 6500 Building 6500 N Congress Avenue Boca Raton, FL 33487. When. 6:00 p.m. 1st and 3rd Thursday of the month. Meeting Schedule \u00b7 Contact the ..."
+            "snippet": "The meetings are telecast live on Channel 20. Building 6500 N Congress Avenue Boca Raton, FL 33487 When 6:00 p.m. 1st and 3rd Thursday of the month Meeting"
           },
           {
             "title": "Agendas | Boca Raton, FL",
             "link": "https://www.myboca.us/129/Agendas",
-            "snippet": "Planning and Zoning Board Sep 3, 2026 - 06:00 PM Agenda. Regular Meeting * Special Date and Time Sep 8, 2026 - 10:00 AM. Sep 8, 2026 - 10:15 AM"
-          },
-          {
-            "title": "City of Boca Raton, FL: Public Meetings New (Videos Feed)",
-            "link": "https://bocaraton.granicus.com/ViewPublisherRSS.php?view_id=9&mode=podcast",
-            "snippet": "Planning and Zoning Board - Jul 16, 2026 The agenda for Planning and Zoning Board dated Thursday, 16 July 2026 has been archived. Access it here: https:// ..."
+            "snippet": "Upcoming Events ; Planning and Zoning Board, Sep 3, 2026 - 06:00 PM, Agenda ; C.R.A. Regular Meeting * Special Date and Time, Sep 8, 2026 - 10:00 AM, Agenda ; City ..."
           },
           {
             "title": "City Meetings",
             "link": "https://www.youtube.com/playlist?list=PL1LiP0tiQOPXqbSknDshfgF59lAxmcA_P",
-            "snippet": "City of Boca Raton - Planning and Zoning Board Meeting 05.07.2026 views \u2022 Streamed 3 months ago"
+            "snippet": "City of Boca Raton - Planning and Zoning Board Meeting 05.07.2026 City of Boca Raton Government 171 views \u2022 Streamed 3 months ago"
+          },
+          {
+            "title": "City of Boca Raton, FL: Public Meetings New (Videos Feed)",
+            "link": "https://bocaraton.granicus.com/ViewPublisherRSS.php?view_id=9&mode=podcast",
+            "snippet": "The agenda for Planning and Zoning Board dated Thursday, 16 July 2026 has been archived. Access it here: https://bocaraton.granicus.com/MediaPlayer.php?view_id ..."
           },
           {
             "title": "Planning & Zoning Board Meeting on July 28, 2026",
             "link": "http://www.greencovesprings.com/m/newsflash/Home/Detail/350",
-            "snippet": "The Planning and Zoning Board will hold its next meeting on Tuesday, July 28, 2026 at 5:00 PM at City Hall. FL 32043 Phone: 904-297-7500"
+            "snippet": "The Planning and Zoning Board will hold its next meeting on Tuesday, July 28, 2026 at 5:00 PM at City Hall. The agenda and packet are available ..."
           }
         ]
       },
@@ -1254,6 +1251,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 18,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Palm Beach Gardens (2026-08-27), City of Palm Beach Gardens (2026-08-06), City of Westlake (2026-08-04), City of Westlake (2026-08-04), City of Westlake (2026-07-16), City of Westlake (2026-07-14), City of Palm Beach Gardens (2026-07-09), City of Westlake (2026-06-30), City of Palm Beach Gardens (2026-06-04), City of Westlake (2026-06-02), City of Palm Beach Gardens (2026-05-07), City of Westlake (2026-05-05), City of Westlake (2026-04-22), City of Palm Beach Gardens (2026-04-07), City of Westlake (2026-04-07), City of Riviera Beach (2026-03-11), City of Palm Beach Gardens (2026-03-05)",
       "meetings": [
         {
@@ -1444,9 +1442,9 @@
             "snippet": "Public Meetings - Town of Palm Beach, FL \u2022 To find a meeting, select the date from the calendar to the left, enter a date range, or scroll through the list of ..."
           },
           {
-            "title": "City Council Meeting - July 9, 2026 - YouTube",
-            "link": "https://www.youtube.com/watch?v=_Yp063u9Gz8",
-            "snippet": "City Council Meeting - August 27, 2026 (Budget Workshop) \u00b7 New. 11 views ; City Council Meeting - August 6, 2026. City of Palm Beach Gardens \u00b7 24 ..."
+            "title": "Meetings & Agendas",
+            "link": "https://www.wpb.org/Our-City/Meetings-Agendas",
+            "snippet": "Meeting 2026 Tuesday, September 08, 10:00 AM to 12:00 PM Mayor/Commission. This is a public meeting. Board Meeting 09-10-2026 , September 12, 2026 | 08:00 AM ..."
           }
         ]
       },
@@ -1468,6 +1466,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 15,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10), Town of Jupiter Inlet Colony (2026-07-21), Town of Manalapan (2026-07-14), Town of Manalapan (2026-06-23), Town of Jupiter Inlet Colony (2026-06-18), Town of Jupiter Inlet Colony (2026-06-16), Town of Manalapan (2026-05-12), Town of Juno Beach (2026-04-22), Town of Manalapan (2026-04-14), Town of Jupiter Inlet Colony (2026-04-13), Town of Jupiter Inlet Colony (2026-04-13), Town of Juno Beach (2026-03-25), Town of Jupiter Inlet Colony (2026-03-12), Town of Jupiter Inlet Colony (2026-03-09)",
       "meetings": [
         {
@@ -1611,9 +1610,9 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Town Commission | Lauderdale-By-The-Sea, FL",
-            "link": "https://www.lauderdalebythesea-fl.gov/187/Town-Commission",
-            "snippet": "Regular Meetings 6:30 P.M. 2nd and 4th Tuesdays of every month with a few exceptions. Jarvis Hall 4505 N Ocean Drive Lauderdale-By-The-Sea, FL 33308"
+            "title": "Commission Meetings | Hollywood, FL - Official Website",
+            "link": "https://www.hollywoodfl.org/142/Commission-Meetings",
+            "snippet": "The City Commission meets on the first and third Wednesday of each month, Regular City Commission Meeting (1:00 PM) May 20, 2026 \u2013 Regular City Commission ..."
           },
           {
             "title": "City Commission Regular Meeting | Wildwood Florida",
@@ -1621,19 +1620,19 @@
             "snippet": "Generally, meetings are held each month on the second Monday at 9:00am and the fourth Monday at 7:00pm. Per State Statute, both meetings in September must be ..."
           },
           {
-            "title": "Commission Meetings | Hollywood, FL - Official Website",
-            "link": "https://www.hollywoodfl.org/142/Commission-Meetings",
-            "snippet": "The City Commission meets on the first and third Wednesday of each month, excluding August and legal holidays. Meetings are held in the City Commission Chambers ..."
+            "title": "Meeting Agendas & Minutes, Legal Advertisements",
+            "link": "https://www.townofsurfsidefl.gov/departments-services/town-clerk/public-records/commission-agendas",
+            "snippet": "Upcoming Events \u00b7 Agenda. Live Video Link. Agenda Packet \u00b7 Town Commission. September 3, 2026 - 07:00 PM. Agenda \u00b7 Packet \u00b7 Town Commission Budget Hearing."
           },
           {
-            "title": "View 4/9 City Commission meeting Action Summary, Full Agenda and ...",
-            "link": "https://www.facebook.com/CoconutCreekGov/posts/view-49-city-commission-meeting-action-summary-full-agenda-and-media-httpstinyur/1384084703754894/",
+            "title": "View 4/9 City Commission meeting Action Summary, Full ...",
+            "link": "https://www.facebook.com/CoconutCreekGov/posts/view-49-city-commission-meeting-action-summary-full-agenda-and-media/1384084703754894/",
             "snippet": "The Regular Commission meeting will be held in the City Commission Chambers at City Hall beginning at 6:30pm, all are welcome. CivicClerk."
           },
           {
-            "title": "Town Commission Meetings | Jupiter Inlet Colony, FL",
-            "link": "https://www.jupiterinletcolony.gov/201/Town-Commission-Meetings",
-            "snippet": "Town Commission meetings are held at the Town Administration building at 50 Colony Road \u2026 244 Ocean Drive, on the second Monday of each month at 6 pm."
+            "title": "Commission Meeting Agenda Information",
+            "link": "https://www.fortlauderdale.gov/Government/City-Commission-Meetings/Commission-Meeting-Agenda-Information",
+            "snippet": "Commission meetings are held on the first and third Tuesday of each month, with the exception of the Summer Recess. Periodically, Commission meetings may be ..."
           }
         ]
       },
@@ -1656,6 +1655,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 13,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-08-26), City of Riviera Beach (2026-08-11), City of Palm Beach Gardens (2026-08-06), City of Westlake (2026-08-04), City of Westlake (2026-07-14), City of Palm Beach Gardens (2026-07-09), City of Westlake (2026-06-30), City of Boca Raton (2026-06-18), City of Palm Beach Gardens (2026-06-04), City of Palm Beach Gardens (2026-05-07), City of Palm Beach Gardens (2026-04-07), City of Palm Beach Gardens (2026-03-05)",
       "meetings": [
         {
@@ -1791,19 +1791,19 @@
             "snippet": "City of Boca Raton - Council Special Meeting - Budget Workshop 06.18.2026 ... City Of Boca Raton - CRA & City Council Workshop Meetings 04.13.2026. City of ..."
           },
           {
-            "title": "The public is invited to attend these upcoming Special City ...",
-            "link": "https://www.facebook.com/cityofsib/posts/the-public-is-invited-to-attend-these-upcoming-special-city-commission-meetings-/1388094603491850/",
-            "snippet": "Operating Budget will be held on Wednesday, September 12th beginning at 5:30 p.m. at City Hall, 2600 Hollywood Boulevard, Room 219."
-          },
-          {
-            "title": "A Special City Council Workshop meeting will be held on ...",
-            "link": "https://www.instagram.com/p/DcjZk8xvwYz/",
-            "snippet": "The City Council Budget Meeting #6 will be held Tuesday, August 25, 2026, at 4:00 PM in the City Hall Council Chambers located at 1350 Baldwin ..."
-          },
-          {
             "title": "FY27 Special Budget Workshop",
             "link": "https://www.nbfl.gov/city-council/events/26886",
             "snippet": "Special Budget Workshop meeting of the City Council of the City of Neptune Beach, Florida, will be held on Monday, August 31, 2026, at 4:00 p.m. (904) 270-2400"
+          },
+          {
+            "title": "City Council Budget Workshop on Tuesday, July 28, 2026 ...",
+            "link": "https://www.palmcoast.gov/newsroom/home/details/city-council-budget-workshop-on-tuesday-july-28-2026-at-9-00-a-m",
+            "snippet": "City Council Budget Workshop on Tuesday, July 28, 2026, at 9:00 a.m. Friday, July 24, 2026 The Palm Coast City Council meets regularly to ..."
+          },
+          {
+            "title": "The public is invited to attend these upcoming Special City ...",
+            "link": "https://www.facebook.com/cityofsib/posts/the-public-is-invited-to-attend-these-upcoming-special-city-commission-meetings-/1388094603491850/",
+            "snippet": "Operating Budget will be held on Wednesday, September 12th beginning at 5:30 p.m. at City Hall, 2600 Hollywood Boulevard, Room 219."
           }
         ]
       },
@@ -1825,6 +1825,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 6,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-19), Town of Jupiter (2026-08-13), Town of Juno Beach (2026-07-15), Town of Jupiter (2026-06-18), Town of Jupiter Inlet Colony (2026-06-16)",
       "meetings": [
         {
@@ -1887,29 +1888,29 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Town Council Workshop - 2nd Budget Workshop (General ...",
+            "title": "Town Council Workshop - 2nd Budget Workshop (General Fund)",
             "link": "https://www.cutlerbay-fl.gov/town-council/page/town-council-workshop-2nd-budget-workshop-general-fund",
-            "snippet": "2nd Budget Workshop (General Fund) Thursday, July 30, 2026 - 6:00pm \u2026 s located at 10720 Caribbean Boulevard, Cutler Bay, Florida 33189. 868 2539 1041 (786) ..."
+            "snippet": "2nd Budget Workshop (General Fund) Thursday, July 30, 2026 - 6:00pm \u2026 s located at 10720 Caribbean Boulevard, Cutler Bay, Florida 33189. (786) 635-1003."
           },
           {
-            "title": "FY 2027 Budget Workshop \ud83d\udcb0 Join us Thursday, August 13 ...",
+            "title": "Town Council Second Budget Workshop (General Fund) - YouTube",
+            "link": "https://www.youtube.com/watch?v=JnSG7xAJJ-0",
+            "snippet": "Town Council Second Budget Workshop (General Fund). @TownofCutlerBay1No likes52 viewsStreamed 3 weeks ago"
+          },
+          {
+            "title": "FY 2027 Budget Workshop Join us Thursday, August 13, at 6:30 p.m. in ...",
             "link": "https://www.instagram.com/p/DbTkv1jmv4g/",
             "snippet": "Join us Thursday, August 13, at 6:30 p.m. in Council Chambers (210 Military Trail) as the Town Council discusses and reviews the proposed Fiscal ..."
           },
           {
-            "title": "Calendar \u2022 Town Council Budget Workshop",
-            "link": "https://www.bayharborislands-fl.gov/Calendar.aspx?EID=2073",
-            "snippet": "Town Council Budget Workshop Tuesday, June 18, 2024. Time: 6:00 PM - 7:00 PM. Address: 1175 95th Street Rooms 2 & 3 Bay Harbor Islands, FL 33154 \u2026 at 6:00 p.m."
+            "title": "Calendar \u2022 Town Council Second Budget Workshop - Davie-FL.gov",
+            "link": "https://www.davie-fl.gov/Calendar.aspx?EID=2027",
+            "snippet": "Second Budget Workshop Wednesday, July 22, 2026 at 4:00 p.m. at the Davie Pine Island Park Multipurpose Center - Cypress Room (3801 S Pine Island Road, Davie, ..."
           },
           {
-            "title": "Budget Workshop - Town Council",
-            "link": "https://www.townoflcs.gov/towncouncil/meeting/budget-workshop-2",
-            "snippet": "Tuesday, July 12, 2022, 6:30 PM. The Town of Lake Clarke Shores will hold a Budget Workshop, a Community Redevelopment Agency Meeting, and a ..."
-          },
-          {
-            "title": "BUDGET WORKSHOP SCHEDULE UPDATE Please note ...",
-            "link": "https://www.facebook.com/cityofmulberryfl/posts/budget-workshop-schedule-updateplease-note-the-updated-budget-workshop-scheduleb/1528466385982810/",
-            "snippet": "Budget Workshop #2 has been updated to Friday, July 24th at 10:00am. This is an important opportunity to learn about the City's proposed budget ..."
+            "title": "Town of Jupiter - Government on Reels - Facebook",
+            "link": "https://www.facebook.com/TownofJupiter/videos/cra-meeting-fy-2027-budget-workshop-08-13-2026/1374446747967514/",
+            "snippet": "CRA Meeting & FY 2027 Budget Workshop | 08 ... City Council Budget Work Session: August 19, 2026. 00:30. City ..."
           }
         ]
       },
@@ -1932,6 +1933,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 28,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of West Palm Beach (2026-08-31), City of West Palm Beach (2026-08-17), City of Delray Beach (2026-08-11), City of West Palm Beach (2026-08-03), City of Delray Beach (2026-07-21), City of West Palm Beach (2026-07-20), City of Delray Beach (2026-07-14), Town of Manalapan (2026-07-14), City of West Palm Beach (2026-07-06), Town of Manalapan (2026-06-23), City of West Palm Beach (2026-06-22), City of Delray Beach (2026-06-09), City of West Palm Beach (2026-06-08), City of West Palm Beach (2026-05-26), City of Delray Beach (2026-05-19), City of West Palm Beach (2026-05-11), City of West Palm Beach (2026-04-27), City of Delray Beach (2026-04-21), Town of Manalapan (2026-04-14), City of West Palm Beach (2026-04-13), Town of Jupiter Inlet Colony (2026-04-13), City of Delray Beach (2026-04-07), City of West Palm Beach (2026-03-30), City of West Palm Beach (2026-03-16), City of Delray Beach (2026-03-09), Town of Jupiter Inlet Colony (2026-03-09), City of West Palm Beach (2026-03-02)",
       "meetings": [
         {
@@ -2235,6 +2237,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 6,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-08-27), City of Riviera Beach (2026-08-12), City of Delray Beach (2026-05-26), City of Delray Beach (2026-04-28), City of Riviera Beach (2026-04-22)",
       "meetings": [
         {
@@ -2297,24 +2300,24 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Delray Beach Community Redevelopment Agency",
+            "title": "Delray Beach Community Redevelopment Agency: Home",
             "link": "https://delraycra.org/",
             "snippet": "Collaborating with our community to foster redevelopment."
           },
           {
-            "title": "Delray Beach Community Redevelopment Agency - Facebook",
+            "title": "Delray Beach Community Redevelopment Agency",
             "link": "https://www.facebook.com/DelrayBeachCRA/",
             "snippet": "Community Redevelopment Agency, Building a better community since 1985! Contact info (561) 276-8640 Posts"
           },
           {
-            "title": "Delray Beach Community Redevelopment Agency ... - Instagram",
-            "link": "https://www.instagram.com/delraybeachcra/?hl=en",
-            "snippet": "Suite 201 Delray Beach, FL 33444 \u2026 20 North Swinton Avenue, Delray Beach, FL 33444 Email: tibbsc@mydelraybeach.com | Phone: 561-276-8640"
-          },
-          {
-            "title": "Delray Beach Community Redevelopment Agency | LinkedIn",
+            "title": "Delray Beach Community Redevelopment Agency",
             "link": "https://www.linkedin.com/company/delray-cra",
             "snippet": "Our mission is to foster and directly assist in the redevelopment of the Community Redevelopment Area in order to eliminate blight, create a sustainable ..."
+          },
+          {
+            "title": "Delray Beach Community Redevelopment Agency ...",
+            "link": "https://www.instagram.com/delraybeachcra/?hl=en",
+            "snippet": "98 NW 5th Avenue Suite 201 Delray Beach, FL 33444 \u2026 20 North Swinton Avenue, Delray Beach, FL 33444 Email: tibbsc@mydelraybeach.com | Phone: 561-276-8640"
           },
           {
             "title": "CRA - Community Redevelopment Agency",
@@ -2342,6 +2345,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 15,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Westlake (2026-09-01), Town of Juno Beach (2026-08-26), City of Riviera Beach (2026-08-19), Town of Jupiter Inlet Colony (2026-08-10), City of Riviera Beach (2026-08-05), Town of Juno Beach (2026-07-22), City of Westlake (2026-07-16), Town of Jupiter Inlet Colony (2026-07-13), Town of Jupiter Inlet Colony (2026-06-16), Town of Juno Beach (2026-05-20), Town of Jupiter Inlet Colony (2026-05-11), Town of Juno Beach (2026-04-22), Town of Jupiter Inlet Colony (2026-04-13), City of Riviera Beach (2026-03-04)",
       "meetings": [
         {
@@ -2485,9 +2489,9 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Town Commission | Lauderdale-By-The-Sea, FL",
-            "link": "https://www.lauderdalebythesea-fl.gov/187/Town-Commission",
-            "snippet": "Regular Meetings 6:30 P.M. 2nd and 4th Tuesdays of every month with a few exceptions. Jarvis Hall 4505 N Ocean Drive Lauderdale-By-The-Sea, FL 33308"
+            "title": "2026 Public Meeting Agendas & Packet Information - Sewall's Point",
+            "link": "https://www.sewallspoint.org/government/town-clerk/meeting-agendas-recordings",
+            "snippet": "Upcoming Events ; Town Commission Regular, Sep 3, 2026 - 05:05 PM, Agenda ; Special Magistrate Hearing, Sep 10, 2026 - 10:00 AM, Agenda ; Town Commission Regular ..."
           },
           {
             "title": "City Commission Regular Meeting | Wildwood Florida",
@@ -2495,19 +2499,19 @@
             "snippet": "Generally, meetings are held each month on the second Monday at 9:00am and the fourth Monday at 7:00pm. Per State Statute, both meetings in September must be ..."
           },
           {
-            "title": "Town Commission Meetings | Jupiter Inlet Colony, FL",
-            "link": "https://www.jupiterinletcolony.gov/201/Town-Commission-Meetings",
-            "snippet": "Town Commission meetings are held at the Town Administration building at 50 Colony Road \u2026 244 Ocean Drive, on the second Monday of each month at 6 pm."
+            "title": "AGENDA REGULAR COMMISSION MEETING - Jun 14 2023 - YouTube",
+            "link": "https://www.youtube.com/watch?v=le8o5lOSHvw",
+            "snippet": "Go to channel The Town of Pembroke Park, Florida \u00b7 Workshop Commission ... City of Opa-locka | Regular Commission Meeting | September 11, 2024."
           },
           {
-            "title": "View 4/9 City Commission meeting Action Summary, Full ...",
-            "link": "https://www.facebook.com/CoconutCreekGov/posts/view-49-city-commission-meeting-action-summary-full-agenda-and-media/1384084703754894/",
+            "title": "Town Commission | Lauderdale-By-The-Sea, FL",
+            "link": "https://www.lauderdalebythesea-fl.gov/187/Town-Commission",
+            "snippet": "Regular Meetings 6:30 P.M. 2nd and 4th Tuesdays of every month with a few exceptions. Jarvis Hall 4505 N Ocean Drive Lauderdale-By-The-Sea, FL 33308"
+          },
+          {
+            "title": "View 4/9 City Commission meeting Action Summary, Full Agenda and ...",
+            "link": "https://www.facebook.com/CoconutCreekGov/posts/view-49-city-commission-meeting-action-summary-full-agenda-and-media-httpstinyur/1384084703754894/",
             "snippet": "The Regular Commission meeting will be held in the City Commission Chambers at City Hall beginning at 6:30pm, all are welcome. CivicClerk."
-          },
-          {
-            "title": "Town Commission | Lady Lake, FL",
-            "link": "https://www.ladylakefl.gov/309/Town-Commission",
-            "snippet": "Regular Town Commission meetings are typically held twice a month on the first and third Mondays at 6 p.m. to conduct business. Agendas are available prior to ..."
           }
         ]
       },
@@ -2528,6 +2532,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 16,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of West Palm Beach (2026-08-17), City of West Palm Beach (2026-08-03), City of West Palm Beach (2026-07-20), City of Delray Beach (2026-07-14), City of West Palm Beach (2026-07-06), City of West Palm Beach (2026-06-22), City of West Palm Beach (2026-06-08), City of West Palm Beach (2026-05-26), City of Delray Beach (2026-05-19), City of West Palm Beach (2026-05-11), City of West Palm Beach (2026-04-27), City of West Palm Beach (2026-04-13), City of West Palm Beach (2026-03-30), City of West Palm Beach (2026-03-16), City of West Palm Beach (2026-03-02)",
       "meetings": [
         {
@@ -2695,9 +2700,9 @@
             "snippet": "Commission Chambers Delray Beach City Hall or Live Stream: https://www.youtube.com/@cityofdelraybeachfl/streams. Regular Meeting at 4:00 PM, Meeting details ..."
           },
           {
-            "title": "City Commission Meetings",
-            "link": "https://www.youtube.com/playlist?list=PLM8ZhvmZb4ualSU-I-QcTHlwRd9DOJMeu",
-            "snippet": "City Commission meetings are held on the first and third Tuesdays of each month. All Commission meetings are held at City Hall and begin at 4:00 p.m. ..."
+            "title": "City of Delray Beach",
+            "link": "https://www.youtube.com/channel/UCc2j0JhnR8Hx0Hj13RhCJag/streams",
+            "snippet": "Special Magistrate Meeting 08-20-2026 01:30 PM \u00b7 City Commission Regular Meeting 08-18-2026 05:00 PM \u00b7 City Commission Workshop Meeting 08-18-2026 04:00 PM \u00b7 PZ ..."
           },
           {
             "title": "Delray Beach City Commission Budget Workshop Meeting ...",
@@ -2723,6 +2728,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 4,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Delray Beach (2026-07-23), City of Riviera Beach (2026-07-08), City of Delray Beach (2026-04-28)",
       "meetings": [
         {
@@ -2774,12 +2780,12 @@
           {
             "title": "Delray Beach Community Redevelopment Agency",
             "link": "https://www.facebook.com/DelrayBeachCRA/",
-            "snippet": "Community Redevelopment Agency, Building a better community since 1985! Contact info (561) 276-8640 Posts"
+            "snippet": "Delray Beach Community Redevelopment Agency ; Details \u00b7 100% recommend (6 reviews) ; Links \u00b7 delraycra.org ; Contact info \u00b7 (561) 276-8640."
           },
           {
-            "title": "delraybeachcra",
+            "title": "Delray Beach Community Redevelopment Agency ...",
             "link": "https://www.instagram.com/delraybeachcra/?hl=en",
-            "snippet": "Suite 201 Delray Beach, FL 33444 \u2026 20 North Swinton Avenue, Delray Beach, FL 33444 Email: tibbsc@mydelraybeach.com | Phone: 561-276-8640"
+            "snippet": "... Delray Beach Community Redevelopment Agency 20 North Swinton Avenue, Delray Beach, FL 33444 Email: tibbsc@mydelraybeach.com | Phone: 561-276-8640 ..."
           },
           {
             "title": "Delray Beach Community Redevelopment Agency",
@@ -2810,6 +2816,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 3,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Westlake (2026-08-04), City of Westlake (2026-04-07)",
       "meetings": [
         {
@@ -2845,29 +2852,29 @@
         "corroborated": true,
         "sources": [
           {
+            "title": "7/27/26 Local Planning Agency Meeting - YouTube",
+            "link": "https://m.youtube.com/watch?v=KbisDw_S7xs",
+            "snippet": "This is a 7-member resident advisory board whose members have the responsibility to propose and review changes to the Comprehensive Plan ..."
+          },
+          {
             "title": "Local Planning Agency Information | Martin County Florida",
             "link": "https://www.martin.fl.us/LPA",
-            "snippet": "From this page you can access Local Planning Agency (LPA) information such as meeting dates and forms, as well as meeting agendas, packets and minutes in ..."
-          },
-          {
-            "title": "Local Planning Agency",
-            "link": "https://pinellas.gov/event/local-planning-agency-42/",
-            "snippet": "Local Planning Agency September 11, 2024, 9:00 am - 11:00 am \u30fb broadcast on PCCTV on Spectrum Channel (727) 464-3583 breber@pinellas.gov \u30fb call (727) 464- ..."
-          },
-          {
-            "title": "Planning and Zoning Boards & Agencies",
-            "link": "https://www.sjcfl.us/planning-and-zoning-boards-and-agencies-2/",
-            "snippet": "All planning board minutes, agendas, and meeting schedules. Planning and Zoning Agency meetings are held on the first and third Thursdays of each. Meeting ..."
-          },
-          {
-            "title": "Planning Commission",
-            "link": "https://www.osceola.org/Government/Board-of-County-Commissioners/Citizen-Advisory-Boards-and-Committees/BOCC-Committees/Planning-Commission",
-            "snippet": "Meetings are held the first Thursday of each month in the Commission Chambers (4th Floor), 1 Courthouse Square, Kissimmee, FL, 34741. Office 407-742-0200 ..."
+            "snippet": "From this page you can access Local Planning Agency (LPA) information such as meeting dates and forms, as well as meeting agendas, packets and minutes in our."
           },
           {
             "title": "Local Planning Agency Board | Oviedo, FL",
             "link": "https://www.cityofoviedo.net/312/Local-Planning-Agency-Board",
             "snippet": "Meetings. 6:30 p.m.; 1st and 3rd Tuesday of each month; City Hall Council Chambers. A meeting will not be held if there are no items required for Local ..."
+          },
+          {
+            "title": "Local Planning Agency Meeting - 2 April, 2026 - YouTube",
+            "link": "https://www.youtube.com/watch?v=m4PD6ENiorg",
+            "snippet": "Local Planning Agency Meeting - 2 April, 2026. 65 views \u00b7 Streamed 1 month ago ...more. City of Eustis, Florida - America's Hometown."
+          },
+          {
+            "title": "Local Planning Agency - Pinellas County",
+            "link": "https://pinellas.gov/event/local-planning-agency-42/",
+            "snippet": "This event has passed. Local Planning Agency September 11, 2024, 9:00 am - 11:00 am. This meeting will be broadcast on PCCTV on Spectrum Channel (727) 464-3583 ..."
           }
         ]
       },
@@ -2888,6 +2895,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 3,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-03-26), City of Riviera Beach (2026-03-18)",
       "meetings": [
         {
@@ -2928,14 +2936,14 @@
             "snippet": "Town of Jupiter Community Calendar! Workshop When: 6:00 PM Location: Town Hall Council \u2026 6:30 PM Location: Town Hall. Jupiter, FL 33458 Phone: 561-746-5134"
           },
           {
-            "title": "Tonight's Town Council meeting can be viewed on the ... - Facebook",
-            "link": "https://www.facebook.com/TownofJupiter/posts/tonights-town-council-meeting-can-be-viewed-on-the-towns-website-at-httpshubslyq/1359968992835711/",
-            "snippet": "Tonight's Town Council Workshop is scheduled to start at 6:00 pm. To view the workshop live, please visit www.jupiter.fl. us/1218/Live ..."
-          },
-          {
             "title": "FY 2027 Budget Workshop Join us Thursday, August 13, at 6:30 p.m. in ...",
             "link": "https://www.instagram.com/p/DbTkv1jmv4g/",
             "snippet": "Join us Thursday, August 13, at 6:30 p.m. in Council Chambers (210 Military Trail) as the Town Council discusses and reviews the proposed ..."
+          },
+          {
+            "title": "Tonight's Town Council meeting can be viewed on the ... - Facebook",
+            "link": "https://www.facebook.com/TownofJupiter/posts/tonights-town-council-meeting-can-be-viewed-on-the-towns-website-at-httpshubslyq/1359968992835711/",
+            "snippet": "Tonight's Town Council Workshop is scheduled to start at 6:00 pm. To view the workshop live, please visit www.jupiter.fl. us/1218/Live ..."
           },
           {
             "title": "SwagitAdmin",
@@ -2966,6 +2974,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 3,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-05-06), City of Westlake (2026-04-29)",
       "meetings": [
         {
@@ -3001,29 +3010,29 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "A City Council Meeting will be held this Wednesday ...",
+            "title": "A City Council Meeting will be held this Wednesday, August 19, at 4:00 ...",
             "link": "https://www.facebook.com/CityofCapeCoral/posts/a-city-council-meeting-will-be-held-this-wednesday-august-19-at-400-pm-in-counci/1475139527977636/",
-            "snippet": "A City Council Meeting will be held this Wednesday, August 19, at 4:00 p.m., in Council Chambers. To watch the meeting live, visit cape-tv.com."
+            "snippet": "A City Council Meeting will be held this Wednesday, August 28, at 4:30 p.m., in Council Chambers. To view the full meeting agenda, visit https ..."
           },
           {
-            "title": "City Council",
+            "title": "City Council | City of Satellite Beach",
             "link": "https://www.satellitebeach.gov/government/city-council/",
-            "snippet": "City Council meets on the first and third Wednesday of each month at 6:00 p.m. in the City Hall Council Chamber, 565 Cassia Blvd."
+            "snippet": "The City Council meets on the first and third Wednesday of each month at 6:00 p.m. in the City Hall Council Chamber, 565 Cassia Blvd. City Council meetings ..."
           },
           {
             "title": "Agenda & Minutes - Riviera Beach, Florida (FL)",
             "link": "https://www.rivierabch.com/ccm",
-            "snippet": "Special City Council Meeting May 8, 2024 - 06:00 PM. Special City Council Meeting Mar 22, 2024. Council Meeting Mar 22, 2024 - 04:30 PM. Blvd., Riviera Beach, ..."
+            "snippet": "City Council, Apr 3, 2024 - 06:00 PM, 04h 30m, Agenda. Special City Council Meeting, Mar 22, 2024 - 05:30 PM, 01h 00m, Agenda. Special City Council Meeting, Mar ..."
           },
           {
-            "title": "City Council - Agenda Center \u2022 Vero Beach, FL",
-            "link": "https://www.covb.org/AgendaCenter/City-Council-2",
-            "snippet": "Aug 25, 2026. City Council Regular Meeting Agenda (PDF) \u00b7 Videos Opens in new window ; Aug 18, 2026. City Council Special Call Meeting Agenda Workshop (PDF)."
+            "title": "Council Meetings | City of Mexico Beach",
+            "link": "https://mexicobeachfl.gov/government/council-meetings/",
+            "snippet": "March 12, 2024 City Council Meeting. 12-Mar-24 @ 9:00 am. Agenda | Packet | Minutes | Meeting Video Link|. March 4, 2024 City Council Special Meeting. 04-Mar-24 ..."
           },
           {
-            "title": "Atlantic Beach, FL Video Archive",
-            "link": "https://atlanticbeachfl.new.swagit.com/views/588/live",
-            "snippet": "City Commission ; Commission Special Called Meeting, Jul 31, 2023, 59m 17s, Video Agenda ; Commission Special Called Meeting, Jul 29, 2023, 01h 43m, Video Agenda."
+            "title": "City Council Audio Recordings | Jacksonville Beach, FL",
+            "link": "https://www.jacksonvillebeach.org/555/City-Council-Audio-Recordings",
+            "snippet": "City Council Briefings are held in the Council Chambers Conference Room on the second Monday of each month at 5:30 p.m., as needed. Videos of Briefings which ..."
           }
         ]
       },
@@ -3043,6 +3052,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 8,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Boca Raton (2026-08-04), City of Boca Raton (2026-07-22), City of Boca Raton (2026-06-17), City of Boca Raton (2026-05-27), City of Boca Raton (2026-05-20), City of Boca Raton (2026-04-22), City of Boca Raton (2026-03-18)",
       "meetings": [
         {
@@ -3123,22 +3133,22 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Board Meetings Archives - bocahousing.org",
+            "title": "Board Meetings Archives",
             "link": "https://www.bocahousing.org/category/board-meetings/",
             "snippet": "BRHA Special Board Meeting Wednesday, July 22, 2026 at 5:30 p.m. Meeting Thursday, June 18, 2026 at 5:30 p.m. 292 515 603 127 31 \u30fb 2333A W Glades Road, Boca ..."
           },
           {
-            "title": "Calendar \u2022 Boca Raton Housing Authority - Special Board Meet",
+            "title": "Calendar \u2022 Boca Raton Housing Authority - Special Board ...",
             "link": "https://www.myboca.us/Calendar.aspx?EID=15596&month=7&year=2026&day=28&calType=0",
             "snippet": "SPECIAL BOARD MEETING will take place at 2333A W Glades Rd, Boca Raton FL 33431 Date: Time: 5:30 PM - 6:30 PM. Phone: 561-393-7700"
           },
           {
-            "title": "Board Meetings Archives - Page 3 of 10 - bocahousing.org",
+            "title": "Board Meetings Archives - Page 3 of 10",
             "link": "https://www.bocahousing.org/category/board-meetings/page/3/",
             "snippet": "Special BRHA Board of. HOUSING AUTHORITY BOARD MEETING 2333A W Glades Rd, Boca Raton FL 33431 Monday, October 8, 2025 \u2013 5:30 PM \u30fb 215 696 817 272 Passcode: ..."
           },
           {
-            "title": "BRHA Special Board Meeting, 7/22/26 - bocahousing.org",
+            "title": "BRHA Special Board Meeting, 7/22/26",
             "link": "https://www.bocahousing.org/brha-special-board-meeting-7-22-26/",
             "snippet": "BRHA Special Board Meeting Wednesday, July 22, 2026 at 5:30 p.m.. Microsoft Teams opens in a new windowJoin the meeting now."
           },
@@ -3158,92 +3168,6 @@
       "rank": 19
     },
     {
-      "theme_title": "Boca Raton Housing Authority Workshop",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "BOCA"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 4,
-      "citation_summary": "Previously discussed: City of Boca Raton (2026-08-25), City of Boca Raton (2026-05-26), City of Boca Raton (2026-03-24)",
-      "meetings": [
-        {
-          "muni_short": "BOCA",
-          "muni_full": "City of Boca Raton",
-          "title": "Boca Raton Housing Authority",
-          "date": "2026-08-26",
-          "link": "https://www.myboca.us/Calendar.aspx?EID=14907&month=8&year=2026&day=5&calType=0",
-          "description": "Boca Raton Housing Authority (no specific tracked topic keyword matched).",
-          "method": "heuristic"
-        },
-        {
-          "muni_short": "BOCA",
-          "muni_full": "City of Boca Raton",
-          "title": "Boca Raton Housing Authority Workshop",
-          "date": "2026-08-25",
-          "link": "https://www.myboca.us/Calendar.aspx?EID=14906&month=8&year=2026&day=5&calType=0",
-          "description": "Boca Raton Housing Authority Workshop (no specific tracked topic keyword matched).",
-          "method": "heuristic"
-        },
-        {
-          "muni_short": "BOCA",
-          "muni_full": "City of Boca Raton",
-          "title": "Boca Raton Housing Authority Workshop",
-          "date": "2026-05-26",
-          "link": "https://www.myboca.us/Calendar.aspx?EID=14815&month=5&year=2026&day=5&calType=0",
-          "description": "Boca Raton Housing Authority Workshop (no specific tracked topic keyword matched).",
-          "method": "heuristic"
-        },
-        {
-          "muni_short": "BOCA",
-          "muni_full": "City of Boca Raton",
-          "title": "Boca Raton Housing Authority Workshop",
-          "date": "2026-03-24",
-          "link": "https://www.myboca.us/Calendar.aspx?EID=14752&month=3&year=2026&day=5&calType=0",
-          "description": "Boca Raton Housing Authority Workshop (no specific tracked topic keyword matched).",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Calendar \u2022 Boca Raton Housing Authority Workshop",
-            "link": "https://www.myboca.us/Calendar.aspx?EID=14941&month=9&year=2026&day=4&calType=0",
-            "snippet": "Boca Raton Housing Authority Workshop Tuesday, September 29, 2026. Hall: 201 West Palmetto Park Road Boca Raton, Florida 33432 Phone: 561-393-7700 Community"
-          },
-          {
-            "title": "Boca Raton Housing Authority",
-            "link": "https://www.bocahousing.org/",
-            "snippet": "Pre-Meeting Workshop, 2333A W Glades Road Boca Raton, FL 33431 Tel: 561.206.6200"
-          },
-          {
-            "title": "Commissioner Pre-Meeting Workshop, 8/25/26",
-            "link": "https://www.bocahousing.org/commissioner-pre-meeting-workshop-8-25-26/",
-            "snippet": "Workshop Tuesday, August 25, 2026 at 6:30 p.m. 292 515 603 127 31 \u30fb phone +1 561-486-1436,,928481335# Road Boca Raton, FL 33431 Tel: 561.206. ..."
-          },
-          {
-            "title": "Calendar - bocahousing.org",
-            "link": "https://www.bocahousing.org/calendar/",
-            "snippet": "BRHA Pre Meeting Workshop - Budget Workshop 5:30 pm \u2013 7:30 \u30fb 2333 Glades Rd (2333 Glades Rd, Boca Raton, Florida 33431, United States) 292 515 603 127 31 \u30fb ..."
-          },
-          {
-            "title": "Boca Raton Housing Authority",
-            "link": "https://www.myboca.us/580/Boca-Raton-Housing-Authority",
-            "snippet": "Building 2333 Glades Road, Boca Raton, FL 33431 When 5:30 p.m. -Workshop - Last Tuesday of the month 5:30 p.m. - Regular Mtg. Phone: 561-393-7700 Community"
-          }
-        ]
-      },
-      "confidence": 80,
-      "reasons": [
-        "recurring_over_time",
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 20
-    },
-    {
       "theme_title": "City Commission Agenda Review Workshop",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -3251,6 +3175,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 8,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Boynton Beach (2026-07-16), City of Boynton Beach (2026-07-02), City of Boynton Beach (2026-06-11), City of Boynton Beach (2026-05-28), City of Boynton Beach (2026-05-14), City of Boynton Beach (2026-04-30), City of Boynton Beach (2026-04-16)",
       "meetings": [
         {
@@ -3336,24 +3261,24 @@
             "snippet": "Agenda Reviews will take place the Thursday before each Commission Meeting, at 6:00 P.M. Address: 100 E. Ocean Avenue Boynton Beach, FL 33435 Contact: 561-742- ..."
           },
           {
-            "title": "Meeting Calendar",
+            "title": "City of Boynton Beach, FL September 3, 2026 Virtual Agenda ... - YouTube",
+            "link": "https://www.youtube.com/watch?v=XPl_2Ovc-Gk",
+            "snippet": "City of Boynton Beach, FL September 3, 2026 Virtual Agenda Review Workshop ; City of Pahokee, FL September 2, 2026 Budget Workshop \u00b7 New. 53 views."
+          },
+          {
+            "title": "Meeting Calendar - Boynton-Beach.org",
             "link": "https://www.boynton-beach.org/calendar.aspx?CID=23",
             "snippet": "City Commission Agenda Review Workshop. September 10, 2026, 6:00 PM - 8:00 PM ... City Hall Commission Chambers. 100 E. Ocean Ave.Boynton BeachFL33435."
           },
           {
-            "title": "Meetings & Agendas",
-            "link": "https://www.wpb.org/Our-City/Meetings-Agendas",
-            "snippet": "City Commission Agenda Review 2026 Thursday, September 10, 2026 | 11:00 AM to 12:00 PM. Opening City Hall 5th Floor Room 519, 401 Clematis St Fl 5, 33401"
+            "title": "City of Boynton Beach, FL June 16, 2026 Commission Workshop ...",
+            "link": "https://www.youtube.com/watch?v=dYNqYqfmY6o",
+            "snippet": "Discussion of Municipal Affairs. Agendas can be accessed at: ..."
           },
           {
-            "title": "City of Boynton Beach, Government",
-            "link": "https://www.facebook.com/boyntonbeachcity/photos/reminder-the-city-will-host-a-city-commission-agenda-review-workshop-before-each/975270554632936/",
-            "snippet": "The city will host a City Commission Agenda Review Workshop ., Dec. 12, 2024 | 6 P.M. \u25b6\ufe0fVIEW AGENDA: boynton-beach.org/129/Agendas-Minutes \u2026 561 ..."
-          },
-          {
-            "title": "City Commission & Municipal Meetings",
-            "link": "https://www.palmbeachshoresfl.us/news_detail_T6_R145.php",
-            "snippet": "View the meeting agenda, review supporting documents, and find the scheduled meeting date, time, and location. To access the agenda, click the Agenda Packet ..."
+            "title": "City of Boynton Beach, FL September 3, 2026 Virtual Agenda ... - YouTube",
+            "link": "https://www.youtube.com/watch?v=luBDp3ArUbM",
+            "snippet": "... Commission Meeting Agenda: https ... City of Boynton Beach, FL September 3, 2026 Virtual Agenda Review Workshop."
           }
         ]
       },
@@ -3363,7 +3288,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 21
+      "rank": 20
     },
     {
       "theme_title": "Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting",
@@ -3373,6 +3298,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 7,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Boca Raton (2026-07-27), City of Boca Raton (2026-05-26), City of Boca Raton (2026-05-11), City of Boca Raton (2026-04-27), City of Boca Raton (2026-04-13), City of Boca Raton (2026-03-23)",
       "meetings": [
         {
@@ -3476,7 +3402,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 22
+      "rank": 21
     },
     {
       "theme_title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
@@ -3486,6 +3412,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 7,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Boynton Beach (2026-07-14), City of Boynton Beach (2026-06-09), City of Boynton Beach (2026-05-30), City of Boynton Beach (2026-05-12), City of Boynton Beach (2026-04-14), City of Boynton Beach (2026-03-09)",
       "meetings": [
         {
@@ -3559,27 +3486,27 @@
           {
             "title": "MEETING AGENDAS & MINUTES | Boynton Beach CRA - FL",
             "link": "https://www.boyntonbeachcra.com/about-bbcra/meeting-agendas-minutes",
-            "snippet": "Advisory Board Meetings are held on the first Thursday of each month at 6:30 PM in City Chambers located in City Hall at 100 E. Ocean Avenue, Boynton Beach, FL ..."
+            "snippet": "Regular CRA Board Meetings are held on the second Tuesday of each month at 6:00 PM in City Chambers located in City Hall at 100 E. Ocean Avenue, Boynton Beach, ..."
           },
           {
             "title": "Calendar \u2022 CRA Board Monthly Meeting (will follow Special ...",
             "link": "https://boynton-beach.org/Calendar.aspx?EID=1354",
-            "snippet": "Tuesday, January 14, 2025, at 6:00 PM in Commission Chambers at City Hall, 100 E. Ocean Avenue, Boynton Beach, FL 33435. The meeting will be held prior to the ..."
+            "snippet": "CRA Board Monthly Meeting. Tuesday, January 14, 2025. Time: 6:00 PM Location: Commission Chambers at City Hall Address: 100 E. Ocean Avenue Boynton Beach, FL ..."
           },
           {
             "title": "BBCRA BOARD MEETING AGENDAS & MINUTES",
             "link": "https://www.boyntonbeachcra.com/about-bbcra/meeting-agendas-minutes/bbcra-board-meeting-agendas-minutes",
-            "snippet": "The Boynton Beach CRA Board holds public meetings on the second Tuesday of the month at 6:00 PM in Commission Chambers at City Hall located at 100 E. Ocean ..."
+            "snippet": "The Boynton Beach CRA Board holds public meetings on the second Tuesday of the month at 6:00 PM located at 100 E. Ocean Avenue, Boynton Beach, FL 33435."
           },
           {
             "title": "Boynton Beach CRA",
             "link": "https://www.facebook.com/BoyntonBeachCRA/",
-            "snippet": "CRA Board Meeting Announcement The Boynton Beach CRA Board Meeting will be held on Tuesday, August 11, 2026, immediately following the conclusion of the City ..."
+            "snippet": "The Boynton Beach CRA Board Meeting will be held on Tuesday, August 11, 2026, begins at 6:00 PM. For the meeting agenda, livestream links, and additional ..."
           },
           {
-            "title": "BBCRA ADVISORY BOARD MEETING AGENDAS & ...",
-            "link": "https://www.boyntonbeachcra.com/about-bbcra/meeting-agendas-minutes/bbcra-advisory-board-meeting-agendas-minutes",
-            "snippet": "The Boynton Beach Community Redevelopment Advisory Board holds public meetings on the third Wednesday of the month at 6:00 PM in Commission Chambers at City ..."
+            "title": "Calendar \u2022 Community Redevelopment Agency (BBCRA) ...",
+            "link": "https://boynton-beach.org/Calendar.aspx?EID=1225&month=1&year=2024&day=9&calType=0",
+            "snippet": "Community Redevelopment Agency (BBCRA) Monthly Board Meeting Thursday, January 18, 2024. Time: 6:00 PM - 8:00 PM. Address: 100 E Ocean Ave. Ocean Avenue, ..."
           }
         ]
       },
@@ -3589,7 +3516,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 23
+      "rank": 22
     },
     {
       "theme_title": "CRA Advisory Board Meeting",
@@ -3599,6 +3526,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 6,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Boynton Beach (2026-07-15), City of Boynton Beach (2026-06-17), City of Boynton Beach (2026-05-20), City of Boynton Beach (2026-04-15), City of Boynton Beach (2026-03-18)",
       "meetings": [
         {
@@ -3661,24 +3589,24 @@
         "corroborated": true,
         "sources": [
           {
+            "title": "MEETING AGENDAS & MINUTES | Boynton Beach CRA - FL",
+            "link": "https://www.boyntonbeachcra.com/about-bbcra/meeting-agendas-minutes",
+            "snippet": "Advisory Board Meetings are held on the first Thursday of each month at 6:30 PM in City Chambers located in City Hall at 100 E. Ocean Avenue, Boynton Beach, FL ..."
+          },
+          {
             "title": "BBCRA ADVISORY BOARD | Boynton Beach CRA - FL",
             "link": "https://www.boyntonbeachcra.com/about-bbcra/bbcra-advisory-board",
             "snippet": "Advisory Board Meetings are held on the third Wednesday of each month at 6:00 PM. Floor Boynton Beach, FL 33435 Contact Us (561) 737-3256"
           },
           {
             "title": "Calendar \u2022 CRA Advisory Board Meeting",
-            "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2230&month=9&year=2026&day=22&calType=0",
-            "snippet": "CRA Advisory Board Meeting Wednesday, August 19, 2026. Time: 6:00 PM. City Hall located at 100 E. Ocean Avenue, Boynton Beach, FL 33435."
+            "link": "https://boynton-beach.org/Calendar.aspx?EID=2229",
+            "snippet": "CRA Advisory Board Meeting Wednesday, July 15, 2026. Time: 6:00 PM. Meetings are held inside Commission Chambers at City Hall located at 100 E. Ocean Avenue, ..."
           },
           {
             "title": "BBCRA ADVISORY BOARD MEETING AGENDAS & ...",
             "link": "https://www.boyntonbeachcra.com/about-bbcra/meeting-agendas-minutes/bbcra-advisory-board-meeting-agendas-minutes",
             "snippet": "The Boynton Beach Community Redevelopment Advisory Board holds public meetings on the third Wednesday of the month at 6:00 PM. Avenue, Boynton Beach, FL 33435. ..."
-          },
-          {
-            "title": "Boynton Beach CRA",
-            "link": "https://www.catchboynton.com/",
-            "snippet": "Thursday, August 1, 2019, at 6:30 PM | Intracoastal Park Clubhouse - 2240 N Federal Hwy, Boynton Beach, FL 33435. CRA Board Meeting Tuesday, August 13, 2019, ..."
           },
           {
             "title": "2025 CRA Advisory Board Meeting Dates - Cloudfront.net",
@@ -3693,7 +3621,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 24
+      "rank": 23
     },
     {
       "theme_title": "Mayor/Commission Work Session",
@@ -3703,6 +3631,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 10,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of West Palm Beach (2026-08-10), City of West Palm Beach (2026-07-27), City of West Palm Beach (2026-06-11), City of West Palm Beach (2026-05-18), City of West Palm Beach (2026-05-04), City of West Palm Beach (2026-04-20), City of West Palm Beach (2026-04-06), City of West Palm Beach (2026-03-23), City of West Palm Beach (2026-03-09)",
       "meetings": [
         {
@@ -3833,7 +3762,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 25
+      "rank": 24
     },
     {
       "theme_title": "City Commission",
@@ -3843,6 +3772,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 7,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Delray Beach (2026-08-11), City of Delray Beach (2026-07-21), City of Delray Beach (2026-05-19), City of Delray Beach (2026-05-05), City of Delray Beach (2026-04-21), City of Delray Beach (2026-03-09)",
       "meetings": [
         {
@@ -3946,7 +3876,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 26
+      "rank": 25
     },
     {
       "theme_title": "Mayor/Commission Work Session",
@@ -3956,6 +3886,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 10,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of West Palm Beach (2026-08-10), City of West Palm Beach (2026-07-27), City of West Palm Beach (2026-06-11), City of West Palm Beach (2026-05-18), City of West Palm Beach (2026-05-04), City of West Palm Beach (2026-04-20), City of West Palm Beach (2026-04-06), City of West Palm Beach (2026-03-23), City of West Palm Beach (2026-03-09)",
       "meetings": [
         {
@@ -4059,14 +3990,14 @@
             "snippet": "Mayor/Commission Work Session 2026. Monday, October 05, 2026 | 10:00 AM to 12:00 PM. 2 more dates. Mayor/Commission Work Session 2026. City Hall - Flagler ..."
           },
           {
-            "title": "Watch The Latest City Commission Meeting",
-            "link": "https://www.wpb.org/Departments/Communications/WPB-TV/Watch-The-Latest-City-Commission-Meeting",
-            "snippet": "The most recent meetings are available on the City's YouTube channel. Mayor and City Commission Special City Commission Meeting. To Set the Not to Exceed Rate."
-          },
-          {
             "title": "City Commission meetings",
             "link": "https://www.youtube.com/playlist?list=PLBStMaSddHhwitdSBBWt0lm_KOyf8UCak",
-            "snippet": "City Commission meetings WPB-TV Playlist\u2022128 videos\u2022 3:05:48 City Commission Meeting | July 20, 2026 WPB-TV. Streamed 1 month ago 1:46:43 City Commission ..."
+            "snippet": "City Commission Meeting | July 20, 2026. WPB-TV. 191 views \u2022 Streamed 1 month ago. 1:46:43 \u00b7 City Commission Meeting | August 17, 2026. WPB-TV."
+          },
+          {
+            "title": "Watch The Latest City Commission Meeting",
+            "link": "https://www.wpb.org/Departments/Communications/WPB-TV/Watch-The-Latest-City-Commission-Meeting",
+            "snippet": "The most recent meetings are available on the City's YouTube channel. Beach, FL 33401 View on Map City Hotline: (561) 822-2222"
           },
           {
             "title": "Mayor - Commission Work Session | March 23, 2026",
@@ -4076,7 +4007,7 @@
           {
             "title": "PROCLAMATIONS /ORDINANCES/ AGENDA PACKETS",
             "link": "https://www.palmbeachshoresfl.us/government/agendas_and_minutes/commission.php",
-            "snippet": "2026 COMMISSION WORK MEETING - 3 P.M. Mayor and Commission Events. Phone: 561-844-3457. Edwards Lane, Palm Beach Shores, FL 33404"
+            "snippet": "2026 COMMISSION WORK MEETING - 3 P.M. Mayor and Commission Events Calendar. Phone: 561-844-3457. Edwards Lane, Palm Beach Shores, FL 33404"
           }
         ]
       },
@@ -4086,7 +4017,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 27
+      "rank": 26
     },
     {
       "theme_title": "Mayor/Commission Work Session",
@@ -4096,6 +4027,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 10,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of West Palm Beach (2026-08-10), City of West Palm Beach (2026-07-27), City of West Palm Beach (2026-06-11), City of West Palm Beach (2026-05-18), City of West Palm Beach (2026-05-04), City of West Palm Beach (2026-04-20), City of West Palm Beach (2026-04-06), City of West Palm Beach (2026-03-23), City of West Palm Beach (2026-03-09)",
       "meetings": [
         {
@@ -4194,29 +4126,29 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Meetings & Agendas - City of West Palm Beach",
+            "title": "Meetings & Agendas",
             "link": "https://www.wpb.org/Our-City/Meetings-Agendas",
             "snippet": "Mayor/Commission Work Session 2026. Monday, October 05, 2026 | 10:00 AM to 12:00 PM. 2 more dates. Mayor/Commission Work Session 2026. City Hall - Flagler ..."
           },
           {
-            "title": "Watch The Latest City Commission Meeting - City of West Palm Beach",
+            "title": "Watch The Latest City Commission Meeting",
             "link": "https://www.wpb.org/Departments/Communications/WPB-TV/Watch-The-Latest-City-Commission-Meeting",
             "snippet": "The most recent meetings are available on the City's YouTube channel. Mayor and City Commission Special City Commission Meeting. To Set the Not to Exceed Rate."
           },
           {
-            "title": "City Commission meetings - YouTube",
+            "title": "City Commission meetings",
             "link": "https://www.youtube.com/playlist?list=PLBStMaSddHhwitdSBBWt0lm_KOyf8UCak",
-            "snippet": "City Commission meetings WPB-TV Playlist\u2022128 videos\u2022 3:05:48 City Commission Meeting | July 20, 2026 WPB-TV. Streamed 1 month ago 1:46:43 City Commission ..."
+            "snippet": "City Commission Meeting | July 20, 2026. WPB-TV. 191 views \u2022 Streamed 1 month ago. 1:46:43 \u00b7 City Commission Meeting | August 17, 2026. WPB-TV."
           },
           {
-            "title": "City Commission Meeting | July 20, 2026 - YouTube",
-            "link": "https://www.youtube.com/watch?v=mc8RMKsJfHI",
-            "snippet": "Go to channel WPB-TV \u00b7 City Commission Meeting | August 3, 2026 ... Mayor-City Commission Work Session | July 27, 2026. WPB-TV\u2022198 views."
+            "title": "City Commission",
+            "link": "https://www.wpb.org/Our-City/City-Commission",
+            "snippet": "The Mayor and City Commission meet every other Monday at 5 p.m., except for federal and state holidays where the meeting is held the next business day at 5 p.m.."
           },
           {
-            "title": "Mayor - Commission Work Session | August 24, 2026 | The City of West ...",
-            "link": "https://www.facebook.com/CityofWPB/videos/mayor-commission-work-session-august-24-2026/1415529093875899/",
-            "snippet": "Mayor - Commission Work Session | August 24, 2026. ... Uh we have offices in South Florida in West Palm Beach, Coral Springs, as well as Miami."
+            "title": "Mayor - Commission Work Session | March 23, 2026",
+            "link": "https://vimeo.com/1176237966",
+            "snippet": "This is \"Mayor - Commission Work Session | March 23, 2026\" by City of West Palm Beach on Vimeo, the home for high quality videos and the ..."
           }
         ]
       },
@@ -4226,7 +4158,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 28
+      "rank": 27
     },
     {
       "theme_title": "City Council Regular Meeting",
@@ -4236,6 +4168,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 4,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Westlake (2026-08-04), City of Westlake (2026-05-05), City of Westlake (2026-04-07)",
       "meetings": [
         {
@@ -4280,29 +4213,29 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Meetings",
+            "title": "Meetings | City of Westlake, Florida",
             "link": "https://www.westlakegov.com/meetings",
             "snippet": "Meetings ; 08/04/2026 - 6:00pm, City Council Regular Meeting, PDF icon \u00b7 html icon ; 08/04/2026 - 5:30pm, Local Planning Agency Meeting, PDF icon \u00b7 html icon ; 08/ ..."
           },
           {
-            "title": "City Council Meeting",
+            "title": "City Council Meeting | City of Westlake, Florida",
             "link": "https://www.westlakegov.com/citycouncil/page/city-council-meeting",
             "snippet": "City Council Regular Meeting. 09/01/2026 - 6:00pm. City Council Workshop - Strategic Planning. 09/08/2026 - 4:30pm. City Council First Budget Hearing. 09/08/ ..."
           },
           {
-            "title": "City Council Regular Meeting 05/05/2026 06:00 PM",
+            "title": "City Council Regular Meeting 05/05/2026 06:00 PM | Westlake, FL",
             "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=fd5a6a68abc346e39f18ea714e77071b&ip=True",
-            "snippet": "City Council Regular Meeting 05/05/2026 06:00 PM The Lodge at Westlake Adventure Park 5490 Kingfisher Blvd. Westlake, Florida 33470 \u00b7 CALL TO ORDER ..."
+            "snippet": "City Council Regular Meeting 05/05/2026 06:00 PM The Lodge at Westlake Adventure Park 5490 Kingfisher Blvd. Westlake, Florida 33470. CALL TO ORDER ..."
           },
           {
-            "title": "City Council Meeting \u2013 September 2026",
+            "title": "City of Westlake - City Council Special Meeting 04.29.2026 - YouTube",
+            "link": "https://www.youtube.com/watch?v=qP28BEVuGlQ",
+            "snippet": "April 29, 2026 - City Council Special Meeting."
+          },
+          {
+            "title": "City Council Meeting \u2013 September 2026 - Westlake Wanderer",
             "link": "https://westlakewanderer.com/2026/09/02/city-council-september-2026/",
             "snippet": "Westlake's next City Council Regular Meeting is Tuesday October 6, 6PM at the Lodge. NOT TO MISS: PBSO will be on scene with a quick ..."
-          },
-          {
-            "title": "City Council Regular Meeting",
-            "link": "https://www.westlakegov.com/citycouncil/page/city-council-regular-meeting-1",
-            "snippet": "The City of Westlake Council meets regularly the 2nd Monday of each month (or when necessary/required). When available, the City Council Meeting agenda will ..."
           }
         ]
       },
@@ -4312,7 +4245,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 29
+      "rank": 28
     },
     {
       "theme_title": "Downtown Development Authority (DDA) Board Meeting",
@@ -4322,6 +4255,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 6,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: Downtown WPB DDA (2026-07-21), Downtown WPB DDA (2026-06-16), Downtown WPB DDA (2026-05-19), Downtown WPB DDA (2026-04-21), Downtown WPB DDA (2026-03-17)",
       "meetings": [
         {
@@ -4416,7 +4350,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 30
+      "rank": 29
     },
     {
       "theme_title": "City Council",
@@ -4426,6 +4360,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 7,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-07-01), City of Riviera Beach (2026-06-17), City of Riviera Beach (2026-06-03), City of Riviera Beach (2026-04-27), City of Riviera Beach (2026-04-15), City of Riviera Beach (2026-04-13)",
       "meetings": [
         {
@@ -4507,19 +4442,19 @@
             "snippet": "Contact Us \u00b7 City Council. Email City Council / City Clerk. 1053 20th Place Vero Beach FL 32960 \u00b7 John Cotugno. Mayor. Email: Mayor John Cotugno \u00b7 Taylor Dingle."
           },
           {
-            "title": "City of Delray Beach, FL | Home",
-            "link": "https://www.delraybeachfl.gov/",
-            "snippet": "City of Delray Beach, FL. Join our premier, high-performing emergency services agency dedicated to protecting and serving Delray Beach. 100 NW First Avenue, ..."
+            "title": "City Council | Neptune Beach FL",
+            "link": "https://www.nbfl.gov/city-council",
+            "snippet": "Residents elect a Mayor and four additional City Councilors (904) 613-4594 ) 990-7495. Phone: (904) 270-2400 Meetings - Time: 6:00pm. Phone: (904) 270-2400. ..."
+          },
+          {
+            "title": "Mayor & City Council | Venice, FL",
+            "link": "https://www.venicegov.com/government/mayor-city-council",
+            "snippet": "Council Member Rachel Frank was appointed by the City Council in January 2022 to serve out the term of Seat 2. She was elected to Seat 6 in November 2022. Ms."
           },
           {
             "title": "City of Satellite Beach - Government",
             "link": "https://www.facebook.com/SatBch/",
             "snippet": "Satellite Beach voters will elect two City Councilmembers. The City Council is made up of four Councilmembers and a Mayor, all elected at-large by the City's ..."
-          },
-          {
-            "title": "City Council | Neptune Beach FL",
-            "link": "https://www.nbfl.gov/city-council",
-            "snippet": "Residents elect a Mayor and four additional City Councilors (904) 613-4594 ) 990-7495. Phone: (904) 270-2400 Meetings - Time: 6:00pm. Phone: (904) 270-2400. ..."
           }
         ]
       },
@@ -4529,7 +4464,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 31
+      "rank": 30
     },
     {
       "theme_title": "Community Redevelopment Agency",
@@ -4540,6 +4475,7 @@
       ],
       "cross_municipality": true,
       "occurrence_count": 2,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-04-22)",
       "meetings": [
         {
@@ -4566,35 +4502,113 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Delray Beach Community Redevelopment Agency: Home",
+            "title": "Delray Beach Community Redevelopment Agency",
             "link": "https://delraycra.org/",
             "snippet": "Collaborating with our community to foster redevelopment."
           },
           {
-            "title": "Delray Beach Community Redevelopment Agency",
+            "title": "Delray Beach Community Redevelopment Agency - Facebook",
             "link": "https://www.facebook.com/DelrayBeachCRA/",
-            "snippet": "Community Redevelopment Agency, Building a better community since 1985! Contact info (561) 276-8640 Posts"
+            "snippet": "Delray Beach Community Redevelopment Agency ; Details \u00b7 100% recommend (6 reviews) ; Links \u00b7 delraycra.org ; Contact info \u00b7 (561) 276-8640."
           },
           {
-            "title": "delraybeachcra",
-            "link": "https://www.instagram.com/delraybeachcra/?hl=en",
-            "snippet": "Suite 201 Delray Beach, FL 33444 \u2026 20 North Swinton Avenue, Delray Beach, FL 33444 Email: tibbsc@mydelraybeach.com | Phone: 561-276-8640"
+            "title": "CRA - Community Redevelopment Agency",
+            "link": "https://delraybeach.com/places/cra-community-redevelopment-agency/",
+            "snippet": "20 N Swinton Ave, Delray Beach, FL 33444. phone. (561) 276-8640. Website. NEWSLETTER SIGNUP. Don't miss out on upcoming events and specials \u2013 Enter your ..."
           },
           {
-            "title": "Delray Beach Community Redevelopment Agency",
+            "title": "Delray Beach Community Redevelopment Agency | LinkedIn",
             "link": "https://www.linkedin.com/company/delray-cra",
             "snippet": "Our mission is to foster and directly assist in the redevelopment of the Community Redevelopment Area in order to eliminate blight, create a sustainable ..."
           },
           {
-            "title": "Delray Beach CRA Breaks Ground on Building for Small ...",
-            "link": "https://redevelopment.net/2023/07/delray-beach-cra-breaks-ground-on-building-for-small-businesses/",
-            "snippet": "The goal is to develop a new commercial space that will provide affordable rental space for small businesses at 95 SW Fifth St. The CRA-owned property is ..."
+            "title": "Delray Beach Community Redevelopment Agency ... - Instagram",
+            "link": "https://www.instagram.com/delraybeachcra/?hl=en",
+            "snippet": "... Delray Beach Community Redevelopment Agency 20 North Swinton Avenue, Delray Beach, FL 33444 Email: tibbsc@mydelraybeach.com | Phone: 561-276-8640 ..."
           }
         ]
       },
       "confidence": 75,
       "reasons": [
         "recurring_across_municipalities",
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 31
+    },
+    {
+      "theme_title": "Boca Raton Housing Authority Workshop",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "BOCA"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 3,
+      "all_heuristic": true,
+      "citation_summary": "Previously discussed: City of Boca Raton (2026-05-26), City of Boca Raton (2026-03-24)",
+      "meetings": [
+        {
+          "muni_short": "BOCA",
+          "muni_full": "City of Boca Raton",
+          "title": "Boca Raton Housing Authority",
+          "date": "2026-08-26",
+          "link": "https://www.myboca.us/Calendar.aspx?EID=14907&month=8&year=2026&day=5&calType=0",
+          "description": "Boca Raton Housing Authority (no specific tracked topic keyword matched).",
+          "method": "heuristic"
+        },
+        {
+          "muni_short": "BOCA",
+          "muni_full": "City of Boca Raton",
+          "title": "Boca Raton Housing Authority Workshop",
+          "date": "2026-05-26",
+          "link": "https://www.myboca.us/Calendar.aspx?EID=14815&month=5&year=2026&day=5&calType=0",
+          "description": "Boca Raton Housing Authority Workshop (no specific tracked topic keyword matched).",
+          "method": "heuristic"
+        },
+        {
+          "muni_short": "BOCA",
+          "muni_full": "City of Boca Raton",
+          "title": "Boca Raton Housing Authority Workshop",
+          "date": "2026-03-24",
+          "link": "https://www.myboca.us/Calendar.aspx?EID=14752&month=3&year=2026&day=5&calType=0",
+          "description": "Boca Raton Housing Authority Workshop (no specific tracked topic keyword matched).",
+          "method": "heuristic"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Boca Raton Housing Authority",
+            "link": "https://www.bocahousing.org/",
+            "snippet": "Pre-Meeting Workshop, 2333A W Glades Road Boca Raton, FL 33431 Tel: 561.206.6200"
+          },
+          {
+            "title": "Calendar \u2022 Boca Raton Housing Authority Workshop",
+            "link": "https://myboca.us/Calendar.aspx?EID=14906&month=8&year=2026&day=16&calType=0",
+            "snippet": "Boca Raton Housing Authority Workshop Tuesday, August 25, 2026 :30:00 Time: 5:30 PM Location. Hall: 201 West Palmetto Park Road Boca Raton, Florida 33432 Phone ..."
+          },
+          {
+            "title": "Commissioner Pre-Meeting Workshop, 8/25/26",
+            "link": "https://www.bocahousing.org/commissioner-pre-meeting-workshop-8-25-26/",
+            "snippet": "Workshop Tuesday, August 25, 2026 at 6:30 p.m. 292 515 603 127 31 \u30fb phone +1 561-486-1436,,928481335# Road Boca Raton, FL 33431 Tel: 561.206. ..."
+          },
+          {
+            "title": "Calendar - bocahousing.org",
+            "link": "https://www.bocahousing.org/calendar/",
+            "snippet": "BRHA Pre Meeting Workshop - Budget Workshop 5:30 pm \u2013 7:30 \u30fb 2333 Glades Rd (2333 Glades Rd, Boca Raton, Florida 33431, United States) 292 515 603 127 31 \u30fb ..."
+          },
+          {
+            "title": "Boca Raton Housing Authority",
+            "link": "https://www.facebook.com/p/Boca-Raton-Housing-Authority-61558621971718/",
+            "snippet": "Join us for Digital Life Skills 101, a FREE beginner-friendly workshop designed to help adults build practical digital skills \u2026 6:30 PM \u2013 8:30 PM \ud83d\udccd Lois Martin ..."
+          }
+        ]
+      },
+      "confidence": 65,
+      "reasons": [
+        "recurring_over_time",
         "corroborated_by_web_search"
       ],
       "starred": true,
@@ -4608,6 +4622,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 3,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: Town of Jupiter (2026-04-21), Town of Jupiter (2026-03-17)",
       "meetings": [
         {
@@ -4643,17 +4658,17 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Community Redevelopment Agency | Jupiter, FL - Official Website",
+            "title": "The Community Redevelopment Agency (CRA) ...",
             "link": "https://www.jupiter.fl.us/120/Community-Redevelopment-Agency",
             "snippet": "Commission meetings are held as needed. For meeting schedules, agendas, and backup items, visit the CRA Agendas page. Phone: (561) 741-2290 / Email: Martins@ ..."
           },
           {
-            "title": "Riviera Beach CRA | Riviera Beach Community Redevelopment Agency",
+            "title": "Riviera Beach CRA | Riviera Beach Community ...",
             "link": "https://rbcra.com/",
-            "snippet": "CRA Board of Commissioners meets twice a month, September 9 - 6:00pm - Regular Meetingg. For more information, please call (561) 844-3408"
+            "snippet": "The CRA Board of Commissioners meets twice a month, on the second and fourth Wednesdays of each month. The meetings are held at the Marina Event Center at 6:00 ..."
           },
           {
-            "title": "Community Redevelopment Agency (CRA) Meeting - Facebook",
+            "title": "Community Redevelopment Agency (CRA) Meeting",
             "link": "https://www.facebook.com/events/town-of-jupiter-government/community-redevelopment-agency-cra-meeting/276394620631374/",
             "snippet": "Wednesday, April 14, 2021 at 7:00PM \u2013 8:00PM EDT \u2026 210 Military Trl, Jupiter, FL 33458. View the full agenda online"
           },
@@ -4663,9 +4678,9 @@
             "snippet": "Community Center Town Council CRA Meetings P&Z Meetings Video Date Duration Community Redevelopment Agency Apr 21, 2026. Jupiter, FL Video Archive"
           },
           {
-            "title": "Community Redevelopment Agency (CRA) Regular Meeting - Jupiter, FL",
+            "title": "Calendar \u2022 Community Redevelopment Agency (CRA) ...",
             "link": "https://jupiter.fl.us/Calendar.aspx?EID=9866",
-            "snippet": "Community Redevelopment Agency (CRA) Regular Meeting - CANCELLED. Wednesday, February 8, 2017. Date: February 8, 2017. 2017-02-08T19:00:00. Time: 7:00 PM."
+            "snippet": "Community Redevelopment Agency (CRA) Regular Meeting - CANCELLED Wednesday, February 8, 2017 \u2026 7:00 PM Location: Town Hall Council Chambers Address: 210 ..."
           }
         ]
       },
@@ -4685,6 +4700,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 3,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Delray Beach (2026-05-07), City of Delray Beach (2026-04-16)",
       "meetings": [
         {
@@ -4722,17 +4738,17 @@
           {
             "title": "Boards and Committees | City of Delray Beach, FL",
             "link": "https://www.delraybeachfl.gov/government/boards-and-committees",
-            "snippet": "(B) COMPOSITION: The Board of Adjustment shall consist of seven regular members. (1) At least four seats on the Board must be filled with either a land use ..."
+            "snippet": "The Board of Adjustment for the City of Delray Beach. The Board of Adjustment shall consist of seven regular members. Meetings are held on the 1st Monday every ..."
           },
           {
             "title": "City of Delray Beach - Board of Adjustment",
             "link": "https://delraybeach.legistar.com/DepartmentDetail.aspx?ID=38498&GUID=C60FB592-FBC3-4147-BE00-1A437FB9ECDB",
-            "snippet": "Board of Adjustment; Board Of Trustees for the Firefighters' Retirement System; Board of Trustees for the Police Officers' Retirement System; Charter Revision ..."
+            "snippet": "Board of Adjustment Board Of Trustees for the Firefighters' Meeting location: City Commission Chambers or Watch on YouTube: Regular Meeting - CANCELLED Meeting ..."
           },
           {
             "title": "ORDINANCE NO. 51-23 AN ORDINANCE OF THE ClTY ...",
             "link": "https://mcclibraryfunctions.azurewebsites.us/api/ordinanceDownload/13704/1251905/pdf",
-            "snippet": "City Charter of the City of Delray Beach is hereby amended to read as follows: Section 3.14. - PLANNING AND ZONING BOARD AND BOARD OF ADJUSTMENT. (A)."
+            "snippet": "CITY CHARTER REQUIRES A BOARD OF ADJUSTMENT TO CONSIDER AND DECIDE APPEALS AND VARIANCES TO THE LAND DEVELOPMENT REGULATIONS."
           },
           {
             "title": "What is a Board of Adjustment in Delray Beach?",
@@ -4755,83 +4771,6 @@
       "rank": 34
     },
     {
-      "theme_title": "Board of County Commissioners Meeting",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "PBC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 3,
-      "citation_summary": "Previously discussed: Palm Beach County (2026-08-25), Palm Beach County (2026-07-07)",
-      "meetings": [
-        {
-          "muni_short": "PBC",
-          "muni_full": "Palm Beach County",
-          "title": "Board of County Commissioners Meeting",
-          "date": "2026-09-01",
-          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
-          "description": "Board of County Commissioners Meeting touched on budget & finance.",
-          "method": "heuristic"
-        },
-        {
-          "muni_short": "PBC",
-          "muni_full": "Palm Beach County",
-          "title": "Board of County Commissioners Meeting",
-          "date": "2026-08-25",
-          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf",
-          "description": "Board of County Commissioners Meeting touched on budget & finance.",
-          "method": "heuristic"
-        },
-        {
-          "muni_short": "PBC",
-          "muni_full": "Palm Beach County",
-          "title": "Board of County Commissioners Meeting",
-          "date": "2026-07-07",
-          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260707.pdf",
-          "description": "Board of County Commissioners Meeting touched on budget & finance.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "BCC Agenda",
-            "link": "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx",
-            "snippet": "The Board of County Commissioners meetings are broadcast live on TV Channel 20 and rebroadcast on the evening of the meeting, beginning at 6 p.m. If the meeting ..."
-          },
-          {
-            "title": "PBCTV Channel 20",
-            "link": "https://www.youtube.com/@pbctvchannel20",
-            "snippet": "Legislative Delegation & Palm Beach County Board of County Commissioners Joint Meeting Jan. 30, 2023. PBCTV Channel 20. 137 views. 3 years ago."
-          },
-          {
-            "title": "County Commissioners Home",
-            "link": "https://discover.pbc.gov/countycommissioners/Pages/default.aspx",
-            "snippet": "The Board of County Commissioners generally meets on the first and third Tuesday of each month for public hearings and regular agenda items. on PBC-TV Channel ..."
-          },
-          {
-            "title": "Minutes | Clerk of the Circuit Court & Comptroller, Palm ...",
-            "link": "https://www.mypalmbeachclerk.com/records/minutes",
-            "snippet": "The Board of County Commissioners meets regularly on the first and third Tuesdays of each month for public hearings and regular Board items. Contact (561) 355- ..."
-          },
-          {
-            "title": "County Commissioners BCC Meeting Videos",
-            "link": "https://discover.pbc.gov/countycommissioners/Pages/BCC-Meeting-Videos.aspx",
-            "snippet": "The PBC TV Channel 20 Live. Browse the year and category for your BCC Meeting selection: BCC Board Meetings (19) BCC Workshops/Budget Hearings/Other (13) ..."
-          }
-        ]
-      },
-      "confidence": 65,
-      "reasons": [
-        "recurring_over_time",
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 35
-    },
-    {
       "theme_title": "Board of Adjustment",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -4839,6 +4778,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 3,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Delray Beach (2026-07-02), City of Delray Beach (2026-06-04)",
       "meetings": [
         {
@@ -4876,17 +4816,17 @@
           {
             "title": "Boards and Committees | City of Delray Beach, FL",
             "link": "https://www.delraybeachfl.gov/government/boards-and-committees",
-            "snippet": "(B) COMPOSITION: The Board of Adjustment shall consist of seven regular members. (1) At least four seats on the Board must be filled with either a land use ..."
+            "snippet": "The Board of Adjustment for the City of Delray Beach. The Board of Adjustment shall consist of seven regular members. Meetings are held on the 1st Monday every ..."
           },
           {
             "title": "City of Delray Beach - Board of Adjustment",
             "link": "https://delraybeach.legistar.com/DepartmentDetail.aspx?ID=38498&GUID=C60FB592-FBC3-4147-BE00-1A437FB9ECDB",
-            "snippet": "Board of Adjustment; Board Of Trustees for the Firefighters' Retirement System; Board of Trustees for the Police Officers' Retirement System; Charter Revision ..."
+            "snippet": "Board of Adjustment Board Of Trustees for the Firefighters' Meeting location: City Commission Chambers or Watch on YouTube: Regular Meeting - CANCELLED Meeting ..."
           },
           {
             "title": "ORDINANCE NO. 51-23 AN ORDINANCE OF THE ClTY ...",
             "link": "https://mcclibraryfunctions.azurewebsites.us/api/ordinanceDownload/13704/1251905/pdf",
-            "snippet": "City Charter of the City of Delray Beach is hereby amended to read as follows: Section 3.14. - PLANNING AND ZONING BOARD AND BOARD OF ADJUSTMENT. (A)."
+            "snippet": "CITY CHARTER REQUIRES A BOARD OF ADJUSTMENT TO CONSIDER AND DECIDE APPEALS AND VARIANCES TO THE LAND DEVELOPMENT REGULATIONS."
           },
           {
             "title": "What is a Board of Adjustment in Delray Beach?",
@@ -4906,7 +4846,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 36
+      "rank": 35
     },
     {
       "theme_title": "Town Commission Budget Workshop",
@@ -4916,6 +4856,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 2,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
       "meetings": [
         {
@@ -4942,29 +4883,98 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Calendar \u2022 Special City Council Meeting: Budget Workshop",
-            "link": "https://www.myboca.us/Calendar.aspx?EID=15520",
-            "snippet": "Special City Council Meeting: Budget Workshop Thursday, June 18, 2026. Time: 1:30 PM - 4:00 PM Location: View Facility , FL 33487. Florida 33432 Phone: 561-393 ..."
-          },
-          {
-            "title": "Town Council Third Budget Workshop (All Funds) - YouTube",
-            "link": "https://www.youtube.com/watch?v=fjmThfk6syI",
-            "snippet": "Town Council Third Budget Workshop (All Funds). @TownofCutlerBay1No likes18 viewsStreamed 8 hours ago more. Subscribe ..."
-          },
-          {
             "title": "TOWN COMMISSION MEETING BUDGET WORKSHOP",
             "link": "https://dundee-fl.municodemeetings.com/bc-tc/page/town-commission-meeting-budget-workshop-3",
-            "snippet": "TOWN COMMISSION MEETING BUDGET WORKSHOP. Thursday, August 28, 2025 - 2:00pm. Meeting Information. Agenda: Agenda \u00b7 Agenda (HTML). Packet: Agenda Packet."
+            "snippet": "BUDGET WORKSHOP Thursday, August 28, 2025 - 2:00pm Meeting Information. Upcoming Events BUDGET WORKSHOP 08/04/2026 - 5:30pm TOWN"
           },
           {
-            "title": "The public is invited to attend these upcoming Special City Commission ...",
-            "link": "https://www.facebook.com/cityofsib/posts/the-public-is-invited-to-attend-these-upcoming-special-city-commission-meetings-/1388094603491850/",
-            "snippet": "Operating Budget will be held on Wednesday, September 12th beginning at 5:30 p.m. at City Hall, 2600 Hollywood Boulevard, Room 219."
+            "title": "Town Council Workshop - 2nd Budget Workshop (General ...",
+            "link": "https://www.cutlerbay-fl.gov/town-council/page/town-council-workshop-2nd-budget-workshop-general-fund",
+            "snippet": "Budget Workshop (General Fund) Thursday, July 30, 2026 - 6:00pm \u2026 s located at 10720 Caribbean Boulevard, Cutler Bay, Florida 33189. (786) 635-1003."
           },
           {
-            "title": "Updated 2026 City Commission Budget Workshop Schedule 07.08 ...",
-            "link": "https://www.cityofmulberryfl.org/city-clerk/page/updated-2026-city-commission-budget-workshop-schedule-07082026",
-            "snippet": "Hours of Operation: Monday - Thursday, 8 a.m. to 5 p.m. | Friday 8 a.m. - 4 p.m. 863-425-1125."
+            "title": "Calendar \u2022 Special City Council Meeting: Budget Workshop",
+            "link": "https://www.myboca.us/Calendar.aspx?EID=15520",
+            "snippet": "Budget Workshop Thursday, June 18, 2026. Time: 1:30 PM - 4:00 PM Location: View Facility 6500 Building , FL 33487"
+          },
+          {
+            "title": "Special Call Meeting - FY27 Budget Workshop # 1",
+            "link": "https://www.tampa.gov/events/special-call-meeting-fy27-budget-workshop-1/193051",
+            "snippet": "Date: Monday, August 3, 2026 Time: 9:00 AM Location: Old City Hall 315 E. Kennedy Blvd. Tampa FL 33602. Monday through Friday, 8:00 AM to 5:00 ..."
+          },
+          {
+            "title": "City Commission Budget Workshop",
+            "link": "https://www.highsprings.gov/city-commission/meeting/city-commission-budget-workshop-1",
+            "snippet": "City Commission Budget Workshop Thu, May 22 2025, 5:30 - 6:30pm. Phone Number 386-454-1416 Office Hours Monday - Thursday: 7:30 AM - 6:00 PM Address 23718 W. ..."
+          }
+        ]
+      },
+      "confidence": 50,
+      "reasons": [
+        "recurring_over_time",
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 36
+    },
+    {
+      "theme_title": "Board of County Commissioners Meeting",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "PBC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": true,
+      "citation_summary": "Previously discussed: Palm Beach County (2026-07-07)",
+      "meetings": [
+        {
+          "muni_short": "PBC",
+          "muni_full": "Palm Beach County",
+          "title": "Board of County Commissioners Meeting",
+          "date": "2026-09-01",
+          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
+          "description": "Board of County Commissioners Meeting touched on budget & finance.",
+          "method": "heuristic"
+        },
+        {
+          "muni_short": "PBC",
+          "muni_full": "Palm Beach County",
+          "title": "Board of County Commissioners Meeting",
+          "date": "2026-07-07",
+          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260707.pdf",
+          "description": "Board of County Commissioners Meeting touched on budget & finance.",
+          "method": "heuristic"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "BCC Agenda",
+            "link": "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx",
+            "snippet": "The Board of County Commissioners meetings are broadcast live on TV Channel 20 and rebroadcast on the evening of the meeting, beginning at 6 p.m. If the meeting ..."
+          },
+          {
+            "title": "PBCTV Channel 20",
+            "link": "https://www.youtube.com/@pbctvchannel20",
+            "snippet": "Legislative Delegation & Palm Beach County Board of County Commissioners Joint Meeting Jan. 30, 2023. PBCTV Channel 20. 137 views. 3 years ago."
+          },
+          {
+            "title": "County Commissioners Home",
+            "link": "https://discover.pbc.gov/countycommissioners/Pages/default.aspx",
+            "snippet": "The Board of County Commissioners generally meets on the first and third Tuesday of each month for public hearings and regular agenda items. During the first ..."
+          },
+          {
+            "title": "Minutes | Clerk of the Circuit Court & Comptroller, Palm ...",
+            "link": "https://www.mypalmbeachclerk.com/records/minutes",
+            "snippet": "The Board of County Commissioners meets regularly on the first and third Tuesdays of each month for public hearings and regular Board items. For more ..."
+          },
+          {
+            "title": "County Commissioners BCC Meeting Videos",
+            "link": "https://discover.pbc.gov/countycommissioners/Pages/BCC-Meeting-Videos.aspx",
+            "snippet": "\u200bThe PBC TV Channel 20 Live Web Stream Is Best Viewed Using The Following Browsers: Microsoft Edge - Google Chrome \u2013 Firefox \u2013 Safari ..."
           }
         ]
       },
@@ -4984,6 +4994,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 2,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Boynton Beach (2026-04-14)",
       "meetings": [
         {
@@ -5052,6 +5063,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 2,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Riviera Beach (2026-05-06)",
       "meetings": [
         {
@@ -5120,6 +5132,7 @@
       ],
       "cross_municipality": false,
       "occurrence_count": 2,
+      "all_heuristic": true,
       "citation_summary": "Previously discussed: City of Westlake (2026-04-07)",
       "meetings": [
         {
@@ -5179,818 +5192,6 @@
       ],
       "starred": true,
       "rank": 40
-    },
-    {
-      "theme_title": "Planning and Zoning Board",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-17",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4451&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Planning and Zoning Board touched on community redevelopment (cra).",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Development Services | City of Delray Beach, FL",
-            "link": "https://www.delraybeachfl.gov/business/development-services",
-            "snippet": "Planning, Zoning, Historic Preservation: Monday - Friday, 8am - 5pm \u00b7 Phone: 561-243-7040 \u00b7 Email: pzmail@mydelraybeach.com or historicplanning@mydelraybeach.com."
-          },
-          {
-            "title": "City of Delray Beach - Planning and Zoning Board",
-            "link": "https://delraybeach.legistar.com/DepartmentDetail.aspx?ID=31975&GUID=1EB586E2-CE76-4A7C-BB24-B37B2B74C22F",
-            "snippet": "Parking Management Advisory Board; Planning and Zoning Board; Police Advisory Board; Police and Firefighters Retirement system board of trustees; Public Art ..."
-          },
-          {
-            "title": "Current Planning | City of Delray Beach, FL",
-            "link": "https://www.delraybeachfl.gov/government/city-departments/development-services/zoning-current-planning",
-            "snippet": "The Current Planning Division manages the administration of the City's Land Development regulations and development review processes. Through the review of site ..."
-          },
-          {
-            "title": "Planning & Zoning Board | Boca Raton, FL",
-            "link": "https://www.myboca.us/591/Planning-Zoning-Board",
-            "snippet": "The Planning and Zoning Board monitors and oversees the effectiveness of the Comprehensive Plan. The Board holds public hearings twice monthly to hear all ..."
-          },
-          {
-            "title": "Planning, Zoning & Building Home",
-            "link": "https://discover.pbc.gov/pzb/Pages/default.aspx",
-            "snippet": "Zoning Commission \u00b7 Planning Commmission \u00b7 Code Compliance \u00b7 MEETINGS LIVE ... West Palm Beach, FL 33411-2741; Phone: 561-233-5000; Fax: 561-233-5212. PBC ..."
-          }
-        ]
-      },
-      "confidence": 35,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 41
-    },
-    {
-      "theme_title": "Board of County Commissioners Meeting",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "PBC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "PBC",
-          "muni_full": "Palm Beach County",
-          "title": "Board of County Commissioners Meeting",
-          "date": "2026-09-01",
-          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
-          "description": "Board of County Commissioners Meeting touched on zoning & land use.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "BCC Agenda - Palm Beach County",
-            "link": "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx",
-            "snippet": "The Board of County Commissioners meetings are broadcast live on TV Channel 20 and rebroadcast on the evening of the meeting, beginning at 6 p.m. If the meeting ..."
-          },
-          {
-            "title": "PBCTV Channel 20 - YouTube",
-            "link": "https://www.youtube.com/@pbctvchannel20",
-            "snippet": "Legislative Delegation & Palm Beach County Board of County Commissioners Joint Meeting Jan. 30, 2023. PBCTV Channel 20. 137 views. 3 years ago."
-          },
-          {
-            "title": "County Commissioners BCC Meeting Dates",
-            "link": "https://discover.pbc.gov/countycommissioners/pages/meeting-dates.aspx",
-            "snippet": "Tuesday, January 6 \u2022 BCC Regular Meeting \u00b7 Tuesday, January 27 \u2022 Workshop \u00b7 Thursday, January 22 \u2022 BCC Zoning Hearing \u00b7 Wednesday, February 4 \u2022 BCC Comp Planning."
-          },
-          {
-            "title": "Minutes | Clerk of the Circuit Court & Comptroller, Palm Beach County",
-            "link": "https://www.mypalmbeachclerk.com/records/minutes",
-            "snippet": "The Board of County Commissioners meets regularly on the first and third Tuesdays of each month for public hearings and regular Board items. Contact (561) 355- ..."
-          },
-          {
-            "title": "Watch Our Government in Action - Palm Beach County Democratic Party",
-            "link": "https://pbcdemocraticparty.org/watch-our-government-in-action/",
-            "snippet": "Regular Board meetings are typically scheduled for the third Wednesday of the month, except where noted, and begin at 5 p.m. Workshops and Special Meetings ..."
-          }
-        ]
-      },
-      "confidence": 35,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": false,
-      "rank": 42
-    },
-    {
-      "theme_title": "Planning and Zoning Board",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-17",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4451&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Planning and Zoning Board touched on budget & finance.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Development Services | City of Delray Beach, FL",
-            "link": "https://www.delraybeachfl.gov/business/development-services",
-            "snippet": "Planning, Zoning, Historic Preservation: Monday - Friday, 8am - 5pm \u00b7 Phone: 561-243-7040 \u00b7 Email: pzmail@mydelraybeach.com or historicplanning@mydelraybeach.com."
-          },
-          {
-            "title": "City of Delray Beach - Planning and Zoning Board",
-            "link": "https://delraybeach.legistar.com/DepartmentDetail.aspx?ID=31975&GUID=1EB586E2-CE76-4A7C-BB24-B37B2B74C22F",
-            "snippet": "Planning and Zoning Board. Watch on YouTube: https://www.youtube.com/@cityofdelraybeachfl/streams"
-          },
-          {
-            "title": "Current Planning | City of Delray Beach, FL",
-            "link": "https://www.delraybeachfl.gov/government/city-departments/development-services/zoning-current-planning",
-            "snippet": "The Current Planning Division manages the administration of the City's Land Development regulations and development review processes."
-          },
-          {
-            "title": "Delray Beach Planning and Zoning Board appointment",
-            "link": "https://www.facebook.com/groups/delraymatters/posts/2247225219114313/",
-            "snippet": "The Planning & Zoning Board meeting that was scheduled for October 10th has been rescheduled to Thursday, October 17th at 7 PM. Location: City ..."
-          },
-          {
-            "title": "Planning & Zoning Board | Boca Raton, FL",
-            "link": "https://www.myboca.us/591/Planning-Zoning-Board",
-            "snippet": "The Planning and Zoning Board monitors and oversees the effectiveness of the Comprehensive Plan. Building 6500 N Congress Avenue Boca Raton, FL 33487 When 6:00 ..."
-          }
-        ]
-      },
-      "confidence": 35,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 43
-    },
-    {
-      "theme_title": "Planning and Zoning Board Meeting",
-      "category": "Housing & Development",
-      "municipalities": [
-        "RIVBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "RIVBEACH",
-          "muni_full": "City of Riviera Beach",
-          "title": "Planning and Zoning Board Meeting",
-          "date": "2026-08-13",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=670",
-          "description": "Planning and Zoning Board Meeting touched on housing & development.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Planning & Zoning Board | Nassau County - Official Website",
-            "link": "https://www.nassaucountyfl.com/1243/Planning-Zoning-Board-PZB",
-            "snippet": "First and Third Tuesday of each month \u00b7 Time: 6:00 p.m. \u00b7 Location: Commission Chambers, James S Page Governmental Complex \u00b7 Planning & Zoning Board Agendas \u00b7 The ..."
-          },
-          {
-            "title": "Planning & Zoning Board | Vero Beach, FL",
-            "link": "https://www.covb.org/304/Planning-Zoning-Board",
-            "snippet": "Regular Meetings \u00b7 1:30 P.M. \u00b7 First and Third Thursday of every month \u00b7 1053 20th Place City Hall Council Chambers Vero Beach, FL 32960 ..."
-          },
-          {
-            "title": "Planning & Zoning Board | Dania Beach, FL - Official Website",
-            "link": "https://www.daniabeachfl.gov/planning-zoning-board",
-            "snippet": "Regular meetings of the Board shall be held monthly at times specified, View the agendas and minutes for the Planning & Zoning Board."
-          },
-          {
-            "title": "Planning & Zoning Board Meeting on July 28, 2026",
-            "link": "http://www.greencovesprings.com/m/newsflash/Home/Detail/350",
-            "snippet": "The Planning and Zoning Board will hold its next meeting on Tuesday, July 28, 2026 at 5:00 PM at City Hall. The agenda and packet are available ..."
-          },
-          {
-            "title": "Planning & Zoning",
-            "link": "https://mexicobeachfl.gov/government/planning-zoning/",
-            "snippet": "Attend P&Z Board meetings and be prepared to step in when a regular member is absent. Review and analyze development proposals, site plans, variance requests, ..."
-          }
-        ]
-      },
-      "confidence": 35,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 44
-    },
-    {
-      "theme_title": "Local Planning Agency (LPA)",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "PALMBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "PALMBEACH",
-          "muni_full": "Town of Palm Beach",
-          "title": "Local Planning Agency (LPA)",
-          "date": "2026-03-04",
-          "link": "https://palmbeachfl.portal.civicclerk.com/event/11502/files/agenda/14877",
-          "description": "Local Planning Agency (LPA) (no specific tracked topic keyword matched).",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Public Meetings - Town of Palm Beach, FL - CivicClerk",
-            "link": "https://palmbeachfl.portal.civicclerk.com/event/11546/files",
-            "snippet": "Local Planning Agency (LPA) - July 15, 2026 \u00b7 1. MAYOR AND TOWN COUNCIL MEMBERS \u00b7 2. PUBLIC - 3 MINUTE LIMITFor those unable to attend in person: ..."
-          },
-          {
-            "title": "Planning, Zoning & Building Home",
-            "link": "https://discover.pbc.gov/pzb/Pages/default.aspx",
-            "snippet": "PZB Main Office. 2300 N Jog Road; West Palm Beach, FL 33411-2741; Phone: 561-233-5000; Fax: 561-233-5212. PBC Mission Statement. To drive a continuous ..."
-          },
-          {
-            "title": "PLANNING, ZONING & BUILDING DEPARTMENT",
-            "link": "https://www.townofpalmbeach.com/284/Planning-Zoning-Building",
-            "snippet": "The Planning, Zoning, and Building Department provides numerous services to preserve the Town's extraordinary beauty, quality of life, and small-town ..."
-          },
-          {
-            "title": "Open Seat \u2013 Local Planning Agency (LPA) The Town of ...",
-            "link": "https://www.facebook.com/TownofFortMyersBeach/posts/open-seat-local-planning-agency-lpathe-town-of-fort-myers-beach-is-accepting-app/1320707446758115/",
-            "snippet": "The LPA serves in an advisory role to the Town Council on matters related to land use, zoning, development regulations, and the Town's ..."
-          },
-          {
-            "title": "Planning & Zoning Division | North Palm Beach, FL",
-            "link": "https://www.village-npb.org/178/Planning-Zoning-Division",
-            "snippet": "Our goal is to improve and optimize land use through effective planning and zoning for sustainable development in the Village, while preserving its unique ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 45
-    },
-    {
-      "theme_title": "Town Council Workshop - Discussion of Town Manager Contract Terms",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUNOBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Town Council Workshop - Discussion of Town Manager Contract Terms",
-          "date": "2026-08-06",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-8709b33c12a04cd18f88b6b34add82db.pdf",
-          "description": "Town Council Workshop - Discussion of Town Manager Contract Terms (no specific tracked topic keyword matched).",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Calendar \u2022 Town Council Workshop - Juno Beach",
-            "link": "https://www.juno-beach.fl.us/Calendar.aspx?EID=463",
-            "snippet": "Town Council Workshop - Discussion of Town Manager Contract Terms Thursday, August 6, 2026. Time: 4:00 PM Location: Event Location Address: Juno Beach, FL 33408"
-          },
-          {
-            "title": "Special Town Council Meeting - July 29, 2026 - YouTube",
-            "link": "https://www.youtube.com/watch?v=5B2wrMGMWGc",
-            "snippet": "Town of Juno Beach Town Council Workshop - Discussion of Town Manager Contract Terms - August 6, 2026"
-          },
-          {
-            "title": "Juno Beach schedules Aug. 6 workshop to set town manager ...",
-            "link": "https://citizenportal.ai/articles/8853797/florida/palm-beach-county/juno-beach/juno-beach-schedules-aug-6-workshop-to-set-town-manager-contract-terms",
-            "snippet": "The council voted unanimously to hold a workshop to discuss contract business terms for the town manager before finalizing negotiations."
-          },
-          {
-            "title": "Town Council - YouTube",
-            "link": "https://www.youtube.com/playlist?list=PLJ3Xbg4ZAeWPoj5KjkZZGwPjjvlhPZbxJ",
-            "snippet": "Town Council Workshop - Discussion of Town Manager Contract Terms - August 6, 2026 Town of Juno Beach 122 views \u2022 Streamed 3 weeks ago 3:56:36 Town Council ..."
-          },
-          {
-            "title": "Town Council Meeting - May 20, 2026 - YouTube",
-            "link": "https://www.youtube.com/watch?v=if7YUI9GNrU",
-            "snippet": "Town of Juno Beach Town Council Workshop - Discussion of Town Manager Contract Terms - August 6, 2026 Town of Juno"
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 46
-    },
-    {
-      "theme_title": "Town Council Goal Setting & Team Building Work Session",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUNOBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Town Council Goal Setting & Team Building Work Session",
-          "date": "2026-06-04",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-1e4587b8d3f74ba7b7f032ea8d27d832.pdf",
-          "description": "Town Council Goal Setting & Team Building Work Session (no specific tracked topic keyword matched).",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Town Council Goal Setting & Team Building Work Session",
-            "link": "https://juno-beach.fl.us/Calendar.aspx?EID=436&month=6&year=2026&day=4&calType=0",
-            "snippet": "Town Council Goal Setting & Team Building Work Session Thursday, June 4, 2026. Time: 3:00 PM - 7:00 PM Location: Palm Beach County Library 11303 Campus Drive ..."
-          },
-          {
-            "title": "Town Council",
-            "link": "https://www.youtube.com/playlist?list=PLJ3Xbg4ZAeWPoj5KjkZZGwPjjvlhPZbxJ",
-            "snippet": "Town Council Goal Setting & Team Building - June 4, 2026 Town of Juno Beach. Town Council Work Session - Master Plan Development Discussion Town of Juno Beach"
-          },
-          {
-            "title": "TOWN COUNCIL GOAL SETTING & TEAM BUILDING ...",
-            "link": "https://www.juno-beach.fl.us/DocumentCenter/View/659",
-            "snippet": "The meeting will be broadcast live on The Town of Juno Beach YouTube page and can be viewed any time at: https://www.youtube.com ..."
-          },
-          {
-            "title": "Council approves monthly briefing sessions for manager ...",
-            "link": "https://citizenportal.ai/articles/8599673/florida/palm-beach-county/juno-beach/council-approves-monthly-briefing-sessions-for-manager-and-council-to-discuss-issues-outside-formal-agenda",
-            "snippet": "Juno Beach's council approved a monthly council-briefing work session (first Wednesday at 5:30 p.m.) for the town manager to present issues and ..."
-          },
-          {
-            "title": "TOWN COUNCIL REGULAR MEETING AGENDA",
-            "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Packet-e979675a0c9942cc925d121041feb73b.pdf",
-            "snippet": "The meeting will be broadcast live on The Town of Juno Beach YouTube page and can be viewed any time at: https://www.youtube.com/@ ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 47
-    },
-    {
-      "theme_title": "CRA Regular Meeting/City Council workshop/City Council Regular Meeting",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "BOCA"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "BOCA",
-          "muni_full": "City of Boca Raton",
-          "title": "CRA Regular Meeting/City Council workshop/City Council Regular Meeting",
-          "date": "2026-06-09",
-          "link": "https://www.myboca.us/Calendar.aspx?EID=12912&month=6&year=2026&day=5&calType=0",
-          "description": "CRA Regular Meeting/City Council workshop/City Council Regular Meeting touched on community redevelopment (cra).",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Calendar \u2022 CRA Regular Meeting/City Council workshop/ ...",
-            "link": "https://www.myboca.us/Calendar.aspx?EID=12912",
-            "snippet": "CRA Regular Meeting/City Council workshop/City Council Regular Meeting \u00b7 Tuesday, June 9, 2026 \u00b7 Featured Events \u00b7 Contact Us \u00b7 Community Links \u00b7 Using this Site."
-          },
-          {
-            "title": "City Meetings",
-            "link": "https://www.youtube.com/playlist?list=PL1LiP0tiQOPXqbSknDshfgF59lAxmcA_P",
-            "snippet": "City of Boca Raton - CRA, City Council Workshop & City Council Regular Meeting 05.26.2026. City of Boca Raton Government. 937 views \u2022 Streamed 3 months ago."
-          },
-          {
-            "title": "City of Boca Raton, FL: Public Meetings New (Videos Feed)",
-            "link": "https://bocaraton.granicus.com/ViewPublisherRSS.php?view_id=9&mode=podcast",
-            "snippet": "City Council Regular Meeting - Aug 25, 2026. The agenda for City Council Regular Meeting dated Tuesday, 25 August 2026 has been archived. Access it here ..."
-          },
-          {
-            "title": "Boca Raton City Meeting Agendas September 8",
-            "link": "https://www.facebook.com/BocaRatonCity/posts/agendas-for-tuesdays-meetings-are-available-online-please-note-due-to-the-labor-/1521797093312884/",
-            "snippet": "Due to Columbus Day, the CRA and City Council meetings will be held on Tuesday and Wednesday of this week. View agendas for this week's meetings ..."
-          },
-          {
-            "title": "Agendas | Boca Raton, FL",
-            "link": "https://www.myboca.us/129/Agendas",
-            "snippet": "Upcoming Events ; C.R.A. Regular Meeting * Special Date and Time, Sep 8, 2026 - 10:00 AM, Agenda ; City Council Special Meeting - Downtown Special Assessment * ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 48
-    },
-    {
-      "theme_title": "Board of County Commissioners Meeting",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "PBC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "PBC",
-          "muni_full": "Palm Beach County",
-          "title": "Board of County Commissioners Meeting",
-          "date": "2026-07-07",
-          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260707.pdf",
-          "description": "Board of County Commissioners Meeting touched on community redevelopment (cra).",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "BCC Agenda - Palm Beach County",
-            "link": "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx",
-            "snippet": "The Board of County Commissioners meetings are broadcast live on TV Channel 20 and rebroadcast on the evening of the meeting, beginning at 6 p.m. If the meeting ..."
-          },
-          {
-            "title": "PBCTV Channel 20 - YouTube",
-            "link": "https://www.youtube.com/@pbctvchannel20",
-            "snippet": "Legislative Delegation & Palm Beach County Board of County Commissioners Joint Meeting Jan. 30, 2023. PBCTV Channel 20. 137 views. 3 years ago."
-          },
-          {
-            "title": "County Commissioners BCC Meeting Dates",
-            "link": "https://discover.pbc.gov/countycommissioners/pages/meeting-dates.aspx",
-            "snippet": "Tuesday, January 6 \u2022 BCC Regular Meeting \u00b7 Tuesday, January 27 \u2022 Workshop \u00b7 Thursday, January 22 \u2022 BCC Zoning Hearing \u00b7 Wednesday, February 4 \u2022 BCC Comp Planning."
-          },
-          {
-            "title": "Minutes | Clerk of the Circuit Court & Comptroller, Palm Beach County",
-            "link": "https://www.mypalmbeachclerk.com/records/minutes",
-            "snippet": "The Board of County Commissioners meets regularly on the first and third Tuesdays of each month for public hearings and regular Board items. Contact (561) 355- ..."
-          },
-          {
-            "title": "Watch Our Government in Action - Palm Beach County Democratic Party",
-            "link": "https://pbcdemocraticparty.org/watch-our-government-in-action/",
-            "snippet": "Regular Board meetings are typically scheduled for the third Wednesday of the month, except where noted, and begin at 5 p.m. Workshops and Special Meetings ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 49
-    },
-    {
-      "theme_title": "City Commission Comprehensive Plan Workshop",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "BOYNTON"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "BOYNTON",
-          "muni_full": "City of Boynton Beach",
-          "title": "City Commission Comprehensive Plan Workshop",
-          "date": "2026-03-26",
-          "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2550&month=3&year=2026&day=5&calType=0",
-          "description": "City Commission Comprehensive Plan Workshop touched on zoning & land use.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Comprehensive Plan 2050 | Boynton Beach, FL",
-            "link": "https://www.boynton-beach.org/857/Comprehensive-Plan-2050",
-            "snippet": "March 26, 2026 \u2013 Commission Workshop #1 at City Hall; June 16th, 2026 - Commission Workshop #2 at City Hall; July 7th, 2026 at 5:30 PM - Local Planning Agency ..."
-          },
-          {
-            "title": "Help shape Boynton Beach's future at the Comprehensive ...",
-            "link": "https://www.facebook.com/bbecodev/posts/-planning-today-thriving-tomorrowwhat-do-you-want-boynton-beach-to-look-like-in-/903234449452806/",
-            "snippet": "This plan will help guide growth, development, opportunities, and quality of life in our community for years to come. Residents, business owners ..."
-          },
-          {
-            "title": "Calendar \u2022 City Commission Comprehensive Plan Workshop",
-            "link": "https://www.boynton-beach.org/Calendar.aspx?EID=2550&month=3&year=2026&day=26&calType=0",
-            "snippet": "City Commission Comprehensive Plan Workshop. Thursday, March 26, 2026 ... FL Boynton Beach Logo City Commission Agenda Review Workshop. City Commission ..."
-          },
-          {
-            "title": "Boynton Beach listening to residents for its 2045 ...",
-            "link": "https://www.wptv.com/news/region-s-palm-beach-county/boynton-beach/boynton-beach-listening-to-residents-for-its-2045-comprehensive-plan",
-            "snippet": "Boynton Beach listening to residents for its 2045 comprehensive plan. City staff say feedback will help shape key elements of the plan, which ..."
-          },
-          {
-            "title": "Boynton Beach Commission Approves Comprehensive ...",
-            "link": "https://www.instagram.com/p/DaitNNeEWQ6/",
-            "snippet": "\u23f0 Time: 7:00 PM Location: Johnny L. Tigner Community Center Address: 445 SW 2nd Street, Deerfield Beach, FL Agenda Link: https://ow.ly ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 50
-    },
-    {
-      "theme_title": "Special Town Commission Meeting",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-07-21",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-55",
-          "description": "Special Town Commission Meeting touched on budget & finance.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Meetings, Agendas, & Videos | City of Sarasota",
-            "link": "https://www.sarasotafl.gov/City-Services/Meetings-Agendas-Videos",
-            "snippet": "Special City Commission Meeting - Budget Public Hearings Sep 8, 2026 - 5:30 PM \u2026 2026 - 10:30 AM"
-          },
-          {
-            "title": "View 4/9 City Commission meeting Action Summary, Full ...",
-            "link": "https://www.facebook.com/CoconutCreekGov/posts/view-49-city-commission-meeting-action-summary-full-agenda-and-media/1384084703754894/",
-            "snippet": "City Commission meeting on Monday, April 12 at 7:30 p.m. at City Hall, 302 W. Reynolds Street. The meeting will be accessible in-person only."
-          },
-          {
-            "title": "City Commission | City of Delray Beach, FL",
-            "link": "https://www.delraybeachfl.gov/government/city-commission",
-            "snippet": "City Commission meetings are held on the first and third Tuesdays of each month. All Commission meetings are held at City Hall and begin at 5 p.m."
-          },
-          {
-            "title": "Summary of Action - Regular City Council Meeting 7/14/26 ...",
-            "link": "http://titusville.com/m/newsflash/Home/Detail/1105",
-            "snippet": "Summary of Action - Regular City Council Meeting 7/14/26 at 6:30pm \u00b7 CALL TO ORDER (Link to Video) \u00b7 INVOCATION \u00b7 PLEDGE OF ALLEGIANCE (Link to Video) \u00b7 APPROVAL OF ..."
-          },
-          {
-            "title": "Town Commission Special Meeting/Swearing-in Ceremony",
-            "link": "https://highlandbeach-fl.municodemeetings.com/towncommission/page/town-commission-special-meetingswearing-ceremony-0",
-            "snippet": "Town Commission Special Meeting/Swearing-in Ceremony Tuesday, March 24, 2026 - 1:30pm. CHAMBERS, 3614 S. OCEAN BLVD., HIGHLAND BEACH, FL"
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 51
-    },
-    {
-      "theme_title": "Board of County Commissioners Meeting",
-      "category": "Housing & Development",
-      "municipalities": [
-        "PBC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "PBC",
-          "muni_full": "Palm Beach County",
-          "title": "Board of County Commissioners Meeting",
-          "date": "2026-07-07",
-          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260707.pdf",
-          "description": "Board of County Commissioners Meeting touched on housing & development.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "BCC Agenda",
-            "link": "https://discover.pbc.gov/countycommissioners/Pages/Agenda.aspx",
-            "snippet": "The Board of County Commissioners meetings are broadcast live on TV Channel 20 and rebroadcast on the evening of the meeting, beginning at 6 p.m. If the meeting ..."
-          },
-          {
-            "title": "PBCTV Channel 20",
-            "link": "https://www.youtube.com/@pbctvchannel20",
-            "snippet": "Legislative Delegation & Palm Beach County Board of County Commissioners Joint Meeting Jan. 30, 2023. PBCTV Channel 20. 137 views. 3 years ago."
-          },
-          {
-            "title": "County Commissioners Home",
-            "link": "https://discover.pbc.gov/countycommissioners/Pages/default.aspx",
-            "snippet": "The Board of County Commissioners generally meets on the first and third Tuesday of each month for public hearings and regular agenda items. on PBC-TV Channel ..."
-          },
-          {
-            "title": "Minutes | Clerk of the Circuit Court & Comptroller, Palm ...",
-            "link": "https://www.mypalmbeachclerk.com/records/minutes",
-            "snippet": "The Board of County Commissioners meets regularly on the first and third Tuesdays of each month for public hearings and regular Board items. Contact (561) 355- ..."
-          },
-          {
-            "title": "County Commissioners BCC Meeting Videos",
-            "link": "https://discover.pbc.gov/countycommissioners/Pages/BCC-Meeting-Videos.aspx",
-            "snippet": "The PBC TV Channel 20 Live. Browse the year and category for your BCC Meeting selection: BCC Board Meetings (19) BCC Workshops/Budget Hearings/Other (13) ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 52
-    },
-    {
-      "theme_title": "City Commission",
-      "category": "Downtown Development / DDA / DAC",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "City Commission",
-          "date": "2026-07-21",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4623&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "City Commission touched on downtown development / dda / dac.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "City Commission | City of Delray Beach, FL",
-            "link": "https://www.delraybeachfl.gov/government/city-commission",
-            "snippet": "City Commission meetings are held on the first and third Tuesdays of each month. All Commission meetings are held at City Hall and begin at 5 p.m. Workshops are ..."
-          },
-          {
-            "title": "Commissioner Juli Casale, Delray Beach (@voteforjuli)",
-            "link": "https://www.facebook.com/voteforjuli/",
-            "snippet": "She supports preserving green spaces and the Atlantic Avenue Historic District. Juli will explore innovative solutions, like using technology to ease traffic."
-          },
-          {
-            "title": "City of Delray Beach - Calendar",
-            "link": "https://delraybeach.legistar.com/",
-            "snippet": "Commission Chambers Delray Beach City Hall or Live Stream: https://www.youtube.com/@cityofdelraybeachfl/streams. Regular Meeting at 4:00 PM, Meeting details ..."
-          },
-          {
-            "title": "City of Delray Beach",
-            "link": "https://www.youtube.com/channel/UCc2j0JhnR8Hx0Hj13RhCJag/streams",
-            "snippet": "6:05:32. City Commission Regular Meeting 08-18-2026 05:00 PM. 1.2K views. Streamed 7 days ago \u00b7 1:07:02 \u00b7 City Commission Workshop Meeting 08-18-2026 04:00 PM."
-          },
-          {
-            "title": "Meet Delray Beach's newest commissioner",
-            "link": "https://cbs12.com/news/local/meet-delray-beachs-newest-commissioner",
-            "snippet": "The city has a new mayor, Tom Carney, and two new commissioners, Juli Casale and Tom Markert. Delray Beach residents may recognize their new ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 53
-    },
-    {
-      "theme_title": "City Council Regular Meeting",
-      "category": "Data Centers",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Regular Meeting",
-          "date": "2026-04-07",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-b7c788e0ba1141b2aef00eb7f776e7cf.pdf",
-          "description": "City Council Regular Meeting touched on data centers.",
-          "method": "heuristic"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Meetings",
-            "link": "https://www.westlakegov.com/meetings",
-            "snippet": "Meetings ; 08/04/2026 - 6:00pm, City Council Regular Meeting, PDF icon \u00b7 html icon ; 08/04/2026 - 5:30pm, Local Planning Agency Meeting, PDF icon \u00b7 html icon ; 08/ ..."
-          },
-          {
-            "title": "City Council Regular Meeting",
-            "link": "https://www.westlakegov.com/citycouncil/page/city-council-regular-meeting-4",
-            "snippet": "City Council Regular Meeting 06/08/2020 06:30 PM Via Communications Media ... The meeting will take place at the Westlake Community Center/City Council ..."
-          },
-          {
-            "title": "City Council Regular Meeting 05/05/2026 06:00 PM",
-            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=fd5a6a68abc346e39f18ea714e77071b&ip=True",
-            "snippet": "City Council Regular Meeting 05/05/2026 06:00 PM The Lodge at Westlake Adventure Park 5490 Kingfisher Blvd. Westlake, Florida 33470 \u00b7 CALL TO ORDER ..."
-          },
-          {
-            "title": "City Council Meeting \u2013 September 2026",
-            "link": "https://westlakewanderer.com/2026/09/02/city-council-september-2026/",
-            "snippet": "Westlake's next City Council Regular Meeting is Tuesday October 6, 6PM at the Lodge. NOT TO MISS: PBSO will be on scene with a quick ..."
-          },
-          {
-            "title": "City Council Meeting",
-            "link": "https://www.westlakegov.com/citycouncil/page/city-council-meeting",
-            "snippet": "City Council Regular Meeting. 09/01/2026 - 6:00pm. City Council Workshop - Strategic Planning. 09/08/2026 - 4:30pm. City Council First Budget Hearing. 09/08/ ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 54
     }
   ]
 }
