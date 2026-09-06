@@ -1009,7 +1009,442 @@ municipality (a first for this project).
 
 * * *
 
-## Latest Session Fixes (Current)
+## Insights Feature (added this session — UNCONFIRMED, zero network access to test LLM/search/live sites)
+
+A new **"Insights" tab**, separate from Calendar/List/Admin, that surfaces recurring
+governance topics (zoning, CRA, DDA/DAC, data centers, etc. — the same subject areas
+this project already cares about per README.md) by reading back through each
+municipality's meeting history beyond the normal 2-month calendar window, clustering
+recurring themes within and across municipalities, cross-referencing them against live
+web search for notability, and ranking the results by confidence. Runs once daily as
+part of the same GitHub Actions job, right after `scraper.py`. Keeps a rolling 7-day
+history so past runs stay visible, and stars (★) topics that keep recurring across
+multiple days.
+
+### Explicit user decisions made this session
+
+- **LLM**: reuse the `HF_TOKEN` secret already wired into the workflow (it existed but
+  was never actually called by any code before this session). Implemented via
+  `huggingface_hub.InferenceClient`, model configurable via `INSIGHTS_LLM_MODEL` env
+  var (default: `meta-llama/Llama-3.3-70B-Instruct`) — **this model name is a
+  reasonable default, not a confirmed-working one**; the sandbox has no network route
+  to huggingface.co, so nothing about the real Inference Providers routing for this
+  token has been tested. First real run's `[Insights LLM]`-prefixed log lines will say
+  plainly whether it worked or fell back to heuristic extraction.
+- **Web search**: recommended and implemented against **Serper.dev** (simple REST API
+  wrapping Google results, generous free tier, low friction to sign up for). Needs a
+  new GitHub secret, `SERPER_API_KEY`, which the user still needs to create an account
+  and add — not yet done as of this handoff. Also untested this session (no network
+  route to google.serper.dev either).
+- **Historical lookback window**: 6 months.
+- **Rolling history**: last 7 daily runs kept in `insights_history.json`.
+
+### Architecture — reuses every existing scraper, duplicates none of their parsing logic
+
+`insights_engine.py` (new file) does NOT write new per-municipality parsers. Instead:
+
+- **`scraper.py` got one small, low-risk, backward-compatible addition**:
+  `get_dual_month_bounds()` now checks a module-level `_DATE_WINDOW_OVERRIDE` (default
+  `None`) before falling back to its original "current + next month" logic. Every one
+  of the 14 municipalities' `scrape_*()` functions already calls
+  `get_dual_month_bounds()` fresh internally — so `insights_engine.py` can reuse ALL of
+  them verbatim to pull historical months just by calling
+  `scraper.set_date_window_override(start, end)` before invoking a scrape function and
+  `scraper.clear_date_window_override()` after. **Normal daily `scraper.py` runs never
+  call this override, so `main()`'s behavior is provably unchanged** — this was
+  smoke-tested (`python3 -m py_compile scraper.py` + confirmed `get_dual_month_bounds()`
+  returns identically to before when the override is unset).
+- Two municipality groups, handled differently because of how their scrapers fetch
+  pages (see `MULTI_MONTH_LOOP_SCRAPERS` vs `SINGLE_WINDOW_SCRAPERS` in
+  `insights_engine.py`):
+  - **Multi-month-loop family** (Boca, Boynton, PBG via `scrape_civicplus_calendar`;
+    Wellington; Jupiter) — these fetch a *new URL per calendar month* internally, so a
+    single override only ever nets 2 consecutive months. The engine loops the override
+    across each of the past 6 months individually and calls the same public wrapper
+    function each time (e.g. `scraper.scrape_boca_raton()`), unioning + deduping
+    results. Some redundant fetches happen (each call also re-fetches the following
+    month), which is wasteful but harmless — correctness relies on the dedup pass at
+    the end, not on avoiding overlap.
+  - **Single-window family** (everyone else — WPB, PBC, Delray, Westlake, Downtown WPB
+    DDA, Palm Beach/CivicClerk, Jupiter Inlet Colony, Riviera Beach, Juno Beach,
+    Manalapan, Gulf Stream) — these fetch one page/API response and filter dates in
+    memory, so a single widened override call (6 months back → now) captures whatever
+    historical rows the source already returns in one shot. For sites whose page only
+    ever shows the current/upcoming window (unconfirmed which of these do), this will
+    simply return the same events already visible on the calendar — not a regression,
+    just no additional history for that particular site until/unless confirmed
+    otherwise.
+- **Dedup** uses the exact same stable key already built for the "new records" diff
+  feature (`scraper.compute_change_key()`: muni + date + normalized title) — no new
+  identity logic invented.
+- **"Only topics we include" (item 1 in the request)**: automatically satisfied,
+  because every `scrape_*()` function already runs events through
+  `is_qualifying_event()` before returning them — the historical reuse inherits that
+  same whitelist for free.
+
+### Document reading ("reading the meeting minutes")
+
+`fetch_document_text()` attempts to download and extract text from each historical
+event's linked agenda/minutes document (skips entirely when `has_agenda` is `False` —
+nothing to read). PDF text extraction tries `pdfplumber` first, falls back to
+`PyPDF2`; HTML pages are flattened via BeautifulSoup. Capped at ~8,000 characters and
+15 pages per document to bound LLM token usage and runtime across 14 municipalities ×
+6 months. Every failure (dead link, timeout, unexpected format) degrades to `None`
+rather than raising — the pipeline then falls back to analyzing the event's title
+alone for that meeting. **Untested against real documents this session** (no network
+access) — logic-tested only via `_extract_pdf_text()`'s try/except structure, not
+against a real PDF byte stream.
+
+### Topic extraction, clustering, ranking
+
+- `extract_meeting_topics()` tries the LLM path first (`_llm_topics()` — sends the
+  muni/title/date/document-excerpt to the configured HF model, requires strict JSON-
+  array output); on ANY failure (bad response, network error, model not found, JSON
+  parse failure) it falls back to `_heuristic_topics()` — regex keyword-matching
+  against `TOPIC_TAXONOMY` (built directly from README.md's notes: zoning/plans/plats,
+  CRA, DDA/DAC, data centers, budget, housing). Every output topic is tagged
+  `"method": "llm"` or `"method": "heuristic"` so it's obvious from the JSON which path
+  produced it.
+- `cluster_recurring_themes()` groups topic entries first by category, then by
+  word-overlap similarity of the topic title within that category (Jaccard similarity
+  on normalized word sets, threshold 0.35) — a simple, dependency-free clustering
+  approach (no embeddings needed) that's good enough to surface real recurring
+  subjects without over-engineering. Each resulting theme records which municipalities
+  it appeared in (`cross_municipality: true/false`) and every underlying meeting.
+- `web_cross_reference()` queries Serper.dev with `"{theme_title} {municipality}
+  Florida"` and marks a theme `corroborated: true` if any organic results come back;
+  gracefully returns `checked: false` with no API key set, `checked: true,
+  corroborated: false` on any HTTP/network failure — never crashes the run.
+- `compute_confidence()`: base score from recurrence count (capped at 60), +25 for
+  appearing across more than one municipality, +15 if web-corroborated, +5 if the most
+  recent occurrence is within the last 30 days — capped at 100. Sorted descending, most
+  confident first, per the user's explicit ranking requirement.
+- **Starring**: `apply_star_flags()` compares each theme's normalized
+  (category + topic-title-keywords) key against the theme keys stored in the last 7
+  daily runs (`insights_history.json`) — a theme appearing in ≥2 of those days
+  (including today) gets `starred: true`.
+- **Rolling 7-day history**: `save_insight_history()` appends a lightweight summary of
+  each day's ranked list to `insights_history.json`, trimmed to the most recent 7
+  entries. Re-running on the same calendar date replaces that date's entry rather than
+  duplicating it (idempotent re-runs).
+
+### Smoke-tested this session (logic only — see `_smoke_test_insights.py`, not shipped
+as part of the app, kept for reference)
+
+Since neither the HF Inference API, Serper API, nor any of the 14 target sites were
+reachable from this sandbox, verification here follows the same standard already
+established in this project for Westlake/Jupiter/etc.: **logic confirmed against
+hand-built fixtures, not against live execution**. Confirmed via a real run of the
+test script: heuristic topic extraction correctly tags CRA/zoning/data-center
+keywords; clustering correctly groups a cross-municipality zoning topic separately
+from single-municipality topics; confidence scoring correctly ranks a corroborated,
+cross-municipality theme above single-occurrence ones; a theme reappearing on a second
+simulated day correctly gets `starred: true`; the 7-day retention window correctly
+trims older runs after simulating 9 days of history; and both the LLM and search paths
+correctly degrade to "unavailable" (not a crash) when `HF_TOKEN`/`SERPER_API_KEY`
+aren't set. This confirms the *code logic* against hypothesized inputs — it says
+nothing about whether the real HF model call or Serper call will actually succeed
+against your credentials, or whether the historical re-scrape will return meaningfully
+different data than the current 2-month window once run for real.
+
+### Frontend (`index.html`)
+
+- New "Insights" nav button next to "Meetings"/"Admin", wired into the existing
+  `switchView()` function (extended, not replaced) with a new `insights-wrapper`
+  `<main>` section.
+- Fetches `insights.json` (today's ranked list) and `insights_history.json` (past 7
+  days) on first visit to the tab only (`insightsLoaded` flag avoids re-fetching every
+  toggle). Each insight card shows rank, confidence badge (color-coded high/medium/
+  low), category + municipality tags, a ★ if recurring, a short summary, an
+  expandable list of the source meetings (with links), and — when present — a
+  "corroborated by independent web coverage" badge with source links.
+  Past-7-days section is a collapsible per-day list.
+- Handles the "not generated yet" case gracefully (shows a plain message rather than
+  breaking) since `insights.json`/`insights_history.json` won't exist in the repo
+  until the workflow runs this at least once.
+- All new CSS reuses the existing hand-rolled variables (`--primary`, `--card-bg`,
+  `--text-muted`, `--border`, `--radius`) — no new dependencies, no new design system.
+- JS syntax-verified via `node --check` on the extracted `<script>` block (same
+  verification method already established in this project) — not visually confirmed
+  in a real browser.
+
+### Bonus fix applied this session (flagging explicitly, not silently)
+
+The workflow's commit step previously only ran `git add data.json` — meaning
+`changes.json` (the "new records" notification feature's own output file) was **never
+actually being committed to the repo**, so the update banner in `index.html` has
+likely never had real data to read from in production, independent of anything in
+this session. Fixed as part of updating the commit step to also add `insights.json`
+and `insights_history.json` — the line now reads
+`git add data.json changes.json insights.json insights_history.json`. Worth
+confirming on the next real run that `changes.json` actually shows up in the repo
+after this.
+
+### What the user still needs to do before this can run for real
+
+1. **Sign up for Serper.dev** (or another search API) and add the key as a GitHub
+   Actions secret named `SERPER_API_KEY`. Without it, insights will still generate
+   (via heuristic extraction) but with no web-notability corroboration.
+2. Confirm the `HF_TOKEN` secret currently in the repo is a valid Hugging Face token
+   with Inference Providers access, and that the default model
+   (`meta-llama/Llama-3.3-70B-Instruct`) is actually routable on that token — if not,
+   override via an `INSIGHTS_LLM_MODEL` repo variable rather than editing code.
+3. **Run the workflow and paste back the `[Insights ...]`-prefixed log lines** —
+   exactly the same ask made for every new scraper in this project. Specifically
+   worth checking: whether `[Insights LLM]` shows successful extractions or falls
+   back to heuristic; whether `[Insights Search]` shows successful Serper calls;
+   whether `[Insights History]` gathered a meaningful number of historical events per
+   municipality (some single-page-listing sites may only ever show current/upcoming
+   meetings, in which case their "historical" contribution will be thin until
+   confirmed otherwise).
+4. Open the Insights tab in a real browser and confirm it renders as expected —
+   nothing here has been visually confirmed, only logic- and syntax-checked, per this
+   project's established practice.
+
+### First real run results (2026-09-05) and cost fix applied
+
+The first real GitHub Actions run of `insights_engine.py` completed successfully
+end-to-end — no crashes, `insights.json`/`insights_history.json`/`changes.json` all
+committed correctly. Findings:
+
+- **Historical gathering worked well**: 269 unique qualifying historical events
+  pulled across 6 months (279 raw rows before dedup) — confirms the
+  `get_dual_month_bounds()` override mechanism and the multi-month-loop/single-window
+  scraper reuse both work as designed.
+- **The LLM path failed 100% of the time — root cause fully diagnosed, not a code
+  bug**: all 243 calls to `meta-llama/Llama-3.3-70B-Instruct` came back `402 Payment
+  Required`, with HF's own message stating plainly: *"You have depleted your monthly
+  included credits."* Confirmed via web search: free-tier HF accounts get a flat
+  **$0.10/month** in Inference Provider credits, hard stop, no rollover — a 70B-class
+  model burns through that in well under 100 calls. This is a billing-tier issue, not
+  a token-permission or model-availability issue (the token's "Make calls to
+  Inference Providers" permission was independently confirmed checked/correct).
+- **Graceful degradation worked exactly as designed**: every failed LLM call fell
+  back to heuristic keyword extraction automatically. End result: 412 raw topic
+  entries → clustered into 86 candidate themes → written to `insights.json`. The
+  pipeline never crashed and produced genuinely usable (if less nuanced) output even
+  with the LLM completely unavailable for the entire run.
+- **Two visibility gaps found and fixed**: `web_cross_reference()` and
+  `fetch_document_text()` only ever logged on *failure*, so the log couldn't confirm
+  whether Serper or document-fetching actually succeeded (86 Serper calls produced
+  zero log lines either way). Fixed by adding aggregate summary lines
+  (`[Insights Search] N/M theme(s) queried, X corroborated, Y failed` and
+  `[Insights Docs] Read real document text for N meeting(s); M unavailable`) printed
+  once per run rather than spamming a line per call.
+
+### Cost-reduction changes made this session (in response to the 402s)
+
+Per explicit user request ("let's see how to get this done using free credits"),
+three changes target the $0.10/month ceiling directly rather than asking the user to
+pay:
+
+1. **Persistent topic cache (`topic_cache.json`, new file, now committed by the
+   workflow)** — this is the highest-leverage fix. Previously, all 269 historical
+   meetings were re-sent to the LLM from scratch on *every single day's run*, even
+   though past meeting minutes never change. Now: a meeting's result is cached by the
+   same stable key already used for the "new records" diff (`compute_change_key()`),
+   but **only when the result came from a real LLM call** (`method == "llm"` for every
+   topic) — heuristic-only results are deliberately left OUT of the cache, so they
+   stay eligible to be retried on a future run once credits refill or a cheaper model
+   is in place. This means the LLM-covered share of the 6-month window should grow
+   incrementally month over month rather than being permanently capped at whatever the
+   first run's $0.10 happened to cover, and it means steady-state daily runs (after
+   the initial backfill) should only ever need to spend credits on the handful of
+   genuinely new meetings added since the previous day — which a $0.10/month budget
+   should comfortably cover indefinitely, even if the initial 269-meeting backfill
+   takes several monthly cycles to fully convert from heuristic to LLM-analyzed.
+   `prune_topic_cache()` drops any cached meeting that's aged out of the 6-month
+   window so the file doesn't grow unbounded.
+2. **Default model swapped from a 70B-class model to `Qwen/Qwen2.5-7B-Instruct`** —
+   smaller instruct models are typically several times cheaper per call than 70B
+   models on Inference Providers. **This is an educated guess, not a confirmed
+   cheapest option** — this session had no way to check real-time per-model pricing
+   for the user's specific account/provider routing. Still fully overridable via the
+   `INSIGHTS_LLM_MODEL` env var with zero code changes if a cheaper or better-quality
+   option turns up. Worth checking the next run's log for how many calls got through
+   before (if ever) hitting 402 again.
+3. **Trimmed prompt/response size** — `MAX_LLM_DOC_CHARS` (document excerpt sent to
+   the LLM) reduced from 8,000 to 3,000 characters, and `MAX_LLM_RESPONSE_TOKENS`
+   reduced from 800 to 400 — both cut billed tokens per call. The heuristic path's
+   own 8,000-char cap (`MAX_DOC_CHARS`) is unchanged since it costs nothing.
+4. **Stop wasting time/calls once credits are visibly gone**: a new
+   `_hf_credits_exhausted` flag gets set the first time a `402`/"Payment
+   Required"/"depleted" error is seen, and every subsequent meeting in that same run
+   skips straight to heuristic extraction instead of making (and waiting out) a call
+   already known to be doomed. On the first real run this would have skipped ~150+
+   pointless HTTP round-trips once the very first 402 came back.
+
+**Smoke-tested** (see updated `_smoke_test_insights.py`): confirmed the cache only
+ever persists all-LLM results (a mixed or all-heuristic result is correctly excluded
+from the cache so it retries later), confirmed `prune_topic_cache()` drops keys
+outside the current window, and confirmed `_llm_topics()` returns `None` immediately
+(no network call attempted) once the credits-exhausted flag is set. **Still
+unconfirmed against live execution**: whether `Qwen/Qwen2.5-7B-Instruct` is actually
+cheaper on this account's real provider routing, and how many real calls the new
+smaller prompt/response sizes allow within $0.10 — ask for the next run's
+`[Insights LLM]`/`[Insights Docs]`/`[Insights Search]` summary lines specifically.
+
+### Insight quality rewrite (2026-09-05, second pass) — recurrence/corroboration-only
+
+Per explicit user feedback after reviewing real output: the first working run produced
+technically-correct but low-value cards — mostly "a meeting happened, touched on
+[category]" restatements. User's own example (a specific ordinance, corroborated by
+web search, discussed across 3 meetings) set the actual bar. Four changes bring the
+pipeline in line with that bar:
+
+1. **Cancelled meetings and schedule-deviation notes are now excluded before any
+   analysis, not just hidden at display time.** `is_cancelled_event()` drops any
+   title matching `CANCEL(L)?ED` (case-insensitive) — real examples like "**CANCELED -
+   City Council Regular Meeting" were previously still being scanned. `strip_schedule_notes()`
+   removes parenthetical asides that only describe timing quirks (e.g. "(March meeting
+   is on a Monday, not the usual Tuesday)", "(Will Follow the Joint Meeting)") before
+   the title reaches either extraction path, so a scheduling coincidence can never be
+   mistaken for a topic. Both are applied inside `gather_historical_events()`, so
+   cancelled meetings never even cost an LLM call.
+2. **The LLM prompt was rewritten from "find topics" to "find specific, nameable
+   items."** It now explicitly requires an identifiable subject (ordinance/resolution
+   number, named project, applicant, address, dollar figure, case number) and
+   explicitly forbids generic meeting-type restatements, procedural boilerplate
+   (roll call, approval of minutes, adjournment), and anything about *when* a meeting
+   happens. It's also instructed to reuse identifying numbers/names verbatim across
+   meetings so the same real-world matter clusters together correctly later. If a
+   meeting has no document text, or the LLM finds nothing meeting these rules, it now
+   correctly returns an empty result (`[]`) rather than fabricating a generic
+   restatement of the title — **this required distinguishing "LLM ran and found
+   nothing" (success, cacheable, no retry needed) from "LLM call failed" (triggers
+   heuristic fallback, not cached, retried later)**, since both used to collapse to
+   the same `None` return value. `extract_meeting_topics()` now returns `(topics,
+   used_llm)` instead of just `topics` to make this distinction usable by the caller.
+3. **A hard insight-worthiness filter now runs after clustering and web
+   cross-referencing**: a theme only survives into `insights.json` if `occurrence_count
+   >= 2` (recurring — same matter in 2+ meetings, same city over time or across
+   municipalities) **or** `web_notability.corroborated` is true (independently
+   confirmed real, even as a single mention — this is what makes the Ordinance #4316
+   example valid). Everything else — a single, unconfirmed mention — is dropped
+   (`is_insight_worthy()`). Every surviving theme also gets an explicit `reasons` list
+   (`recurring_over_time`, `recurring_across_municipalities`,
+   `corroborated_by_web_search` — a theme can have more than one) via
+   `assign_reason()`, and a plain-language `citation_summary` field (e.g. "Previously
+   discussed: City of Riviera Beach (2026-07-15), City of Riviera Beach (2026-06-03)")
+   via `_build_citation_summary()`, so the frontend can show its evidence rather than
+   just asserting recurrence.
+4. **Clustering similarity threshold raised from 0.35 to 0.5** (`cluster_recurring_themes()`),
+   now that topics are meant to be specific identifiers rather than generic category
+   restatements — tighter matching avoids accidentally merging unrelated items that
+   happen to share common words like "budget" or "meeting".
+
+**Frontend (`index.html`)**: insight cards now show amber "reason" tags (Recurring
+across municipalities / Recurring over time / Confirmed by web search) next to the
+category/municipality tags, plus the citation summary line when present. The tab's
+header copy and empty-state message were rewritten to set the right expectation:
+this tab intentionally shows fewer, higher-confidence items, not a log of every
+meeting.
+
+**Explicitly expected consequence, stated by the user in advance**: this will cut the
+insight count down significantly compared to the first run's 86 themes — that's the
+intended effect, not a bug. A near-empty Insights tab immediately after a run is
+plausible and correct if nothing genuinely recurring or independently notable turned
+up yet; it should fill in as more of the 6-month history gets real LLM analysis over
+time (see the topic-cache section above) and as genuine recurrences accumulate.
+
+**Smoke-tested** (see `_smoke_test_insights.py`, tests 13-23): cancellation detection,
+schedule-note stripping (both real phrasings seen in the actual first-run log), the
+LLM-empty-result-is-not-a-failure distinction, a realistic "Ordinance No. 4316"-shaped
+extraction parsing correctly, the insight-worthiness filter's four decision cases
+(single+uncorroborated → dropped; single+corroborated → kept; recurring+uncorroborated
+→ kept; recurring+cross-municipality → correct reason label), and citation summary
+generation (cites prior occurrences, correctly excludes the most recent one from its
+own citation list). **Still unconfirmed against live execution**: whether the
+tightened LLM prompt actually produces the intended specificity against real document
+text and real model output — ask for the next run's `insights.json` content
+specifically (not just the log) to check topic_title quality once the next run
+completes.
+
+### Second real run (2026-09-05, later same day) — misdiagnosed error + a real filter bug found
+
+The user swapped in the recurrence/corroboration-only code and re-ran the workflow.
+Two distinct problems surfaced, neither of which was the credits issue from the first
+run:
+
+1. **`Qwen/Qwen2.5-7B-Instruct` isn't served by any Inference Provider enabled on this
+   HF account** — every one of the LLM calls failed with a 400 `model_not_supported`
+   error ("The requested model ... is not supported by any provider you have
+   enabled."), not a 402. **This is a model/provider routing mismatch, not a billing
+   issue** — picking a smaller model doesn't help if no enabled provider serves it at
+   all.
+2. **My own error-classification code misdiagnosed this as "credits exhausted."** The
+   original detection logic string-matched loosely (`"402" in err_text`, `"depleted"
+   in err_text.lower()`) against the *truncated* (200-char) error text, and after 18
+   calls each correctly logged as a generic failure, the 19th call's error text
+   happened to satisfy the loose match and got mislabeled as a credits problem — a
+   false diagnosis that would have sent the user down the wrong troubleshooting path
+   entirely (buying credits or subscribing to PRO would not have fixed a model-routing
+   error). **Fixed**: `_llm_topics()` now reads the actual HTTP status code off the
+   exception object (`getattr(getattr(e, "response", None), "status_code", None)`)
+   instead of relying on fuzzy substring matching, and checks for the precise phrases
+   `model_not_supported` / "is not supported by any provider you have enabled"
+   separately from credits-specific phrases. Two independent flags now exist —
+   `_hf_credits_exhausted` and `_hf_model_unsupported` — each short-circuiting all
+   further LLM calls for the rest of that run (as before), but with an accurate,
+   distinct log message and fix instructions for each case. This also stops the
+   pipeline from wasting ~5 minutes hammering a guaranteed-to-fail model 254 times
+   before giving up (it now gives up after the very first failure).
+3. **A real bug in the insight-worthiness filter, exposed because the LLM never got
+   to run this time**: with the LLM completely unavailable, all 254 meetings fell
+   back to heuristic extraction — generic, title-based topics rather than specific
+   named items. The web cross-reference then reported **54 out of 54** themes as
+   "corroborated," because a generic heuristic topic like "City Council Regular
+   Meeting" will *always* return search results (a city council obviously exists and
+   has a webpage) — that's not corroboration of anything specific, it's a trivial
+   true-by-construction match. The filter as written couldn't tell the difference
+   between that and a genuine finding like "Ordinance No. 4316" being confirmed real
+   by independent coverage. **Fixed**: `cluster_recurring_themes()` now tags each
+   theme with `all_heuristic` (true only when every contributing topic came from the
+   heuristic path, never the LLM). `is_insight_worthy()` now requires a theme to be
+   genuinely recurring (`occurrence_count >= 2`) OR to be BOTH corroborated AND
+   NOT all-heuristic — a singleton, heuristic-only "topic" can no longer ride through
+   on trivial web corroboration alone. Recurring heuristic-only themes (e.g. "Zoning &
+   Land Use came up 12 times in Boca Raton this session") still pass, since genuine
+   recurrence is real signal even without LLM-level specificity — only the
+   singleton+trivially-corroborated combination was the bug.
+4. **Default model swapped again**, this time to `Qwen/Qwen3-32B` — not a guess this
+   round, but Hugging Face's own published fix for this exact error (a real HF GitHub
+   commit replaced an unsupported model with this one specifically for broader
+   Inference Providers compatibility after users hit the identical "not supported by
+   any provider" error). Still **unconfirmed against this specific account's enabled
+   providers** — if it fails too, the fix is checking
+   https://huggingface.co/settings/inference-providers for which providers are
+   enabled, then checking the candidate model's own Hugging Face page for its
+   "Inference Providers" panel (shows which providers actually serve that model)
+   before picking one. Note this model is larger (32B vs the previous 7B attempt) so
+   it will cost more per call if/when the credits question becomes relevant again —
+   but a 400 error happens before any provider routing, so the earlier $0.10 credit
+   balance was very likely never actually touched by the failed 7B attempts, meaning
+   full credits should still be available for this next try.
+
+**Smoke-tested** (see `_smoke_test_insights.py`, tests 17c/17d/19b): a real
+`HfHubHTTPError`-shaped 402 is correctly classified as credits-exhausted; a real
+400 `model_not_supported`-shaped error is correctly classified as model-unsupported
+and NOT conflated with credits; a heuristic-only singleton theme is correctly
+rejected by `is_insight_worthy()` even when `web_notability.corroborated` is `True`,
+directly reproducing and fixing the 54/54 false-positive scenario from this run.
+
+### What to check on the next real run
+
+1. Does `[Insights LLM]` show any successful LLM extractions this time (look for
+   `"method": "llm"` entries in `insights.json`), or does it still hit 402 immediately?
+2. If it still hits 402 almost immediately, the $0.10 budget may simply be too small
+   for ANY model at 269 meetings in one run — in which case the cache will still help
+   over multiple days/months, but the user may want to consider HF PRO ($9/mo, $2/mo
+   credits = 20x more) if they want the full 6-month backlog analyzed faster than
+   that.
+3. Confirm `topic_cache.json` shows up committed in the repo after this run (added to
+   the workflow's `git add` line this session) — if it's missing, the caching benefit
+   won't persist across days.
+4. Confirm the `[Insights Search]` summary line shows a nonzero corroborated count if
+   Serper is working correctly.
+
+
 
 ### 1. Frontend Search Fix (index.html, line ~791)
 
