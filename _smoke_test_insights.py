@@ -197,28 +197,76 @@ assert len(real_result) == 1 and real_result[0]["topic_title"] == "Ordinance No.
 assert real_result[0]["method"] == "llm"
 print("Test 17 (specific real LLM extraction parses correctly) passed.")
 
+# --- Test 17b: error classification correctly distinguishes credits-exhausted
+# from model-not-supported (these were conflated in a real run and produced a
+# misleading "credits exhausted" message for what was actually a model/
+# provider routing mismatch) ---
+class FakeHttpError(Exception):
+    def __init__(self, message, status_code):
+        super().__init__(message)
+        self.response = type("Resp", (), {"status_code": status_code})()
+
+class FailingClient:
+    def __init__(self, exc):
+        self._exc = exc
+    def chat_completion(self, **kwargs):
+        raise self._exc
+
+ie._hf_credits_exhausted = False
+ie._hf_model_unsupported = False
+credits_exc = FakeHttpError("Bad request: {'message': 'You have depleted your monthly included credits.'}", 402)
+result = ie._llm_topics(FailingClient(credits_exc), "Test City", "Some Meeting", "2026-01-01", "some real document text")
+assert result is None
+assert ie._hf_credits_exhausted is True and ie._hf_model_unsupported is False
+print("Test 17c (real 402 correctly classified as credits-exhausted) passed.")
+
+ie._hf_credits_exhausted = False
+ie._hf_model_unsupported = False
+model_exc = FakeHttpError("Bad request: {'message': \"The requested model 'X' is not supported by any provider you have enabled.\", 'code': 'model_not_supported'}", 400)
+result = ie._llm_topics(FailingClient(model_exc), "Test City", "Some Meeting", "2026-01-01", "some real document text")
+assert result is None
+assert ie._hf_model_unsupported is True and ie._hf_credits_exhausted is False, (
+    "A 400 model_not_supported error must NOT be misclassified as a 402 credits "
+    "issue - this exact confusion happened on a real run and produced a "
+    "misleading 'credits exhausted' message when the real problem was an "
+    "unsupported model."
+)
+print("Test 17d (400 model_not_supported correctly classified, NOT as credits) passed.")
+ie._hf_credits_exhausted = False
+ie._hf_model_unsupported = False
+
 # --- Test 13: insight-worthiness filter - the core behavior change requested ---
-noise_theme = {"occurrence_count": 1, "cross_municipality": False,
+noise_theme = {"occurrence_count": 1, "cross_municipality": False, "all_heuristic": True,
                "web_notability": {"checked": True, "corroborated": False, "sources": []}}
 assert ie.is_insight_worthy(noise_theme) is False
 print("Test 18 (single uncorroborated mention is dropped) passed.")
 
-notable_singleton = {"occurrence_count": 1, "cross_municipality": False,
+notable_singleton = {"occurrence_count": 1, "cross_municipality": False, "all_heuristic": False,
                       "web_notability": {"checked": True, "corroborated": True, "sources": [{"title": "x", "link": "y"}]}}
 assert ie.is_insight_worthy(notable_singleton) is True
 ie.assign_reason(notable_singleton)
 assert "corroborated_by_web_search" in notable_singleton["reasons"]
 assert "recurring_over_time" not in notable_singleton["reasons"]
-print("Test 19 (corroborated singleton is kept, reason correctly assigned) passed.")
+print("Test 19 (corroborated LLM-derived singleton is kept, reason correctly assigned) passed.")
 
-recurring_theme = {"occurrence_count": 3, "cross_municipality": False,
+heuristic_singleton_corroborated = {"occurrence_count": 1, "cross_municipality": False, "all_heuristic": True,
+                                     "web_notability": {"checked": True, "corroborated": True, "sources": [{"title": "x", "link": "y"}]}}
+assert ie.is_insight_worthy(heuristic_singleton_corroborated) is False, (
+    "A generic heuristic singleton must NOT be kept just because it trivially "
+    "'corroborates' (e.g. 'City Council Regular Meeting' always finds search "
+    "results) - this is the exact bug seen on the real run where an LLM outage "
+    "forced all-heuristic extraction and 54/54 themes came back 'corroborated'."
+)
+print("Test 19b (heuristic-only singleton is dropped even if trivially 'corroborated') passed.")
+
+recurring_theme = {"occurrence_count": 3, "cross_municipality": False, "all_heuristic": True,
                     "web_notability": {"checked": True, "corroborated": False, "sources": []}}
 assert ie.is_insight_worthy(recurring_theme) is True
 ie.assign_reason(recurring_theme)
 assert "recurring_over_time" in recurring_theme["reasons"]
-print("Test 20 (recurring-but-uncorroborated theme is kept) passed.")
+print("Test 20 (recurring-but-uncorroborated theme is kept regardless of method) passed.")
 
-cross_muni_theme = {"occurrence_count": 2, "cross_municipality": True,
+cross_muni_theme = {"occurrence_count": 2, "cross_municipality": True, "all_heuristic": True,
                      "web_notability": {"checked": False, "corroborated": False, "sources": []}}
 ie.assign_reason(cross_muni_theme)
 assert "recurring_across_municipalities" in cross_muni_theme["reasons"]
