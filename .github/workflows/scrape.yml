@@ -30,7 +30,7 @@ jobs:
 
       - name: Execute Insights Engine
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
         run: python insights_engine.py
 
