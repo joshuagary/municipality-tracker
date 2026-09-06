@@ -20,11 +20,12 @@ internet this session:
     are each at whatever confirmed/unconfirmed status handoff.md says they
     are - this module doesn't change that status, it just calls them again
     with a different date window).
-  - The Hugging Face Inference call (huggingface_hub.InferenceClient). The
-    model name below is a reasonable, configurable default - NOT a verified
-    working model against your HF_TOKEN. The very first real run's log
-    output will show plainly whether it worked or fell back to the
-    heuristic path (search for "[Insights LLM]" in the log).
+  - The Gemini Inference call (Google's generateContent REST API). The
+    endpoint, request shape, and error-handling below are built from current
+    documentation, NOT a verified working call against your GEMINI_API_KEY.
+    The very first real run's log output will show plainly whether it
+    worked or fell back to the heuristic path (search for "[Insights LLM]"
+    in the log).
   - The Serper.dev web cross-reference call. Same story - configurable,
     untested, logs plainly whether it worked (search for "[Insights
     Search]").
@@ -69,12 +70,6 @@ try:
 except ImportError:
     HAVE_PYPDF2 = False
 
-try:
-    from huggingface_hub import InferenceClient
-    HAVE_HF = True
-except ImportError:
-    HAVE_HF = False
-
 
 # --- CONFIG -----------------------------------------------------------------
 
@@ -86,49 +81,50 @@ TOPIC_CACHE_PATH = "topic_cache.json"
 HISTORY_RETENTION_RUNS = 7  # rolling 7-day window, per user request
 
 MAX_DOC_CHARS = 8000        # cap for heuristic path (cheap, no cost concern)
-MAX_LLM_DOC_CHARS = 3000    # smaller cap specifically for what's sent to the
-                            # LLM - every character is billed input tokens,
-                            # and free-tier HF credit is extremely small
-                            # ($0.10/month) - see cost note below.
-MAX_LLM_RESPONSE_TOKENS = 400  # trimmed from 800 - 6 short topics don't need more
+MAX_LLM_DOC_CHARS = 3000    # smaller cap specifically for what's sent to the LLM
+MAX_LLM_RESPONSE_TOKENS = 400  # 6 short topics don't need more
 MAX_TOPICS_PER_MEETING = 6
 
-# --- COST NOTE (added after the first real run exhausted free HF credits) ---
-# Hugging Face's free-tier accounts get a flat $0.10/month in Inference
-# Provider credits, hard stop, no rollover. A 70B-class model burns through
-# that in well under 100 calls, which is exactly what happened on the first
-# real run (243 calls, all failed with 402 Payment Required once the $0.10
-# was gone). Two things below exist specifically to make LLM-based analysis
-# actually sustainable on that tiny budget:
-#   1. A persistent topic cache (see TOPIC_CACHE_PATH below) so a given
-#      historical meeting is only ever sent to the LLM ONCE, successfully -
-#      not re-analyzed from scratch every single day.
-#   2. A much smaller default model than the original 70B choice. Smaller
-#      instruct models are typically several times cheaper per call. This
-#      default is a reasonable guess, NOT a confirmed-cheapest option for
-#      your account's current provider routing - check the next real run's
-#      "[Insights LLM]" log lines (and your HF billing dashboard) to see how
-#      many calls it got through before (if ever) hitting 402 again, and swap
-#      via the INSIGHTS_LLM_MODEL env var if a different model fits better.
+# --- LLM PROVIDER: Gemini (switched from Hugging Face, 2026-09-06) ---------
+# Three straight attempts on Hugging Face's Inference Providers hit real
+# walls, in order: (1) a 70B model exhausted the entire $0.10/month free
+# credit in under 100 calls, (2) a 7B model wasn't served by any provider
+# enabled on the account at all (400 model_not_supported), (3) a 32B model
+# that DID route successfully still only got ~2 calls through before the
+# same $0.10/month ran out. That $0.10/month ceiling is a Hugging Face
+# ACCOUNT-LEVEL limit - no model choice on that platform can meaningfully
+# fix it; smaller models just buy a handful more calls, not a usable amount.
+#
+# Google's Gemini API free tier (via Google AI Studio) is structured
+# completely differently: it's a genuinely free, no-credit-card-required
+# DAILY quota - roughly 1,000-1,500 requests/day on the recommended
+# Flash-Lite model, reset every day, not a tiny one-time monthly dollar
+# amount. That comfortably covers the entire 254-meeting historical backlog
+# in a single run, with room to spare for ongoing new meetings every day
+# after that. This is a platform-level fix, not a model-tuning fix.
+#
+# Tradeoff to know about: per Google's own free-tier terms, prompts/
+# responses sent on the free tier may be used to improve Google's products.
+# Everything here is public government meeting agenda text, so the
+# sensitivity is low, but it's a real, factual difference from a paid tier
+# and worth knowing.
+#
+# UNCONFIRMED THIS SESSION: no network access to actually call the real
+# Gemini API from this sandbox. The endpoint, request/response shape, and
+# rate-limit handling below are built from current documentation, not a
+# live test. Ask for the "[Insights LLM]"-prefixed log lines on the first
+# real run, same as always.
+GEMINI_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "gemini-2.5-flash-lite")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 
-# Configurable so a model swap never requires touching code - see the
-# "STATUS" note above. The first attempt (a 70B model) exhausted the free
-# $0.10/month HF credit in ~100 calls. The second attempt
-# (Qwen/Qwen2.5-7B-Instruct) failed differently and immediately: HF returned
-# "not supported by any provider you have enabled" on every call - a
-# model/provider routing mismatch, not a billing issue. Switched to
-# Qwen/Qwen3-32B per Hugging Face's own published guidance for exactly this
-# error (a real HF repo commit replaced an unsupported model with this one
-# specifically for broader Inference Providers compatibility). STILL
-# UNCONFIRMED against this specific account's enabled providers - if it
-# fails too, check https://huggingface.co/settings/inference-providers to
-# see which providers are enabled, open the candidate model's page on
-# huggingface.co and look for its "Inference Providers" panel to see which
-# providers actually serve it, then set INSIGHTS_LLM_MODEL to a match.
-HF_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "Qwen/Qwen3-32B")
+# Free-tier Flash-Lite is documented around 15 requests/minute. Pacing calls
+# at this interval keeps every run comfortably under that ceiling without
+# needing to handle 429s as the normal case. Only applied around actual API
+# calls - cache hits and heuristic fallbacks aren't paced at all.
+GEMINI_MIN_SECONDS_BETWEEN_CALLS = 4.5
 
 SERPER_API_KEY = os.environ.get("SERPER_API_KEY")
-HF_TOKEN = os.environ.get("HF_TOKEN")
 
 # Topic taxonomy pulled directly from README.md's notes on what this project
 # cares about (zoning/plans/plats, CRA, DDA/DAC, data centers, etc.). Used
@@ -388,24 +384,27 @@ _hf_model_unsupported = False  # set True when HF returns 400 model_not_supporte
 # response is the same: stop calling the LLM for the rest of this run.
 
 
-def get_hf_client():
-    global _hf_client, _hf_client_attempted
-    if _hf_client_attempted:
-        return _hf_client
-    _hf_client_attempted = True
-    if not HAVE_HF:
-        print("[Insights LLM] huggingface_hub not installed - using heuristic extraction only.")
-        return None
-    if not HF_TOKEN:
-        print("[Insights LLM] No HF_TOKEN set - using heuristic extraction only.")
-        return None
-    try:
-        _hf_client = InferenceClient(model=HF_MODEL, token=HF_TOKEN)
-        print(f"[Insights LLM] Initialized Hugging Face client for model '{HF_MODEL}'.")
-    except Exception as e:
-        print(f"[Insights LLM] Could not initialize HF client: {e} - using heuristic extraction only.")
-        _hf_client = None
-    return _hf_client
+_gemini_unavailable = False  # set True on a real quota/rate-limit exhaustion
+# (Gemini 429 RESOURCE_EXHAUSTED) or an auth/config problem (missing key,
+# invalid key, model not found) - once true, every subsequent meeting in
+# this run skips straight to heuristic extraction instead of making (and
+# waiting on) a doomed call. Resets naturally on the next process run.
+_gemini_checked_available = False
+_last_gemini_call_time = 0.0
+
+
+def gemini_available():
+    """One-time check that a key is configured - doesn't make a network
+    call, just confirms we have something to try. Real failures (bad key,
+    quota exhausted, model not found) surface on the first actual call."""
+    global _gemini_checked_available
+    if not _gemini_checked_available:
+        _gemini_checked_available = True
+        if not GEMINI_API_KEY:
+            print("[Insights LLM] No GEMINI_API_KEY set - using heuristic extraction only.")
+        else:
+            print(f"[Insights LLM] Using Gemini model '{GEMINI_MODEL}' via Google AI Studio free tier.")
+    return bool(GEMINI_API_KEY)
 
 
 def _heuristic_topics(muni_full, title, text_blob):
@@ -435,9 +434,9 @@ def _heuristic_topics(muni_full, title, text_blob):
     return hits[:MAX_TOPICS_PER_MEETING]
 
 
-def _llm_topics(client, muni_full, title, date, text_blob):
-    global _hf_credits_exhausted, _hf_model_unsupported
-    if _hf_credits_exhausted or _hf_model_unsupported:
+def _llm_topics(muni_full, title, date, text_blob):
+    global _gemini_unavailable, _last_gemini_call_time
+    if _gemini_unavailable:
         return None  # already know this run can't use the LLM - don't waste a call finding out again
 
     categories = ", ".join(TOPIC_TAXONOMY.keys())
@@ -449,7 +448,8 @@ def _llm_topics(client, muni_full, title, date, text_blob):
         # to eliminate). Returning an empty list is a legitimate, successful
         # LLM outcome (not a failure) - it means "nothing specific to report
         # for this meeting," and the event correctly contributes zero
-        # candidate topics rather than a fake one.
+        # candidate topics rather than a fake one. It also costs nothing,
+        # since we never make a network call for it.
         return []
 
     doc_excerpt = text_blob[:MAX_LLM_DOC_CHARS]
@@ -478,17 +478,45 @@ If nothing in the excerpt meets these rules, return an empty JSON array: []
 Respond with ONLY a JSON array, no other text, in this exact shape:
 [{{"topic_title": "specific identifier or subject", "category": "one of the categories above", "description": "1-2 sentence factual description grounded in the excerpt"}}]"""
 
+    # Pace calls to stay comfortably under the free tier's ~15 requests/minute
+    # cap. Only applies around real API calls, never around cache hits or
+    # heuristic fallbacks.
+    elapsed = time.time() - _last_gemini_call_time
+    if elapsed < GEMINI_MIN_SECONDS_BETWEEN_CALLS:
+        time.sleep(GEMINI_MIN_SECONDS_BETWEEN_CALLS - elapsed)
+
     try:
-        response = client.chat_completion(
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=MAX_LLM_RESPONSE_TOKENS,
-            temperature=0.2,
+        resp = requests.post(
+            GEMINI_ENDPOINT,
+            params={"key": GEMINI_API_KEY},
+            headers={"Content-Type": "application/json"},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "maxOutputTokens": MAX_LLM_RESPONSE_TOKENS,
+                    "temperature": 0.2,
+                },
+            },
+            timeout=30,
         )
-        content = response.choices[0].message.content.strip()
+        _last_gemini_call_time = time.time()
+
+        if resp.status_code != 200:
+            raise requests.HTTPError(f"HTTP {resp.status_code}: {resp.text[:300]}", response=resp)
+
+        data = resp.json()
+        candidates = data.get("candidates", [])
+        if not candidates:
+            # Gemini can return zero candidates when its safety filters
+            # block a response - treat as "nothing found" rather than a
+            # hard failure, since retrying won't help for this meeting.
+            return []
+        content = candidates[0]["content"]["parts"][0]["text"].strip()
         content = re.sub(r"^```(json)?|```$", "", content.strip(), flags=re.MULTILINE).strip()
         parsed = json.loads(content)
         if not isinstance(parsed, list):
             raise ValueError("LLM did not return a JSON array")
+
         topics = []
         for item in parsed[:MAX_TOPICS_PER_MEETING]:
             if not isinstance(item, dict) or "topic_title" not in item:
@@ -501,43 +529,28 @@ Respond with ONLY a JSON array, no other text, in this exact shape:
             })
         return topics  # may legitimately be [] - "successfully analyzed, nothing specific found" is NOT a failure
     except Exception as e:
+        _last_gemini_call_time = time.time()
         err_text = str(e)
-        # Prefer the actual HTTP status code when the exception exposes one
-        # (huggingface_hub's HfHubHTTPError carries a `.response`) - string-
-        # matching alone previously misclassified a 400 "model not
-        # supported" error as a 402 "credits exhausted" one, since both
-        # error bodies happened to share enough text to confuse a loose
-        # substring check. Status codes don't lie the way truncated error
-        # text can.
         status_code = getattr(getattr(e, "response", None), "status_code", None)
 
-        is_credits_issue = (
-            status_code == 402
-            or "Payment Required" in err_text
-            or "depleted your monthly included credits" in err_text.lower()
-        )
-        is_model_unsupported = (
-            status_code == 400 and "model_not_supported" in err_text
-        ) or "is not supported by any provider you have enabled" in err_text
+        is_quota_issue = status_code == 429 or "RESOURCE_EXHAUSTED" in err_text
+        is_auth_or_config_issue = status_code in (400, 403, 404)
 
-        if is_credits_issue:
-            if not _hf_credits_exhausted:
-                print(f"[Insights LLM] HF credits appear exhausted ({err_text[:200]}) - "
-                      f"skipping all further LLM calls this run and falling back to heuristic "
-                      f"extraction for every remaining meeting.")
-            _hf_credits_exhausted = True
-        elif is_model_unsupported:
-            if not _hf_model_unsupported:
-                print(f"[Insights LLM] Model '{HF_MODEL}' is not served by any Inference "
-                      f"Provider enabled on this HF account (this is a model/provider "
-                      f"mismatch, NOT a billing or credits issue). Skipping all further LLM "
-                      f"calls this run and falling back to heuristic extraction. To fix: check "
-                      f"https://huggingface.co/settings/inference-providers to see which "
-                      f"providers are enabled, open the model's page on huggingface.co to see "
-                      f"which providers actually serve it (look for the 'Inference Providers' "
-                      f"panel), then set INSIGHTS_LLM_MODEL to a model at least one enabled "
-                      f"provider supports.")
-            _hf_model_unsupported = True
+        if is_quota_issue:
+            if not _gemini_unavailable:
+                print(f"[Insights LLM] Gemini free-tier quota appears exhausted for today "
+                      f"({err_text[:200]}) - skipping all further LLM calls this run and "
+                      f"falling back to heuristic extraction for every remaining meeting. "
+                      f"This resets daily, so tomorrow's run should have a fresh quota.")
+            _gemini_unavailable = True
+        elif is_auth_or_config_issue:
+            if not _gemini_unavailable:
+                print(f"[Insights LLM] Gemini rejected the request, likely a config problem "
+                      f"(bad API key, or model '{GEMINI_MODEL}' not found/available) "
+                      f"({err_text[:200]}). Skipping all further LLM calls this run and "
+                      f"falling back to heuristic extraction. Check GEMINI_API_KEY and that "
+                      f"the model name matches one listed at https://ai.google.dev/gemini-api/docs/models.")
+            _gemini_unavailable = True
         else:
             print(f"[Insights LLM] Extraction failed for {muni_full} "
                   f"'{title}' ({date}): {e} - falling back to heuristic extraction.")
@@ -545,14 +558,13 @@ Respond with ONLY a JSON array, no other text, in this exact shape:
 
 
 def extract_meeting_topics(event, text_blob):
-    client = get_hf_client()
     title = event.get("title", "")
     muni_full = event.get("muni_full", "")
     date = event.get("date", "")
 
     llm_result = None
-    if client is not None:
-        llm_result = _llm_topics(client, muni_full, title, date, text_blob)
+    if gemini_available():
+        llm_result = _llm_topics(muni_full, title, date, text_blob)
 
     if llm_result is not None:
         topics = llm_result  # may be [] - a legitimate "nothing specific found" LLM outcome
@@ -862,8 +874,8 @@ def save_insight_history(themes, path=INSIGHTS_HISTORY_PATH):
 
 def generate_insights_output():
     print("Starting Insights Engine...")
-    print(f"[Insights] LLM available: {HAVE_HF and bool(HF_TOKEN)} "
-          f"(model={HF_MODEL}) | Search available: {bool(SERPER_API_KEY)}")
+    print(f"[Insights] LLM available: {bool(GEMINI_API_KEY)} "
+          f"(model={GEMINI_MODEL}) | Search available: {bool(SERPER_API_KEY)}")
 
     historical_events = gather_historical_events()
 
@@ -943,8 +955,9 @@ def generate_insights_output():
         assign_reason(t)
     print(f"[Insights] Insight-worthiness filter: kept {len(themes)} of "
           f"{pre_filter_count} candidate theme(s) (dropped "
-          f"{pre_filter_count - len(themes)} single-occurrence, "
-          f"non-corroborated mention(s)).")
+          f"{pre_filter_count - len(themes)} single-occurrence mention(s) that "
+          f"didn't meet the bar (either genuinely uncorroborated, or heuristic-"
+          f"only topics whose search 'corroboration' was too generic to count).")
 
     history = load_insight_history()
     apply_star_flags(themes, history)
