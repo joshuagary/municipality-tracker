@@ -853,6 +853,860 @@
           "occurrence_count": 1
         }
       ]
+    },
+    {
+      "date": "2026-09-06",
+      "generated_at": "2026-09-06T00:26:40.529793+00:00",
+      "theme_keys": [
+        [
+          "Other Governance Matters",
+          "citycouncilmeetingorganizational"
+        ],
+        [
+          "Other Governance Matters",
+          "citycommissionmeetingspecial"
+        ],
+        [
+          "Other Governance Matters",
+          "councildevelopmentmeetingreviewtown"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "citycommissionmeeting"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "agencycommunityredevelopment"
+        ],
+        [
+          "Zoning & Land Use",
+          "andcommissionmeetingplanningzoning"
+        ],
+        [
+          "Zoning & Land Use",
+          "citycouncilmeetingregular"
+        ],
+        [
+          "Zoning & Land Use",
+          "commissionmeetingregulartown"
+        ],
+        [
+          "Budget & Finance",
+          "budgetcitycouncilmeetingspecialworkshop"
+        ],
+        [
+          "Budget & Finance",
+          "budgetcounciltownworkshop"
+        ],
+        [
+          "Budget & Finance",
+          "commissionmeetingregulartown"
+        ],
+        [
+          "Budget & Finance",
+          "agencycommunityredevelopment"
+        ],
+        [
+          "Budget & Finance",
+          "commissionmeetingregulartown"
+        ],
+        [
+          "Housing & Development",
+          "citycommissionmeeting"
+        ],
+        [
+          "Housing & Development",
+          "agencycommunityredevelopment"
+        ],
+        [
+          "Zoning & Land Use",
+          "agencylocalmeetingplanning"
+        ],
+        [
+          "Other Governance Matters",
+          "counciltownworkshop"
+        ],
+        [
+          "Zoning & Land Use",
+          "citycouncilmeetingspecial"
+        ],
+        [
+          "Other Governance Matters",
+          "authorityboardbocahousingmeetingratonspecial"
+        ],
+        [
+          "Other Governance Matters",
+          "authoritybocahousingratonworkshop"
+        ],
+        [
+          "Other Governance Matters",
+          "agendacitycommissionreviewworkshop"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "agencycitycommunitycouncilmeetingredevelopmentregularworkshopcity"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "agencybbcrabeachboardboyntoncommunitymeetingmonthlyredevelopment"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "advisoryboardcrameeting"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "mayorcommissionsessionwork"
+        ],
+        [
+          "Zoning & Land Use",
+          "citycommission"
+        ],
+        [
+          "Budget & Finance",
+          "mayorcommissionsessionwork"
+        ],
+        [
+          "Housing & Development",
+          "mayorcommissionsessionwork"
+        ],
+        [
+          "Housing & Development",
+          "citycouncilmeetingregular"
+        ],
+        [
+          "Downtown Development / DDA / DAC",
+          "authorityboardddadevelopmentdowntownmeeting"
+        ],
+        [
+          "Other Governance Matters",
+          "citycouncil"
+        ],
+        [
+          "Zoning & Land Use",
+          "agencycommunityredevelopment"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "agencycommunitycrameetingredevelopmentregular"
+        ],
+        [
+          "Zoning & Land Use",
+          "adjustmentboard"
+        ],
+        [
+          "Budget & Finance",
+          "boardcommissionerscountymeeting"
+        ],
+        [
+          "Other Governance Matters",
+          "adjustmentboard"
+        ],
+        [
+          "Zoning & Land Use",
+          "budgetcommissiontownworkshop"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "boardcitycommissioncrajointmeeting"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "citycouncil"
+        ],
+        [
+          "Housing & Development",
+          "agencylocalmeetingplanning"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "andboardplanningzoning"
+        ],
+        [
+          "Zoning & Land Use",
+          "boardcommissionerscountymeeting"
+        ],
+        [
+          "Budget & Finance",
+          "andboardplanningzoning"
+        ],
+        [
+          "Housing & Development",
+          "andboardmeetingplanningzoning"
+        ],
+        [
+          "Other Governance Matters",
+          "agencylocallpaplanning"
+        ],
+        [
+          "Other Governance Matters",
+          "contractcouncildiscussionmanagertermstownworkshop"
+        ],
+        [
+          "Other Governance Matters",
+          "buildingcouncilgoalsessionsettingteamtownwork"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "councilcrameetingmeetingcityregularworkshopcity"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "boardcommissionerscountymeeting"
+        ],
+        [
+          "Zoning & Land Use",
+          "citycommissioncomprehensiveplanworkshop"
+        ],
+        [
+          "Budget & Finance",
+          "commissionmeetingspecialtown"
+        ],
+        [
+          "Housing & Development",
+          "boardcommissionerscountymeeting"
+        ],
+        [
+          "Downtown Development / DDA / DAC",
+          "citycommission"
+        ],
+        [
+          "Data Centers",
+          "citycouncilmeetingregular"
+        ]
+      ],
+      "insights": [
+        {
+          "rank": 1,
+          "theme_title": "City Council Organizational Meeting",
+          "category": "Other Governance Matters",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "BOCA",
+            "JUNOBEACH",
+            "JUP",
+            "PALMBEACH"
+          ],
+          "occurrence_count": 21
+        },
+        {
+          "rank": 2,
+          "theme_title": "Special City Commission Meeting",
+          "category": "Other Governance Matters",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "BOYNTON",
+            "DELRAY",
+            "JUIC",
+            "MANALAPAN"
+          ],
+          "occurrence_count": 19
+        },
+        {
+          "rank": 3,
+          "theme_title": "Town Council Development Review Meeting",
+          "category": "Other Governance Matters",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "JUNOBEACH",
+            "JUP",
+            "PALMBEACH"
+          ],
+          "occurrence_count": 9
+        },
+        {
+          "rank": 4,
+          "theme_title": "City Commission Meeting",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "WPB"
+          ],
+          "occurrence_count": 18
+        },
+        {
+          "rank": 5,
+          "theme_title": "Community Redevelopment Agency",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "RIVBEACH"
+          ],
+          "occurrence_count": 14
+        },
+        {
+          "rank": 6,
+          "theme_title": "Planning and Zoning Commission Meeting",
+          "category": "Zoning & Land Use",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "BOCA",
+            "DELRAY",
+            "JUNOBEACH",
+            "PALMBEACH",
+            "RIVBEACH"
+          ],
+          "occurrence_count": 22
+        },
+        {
+          "rank": 7,
+          "theme_title": "City Council Regular Meeting",
+          "category": "Zoning & Land Use",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "PBG",
+            "RIVBEACH",
+            "WESTLAKE"
+          ],
+          "occurrence_count": 18
+        },
+        {
+          "rank": 8,
+          "theme_title": "Regular Town Commission Meeting",
+          "category": "Zoning & Land Use",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "JUNOBEACH",
+            "MANALAPAN"
+          ],
+          "occurrence_count": 15
+        },
+        {
+          "rank": 9,
+          "theme_title": "Special City Council Meeting: Budget Workshop",
+          "category": "Budget & Finance",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "BOCA",
+            "PBG",
+            "RIVBEACH",
+            "WESTLAKE"
+          ],
+          "occurrence_count": 13
+        },
+        {
+          "rank": 10,
+          "theme_title": "Town Council Budget Workshop #2",
+          "category": "Budget & Finance",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "JUNOBEACH",
+            "JUP"
+          ],
+          "occurrence_count": 6
+        },
+        {
+          "rank": 11,
+          "theme_title": "Regular Town Commission Meeting",
+          "category": "Budget & Finance",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "JUIC",
+            "MANALAPAN",
+            "WPB"
+          ],
+          "occurrence_count": 28
+        },
+        {
+          "rank": 12,
+          "theme_title": "Community Redevelopment Agency",
+          "category": "Budget & Finance",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "RIVBEACH"
+          ],
+          "occurrence_count": 6
+        },
+        {
+          "rank": 13,
+          "theme_title": "Regular Town Commission Meeting",
+          "category": "Budget & Finance",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "JUNOBEACH",
+            "RIVBEACH",
+            "WESTLAKE"
+          ],
+          "occurrence_count": 15
+        },
+        {
+          "rank": 14,
+          "theme_title": "City Commission Meeting",
+          "category": "Housing & Development",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "WPB"
+          ],
+          "occurrence_count": 16
+        },
+        {
+          "rank": 15,
+          "theme_title": "Community Redevelopment Agency",
+          "category": "Housing & Development",
+          "confidence": 100,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "RIVBEACH"
+          ],
+          "occurrence_count": 4
+        },
+        {
+          "rank": 16,
+          "theme_title": "Local Planning Agency Meeting",
+          "category": "Zoning & Land Use",
+          "confidence": 90,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "WESTLAKE"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 17,
+          "theme_title": "Town Council Workshop",
+          "category": "Other Governance Matters",
+          "confidence": 85,
+          "starred": true,
+          "municipalities": [
+            "JUP",
+            "RIVBEACH"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 18,
+          "theme_title": "City Council Special Meeting",
+          "category": "Zoning & Land Use",
+          "confidence": 85,
+          "starred": true,
+          "municipalities": [
+            "RIVBEACH",
+            "WESTLAKE"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 19,
+          "theme_title": "Boca Raton Housing Authority - Special Board Meeting",
+          "category": "Other Governance Matters",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "BOCA"
+          ],
+          "occurrence_count": 8
+        },
+        {
+          "rank": 20,
+          "theme_title": "Boca Raton Housing Authority Workshop",
+          "category": "Other Governance Matters",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "BOCA"
+          ],
+          "occurrence_count": 4
+        },
+        {
+          "rank": 21,
+          "theme_title": "City Commission Agenda Review Workshop",
+          "category": "Other Governance Matters",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "BOYNTON"
+          ],
+          "occurrence_count": 8
+        },
+        {
+          "rank": 22,
+          "theme_title": "Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "BOCA"
+          ],
+          "occurrence_count": 7
+        },
+        {
+          "rank": 23,
+          "theme_title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "BOYNTON"
+          ],
+          "occurrence_count": 7
+        },
+        {
+          "rank": 24,
+          "theme_title": "CRA Advisory Board Meeting",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "BOYNTON"
+          ],
+          "occurrence_count": 6
+        },
+        {
+          "rank": 25,
+          "theme_title": "Mayor/Commission Work Session",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "WPB"
+          ],
+          "occurrence_count": 10
+        },
+        {
+          "rank": 26,
+          "theme_title": "City Commission",
+          "category": "Zoning & Land Use",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 7
+        },
+        {
+          "rank": 27,
+          "theme_title": "Mayor/Commission Work Session",
+          "category": "Budget & Finance",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "WPB"
+          ],
+          "occurrence_count": 10
+        },
+        {
+          "rank": 28,
+          "theme_title": "Mayor/Commission Work Session",
+          "category": "Housing & Development",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "WPB"
+          ],
+          "occurrence_count": 10
+        },
+        {
+          "rank": 29,
+          "theme_title": "City Council Regular Meeting",
+          "category": "Housing & Development",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 4
+        },
+        {
+          "rank": 30,
+          "theme_title": "Downtown Development Authority (DDA) Board Meeting",
+          "category": "Downtown Development / DDA / DAC",
+          "confidence": 80,
+          "starred": true,
+          "municipalities": [
+            "DDA-WPB"
+          ],
+          "occurrence_count": 6
+        },
+        {
+          "rank": 31,
+          "theme_title": "City Council",
+          "category": "Other Governance Matters",
+          "confidence": 75,
+          "starred": true,
+          "municipalities": [
+            "RIVBEACH"
+          ],
+          "occurrence_count": 7
+        },
+        {
+          "rank": 32,
+          "theme_title": "Community Redevelopment Agency",
+          "category": "Zoning & Land Use",
+          "confidence": 75,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "RIVBEACH"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 33,
+          "theme_title": "Community Redevelopment Agency (CRA) Regular Meeting",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 65,
+          "starred": true,
+          "municipalities": [
+            "JUP"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 34,
+          "theme_title": "Board of Adjustment",
+          "category": "Zoning & Land Use",
+          "confidence": 65,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 35,
+          "theme_title": "Board of County Commissioners Meeting",
+          "category": "Budget & Finance",
+          "confidence": 65,
+          "starred": true,
+          "municipalities": [
+            "PBC"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 36,
+          "theme_title": "Board of Adjustment",
+          "category": "Other Governance Matters",
+          "confidence": 60,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 37,
+          "theme_title": "Town Commission Budget Workshop",
+          "category": "Zoning & Land Use",
+          "confidence": 50,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 38,
+          "theme_title": "Joint CRA Board/City Commission Meeting",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 45,
+          "starred": true,
+          "municipalities": [
+            "BOYNTON"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 39,
+          "theme_title": "City Council",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 45,
+          "starred": true,
+          "municipalities": [
+            "RIVBEACH"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 40,
+          "theme_title": "Local Planning Agency Meeting",
+          "category": "Housing & Development",
+          "confidence": 45,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 41,
+          "theme_title": "Planning and Zoning Board",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 35,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 42,
+          "theme_title": "Board of County Commissioners Meeting",
+          "category": "Zoning & Land Use",
+          "confidence": 35,
+          "starred": false,
+          "municipalities": [
+            "PBC"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 43,
+          "theme_title": "Planning and Zoning Board",
+          "category": "Budget & Finance",
+          "confidence": 35,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 44,
+          "theme_title": "Planning and Zoning Board Meeting",
+          "category": "Housing & Development",
+          "confidence": 35,
+          "starred": true,
+          "municipalities": [
+            "RIVBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 45,
+          "theme_title": "Local Planning Agency (LPA)",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "PALMBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 46,
+          "theme_title": "Town Council Workshop - Discussion of Town Manager Contract Terms",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 47,
+          "theme_title": "Town Council Goal Setting & Team Building Work Session",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 48,
+          "theme_title": "CRA Regular Meeting/City Council workshop/City Council Regular Meeting",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "BOCA"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 49,
+          "theme_title": "Board of County Commissioners Meeting",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "PBC"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 50,
+          "theme_title": "City Commission Comprehensive Plan Workshop",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "BOYNTON"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 51,
+          "theme_title": "Special Town Commission Meeting",
+          "category": "Budget & Finance",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 52,
+          "theme_title": "Board of County Commissioners Meeting",
+          "category": "Housing & Development",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "PBC"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 53,
+          "theme_title": "City Commission",
+          "category": "Downtown Development / DDA / DAC",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 54,
+          "theme_title": "City Council Regular Meeting",
+          "category": "Data Centers",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 1
+        }
+      ]
     }
   ]
 }
