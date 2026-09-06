@@ -26,13 +26,13 @@ jobs:
       - name: Execute Scraper
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python scraper.py
+        run: python -u scraper.py
 
       - name: Execute Insights Engine
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
-        run: python insights_engine.py
+        run: python -u insights_engine.py
 
       - name: Commit and Push Updated Data Files
         run: |
