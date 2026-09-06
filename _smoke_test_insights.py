@@ -99,6 +99,57 @@ result = ie.web_cross_reference(themes[0])
 assert result == {"checked": False, "corroborated": False, "sources": []}
 print("Test 8 (search graceful degradation, no key) passed.")
 
+# --- Test 5b: corroboration requires a result to actually be ABOUT the
+# specific matter, not just "Google returned something" - this is a real
+# bug fix: two separate real runs both came back with EXACTLY 100% of
+# themes "corroborated," which is what happens when this check doesn't
+# discriminate at all (Google almost never returns zero results for any
+# non-empty query). ---
+irrelevant_source = {"title": "City of Riviera Beach - Official Website", "link": "https://rivierabeach.org", "snippet": "Welcome to the City of Riviera Beach government portal."}
+relevant_source = {"title": "Riviera Beach approves Ordinance No. 4316", "link": "https://example.com/news", "snippet": "The city council approved Ordinance No. 4316 granting a utility franchise."}
+
+assert ie._source_actually_corroborates("Ordinance No. 4316", irrelevant_source) is False, (
+    "A generic city homepage that doesn't mention the specific ordinance number "
+    "must NOT count as corroboration, even though Google returned it as a result."
+)
+print("Test 8b (generic unrelated result correctly rejected as non-corroborating) passed.")
+
+assert ie._source_actually_corroborates("Ordinance No. 4316", relevant_source) is True, (
+    "A result that actually names the same ordinance number should count as real corroboration."
+)
+print("Test 8c (result naming the same specific identifier correctly accepted) passed.")
+
+# Fallback path (no identifier in the theme title) uses word-overlap instead
+generic_theme_title = "Downtown Streetscape Improvement Project"
+matching_result = {"title": "Riviera Beach Downtown Streetscape Improvement Project moves forward", "link": "x", "snippet": ""}
+unrelated_result = {"title": "Local weather forecast for the weekend", "link": "x", "snippet": "Sunny skies expected."}
+assert ie._source_actually_corroborates(generic_theme_title, matching_result) is True
+assert ie._source_actually_corroborates(generic_theme_title, unrelated_result) is False
+print("Test 8d (word-overlap fallback correctly distinguishes matching vs unrelated results) passed.")
+
+# --- Test 5e: web_cross_reference uses the real municipality name, not the
+# internal short code, in its search query ---
+ie.SERPER_API_KEY = "fake-key-for-test"
+captured_queries = []
+def _capture_query_mock(*a, **kw):
+    captured_queries.append(kw.get("json", {}).get("q", ""))
+    class FakeSerperResponse:
+        status_code = 200
+        def json(self):
+            return {"organic": []}
+    return FakeSerperResponse()
+ie.requests.post = _capture_query_mock
+
+fake_theme = {"theme_title": "Ordinance No. 99", "meetings": [{"muni_full": "City of Riviera Beach", "muni_short": "RIVBEACH"}]}
+ie.web_cross_reference(fake_theme)
+assert captured_queries and "City of Riviera Beach" in captured_queries[0], captured_queries
+assert "RIVBEACH" not in captured_queries[0], (
+    "Search query should use the real municipality name, not the internal "
+    f"short code - got: {captured_queries[0]!r}"
+)
+print(f"Test 8e (search query uses real municipality name, not short code) passed: '{captured_queries[0]}'")
+ie.SERPER_API_KEY = None
+
 # --- Test 6: Gemini path gracefully degrades with no API key ---
 ie.GEMINI_API_KEY = None
 ie._gemini_checked_available = False
@@ -269,16 +320,48 @@ print("Test 19b (heuristic-only singleton is dropped even if trivially 'corrobor
 
 recurring_theme = {"occurrence_count": 3, "cross_municipality": False, "all_heuristic": True,
                     "web_notability": {"checked": True, "corroborated": False, "sources": []}}
-assert ie.is_insight_worthy(recurring_theme) is True
-ie.assign_reason(recurring_theme)
-assert "recurring_over_time" in recurring_theme["reasons"]
-print("Test 20 (recurring-but-uncorroborated theme is kept regardless of method) passed.")
+assert ie.is_insight_worthy(recurring_theme) is False, (
+    "A heuristic-only theme must NEVER qualify as an insight, no matter how many "
+    "times it 'recurs' - heuristic mode can only restate the meeting title/"
+    "category, not identify a real specific matter. This is the exact 'Regular "
+    "Town Commission Meeting' bug: many small towns share near-identical "
+    "boilerplate meeting names, so they spuriously cluster together across "
+    "municipalities as if it were one recurring topic, when it's really just "
+    "unrelated towns each having a normal meeting."
+)
+print("Test 20 (heuristic-only recurring theme is REJECTED regardless of occurrence count) passed.")
+
+llm_recurring_theme = {"occurrence_count": 3, "cross_municipality": False, "all_heuristic": False,
+                       "web_notability": {"checked": True, "corroborated": False, "sources": []}}
+assert ie.is_insight_worthy(llm_recurring_theme) is True, (
+    "An LLM-derived recurring theme (e.g. the same ordinance appearing across "
+    "3 real meetings) should still be kept even without web corroboration - "
+    "genuine recurrence of a specific, identifiable matter is real signal on its own."
+)
+ie.assign_reason(llm_recurring_theme)
+assert "recurring_over_time" in llm_recurring_theme["reasons"]
+print("Test 20b (LLM-derived recurring theme is correctly kept) passed.")
+
+# Direct reproduction of the real "Regular Town Commission Meeting" bug: a
+# heuristic theme recurring across multiple municipalities purely because
+# small towns share generic boilerplate meeting names must still be rejected,
+# even with cross_municipality=True (which used to look like strong signal).
+regular_meeting_bug = {"occurrence_count": 6, "cross_municipality": True, "all_heuristic": True,
+                       "web_notability": {"checked": True, "corroborated": True, "sources": [{"title": "x", "link": "y"}]}}
+assert ie.is_insight_worthy(regular_meeting_bug) is False, (
+    "Real bug reproduction: 'Regular Town Commission Meeting' clustered across "
+    "Manalapan and Jupiter Inlet Colony with occurrence_count=6, cross_municipality=True, "
+    "and trivial web 'corroboration' - all three signals looked strong, but it's "
+    "pure heuristic noise and must be rejected."
+)
+print("Test 20c ('Regular Town Commission Meeting' real-world false positive is rejected) passed.")
 
 cross_muni_theme = {"occurrence_count": 2, "cross_municipality": True, "all_heuristic": True,
                      "web_notability": {"checked": False, "corroborated": False, "sources": []}}
+assert ie.is_insight_worthy(cross_muni_theme) is False
 ie.assign_reason(cross_muni_theme)
 assert "recurring_across_municipalities" in cross_muni_theme["reasons"]
-print("Test 21 (cross-municipality recurrence reason) passed.")
+print("Test 21 (cross-municipality recurrence reason still assigned for display, but heuristic version correctly excluded upstream) passed.")
 
 # --- Test 14: citation_summary is built correctly for recurring themes ---
 entries = [
