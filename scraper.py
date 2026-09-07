@@ -165,8 +165,10 @@ def is_qualifying_event(title):
         r'\bBoard of Adjustment\b',
         r'\bPlanning,?\s*Zoning,?\s*(?:and|&)\s*Adjustment\s*Board\b',  # North Palm
         # Beach's combined planning/zoning/appeals body - added per explicit user
-        # request; doesn't match the generic "Planning and Zoning" or "Board of
-        # Adjustment" patterns above because of its comma and word order.
+        # request. Real site text is "Planning, Zoning, and Adjustment Board" (comma
+        # after BOTH "Planning" and "Zoning") - confirmed via a real GitHub Actions
+        # debug run; both commas are optional here since search-snippet text seen
+        # earlier only had the first one.
         # Quasi-governmental authorities tied to city/county government
         r'\bDowntown Development Authority\b', r'\bHousing Authority\b',
         r'\bAirport Authority\b',
@@ -2465,36 +2467,32 @@ def scrape_gulf_stream():
 
 def scrape_north_palm_beach():
     # Village of North Palm Beach - https://www.village-npb.org/AgendaCenter
-    # AgendaCenter platform - same platform family as Jupiter Inlet Colony
-    # (scrape_jupiter_inlet_colony() above), confirmed via the site's real agenda-file
-    # URL pattern (village-npb.org/AgendaCenter/ViewFile/Agenda/_MMDDYYYY-XXXX) turning
-    # up in search results, NOT via a raw-HTML fetch of the AgendaCenter page itself -
-    # village-npb.org's robots.txt blocks automated fetches, so the literal DOM
-    # structure of /AgendaCenter has never actually been seen this session.
+    # AgendaCenter platform - confirmed via a real GitHub Actions debug run
+    # (see debug-scraper.yml). Real row markup:
+    #   <tr class="catAgendaRow"><td><h3><strong aria-label="Agenda for <Month DD,
+    #   YYYY>">...</strong></h3><p><a href="/AgendaCenter/ViewFile/Agenda/_...">
+    #   <Meeting Title> on <Month DD, YYYY></a></p></td>...
+    # All boards' rows come back in ONE static fetch of /AgendaCenter (Village
+    # Council, Planning Commission, Planning-Zoning-Adjustment, and the excluded
+    # advisory boards were all present in a single 98-row response) - the AJAX-
+    # per-board risk flagged in this function's first-pass draft did NOT
+    # materialize, so no separate per-category fetch is needed.
     #
-    # Per Key Methodological Lesson #1/2 in handoff.md, this is an UNCONFIRMED
-    # FIRST-PASS DRAFT, same status JIC started at. It reuses JIC's three-strategy
-    # row-selector approach (tr -> li -> div fallback) since that's the only
-    # AgendaCenter precedent in this codebase, but the title_patterns below are
-    # specific to NPB's real governing bodies (confirmed via search-snippet agenda
-    # text, not page markup):
-    #   - "Village Council" Regular Session (matches existing whitelist rule)
+    # Governing bodies (confirmed real via debug run, not just search snippets):
+    #   - "Village Council" (matches existing whitelist rule)
     #   - "Planning Commission" (matches existing whitelist rule)
-    #   - "Planning, Zoning and Adjustment Board" (new whitelist rule added above,
-    #     per explicit user request)
-    # Advisory boards seen in search results (Waterway Advisory Board, Business
-    # Advisory Board, Recreation Advisory Board) are deliberately NOT in
-    # title_patterns below or the whitelist - user explicitly excluded them.
+    #   - "Planning, Zoning, and Adjustment Board" (comma after BOTH "Planning" and
+    #     "Zoning" - the debug run caught a first-pass regex bug that only allowed
+    #     the first comma; fixed in is_qualifying_event() and title_patterns below)
+    # Advisory boards seen in the real data (Waterway, Business, Recreation) are
+    # deliberately excluded per explicit user request, and confirmed correctly
+    # filtered out in the debug run (a real Recreation Advisory Board row was
+    # present and correctly did not extract).
     #
-    # KNOWN RISK, flagged rather than hidden: many CivicPlus AgendaCenter installs
-    # load per-board meeting lists via an AJAX call (e.g. a "Select a Category"
-    # dropdown that swaps content client-side) rather than putting every board's
-    # meetings in the initial HTML response. If this run only extracts Village
-    # Council events and misses Planning Commission / Planning-Zoning-Adjustment
-    # entries (or extracts zero), that's the likely cause - the fix would be finding
-    # the actual AJAX endpoint (view page source / network tab) rather than tuning
-    # this parser further blind. Ask the user to run the workflow and paste back
-    # the [North Palm Beach]-prefixed log lines.
+    # "CANCELED" meetings (e.g. a real "Planning, Zoning, and Adjustment Board
+    # Meeting-CANCELED- Next Meeting October 6, 2026" row): shown as-is, no special
+    # handling, per explicit user decision - same as every other municipality's
+    # scraper, which has no cancellation-detection logic either.
     events = []
     base_domain = "https://www.village-npb.org"
     target_url = f"{base_domain}/AgendaCenter"
@@ -2541,7 +2539,7 @@ def scrape_north_palm_beach():
 
     title_patterns = [
         r'(?:Regular|Special|Emergency)?\s*Village Council\s+(?:Regular Session|Meeting|Workshop|Hearing)?',
-        r'Planning,?\s*Zoning\s*(?:and|&)\s*Adjustment\s*Board',
+        r'Planning,?\s*Zoning,?\s*(?:and|&)\s*Adjustment\s*Board',
         r'Planning Commission',
     ]
 
