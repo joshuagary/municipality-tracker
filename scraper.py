@@ -163,7 +163,7 @@ def is_qualifying_event(title):
         r'\bLocal Planning Agency\b',  # Jupiter Inlet Colony has "Local Planning Agency Meeting"
         r'\bZoning (?:Board|Commission|Board of Appeals)\b',
         r'\bBoard of Adjustment\b',
-        r'\bPlanning,?\s*Zoning\s*(?:and|&)\s*Adjustment\s*Board\b',  # North Palm
+        r'\bPlanning,?\s*Zoning,?\s*(?:and|&)\s*Adjustment\s*Board\b',  # North Palm
         # Beach's combined planning/zoning/appeals body - added per explicit user
         # request; doesn't match the generic "Planning and Zoning" or "Board of
         # Adjustment" patterns above because of its comma and word order.
