@@ -1433,6 +1433,496 @@
           "occurrence_count": 1
         }
       ]
+    },
+    {
+      "date": "2026-09-07",
+      "generated_at": "2026-09-07T00:29:53.034275+00:00",
+      "theme_keys": [
+        [
+          "Zoning & Land Use",
+          "202602lpaordinance"
+        ],
+        [
+          "Other Governance Matters",
+          "202607resolution"
+        ],
+        [
+          "Other Governance Matters",
+          "202605resolution"
+        ],
+        [
+          "Budget & Finance",
+          "2027budgetcityproposedwestlake"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "600atlanticavenueblockdevelopmentgroupllcproposalunsolicitedwest"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "andauthorityblightedcleanupdistressedgrantpropertysolidswawaste"
+        ],
+        [
+          "Zoning & Land Use",
+          "centerdepartmentemergencyfilefreestandingjfkmedicalpz0002342025"
+        ],
+        [
+          "Zoning & Land Use",
+          "2626fileordinancepz0005132026"
+        ],
+        [
+          "Zoning & Land Use",
+          "6426resolution"
+        ],
+        [
+          "Zoning & Land Use",
+          "202608ordinance"
+        ],
+        [
+          "Zoning & Land Use",
+          "202609ordinance"
+        ],
+        [
+          "Zoning & Land Use",
+          "202508ordinance"
+        ],
+        [
+          "Zoning & Land Use",
+          "202509ordinance"
+        ],
+        [
+          "Zoning & Land Use",
+          "401driveolympus"
+        ],
+        [
+          "Zoning & Land Use",
+          "801ordinance"
+        ],
+        [
+          "Zoning & Land Use",
+          "amendmentandfloridalightmajormasterplanpowersite"
+        ],
+        [
+          "Zoning & Land Use",
+          "798ordinance"
+        ],
+        [
+          "Zoning & Land Use",
+          "drivelighthouse"
+        ],
+        [
+          "Budget & Finance",
+          "20262027budgetoperating"
+        ],
+        [
+          "Budget & Finance",
+          "202609aresolution"
+        ],
+        [
+          "Budget & Finance",
+          "202609resolution"
+        ],
+        [
+          "Budget & Finance",
+          "202610resolution"
+        ],
+        [
+          "Other Governance Matters",
+          "7626resolution"
+        ],
+        [
+          "Other Governance Matters",
+          "baptistchurchmissionarypaulsaint"
+        ],
+        [
+          "Other Governance Matters",
+          "24001projectpublicworks"
+        ],
+        [
+          "Other Governance Matters",
+          "9226resolution"
+        ],
+        [
+          "Other Governance Matters",
+          "202603ordinance"
+        ],
+        [
+          "Other Governance Matters",
+          "agreementconsultantgovernmentgroupllclocalprofessionalserviceswith"
+        ],
+        [
+          "Other Governance Matters",
+          "contractdiscussionmanagertermstown"
+        ],
+        [
+          "Other Governance Matters",
+          "applicationassistancedevelopmentfloridaforfrdapgrantjb1programrecreation"
+        ],
+        [
+          "Other Governance Matters",
+          "202611resolution"
+        ],
+        [
+          "Housing & Development",
+          "4th8126blissresolution"
+        ]
+      ],
+      "insights": [
+        {
+          "rank": 1,
+          "theme_title": "LPA Ordinance 2026-02",
+          "category": "Zoning & Land Use",
+          "confidence": 75,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "WESTLAKE"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 2,
+          "theme_title": "Resolution No. 2026-07",
+          "category": "Other Governance Matters",
+          "confidence": 70,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 3,
+          "theme_title": "Resolution 2026-05",
+          "category": "Other Governance Matters",
+          "confidence": 65,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 4,
+          "theme_title": "City of Westlake Proposed Budget FY 2027",
+          "category": "Budget & Finance",
+          "confidence": 45,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 5,
+          "theme_title": "Unsolicited Proposal by RH Development Group, LLC (SW 600 Block of West Atlantic Avenue)",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 6,
+          "theme_title": "Solid Waste Authority (SWA) Blighted and Distressed Property Clean-Up Grant",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 7,
+          "theme_title": "File PZ-000234-2025 (JFK Medical Center Freestanding Emergency Department)",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 8,
+          "theme_title": "File No. PZ-000513-2026 (Ordinance No. 26-26)",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 9,
+          "theme_title": "RESOLUTION NO. 64-26",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 10,
+          "theme_title": "Ordinance 2026-08",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 11,
+          "theme_title": "Ordinance 2026-09",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 12,
+          "theme_title": "Ordinance 2025-08",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 13,
+          "theme_title": "Ordinance 2025-09",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 14,
+          "theme_title": "401 Olympus Drive",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 15,
+          "theme_title": "ORDINANCE NO. 801",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 16,
+          "theme_title": "Florida Power and Light - Master Site Plan Major Amendment",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": false,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 17,
+          "theme_title": "Ordinance 798",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 18,
+          "theme_title": "74 Lighthouse Drive",
+          "category": "Zoning & Land Use",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 19,
+          "theme_title": "2026-2027 Operating Budget",
+          "category": "Budget & Finance",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 20,
+          "theme_title": "Resolution 2026-09a",
+          "category": "Budget & Finance",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 21,
+          "theme_title": "Resolution 2026-09",
+          "category": "Budget & Finance",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 22,
+          "theme_title": "Resolution 2026-10",
+          "category": "Budget & Finance",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 23,
+          "theme_title": "RESOLUTION NO. 76-26",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 24,
+          "theme_title": "SAINT PAUL MISSIONARY BAPTIST CHURCH",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": false,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 25,
+          "theme_title": "Public Works Project No. 24-001",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 26,
+          "theme_title": "RESOLUTION NO. 92-26",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 27,
+          "theme_title": "Ordinance 2026-03",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 28,
+          "theme_title": "Professional Services Agreement with Local Government Consultant Group, LLC.",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 29,
+          "theme_title": "Discussion of Town Manager Contract Terms",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": false,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 30,
+          "theme_title": "Florida Recreation Development Assistance Program (FRDAP) Grant Application for JB1",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 31,
+          "theme_title": "Resolution 2026-11",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 1
+        },
+        {
+          "rank": 32,
+          "theme_title": "RESOLUTION 81-26 / BLISS ON 4TH",
+          "category": "Housing & Development",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 1
+        }
+      ]
     }
   ]
 }
