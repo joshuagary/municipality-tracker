@@ -82,7 +82,7 @@ HISTORY_RETENTION_RUNS = 7  # rolling 7-day window, per user request
 
 MAX_DOC_CHARS = 8000        # cap for heuristic path (cheap, no cost concern)
 MAX_LLM_DOC_CHARS = 3000    # smaller cap specifically for what's sent to the LLM
-MAX_LLM_RESPONSE_TOKENS = 400  # 6 short topics don't need more
+MAX_LLM_RESPONSE_TOKENS = 900  # raised from 400 - was truncating mid-JSON on dense meetings
 MAX_TOPICS_PER_MEETING = 6
 
 # --- LLM PROVIDER: Gemini (switched from Hugging Face, 2026-09-06) ---------
