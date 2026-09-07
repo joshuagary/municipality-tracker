@@ -63,6 +63,13 @@
     "status": "Active"
   },
   {
+    "muni_code": "NPB",
+    "muni_name": "Village of North Palm Beach",
+    "type": "Village",
+    "monitoring_url": "https://www.village-npb.org/AgendaCenter",
+    "status": "Active"
+  },
+  {
     "muni_code": "PB",
     "muni_name": "Town of Palm Beach",
     "type": "Town",
