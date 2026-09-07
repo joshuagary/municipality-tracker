@@ -202,6 +202,7 @@ SINGLE_WINDOW_SCRAPERS = [
     sc.scrape_jupiter_inlet_colony,
     sc.scrape_manalapan,
     sc.scrape_gulf_stream,
+    sc.scrape_north_palm_beach,
 ]
 
 
