@@ -163,6 +163,10 @@ def is_qualifying_event(title):
         r'\bLocal Planning Agency\b',  # Jupiter Inlet Colony has "Local Planning Agency Meeting"
         r'\bZoning (?:Board|Commission|Board of Appeals)\b',
         r'\bBoard of Adjustment\b',
+        r'\bPlanning,?\s*Zoning\s*(?:and|&)\s*Adjustment\s*Board\b',  # North Palm
+        # Beach's combined planning/zoning/appeals body - added per explicit user
+        # request; doesn't match the generic "Planning and Zoning" or "Board of
+        # Adjustment" patterns above because of its comma and word order.
         # Quasi-governmental authorities tied to city/county government
         r'\bDowntown Development Authority\b', r'\bHousing Authority\b',
         r'\bAirport Authority\b',
@@ -2459,6 +2463,155 @@ def scrape_gulf_stream():
     return events
 
 
+def scrape_north_palm_beach():
+    # Village of North Palm Beach - https://www.village-npb.org/AgendaCenter
+    # AgendaCenter platform - same platform family as Jupiter Inlet Colony
+    # (scrape_jupiter_inlet_colony() above), confirmed via the site's real agenda-file
+    # URL pattern (village-npb.org/AgendaCenter/ViewFile/Agenda/_MMDDYYYY-XXXX) turning
+    # up in search results, NOT via a raw-HTML fetch of the AgendaCenter page itself -
+    # village-npb.org's robots.txt blocks automated fetches, so the literal DOM
+    # structure of /AgendaCenter has never actually been seen this session.
+    #
+    # Per Key Methodological Lesson #1/2 in handoff.md, this is an UNCONFIRMED
+    # FIRST-PASS DRAFT, same status JIC started at. It reuses JIC's three-strategy
+    # row-selector approach (tr -> li -> div fallback) since that's the only
+    # AgendaCenter precedent in this codebase, but the title_patterns below are
+    # specific to NPB's real governing bodies (confirmed via search-snippet agenda
+    # text, not page markup):
+    #   - "Village Council" Regular Session (matches existing whitelist rule)
+    #   - "Planning Commission" (matches existing whitelist rule)
+    #   - "Planning, Zoning and Adjustment Board" (new whitelist rule added above,
+    #     per explicit user request)
+    # Advisory boards seen in search results (Waterway Advisory Board, Business
+    # Advisory Board, Recreation Advisory Board) are deliberately NOT in
+    # title_patterns below or the whitelist - user explicitly excluded them.
+    #
+    # KNOWN RISK, flagged rather than hidden: many CivicPlus AgendaCenter installs
+    # load per-board meeting lists via an AJAX call (e.g. a "Select a Category"
+    # dropdown that swaps content client-side) rather than putting every board's
+    # meetings in the initial HTML response. If this run only extracts Village
+    # Council events and misses Planning Commission / Planning-Zoning-Adjustment
+    # entries (or extracts zero), that's the likely cause - the fix would be finding
+    # the actual AJAX endpoint (view page source / network tab) rather than tuning
+    # this parser further blind. Ask the user to run the workflow and paste back
+    # the [North Palm Beach]-prefixed log lines.
+    events = []
+    base_domain = "https://www.village-npb.org"
+    target_url = f"{base_domain}/AgendaCenter"
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    res = fetch_hardened(target_url)
+    if res is None:
+        print("[North Palm Beach] Request failed.")
+        return events
+    print(f"[North Palm Beach] HTTP Status: {res.status_code}, body length: {len(res.text) if res.text else 0}")
+    if res.status_code != 200:
+        return events
+
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    rows = soup.find_all("tr")
+    if not rows:
+        rows = soup.find_all("li")
+    if not rows:
+        rows = soup.find_all("div", class_=re.compile(r'meeting|agenda|row', re.I))
+
+    print(f"[North Palm Beach] Found {len(rows)} candidate rows/items on the page.")
+
+    if not rows:
+        print("[North Palm Beach] No rows found. Dumping a slice of raw HTML "
+              "around a known meeting-type string for debugging:")
+        idx = res.text.find("Village Council")
+        print(res.text[max(0, idx - 200): idx + 500] if idx != -1 else res.text[:700])
+        return events
+
+    if rows:
+        print(f"[North Palm Beach] Sample first row raw HTML (for debugging):\n{rows[0]}")
+
+    seen_keys = set()
+    date_pattern = re.compile(
+        r'\b(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)'
+        r'\.?\s+(\d{1,2}),?\s*(\d{4})\b',
+        re.I
+    )
+
+    title_patterns = [
+        r'(?:Regular|Special|Emergency)?\s*Village Council\s+(?:Regular Session|Meeting|Workshop|Hearing)?',
+        r'Planning,?\s*Zoning\s*(?:and|&)\s*Adjustment\s*Board',
+        r'Planning Commission',
+    ]
+
+    for row in rows:
+        row_text = row.get_text(separator=" ", strip=True)
+        if not row_text or len(row_text) < 5:
+            continue
+
+        date_match = date_pattern.search(row_text)
+        if not date_match:
+            continue
+
+        try:
+            month_name, day, year = date_match.groups()
+            month_map = {
+                'jan': 'January', 'feb': 'February', 'mar': 'March', 'apr': 'April',
+                'may': 'May', 'jun': 'June', 'jul': 'July', 'aug': 'August',
+                'sep': 'September', 'oct': 'October', 'nov': 'November', 'dec': 'December'
+            }
+            month_full = month_map.get(month_name.lower()[:3], month_name)
+            dt = datetime.strptime(f"{month_full} {day} {year}", "%B %d %Y")
+        except ValueError:
+            continue
+
+        iso_date = dt.strftime("%Y-%m-%d")
+        if not (current_month_start <= dt < lookahead_end):
+            continue
+
+        clean_title = None
+        for pattern_str in title_patterns:
+            title_match = re.search(pattern_str, row_text, re.I)
+            if title_match:
+                clean_title = clean_event_title(title_match.group(0))
+                break
+
+        if not clean_title or not is_qualifying_event(clean_title):
+            continue
+
+        time_match = re.search(r'(\d{1,2}):(\d{2})\s*([AP]M)', row_text, re.I)
+        meeting_time = time_match.group(0).upper() if time_match else "6:00 PM"
+
+        agenda_link = row.find("a", href=True) if hasattr(row, 'find') else None
+        has_agenda = agenda_link is not None
+
+        if has_agenda:
+            href = agenda_link.get("href", "").strip()
+            full_link = href if href.startswith("http") else f"{base_domain}/{href.lstrip('/')}"
+        else:
+            full_link = target_url
+
+        dedup_key = (clean_title, iso_date, meeting_time)
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"npb-{iso_date}-{hash(clean_title + meeting_time)}",
+            "muni_short": "NPB",
+            "muni_full": "Village of North Palm Beach",
+            "title": clean_title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": full_link,
+            "has_agenda": has_agenda,
+            "summary": f"Official {clean_title} meeting." if has_agenda else f"Official {clean_title} meeting. No agenda posted yet.",
+        })
+
+    print(f"[North Palm Beach] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
 # --- MAIN ENGINE RUNNER ---
 def main():
     all_events = []
@@ -2481,6 +2634,7 @@ def main():
     all_events.extend(scrape_jupiter_inlet_colony())
     all_events.extend(scrape_manalapan())
     all_events.extend(scrape_gulf_stream())
+    all_events.extend(scrape_north_palm_beach())
 
     # Load the PREVIOUS run's output before it gets overwritten, so we can
     # diff old vs. new and log what changed for the "new records" banner.
