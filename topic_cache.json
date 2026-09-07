@@ -2357,5 +2357,188 @@
   ],
   "NPB|2026-05-20|village council workshop": [],
   "NPB|2026-05-06|village council workshop": [],
-  "NPB|2026-04-09|village council workshop": []
+  "NPB|2026-04-09|village council workshop": [],
+  "PBC|2026-07-07|board of county commissioners meeting": [],
+  "MANALAPAN|2026-03-10|town commission meeting": [
+    {
+      "topic_title": "Paver Agreement \u2013 40 Curlew Road",
+      "category": "Other Governance Matters",
+      "description": "Consideration and approval of a paver agreement for the property located at 40 Curlew Road as part of the consent agenda.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-03-10",
+      "link": "https://manalapan.org/wp-content/uploads/2026/02/2026_0310-Agenda.pdf"
+    },
+    {
+      "topic_title": "RES 03-2026 - Eminent Domain Resolution 131 S. Ocean Blvd.",
+      "category": "Other Governance Matters",
+      "description": "Discussion and consideration of Resolution 03-2026, an eminent domain resolution concerning 131 S. Ocean Blvd., listed under old business.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-03-10",
+      "link": "https://manalapan.org/wp-content/uploads/2026/02/2026_0310-Agenda.pdf"
+    },
+    {
+      "topic_title": "Mock Roos Construction Services Agreement (CSA) #121",
+      "category": "Other Governance Matters",
+      "description": "Consideration of Mock Roos Construction Services Agreement (CSA) #121 for State Revolving Fund Loan Application Assistance relating to Septic to Sewer conversion.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-03-10",
+      "link": "https://manalapan.org/wp-content/uploads/2026/02/2026_0310-Agenda.pdf"
+    },
+    {
+      "topic_title": "LA COQUILLE CLUB PUD",
+      "category": "Zoning & Land Use",
+      "description": "A town commission workshop presentation and discussion regarding the La Coquille Club PUD, led by Town Attorney Davis.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-03-10",
+      "link": "https://manalapan.org/wp-content/uploads/2026/02/2026_0310-Agenda.pdf"
+    }
+  ],
+  "NPB|2026-08-25|village council": [
+    {
+      "topic_title": "FY 2027 Capital Improvement Projects",
+      "category": "Budget & Finance",
+      "description": "Proposed budget review for the FY 2027 Capital Improvement Projects, including the FY 2027-FY 2031 Capital Improvement Plan totaling $121.2 million and a total FY 2027 CIP of $7,018,080.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-08-25",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08252026-1369"
+    }
+  ],
+  "NPB|2026-05-14|village council meeting": [
+    {
+      "topic_title": "Business Advisory Board and Library Advisory Board Appointments",
+      "category": "Other Governance Matters",
+      "description": "Applicant introductions and a resolution appointing members to the Business Advisory Board and the Library Advisory Board.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-05-14",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    },
+    {
+      "topic_title": "Charter Review Committee Appointments",
+      "category": "Other Governance Matters",
+      "description": "Applicant introductions and a resolution appointing members to the Charter Review Committee.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-05-14",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    },
+    {
+      "topic_title": "U.S. Highway One Bridge Replacement Project (Earman River) Bridge Amenities",
+      "category": "Other Governance Matters",
+      "description": "A resolution approving the sole source purchase of bridge amenities for the U.S. Highway One Bridge Replacement Project over the Earman River from Green Theory at a total cost of $46,594.40.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-05-14",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    },
+    {
+      "topic_title": "Palm Beach County Emergency Medical Services Grant Funds Agreement",
+      "category": "Budget & Finance",
+      "description": "A resolution approving an agreement with Palm Beach County for the receipt of Emergency Medical Services Grant Funds and authorizing execution of the agreement.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-05-14",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    },
+    {
+      "topic_title": "C.A.P. Government, Inc. Building Department Services Contract - Fifth Amendment",
+      "category": "Other Governance Matters",
+      "description": "A resolution approving a fifth amendment to the contract for building department services with C.A.P. Government, Inc. to increase the total amount of compensation for Fiscal Year 2026.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-05-14",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    }
+  ],
+  "NPB|2026-09-01|planning, zoning, and adjustment board": [],
+  "NPB|2026-08-04|planning, zoning, and adjustment board": [
+    {
+      "topic_title": "631 Northlake Boulevard",
+      "category": "Zoning & Land Use",
+      "description": "A request by Gentile and Co. on behalf of Lott Brothers/Lott Holdings and Nautical Venture Group, Inc. for site plan approval for landscaping, parking, and signage improvements, and a Special Exception Use approval to add Vehicle Sales or Repair to the property's existing use.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning, and Adjustment Board",
+      "date": "2026-08-04",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363"
+    },
+    {
+      "topic_title": "200 Yacht Club Drive",
+      "category": "Zoning & Land Use",
+      "description": "A request from Urban Design Studio, agent for Robbins NPB LLC and Navarro Lowery, Inc., for approval of a Site Plan and Appearance amendment with waivers for the previously approved mixed-use development project located at 200 Yacht Club Drive.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning, and Adjustment Board",
+      "date": "2026-08-04",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363"
+    }
+  ],
+  "NPB|2026-07-07|planning, zoning, and adjustment board": [
+    {
+      "topic_title": "2585 Conroy Variance",
+      "category": "Zoning & Land Use",
+      "description": "A request from Pavel Just, on behalf of property owner Michal Velek, for a variance to allow the construction of an addition that encroaches the required 10-foot side setback by 0.6 feet (7 inches) utilizing the existing wall of the main structure.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning, and Adjustment Board",
+      "date": "2026-07-07",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07072026-1350"
+    }
+  ],
+  "NPB|2026-06-02|planning, zoning, and adjustment board": [
+    {
+      "topic_title": "719 Northlake Blvd",
+      "category": "Zoning & Land Use",
+      "description": "A request from JMorton Planning and Landscape Architecture, on behalf of property owners Dawn Pfaff LLC and Robert Pfaff LLC, for Site Plan and Appearance Approval for landscape improvements, vesting of existing nonconforming site elements, a cantilever roof extension, stucco, column architectural improvements, and new exterior paint colors at 719 Northlake Boulevard.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning, and Adjustment Board",
+      "date": "2026-06-02",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06022026-1343"
+    }
+  ],
+  "NPB|2026-05-05|planning, zoning, and adjustment board": [],
+  "NPB|2026-04-07|planning, zoning, and adjustment board": [],
+  "NPB|2026-03-03|planning, zoning, and adjustment board": [
+    {
+      "topic_title": "301 Ebbtide Drive",
+      "category": "Zoning & Land Use",
+      "description": "Application by Ivan Medugorac on behalf of Faith Lutheran Church of North Palm Missouri Synod Inc. for Site Plan and Appearance Approval to install a new 45' x 9' fabric awning-covered entrance walkway at 301 Ebbtide Drive.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning, and Adjustment Board",
+      "date": "2026-03-03",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03032026-1314"
+    }
+  ]
 }
