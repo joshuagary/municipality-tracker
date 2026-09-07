@@ -2527,7 +2527,10 @@ def scrape_north_palm_beach():
         return events
 
     if rows:
-        print(f"[North Palm Beach] Sample first row raw HTML (for debugging):\n{rows[0]}")
+        # Skip header rows (all-<th>, no <td>) so the debug sample shows a real
+        # data row instead of just column labels like "Agenda | Minutes | Media".
+        sample_row = next((r for r in rows if hasattr(r, 'find') and r.find("td")), rows[0])
+        print(f"[North Palm Beach] Sample data row raw HTML (for debugging):\n{sample_row}")
 
     seen_keys = set()
     date_pattern = re.compile(
@@ -2542,6 +2545,14 @@ def scrape_north_palm_beach():
         r'Planning Commission',
     ]
 
+    # --- DIAGNOSTIC COUNTERS (temporary - remove once a real run confirms the
+    # extraction works). These isolate WHERE in the pipeline rows are being
+    # dropped: no date found at all vs. a date found but no title pattern hit,
+    # so the next log can drive a precise fix instead of another blind guess.
+    rows_no_date = 0
+    rows_date_no_title = 0
+    sample_date_no_title_texts = []
+
     for row in rows:
         row_text = row.get_text(separator=" ", strip=True)
         if not row_text or len(row_text) < 5:
@@ -2549,6 +2560,7 @@ def scrape_north_palm_beach():
 
         date_match = date_pattern.search(row_text)
         if not date_match:
+            rows_no_date += 1
             continue
 
         try:
@@ -2561,6 +2573,7 @@ def scrape_north_palm_beach():
             month_full = month_map.get(month_name.lower()[:3], month_name)
             dt = datetime.strptime(f"{month_full} {day} {year}", "%B %d %Y")
         except ValueError:
+            rows_no_date += 1
             continue
 
         iso_date = dt.strftime("%Y-%m-%d")
@@ -2575,6 +2588,9 @@ def scrape_north_palm_beach():
                 break
 
         if not clean_title or not is_qualifying_event(clean_title):
+            rows_date_no_title += 1
+            if len(sample_date_no_title_texts) < 8:
+                sample_date_no_title_texts.append(row_text[:200])
             continue
 
         time_match = re.search(r'(\d{1,2}):(\d{2})\s*([AP]M)', row_text, re.I)
@@ -2605,6 +2621,13 @@ def scrape_north_palm_beach():
             "has_agenda": has_agenda,
             "summary": f"Official {clean_title} meeting." if has_agenda else f"Official {clean_title} meeting. No agenda posted yet.",
         })
+
+    print(f"[North Palm Beach] Diagnostics: {rows_no_date} row(s) had no parseable date, "
+          f"{rows_date_no_title} row(s) had a date but no qualifying title match.")
+    if sample_date_no_title_texts:
+        print("[North Palm Beach] Sample row text (date found, title pattern missed):")
+        for i, t in enumerate(sample_date_no_title_texts):
+            print(f"  [{i}] {t}")
 
     print(f"[North Palm Beach] Extracted {len(events)} events "
           f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
