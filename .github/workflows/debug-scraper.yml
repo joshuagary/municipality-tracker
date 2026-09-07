@@ -1,0 +1,54 @@
+name: Debug Single Scraper
+
+# Manual-only (no schedule trigger). Runs exactly ONE scrape_*() function from
+# scraper.py and prints its return value to the log - it does NOT call
+# scraper.py's main(), does NOT touch data.json/changes.json, does NOT run
+# insights_engine.py (so it costs zero Gemini/Serper credits), and does NOT
+# commit or push anything. Use this while iterating on a single new/broken
+# municipality instead of running the full "Municipality Scraper Automation"
+# workflow, which refetches all 16 municipalities and re-runs Insights every
+# time.
+
+on:
+  workflow_dispatch:
+    inputs:
+      scraper_function:
+        description: 'Exact scrape_*() function name to run, e.g. scrape_north_palm_beach'
+        required: true
+        default: 'scrape_north_palm_beach'
+
+jobs:
+  debug-single-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 curl_cffi lxml
+
+      - name: Run Single Scraper Function (debug only)
+        run: |
+          python -u -c "
+          import scraper
+
+          fn_name = '${{ github.event.inputs.scraper_function }}'
+          fn = getattr(scraper, fn_name, None)
+          if fn is None:
+              print(f'ERROR: scraper.py has no function named {fn_name!r}')
+              raise SystemExit(1)
+
+          print(f'--- Running scraper.{fn_name}() ---')
+          events = fn()
+          print(f'--- Returned {len(events)} event(s) ---')
+          for e in events:
+              print(e)
+          "
