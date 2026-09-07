@@ -1830,5 +1830,532 @@
       "date": "2026-04-13",
       "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46"
     }
-  ]
+  ],
+  "PBC|2026-09-01|board of county commissioners meeting": [
+    {
+      "topic_title": "Airports Improvement & Development Fund / FAA Grant and PFC Revenue Budget Amendment",
+      "category": "Budget & Finance",
+      "description": "Approve a Budget Amendment of $24,970,894 in the Airport's Improvement & Development Fund to recognize receipt of FAA Grant funding and Passenger Facility Charge (PFC) revenue.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-01",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
+    },
+    {
+      "topic_title": "Airports PFC Fund Budget Transfer",
+      "category": "Budget & Finance",
+      "description": "Approve a Budget Transfer of $1,978,340 in the Airport's PFC Fund to transfer PFC Funds to the Airport's Improvement & Development Fund, including a transfer from PFC Reserves.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-01",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
+    },
+    {
+      "topic_title": "Palm Beach County, et al., v. Federal Aviation Administration",
+      "category": "Other Governance Matters",
+      "description": "Staff recommends a motion to commence a private attorney-client session to discuss litigation strategy related to litigation expenses in the pending lawsuit against the Federal Aviation Administration.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-01",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
+    }
+  ],
+  "PBC|2026-08-25|board of county commissioners meeting": [
+    {
+      "topic_title": "Item 3C6",
+      "category": "Other Governance Matters",
+      "description": "Adoption of a resolution approving an Agreement with FDOT for right-of-way acquisition along Hagen Ranch Road and Jog Road necessary to widen Atlantic Avenue and construct drainage, bike lanes, sidewalks, medians, and traffic signals, including review of indemnification requirements by the Risk Management Department and County Attorney's Office.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-08-25",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf"
+    },
+    {
+      "topic_title": "Item 3C7",
+      "category": "Other Governance Matters",
+      "description": "Approval of a Consultant Services Authorization (CSA) to provide professional services for designing and preparing construction plans for sidewalks along Ficus Tree Drive, Hibiscus Tree Drive, Florence Road, Grove Road/Orchid Road, and Oleander Road, including SBE participation commitments.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-08-25",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf"
+    }
+  ],
+  "DELRAY|2026-05-26|community redevelopment agency": [
+    {
+      "topic_title": "RESOLUTION NO. 2026-05",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Approval of Purchase and Sale Agreement for 25 SW 12th Avenue for $350,000.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-05-26",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "SUN UP SKIN, LLC (98 NW 5TH AVENUE, SUITE 104)",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Approval of site development funding assistance agreement in an amount not to exceed $71,097.51, subject to the approval of the building permit for said project.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-05-26",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "2026 AMENDMENT TO THE DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY COMMUNITY REDEVELOPMENT PLAN",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Update and discussion regarding the 2026 amendment to the CRA community redevelopment plan.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-05-26",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY FISCAL YEAR 2026-2027 DRAFT BUDGET",
+      "category": "Budget & Finance",
+      "description": "Draft budget overview for fiscal year 2026-2027.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-05-26",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "SW 700 & 800 BLOCKS OF WEST ATLANTIC AVENUE",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Discussion and direction regarding request for proposals for the development of the SW 700 & 800 blocks of West Atlantic Avenue.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-05-26",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "MANALAPAN|2026-05-12|town commission meeting": [
+    {
+      "topic_title": "Ordinance #401",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of an ordinance amending Chapter 151 (Zoning) to provide a revised official zoning map combining zoning district R1-F and portions of R3-A into R1-D, and eliminating metes and bounds descriptions for all zoning districts.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-05-12",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf"
+    },
+    {
+      "topic_title": "Ordinance #402",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of an ordinance amending Chapter 151 (Zoning) to create a new division for boats, boathouses, docks, and bulkheads, relocating existing regulations, and dividing the town into 16 waterway zones.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-05-12",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf"
+    },
+    {
+      "topic_title": "Ordinance #403",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of an ordinance adopting a newly revised and amended official zoning map re-zoning R1-F and R3-A properties west of Lands End Road into R1-D, and adopting a new map for waterway zones in conjunction with Ordinances 401 and 402.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-05-12",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf"
+    }
+  ],
+  "MANALAPAN|2026-08-11|town commission meeting": [
+    {
+      "topic_title": "Amendment to the By-Laws of the La Coquille Club",
+      "category": "Other Governance Matters",
+      "description": "Discussion regarding an amendment to the By-Laws of the La Coquille Club.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-08-11",
+      "link": "https://manalapan.org/wp-content/uploads/2026/08/2026_0811-Agenda.pdf"
+    },
+    {
+      "topic_title": "New Guardhouse construction bid authorization discussion",
+      "category": "Other Governance Matters",
+      "description": "Discussion surrounding authorization for the new guardhouse construction bid.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-08-11",
+      "link": "https://manalapan.org/wp-content/uploads/2026/08/2026_0811-Agenda.pdf"
+    },
+    {
+      "topic_title": "Mock Roos discussion surrounding potential water utility partners",
+      "category": "Other Governance Matters",
+      "description": "Mock Roos discussion regarding potential water utility partners.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-08-11",
+      "link": "https://manalapan.org/wp-content/uploads/2026/08/2026_0811-Agenda.pdf"
+    }
+  ],
+  "NPB|2026-08-31|village council": [
+    {
+      "topic_title": "Library Card Sign-Up Month",
+      "category": "Other Governance Matters",
+      "description": "A proclamation recognizing Library Card Sign-Up Month.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-08-31",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    },
+    {
+      "topic_title": "Village Clerk Merit Increase and COLA",
+      "category": "Budget & Finance",
+      "description": "A motion to grant a merit increase of 4.6% to the Village Clerk based on performance evaluations and include the Clerk in the proposed COLA for October 1, 2026.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-08-31",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    },
+    {
+      "topic_title": "Florida Power and Light Easements at Anchorage Park and Lakeside Park",
+      "category": "Other Governance Matters",
+      "description": "A resolution approving easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for installing transformers as part of the Storm Secure Underground Program.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-08-31",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    },
+    {
+      "topic_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
+      "category": "Other Governance Matters",
+      "description": "A resolution approving the Fifth Amendment to the Interlocal Agreement establishing the Municipal Public Safety Communications Consortium of Palm Beach County and repealing Resolution No. 2026-11.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-08-31",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    }
+  ],
+  "NPB|2026-08-27|village council meeting": [],
+  "NPB|2026-08-13|village council meeting": [],
+  "NPB|2026-07-23|village council meeting": [
+    {
+      "topic_title": "Utility Easement in favor of Seacoast Utility Authority",
+      "category": "Other Governance Matters",
+      "description": "Approval of a utility easement in favor of Seacoast Utility Authority over Village property east of Old Dixie Highway and west of the FEC Railroad tracks for the installation of ground monitoring wells.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-07-23",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07232026-1357"
+    },
+    {
+      "topic_title": "Tentative Millage Rate for FY 2026-2027",
+      "category": "Budget & Finance",
+      "description": "Adopting a resolution establishing a tentative millage rate of 7.4000 mils for Fiscal Year 2027, setting the date, time, and place for the first public hearing on the tentative budget and proposed millage rate, and authorizing the Village Manager to submit the required information.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-07-23",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07232026-1357"
+    }
+  ],
+  "NPB|2026-07-09|village council meeting": [
+    {
+      "topic_title": "Palm Beach County Commission on Ethics Annual Overview",
+      "category": "Other Governance Matters",
+      "description": "Gina A. Levesque, CFE presents the annual overview from the Palm Beach County Commission on Ethics.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-07-09",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352"
+    },
+    {
+      "topic_title": "Parks Maintenance Contracts",
+      "category": "Other Governance Matters",
+      "description": "A resolution amending the associated accounts and account numbers for existing Parks Maintenance Contracts for Athletic Turf Maintenance, Landscaping and Grounds Maintenance, and Tree Trimming Management and Maintenance Services.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-07-09",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352"
+    },
+    {
+      "topic_title": "312 Northlake Drive",
+      "category": "Other Governance Matters",
+      "description": "A resolution accepting a proposal from Shenandoah General Construction, LLC for stormwater repairs at 312 Northlake Drive at a total cost of $65,381 and authorizing the execution of the contract.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-07-09",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352"
+    },
+    {
+      "topic_title": "Community Development Department Fee Schedule",
+      "category": "Budget & Finance",
+      "description": "A resolution amending the Master Fee Schedule adopted as part of the Fiscal Year 2026 Budget to amend the Community Development Department Fee Schedule applicable to Building Permit Applications to comply with recent changes to State Law.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-07-09",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352"
+    },
+    {
+      "topic_title": "Florida League of Cities Conference",
+      "category": "Other Governance Matters",
+      "description": "A motion designating a voting delegate for the Florida League of Cities Conference.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-07-09",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352"
+    }
+  ],
+  "NPB|2026-06-25|village council meeting": [],
+  "NPB|2026-06-11|village council meeting": [
+    {
+      "topic_title": "Quality Leave Award Policy",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a resolution adopting a Quality Leave Award Policy to be incorporated into the Personnel Rules and Regulations Manual.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-06-11",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06112026-1346"
+    },
+    {
+      "topic_title": "Buoy Road Improvements Project",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a resolution accepting a bid proposal from TCLM Enterprise, Inc. for the Buoy Road Improvements Project at a total cost not to exceed $449,397.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-06-11",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06112026-1346"
+    },
+    {
+      "topic_title": "Anchorage Park Amenities Improvement Project",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a resolution accepting a bid proposal from Diligent Construction Services, LLC for the Anchorage Park Amenities Improvement Project at a cost not to exceed $168,618.32, including execution of the contract and a budget amendment to fund the project.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-06-11",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06112026-1346"
+    }
+  ],
+  "NPB|2026-05-28|village council meeting": [
+    {
+      "topic_title": "Resolution No. 2026-13",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a resolution amending Resolution No. 2026-13 to increase the number of members on the Charter Review Committee.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-05-28",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05282026-1341"
+    },
+    {
+      "topic_title": "727 Hummingbird Way",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a resolution accepting a proposal from BD Environmental Group, LLC for stormwater repairs at 727 Hummingbird Way at a total cost of $26,125 and authorizing contract execution.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-05-28",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05282026-1341"
+    },
+    {
+      "topic_title": "North Palm Beach Country Club Irrigation System Update",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a resolution approving a proposal from Brightview Golf Maintenance, Inc. to update the irrigation system at the North Palm Beach Country Club for $176,708, authorizing contract execution, and waiving purchasing policies.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-05-28",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05282026-1341"
+    }
+  ],
+  "NPB|2026-04-23|village council meeting": [
+    {
+      "topic_title": "Ordinance 2026-05",
+      "category": "Other Governance Matters",
+      "description": "Public hearing and second reading of Ordinance 2026-05, a code amendment to Chapter 19 ('Offenses and Miscellaneous Provisions') regarding the control of access to Village-owned, controlled, and leased property, and establishing trespass warnings on public property.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-04-23",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329"
+    },
+    {
+      "topic_title": "Municipal Clerks Week Proclamation",
+      "category": "Other Governance Matters",
+      "description": "Presentation of a proclamation recognizing Municipal Clerks Week.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-04-23",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329"
+    },
+    {
+      "topic_title": "Resolution Accepting Election Results",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a resolution accepting the results of the election.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-04-23",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329"
+    },
+    {
+      "topic_title": "Resolution Appointing Members to Village Boards and Committees",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a resolution appointing members to Village boards and committees following applicant introductions.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-04-23",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329"
+    }
+  ],
+  "NPB|2026-03-26|village council meeting": [
+    {
+      "topic_title": "Change Order 1A (Marina Drive Roadway Improvements)",
+      "category": "Budget & Finance",
+      "description": "Approval and ratification of Change Order 1A in an amount not to exceed $920.00 to provide water quality monitoring associated with the Marina Drive Roadway Improvements, and authorization for the Village Manager to execute the Work Change Directive.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-03-26",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03262026-1321"
+    },
+    {
+      "topic_title": "Village Manager Merit Increase",
+      "category": "Other Governance Matters",
+      "description": "Approval of a 4% merit increase for the Village Manager based on the total score of each Councilmember's performance evaluation.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-03-26",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03262026-1321"
+    },
+    {
+      "topic_title": "FY 2025 Audit Report",
+      "category": "Budget & Finance",
+      "description": "Consideration of a resolution to adopt and accept the Annual Comprehensive Financial Report prepared by the Village Auditor for the Fiscal Year ending September 30, 2025, and authorization to file it with the State.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-03-26",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03262026-1321"
+    },
+    {
+      "topic_title": "Charter Review",
+      "category": "Other Governance Matters",
+      "description": "Discussion by the Mayor and Council regarding the Village Charter review.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-03-26",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03262026-1321"
+    }
+  ],
+  "NPB|2026-03-12|village council meeting": [
+    {
+      "topic_title": "Business of the Season Award - Winter - Hobo's Cafe",
+      "category": "Other Governance Matters",
+      "description": "Presentation of the Winter Business of the Season Award to Hobo's Cafe.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-03-12",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318"
+    },
+    {
+      "topic_title": "Part-Time Camp Counselor Comprehensive Pay Plan",
+      "category": "Budget & Finance",
+      "description": "Resolution amending the Comprehensive Pay Plan adopted as part of the Fiscal Year 2026 Budget to modify the Minimum and Maximum Pay Grade for Part-Time Camp Counselor.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-03-12",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318"
+    },
+    {
+      "topic_title": "Professional Firefighters/Paramedics Local 2928 MOU",
+      "category": "Other Governance Matters",
+      "description": "Resolution approving and ratifying a Memorandum of Understanding with the Professional Firefighters/Paramedics of Palm Beach County, Local 2928, IAFF, Inc. to amend Article 2, Section 1 of the Collective Bargaining Agreement to allow promotions to the rank of Lieutenant.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-03-12",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318"
+    },
+    {
+      "topic_title": "Supervisor of Elections Vote Processing Equipment Use and Elections Services Agreement",
+      "category": "Other Governance Matters",
+      "description": "Resolution approving an Agreement for Vote Processing Equipment Use and Elections Services with the Palm Beach County Supervisor of Elections and authorizing execution of the agreement.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-03-12",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318"
+    }
+  ],
+  "NPB|2026-05-20|village council workshop": [],
+  "NPB|2026-05-06|village council workshop": [],
+  "NPB|2026-04-09|village council workshop": []
 }

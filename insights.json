@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-07T00:29:53.032094+00:00",
+  "generated_at": "2026-09-07T13:51:55.465216+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 245,
+  "historical_meetings_scanned": 271,
   "insights": [
     {
       "theme_title": "LPA Ordinance 2026-02",
@@ -45,12 +45,19 @@
       ],
       "web_notability": {
         "checked": true,
-        "corroborated": false,
-        "sources": []
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Florida Ordinance Watch | Florida Beverage Association",
+            "link": "http://www.ordinancewatch.com/FBA/FBA2.cfm?id=56583",
+            "snippet": "Ordinance 2026-02 \u2013 An Ordinance of the Town of Jupiter Inlet Colony, Florida, Amending Policies in the Sanitary Sewer, Solid Waste, Stormwater ..."
+          }
+        ]
       },
-      "confidence": 75,
+      "confidence": 90,
       "reasons": [
-        "recurring_across_municipalities"
+        "recurring_across_municipalities",
+        "corroborated_by_web_search"
       ],
       "starred": true,
       "rank": 1
@@ -151,9 +158,19 @@
         "corroborated": true,
         "sources": [
           {
+            "title": "Town of Jupiter Inlet Colony Regular Commission Meeting ...",
+            "link": "http://www.ordinancewatch.com/files/82613/LocalGovernment163109.pdf",
+            "snippet": "RULES OF CONDUCT AND DECORUM AT PUBLIC MEETINGS / RESOLUTION 2026-05. Until the presiding officer of a public meeting opens the floor for ..."
+          },
+          {
             "title": "Jupiter Inlet Colony Codifies Public Meeting Conduct Rules ...",
             "link": "https://citybriefsfl.com/items/jupiter-inlet-colony-2026-05-11-item-8/",
             "snippet": "Resolution 2026-05 establishes formal rules of conduct and decorum for public meetings in Jupiter Inlet Colony, including a requirement that ..."
+          },
+          {
+            "title": "Town of Jupiter Inlet Colony",
+            "link": "https://www.jupiterinletcolony.gov/DocumentCenter/View/663",
+            "snippet": "RULES OF CONDUCT AND DECORUM AT PUBLIC MEETINGS / RESOLUTION 2026-05 ... Town Hall / Police Department Renovation and Storm. Hardening."
           }
         ]
       },
@@ -203,6 +220,11 @@
             "title": "City Council Budget Workshop",
             "link": "https://www.westlakegov.com/citycouncil/page/city-council-budget-workshop-11",
             "snippet": "City of Westlake Proposed Budget FY 2027. Submitted by: Finance. City of Westlake Proposed Budget FY 2027.pdf (0.29 MB). CITY COUNCIL COMMENTS. A. Councilwoman ..."
+          },
+          {
+            "title": "City Council Budget Workshop 06/30/2026 06:00 PM",
+            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=c64feb2ee5f244c8b257a12f81f3440b&ip=True",
+            "snippet": "City of Westlake Proposed Budget FY 2027. Submitted by: Finance. City of Westlake - Proposed Budget FY2027.pdf (1.32 MB). B. Discussion ..."
           }
         ]
       },
@@ -213,603 +235,6 @@
       ],
       "starred": true,
       "rank": 4
-    },
-    {
-      "theme_title": "Unsolicited Proposal by RH Development Group, LLC (SW 600 Block of West Atlantic Avenue)",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-05-13",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4610&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Presentation and discussion of an unsolicited proposal received from RH Development Group, LLC regarding the development of the SW 600 block of West Atlantic Avenue, including an opportunity for public comments.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Delray Beach Community Redevelopment Agency",
-            "link": "https://www.instagram.com/p/DXpBFJUjtKV/",
-            "snippet": "a developer who submitted an unsolicited proposal for the development of CRA Owned parcels on the SW 600 Block of West Atlantic Avenue."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 5
-    },
-    {
-      "theme_title": "Solid Waste Authority (SWA) Blighted and Distressed Property Clean-Up Grant",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "City Commission",
-          "date": "2026-07-14",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Grant consideration for the Solid Waste Authority (SWA) blighted and distressed property clean-up program.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "swa - solid waste authority",
-            "link": "http://www.pbcgov.com/pubInf/Agenda/20201117/SWA.agenda.pdf",
-            "snippet": "Now in its sixth year, the SWA Blighted and Distressed Property Cleanup and. Beautification Grant made possible by funds from the supplemental waste project has."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 6
-    },
-    {
-      "theme_title": "File PZ-000234-2025 (JFK Medical Center Freestanding Emergency Department)",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-03-16",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4446&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Provide a recommendation to the City Commission regarding a Conditional Use request to allow the establishment of a 24-Hour or Late-Night Use (Freestanding Emergency Department) at 3921 West Atlantic Avenue.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "P&Z Board Meeting Summary - 03/16/2026 Quasi-Judicial ...",
-            "link": "https://www.facebook.com/groups/delraymatters/posts/2382652178904949/",
-            "snippet": "24-Hour or Late Night Use, JFK Medical Center Freestanding Emergency Department (File PZ- 000234-2025): Provide a recommendation to the City ..."
-          },
-          {
-            "title": "Meeting of Planning and Zoning Board on 12/15/2025 at 5: ...",
-            "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?ID=1243312&GUID=E02EE215-45B2-4FEC-90CA-A101AF97BBD3&Options=&Search=",
-            "snippet": "24-Hour or Late Night Use, JFK Medical Center Freestanding Emergency Department (File PZ-000234-2025): Provide a recommendation to the City ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 7
-    },
-    {
-      "theme_title": "File No. PZ-000513-2026 (Ordinance No. 26-26)",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-03-16",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4446&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Provide a recommendation to the City Commission on Ordinance No. 26-26, a City-initiated request to amend Section 4.4.13(F) 'Architectural standards' of the Land Development Regulations to eliminate City Commission approval and add determination by the Planning and Zoning Board.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Land Development Regulations | Delray Beach, FL",
-            "link": "https://library.municode.com/fl/delray_beach/codes/land_development_regulations_",
-            "snippet": "LAND DEVELOPMENT REGULATIONS of DELRAY BEACH, FLORIDA Codified through Ordinance No. 26-26, enacted May 5, 2026. (Supp. No. 35). Browse table of contents."
-          },
-          {
-            "title": "Ordinance No. 26-26",
-            "link": "http://www.ordinancewatch.com/files/82613/LocalGovernment161563.pdf",
-            "snippet": "AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF. DELRAY BEACH, FLORIDA, AMENDING THE LAND. DEVELOPMENT REGULATIONS OF THE CODE OF ORDINANCES."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 8
-    },
-    {
-      "theme_title": "RESOLUTION NO. 64-26",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "City Commission",
-          "date": "2026-03-31",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4596&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "A resolution requiring additional off-street parking spaces (44 spaces) for the property located at 302 NE 6th Avenue pursuant to Section 4.6.9 of the Land Development Regulations.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "City of Delray Beach - File #: 26-0359",
-            "link": "https://delraybeach.legistar.com/LegislationDetail.aspx?From=RSS&ID=7959279&GUID=399F8A0E-0519-49EC-AE84-024DA4B7D80C&FullText=1",
-            "snippet": "RESOLUTION NO. 64-26: A RESOLUTION OF THE. REQUIRING ADDITIONAL OFF-STREET PARKING SPACES FOR THE PROPERTY LOCATED AT 302 NE 6TH AVENUE, ..."
-          },
-          {
-            "title": "Meeting of City Commission on 3/9/2026 at 5:00 PM",
-            "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?ID=1293823&GUID=7C2AEEB8-1D00-46A0-AB27-D65ACDB20C93&Options=&Search=",
-            "snippet": "C. Resolution, RESOLUTION NO. 64-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, REQUIRING ADDITIONAL OFF-STREET PARKING SPACES ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 9
-    },
-    {
-      "theme_title": "Ordinance 2026-08",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-04",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
-          "description": "An ordinance approving a rezoning of approximately 22.617 acres located within Westlake West (west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West) from Mixed Use (MU) to Residential-2 (R-2).",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "City Council Regular Meeting",
-            "link": "https://www.westlakegov.com/citycouncil/page/city-council-regular-meeting-76",
-            "snippet": "AN ORDINANCE OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA ... RESOLUTION 2026-08. A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF WESTLAKE ... FLORIDA ..."
-          },
-          {
-            "title": "City Council Regular Meeting 08/04/2026 06:00 PM",
-            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=f9511d0612ed4abda65131c2f72b419f&ip=False",
-            "snippet": "ORDINANCE NO. 2026-08. AN ORDINANCE OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA, APPROVING A REZONING OF APPROXIMATELY 22.617 ACRES ..."
-          },
-          {
-            "title": "Westlake Pulse \u2014 What's Happening in Westlake, FL ...",
-            "link": "https://westlakepulse.com/",
-            "snippet": "Ordinance 2026-08 (LPA August 4, 2026) Planning, Zoning & We follow local development, public records, meetings, and neighborhood business news"
-          },
-          {
-            "title": "Local Planning Agency Meeting 08/04/2026 05:30 PM",
-            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=30e850c58d6e4598bef96293a3fd9ca3&ip=False",
-            "snippet": "ORDINANCE NO. 2026-08. AN ORDINANCE OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA, APPROVING A REZONING OF APPROXIMATELY 22.617 ACRES ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 10
-    },
-    {
-      "theme_title": "Ordinance 2026-09",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-04",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
-          "description": "An ordinance amending the City of Westlake Future Land Use Map as a large-scale amendment, changing the designation from Downtown Mixed Use category to Residential-2 category for approximately 22.617 acres located within Westlake West.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "City Council Regular Meeting 05/05/2026 06:00 PM",
-            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=fd5a6a68abc346e39f18ea714e77071b&ip=False",
-            "snippet": "AN ORDINANCE OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA ... RESOLUTION 2026-09. A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF ..."
-          },
-          {
-            "title": "City Council Regular Meeting 04/07/2026 06:00 PM",
-            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=b7c788e0ba1141b2aef00eb7f776e7cf&ip=False",
-            "snippet": "Proclamation 2026-09 - National Days of Remembrance. PUBLIC HEARING ... AN ORDINANCE OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 11
-    },
-    {
-      "theme_title": "Ordinance 2025-08",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Regular Meeting",
-          "date": "2026-07-16",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-030928fd94104c4db58d0fbfffd0c038.pdf",
-          "description": "Second reading of Ordinance 2025-08, an ordinance of the City Council adopting an EAR-based amendment to the City of Westlake Comprehensive Plan pursuant to section 163.3184, Florida Statutes.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "City Council Regular Meeting",
-            "link": "https://www.westlakegov.com/citycouncil/page/city-council-regular-meeting-60",
-            "snippet": "RESOLUTION 2025-08. A RESOLUTION OF THE CITY COUNCIL FOR THE CITY OF WESTLAKE, FLORIDA ... ORDINANCE 2025-02. AN ORDINANCE OF THE CITY COUNCIL FOR THE CITY OF ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 12
-    },
-    {
-      "theme_title": "Ordinance 2025-09",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Regular Meeting",
-          "date": "2026-07-16",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-030928fd94104c4db58d0fbfffd0c038.pdf",
-          "description": "Adoption (Third Reading) of Ordinance 2025-09 regarding the re-adoption of the 2025 10-Year Water Supply Facilities Work Plan.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "City Council Regular Meeting 03/03/2026 06:00 PM",
-            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=db849accfaef4d53bccd2a0e96c8993d&ip=False",
-            "snippet": "ORDINANCE NO. 2025-09. AN ORDINANCE OF THE CITY COUNCIL FOR THE CITY OF WESTLAKE, FLORIDA, AMENDING THE COMPREHENSIVE PLAN TO APPROVE FOR TRANSMITTAL AND ..."
-          },
-          {
-            "title": "City Council Regular Meeting",
-            "link": "https://www.westlakegov.com/citycouncil/page/city-council-regular-meeting-69",
-            "snippet": "Proclamation 2025-09 - Patriot Day and National Day of Service and Remembrance ... AN ORDINANCE OF THE CITY COUNCIL FOR THE CITY OF WESTLAKE, FLORIDA ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 13
-    },
-    {
-      "theme_title": "401 Olympus Drive",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUNOBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Juno Beach (2026-08-03)",
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-03",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
-          "description": "An appearance review for 401 Olympus Drive.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-03",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
-          "description": "An appearance review for 403 Olympus Drive.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": []
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 14
-    },
-    {
-      "theme_title": "ORDINANCE NO. 801",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUNOBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-03",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
-          "description": "An ordinance of the Town Council of the Town of Juno Beach, Florida.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Juno Beach",
-            "link": "https://www.pbcfllegalnotices.com/156/Juno-Beach",
-            "snippet": "Ordinance No. 801 (Amending Section 34-116) The public hearing will be held on Wednesday, April 22, 2026 at 5:30 p.m. at Juno Beach Town Center, 340 Ocean ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 15
-    },
-    {
-      "theme_title": "Florida Power and Light - Master Site Plan Major Amendment",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUNOBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-06-01",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-82b5dbb3908144308d90de8f23e92484.pdf",
-          "description": "Board action and discussion item regarding a Master Site Plan Major Amendment proposed by Florida Power and Light.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Ongoing Projects in Town | Juno Beach, FL",
-            "link": "https://www.juno-beach.fl.us/1271/Ongoing-Projects-in-Town",
-            "snippet": "FLORIDA POWER & LIGHT \u2013 MAJOR SITE PLAN AMENDMENT \u00b7 HAMPTON INN \u2013 MAJOR SITE PLAN AMENDMENT \u00b7 THE 700'S AT OCEAN DRIVE - MAJOR SITE PLAN AMENDMENT \u00b7 THE DUNES AT ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": false,
-      "rank": 16
-    },
-    {
-      "theme_title": "Ordinance 798",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUNOBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-05-04",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-d368fde14f6a475387e4911abb2b8ec8.pdf",
-          "description": "An amendment to the Town of Juno Beach Comprehensive Development Plan, Infrastructure Element, to update and implement its ten (10)-year Water Facilities Supply Work Plan.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "TOWN OF JUNO BEACH NOTICE OF PUBLIC HEARING ...",
-            "link": "https://content.civicplus.com/api/assets/fl-palmbeachcounty-legalnotices/c9f8eff7-5f04-4b21-a5b7-73a6cec052a3",
-            "snippet": "798: ORDINANCE NO. 798. AN ORDINANCE OF THE TOWN COUNCIL OF THE TOWN OF JUNO. BEACH, FLORIDA, ADOPTING AMENDMENTS TO ITS. COMPREHENSIVE PLAN BY AMENDING THE ..."
-          },
-          {
-            "title": "Juno Beach",
-            "link": "https://www.pbcfllegalnotices.com/156/Juno-Beach",
-            "snippet": "... Town Council for First Reading, the following Ordinance No. 798: ORDINANCE NO. 798 AN ORDINANCE OF THE TOWN COUNCIL OF THE TOWN OF JUNO BEACH, FLORIDA ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 17
-    },
-    {
-      "theme_title": "74 Lighthouse Drive",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-18)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-07-21",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
-          "description": "Design Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-06-18",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52",
-          "description": "Impact review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": []
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 18
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -843,15 +268,144 @@
       ],
       "web_notability": {
         "checked": true,
-        "corroborated": false,
-        "sources": []
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "CITY OF WESTLAKE",
+            "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Packet-c64feb2ee5f244c8b257a12f81f3440b.pdf",
+            "snippet": "City of Westlake Proposed Budget FY 2027. Discussion of Mid-Year Operating Budget D. Discussion 2026-2027 Operating Budget E. Discussion of ..."
+          }
+        ]
       },
-      "confidence": 30,
+      "confidence": 45,
       "reasons": [
-        "recurring_over_time"
+        "recurring_over_time",
+        "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 19
+      "rank": 5
+    },
+    {
+      "theme_title": "Airports Improvement & Development Fund / FAA Grant and PFC Revenue Budget Amendment",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "PBC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "PBC",
+          "muni_full": "Palm Beach County",
+          "title": "Board of County Commissioners Meeting",
+          "date": "2026-09-01",
+          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
+          "description": "Approve a Budget Amendment of $24,970,894 in the Airport's Improvement & Development Fund to recognize receipt of FAA Grant funding and Passenger Facility Charge (PFC) revenue.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "[PDF] \\ rf!~~ ~ - Palm Beach County",
+            "link": "http://www.pbcgov.com/pubInf/Agenda/20200915/3F3.pdf",
+            "snippet": "(8) Approve a Budget Amendment of $399,381 in the Airport's Improvement and. Development Fund to recognize the receipt of a grant from the FAA; ..."
+          },
+          {
+            "title": "palm beach county, florida",
+            "link": "https://discover.pbcgov.org/countycommissioners/Agenda_Master_HTML/20160927.htm",
+            "snippet": "B) approve a Budget Amendment of $234,739 in the Airport's Improvement and Development Fund to recognize the receipt of grant funding from the FAA, and budget ..."
+          }
+        ]
+      },
+      "confidence": 35,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 6
+    },
+    {
+      "theme_title": "Airports PFC Fund Budget Transfer",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "PBC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "PBC",
+          "muni_full": "Palm Beach County",
+          "title": "Board of County Commissioners Meeting",
+          "date": "2026-09-01",
+          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
+          "description": "Approve a Budget Transfer of $1,978,340 in the Airport's PFC Fund to transfer PFC Funds to the Airport's Improvement & Development Fund, including a transfer from PFC Reserves.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "County Commissioners - 20260901",
+            "link": "https://discover.pbc.gov/countycommissioners/AgendaHTML/20260901.aspx",
+            "snippet": "Budget Transfer of $1,513,990 $1,978,340 in the Airport's PFC Fund to transfer PFC Funds to the Airport's Improvement & Development Fund, Palm ..."
+          }
+        ]
+      },
+      "confidence": 35,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 7
+    },
+    {
+      "theme_title": "Palm Beach County, et al., v. Federal Aviation Administration",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "PBC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "PBC",
+          "muni_full": "Palm Beach County",
+          "title": "Board of County Commissioners Meeting",
+          "date": "2026-09-01",
+          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
+          "description": "Staff recommends a motion to commence a private attorney-client session to discuss litigation strategy related to litigation expenses in the pending lawsuit against the Federal Aviation Administration.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Palm Beach County, et al. v. Federal Aviation Administration",
+            "link": "https://law.justia.com/cases/federal/appellate-courts/ca11/21-10771/21-10771-2022-11-18.html",
+            "snippet": "The Eleventh Circuit denied Palm Beach County, Florida's (County) petition for review of the Federal Aviation Administration's final agency decision"
+          }
+        ]
+      },
+      "confidence": 35,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 8
     },
     {
       "theme_title": "Resolution 2026-09a",
@@ -879,7 +433,7 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Agenda",
+            "title": "[PDF] Town of Jupiter Inlet Colony Special Commission Meeting Town Hall 50 ...",
             "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-55",
             "snippet": "Resolution 2026-09a \u2013 Establishing the proposed maximum millage rate, establishing the \u201crolled-back\u201d rate and setting the dates, times, and ..."
           }
@@ -890,7 +444,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 20
+      "rank": 9
     },
     {
       "theme_title": "Resolution 2026-09",
@@ -918,53 +472,14 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "[PDF] Town of Jupiter Inlet Colony Special Commission Meeting Town Hall 50 ...",
+            "title": "Agenda",
             "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-55",
             "snippet": "Town Commission approved Resolution 2026-09 establishing the proposed maximum millage rate, establishing the \u201crolled-back\u201d rate and setting the ..."
           },
           {
-            "title": "[PDF] Town of Jupiter Inlet Colony Regular Commission Meeting Beach ...",
-            "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07132026-53",
-            "snippet": "Resolutions (Public Comments) a. Vote: Resolution 2026-09 \u2013 Establishing the proposed maximum millage rate, establishing the \u201crolled-back\u201d rate and setting ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 21
-    },
-    {
-      "theme_title": "Resolution 2026-10",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-07-13",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07132026-53",
-          "description": "Vote on Resolution 2026-10 to establish a Pay in Full Period for the Non Ad Valorem Assessment that was established by Resolution No. 2016-12.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
             "title": "Agenda",
-            "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07132026-53",
-            "snippet": "\u2022 Resolution 2026-10. \u2022 Town of Jupiter Inlet Colony - Assessment Prepayment Amounts Term. Sheet prepared by PFM Financial. 26. Page 27. RESOLUTION NO. 2026 - ..."
+            "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/ArchivedAgenda/_07132026-113",
+            "snippet": "Resolution 2026-09 A RESOLUTION OF THE TOWN. RELATING TO AD VALOREM TAXES; PROVIDING AN 224 Parcels $12,635.79"
           }
         ]
       },
@@ -973,7 +488,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 22
+      "rank": 10
     },
     {
       "theme_title": "RESOLUTION NO. 76-26",
@@ -1013,7 +528,7 @@
           {
             "title": "Regular Commission Meeting",
             "link": "http://www.ordinancewatch.com/files/82613/LocalGovernment161562.pdf",
-            "snippet": "Motion to approve Resolution No. 76-26. 76-26 - Authorization to Canvass. COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, ADOPTING AMENDMENTS ..."
+            "snippet": "OF DELRAY BEACH, FLORIDA ... 76-26. Sponsors: City Clerk Department. Agenda Cover Report \u00b7 Resolution No. ... by the City of Delray Beach City Commission."
           }
         ]
       },
@@ -1022,7 +537,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 23
+      "rank": 11
     },
     {
       "theme_title": "SAINT PAUL MISSIONARY BAPTIST CHURCH",
@@ -1060,8 +575,8 @@
       "reasons": [
         "corroborated_by_web_search"
       ],
-      "starred": false,
-      "rank": 24
+      "starred": true,
+      "rank": 12
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -1103,7 +618,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 25
+      "rank": 13
     },
     {
       "theme_title": "RESOLUTION NO. 92-26",
@@ -1136,7 +651,7 @@
             "snippet": "RESOLUTION NO. 92-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, APPROVING AN IMPACT EVENT KNOWN AS THE 38th ANNUAL DOWNTOWN ..."
           },
           {
-            "title": "Meeting of City Commission on 7/21/2026 at 5:00 PM",
+            "title": "City of Delray Beach - Meeting of City Commission on 7/21/2026 at 5 ...",
             "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?ID=1409724&GUID=20CE9C6F-8616-4920-B7E7-67EA1588EF3F&Options=&Search=",
             "snippet": "RESOLUTION NO. 92-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA ... 34-26: AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF ..."
           }
@@ -1147,7 +662,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 26
+      "rank": 14
     },
     {
       "theme_title": "Ordinance 2026-03",
@@ -1191,46 +706,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 27
-    },
-    {
-      "theme_title": "Professional Services Agreement with Local Government Consultant Group, LLC.",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Special Meeting",
-          "date": "2026-04-29",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-d861e4bfb2f9429ab25c2355ce91f582.pdf",
-          "description": "Consideration and approval of a professional services agreement with Local Government Consultant Group, LLC. for the position of City Manager.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Professional Services Agreement between CMB & Tidal Basin ...",
-            "link": "https://docmgmt.miamibeachfl.gov/WebLink/DocView.aspx?id=297774&dbid=0&repo=CityClerk",
-            "snippet": "Professional Services Agreement between CMB & Tidal Basin Government Consulting, LLC. / ... Consultant, Continuity Operations Group, LLC (COG), ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 28
+      "rank": 15
     },
     {
       "theme_title": "Discussion of Town Manager Contract Terms",
@@ -1258,9 +734,9 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "Calendar \u2022 Town Council Workshop",
-            "link": "https://www.juno-beach.fl.us/Calendar.aspx?EID=463",
-            "snippet": "Town Council Workshop - Discussion of Town Manager Contract Terms. Thursday, August 6, 2026. Date: August 6, 2026. 2026-08-06T16:00:00. Time: 4:00 PM."
+            "title": "Town Council",
+            "link": "https://www.youtube.com/playlist?list=PLJ3Xbg4ZAeWPoj5KjkZZGwPjjvlhPZbxJ",
+            "snippet": "Town Council Workshop - Discussion of Town Manager Contract Terms - August 6, 2026 Town of Juno Beach 122 views \u2022 Streamed 3 weeks ago"
           }
         ]
       },
@@ -1268,8 +744,8 @@
       "reasons": [
         "corroborated_by_web_search"
       ],
-      "starred": false,
-      "rank": 29
+      "starred": true,
+      "rank": 16
     },
     {
       "theme_title": "Florida Recreation Development Assistance Program (FRDAP) Grant Application for JB1",
@@ -1299,17 +775,17 @@
           {
             "title": "Florida Recreation Development Assistance Program",
             "link": "https://floridadep.gov/lands/land-and-recreation-grants/content/florida-recreation-development-assistance-program",
-            "snippet": "This competitive, reimbursement grant program provides financial assistance for acquisition or development of land for public outdoor recreation. Eligible ..."
+            "snippet": "This competitive, reimbursement grant program provides financial assistance for acquisition or development of land for public outdoor recreation."
           },
           {
-            "title": "FRDAP Application Cycle",
-            "link": "https://nfps.net/new-frdap-application-cycle/",
-            "snippet": "This competitive, reimbursement grant program provides financial assistance for acquisition or development of land for public outdoor recreation. Eligible ..."
+            "title": "town of juno beach",
+            "link": "https://www.juno-beach.fl.us/DocumentCenter/View/809",
+            "snippet": "$112,500 grant application for the Florida Recreational Development Assistance Program to help finance improvements to the beach access. : 340 Ocean Drive, ..."
           },
           {
             "title": "Florida Recreation Development Assistance Program",
             "link": "https://fdep.my.site.com/grants/s/frdap-home",
-            "snippet": "The FRDAP portal is designed to help you determine your grant eligibility and ensure the completeness of your application for expedited processing! Please Note:."
+            "snippet": "The FRDAP portal is designed to help you determine your grant eligibility and ensure the completeness of your application for expedited processing!"
           }
         ]
       },
@@ -1318,7 +794,7 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 30
+      "rank": 17
     },
     {
       "theme_title": "Resolution 2026-11",
@@ -1347,8 +823,8 @@
         "sources": [
           {
             "title": "Agenda",
-            "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07132026-53",
-            "snippet": "(Sponsored by the Town Manager) c. Vote: Resolution 2026-11 \u2013 Requesting the State of Florida Department of. Environmental Protection Support Appropriation ..."
+            "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/ArchivedAgenda/_07132026-113",
+            "snippet": "(Sponsored by the Town Manager) c. Vote: Resolution 2026-11 \u2013 Requesting the State of Florida Department of. Environmental Protection Support ..."
           }
         ]
       },
@@ -1357,7 +833,451 @@
         "corroborated_by_web_search"
       ],
       "starred": true,
-      "rank": 31
+      "rank": 18
+    },
+    {
+      "theme_title": "Palm Beach County Office of Inspector General Audit 2026-A-0003",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-04-13",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46",
+          "description": "Discussion regarding Palm Beach County Office of Inspector General Audit 2026-A-0003, sponsored by the Town Manager.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Inspector General Office",
+            "link": "https://www.palmbeachschools.org/departments/inspector-general-office",
+            "snippet": "The School Board of Palm Beach County established the Office of Inspector General (OIG) to incorporate a full-time program of investigation, audit, inspection, ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 19
+    },
+    {
+      "theme_title": "Palm Beach County Commission on Ethics Annual Overview",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-07-09",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352",
+          "description": "Gina A. Levesque, CFE presents the annual overview from the Palm Beach County Commission on Ethics.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Palm Beach County Home",
+            "link": "https://discover.pbc.gov/",
+            "snippet": "Aug. 25, 2026, Board of County Commissioners meeting, Commission on Ethics Report Ethics Violations. Palm Beach County, FL."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 20
+    },
+    {
+      "theme_title": "Ordinance 2026-05",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-04-23",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329",
+          "description": "Public hearing and second reading of Ordinance 2026-05, a code amendment to Chapter 19 ('Offenses and Miscellaneous Provisions') regarding the control of access to Village-owned, controlled, and leased property, and establishing trespass warnings on public property.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Code of Ordinances | North Palm Beach, FL - Municode Library",
+            "link": "https://library.municode.com/fl/north_palm_beach",
+            "snippet": "Ordinance No. 2026-05. Adopted 4/23/26. AN ORDINANCE OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, FLORIDA, AMENDING ARTICLE I ..."
+          },
+          {
+            "title": "North Palm Beach - Legal Notices",
+            "link": "https://pbcfllegalnotices.com/north-palm-beach",
+            "snippet": "2026-05 AN ORDINANCE OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, hearing on Thursday, April 23, 2026 at 6:00 p.m.,"
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 21
+    },
+    {
+      "theme_title": "Municipal Clerks Week Proclamation",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-04-23",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329",
+          "description": "Presentation of a proclamation recognizing Municipal Clerks Week.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "58th Annual Professional Municipal Clerks Week | IIMC ...",
+            "link": "https://www.iimc.com/156/Professional-Municipal-Clerks-Week",
+            "snippet": "Celebrating the 58th Annual Professional Municipal Clerks Week May 2 through May 8, 2027 is the 58th Annual Professional Municipal Clerks Week. Proclamation ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 22
+    },
+    {
+      "theme_title": "Resolution Accepting Election Results",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-04-23",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329",
+          "description": "Consideration of a resolution accepting the results of the election.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "resolution 2020- 26",
+            "link": "https://www.village-npb.org/DocumentCenter/View/7990/R2020-26-Accepting-Election-Results",
+            "snippet": "A RESOLUTION OF THE VILLAGE COUNCIL OF THE VILLAGE OF. NORTH PALM BEACH, FLORIDA, ACCEPTING AND DECLARING THE. RESULTS. OF. THE. MARCH. 17, 2020. GENERAL."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 23
+    },
+    {
+      "theme_title": "Resolution Appointing Members to Village Boards and Committees",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-04-23",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329",
+          "description": "Consideration of a resolution appointing members to Village boards and committees following applicant introductions.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Apr 25, 2024 Village Council - North Palm Beach, FL",
+            "link": "https://villagenpb.new.swagit.com/videos/303810",
+            "snippet": "APPLICANT INTRODUCTIONS FOR VILLAGE BOARDS AND COMMITTEES \u00b7 3. RESOLUTION Appointing Members to Village Boards and Committees \u00b7 CONSENT AGENDA \u00b7 14. PUBLIC ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 24
+    },
+    {
+      "theme_title": "Supervisor of Elections Vote Processing Equipment Use and Elections Services Agreement",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-03-12",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318",
+          "description": "Resolution approving an Agreement for Vote Processing Equipment Use and Elections Services with the Palm Beach County Supervisor of Elections and authorizing execution of the agreement.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Agreement",
+            "link": "https://webtrac.royalpalmbeach.com/WebLink/DocView.aspx?id=1215573&dbid=0&repo=Laserfiche",
+            "snippet": "AGREEMENT FOR VOTE PROCESSING EQUIPMENT USE AND ELECTION SERVICES BY AND BETWEEN THE PALM BEACH COUNTY SUPERVISOR OF ELECTIONS. Palm Beach ..."
+          },
+          {
+            "title": "Village of Wellington - File #: 23-6252",
+            "link": "https://wellington.legistar.com/gateway.aspx?m=l&id=/matter.aspx?key=13574",
+            "snippet": "Attached is the agreement received from the Supervisor of Elections for Vote Processing Equipment Use and Election Services for the 2024 election cycle."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 25
+    },
+    {
+      "theme_title": "Unsolicited Proposal by RH Development Group, LLC (SW 600 Block of West Atlantic Avenue)",
+      "category": "Community Redevelopment (CRA)",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-05-13",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4610&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Presentation and discussion of an unsolicited proposal received from RH Development Group, LLC regarding the development of the SW 600 block of West Atlantic Avenue, including an opportunity for public comments.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Delray Beach Community Redevelopment Agency",
+            "link": "https://www.instagram.com/p/DXpBFJUjtKV/",
+            "snippet": "a developer who submitted an unsolicited proposal for the development of CRA Owned parcels on the SW 600 Block of West Atlantic Avenue."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 26
+    },
+    {
+      "theme_title": "Solid Waste Authority (SWA) Blighted and Distressed Property Clean-Up Grant",
+      "category": "Community Redevelopment (CRA)",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-07-14",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Grant consideration for the Solid Waste Authority (SWA) blighted and distressed property clean-up program.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "News Flash \u2022 Solid Waste Authority of Palm Beach County, FL",
+            "link": "https://www.swa.org/CivicAlerts.asp?AID=39&ARC=158",
+            "snippet": "Solid Waste Authority of Palm Beach County Governing Board approved seven projects totaling $500,000 for Blighted and Distressed Property Clean-up and ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 27
+    },
+    {
+      "theme_title": "2026 AMENDMENT TO THE DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY COMMUNITY REDEVELOPMENT PLAN",
+      "category": "Community Redevelopment (CRA)",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-05-26",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Update and discussion regarding the 2026 amendment to the CRA community redevelopment plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "City of Delray Beach - File #: 26-0091 CRA",
+            "link": "https://delraybeach.legistar.com/LegislationDetail.aspx?ID=8033975&GUID=DD091A8E-E09D-4540-8164-E946B04EE9F2&Options=&Search=",
+            "snippet": "Board discussion and comments regarding the 2026 Amendment to the Delray Beach Community Redevelopment Agency's Community Redevelopment Plan."
+          },
+          {
+            "title": "Delray Beach CRA plan amendment recommended for adoption",
+            "link": "https://citizenportal.ai/articles/9461561",
+            "snippet": "The Planning & Zoning Board recommended the city commission adopt a 2026 amendment to the Delray Beach Community Redevelopment Agency (CRA) ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 28
+    },
+    {
+      "theme_title": "SW 700 & 800 BLOCKS OF WEST ATLANTIC AVENUE",
+      "category": "Community Redevelopment (CRA)",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-05-26",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Discussion and direction regarding request for proposals for the development of the SW 700 & 800 blocks of West Atlantic Avenue.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "City of Delray Beach - File #: 26-0049 CRA",
+            "link": "https://delraybeach.legistar.com/LegislationDetail.aspx?ID=7953168&GUID=4C775058-9EF4-4D5D-A7F7-392897F291B1&Options=&Search=&FullText=1",
+            "snippet": "Title: DISCUSSION AND DIRECTION REGARDING DEVELOPMENT OF SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": false,
+      "rank": 29
     },
     {
       "theme_title": "RESOLUTION 81-26 / BLISS ON 4TH",
@@ -1385,14 +1305,102 @@
         "corroborated": true,
         "sources": [
           {
-            "title": "File #: 26-0603 - City of Delray Beach - Calendar",
-            "link": "https://delraybeach.legistar.com/LegislationDetail.aspx?From=RSS&ID=8025215&GUID=7921D492-5CAE-4427-80AC-9FCA3E8CD9FC",
-            "snippet": "Title: RESOLUTION 81-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AUTHORIZING THE CITY MANAGER TO ACCEPT A ..."
-          },
-          {
             "title": "City of Delray Beach - File #: 26-0708",
             "link": "https://delraybeach.legistar.com/LegislationDetail.aspx?ID=8039139&GUID=31B1A17B-55D8-4E21-8223-045CC158CBFD&Options=&Search=",
             "snippet": "RESOLUTION NO. 81-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AUTHORIZING THE CITY MANAGER TO ACCEPT A ONE ..."
+          },
+          {
+            "title": "City of Delray Beach - File #: 26-0603",
+            "link": "https://delraybeach.legistar.com/LegislationDetail.aspx?From=RSS&ID=8025215&GUID=7921D492-5CAE-4427-80AC-9FCA3E8CD9FC&FullText=1",
+            "snippet": "RESOLUTION 81-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AUTHORIZING THE CITY MANAGER TO ACCEPT A ONE ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 30
+    },
+    {
+      "theme_title": "File PZ-000234-2025 (JFK Medical Center Freestanding Emergency Department)",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-03-16",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4446&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Provide a recommendation to the City Commission regarding a Conditional Use request to allow the establishment of a 24-Hour or Late-Night Use (Freestanding Emergency Department) at 3921 West Atlantic Avenue.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "P&Z Board Meeting Summary - 03/16/2026 Quasi-Judicial ...",
+            "link": "https://www.facebook.com/groups/delraymatters/posts/2382652178904949/",
+            "snippet": "JFK Medical Center Freestanding Emergency Department (File PZ- 000234-2025): at 3921 West Atlantic Avenue. PCN: 12-43-46-18-33- 5"
+          },
+          {
+            "title": "Meeting of Planning and Zoning Board on 12/15/2025 at 5: ...",
+            "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?ID=1243312&GUID=E02EE215-45B2-4FEC-90CA-A101AF97BBD3&Options=&Search=",
+            "snippet": "24-Hour or Late Night Use, JFK Medical Center Freestanding Emergency Department (File PZ-000234-2025): Provide a recommendation to the City ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 31
+    },
+    {
+      "theme_title": "File No. PZ-000513-2026 (Ordinance No. 26-26)",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-03-16",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4446&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Provide a recommendation to the City Commission on Ordinance No. 26-26, a City-initiated request to amend Section 4.4.13(F) 'Architectural standards' of the Land Development Regulations to eliminate City Commission approval and add determination by the Planning and Zoning Board.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Land Development Regulations | Delray Beach, FL",
+            "link": "https://library.municode.com/fl/delray_beach/codes/land_development_regulations_",
+            "snippet": "LAND DEVELOPMENT REGULATIONS of DELRAY BEACH, FLORIDA Codified through Ordinance No. 26-26, enacted May 5, 2026. (Supp. No. 35). Browse table of contents."
+          },
+          {
+            "title": "Ordinance No. 26-26",
+            "link": "http://www.ordinancewatch.com/files/82613/LocalGovernment161563.pdf",
+            "snippet": "AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF. DELRAY BEACH, FLORIDA, AMENDING THE LAND. DEVELOPMENT REGULATIONS OF THE CODE OF ORDINANCES."
           }
         ]
       },
@@ -1402,6 +1410,481 @@
       ],
       "starred": true,
       "rank": 32
+    },
+    {
+      "theme_title": "RESOLUTION NO. 64-26",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-03-31",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4596&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "A resolution requiring additional off-street parking spaces (44 spaces) for the property located at 302 NE 6th Avenue pursuant to Section 4.6.9 of the Land Development Regulations.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "City of Delray Beach - File #: 26-0359",
+            "link": "https://delraybeach.legistar.com/LegislationDetail.aspx?From=RSS&ID=7959279&GUID=399F8A0E-0519-49EC-AE84-024DA4B7D80C&FullText=1",
+            "snippet": "RESOLUTION NO. 64-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, REQUIRING ADDITIONAL OFF-STREET PARKING ..."
+          },
+          {
+            "title": "Meeting of City Commission on 3/9/2026 at 5:00 PM",
+            "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?ID=1293823&GUID=7C2AEEB8-1D00-46A0-AB27-D65ACDB20C93&Options=&Search=",
+            "snippet": "C. Resolution, RESOLUTION NO. 64-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, REQUIRING ADDITIONAL OFF-STREET PARKING SPACES ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 33
+    },
+    {
+      "theme_title": "Ordinance 2026-08",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
+          "description": "An ordinance approving a rezoning of approximately 22.617 acres located within Westlake West (west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West) from Mixed Use (MU) to Residential-2 (R-2).",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "City Council Regular Meeting 08/04/2026 06:00 PM",
+            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=f9511d0612ed4abda65131c2f72b419f&ip=False",
+            "snippet": "ORDINANCE NO. 2026-08. AN ORDINANCE OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA, APPROVING A REZONING OF APPROXIMATELY 22.617 ACRES ..."
+          },
+          {
+            "title": "Westlake Pulse \u2014 What's Happening in Westlake, FL ...",
+            "link": "https://westlakepulse.com/",
+            "snippet": "... Ordinance 2026-08 (LPA August 4, 2026). City of Westlake \u00b7 Aug 26, 2026. Westlake City Council Agenda \u2014 September 1, 2026. City of Westlake \u00b7 Aug 23, 2026. Palm ..."
+          },
+          {
+            "title": "Local Planning Agency Meeting 08/04/2026 05:30 PM",
+            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=30e850c58d6e4598bef96293a3fd9ca3&ip=False",
+            "snippet": "ORDINANCE NO. 2026-08. AN ORDINANCE OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA, APPROVING A REZONING OF APPROXIMATELY 22.617 ACRES ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 34
+    },
+    {
+      "theme_title": "Ordinance 2026-09",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
+          "description": "An ordinance amending the City of Westlake Future Land Use Map as a large-scale amendment, changing the designation from Downtown Mixed Use category to Residential-2 category for approximately 22.617 acres located within Westlake West.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "City Council Regular Meeting | City of Westlake, Florida",
+            "link": "https://www.westlakegov.com/citycouncil/page/city-council-regular-meeting-76",
+            "snippet": "AN ORDINANCE OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA ... CITY OF WESTLAKE, FLORIDA ... Resolution 2026-09 - Agreement for PS Minto and City ."
+          },
+          {
+            "title": "City Council Regular Meeting 05/05/2026 06:00 PM | Westlake, FL",
+            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=fd5a6a68abc346e39f18ea714e77071b&ip=False",
+            "snippet": "2026-09 A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF WESTLAKE, FLORIDA, APPROVING AND AUTHORIZING THE MAYOR OR VICE MAYOR TO EXECUTE AN ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 35
+    },
+    {
+      "theme_title": "Ordinance 2025-09",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Regular Meeting",
+          "date": "2026-07-16",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-030928fd94104c4db58d0fbfffd0c038.pdf",
+          "description": "Adoption (Third Reading) of Ordinance 2025-09 regarding the re-adoption of the 2025 10-Year Water Supply Facilities Work Plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "1st Reading ______ 2nd Reading _____ ORDINANCE NO. 2025 ...",
+            "link": "https://mccmeetingspublic.blob.core.usgovcloudapi.net/westlakefl-meet-fffc3d4e808f41d683ee213109c20bee/ITEM-Attachment-001-5191adc470814f3495187f42d8d89a2c.pdf",
+            "snippet": "ORDINANCE NO. 2025-09. AN ORDINANCE OF THE CITY COUNCIL FOR THE CITY OF WESTLAKE, FLORIDA, AMENDING THE. COMPREHENSIVE PLAN TO APPROVE FOR TRANSMITTAL AND ..."
+          },
+          {
+            "title": "Local Planning Agency Meeting 12/02/2025 05:30 PM | Westlake, FL",
+            "link": "https://meetings.municode.com/adaHtmlDocument/index?cc=WESTLAKEFL&me=fffc3d4e808f41d683ee213109c20bee&ip=True",
+            "snippet": "ORDINANCE NO. 2025-09. AN ORDINANCE OF THE CITY COUNCIL FOR THE CITY OF WESTLAKE, FLORIDA, AMENDING THE COMPREHENSIVE PLAN TO APPROVE FOR TRANSMITTAL AND ..."
+          },
+          {
+            "title": "City Council Regular Meeting",
+            "link": "https://www.westlakegov.com/citycouncil/page/city-council-regular-meeting-69",
+            "snippet": "Proclamation 2025-09 - Patriot Day and National Day of Service and Remembrance ... AN ORDINANCE OF THE CITY COUNCIL FOR THE CITY OF WESTLAKE, FLORIDA ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 36
+    },
+    {
+      "theme_title": "401 Olympus Drive",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUNOBEACH"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Juno Beach (2026-08-03)",
+      "meetings": [
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-03",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
+          "description": "An appearance review for 401 Olympus Drive.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-03",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
+          "description": "An appearance review for 403 Olympus Drive.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": []
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 37
+    },
+    {
+      "theme_title": "ORDINANCE NO. 801",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUNOBEACH"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-03",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
+          "description": "An ordinance of the Town Council of the Town of Juno Beach, Florida.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Juno Beach",
+            "link": "https://www.pbcfllegalnotices.com/156/Juno-Beach",
+            "snippet": "... Town of Juno Beach shall conduct a public hearing on the following ordinance: ORDINANCE NO. 801 AN ORDINANCE OF THE TOWN COUNCIL OF THE TOWN OF JUNO BEACH, ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 38
+    },
+    {
+      "theme_title": "Ordinance 798",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUNOBEACH"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-05-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-d368fde14f6a475387e4911abb2b8ec8.pdf",
+          "description": "An amendment to the Town of Juno Beach Comprehensive Development Plan, Infrastructure Element, to update and implement its ten (10)-year Water Facilities Supply Work Plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "[PDF] Juno Beach Legal Notice",
+            "link": "https://content.civicplus.com/api/assets/fl-palmbeachcounty-legalnotices/f3338ad5-bba6-4dad-bbaf-0c546da63b9d",
+            "snippet": "Ordinance No. 798: ADOPTING AMENDMENTS TO ITS COMPREHENSIVE PLAN BY AMENDING THE INFRASTRUCTURE. CONFLICTS CLAUSE, A SEVERABILITY CLAUSE"
+          },
+          {
+            "title": "Juno Beach | Palm Beach County, FL Legal Notices - Official Website",
+            "link": "https://www.pbcfllegalnotices.com/156/Juno-Beach",
+            "snippet": "ANCE NO. 798 AN ORDINANCE OF THE TOWN COUNCIL OF THE TOWN OF JUNO BEACH, FLORIDA, ADOPTING AMENDMENTS TO ITS COMPREHENSIVE PLAN BY AMENDING THE INFRASTRUCTURE ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 39
+    },
+    {
+      "theme_title": "74 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-18)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-07-21",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
+          "description": "Design Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-06-18",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52",
+          "description": "Impact review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": []
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 40
+    },
+    {
+      "theme_title": "Ordinance #401",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "MANALAPAN"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "MANALAPAN",
+          "muni_full": "Town of Manalapan",
+          "title": "Town Commission Meeting",
+          "date": "2026-05-12",
+          "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf",
+          "description": "Consideration of an ordinance amending Chapter 151 (Zoning) to provide a revised official zoning map combining zoning district R1-F and portions of R3-A into R1-D, and eliminating metes and bounds descriptions for all zoning districts.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Business Impact Estimates",
+            "link": "https://manalapan.org/business-impact-estimates/",
+            "snippet": "On October 1, 2023, Chapter 2023-309 of the Florida Statutes, relating to local ordinances, went into effect. ... Ordinance #401 \u00b7 Ordinance #402 \u00b7 Ordinance #403."
+          },
+          {
+            "title": "Public Services",
+            "link": "https://manalapan.org/public-services/",
+            "snippet": "Department Codes & Ordinances. Customer Service: 561-697-8000 \u30fb 401 South Dixie Highway West Palm beach, FL 33401 561-838-1814 or 1-800-427-7712 \u30fb emergency ..."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 41
+    },
+    {
+      "theme_title": "Ordinance #402",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "MANALAPAN"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "MANALAPAN",
+          "muni_full": "Town of Manalapan",
+          "title": "Town Commission Meeting",
+          "date": "2026-05-12",
+          "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf",
+          "description": "Consideration of an ordinance amending Chapter 151 (Zoning) to create a new division for boats, boathouses, docks, and bulkheads, relocating existing regulations, and dividing the town into 16 waterway zones.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Business Impact Estimates",
+            "link": "https://manalapan.org/business-impact-estimates/",
+            "snippet": "On October 1, 2023, Chapter 2023-309 of the Florida Statutes, relating to local ordinances, went into effect. ... Ordinance #401 \u00b7 Ordinance #402 \u00b7 Ordinance #403."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 42
+    },
+    {
+      "theme_title": "Ordinance #403",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "MANALAPAN"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 1,
+      "all_heuristic": false,
+      "citation_summary": null,
+      "meetings": [
+        {
+          "muni_short": "MANALAPAN",
+          "muni_full": "Town of Manalapan",
+          "title": "Town Commission Meeting",
+          "date": "2026-05-12",
+          "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf",
+          "description": "Consideration of an ordinance adopting a newly revised and amended official zoning map re-zoning R1-F and R3-A properties west of Lands End Road into R1-D, and adopting a new map for waterway zones in conjunction with Ordinances 401 and 402.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": true,
+        "sources": [
+          {
+            "title": "Business Impact Estimates - Town of Manalapan",
+            "link": "https://manalapan.org/business-impact-estimates/",
+            "snippet": "On October 1, 2023, Chapter 2023-309 of the Florida Statutes, relating to local ordinances, went into effect. ... Ordinance #401 \u00b7 Ordinance #402 \u00b7 Ordinance #403."
+          }
+        ]
+      },
+      "confidence": 30,
+      "reasons": [
+        "corroborated_by_web_search"
+      ],
+      "starred": true,
+      "rank": 43
     }
   ]
 }

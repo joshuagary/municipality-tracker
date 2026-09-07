@@ -58,5 +58,50 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-09-07T00:23:07.410020+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "Board of County Commissioners Meeting",
+    "date": "2026-09-01",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-09-07T13:43:04.475507+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-08",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-07T13:43:04.475507+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-28",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-07T13:43:04.475507+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting",
+    "date": "2026-10-13",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-07T13:43:04.475507+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-09-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-07T13:43:04.475507+00:00"
   }
 ]
