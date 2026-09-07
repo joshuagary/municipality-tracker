@@ -2542,6 +2542,23 @@ def scrape_north_palm_beach():
         r'Planning,?\s*Zoning,?\s*(?:and|&)\s*Adjustment\s*Board',
         r'Planning Commission',
     ]
+    # SELF-CHECK: print the literal patterns in use so the log itself proves which
+    # version of this function actually ran, instead of inferring it from behavior.
+    print(f"[North Palm Beach] Active title_patterns: {title_patterns}")
+
+    # A cancelled meeting (real example: "Planning, Zoning, and Adjustment Board
+    # Meeting-CANCELED- Next Meeting October 6, 2026") is shown as-is per explicit
+    # user decision - not skipped, not suppressed - but the literal word "CANCELED"
+    # must survive into the title field, because insights_engine.py's
+    # gather_historical_events() already has a project-wide convention
+    # (CANCELLATION_PATTERN = r'\bCANCEL(?:L)?ED\b') that drops any event whose
+    # title matches it before historical theme analysis. Without this, a cancelled
+    # NPB meeting would silently be treated as a real, held meeting in the 6-month
+    # Insights backfill - inconsistent with every other municipality. This is
+    # deliberately a separate check from title_patterns above (rather than baking
+    # "-CANCELED-" into each pattern) so it applies uniformly no matter which board
+    # the cancellation belongs to.
+    cancellation_text_pattern = re.compile(r'CANCEL(?:L)?ED', re.I)
 
     # --- DIAGNOSTIC COUNTERS (temporary - remove once a real run confirms the
     # extraction works). These isolate WHERE in the pipeline rows are being
@@ -2584,6 +2601,9 @@ def scrape_north_palm_beach():
             if title_match:
                 clean_title = clean_event_title(title_match.group(0))
                 break
+
+        if clean_title and cancellation_text_pattern.search(row_text):
+            clean_title = f"{clean_title} - CANCELED"
 
         if not clean_title or not is_qualifying_event(clean_title):
             rows_date_no_title += 1
