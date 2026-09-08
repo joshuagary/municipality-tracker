@@ -112,5 +112,23 @@
     "type": "added",
     "time": "6:00 PM",
     "detected_at": "2026-09-07T14:18:37.532404+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning, and Adjustment Board - CANCELED",
+    "date": "2026-09-01",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-08T00:21:15.910168+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning, and Adjustment Board",
+    "date": "2026-09-01",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-08T00:21:15.910168+00:00"
   }
 ]
