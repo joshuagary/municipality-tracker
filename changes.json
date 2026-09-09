@@ -130,5 +130,56 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-09-08T00:21:15.910168+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "Board of County Commissioners Meeting",
+    "date": "2026-09-15",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-09-09T00:21:24.405407+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "CANCELED - Planning & Zoning Board",
+    "date": "2026-09-17",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-09T00:21:24.405407+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting September 8, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-08",
+    "type": "modified",
+    "time": "5:30 PM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "5:30 PM"
+      }
+    },
+    "detected_at": "2026-09-09T00:21:24.405407+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop September 10, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-09T00:21:24.405407+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Planning & Zoning Board",
+    "date": "2026-09-17",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-09T00:21:24.405407+00:00"
   }
 ]
