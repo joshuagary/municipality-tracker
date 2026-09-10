@@ -3395,74 +3395,6 @@
       "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_0714-Agenda.pdf"
     }
   ],
-  "MANALAPAN|2026-09-08|town commission meeting": [
-    {
-      "topic_title": "Site Plan Modification Review-SPR-26-02",
-      "category": "Zoning & Land Use",
-      "description": "Timothy Nardi, agent for MPB Property, LLC, seeks to modify the existing approved site plan at 100 S. Ocean Blvd. by replacing guestroom balcony railings with black aluminum railings and adding teak-colored vertical wood cladding.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-09-08",
-      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
-    },
-    {
-      "topic_title": "Architectural Review-TARC-26-02",
-      "category": "Zoning & Land Use",
-      "description": "The Town of Manalapan seeks approval for architectural alterations at the western portion of the lot at 131 S. Ocean Blvd., including the installation of an 8-foot high chain link fence for storage and a rolling chain link gate.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-09-08",
-      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
-    },
-    {
-      "topic_title": "Special Exception-SE-26-03",
-      "category": "Zoning & Land Use",
-      "description": "The 1860 South Ocean Boulevard Trust requests approval for a Special Exception at 1860 S. Ocean Blvd. to allow a beach house on the East side of A-1-A, proposing modifications to the hardscape and landscape design.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-09-08",
-      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
-    },
-    {
-      "topic_title": "131 S. Ocean Blvd. Lease Agreement",
-      "category": "Other Governance Matters",
-      "description": "Discussion and consideration of a lease agreement with MPB Property LLC for 131 S. Ocean Blvd.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-09-08",
-      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
-    },
-    {
-      "topic_title": "New Guard House Discussion",
-      "category": "Other Governance Matters",
-      "description": "Discussion regarding a new guard house.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-09-08",
-      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
-    },
-    {
-      "topic_title": "Ordinance #407",
-      "category": "Zoning & Land Use",
-      "description": "A public hearing for an ordinance amending the Town Code of Ordinances at Chapter 155 (Beaches and Waterways), Section 155.03 (Prohibited Fishing Activities) to rename the section to 'Prohibited Fishing Related Nuisance Activities, and Other'.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-09-08",
-      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
-    }
-  ],
   "NPB|2026-04-09|village council meeting": [
     {
       "topic_title": "Business of the Season Award - Spring - Draft House Bar & Grille",
@@ -3531,5 +3463,143 @@
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04092026-1325"
     }
   ],
-  "RIVBEACH|2026-09-09|community redevelopment agency": []
+  "RIVBEACH|2026-09-09|community redevelopment agency": [],
+  "DDA-WPB|2026-09-10|downtown development authority (dda) board meeting": [],
+  "RIVBEACH|2026-09-10|planning and zoning board meeting": [],
+  "MANALAPAN|2026-09-08|town commission meeting \u2013 5:01 pm": [
+    {
+      "topic_title": "Site Plan Modification Review-SPR-26-02",
+      "category": "Zoning & Land Use",
+      "description": "Timothy Nardi, agent for MPB Property, LLC, seeks to modify the existing approved site plan for 100 S. Ocean Blvd. by replacing existing guestroom balcony railings with new black aluminum railings and adding vertical wood cladding in a teak color.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "Architectural Review-TARC-26-02",
+      "category": "Zoning & Land Use",
+      "description": "The Town of Manalapan seeks approval for architectural alterations to the western portion of the lot at 131 S. Ocean Blvd., including the installation of an eight-foot high chain link fence for storage and a rolling chain link gate.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "131 S. Ocean Blvd. Lease Agreement with MPB Property LLC",
+      "category": "Other Governance Matters",
+      "description": "Discussion and consideration of a lease agreement between the Town and MPB Property LLC for 131 S. Ocean Blvd.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "Special Exception-SE-26-03",
+      "category": "Zoning & Land Use",
+      "description": "The 1860 South Ocean Boulevard Trust requests approval for a Special Exception at 1860 S. Ocean Blvd. to allow a beach house on the East side of A-1-A, proposing modifications to the hardscape and landscape design.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "Request from 1860 S. Ocean Blvd. for exemption from Sec. 94.22(C)",
+      "category": "Zoning & Land Use",
+      "description": "A request from 1860 S. Ocean Blvd. for an exemption from Town code section 94.22(C) regarding Pedestrian Passageway construction during certain months of the year.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "Ordinance #407",
+      "category": "Zoning & Land Use",
+      "description": "An ordinance amending the Town Code of Ordinances at Chapter 155, Beaches and Waterways, Section 155.03 concerning prohibited fishing activities.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    }
+  ],
+  "NPB|2026-09-10|village council meeting": [
+    {
+      "topic_title": "Proclamation - Hunger Action Month",
+      "category": "Other Governance Matters",
+      "description": "Presentation of a proclamation recognizing Hunger Action Month.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-10",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09102026-1371"
+    },
+    {
+      "topic_title": "Legislative Update \u2013 State Representative Emily Gregory",
+      "category": "Other Governance Matters",
+      "description": "A legislative update provided by State Representative Emily Gregory from the FL House of Representatives, District 87.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-10",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09102026-1371"
+    },
+    {
+      "topic_title": "Accounting Policies and Procedures Manual for Internal Controls",
+      "category": "Budget & Finance",
+      "description": "A resolution authorizing the Village Manager to update and modify the Accounting Policies and Procedures Manual for Internal Controls to conform with current practices.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-10",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09102026-1371"
+    },
+    {
+      "topic_title": "Federation of Public Employees, Palm Beach County PBA, and Professional Firefighters/Paramedics Local 2928 MOUs",
+      "category": "Other Governance Matters",
+      "description": "A resolution approving and ratifying Memorandums of Understanding with the Federation of Public Employees, the Palm Beach County Police Benevolent Association, and the Professional Firefighters/Paramedics of Palm Beach County Local 2928 to amend paid vacation provisions to incorporate the Quality Leave Policy.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-10",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09102026-1371"
+    },
+    {
+      "topic_title": "RMPK Funding, Inc. Agreement for Grant Services",
+      "category": "Budget & Finance",
+      "description": "A resolution approving a Thirteenth Amendment to the Agreement for Grant Services with RMPK Funding, Inc. for a total compensation not to exceed $20,000.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-10",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09102026-1371"
+    },
+    {
+      "topic_title": "Federation of Public Employees Wage MOU",
+      "category": "Budget & Finance",
+      "description": "A resolution approving and ratifying a Memorandum of Understanding with the Federation of Public Employees to amend Article 36 of the Collective Bargaining Agreement pertaining to wages to provide for a Cost of Living Adjustment.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-10",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09102026-1371"
+    }
+  ]
 }

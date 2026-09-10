@@ -181,5 +181,86 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-09-09T00:21:24.405407+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-14",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Regular Town Commission Meeting",
+    "date": "2026-09-14",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting \u2013 5:01 PM",
+    "date": "2026-09-08",
+    "type": "added",
+    "time": "5:01 PM",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting \u2013 4:30 PM",
+    "date": "2026-09-28",
+    "type": "added",
+    "time": "4:30 PM",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting",
+    "date": "2026-10-27",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting September 8, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-08",
+    "time": "5:30 PM",
+    "type": "removed",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-28",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting",
+    "date": "2026-10-13",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-10T00:17:36.442478+00:00"
   }
 ]
