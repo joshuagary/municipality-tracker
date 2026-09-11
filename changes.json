@@ -262,5 +262,44 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-09-10T00:17:36.442478+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Special Meeting",
+    "date": "2026-09-14",
+    "type": "modified",
+    "time": "5:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-09-11T00:18:16.781935+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-09-10",
+    "type": "modified",
+    "time": "10:57 AM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "10:57 AM"
+      }
+    },
+    "detected_at": "2026-09-11T00:18:16.781935+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop September 10, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-10",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-11T00:18:16.781935+00:00"
   }
 ]
