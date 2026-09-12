@@ -209,7 +209,34 @@ the scraper is pointed at the wrong host.
   any existing pattern) — worth asking the user whether either should qualify, since
   they did appear on Westlake's real meetings list.
 
-### Downtown WPB DDA (added this session — UNCONFIRMED, see Goals for Next Session)
+### Downtown WPB DDA (CONFIRMED WORKING — time bug found and fixed 2026-09-12)
+
+- **Real raw HTML now confirmed** via a real GitHub Actions debug-scraper run
+  (`scrape_downtown_wpb_dda`): the `<li>` primary strategy hypothesis was **correct**
+  — meeting dates really do live in their own `<li>` elements, e.g. the raw HTML for
+  the Sept 22 item confirmed the exact text `'September 22, 2026 at 5:05 p.m. (Second
+  & Final Public Budget Hearing)'`.
+- **Bug found and fixed**: `time` was previously hardcoded to the page-wide default
+  ("8:30 AM") for every event, even when a specific meeting (e.g. a TRIM-law budget
+  hearing) lists its own override time on the same line as the date. Added a
+  `time_pattern` regex (`r'\bat\s+(\d{1,2}):(\d{2})\s*([ap])\.?\s*m\.?\b'`) that
+  searches the enclosing `<li>`'s full text for an "at H:MM a.m./p.m." phrase; if
+  found, it overrides `default_time`, otherwise `default_time` (8:30 AM) is used as
+  before.
+- **Confirmed correct against the real 2026-09-12 log**: Sept 22 → `5:05 PM`
+  (explicit override, matches user's live-site screenshot exactly), Sept 10 → `5:05
+  PM` (same override, second budget hearing), Sept 15 → `8:30 AM` (no override text
+  present, correctly fell back to default).
+- **TEMPORARY DEBUG BLOCK STILL IN THE CODE** — a `debug_dumped` guard inside the
+  event loop that unconditionally prints the raw HTML, extracted line text, and
+  time-regex match result for the *first* date item on every run. It served its
+  purpose (confirming the `<li>` structure and time wording above) and is safe to
+  leave running (fires once per run, log-only, no behavior change) but is dead
+  weight now that the structure is confirmed. **Remove it the next time this file
+  is touched for any other code change** — search for `debug_dumped` in
+  `scrape_downtown_wpb_dda()`.
+
+### Downtown WPB DDA — original first-draft notes (superseded above, kept for history)
 
 - **Downtown West Palm Beach DDA** (Downtown Development Authority),
   `downtownwpb.com/dda/board-meetings/` — a WordPress page, not any platform used
@@ -300,12 +327,25 @@ the scraper is pointed at the wrong host.
     `$orderby=startDateTime asc`.
   - Skips `isDeleted` events and anything not `\"Published\"` (permissive if that field
     is missing/unrecognized, to avoid over-dropping).
-  - Converts `startDateTime` from UTC to America/New_York using stdlib `zoneinfo`,
-    with a manual DST-rule fallback (2nd Sunday March – 1st Sunday November = EDT) if
-    `zoneinfo`'s tzdata isn't available on the runner — this project's other scrapers
-    never needed timezone conversion since their source pages already show local wall-
-    clock time, so this is new logic, worth double-checking against the real log's
-    dates/times on the first run.
+  - ~~Converts `startDateTime` from UTC to America/New_York using stdlib
+    `zoneinfo`~~ — **BUG FOUND AND FIXED 2026-09-12**: despite the trailing `Z`,
+    this portal's `startDateTime` is **not actually UTC** — it's already the local
+    Eastern wall-clock time (confirmed against the real live site: a 9:30 AM/9:45 AM
+    EDT meeting on 9/9/26 was coming through the API as `...T09:30:00Z`/
+    `...T09:45:00Z`, i.e. the raw local time with a `Z` incorrectly appended, not a
+    real UTC value like `13:30`/`13:45`). Running it through the UTC→Eastern
+    `zoneinfo` conversion therefore double-subtracted the EDT offset, producing
+    5:30 AM/5:45 AM (confirmed exactly matching the -4h math) — same root cause was
+    also silently corrupting the "Special Town Council Meeting - Budget" time
+    (showing 1:01 PM instead of the real 5:01 PM, the standard TRIM-law budget-
+    hearing convention also seen on the DDA-WPB page). **Fix applied**: the parsed
+    `startDateTime` value is now used directly with no further timezone conversion
+    — `dt_local = dt_utc` — since the field already represents local time. The old
+    `to_eastern()` helper function is still defined above but is now unused/dead
+    code; safe to remove next time this file is touched. If a future winter (EST)
+    run ever shows an unexpected offset, that would mean CivicClerk's behavior
+    isn't consistent across DST boundaries — re-check with a real log before
+    assuming the fix still holds.
   - Uses the API's own `hasAgenda` boolean directly (more reliable than Westlake/DDA's
     link-presence inference).
   - Builds the agenda link as `{base_domain}/event/{event_id}/files/agenda/{fileId}`
@@ -841,6 +881,19 @@ single-user (or small handful of browsers) app, so identity is handled cosmetica
   runs, and that remains the reliable path.
 
 ## Goals for Next Session
+
+000. **Remove two temporary/dead pieces of code left in `scraper.py` on purpose from
+     the 2026-09-12 time-bug fixes** (kept in this session so their output could
+     still be checked against one more real log if needed, but should not linger
+     indefinitely):
+     - `scrape_downtown_wpb_dda()`: the `debug_dumped` block that unconditionally
+       prints the first date item's raw HTML/line text/time-regex match. Its job
+       (confirming the `<li>` structure and "at H:MM a.m./p.m." wording) is done —
+       both are now confirmed against a real log. Safe to delete.
+     - `scrape_palm_beach()`: the `to_eastern()` helper function is now unused dead
+       code (the timezone-conversion bug fix stopped calling it — see the City of
+       Palm Beach section above). Safe to delete along with its now-stale comment
+       about DST fallback logic.
 
 00. **Confirm the new records notification feature end-to-end on a real run.**
     Nothing about `diff_events()`/`update_changes_log()` has been exercised against a
