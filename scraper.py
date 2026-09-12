@@ -1212,7 +1212,17 @@ def scrape_palm_beach():
                   f"'{clean_title}', skipping.")
             continue
 
-        dt_local = to_eastern(dt_utc)
+        # BUGFIX (confirmed Sept 2026 via real scraped output vs. the live portal):
+        # despite the trailing "Z" implying true UTC, this portal's startDateTime is
+        # actually already the local Eastern wall-clock time (a real 9:30 AM EDT
+        # meeting comes through as "...T09:30:00Z", not the true UTC 13:30). Running
+        # it through to_eastern() therefore subtracted the EDT/EST offset a second
+        # time - e.g. 9:30 AM -> 5:30 AM, 9:45 AM -> 5:45 AM, a consistent 4-hour
+        # error (also visible in "budget" meetings showing 1:01 PM instead of the
+        # real 5:01 PM). Fix: use the parsed value directly with no further
+        # timezone conversion. to_eastern() is kept above only in case a future
+        # capture shows CivicClerk correcting this upstream.
+        dt_local = dt_utc
         iso_date = dt_local.strftime("%Y-%m-%d")
         meeting_time = dt_local.strftime("%-I:%M %p") if os.name != "nt" else dt_local.strftime("%I:%M %p").lstrip("0")
 
@@ -1323,6 +1333,13 @@ def scrape_downtown_wpb_dda():
         re.I
     )
 
+    # Some individual meetings (e.g. TRIM-law budget hearings) list an explicit
+    # override time on the same line as the date, e.g. "September 22, 2026 at 5:05
+    # p.m. (Second & Final Public Budget Hearing)" - confirmed by the user via a
+    # screenshot of the live page. When present, that line-specific time should win;
+    # otherwise fall back to the page-wide default_time (8:30 AM).
+    time_pattern = re.compile(r'\bat\s+(\d{1,2}):(\d{2})\s*([ap])\.?\s*m\.?\b', re.I)
+
     # Primary strategy: each meeting date is expected to live in its own <li>. Scan
     # every <li> on the page (not just inside a specific <ul>, since the exact
     # container class is unconfirmed) for one that contains a "Month DD, YYYY" date.
@@ -1390,6 +1407,21 @@ def scrape_downtown_wpb_dda():
         else:
             full_link = target_url  # No agenda posted yet - point at the source page, not a dead link.
 
+        # Look for a line-specific override time on this same date's line (e.g. a
+        # budget hearing at 5:05 p.m.). Search the nearest enclosing <li> so this
+        # works whether `elem` itself is the <li> (primary strategy) or a
+        # descendant/ancestor <a> or text node (fallback strategy).
+        container = elem if elem.name == "li" else (elem.find_parent("li") or elem)
+        line_text = container.get_text(" ", strip=True)
+        time_match = time_pattern.search(line_text)
+        if time_match:
+            hh, mm, ap = time_match.groups()
+            meeting_time = f"{int(hh)}:{mm} {'AM' if ap.lower() == 'a' else 'PM'}"
+            print(f"[Downtown WPB DDA] {iso_date}: found line-specific time "
+                  f"'{meeting_time}' (overrides default {default_time}).")
+        else:
+            meeting_time = default_time
+
         dedup_key = iso_date
         if dedup_key in seen_keys:
             continue
@@ -1401,7 +1433,7 @@ def scrape_downtown_wpb_dda():
             "muni_full": "Downtown WPB DDA",
             "title": clean_title,
             "date": iso_date,
-            "time": default_time,
+            "time": meeting_time,
             "link": full_link,
             "has_agenda": bool(has_agenda),
             "summary": f"Official {clean_title}." if has_agenda else f"Official {clean_title}. No agenda posted yet.",
