@@ -352,5 +352,185 @@
     "time": "5:01 PM",
     "type": "removed",
     "detected_at": "2026-09-12T00:17:11.495814+00:00"
+  },
+  {
+    "muni_short": "DDA-WPB",
+    "muni_full": "Downtown WPB DDA",
+    "title": "Downtown Development Authority (DDA) Board Meeting",
+    "date": "2026-09-22",
+    "type": "modified",
+    "time": "5:05 PM",
+    "fields_changed": {
+      "time": {
+        "old": "8:30 AM",
+        "new": "5:05 PM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "DDA-WPB",
+    "muni_full": "Downtown WPB DDA",
+    "title": "Downtown Development Authority (DDA) Board Meeting",
+    "date": "2026-09-10",
+    "type": "modified",
+    "time": "5:05 PM",
+    "fields_changed": {
+      "time": {
+        "old": "8:30 AM",
+        "new": "5:05 PM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Planning and Zoning Commission Meeting",
+    "date": "2026-09-01",
+    "type": "modified",
+    "time": "9:30 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:30 AM",
+        "new": "9:30 AM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-09-08",
+    "type": "modified",
+    "time": "9:30 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:30 AM",
+        "new": "9:30 AM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Special Town Council Meeting - Budget",
+    "date": "2026-09-08",
+    "type": "modified",
+    "time": "5:01 PM",
+    "fields_changed": {
+      "time": {
+        "old": "1:01 PM",
+        "new": "5:01 PM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-09-09",
+    "type": "modified",
+    "time": "9:30 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:30 AM",
+        "new": "9:30 AM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Development Review Meeting",
+    "date": "2026-09-09",
+    "type": "modified",
+    "time": "9:45 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:45 AM",
+        "new": "9:45 AM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Special Town Council Meeting - Budget",
+    "date": "2026-09-17",
+    "type": "modified",
+    "time": "5:01 PM",
+    "fields_changed": {
+      "time": {
+        "old": "1:01 PM",
+        "new": "5:01 PM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Planning and Zoning Commission Meeting",
+    "date": "2026-10-06",
+    "type": "modified",
+    "time": "9:30 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:30 AM",
+        "new": "9:30 AM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-10-13",
+    "type": "modified",
+    "time": "9:30 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:30 AM",
+        "new": "9:30 AM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Development Review Meeting",
+    "date": "2026-10-14",
+    "type": "modified",
+    "time": "9:30 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:30 AM",
+        "new": "9:30 AM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-10-14",
+    "type": "modified",
+    "time": "9:30 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:30 AM",
+        "new": "9:30 AM"
+      }
+    },
+    "detected_at": "2026-09-12T12:16:54.069189+00:00"
   }
 ]
