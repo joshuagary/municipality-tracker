@@ -1381,6 +1381,7 @@ def scrape_downtown_wpb_dda():
         print(f"[Downtown WPB DDA] Fallback scan found {len(date_items)} date matches.")
 
     seen_keys = set()
+    debug_dumped = False  # print raw HTML + time-match result for the first item only
 
     for elem, m in date_items:
         month_name, day, yr = m.groups()
@@ -1414,6 +1415,22 @@ def scrape_downtown_wpb_dda():
         container = elem if elem.name == "li" else (elem.find_parent("li") or elem)
         line_text = container.get_text(" ", strip=True)
         time_match = time_pattern.search(line_text)
+
+        # DIAGNOSTIC (temporary, per Lesson 1 - never trust a rendered/flattened
+        # preview, confirm from a real log instead): dump the first matching
+        # container's actual raw HTML plus whether the time regex hit, so we can
+        # confirm from a real GitHub Actions log (a) whether these are really <li>
+        # elements or the fallback path is being used instead, and (b) whether the
+        # "at H:MM a.m./p.m." wording assumption holds against the real markup.
+        if not debug_dumped:
+            print(f"[Downtown WPB DDA] DEBUG first date item - container tag: "
+                  f"<{container.name}>, raw HTML:\n{container}")
+            print(f"[Downtown WPB DDA] DEBUG first date item - extracted line text: "
+                  f"{line_text!r}")
+            print(f"[Downtown WPB DDA] DEBUG first date item - time_pattern match: "
+                  f"{'YES -> ' + time_match.group(0) if time_match else 'NO MATCH (will use default_time)'}")
+            debug_dumped = True
+
         if time_match:
             hh, mm, ap = time_match.groups()
             meeting_time = f"{int(hh)}:{mm} {'AM' if ap.lower() == 'a' else 'PM'}"
