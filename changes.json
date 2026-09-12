@@ -301,5 +301,56 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-09-11T00:18:16.781935+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Final Budget Hearing",
+    "date": "2026-09-14",
+    "type": "modified",
+    "time": "6:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-09-12T00:17:11.495814+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Workshop",
+    "date": "2026-09-17",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-12T00:17:11.495814+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-17",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-12T00:17:11.495814+00:00"
+  },
+  {
+    "muni_short": "GULFSTREAM",
+    "muni_full": "Town of Gulf Stream",
+    "title": "Regular Town Commission Meeting",
+    "date": "2026-09-11",
+    "time": "4:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-12T00:17:11.495814+00:00"
+  },
+  {
+    "muni_short": "GULFSTREAM",
+    "muni_full": "Town of Gulf Stream",
+    "title": "Town Commission Tentative Budget Hearing",
+    "date": "2026-09-11",
+    "time": "5:01 PM",
+    "type": "removed",
+    "detected_at": "2026-09-12T00:17:11.495814+00:00"
   }
 ]
