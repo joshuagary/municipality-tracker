@@ -532,5 +532,23 @@
       }
     },
     "detected_at": "2026-09-12T12:16:54.069189+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting September 16, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-16",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-13T00:18:15.136953+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "CRA Advisory Board Meeting September 16, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-16",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-13T00:18:15.136953+00:00"
   }
 ]

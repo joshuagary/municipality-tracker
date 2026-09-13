@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T12:19:59.037266+00:00",
+  "generated_at": "2026-09-13T00:21:18.138852+00:00",
   "lookback_months": 6,
   "historical_meetings_scanned": 283,
   "insights": [
@@ -267,123 +267,6 @@
       "rank": 5
     },
     {
-      "theme_title": "Airports Improvement & Development Fund / FAA Grant and PFC Revenue Budget Amendment",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "PBC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "PBC",
-          "muni_full": "Palm Beach County",
-          "title": "Board of County Commissioners Meeting",
-          "date": "2026-09-01",
-          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
-          "description": "Approve a Budget Amendment of $24,970,894 in the Airport's Improvement & Development Fund to recognize receipt of FAA Grant funding and Passenger Facility Charge (PFC) revenue.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "\\ rf!~~ ~",
-            "link": "http://www.pbcgov.com/pubInf/Agenda/20200915/3F3.pdf",
-            "snippet": "(8) Approve a Budget Amendment of $399,381 in the Airport's Improvement and. Development Fund to recognize the receipt of a grant from the FAA; ..."
-          }
-        ]
-      },
-      "confidence": 35,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 6
-    },
-    {
-      "theme_title": "Airports PFC Fund Budget Transfer",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "PBC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "PBC",
-          "muni_full": "Palm Beach County",
-          "title": "Board of County Commissioners Meeting",
-          "date": "2026-09-01",
-          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf",
-          "description": "Approve a Budget Transfer of $1,978,340 in the Airport's PFC Fund to transfer PFC Funds to the Airport's Improvement & Development Fund, including a transfer from PFC Reserves.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "County Commissioners - 20260901",
-            "link": "https://discover.pbc.gov/countycommissioners/AgendaHTML/20260901.aspx",
-            "snippet": "Budget Transfer of $1,513,990 $1,978,340 in the Airport's PFC Fund to transfer PFC Funds to the Airport's Improvement & Development Fund, Palm ..."
-          }
-        ]
-      },
-      "confidence": 35,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 7
-    },
-    {
-      "theme_title": "Ordinance No. 38-26",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-17",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4451&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Provide a statement of finding and recommendation to the City Commission on Ordinance No. 38-26 regarding the consistency of the 5-Year Capital Improvement Plan for FY 2026-2027 through FY 2030-2031 and the FY 2026-27 Capital Improvement Budget with the Comprehensive Plan.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Business Impact Estimates | City of Delray Beach, FL",
-            "link": "https://www.delraybeachfl.gov/government/city-departments/city-clerk/business-impact-estimates",
-            "snippet": "BIE Ordinance No. 38-26, Adopting the Updated Capital Improvement Plan into the Comprehensive Plan \u00b7 BIE Ordinance No. 34-26, Amending the Land Development ..."
-          }
-        ]
-      },
-      "confidence": 35,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 8
-    },
-    {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -424,7 +307,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 6
     },
     {
       "theme_title": "2026 AMENDMENT TO THE DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY COMMUNITY REDEVELOPMENT PLAN",
@@ -467,46 +350,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
-    },
-    {
-      "theme_title": "State Homeland Security Grant Program Agreement",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 1,
-      "all_heuristic": false,
-      "citation_summary": null,
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "City Commission",
-          "date": "2026-07-14",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Approval of State Homeland Security Grant Program agreement renewal with the State of Florida to disburse federal homeland security funds to participating municipalities.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": true,
-        "sources": [
-          {
-            "title": "Homeland Security Grant Program",
-            "link": "https://www.fema.gov/grants/preparedness/homeland-security",
-            "snippet": "This program provides funding to support the implementation of risk-driven, capabilities-based State Homeland Security Strategies to address ..."
-          }
-        ]
-      },
-      "confidence": 30,
-      "reasons": [
-        "corroborated_by_web_search"
-      ],
-      "starred": true,
-      "rank": 11
+      "rank": 7
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -549,7 +393,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 8
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -592,7 +436,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 9
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -635,7 +479,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 10
     },
     {
       "theme_title": "Charter Review Committee Appointments",
@@ -678,7 +522,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 11
     },
     {
       "theme_title": "Ordinance 2026-05",
@@ -721,7 +565,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 12
     },
     {
       "theme_title": "401 Olympus Drive",
@@ -764,7 +608,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 13
     },
     {
       "theme_title": "74 Lighthouse Drive",
@@ -807,7 +651,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 18
+      "rank": 14
     }
   ]
 }
