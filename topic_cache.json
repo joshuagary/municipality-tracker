@@ -3601,5 +3601,146 @@
       "date": "2026-09-10",
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09102026-1371"
     }
+  ],
+  "WPB|2026-09-14|city commission meeting": [],
+  "WESTLAKE|2026-09-14|city council final budget hearing": [
+    {
+      "topic_title": "RESOLUTION 2026-27",
+      "category": "Budget & Finance",
+      "description": "Adoption of Final Millage Rate for the City's general operating fund for Fiscal Year 2027, beginning October 1, 2026 and ending September 30, 2027.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Final Budget Hearing",
+      "date": "2026-09-14",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-e3367c65e50741e0bbf3fb95d084373b.pdf"
+    },
+    {
+      "topic_title": "RESOLUTION 2026-28",
+      "category": "Budget & Finance",
+      "description": "Adoption of Final Budget for Fiscal Year 2027, determining and fixing the amounts necessary to carry on the government of the city for the ensuing year.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Final Budget Hearing",
+      "date": "2026-09-14",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-e3367c65e50741e0bbf3fb95d084373b.pdf"
+    }
+  ],
+  "WESTLAKE|2026-09-14|city council special meeting": [
+    {
+      "topic_title": "Ordinance 2026-09",
+      "category": "Zoning & Land Use",
+      "description": "Second reading of a large-scale Future Land Use Map amendment to change approximately 22.617 acres (Westlake West) from Downtown Mixed Use (DMU) to Residential-2 (R-2).",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Special Meeting",
+      "date": "2026-09-14",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf"
+    },
+    {
+      "topic_title": "Ordinance 2026-08",
+      "category": "Zoning & Land Use",
+      "description": "Second reading of a zoning change for approximately 22.617 acres located within Westlake West, generally west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West, from Mixed Use (MU) to Residential-2 (R-2).",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Special Meeting",
+      "date": "2026-09-14",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf"
+    }
+  ],
+  "JUIC|2026-09-14|town commission meeting": [
+    {
+      "topic_title": "FY 2027 Millage Rate and Budget",
+      "category": "Budget & Finance",
+      "description": "Final Public Hearing on the maximum millage rate of 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the annual budget for FY 2027.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68"
+    },
+    {
+      "topic_title": "Resolution No. 2026-13",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution establishing and levying a tax upon all taxable property for the operation and conduct of town departments and expenses for the fiscal year commencing October 1, 2026, and ending September 30, 2027, and certifying millages to the County Property Appraiser.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68"
+    },
+    {
+      "topic_title": "Resolution No. 2026-14",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution approving the estimates of revenue and expense (Annual Budget) for the fiscal year commencing October 1, 2026, and ending September 30, 2027, as prepared by the Town Manager and reviewed by the Town Commission.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68"
+    }
+  ],
+  "JUIC|2026-09-14|regular town commission meeting": [
+    {
+      "topic_title": "Presentation Regarding Public Camera Systems",
+      "category": "Other Governance Matters",
+      "description": "Chief of Police provides a presentation regarding public camera systems during the Chief of Police report.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    },
+    {
+      "topic_title": "Ordinance 2026-03",
+      "category": "Other Governance Matters",
+      "description": "Vote on Ordinance 2026-03, an ordinance amending Article I of Chapter 4 of the Code of Ordinances relating to buildings and building regulations, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    },
+    {
+      "topic_title": "Town Manager Employment Agreement",
+      "category": "Other Governance Matters",
+      "description": "Vote on an amendment to the Town Manager Employment Agreement, sponsored by the Town Attorney.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    },
+    {
+      "topic_title": "Fifth Amendment to the Interlocal Agreement to Establish Municipal Public Safety Communications Consortium of Palm Beach County",
+      "category": "Other Governance Matters",
+      "description": "Vote on the Fifth Amendment to the Interlocal Agreement to Establish Municipal Public Safety Communications Consortium of Palm Beach County, sponsored by the Police Chief.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    },
+    {
+      "topic_title": "Resolution 2026-05",
+      "category": "Other Governance Matters",
+      "description": "Adoption of rules of conduct and decorum at public meetings under Resolution 2026-05.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    }
   ]
 }

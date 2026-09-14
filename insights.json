@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-13T00:21:18.138852+00:00",
+  "generated_at": "2026-09-14T00:22:02.017718+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 283,
+  "historical_meetings_scanned": 288,
   "insights": [
     {
       "theme_title": "LPA Ordinance 2026-02",
@@ -66,6 +66,59 @@
       "rank": 1
     },
     {
+      "theme_title": "Ordinance 2026-03",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC",
+        "WESTLAKE"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 3,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10), City of Westlake (2026-06-02)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
+          "description": "Vote on Ordinance 2026-03, an ordinance amending Article I of Chapter 4 of the Code of Ordinances relating to buildings and building regulations, sponsored by the Town Manager.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
+          "description": "An ordinance amending Article I of Chapter 4 of the Code of Ordinances relating to buildings and building regulations.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Regular Meeting",
+          "date": "2026-06-02",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-feff43c0136540ba864a701307f07b1b.pdf",
+          "description": "First reading of Ordinance 2026-03 amending Chapter 18 of the City of Westlake Code of Ordinances entitled 'Solid Waste' to amend definitions, residential solid waste services assessments authorized, and create Section 18-67 for multifamily developments.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 75,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 2
+    },
+    {
       "theme_title": "Resolution No. 2026-07",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -116,50 +169,6 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 2
-    },
-    {
-      "theme_title": "Ordinance 2026-03",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC",
-        "WESTLAKE"
-      ],
-      "cross_municipality": true,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Westlake (2026-06-02)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
-          "description": "An ordinance amending Article I of Chapter 4 of the Code of Ordinances relating to buildings and building regulations.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Regular Meeting",
-          "date": "2026-06-02",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-feff43c0136540ba864a701307f07b1b.pdf",
-          "description": "First reading of Ordinance 2026-03 amending Chapter 18 of the City of Westlake Code of Ordinances entitled 'Solid Waste' to amend definitions, residential solid waste services assessments authorized, and create Section 18-67 for multifamily developments.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 55,
-      "reasons": [
-        "recurring_across_municipalities"
-      ],
-      "starred": true,
       "rank": 3
     },
     {
@@ -169,10 +178,19 @@
         "JUIC"
       ],
       "cross_municipality": false,
-      "occurrence_count": 3,
+      "occurrence_count": 4,
       "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16), Town of Jupiter Inlet Colony (2026-04-13)",
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-19), Town of Jupiter Inlet Colony (2026-06-16), Town of Jupiter Inlet Colony (2026-04-13)",
       "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
+          "description": "Adoption of rules of conduct and decorum at public meetings under Resolution 2026-05.",
+          "method": "llm"
+        },
         {
           "muni_short": "JUIC",
           "muni_full": "Town of Jupiter Inlet Colony",
@@ -207,12 +225,56 @@
         "sources": [],
         "error": "HTTP 400"
       },
-      "confidence": 50,
+      "confidence": 65,
       "reasons": [
         "recurring_over_time"
       ],
       "starred": true,
       "rank": 4
+    },
+    {
+      "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC",
+        "NPB"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-08-31)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
+          "description": "Vote on the Fifth Amendment to the Interlocal Agreement to Establish Municipal Public Safety Communications Consortium of Palm Beach County, sponsored by the Police Chief.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council",
+          "date": "2026-08-31",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370",
+          "description": "A resolution approving the Fifth Amendment to the Interlocal Agreement establishing the Municipal Public Safety Communications Consortium of Palm Beach County and repealing Resolution No. 2026-11.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 5
     },
     {
       "theme_title": "SW 700 - 800 Blocks of West Atlantic Avenue",
@@ -264,7 +326,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 5
+      "rank": 6
+    },
+    {
+      "theme_title": "FY 2027 Millage Rate and Budget Estimates",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-08)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68",
+          "description": "Final Public Hearing on the maximum millage rate of 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the annual budget for FY 2027.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-66",
+          "description": "Public hearing and votes to announce, discuss, and approve the tentative maximum millage rate of 5.5600 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and tentative estimates of Revenue and Expenses for Fiscal Year 2027.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 7
     },
     {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
@@ -307,7 +412,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 8
     },
     {
       "theme_title": "2026 AMENDMENT TO THE DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY COMMUNITY REDEVELOPMENT PLAN",
@@ -350,7 +455,93 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 9
+    },
+    {
+      "theme_title": "Ordinance 2026-09",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Special Meeting",
+          "date": "2026-09-14",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
+          "description": "Second reading of a large-scale Future Land Use Map amendment to change approximately 22.617 acres (Westlake West) from Downtown Mixed Use (DMU) to Residential-2 (R-2).",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
+          "description": "An ordinance amending the City of Westlake Future Land Use Map as a large-scale amendment, changing the designation from Downtown Mixed Use category to Residential-2 category for approximately 22.617 acres located within Westlake West.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 10
+    },
+    {
+      "theme_title": "Ordinance 2026-08",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Special Meeting",
+          "date": "2026-09-14",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
+          "description": "Second reading of a zoning change for approximately 22.617 acres located within Westlake West, generally west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West, from Mixed Use (MU) to Residential-2 (R-2).",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
+          "description": "An ordinance approving a rezoning of approximately 22.617 acres located within Westlake West (west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West) from Mixed Use (MU) to Residential-2 (R-2).",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 11
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -393,7 +584,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 12
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -436,7 +627,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 13
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -479,7 +670,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 14
     },
     {
       "theme_title": "Charter Review Committee Appointments",
@@ -522,7 +713,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 15
     },
     {
       "theme_title": "Ordinance 2026-05",
@@ -565,7 +756,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 16
     },
     {
       "theme_title": "401 Olympus Drive",
@@ -608,7 +799,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 17
     },
     {
       "theme_title": "74 Lighthouse Drive",
@@ -651,7 +842,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 18
     }
   ]
 }
