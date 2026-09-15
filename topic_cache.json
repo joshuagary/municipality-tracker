@@ -3742,5 +3742,43 @@
       "date": "2026-09-14",
       "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
     }
+  ],
+  "PBC|2026-09-15|board of county commissioners meeting": [
+    {
+      "topic_title": "Series 2026 Revenue Refunding Bonds / Budget Amendment of $87,891,803",
+      "category": "Budget & Finance",
+      "description": "Approval of a budget amendment of $87,891,803 in the 80.125M NAV Series 2026 NAV Rev Ref 2016 Debt Service Fund 2541, following the award of the sale to Wells Fargo pursuant to Resolution R2026-0840 to refund the Series 2016 bonds and save the County approximately $7.93 million in debt service.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-15",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
+    },
+    {
+      "topic_title": "Health Care District of Palm Beach County / LPPF Agreement ($58,794,034)",
+      "category": "Budget & Finance",
+      "description": "Delegation of authority to the County Administrator to execute an agreement with the Health Care District of Palm Beach County, retroactive to September 10, 2026, to transfer the remaining unutilized LPPF funds totaling $58,794,034 to the County as the County assumes administrative oversight.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-15",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
+    }
+  ],
+  "DDA-WPB|2026-09-15|downtown development authority (dda) board meeting": [],
+  "JUNOBEACH|2026-03-02|planning and zoning board": [
+    {
+      "topic_title": "390 Jupiter Lane",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of an appeal of an administrative decision regarding the property located at 390 Jupiter Lane.",
+      "method": "llm",
+      "muni_short": "JUNOBEACH",
+      "muni_full": "Town of Juno Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-03-02",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-b5080e1df64645708a719ad6e73d8c8a.pdf"
+    }
   ]
 }
