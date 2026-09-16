@@ -1831,65 +1831,6 @@
       "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46"
     }
   ],
-  "PBC|2026-09-01|board of county commissioners meeting": [
-    {
-      "topic_title": "Airports Improvement & Development Fund / FAA Grant and PFC Revenue Budget Amendment",
-      "category": "Budget & Finance",
-      "description": "Approve a Budget Amendment of $24,970,894 in the Airport's Improvement & Development Fund to recognize receipt of FAA Grant funding and Passenger Facility Charge (PFC) revenue.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-01",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
-    },
-    {
-      "topic_title": "Airports PFC Fund Budget Transfer",
-      "category": "Budget & Finance",
-      "description": "Approve a Budget Transfer of $1,978,340 in the Airport's PFC Fund to transfer PFC Funds to the Airport's Improvement & Development Fund, including a transfer from PFC Reserves.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-01",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
-    },
-    {
-      "topic_title": "Palm Beach County, et al., v. Federal Aviation Administration",
-      "category": "Other Governance Matters",
-      "description": "Staff recommends a motion to commence a private attorney-client session to discuss litigation strategy related to litigation expenses in the pending lawsuit against the Federal Aviation Administration.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-01",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
-    }
-  ],
-  "PBC|2026-08-25|board of county commissioners meeting": [
-    {
-      "topic_title": "Item 3C6",
-      "category": "Other Governance Matters",
-      "description": "Adoption of a resolution approving an Agreement with FDOT for right-of-way acquisition along Hagen Ranch Road and Jog Road necessary to widen Atlantic Avenue and construct drainage, bike lanes, sidewalks, medians, and traffic signals, including review of indemnification requirements by the Risk Management Department and County Attorney's Office.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-08-25",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf"
-    },
-    {
-      "topic_title": "Item 3C7",
-      "category": "Other Governance Matters",
-      "description": "Approval of a Consultant Services Authorization (CSA) to provide professional services for designing and preparing construction plans for sidewalks along Ficus Tree Drive, Hibiscus Tree Drive, Florence Road, Grove Road/Orchid Road, and Oleander Road, including SBE participation commitments.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-08-25",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf"
-    }
-  ],
   "DELRAY|2026-05-26|community redevelopment agency": [
     {
       "topic_title": "RESOLUTION NO. 2026-05",
@@ -3741,30 +3682,6 @@
       "event_title": "Regular Town Commission Meeting",
       "date": "2026-09-14",
       "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
-    }
-  ],
-  "PBC|2026-09-15|board of county commissioners meeting": [
-    {
-      "topic_title": "Series 2026 Revenue Refunding Bonds / Budget Amendment of $87,891,803",
-      "category": "Budget & Finance",
-      "description": "Approval of a budget amendment of $87,891,803 in the 80.125M NAV Series 2026 NAV Rev Ref 2016 Debt Service Fund 2541, following the award of the sale to Wells Fargo pursuant to Resolution R2026-0840 to refund the Series 2016 bonds and save the County approximately $7.93 million in debt service.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-15",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
-    },
-    {
-      "topic_title": "Health Care District of Palm Beach County / LPPF Agreement ($58,794,034)",
-      "category": "Budget & Finance",
-      "description": "Delegation of authority to the County Administrator to execute an agreement with the Health Care District of Palm Beach County, retroactive to September 10, 2026, to transfer the remaining unutilized LPPF funds totaling $58,794,034 to the County as the County assumes administrative oversight.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-15",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
     }
   ],
   "DDA-WPB|2026-09-15|downtown development authority (dda) board meeting": [],

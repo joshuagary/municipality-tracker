@@ -574,5 +574,38 @@
       }
     },
     "detected_at": "2026-09-15T00:18:43.189846+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "City Commission",
+    "date": "2026-09-22",
+    "type": "added",
+    "time": "3:00 PM",
+    "detected_at": "2026-09-16T00:16:56.419801+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Community Redevelopment Agency (CRA) Regular Meeting",
+    "date": "2026-09-22",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-16T00:16:56.419801+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-09-21",
+    "type": "modified",
+    "time": "4:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-09-16T00:16:56.419801+00:00"
   }
 ]

@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-15T00:21:30.594294+00:00",
+  "generated_at": "2026-09-16T00:21:03.473102+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 291,
+  "historical_meetings_scanned": 288,
   "insights": [
     {
       "theme_title": "LPA Ordinance 2026-02",
@@ -329,32 +329,32 @@
       "rank": 6
     },
     {
-      "theme_title": "FY 2027 Millage Rate and Budget Estimates",
-      "category": "Budget & Finance",
+      "theme_title": "2026 AMENDMENT TO THE DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY COMMUNITY REDEVELOPMENT PLAN",
+      "category": "Community Redevelopment (CRA)",
       "municipalities": [
-        "JUIC"
+        "DELRAY"
       ],
       "cross_municipality": false,
       "occurrence_count": 2,
       "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-08)",
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-05-26)",
       "meetings": [
         {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-09-14",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68",
-          "description": "Final Public Hearing on the maximum millage rate of 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the annual budget for FY 2027.",
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-17",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4451&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Provide a recommendation to the City Commission on the adoption of the 2026 update to the DBCRA Redevelopment Plan.",
           "method": "llm"
         },
         {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-09-08",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-66",
-          "description": "Public hearing and votes to announce, discuss, and approve the tentative maximum millage rate of 5.5600 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and tentative estimates of Revenue and Expenses for Fiscal Year 2027.",
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-05-26",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Update and discussion regarding the 2026 amendment to the CRA community redevelopment plan.",
           "method": "llm"
         }
       ],
@@ -415,49 +415,6 @@
       "rank": 8
     },
     {
-      "theme_title": "2026 AMENDMENT TO THE DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY COMMUNITY REDEVELOPMENT PLAN",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Delray Beach (2026-05-26)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-17",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4451&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Provide a recommendation to the City Commission on the adoption of the 2026 update to the DBCRA Redevelopment Plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-05-26",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Update and discussion regarding the 2026 amendment to the CRA community redevelopment plan.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 9
-    },
-    {
       "theme_title": "Ordinance 2026-09",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -498,7 +455,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 9
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -541,93 +498,50 @@
         "recurring_over_time"
       ],
       "starred": true,
+      "rank": 10
+    },
+    {
+      "theme_title": "FY 2027 Millage Rate and Budget Estimates",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-08)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68",
+          "description": "Final Public Hearing on the maximum millage rate of 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the annual budget for FY 2027.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-66",
+          "description": "Public hearing and votes to announce, discuss, and approve the tentative maximum millage rate of 5.5600 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and tentative estimates of Revenue and Expenses for Fiscal Year 2027.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
       "rank": 11
-    },
-    {
-      "theme_title": "City of Westlake Proposed Budget FY 2027",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Westlake (2026-06-30)",
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Budget Workshop",
-          "date": "2026-07-14",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-e35d5189c34b4919a660f31a287c33c0.pdf",
-          "description": "Discussion of the City of Westlake Proposed Budget for Fiscal Year 2027, submitted by the Finance department.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Budget Workshop",
-          "date": "2026-06-30",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-c64feb2ee5f244c8b257a12f81f3440b.pdf",
-          "description": "Discussion of the City of Westlake Proposed Budget for Fiscal Year 2027, submitted by the Finance department.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 12
-    },
-    {
-      "theme_title": "2026-2027 Operating Budget",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Westlake (2026-06-30)",
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Budget Workshop",
-          "date": "2026-06-30",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-c64feb2ee5f244c8b257a12f81f3440b.pdf",
-          "description": "Discussion concerning the mid-year operating budget.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Budget Workshop",
-          "date": "2026-06-30",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-c64feb2ee5f244c8b257a12f81f3440b.pdf",
-          "description": "Discussion regarding the 2026-2027 operating budget.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 13
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -670,7 +584,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 12
     },
     {
       "theme_title": "Charter Review Committee Appointments",
@@ -713,7 +627,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 13
     },
     {
       "theme_title": "Ordinance 2026-05",
@@ -756,7 +670,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 14
     },
     {
       "theme_title": "401 Olympus Drive",
@@ -799,7 +713,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 15
     },
     {
       "theme_title": "74 Lighthouse Drive",
@@ -828,6 +742,92 @@
           "date": "2026-06-18",
           "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52",
           "description": "Impact review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 16
+    },
+    {
+      "theme_title": "City of Westlake Proposed Budget FY 2027",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-06-30)",
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Budget Workshop",
+          "date": "2026-07-14",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-e35d5189c34b4919a660f31a287c33c0.pdf",
+          "description": "Discussion of the City of Westlake Proposed Budget for Fiscal Year 2027, submitted by the Finance department.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Budget Workshop",
+          "date": "2026-06-30",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-c64feb2ee5f244c8b257a12f81f3440b.pdf",
+          "description": "Discussion of the City of Westlake Proposed Budget for Fiscal Year 2027, submitted by the Finance department.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 17
+    },
+    {
+      "theme_title": "2026-2027 Operating Budget",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-06-30)",
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Budget Workshop",
+          "date": "2026-06-30",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-c64feb2ee5f244c8b257a12f81f3440b.pdf",
+          "description": "Discussion concerning the mid-year operating budget.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Budget Workshop",
+          "date": "2026-06-30",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-c64feb2ee5f244c8b257a12f81f3440b.pdf",
+          "description": "Discussion regarding the 2026-2027 operating budget.",
           "method": "llm"
         }
       ],
