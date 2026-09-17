@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-16T00:21:03.473102+00:00",
+  "generated_at": "2026-09-17T00:20:30.983076+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 288,
+  "historical_meetings_scanned": 292,
   "insights": [
     {
       "theme_title": "LPA Ordinance 2026-02",
@@ -233,6 +233,67 @@
       "rank": 4
     },
     {
+      "theme_title": "136 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 4,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-17), Town of Jupiter Inlet Colony (2026-07-21), Town of Jupiter Inlet Colony (2026-06-18)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-17",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
+          "description": "Consideration of a modification to an existing two-story residence.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-17",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
+          "description": "Design Review and approval for a proposed 4,851 square foot two-story residence with an outdoor pool, new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-07-21",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
+          "description": "Design Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-06-18",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52",
+          "description": "Impact review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 65,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 5
+    },
+    {
       "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -274,7 +335,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 5
+      "rank": 6
     },
     {
       "theme_title": "SW 700 - 800 Blocks of West Atlantic Avenue",
@@ -326,179 +387,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 6
-    },
-    {
-      "theme_title": "2026 AMENDMENT TO THE DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY COMMUNITY REDEVELOPMENT PLAN",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Delray Beach (2026-05-26)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-17",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4451&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Provide a recommendation to the City Commission on the adoption of the 2026 update to the DBCRA Redevelopment Plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-05-26",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Update and discussion regarding the 2026 amendment to the CRA community redevelopment plan.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
       "rank": 7
-    },
-    {
-      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-09-08",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
-          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
-          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 8
-    },
-    {
-      "theme_title": "Ordinance 2026-09",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Special Meeting",
-          "date": "2026-09-14",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
-          "description": "Second reading of a large-scale Future Land Use Map amendment to change approximately 22.617 acres (Westlake West) from Downtown Mixed Use (DMU) to Residential-2 (R-2).",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-04",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
-          "description": "An ordinance amending the City of Westlake Future Land Use Map as a large-scale amendment, changing the designation from Downtown Mixed Use category to Residential-2 category for approximately 22.617 acres located within Westlake West.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 9
-    },
-    {
-      "theme_title": "Ordinance 2026-08",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Special Meeting",
-          "date": "2026-09-14",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
-          "description": "Second reading of a zoning change for approximately 22.617 acres located within Westlake West, generally west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West, from Mixed Use (MU) to Residential-2 (R-2).",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-04",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
-          "description": "An ordinance approving a rezoning of approximately 22.617 acres located within Westlake West (west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West) from Mixed Use (MU) to Residential-2 (R-2).",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 10
     },
     {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
@@ -541,207 +430,35 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 8
     },
     {
-      "theme_title": "Public Works Project No. 24-001",
+      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
       "category": "Other Governance Matters",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Delray Beach (2026-07-14)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "City Commission",
-          "date": "2026-07-14",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Approve and execute consent to easement agreements to use Army Corps of Engineers rights-of-way for the seawall replacement and repairs project located at SE 7th Street and at Mangrove Park.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "City Commission",
-          "date": "2026-07-14",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Consideration of a maintenance of traffic plan and road closure plan for the intersection of SW 8th Avenue and SW 2nd Street for the intersection improvements project.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 12
-    },
-    {
-      "theme_title": "Charter Review Committee Appointments",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "NPB"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-04-09)",
-      "meetings": [
-        {
-          "muni_short": "NPB",
-          "muni_full": "Village of North Palm Beach",
-          "title": "Village Council Meeting",
-          "date": "2026-05-14",
-          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339",
-          "description": "Applicant introductions and a resolution appointing members to the Charter Review Committee.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "NPB",
-          "muni_full": "Village of North Palm Beach",
-          "title": "Village Council Meeting",
-          "date": "2026-04-09",
-          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04092026-1325",
-          "description": "Consideration of a resolution to create a Charter Review Committee to conduct a comprehensive review.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 13
-    },
-    {
-      "theme_title": "Ordinance 2026-05",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "NPB"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-04-09)",
-      "meetings": [
-        {
-          "muni_short": "NPB",
-          "muni_full": "Village of North Palm Beach",
-          "title": "Village Council Meeting",
-          "date": "2026-04-23",
-          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329",
-          "description": "Public hearing and second reading of Ordinance 2026-05, a code amendment to Chapter 19 ('Offenses and Miscellaneous Provisions') regarding the control of access to Village-owned, controlled, and leased property, and establishing trespass warnings on public property.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "NPB",
-          "muni_full": "Village of North Palm Beach",
-          "title": "Village Council Meeting",
-          "date": "2026-04-09",
-          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04092026-1325",
-          "description": "First reading of an ordinance amending Article I of Chapter 19 to adopt new sections 19-14 regarding control of access to village-owned, controlled, and leased property, and 19-15 regarding trespass warnings on public property.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 14
-    },
-    {
-      "theme_title": "401 Olympus Drive",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUNOBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Juno Beach (2026-08-03)",
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-03",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
-          "description": "An appearance review for 401 Olympus Drive.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-03",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
-          "description": "An appearance review for 403 Olympus Drive.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 15
-    },
-    {
-      "theme_title": "74 Lighthouse Drive",
-      "category": "Zoning & Land Use",
       "municipalities": [
         "JUIC"
       ],
       "cross_municipality": false,
       "occurrence_count": 2,
       "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-18)",
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
       "meetings": [
         {
           "muni_short": "JUIC",
           "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-07-21",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
-          "description": "Design Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
           "method": "llm"
         },
         {
           "muni_short": "JUIC",
           "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-06-18",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52",
-          "description": "Impact review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
           "method": "llm"
         }
       ],
@@ -751,12 +468,98 @@
         "sources": [],
         "error": "HTTP 400"
       },
-      "confidence": 30,
+      "confidence": 35,
       "reasons": [
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 9
+    },
+    {
+      "theme_title": "Ordinance 2026-09",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Special Meeting",
+          "date": "2026-09-14",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
+          "description": "Second reading of a large-scale Future Land Use Map amendment to change approximately 22.617 acres (Westlake West) from Downtown Mixed Use (DMU) to Residential-2 (R-2).",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
+          "description": "An ordinance amending the City of Westlake Future Land Use Map as a large-scale amendment, changing the designation from Downtown Mixed Use category to Residential-2 category for approximately 22.617 acres located within Westlake West.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 10
+    },
+    {
+      "theme_title": "Ordinance 2026-08",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Special Meeting",
+          "date": "2026-09-14",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
+          "description": "Second reading of a zoning change for approximately 22.617 acres located within Westlake West, generally west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West, from Mixed Use (MU) to Residential-2 (R-2).",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
+          "description": "An ordinance approving a rezoning of approximately 22.617 acres located within Westlake West (west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West) from Mixed Use (MU) to Residential-2 (R-2).",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 11
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -799,7 +602,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 12
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -828,6 +631,221 @@
           "date": "2026-06-30",
           "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-c64feb2ee5f244c8b257a12f81f3440b.pdf",
           "description": "Discussion regarding the 2026-2027 operating budget.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 13
+    },
+    {
+      "theme_title": "Public Works Project No. 24-001",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-07-14)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-07-14",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Approve and execute consent to easement agreements to use Army Corps of Engineers rights-of-way for the seawall replacement and repairs project located at SE 7th Street and at Mangrove Park.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-07-14",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of a maintenance of traffic plan and road closure plan for the intersection of SW 8th Avenue and SW 2nd Street for the intersection improvements project.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 14
+    },
+    {
+      "theme_title": "Charter Review Committee Appointments",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-04-09)",
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-05-14",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339",
+          "description": "Applicant introductions and a resolution appointing members to the Charter Review Committee.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-04-09",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04092026-1325",
+          "description": "Consideration of a resolution to create a Charter Review Committee to conduct a comprehensive review.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 15
+    },
+    {
+      "theme_title": "Ordinance 2026-05",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-04-09)",
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-04-23",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329",
+          "description": "Public hearing and second reading of Ordinance 2026-05, a code amendment to Chapter 19 ('Offenses and Miscellaneous Provisions') regarding the control of access to Village-owned, controlled, and leased property, and establishing trespass warnings on public property.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-04-09",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04092026-1325",
+          "description": "First reading of an ordinance amending Article I of Chapter 19 to adopt new sections 19-14 regarding control of access to village-owned, controlled, and leased property, and 19-15 regarding trespass warnings on public property.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 16
+    },
+    {
+      "theme_title": "2026 AMENDMENT TO THE DELRAY BEACH COMMUNITY REDEVELOPMENT AGENCY COMMUNITY REDEVELOPMENT PLAN",
+      "category": "Community Redevelopment (CRA)",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-05-26)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-17",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4451&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Provide a recommendation to the City Commission on the adoption of the 2026 update to the DBCRA Redevelopment Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-05-26",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Update and discussion regarding the 2026 amendment to the CRA community redevelopment plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 17
+    },
+    {
+      "theme_title": "401 Olympus Drive",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUNOBEACH"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Juno Beach (2026-08-03)",
+      "meetings": [
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-03",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
+          "description": "An appearance review for 401 Olympus Drive.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-03",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
+          "description": "An appearance review for 403 Olympus Drive.",
           "method": "llm"
         }
       ],

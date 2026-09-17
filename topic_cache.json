@@ -3697,5 +3697,123 @@
       "date": "2026-03-02",
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-b5080e1df64645708a719ad6e73d8c8a.pdf"
     }
+  ],
+  "PBC|2026-09-15|board of county commissioners meeting": [
+    {
+      "topic_title": "NAV Series 2026 NAV Rev Ref 2016 Debt Service Fund 2541 / Resolution R2026-0840",
+      "category": "Budget & Finance",
+      "description": "Approval of a revised Budget Amendment of $87,891,803 in the 80.125M NAV Series 2026 NAV Rev Ref 2016 Debt Service Fund 2541 to reflect actual refunding bond proceeds, costs of issuance, and savings from the sale awarded to Wells Fargo following Resolution R2026-0840.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-15",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
+    },
+    {
+      "topic_title": "Health Care District of Palm Beach County Agreement / LPPF Ordinance R2021-024",
+      "category": "Budget & Finance",
+      "description": "Delegation of authority to the County Administrator, or designee, to execute an agreement with the Health Care District of Palm Beach County retroactive to September 10, 2026, to transfer remaining unutilized LPPF funds totaling $58,794,034 to the County as administrative oversight is assumed.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-15",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
+    }
+  ],
+  "PBC|2026-09-01|board of county commissioners meeting": [
+    {
+      "topic_title": "Airports Improvement & Development Fund Budget Amendment and Transfer",
+      "category": "Budget & Finance",
+      "description": "Approve a Budget Amendment of $24,970,894 in the Airport's Improvement & Development Fund to recognize FAA Grant funding and PFC revenue, and a Budget Transfer of $1,978,340 in the PFC Fund to the Improvement & Development Fund.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-01",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
+    },
+    {
+      "topic_title": "Palm Beach County, et al., v. Federal Aviation Administration",
+      "category": "Other Governance Matters",
+      "description": "Staff recommends a motion to commence a private attorney-client session to discuss litigation strategy related to litigation expenses in the pending lawsuit against the Federal Aviation Administration.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-01",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
+    }
+  ],
+  "PBC|2026-08-25|board of county commissioners meeting": [
+    {
+      "topic_title": "Atlantic Avenue / Hagen Ranch Road / Jog Road Project",
+      "category": "Other Governance Matters",
+      "description": "Adoption of a resolution approving an agreement with FDOT for right-of-way acquisition along Hagen Ranch Road and Jog Road necessary to widen Atlantic Avenue, construct new drainage, bike lanes, sidewalks, medians, and traffic signals.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-08-25",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf"
+    },
+    {
+      "topic_title": "Ficus Tree Drive, Hibiscus Tree Drive, Florence Road, Grove Road/Orchid Road, and Oleander Road Sidewalks CSA",
+      "category": "Other Governance Matters",
+      "description": "Approval of a Consultant Services Authorization (CSA) to provide professional services for the design and preparation of construction plans for sidewalks along specified roadways, including SBE participation commitments.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-08-25",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf"
+    }
+  ],
+  "JUIC|2026-09-17|town commission meeting": [
+    {
+      "topic_title": "136 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a modification to an existing two-story residence.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-17",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70"
+    },
+    {
+      "topic_title": "234 Shelter Lane",
+      "category": "Zoning & Land Use",
+      "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, including a new landscape, hardscape and drainage plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-17",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70"
+    },
+    {
+      "topic_title": "74 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "description": "Design Review and approval for a proposed 4,851 square foot two-story residence with an outdoor pool, new landscape, hardscape, and drainage plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-17",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70"
+    },
+    {
+      "topic_title": "Code of Ordinances Chapter 4 (Buildings and Building Regulations)",
+      "category": "Zoning & Land Use",
+      "description": "Discussion of proposed amendments to Code of Ordinances Chapter 4 regarding buildings and building regulations.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-17",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70"
+    }
   ]
 }
