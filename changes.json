@@ -631,5 +631,74 @@
       }
     },
     "detected_at": "2026-09-17T00:17:22.001119+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-10-15",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-18T00:17:45.755675+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-09-28",
+    "type": "added",
+    "time": "5:01 PM",
+    "detected_at": "2026-09-18T00:17:45.755675+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Community Redevelopment Agency",
+    "date": "2026-09-24",
+    "type": "added",
+    "time": "4:00 PM",
+    "detected_at": "2026-09-18T00:17:45.755675+00:00"
+  },
+  {
+    "muni_short": "DDA-WPB",
+    "muni_full": "Downtown WPB DDA",
+    "title": "Downtown Development Authority (DDA) Board Meeting",
+    "date": "2026-09-22",
+    "type": "modified",
+    "time": "5:05 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-09-18T00:17:45.755675+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "CRA Advisory Board Meeting September 16, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-16",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-18T00:17:45.755675+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting September 16, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-16",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-18T00:17:45.755675+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-10-22",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-18T00:17:45.755675+00:00"
   }
 ]
