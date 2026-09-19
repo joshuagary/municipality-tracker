@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-18T00:19:40.998473+00:00",
+  "generated_at": "2026-09-19T00:23:09.380154+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 259,
+  "historical_meetings_scanned": 292,
   "insights": [
     {
       "theme_title": "LPA Ordinance 2026-02",
@@ -294,6 +294,50 @@
       "rank": 5
     },
     {
+      "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "DELRAY",
+        "JUIC"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-08-27",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4642&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of Delray Beach Community Redevelopment Agency Budget Amendment No. 2 for Fiscal Year 2025-2026.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Budget Workshop",
+          "date": "2026-06-16",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
+          "description": "A presentation providing an overview of the Fiscal Year 2025/2026.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": false,
+      "rank": 6
+    },
+    {
       "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -335,7 +379,68 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 7
+    },
+    {
+      "theme_title": "SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE",
+      "category": "Community Redevelopment (CRA)",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 4,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-03-24), City of Delray Beach (2026-03-24), City of Delray Beach (2026-03-24)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-05-26",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Discussion and direction regarding the Request for Proposals (RFP) for the development of the SW 700 & 800 blocks of West Atlantic Avenue.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-03-24",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Direction regarding the development of the SW 600 block of West Atlantic Avenue.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-03-24",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Discussion and direction regarding the development of the NW 800 block of West Atlantic Avenue.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-03-24",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Discussion and direction regarding the development of the SW 700 - 800 blocks of West Atlantic Avenue.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 8
     },
     {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
@@ -378,7 +483,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 9
     },
     {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
@@ -421,7 +526,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 10
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -464,7 +569,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 11
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -507,7 +612,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 12
+    },
+    {
+      "theme_title": "CRA FINANCIAL REPORT - April 2026",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-07-23)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-07-23",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Review of the CRA financial report for April 2026.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-07-23",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Review of the CRA financial report for June 2026.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 13
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -550,7 +698,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 14
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -593,7 +741,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 15
+    },
+    {
+      "theme_title": "Public Works Project No. 24-001",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-07-14)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-07-14",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Approve and execute consent to easement agreements to use Army Corps of Engineers rights-of-way to construct, repair, and maintain two seawalls for the seawall replacement and repairs project located at SE 7th Street and at Mangrove Park.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-07-14",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of a maintenance of traffic plan and road closure plan for the intersection of SW 8th Avenue and SW 2nd Street for the SW 8th Avenue/SW 2nd Street intersection improvements project.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 16
     },
     {
       "theme_title": "Charter Review Committee Appointments",
@@ -636,7 +827,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 17
     },
     {
       "theme_title": "Ordinance 2026-05",
@@ -679,7 +870,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 18
+    },
+    {
+      "theme_title": "313 NE 3rd Street",
+      "category": "Community Redevelopment (CRA)",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-04-28)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-07-23",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Approval of the third amendment to the construction services agreement with Waypoint Contracting, Inc. in an amount not to exceed $231,804.26, for additional construction services needed for roof repairs, bringing the total contract amount to not exceed $1,118,692.29 for the CRA-owned building.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-04-28",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4586&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Approval of the Second Amendment to the Construction Services Agreement with Waypoint Contracting, Inc. in an amount not to exceed $34,402.03 for interior concrete floor repairs, bringing the total contract sum not to exceed $886,888.03 for the CRA-owned building.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 19
     },
     {
       "theme_title": "401 Olympus Drive",
@@ -722,7 +956,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 20
     }
   ]
 }
