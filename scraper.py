@@ -545,6 +545,118 @@ def scrape_west_palm_beach():
     return events
 
 
+# --- 1b. WEST PALM BEACH PLANNING BOARD MODULE ---
+def scrape_west_palm_beach_planning():
+    # WPB's Planning Board meets the 3rd Tuesday of every month, but (unlike the
+    # City-Commission/CRA/Work-Session series above) it does NOT live on a
+    # per-series annual page - per user-supplied historical URLs, each occurrence
+    # gets its own per-DATE page instead:
+    #   https://www.wpb.org/Events-Folder/{year}/{MMDDYY}-PB
+    #   e.g. .../2026/072126-PB   (Jul 21, 2026)
+    #        .../2026/081826-PB   (Aug 18, 2026)
+    #        .../2026/091526-PB   (Sep 15, 2026)
+    # Note all three examples land on a Tuesday and are in fact the 3rd Tuesday of
+    # their month - consistent with the "3rd Tuesday" cadence the user confirmed
+    # against the live WPB site. Because that page only appears to exist (200 vs
+    # 404) once the agenda is posted, we don't rely on scraping the site for the
+    # date/time at all - the 3rd-Tuesday date is computed directly from the
+    # calendar for each month in the lookahead window, and the per-date URL is
+    # only used to (a) confirm/derive the meeting is real and (b) determine
+    # has_agenda for the "No Agenda Available" hover, exactly like the
+    # has_agenda=False pattern used elsewhere in this file (see Westlake/DDA).
+    #
+    # Meeting TIME is scraped off each per-date page itself, same as the other WPB
+    # series pages - confirmed via a live fetch of
+    # https://www.wpb.org/Events-Folder/2026/102026-PB, whose "When" section reads
+    # "Tuesday, October 20, 2026 | 06:00 PM" - the exact same
+    # "Weekday, Month DD, YYYY | HH:MM AM/PM" format scrape_west_palm_beach() already
+    # parses, so we reuse that regex here. DEFAULT_PLANNING_TIME is only a fallback
+    # for the rare case a 200 page doesn't match the pattern (e.g. markup changes).
+    DEFAULT_PLANNING_TIME = "6:00 PM"
+    time_pattern = re.compile(
+        r'(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s*'
+        r'(?:January|February|March|April|May|June|July|August|September|October|November|December)'
+        r'\s+\d{1,2},\s*\d{4}\s*\|\s*(\d{1,2}:\d{2}\s*[AP]M)',
+        re.I
+    )
+
+    events = []
+    base_domain = "https://www.wpb.org"
+    title = "Planning Board"
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    # Walk every calendar month touched by the lookahead window (current_month_start
+    # up to, but not including, lookahead_end), not just curr_year/next_year, since
+    # this module works off individual months rather than whole-year series pages.
+    months_to_check = []
+    cursor = datetime(current_month_start.year, current_month_start.month, 1)
+    while cursor < lookahead_end:
+        months_to_check.append((cursor.year, cursor.month))
+        if cursor.month == 12:
+            cursor = datetime(cursor.year + 1, 1, 1)
+        else:
+            cursor = datetime(cursor.year, cursor.month + 1, 1)
+
+    seen_keys = set()
+
+    for year, month in months_to_check:
+        # 3rd Tuesday of this month. Tuesday = weekday 1 (Mon=0 .. Sun=6).
+        first_of_month = datetime(year, month, 1)
+        first_tuesday_offset = (1 - first_of_month.weekday()) % 7
+        first_tuesday = first_of_month + timedelta(days=first_tuesday_offset)
+        third_tuesday = first_tuesday + timedelta(days=14)
+        iso_date = third_tuesday.strftime("%Y-%m-%d")
+
+        if not (current_month_start <= third_tuesday < lookahead_end):
+            continue
+        if not is_qualifying_event(title):
+            continue
+
+        slug = third_tuesday.strftime("%m%d%y") + "-PB"
+        url = f"{base_domain}/Events-Folder/{year}/{slug}"
+
+        res = fetch_hardened(url)
+        meeting_time = DEFAULT_PLANNING_TIME
+        if res is None:
+            print(f"[WPB Planning Board] Request failed for {iso_date} ({url}) - "
+                  f"including event anyway with has_agenda=False and the default time, "
+                  f"since the date is computed independently of this fetch.")
+            has_agenda = False
+        else:
+            print(f"[WPB Planning Board] Fetching {iso_date} | HTTP Status: {res.status_code}")
+            has_agenda = res.status_code == 200
+            if has_agenda:
+                match = time_pattern.search(res.text)
+                if match:
+                    meeting_time = match.group(1).strip().upper()
+                else:
+                    print(f"[WPB Planning Board] {iso_date}: page was 200 but the "
+                          f"'Weekday, Month DD, YYYY | HH:MM AM/PM' time pattern wasn't "
+                          f"found - falling back to default time {DEFAULT_PLANNING_TIME}.")
+
+        dedup_key = (title, iso_date)
+        if dedup_key in seen_keys:
+            continue
+        seen_keys.add(dedup_key)
+
+        events.append({
+            "id": f"wpb-pb-{iso_date}-{hash(url)}",
+            "muni_short": "WPB",
+            "muni_full": "City of West Palm Beach",
+            "title": title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": url,
+            "has_agenda": has_agenda,
+            "summary": f"Official {title} meeting." if has_agenda else f"Official {title} meeting. No agenda posted yet.",
+        })
+
+    print(f"[WPB Planning Board] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
 # --- 2. PALM BEACH COUNTY MODULE ---
 def scrape_palm_beach_county():
     # Palm Beach County's agenda page is served from the main pbcgov.org domain
@@ -2709,6 +2821,7 @@ def main():
     print("Starting Municipal Scraper Engine...")
 
     all_events.extend(scrape_west_palm_beach())
+    all_events.extend(scrape_west_palm_beach_planning())
     all_events.extend(scrape_palm_beach_county())
     all_events.extend(scrape_boca_raton())
     all_events.extend(scrape_boynton_beach())
