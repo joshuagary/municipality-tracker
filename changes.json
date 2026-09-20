@@ -745,5 +745,68 @@
     "time": "5:01 PM",
     "type": "removed",
     "detected_at": "2026-09-19T00:17:37.369679+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Planning Board",
+    "date": "2026-09-15",
+    "type": "added",
+    "time": "06:00 PM",
+    "detected_at": "2026-09-20T00:18:43.184832+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Planning Board",
+    "date": "2026-10-20",
+    "type": "added",
+    "time": "06:00 PM",
+    "detected_at": "2026-09-20T00:18:43.184832+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-14",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-20T00:18:43.184832+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Regular Town Commission Meeting",
+    "date": "2026-09-14",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-20T00:18:43.184832+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-20T00:18:43.184832+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Special Town Commission Meeting",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-20T00:18:43.184832+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-17",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-20T00:18:43.184832+00:00"
   }
 ]
