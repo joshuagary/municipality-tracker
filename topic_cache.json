@@ -3127,5 +3127,40 @@
       "date": "2026-08-11",
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4651&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
+  ],
+  "JUNOBEACH|2026-09-21|planning and zoning board": [
+    {
+      "topic_title": "401 Olympus Drive",
+      "category": "Zoning & Land Use",
+      "description": "Board consideration of an Appearance Review for 401 Olympus Drive.",
+      "method": "llm",
+      "muni_short": "JUNOBEACH",
+      "muni_full": "Town of Juno Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-09-21",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-58d973718c434d5eaff96b9b4932a669.pdf"
+    },
+    {
+      "topic_title": "403 Olympus Drive",
+      "category": "Zoning & Land Use",
+      "description": "Board consideration of an Appearance Review for 403 Olympus Drive.",
+      "method": "llm",
+      "muni_short": "JUNOBEACH",
+      "muni_full": "Town of Juno Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-09-21",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-58d973718c434d5eaff96b9b4932a669.pdf"
+    },
+    {
+      "topic_title": "401 N. Juno Lane - Jutta Laukien Variance Request",
+      "category": "Zoning & Land Use",
+      "description": "Board consideration of a variance request submitted by Jutta Laukien for the property located at 401 N. Juno Lane.",
+      "method": "llm",
+      "muni_short": "JUNOBEACH",
+      "muni_full": "Town of Juno Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-09-21",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-58d973718c434d5eaff96b9b4932a669.pdf"
+    }
   ]
 }

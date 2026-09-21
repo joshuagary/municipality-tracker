@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-09-20T00:20:46.874826+00:00",
+  "generated_at": "2026-09-21T00:20:47.795736+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 271,
+  "historical_meetings_scanned": 272,
   "insights": [
+    {
+      "theme_title": "401 Olympus Drive",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUNOBEACH"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 4,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Juno Beach (2026-09-21), Town of Juno Beach (2026-08-03), Town of Juno Beach (2026-08-03)",
+      "meetings": [
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-09-21",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-58d973718c434d5eaff96b9b4932a669.pdf",
+          "description": "Board consideration of an Appearance Review for 401 Olympus Drive.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-09-21",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-58d973718c434d5eaff96b9b4932a669.pdf",
+          "description": "Board consideration of an Appearance Review for 403 Olympus Drive.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-03",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
+          "description": "An appearance review for 401 Olympus Drive.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Planning and Zoning Board",
+          "date": "2026-08-03",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
+          "description": "An appearance review for 403 Olympus Drive.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 65,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 1
+    },
     {
       "theme_title": "SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE",
       "category": "Community Redevelopment (CRA)",
@@ -62,7 +123,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 1
+      "rank": 2
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -105,7 +166,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 2
+      "rank": 3
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -148,7 +209,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 3
+      "rank": 4
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -191,7 +252,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 4
+      "rank": 5
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -234,7 +295,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 5
+      "rank": 6
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -277,7 +338,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 7
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -320,7 +381,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 8
     },
     {
       "theme_title": "Charter Review Committee Appointments",
@@ -363,7 +424,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 9
     },
     {
       "theme_title": "Ordinance 2026-05",
@@ -406,7 +467,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 10
     },
     {
       "theme_title": "313 NE 3rd Street",
@@ -449,7 +510,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 11
     },
     {
       "theme_title": "LPA Ordinance 2026-02",
@@ -478,49 +539,6 @@
           "date": "2026-04-07",
           "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-7e3ddc029c6e42c595a7228edb84f659.pdf",
           "description": "An ordinance amending the City of Westlake Code of Ordinances, Chapter 101 ('General and Administrative Provisions') to define 'cabana' and 'trellis or arbor', and amending Chapter 119 ('Zoning') to provide reduced rear yard setbacks for certain accessory structures, establish building separation and roof overhang standards for accessory structures with solid roofing systems, and set roof overhang standards for cabanas in mixed use districts.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 11
-    },
-    {
-      "theme_title": "401 Olympus Drive",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUNOBEACH"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Juno Beach (2026-08-03)",
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-03",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
-          "description": "An appearance review for 401 Olympus Drive.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Planning and Zoning Board",
-          "date": "2026-08-03",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-7f099edd13ce4fb181360ab7b32e3615.pdf",
-          "description": "An appearance review for 403 Olympus Drive.",
           "method": "llm"
         }
       ],
