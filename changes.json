@@ -808,5 +808,47 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-09-20T00:18:43.184832+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Mayor's Town Hall",
+    "date": "2026-10-14",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-09-22T00:17:45.648036+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-09-28",
+    "type": "added",
+    "time": "5:01 PM",
+    "detected_at": "2026-09-22T00:17:45.648036+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-10-21",
+    "type": "added",
+    "time": "5:30 PM",
+    "detected_at": "2026-09-22T00:17:45.648036+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-09-24",
+    "type": "modified",
+    "time": "4:54 PM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "4:54 PM"
+      }
+    },
+    "detected_at": "2026-09-22T00:17:45.648036+00:00"
   }
 ]

@@ -3162,5 +3162,75 @@
       "date": "2026-09-21",
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-58d973718c434d5eaff96b9b4932a669.pdf"
     }
-  ]
+  ],
+  "DELRAY|2026-09-22|city commission": [
+    {
+      "topic_title": "State of Education Report",
+      "category": "Other Governance Matters",
+      "description": "A presentation on the State of Education Report delivered by School Board Member Erica Whitfield.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-09-22",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Old School Square Needs Assessment and Market Study",
+      "category": "Other Governance Matters",
+      "description": "A presentation regarding the needs assessment and market study for Old School Square.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-09-22",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Delray Beach City Commission Local Rules of Procedure and Quasi-Judicial Rules",
+      "category": "Other Governance Matters",
+      "description": "Review and adoption of an amendment to the Delray Beach City Commission local rules of procedure and quasi-judicial rules.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-09-22",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Delray Apartments Venture, LLC Workforce Housing Covenant",
+      "category": "Housing & Development",
+      "description": "Approval of a workforce housing covenant between the City of Delray Beach and Delray Apartments Venture, LLC, pursuant to Land Development Regulations Section 4.7.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-09-22",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "2 NW 18th Avenue Ingress-Egress Easement",
+      "category": "Zoning & Land Use",
+      "description": "Acceptance of an ingress-egress easement for inclusion on the Two Northwest 18th Avenue plat at 2 NW 18th Avenue.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-09-22",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Resolution No. 156-26",
+      "category": "Budget & Finance",
+      "description": "Approval of Resolution No. 156-26 authorizing the appointment of an external audit firm selection committee.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-09-22",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "DDA-WPB|2026-09-22|downtown development authority (dda) board meeting": [],
+  "RIVBEACH|2026-09-22|city council": []
 }
