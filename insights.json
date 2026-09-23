@@ -1,8 +1,123 @@
 {
-  "generated_at": "2026-09-22T00:20:46.652409+00:00",
+  "generated_at": "2026-09-23T00:22:47.635429+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 275,
+  "historical_meetings_scanned": 297,
   "insights": [
+    {
+      "theme_title": "LPA Ordinance 2026-02",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC",
+        "WESTLAKE"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 4,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10), City of Westlake (2026-05-05), City of Westlake (2026-04-07)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
+          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-62",
+          "description": "Recommendation of approval to the Town Commission for Ordinance 2026-02, amending policies in the Comprehensive Plan's Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element relating to water supply, and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Regular Meeting",
+          "date": "2026-05-05",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-fd5a6a68abc346e39f18ea714e77071b.pdf",
+          "description": "Second reading of an ordinance for a Chapter 101 & 119 Text Amendment regarding Accessory Structures, submitted by Planning and Zoning.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-04-07",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-7e3ddc029c6e42c595a7228edb84f659.pdf",
+          "description": "An ordinance amending the City of Westlake Code of Ordinances, Chapter 101 ('General and Administrative Provisions') to define 'cabana' and 'trellis or arbor', and amending Chapter 119 ('Zoning') to provide reduced rear yard setbacks for certain accessory structures, establish building separation and roof overhang standards for accessory structures with solid roofing systems, and set roof overhang standards for cabanas in mixed use districts.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 85,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 1
+    },
+    {
+      "theme_title": "Resolution No. 2026-07",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC",
+        "JUNOBEACH"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 3,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-05-11), Town of Jupiter Inlet Colony (2026-04-13)",
+      "meetings": [
+        {
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Town Council Regular Meeting",
+          "date": "2026-07-22",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-ea7e046505dd4992a98a4e4588e5aac0.pdf",
+          "description": "Consideration of Resolution No. 2026-07 regarding the MPSCC Fifth Amendment to Interlocal Agreement on the consent agenda.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-05-11",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48",
+          "description": "Vote to approve Resolution 2026-07 regarding the Town of Jupiter Inlet Colony Employee Handbook, sponsored by the Town Manager and continued from the April 13, 2026 meeting.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-04-13",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46",
+          "description": "Vote on Resolution 2026-07 approving the Town of Jupiter Inlet Colony Employee Handbook, sponsored by the Town Manager.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 70,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 2
+    },
     {
       "theme_title": "401 Olympus Drive",
       "category": "Zoning & Land Use",
@@ -62,7 +177,200 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 1
+      "rank": 3
+    },
+    {
+      "theme_title": "136 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 4,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-17), Town of Jupiter Inlet Colony (2026-07-21), Town of Jupiter Inlet Colony (2026-06-18)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-17",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
+          "description": "Consideration of a modification to an existing two-story residence.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-17",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
+          "description": "Design Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-07-21",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
+          "description": "Design Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-06-18",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52",
+          "description": "Impact Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 65,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 4
+    },
+    {
+      "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "DELRAY",
+        "JUIC"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-08-27",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4642&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of Delray Beach Community Redevelopment Agency Budget Amendment No. 2 for Fiscal Year 2025-2026.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Budget Workshop",
+          "date": "2026-06-16",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
+          "description": "Presentation covering the overview of Fiscal Year 2025/2026.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 5
+    },
+    {
+      "theme_title": "Ordinance 2026-03",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC",
+        "WESTLAKE"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-06-02)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
+          "description": "A vote on Ordinance 2026-03, an ordinance amending Article I of Chapter 4 of the Code of Ordinances relating to buildings and building regulations, sponsored by the Town Manager.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Regular Meeting",
+          "date": "2026-06-02",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-feff43c0136540ba864a701307f07b1b.pdf",
+          "description": "First reading of Ordinance 2026-03 amending Chapter 18 of the City of Westlake Code of Ordinances entitled 'Solid Waste' to amend definitions, residential solid waste services assessments authorized, and create Section 18-67 for multifamily developments.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 6
+    },
+    {
+      "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC",
+        "NPB"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-08-31)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
+          "description": "A vote on the Fifth Amendment to the Interlocal Agreement to Establish Municipal Public Safety Communications Consortium of Palm Beach County, sponsored by the Police Chief.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council",
+          "date": "2026-08-31",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370",
+          "description": "A resolution approving the Fifth Amendment to the Interlocal Agreement establishing the Municipal Public Safety Communications Consortium of Palm Beach County and repealing Resolution No. 2026-11.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 7
     },
     {
       "theme_title": "SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE",
@@ -123,7 +431,93 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 2
+      "rank": 8
+    },
+    {
+      "theme_title": "FY 2027 Millage Rate and Budget Estimates",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-08)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68",
+          "description": "Final Public Hearing on the FY 2027 Millage Rate at a maximum rate of 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the annual budget.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-66",
+          "description": "Public hearing and votes to announce, discuss, and approve the tentative millage rate of 5.5600 mills for FY 2027 (greater than the rolled-back rate of 5.3209 mills by 4.49%) along with the tentative estimates of Revenue and Expenses for the fiscal year commencing October 1, 2026, through September 30, 2027.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 9
+    },
+    {
+      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 10
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -166,7 +560,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 3
+      "rank": 11
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -209,7 +603,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 4
+      "rank": 12
+    },
+    {
+      "theme_title": "Code of Ordinances Chapter 4",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-07-21)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-17",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
+          "description": "Discussion of Proposed Amendments to Code of Ordinances Chapter 4 concerning Buildings and Building Regulations.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-07-21",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
+          "description": "Discussion of proposed amendments to Chapter 4 (Buildings and Building Regulations) of the Code of Ordinances.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 13
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -252,7 +689,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 5
+      "rank": 14
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -295,7 +732,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 15
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -338,7 +775,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 16
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -381,7 +818,93 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 17
+    },
+    {
+      "theme_title": "Wynn & Sons Environmental Construction Co. LLC",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-06-16",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-50",
+          "description": "Vote on the approval of a proposal by Wynn & Sons Environmental Construction Co. LLC for the installation of Detectable Warning Tactile Surfaces.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-06-16",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-50",
+          "description": "Vote on the approval of a proposal by Wynn & Sons Environmental Construction Co. LLC for Townwide Thermoplastic Traffic Markings and Installation of Two Concrete Corner Curbs.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 18
+    },
+    {
+      "theme_title": "Resolution 2026-05",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-04-13)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Budget Workshop",
+          "date": "2026-06-16",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
+          "description": "Adoption or establishment of rules of conduct and decorum at public meetings under Resolution 2026-05.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-04-13",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46",
+          "description": "Vote on Resolution 2026-05 regarding rules of conduct and decorum during public meetings of the Town Commission and any other public meetings, sponsored by Mayor Bill Muir.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 19
     },
     {
       "theme_title": "Charter Review Committee Appointments",
@@ -424,7 +947,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 20
     },
     {
       "theme_title": "Ordinance 2026-05",
@@ -467,7 +990,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 21
     },
     {
       "theme_title": "313 NE 3rd Street",
@@ -510,50 +1033,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
-    },
-    {
-      "theme_title": "LPA Ordinance 2026-02",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Westlake (2026-04-07)",
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Regular Meeting",
-          "date": "2026-05-05",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-fd5a6a68abc346e39f18ea714e77071b.pdf",
-          "description": "Second reading of an ordinance for a Chapter 101 & 119 Text Amendment regarding Accessory Structures, submitted by Planning and Zoning.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-04-07",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-7e3ddc029c6e42c595a7228edb84f659.pdf",
-          "description": "An ordinance amending the City of Westlake Code of Ordinances, Chapter 101 ('General and Administrative Provisions') to define 'cabana' and 'trellis or arbor', and amending Chapter 119 ('Zoning') to provide reduced rear yard setbacks for certain accessory structures, establish building separation and roof overhang standards for accessory structures with solid roofing systems, and set roof overhang standards for cabanas in mixed use districts.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 12
+      "rank": 22
     }
   ]
 }

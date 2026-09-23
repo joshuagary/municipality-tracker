@@ -1963,30 +1963,6 @@
       "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
     }
   ],
-  "PBC|2026-08-25|board of county commissioners meeting": [
-    {
-      "topic_title": "Atlantic Avenue / Hagen Ranch Road / Jog Road Project",
-      "category": "Other Governance Matters",
-      "description": "Adoption of a resolution approving an agreement with FDOT for right-of-way acquisition along Hagen Ranch Road and Jog Road necessary to widen Atlantic Avenue, construct new drainage, bike lanes, sidewalks, medians, and traffic signals.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-08-25",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf"
-    },
-    {
-      "topic_title": "Ficus Tree Drive, Hibiscus Tree Drive, Florence Road, Grove Road/Orchid Road, and Oleander Road Sidewalks CSA",
-      "category": "Other Governance Matters",
-      "description": "Approval of a Consultant Services Authorization (CSA) to provide professional services for the design and preparation of construction plans for sidewalks along specified roadways, including SBE participation commitments.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-08-25",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260825.pdf"
-    }
-  ],
   "DELRAY|2026-03-24|community redevelopment agency": [
     {
       "topic_title": "File # 26-0046",
@@ -3232,5 +3208,729 @@
     }
   ],
   "DDA-WPB|2026-09-22|downtown development authority (dda) board meeting": [],
-  "RIVBEACH|2026-09-22|city council": []
+  "RIVBEACH|2026-09-22|city council": [],
+  "JUNOBEACH|2026-09-23|town council regular meeting": [
+    {
+      "topic_title": "Officer Zachary Smith",
+      "category": "Other Governance Matters",
+      "description": "Ceremonial swearing-in ceremony for Officer Zachary Smith.",
+      "method": "llm",
+      "muni_short": "JUNOBEACH",
+      "muni_full": "Town of Juno Beach",
+      "event_title": "Town Council Regular Meeting",
+      "date": "2026-09-23",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-3caeb78a349d4045aaaba8594306cb0e.pdf"
+    },
+    {
+      "topic_title": "Interim Town Clerk",
+      "category": "Other Governance Matters",
+      "description": "Receive an update on the Interim Town Clerk from the Town Manager, Town Attorney, and staff.",
+      "method": "llm",
+      "muni_short": "JUNOBEACH",
+      "muni_full": "Town of Juno Beach",
+      "event_title": "Town Council Regular Meeting",
+      "date": "2026-09-23",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-3caeb78a349d4045aaaba8594306cb0e.pdf"
+    },
+    {
+      "topic_title": "Florida City Government Week 2026",
+      "category": "Other Governance Matters",
+      "description": "Adoption of a proclamation for Florida City Government Week 2026 under the consent agenda.",
+      "method": "llm",
+      "muni_short": "JUNOBEACH",
+      "muni_full": "Town of Juno Beach",
+      "event_title": "Town Council Regular Meeting",
+      "date": "2026-09-23",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-3caeb78a349d4045aaaba8594306cb0e.pdf"
+    },
+    {
+      "topic_title": "Resolution No. 2026-22",
+      "category": "Budget & Finance",
+      "description": "Consideration of Resolution No. 2026-22 announcing the 2027 Municipal Election under the consent agenda.",
+      "method": "llm",
+      "muni_short": "JUNOBEACH",
+      "muni_full": "Town of Juno Beach",
+      "event_title": "Town Council Regular Meeting",
+      "date": "2026-09-23",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-3caeb78a349d4045aaaba8594306cb0e.pdf"
+    }
+  ],
+  "JUIC|2026-09-14|town commission meeting": [
+    {
+      "topic_title": "FY 2027 Millage Rate and Budget",
+      "category": "Budget & Finance",
+      "description": "Final Public Hearing on the FY 2027 Millage Rate at a maximum rate of 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the annual budget.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68"
+    },
+    {
+      "topic_title": "Resolution No. 2026-13",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution establishing and levying a tax on all taxable property in the Town for the fiscal year commencing October 1, 2026, and ending September 30, 2027, and certifying millages to the County Property Appraiser.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68"
+    },
+    {
+      "topic_title": "Resolution No. 2026-14",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution approving the estimates of revenue and expense and the annual budget for the fiscal year commencing October 1, 2026, and ending September 30, 2027, and appropriating necessary funds.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68"
+    }
+  ],
+  "JUIC|2026-09-14|regular town commission meeting": [
+    {
+      "topic_title": "Presentation Regarding Public Camera Systems",
+      "category": "Other Governance Matters",
+      "description": "Chief of Police provides a presentation regarding public camera systems during the Chief of Police report.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    },
+    {
+      "topic_title": "Ordinance 2026-03",
+      "category": "Other Governance Matters",
+      "description": "A vote on Ordinance 2026-03, an ordinance amending Article I of Chapter 4 of the Code of Ordinances relating to buildings and building regulations, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    },
+    {
+      "topic_title": "Amendment to Town Manager Employment Agreement",
+      "category": "Other Governance Matters",
+      "description": "A vote on an amendment to the Town Manager Employment Agreement, sponsored by the Town Attorney.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    },
+    {
+      "topic_title": "Fifth Amendment to the Interlocal Agreement to Establish Municipal Public Safety Communications Consortium of Palm Beach County",
+      "category": "Other Governance Matters",
+      "description": "A vote on the Fifth Amendment to the Interlocal Agreement to Establish Municipal Public Safety Communications Consortium of Palm Beach County, sponsored by the Police Chief.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-09-14",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
+    }
+  ],
+  "JUIC|2026-09-08|town commission meeting": [
+    {
+      "topic_title": "FY 2027 Millage Rate and Budget Estimates",
+      "category": "Budget & Finance",
+      "description": "Public hearing and votes to announce, discuss, and approve the tentative millage rate of 5.5600 mills for FY 2027 (greater than the rolled-back rate of 5.3209 mills by 4.49%) along with the tentative estimates of Revenue and Expenses for the fiscal year commencing October 1, 2026, through September 30, 2027.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-08",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-66"
+    }
+  ],
+  "JUIC|2026-09-08|special town commission meeting": [
+    {
+      "topic_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
+      "category": "Other Governance Matters",
+      "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Special Town Commission Meeting",
+      "date": "2026-09-08",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67"
+    }
+  ],
+  "JUIC|2026-08-19|town commission budget workshop": [],
+  "JUIC|2026-08-10|regular town commission meeting": [
+    {
+      "topic_title": "Annual Financial Report for Fiscal Year Ending September 30, 2025",
+      "category": "Budget & Finance",
+      "description": "Presentation by Daniel Anderson of Mauldin & Jenkins regarding the Annual Financial Report for the Fiscal Year Ending September 30, 2025.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-08-10",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60"
+    },
+    {
+      "topic_title": "Resolution 2026-12",
+      "category": "Other Governance Matters",
+      "description": "A resolution of the Town Commission appointing a seventh member to the Building and Zoning Committee, sponsored by the Town Clerk.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-08-10",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60"
+    },
+    {
+      "topic_title": "Ordinance 2026-02",
+      "category": "Zoning & Land Use",
+      "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-08-10",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60"
+    },
+    {
+      "topic_title": "Ordinance 2026-03",
+      "category": "Housing & Development",
+      "description": "An ordinance amending Article I of Chapter 4 of the Code of Ordinances relating to buildings and building regulations.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-08-10",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60"
+    },
+    {
+      "topic_title": "Automated External Defibrillators (AED)",
+      "category": "Other Governance Matters",
+      "description": "A discussion regarding Automated External Defibrillators (AED).",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-08-10",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60"
+    },
+    {
+      "topic_title": "Town Manager Annual Review and Approving Additional PTO Accrual",
+      "category": "Other Governance Matters",
+      "description": "A discussion regarding the Town Manager Annual Review and approving additional PTO accrual.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-08-10",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60"
+    }
+  ],
+  "JUIC|2026-08-10|special town commission meeting": [
+    {
+      "topic_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
+      "category": "Other Governance Matters",
+      "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Special Town Commission Meeting",
+      "date": "2026-08-10",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61"
+    }
+  ],
+  "JUIC|2026-08-10|local planning agency meeting": [
+    {
+      "topic_title": "Ordinance 2026-02",
+      "category": "Zoning & Land Use",
+      "description": "Recommendation of approval to the Town Commission for Ordinance 2026-02, amending policies in the Comprehensive Plan's Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element relating to water supply, and adopting the 2026 Water Supply Plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Local Planning Agency Meeting",
+      "date": "2026-08-10",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-62"
+    }
+  ],
+  "JUIC|2026-07-21|special town commission meeting": [
+    {
+      "topic_title": "Resolution 2026-09a",
+      "category": "Budget & Finance",
+      "description": "Establish the proposed maximum millage rate, the 'rolled-back' rate, and set the dates, times, and locations for the first and second Budget Hearings for FY 2026-2027.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Special Town Commission Meeting",
+      "date": "2026-07-21",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-55"
+    }
+  ],
+  "JUIC|2026-07-13|regular town commission meeting": [
+    {
+      "topic_title": "Resolution 2026-09",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution establishing the proposed maximum millage rate, the rolled-back rate, and the dates, times, and locations for the first and second Budget Hearings for FY 2026-2027.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-07-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07132026-53"
+    },
+    {
+      "topic_title": "Resolution 2026-10",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution establishing a Pay in Full Period for the Non Ad Valorem Assessment that was established by Resolution No. 2016-12.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-07-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07132026-53"
+    },
+    {
+      "topic_title": "Resolution 2026-11",
+      "category": "Other Governance Matters",
+      "description": "Vote on a resolution requesting the State of Florida Department of Environmental Protection to support an appropriation of funds within the Beach Management Funding Assistance Program for Fiscal Year 2027/28.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-07-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07132026-53"
+    },
+    {
+      "topic_title": "American Flood Coalition Presentation",
+      "category": "Other Governance Matters",
+      "description": "A presentation given by Kate Wesner, Florida Director of the American Flood Coalition.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-07-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07132026-53"
+    }
+  ],
+  "JUIC|2026-06-16|regular town commission meeting": [
+    {
+      "topic_title": "Beach Road Water Main Project",
+      "category": "Other Governance Matters",
+      "description": "Presentation of the Beach Road Water Main Project Update by Allyson Burg, Village of Tequesta Utilities Director.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-50"
+    },
+    {
+      "topic_title": "Resolution 2026-08",
+      "category": "Budget & Finance",
+      "description": "Vote on Resolution 2026-08 to establish a new schedule of building and zoning fees, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-50"
+    },
+    {
+      "topic_title": "Charles Perry Partners, Inc. (CPPI)",
+      "category": "Housing & Development",
+      "description": "Vote on the approval of a contract with Charles Perry Partners, Inc. (CPPI) for the renovation of Town Hall and the Police Department, based on reuse of existing plans by Song + Associates, Inc. and waiving competitive bidding.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-50"
+    },
+    {
+      "topic_title": "Wynn & Sons Environmental Construction Co. LLC",
+      "category": "Other Governance Matters",
+      "description": "Vote on the approval of a proposal by Wynn & Sons Environmental Construction Co. LLC for the installation of Detectable Warning Tactile Surfaces.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-50"
+    },
+    {
+      "topic_title": "Wynn & Sons Environmental Construction Co. LLC",
+      "category": "Other Governance Matters",
+      "description": "Vote on the approval of a proposal by Wynn & Sons Environmental Construction Co. LLC for Townwide Thermoplastic Traffic Markings and Installation of Two Concrete Corner Curbs.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-50"
+    },
+    {
+      "topic_title": "The Falcon Group",
+      "category": "Other Governance Matters",
+      "description": "Vote on the approval of a proposal by The Falcon Group for a Preliminary Assessment of all Town roads.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-50"
+    }
+  ],
+  "JUIC|2026-06-16|town commission budget workshop": [
+    {
+      "topic_title": "Fiscal Year 2025/2026 Overview",
+      "category": "Budget & Finance",
+      "description": "Presentation covering the overview of Fiscal Year 2025/2026.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Budget Workshop",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51"
+    },
+    {
+      "topic_title": "Fiscal Year 2026/2027 Project Budget Requests",
+      "category": "Budget & Finance",
+      "description": "Discussion regarding Fiscal Year 2026/2027 Project Budget Requests, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Budget Workshop",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51"
+    },
+    {
+      "topic_title": "Resolution 2026-05",
+      "category": "Other Governance Matters",
+      "description": "Adoption or establishment of rules of conduct and decorum at public meetings under Resolution 2026-05.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Budget Workshop",
+      "date": "2026-06-16",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51"
+    }
+  ],
+  "JUIC|2026-06-03|town commission meeting": [],
+  "JUIC|2026-05-11|regular town commission meeting": [
+    {
+      "topic_title": "Resolution 2026-07",
+      "category": "Other Governance Matters",
+      "description": "Vote to approve Resolution 2026-07 regarding the Town of Jupiter Inlet Colony Employee Handbook, sponsored by the Town Manager and continued from the April 13, 2026 meeting.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-05-11",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48"
+    },
+    {
+      "topic_title": "Front Entrance Enhancements to Woodland Landscaping",
+      "category": "Other Governance Matters",
+      "description": "Vote on awarding front entrance enhancements to Woodland Landscaping, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-05-11",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48"
+    },
+    {
+      "topic_title": "Public AED Program (Earl and Nancy Stewart)",
+      "category": "Other Governance Matters",
+      "description": "Vote on the formal acceptance of a donation by Earl and Nancy Stewart for a Public AED Program, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-05-11",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48"
+    },
+    {
+      "topic_title": "Transportation Solutions & Lighting, Inc.",
+      "category": "Other Governance Matters",
+      "description": "Vote authorizing the purchase of items related to the installation of public AED units from Transportation Solutions & Lighting, Inc. and waiving competitive bidding, sponsored by the Police Chief.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-05-11",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48"
+    },
+    {
+      "topic_title": "Cardio Partners",
+      "category": "Other Governance Matters",
+      "description": "Vote authorizing the purchase of public AED units from Cardio Partners and waiving competitive bidding, sponsored by the Police Chief.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-05-11",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48"
+    },
+    {
+      "topic_title": "Community Safety Cameras",
+      "category": "Other Governance Matters",
+      "description": "Vote authorizing the purchase of community safety cameras and waiving competitive bidding, sponsored by the Police Chief.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-05-11",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48"
+    }
+  ],
+  "JUIC|2026-04-13|regular town commission meeting": [
+    {
+      "topic_title": "Resolution 2026-05",
+      "category": "Other Governance Matters",
+      "description": "Vote on Resolution 2026-05 regarding rules of conduct and decorum during public meetings of the Town Commission and any other public meetings, sponsored by Mayor Bill Muir.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-04-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46"
+    },
+    {
+      "topic_title": "Resolution 2026-06",
+      "category": "Other Governance Matters",
+      "description": "Vote on Resolution 2026-06 approving procedures for disposing of surplus town property, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-04-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46"
+    },
+    {
+      "topic_title": "Resolution 2026-07",
+      "category": "Other Governance Matters",
+      "description": "Vote on Resolution 2026-07 approving the Town of Jupiter Inlet Colony Employee Handbook, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-04-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46"
+    },
+    {
+      "topic_title": "Mutual Aid Agreement for Hurricane/Disaster Debris Removal, Reduction and Disposal",
+      "category": "Other Governance Matters",
+      "description": "Vote on a Mutual Aid Agreement for Hurricane/Disaster Debris Removal, Reduction and Disposal between the Town of Jupiter Inlet Colony and Disaster Recovery Consultants, sponsored by the Police Chief.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-04-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46"
+    },
+    {
+      "topic_title": "Neighborhood Rehabilitation Project Loans Refinancing",
+      "category": "Budget & Finance",
+      "description": "Vote on approving a financial advisor for the purpose of refinancing the Town's loans associated with the Neighborhood Rehabilitation Project, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-04-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46"
+    },
+    {
+      "topic_title": "Palm Beach County Office of Inspector General Audit 2026-A-0003",
+      "category": "Budget & Finance",
+      "description": "Discussion regarding Palm Beach County Office of Inspector General Audit 2026-A-0003, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-04-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46"
+    }
+  ],
+  "JUIC|2026-04-13|town commission meeting": [
+    {
+      "topic_title": "Fiscal Year 2027 Strategic Priorities Discussion",
+      "category": "Budget & Finance",
+      "description": "Review and discussion of the Town Commission's strategic priorities, projects, and capital investments to guide the creation of the Fiscal Year 2027 budget.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-04-13",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-47"
+    }
+  ],
+  "JUIC|2026-03-12|town commission meeting": [],
+  "JUIC|2026-03-09|regular town commission meeting": [
+    {
+      "topic_title": "Ordinance 2026-01",
+      "category": "Zoning & Land Use",
+      "description": "Second reading and vote on Ordinance 2026-01, creating Section 27 of the Zoning Code relating to the establishment of procedures for the review and approval of certified recovery residences and amending Section 20 of the Zoning Code.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-03-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
+    },
+    {
+      "topic_title": "Daniel Comerford legal expenses reimbursement",
+      "category": "Other Governance Matters",
+      "description": "Vote on a request by Daniel Comerford for reimbursement of legal expenses related to a Palm Beach County Commission on Ethics inquiry into misuse of public office.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-03-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
+    },
+    {
+      "topic_title": "Marie Rosner legal expenses reimbursement",
+      "category": "Other Governance Matters",
+      "description": "Vote on a request by Marie Rosner for reimbursement of legal expenses related to a Palm Beach County Commission on Ethics inquiry into misuse of public office.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-03-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
+    },
+    {
+      "topic_title": "Installation of check valves at outfalls",
+      "category": "Other Governance Matters",
+      "description": "Vote on approving the award of a contract to the lowest and most responsive bidder for the installation of check valves at the Town's outfalls.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-03-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
+    },
+    {
+      "topic_title": "Police Chief Brian McCallister employment agreement",
+      "category": "Other Governance Matters",
+      "description": "Vote on approving the employment agreement with Police Chief Brian McCallister.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-03-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
+    },
+    {
+      "topic_title": "Lighthouse Drive resurfacing project",
+      "category": "Other Governance Matters",
+      "description": "Town Manager report discussion regarding the timeliness of the Lighthouse Drive resurfacing project.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-03-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
+    }
+  ],
+  "JUIC|2026-09-17|town commission meeting": [
+    {
+      "topic_title": "136 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a modification to an existing two-story residence.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-17",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70"
+    },
+    {
+      "topic_title": "234 Shelter Lane",
+      "category": "Zoning & Land Use",
+      "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-17",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70"
+    },
+    {
+      "topic_title": "74 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "description": "Design Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-17",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70"
+    },
+    {
+      "topic_title": "Code of Ordinances Chapter 4",
+      "category": "Zoning & Land Use",
+      "description": "Discussion of Proposed Amendments to Code of Ordinances Chapter 4 concerning Buildings and Building Regulations.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-09-17",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70"
+    }
+  ],
+  "JUIC|2026-07-21|town commission meeting": [
+    {
+      "topic_title": "74 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "description": "Design Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-07-21",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54"
+    },
+    {
+      "topic_title": "Code of Ordinances Chapter 4",
+      "category": "Zoning & Land Use",
+      "description": "Discussion of proposed amendments to Chapter 4 (Buildings and Building Regulations) of the Code of Ordinances.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-07-21",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54"
+    }
+  ],
+  "JUIC|2026-06-18|town commission meeting": [
+    {
+      "topic_title": "74 Lighthouse Drive",
+      "category": "Zoning & Land Use",
+      "description": "Impact Review for a proposed 4,851 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-06-18",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52"
+    },
+    {
+      "topic_title": "42 Ocean Drive",
+      "category": "Zoning & Land Use",
+      "description": "Design review for a proposed two-story residence with an outdoor pool, including discussion on finished floor elevation and landscape/hardscape plans.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-06-18",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52"
+    }
+  ],
+  "GULFSTREAM|2026-09-23|town commission final budget hearing": []
 }
