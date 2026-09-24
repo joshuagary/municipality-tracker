@@ -3932,5 +3932,132 @@
       "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06182026-52"
     }
   ],
-  "GULFSTREAM|2026-09-23|town commission final budget hearing": []
+  "GULFSTREAM|2026-09-23|town commission final budget hearing": [],
+  "DELRAY|2026-09-24|community redevelopment agency": [
+    {
+      "topic_title": "Curb Appeal Residential Improvement Program",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Consideration of the first amendment to the interlocal agreement between the City of Delray Beach and the Community Redevelopment Agency for the Curb Appeal Residential Improvement Program, along with an amendment to the program guidelines.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-09-24",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Resolution No. 2026-15",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Approval of the transfer of the CRA-owned Reverend Dr. J.W.H. Thomas Jr. Park and adjacent parking lots.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-09-24",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Resolution No. 2026-12",
+      "category": "Housing & Development",
+      "description": "Approval of a first amendment to the purchase and sale agreement for a CRA-owned vacant lot located at 238 SW 14th Avenue for the development of affordable/workforce housing with Boynton Beach Faith Based Community Development Incorporation, Inc.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-09-24",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Palm Beach County Commission on Ethics Memorandum of Understanding",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a memorandum of understanding between the Delray Beach Community Redevelopment Agency and the Palm Beach County Commission on Ethics.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-09-24",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Executive Director Employment Agreement",
+      "category": "Other Governance Matters",
+      "description": "Consideration of the seventh amendment to the employment agreement for the Executive Director.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-09-24",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "RIVBEACH|2026-09-24|planning and zoning board meeting": [],
+  "GULFSTREAM|2026-09-24|architectural review and planning board meeting": [],
+  "NPB|2026-09-24|village council meeting": [
+    {
+      "topic_title": "Employee Recognition Award - Carl Willis - Public Works",
+      "category": "Other Governance Matters",
+      "description": "An employee recognition award presented to Carl Willis from the Public Works department.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-24",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+      "topic_title": "Proclamation - Hispanic Heritage Month",
+      "category": "Other Governance Matters",
+      "description": "A mayoral proclamation recognizing Hispanic Heritage Month.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-24",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+      "topic_title": "Palm Beach County Property Appraiser - Dorothy Jacks, CFA, AAS",
+      "category": "Other Governance Matters",
+      "description": "A presentation and discussion with Palm Beach County Property Appraiser Dorothy Jacks.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-24",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+      "topic_title": "East Alley Wall Replacement Project",
+      "category": "Budget & Finance",
+      "description": "Approval of final payment and retainage release in the amount of $96,986.81 payable to Lox Construction LLC for the East Alley Wall Replacement Project.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-24",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+      "topic_title": "State Aid to Libraries Grant Funding",
+      "category": "Budget & Finance",
+      "description": "Approval of a resolution submitting an application for State Aid to Libraries Grant Funding, providing required assurances and certifications, and authorizing the execution of a grant agreement.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-24",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+      "topic_title": "First Florida Insurance Brokers",
+      "category": "Budget & Finance",
+      "description": "Acceptance of a proposal from First Florida Insurance Brokers to provide Property, Casualty and Workers' Compensation insurance through Public Risk Management of Florida.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-09-24",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    }
+  ]
 }
