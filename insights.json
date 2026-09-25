@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-24T00:20:29.617283+00:00",
+  "generated_at": "2026-09-25T00:21:24.271621+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 301,
+  "historical_meetings_scanned": 299,
   "insights": [
     {
       "theme_title": "LPA Ordinance 2026-02",
@@ -325,7 +325,7 @@
       "reasons": [
         "recurring_across_municipalities"
       ],
-      "starred": false,
+      "starred": true,
       "rank": 6
     },
     {

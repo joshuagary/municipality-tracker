@@ -919,5 +919,50 @@
       }
     },
     "detected_at": "2026-09-24T00:17:56.313266+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-10-19",
+    "type": "added",
+    "time": "4:00 PM",
+    "detected_at": "2026-09-25T00:18:46.664068+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop September 24, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-09-24",
+    "time": "5:30 PM",
+    "type": "removed",
+    "detected_at": "2026-09-25T00:18:46.664068+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-10-05",
+    "time": "4:00 PM",
+    "type": "removed",
+    "detected_at": "2026-09-25T00:18:46.664068+00:00"
+  },
+  {
+    "muni_short": "GULFSTREAM",
+    "muni_full": "Town of Gulf Stream",
+    "title": "TOWN COMMISSION FINAL BUDGET HEARING",
+    "date": "2026-09-23",
+    "time": "5:01 PM",
+    "type": "removed",
+    "detected_at": "2026-09-25T00:18:46.664068+00:00"
+  },
+  {
+    "muni_short": "GULFSTREAM",
+    "muni_full": "Town of Gulf Stream",
+    "title": "Architectural Review and Planning Board Meeting",
+    "date": "2026-09-24",
+    "time": "8:30 AM",
+    "type": "removed",
+    "detected_at": "2026-09-25T00:18:46.664068+00:00"
   }
 ]
