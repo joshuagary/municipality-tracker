@@ -1,319 +1,6 @@
 {
   "runs": [
     {
-      "date": "2026-09-19",
-      "generated_at": "2026-09-19T00:23:09.381568+00:00",
-      "theme_keys": [
-        [
-          "Zoning & Land Use",
-          "202602lpaordinance"
-        ],
-        [
-          "Other Governance Matters",
-          "202603ordinance"
-        ],
-        [
-          "Other Governance Matters",
-          "202607resolution"
-        ],
-        [
-          "Other Governance Matters",
-          "202605resolution"
-        ],
-        [
-          "Zoning & Land Use",
-          "136drivelighthouse"
-        ],
-        [
-          "Budget & Finance",
-          "20252026amendmentbudgetfiscalyear"
-        ],
-        [
-          "Other Governance Matters",
-          "agreementamendmentbeachcommunicationsconsortiumcountyestablishfifthinterlocalmunicipalpalmpublicsafetythe"
-        ],
-        [
-          "Community Redevelopment (CRA)",
-          "700800atlanticavenueblockswest"
-        ],
-        [
-          "Budget & Finance",
-          "2027andbudgetestimatesmillagerate"
-        ],
-        [
-          "Other Governance Matters",
-          "502026cc007883xxambcase"
-        ],
-        [
-          "Zoning & Land Use",
-          "202609ordinance"
-        ],
-        [
-          "Zoning & Land Use",
-          "202608ordinance"
-        ],
-        [
-          "Budget & Finance",
-          "2026aprilcrafinancialreport"
-        ],
-        [
-          "Budget & Finance",
-          "2027budgetcityproposedwestlake"
-        ],
-        [
-          "Budget & Finance",
-          "20262027budgetoperating"
-        ],
-        [
-          "Other Governance Matters",
-          "24001projectpublicworks"
-        ],
-        [
-          "Other Governance Matters",
-          "appointmentschartercommitteereview"
-        ],
-        [
-          "Other Governance Matters",
-          "202605ordinance"
-        ],
-        [
-          "Community Redevelopment (CRA)",
-          "3133rdstreet"
-        ],
-        [
-          "Zoning & Land Use",
-          "401driveolympus"
-        ]
-      ],
-      "insights": [
-        {
-          "rank": 1,
-          "theme_title": "LPA Ordinance 2026-02",
-          "category": "Zoning & Land Use",
-          "confidence": 85,
-          "starred": true,
-          "municipalities": [
-            "JUIC",
-            "WESTLAKE"
-          ],
-          "occurrence_count": 4
-        },
-        {
-          "rank": 2,
-          "theme_title": "Ordinance 2026-03",
-          "category": "Other Governance Matters",
-          "confidence": 75,
-          "starred": true,
-          "municipalities": [
-            "JUIC",
-            "WESTLAKE"
-          ],
-          "occurrence_count": 3
-        },
-        {
-          "rank": 3,
-          "theme_title": "Resolution No. 2026-07",
-          "category": "Other Governance Matters",
-          "confidence": 70,
-          "starred": true,
-          "municipalities": [
-            "JUIC",
-            "JUNOBEACH"
-          ],
-          "occurrence_count": 3
-        },
-        {
-          "rank": 4,
-          "theme_title": "Resolution 2026-05",
-          "category": "Other Governance Matters",
-          "confidence": 65,
-          "starred": true,
-          "municipalities": [
-            "JUIC"
-          ],
-          "occurrence_count": 4
-        },
-        {
-          "rank": 5,
-          "theme_title": "136 Lighthouse Drive",
-          "category": "Zoning & Land Use",
-          "confidence": 65,
-          "starred": true,
-          "municipalities": [
-            "JUIC"
-          ],
-          "occurrence_count": 4
-        },
-        {
-          "rank": 6,
-          "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
-          "category": "Budget & Finance",
-          "confidence": 60,
-          "starred": false,
-          "municipalities": [
-            "DELRAY",
-            "JUIC"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 7,
-          "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
-          "category": "Other Governance Matters",
-          "confidence": 60,
-          "starred": true,
-          "municipalities": [
-            "JUIC",
-            "NPB"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 8,
-          "theme_title": "SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE",
-          "category": "Community Redevelopment (CRA)",
-          "confidence": 60,
-          "starred": false,
-          "municipalities": [
-            "DELRAY"
-          ],
-          "occurrence_count": 4
-        },
-        {
-          "rank": 9,
-          "theme_title": "FY 2027 Millage Rate and Budget Estimates",
-          "category": "Budget & Finance",
-          "confidence": 35,
-          "starred": true,
-          "municipalities": [
-            "JUIC"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 10,
-          "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
-          "category": "Other Governance Matters",
-          "confidence": 35,
-          "starred": true,
-          "municipalities": [
-            "JUIC"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 11,
-          "theme_title": "Ordinance 2026-09",
-          "category": "Zoning & Land Use",
-          "confidence": 35,
-          "starred": true,
-          "municipalities": [
-            "WESTLAKE"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 12,
-          "theme_title": "Ordinance 2026-08",
-          "category": "Zoning & Land Use",
-          "confidence": 35,
-          "starred": true,
-          "municipalities": [
-            "WESTLAKE"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 13,
-          "theme_title": "CRA FINANCIAL REPORT - April 2026",
-          "category": "Budget & Finance",
-          "confidence": 30,
-          "starred": false,
-          "municipalities": [
-            "DELRAY"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 14,
-          "theme_title": "City of Westlake Proposed Budget FY 2027",
-          "category": "Budget & Finance",
-          "confidence": 30,
-          "starred": true,
-          "municipalities": [
-            "WESTLAKE"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 15,
-          "theme_title": "2026-2027 Operating Budget",
-          "category": "Budget & Finance",
-          "confidence": 30,
-          "starred": true,
-          "municipalities": [
-            "WESTLAKE"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 16,
-          "theme_title": "Public Works Project No. 24-001",
-          "category": "Other Governance Matters",
-          "confidence": 30,
-          "starred": true,
-          "municipalities": [
-            "DELRAY"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 17,
-          "theme_title": "Charter Review Committee Appointments",
-          "category": "Other Governance Matters",
-          "confidence": 30,
-          "starred": true,
-          "municipalities": [
-            "NPB"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 18,
-          "theme_title": "Ordinance 2026-05",
-          "category": "Other Governance Matters",
-          "confidence": 30,
-          "starred": true,
-          "municipalities": [
-            "NPB"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 19,
-          "theme_title": "313 NE 3rd Street",
-          "category": "Community Redevelopment (CRA)",
-          "confidence": 30,
-          "starred": false,
-          "municipalities": [
-            "DELRAY"
-          ],
-          "occurrence_count": 2
-        },
-        {
-          "rank": 20,
-          "theme_title": "401 Olympus Drive",
-          "category": "Zoning & Land Use",
-          "confidence": 30,
-          "starred": true,
-          "municipalities": [
-            "JUNOBEACH"
-          ],
-          "occurrence_count": 2
-        }
-      ]
-    },
-    {
       "date": "2026-09-20",
       "generated_at": "2026-09-20T00:20:46.875997+00:00",
       "theme_keys": [
@@ -1582,6 +1269,365 @@
     {
       "date": "2026-09-25",
       "generated_at": "2026-09-25T00:21:24.273462+00:00",
+      "theme_keys": [
+        [
+          "Zoning & Land Use",
+          "202602lpaordinance"
+        ],
+        [
+          "Other Governance Matters",
+          "202607resolution"
+        ],
+        [
+          "Zoning & Land Use",
+          "401driveolympus"
+        ],
+        [
+          "Zoning & Land Use",
+          "136drivelighthouse"
+        ],
+        [
+          "Budget & Finance",
+          "20252026amendmentbudgetfiscalyear"
+        ],
+        [
+          "Other Governance Matters",
+          "beachcommissioncountyethicsmemorandumpalmunderstanding"
+        ],
+        [
+          "Other Governance Matters",
+          "202603ordinance"
+        ],
+        [
+          "Other Governance Matters",
+          "agreementamendmentbeachcommunicationsconsortiumcountyestablishfifthinterlocalmunicipalpalmpublicsafetythe"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "700800atlanticavenueblockswest"
+        ],
+        [
+          "Budget & Finance",
+          "2027andbudgetestimatesmillagerate"
+        ],
+        [
+          "Other Governance Matters",
+          "502026cc007883xxambcase"
+        ],
+        [
+          "Zoning & Land Use",
+          "202609ordinance"
+        ],
+        [
+          "Zoning & Land Use",
+          "202608ordinance"
+        ],
+        [
+          "Zoning & Land Use",
+          "chaptercodeordinances"
+        ],
+        [
+          "Budget & Finance",
+          "2026aprilcrafinancialreport"
+        ],
+        [
+          "Budget & Finance",
+          "2027budgetcityproposedwestlake"
+        ],
+        [
+          "Budget & Finance",
+          "20262027budgetoperating"
+        ],
+        [
+          "Other Governance Matters",
+          "24001projectpublicworks"
+        ],
+        [
+          "Other Governance Matters",
+          "constructionenvironmentalllcsonswynn"
+        ],
+        [
+          "Other Governance Matters",
+          "202605resolution"
+        ],
+        [
+          "Other Governance Matters",
+          "appointmentschartercommitteereview"
+        ],
+        [
+          "Other Governance Matters",
+          "202605ordinance"
+        ],
+        [
+          "Community Redevelopment (CRA)",
+          "3133rdstreet"
+        ]
+      ],
+      "insights": [
+        {
+          "rank": 1,
+          "theme_title": "LPA Ordinance 2026-02",
+          "category": "Zoning & Land Use",
+          "confidence": 85,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "WESTLAKE"
+          ],
+          "occurrence_count": 4
+        },
+        {
+          "rank": 2,
+          "theme_title": "Resolution No. 2026-07",
+          "category": "Other Governance Matters",
+          "confidence": 70,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 3
+        },
+        {
+          "rank": 3,
+          "theme_title": "401 Olympus Drive",
+          "category": "Zoning & Land Use",
+          "confidence": 65,
+          "starred": true,
+          "municipalities": [
+            "JUNOBEACH"
+          ],
+          "occurrence_count": 4
+        },
+        {
+          "rank": 4,
+          "theme_title": "136 Lighthouse Drive",
+          "category": "Zoning & Land Use",
+          "confidence": 65,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 4
+        },
+        {
+          "rank": 5,
+          "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
+          "category": "Budget & Finance",
+          "confidence": 60,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "JUIC"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 6,
+          "theme_title": "Palm Beach County Commission on Ethics Memorandum of Understanding",
+          "category": "Other Governance Matters",
+          "confidence": 60,
+          "starred": true,
+          "municipalities": [
+            "DELRAY",
+            "NPB"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 7,
+          "theme_title": "Ordinance 2026-03",
+          "category": "Other Governance Matters",
+          "confidence": 60,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "WESTLAKE"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 8,
+          "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
+          "category": "Other Governance Matters",
+          "confidence": 60,
+          "starred": true,
+          "municipalities": [
+            "JUIC",
+            "NPB"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 9,
+          "theme_title": "SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 60,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 4
+        },
+        {
+          "rank": 10,
+          "theme_title": "FY 2027 Millage Rate and Budget Estimates",
+          "category": "Budget & Finance",
+          "confidence": 35,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 11,
+          "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
+          "category": "Other Governance Matters",
+          "confidence": 35,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 12,
+          "theme_title": "Ordinance 2026-09",
+          "category": "Zoning & Land Use",
+          "confidence": 35,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 13,
+          "theme_title": "Ordinance 2026-08",
+          "category": "Zoning & Land Use",
+          "confidence": 35,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 14,
+          "theme_title": "Code of Ordinances Chapter 4",
+          "category": "Zoning & Land Use",
+          "confidence": 35,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 15,
+          "theme_title": "CRA FINANCIAL REPORT - April 2026",
+          "category": "Budget & Finance",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 16,
+          "theme_title": "City of Westlake Proposed Budget FY 2027",
+          "category": "Budget & Finance",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 17,
+          "theme_title": "2026-2027 Operating Budget",
+          "category": "Budget & Finance",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "WESTLAKE"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 18,
+          "theme_title": "Public Works Project No. 24-001",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 19,
+          "theme_title": "Wynn & Sons Environmental Construction Co. LLC",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 20,
+          "theme_title": "Resolution 2026-05",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "JUIC"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 21,
+          "theme_title": "Charter Review Committee Appointments",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "NPB"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 22,
+          "theme_title": "Ordinance 2026-05",
+          "category": "Other Governance Matters",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "NPB"
+          ],
+          "occurrence_count": 2
+        },
+        {
+          "rank": 23,
+          "theme_title": "313 NE 3rd Street",
+          "category": "Community Redevelopment (CRA)",
+          "confidence": 30,
+          "starred": true,
+          "municipalities": [
+            "DELRAY"
+          ],
+          "occurrence_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2026-09-26",
+      "generated_at": "2026-09-26T00:19:14.945688+00:00",
       "theme_keys": [
         [
           "Zoning & Land Use",
