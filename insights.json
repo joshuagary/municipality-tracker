@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T00:19:14.943713+00:00",
+  "generated_at": "2026-09-27T00:21:51.510088+00:00",
   "lookback_months": 6,
   "historical_meetings_scanned": 299,
   "insights": [
@@ -241,50 +241,6 @@
       "rank": 4
     },
     {
-      "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "DELRAY",
-        "JUIC"
-      ],
-      "cross_municipality": true,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-08-27",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4642&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Consideration of Delray Beach Community Redevelopment Agency Budget Amendment No. 2 for Fiscal Year 2025-2026.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Budget Workshop",
-          "date": "2026-06-16",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
-          "description": "Presentation covering the overview of Fiscal Year 2025/2026.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 60,
-      "reasons": [
-        "recurring_across_municipalities"
-      ],
-      "starred": true,
-      "rank": 5
-    },
-    {
       "theme_title": "Palm Beach County Commission on Ethics Memorandum of Understanding",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -326,7 +282,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 5
     },
     {
       "theme_title": "Ordinance 2026-03",
@@ -370,7 +326,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 6
     },
     {
       "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
@@ -414,7 +370,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 7
     },
     {
       "theme_title": "SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE",
@@ -473,6 +429,50 @@
       "confidence": 60,
       "reasons": [
         "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 8
+    },
+    {
+      "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "DELRAY",
+        "JUIC"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-08-27",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4642&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of Delray Beach Community Redevelopment Agency Budget Amendment No. 2 for Fiscal Year 2025-2026.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Budget Workshop",
+          "date": "2026-06-16",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
+          "description": "Presentation covering the overview of Fiscal Year 2025/2026.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 55,
+      "reasons": [
+        "recurring_across_municipalities"
       ],
       "starred": true,
       "rank": 9
