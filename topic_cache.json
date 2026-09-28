@@ -4057,5 +4057,109 @@
       "date": "2026-09-24",
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
     }
+  ],
+  "WPB|2026-09-28|city commission meeting": [],
+  "DELRAY|2026-09-28|planning and zoning board": [
+    {
+      "topic_title": "File No. PZ-000824-2026 and File No. PZ-000825-2026 (116 SW 5th Avenue)",
+      "category": "Zoning & Land Use",
+      "description": "Provide a recommendation to the City Commission on a small-scale Land Use Map Amendment from Commercial Core to Medium Density Residential (Ordinance No. 44-26) and a rezoning from Central Business District to Medium Density Residential (Ordinance No. 45-26) for a 0.24-acre parcel located at 116 SW 5th Avenue.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-09-28",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4452&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "File No. PZ-000741-2026 (1405, 1455, and 1515 N. Congress Avenue)",
+      "category": "Zoning & Land Use",
+      "description": "Provide a recommendation to the City Commission on a privately-initiated rezoning from Planned Commerce Center to Mixed Industrial and Commercial (Ordinance No. 46-26) for a 5.11-acre parcel located on the east side of North Congress Avenue.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-09-28",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4452&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Atlantic Crossing - Building V (PZ-000386-2026)",
+      "category": "Housing & Development",
+      "description": "Consideration of a Level 3 Site Plan Modification for Phase II of Atlantic Crossing, which includes the reduction in the total number of units for the project.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-09-28",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4452&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "MANALAPAN|2026-09-28|town commission meeting \u2013 4:30 pm": [
+    {
+      "topic_title": "Ordinance #408",
+      "category": "Zoning & Land Use",
+      "description": "Consideration and public hearing for an ordinance amending the Comprehensive Development Plan to adopt an updated ten-year water supply facilities work plan pursuant to Florida Statutes.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "RES 07-2026",
+      "category": "Budget & Finance",
+      "description": "Consent agenda item concerning updated utility rates for the Town of Manalapan.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "Variance-VAR-26-06 \u2013 1940 S. Ocean Blvd.",
+      "category": "Zoning & Land Use",
+      "description": "Quasi-judicial hearing for a variance request by the David F. MacNeil Trust, represented by Affinity Architects, regarding aggregate side yard width requirements following the acquisition and unification of an adjacent lot.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "ARCOM Vacancy Appointment",
+      "category": "Other Governance Matters",
+      "description": "New business discussion regarding an appointment to fill a vacancy on the ARCOM board.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "Pension Board discussion surrounding employee buy back options",
+      "category": "Budget & Finance",
+      "description": "New business discussion held by the Pension Board concerning employee buy-back options.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "Currie Sowards Aguila Architects presentation regarding new Town Hall",
+      "category": "Other Governance Matters",
+      "description": "New business presentation delivered by Currie Sowards Aguila Architects regarding the new Town Hall project.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    }
   ]
 }
