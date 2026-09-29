@@ -4161,5 +4161,18 @@
       "date": "2026-09-28",
       "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
     }
+  ],
+  "PBC|2026-09-29|board of county commissioners meeting": [
+    {
+      "topic_title": "CityPlace South Tower II, LLC / 940 South Rosemary Avenue",
+      "category": "Housing & Development",
+      "description": "Approval of a Purchase and Sale Agreement, Memorandum of Purchase and Sale Agreement, Termination of Convention Center Hotel Garage Easement, and Hotel Lease with CityPlace South Tower II, LLC for the acquisition of approximately 1.80 acres of land at 940 South Rosemary Avenue in West Palm Beach to develop an 18-story, 400-room hotel supporting the Palm Beach County Convention Center.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-09-29",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260929.pdf"
+    }
   ]
 }
