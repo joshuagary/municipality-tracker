@@ -1939,30 +1939,6 @@
       "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
     }
   ],
-  "PBC|2026-09-01|board of county commissioners meeting": [
-    {
-      "topic_title": "Airports Improvement & Development Fund Budget Amendment and Transfer",
-      "category": "Budget & Finance",
-      "description": "Approve a Budget Amendment of $24,970,894 in the Airport's Improvement & Development Fund to recognize FAA Grant funding and PFC revenue, and a Budget Transfer of $1,978,340 in the PFC Fund to the Improvement & Development Fund.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-01",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
-    },
-    {
-      "topic_title": "Palm Beach County, et al., v. Federal Aviation Administration",
-      "category": "Other Governance Matters",
-      "description": "Staff recommends a motion to commence a private attorney-client session to discuss litigation strategy related to litigation expenses in the pending lawsuit against the Federal Aviation Administration.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-01",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260901.pdf"
-    }
-  ],
   "DELRAY|2026-03-24|community redevelopment agency": [
     {
       "topic_title": "File # 26-0046",
@@ -4174,5 +4150,6 @@
       "date": "2026-09-29",
       "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260929.pdf"
     }
-  ]
+  ],
+  "JUNOBEACH|2026-09-30|town council workshop - strategic plan": []
 }
