@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-30T04:34:04.642161+00:00",
+  "generated_at": "2026-10-01T04:47:37.508520+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 303,
+  "historical_meetings_scanned": 279,
   "insights": [
     {
       "theme_title": "LPA Ordinance 2026-02",
@@ -241,67 +241,6 @@
       "rank": 4
     },
     {
-      "theme_title": "SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 4,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Delray Beach (2026-03-24), City of Delray Beach (2026-03-24), City of Delray Beach (2026-03-24)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-05-26",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4641&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Discussion and direction regarding the Request for Proposals (RFP) for the development of the SW 700 & 800 blocks of West Atlantic Avenue.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-03-24",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Direction regarding the development of the SW 600 block of West Atlantic Avenue.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-03-24",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Discussion and direction regarding the development of the NW 800 block of West Atlantic Avenue.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-03-24",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Discussion and direction regarding the development of the SW 700 - 800 blocks of West Atlantic Avenue.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 60,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 5
-    },
-    {
       "theme_title": "Palm Beach County Commission on Ethics Memorandum of Understanding",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -343,7 +282,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 5
     },
     {
       "theme_title": "Ordinance 2026-03",
@@ -387,7 +326,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 6
     },
     {
       "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
@@ -431,7 +370,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 7
     },
     {
       "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
@@ -475,7 +414,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 8
     },
     {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
@@ -518,50 +457,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
-    },
-    {
-      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-09-08",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
-          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
-          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 11
+      "rank": 9
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -604,7 +500,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 10
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -647,7 +543,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 11
     },
     {
       "theme_title": "Code of Ordinances Chapter 4",
@@ -690,7 +586,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 12
+    },
+    {
+      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 13
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -733,7 +672,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 14
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -776,7 +715,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 15
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -819,50 +758,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
-    },
-    {
-      "theme_title": "313 NE 3rd Street",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Delray Beach (2026-04-28)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-07-23",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Approval of the third amendment to the construction services agreement with Waypoint Contracting, Inc. in an amount not to exceed $231,804.26, for additional construction services needed for roof repairs, bringing the total contract amount to not exceed $1,118,692.29 for the CRA-owned building.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-04-28",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4586&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Approval of the Second Amendment to the Construction Services Agreement with Waypoint Contracting, Inc. in an amount not to exceed $34,402.03 for interior concrete floor repairs, bringing the total contract sum not to exceed $886,888.03 for the CRA-owned building.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 18
+      "rank": 16
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -905,7 +801,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 19
+      "rank": 17
     },
     {
       "theme_title": "Wynn & Sons Environmental Construction Co. LLC",
@@ -948,7 +844,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 20
+      "rank": 18
     },
     {
       "theme_title": "Resolution 2026-05",
@@ -991,7 +887,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 21
+      "rank": 19
     },
     {
       "theme_title": "Charter Review Committee Appointments",
@@ -1034,7 +930,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 22
+      "rank": 20
     },
     {
       "theme_title": "Ordinance 2026-05",
@@ -1077,7 +973,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 23
+      "rank": 21
+    },
+    {
+      "theme_title": "313 NE 3rd Street",
+      "category": "Community Redevelopment (CRA)",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-04-28)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-07-23",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Approval of the third amendment to the construction services agreement with Waypoint Contracting, Inc. in an amount not to exceed $231,804.26, for additional construction services needed for roof repairs, bringing the total contract amount to not exceed $1,118,692.29 for the CRA-owned building.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-04-28",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4586&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Approval of the Second Amendment to the Construction Services Agreement with Waypoint Contracting, Inc. in an amount not to exceed $34,402.03 for interior concrete floor repairs, bringing the total contract sum not to exceed $886,888.03 for the CRA-owned building.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 22
     }
   ]
 }

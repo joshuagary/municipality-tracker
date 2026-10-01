@@ -1042,5 +1042,869 @@
     "time": "9:30 AM",
     "type": "removed",
     "detected_at": "2026-09-30T04:31:30.497309+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-09",
+    "type": "added",
+    "time": "05:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-23",
+    "type": "added",
+    "time": "05:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Mayor/Commission Work Session",
+    "date": "2026-11-02",
+    "type": "added",
+    "time": "10:00 AM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Planning Board",
+    "date": "2026-11-17",
+    "type": "added",
+    "time": "06:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Planning & Zoning Board",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Community Redevelopment Agency/City Council Workshop",
+    "date": "2026-11-09",
+    "type": "added",
+    "time": "1:30 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "City Council Regular Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Boca Raton Airport Authority",
+    "date": "2026-11-18",
+    "type": "added",
+    "time": "5:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Planning & Zoning Board",
+    "date": "2026-11-19",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Community Redevelopment Agency/City Council Workshop",
+    "date": "2026-11-23",
+    "type": "added",
+    "time": "1:30 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "City Council Regular Meeting",
+    "date": "2026-11-24",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-03",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-17",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "CRA Advisory Board Meeting",
+    "date": "2026-11-18",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-19",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PBG",
+    "muni_full": "City of Palm Beach Gardens",
+    "title": "City Council Meeting",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-10-08",
+    "type": "added",
+    "time": "4:30 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-10-13",
+    "type": "added",
+    "time": "6:30 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Planning and Zoning Commission Meeting",
+    "date": "2026-11-03",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-11-09",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Development Review Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-11-11",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Special Meeting",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "7:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-11-17",
+    "type": "added",
+    "time": "7:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting \u2013 Cancelled",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "GULFSTREAM",
+    "muni_full": "Town of Gulf Stream",
+    "title": "Regular Town Commission Meeting",
+    "date": "2026-11-13",
+    "type": "added",
+    "time": "9:00 AM",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-09-14",
+    "time": "05:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-09-28",
+    "time": "05:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Planning Board",
+    "date": "2026-09-15",
+    "time": "06:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "Board of County Commissioners Meeting",
+    "date": "2026-09-29",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "Board of County Commissioners Meeting",
+    "date": "2026-09-15",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Planning & Zoning Board",
+    "date": "2026-09-03",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting",
+    "date": "2026-09-08",
+    "time": "10:00 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "CANCELED - Planning & Zoning Board",
+    "date": "2026-09-17",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Community Redevelopment Agency/City Council Workshop/City Council Regular Meeting",
+    "date": "2026-09-22",
+    "time": "10:00 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Boca Raton Airport Authority",
+    "date": "2026-09-23",
+    "time": "5:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Boca Raton Housing Authority Workshop",
+    "date": "2026-09-29",
+    "time": "5:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Boca Raton Housing Authority",
+    "date": "2026-09-30",
+    "time": "5:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting - CANCELLED",
+    "date": "2026-09-01",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-09-10",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-09-16",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "CRA Advisory Board Meeting",
+    "date": "2026-09-16",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-09-24",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-09-28",
+    "time": "5:01 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Board of Adjustment",
+    "date": "2026-09-03",
+    "time": "5:01 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "City Commission",
+    "date": "2026-09-08",
+    "time": "4:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "City Commission",
+    "date": "2026-09-22",
+    "time": "3:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Community Redevelopment Agency",
+    "date": "2026-09-24",
+    "time": "4:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "City Commission",
+    "date": "2026-09-01",
+    "time": "4:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PBG",
+    "muni_full": "City of Palm Beach Gardens",
+    "title": "City Council Meeting",
+    "date": "2026-09-10",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PBG",
+    "muni_full": "City of Palm Beach Gardens",
+    "title": "City Council Meeting",
+    "date": "2026-09-24",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-09-03",
+    "time": "4:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-09-08",
+    "time": "6:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-09-17",
+    "time": "4:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-09-22",
+    "time": "6:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Final Budget Hearing",
+    "date": "2026-09-14",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Special Meeting",
+    "date": "2026-09-14",
+    "time": "5:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council First Budget Hearing",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Workshop - Strategic Planning",
+    "date": "2026-09-08",
+    "time": "4:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Regular Meeting",
+    "date": "2026-09-01",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DDA-WPB",
+    "muni_full": "Downtown WPB DDA",
+    "title": "Downtown Development Authority (DDA) Board Meeting",
+    "date": "2026-09-22",
+    "time": "5:05 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DDA-WPB",
+    "muni_full": "Downtown WPB DDA",
+    "title": "Downtown Development Authority (DDA) Board Meeting",
+    "date": "2026-09-15",
+    "time": "8:30 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "DDA-WPB",
+    "muni_full": "Downtown WPB DDA",
+    "title": "Downtown Development Authority (DDA) Board Meeting",
+    "date": "2026-09-10",
+    "time": "5:05 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Planning and Zoning Commission Meeting",
+    "date": "2026-09-01",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-09-08",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Special Town Council Meeting - Budget",
+    "date": "2026-09-08",
+    "time": "5:01 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-09-09",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Development Review Meeting",
+    "date": "2026-09-09",
+    "time": "9:45 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Special Town Council Meeting - Budget",
+    "date": "2026-09-17",
+    "time": "5:01 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Community Redevelopment Agency (CRA) Regular Meeting",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Special Meeting",
+    "date": "2026-09-08",
+    "time": "7:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Workshop",
+    "date": "2026-09-17",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Community Redevelopment Agency (CRA) Regular Meeting",
+    "date": "2026-09-22",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Special Meeting",
+    "date": "2026-09-22",
+    "time": "7:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Planning and Zoning Board Meeting",
+    "date": "2026-09-24",
+    "time": "6:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "City Council",
+    "date": "2026-09-22",
+    "time": "5:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Planning and Zoning Board Meeting",
+    "date": "2026-09-10",
+    "time": "6:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Community Redevelopment Agency",
+    "date": "2026-09-09",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "City Council",
+    "date": "2026-09-02",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Town Council Workshop - Strategic Plan",
+    "date": "2026-09-30",
+    "time": "3:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-09-23",
+    "time": "5:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-09-21",
+    "time": "4:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-09-08",
+    "time": "5:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-14",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Regular Town Commission Meeting",
+    "date": "2026-09-14",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Special Town Commission Meeting",
+    "date": "2026-09-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-09-17",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting \u2013 5:01 PM",
+    "date": "2026-09-08",
+    "time": "5:01 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting \u2013 4:30 PM",
+    "date": "2026-09-28",
+    "time": "4:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-09-24",
+    "time": "4:54 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-09-10",
+    "time": "10:57 AM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning, and Adjustment Board - CANCELED",
+    "date": "2026-09-01",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-01T04:43:25.254551+00:00"
   }
 ]

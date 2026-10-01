@@ -25,13 +25,6 @@
   "BOCA|2026-04-22|boca raton airport authority": [],
   "BOCA|2026-04-27|community redevelopment agency/city council workshop": [],
   "BOCA|2026-04-28|city council regular meeting": [],
-  "BOCA|2026-03-05|planning & zoning board": [],
-  "BOCA|2026-03-18|boca raton airport authority": [],
-  "BOCA|2026-03-19|planning & zoning board": [],
-  "BOCA|2026-03-23|community redevelopment agency/city council workshop": [],
-  "BOCA|2026-03-24|boca raton housing authority workshop": [],
-  "BOCA|2026-03-24|city council regular meeting": [],
-  "BOCA|2026-03-31|city council organizational meeting": [],
   "BOYNTON|2026-08-11|boynton beach community redevelopment agency (bbcra) board monthly meeting": [],
   "BOYNTON|2026-08-19|cra advisory board meeting": [],
   "BOYNTON|2026-08-20|city commission agenda review workshop": [],
@@ -62,18 +55,12 @@
   "BOYNTON|2026-04-21|city commission meeting": [],
   "BOYNTON|2026-04-21|joint cra board/city commission meeting": [],
   "BOYNTON|2026-04-30|city commission agenda review workshop": [],
-  "BOYNTON|2026-03-03|city commission meeting": [],
-  "BOYNTON|2026-03-09|boynton beach community redevelopment agency (bbcra) board monthly meeting": [],
-  "BOYNTON|2026-03-18|cra advisory board meeting": [],
-  "BOYNTON|2026-03-23|city commission meeting": [],
-  "BOYNTON|2026-03-26|city commission comprehensive plan workshop": [],
   "PBG|2026-08-06|city council meeting": [],
   "PBG|2026-08-27|city council workshop": [],
   "PBG|2026-07-09|city council meeting": [],
   "PBG|2026-06-04|city council meeting": [],
   "PBG|2026-05-07|city council meeting": [],
   "PBG|2026-04-07|city council meeting": [],
-  "PBG|2026-03-05|city council meeting": [],
   "JUP|2026-08-06|town council special meeting": [],
   "JUP|2026-08-13|community redevelopment agency (cra) workshop": [],
   "JUP|2026-08-13|town council budget workshop": [],
@@ -90,12 +77,6 @@
   "JUP|2026-04-07|town council regular meeting": [],
   "JUP|2026-04-21|community redevelopment agency (cra) regular meeting": [],
   "JUP|2026-04-21|town council regular meeting": [],
-  "JUP|2026-03-03|town council regular meeting": [],
-  "JUP|2026-03-17|community redevelopment agency (cra) regular meeting": [],
-  "JUP|2026-03-17|town council regular meeting": [],
-  "WPB|2026-03-02|city commission meeting": [],
-  "WPB|2026-03-16|city commission meeting": [],
-  "WPB|2026-03-30|city commission meeting": [],
   "WPB|2026-04-13|city commission meeting": [],
   "WPB|2026-04-27|city commission meeting": [],
   "WPB|2026-05-11|city commission meeting": [],
@@ -107,8 +88,6 @@
   "WPB|2026-08-03|city commission meeting": [],
   "WPB|2026-08-17|city commission meeting": [],
   "WPB|2026-08-31|city commission meeting": [],
-  "WPB|2026-03-09|mayor/commission work session": [],
-  "WPB|2026-03-23|mayor/commission work session": [],
   "WPB|2026-04-06|mayor/commission work session": [],
   "WPB|2026-04-20|mayor/commission work session": [],
   "WPB|2026-05-04|mayor/commission work session": [],
@@ -525,12 +504,6 @@
   "DDA-WPB|2026-06-16|downtown development authority (dda) board meeting": [],
   "DDA-WPB|2026-05-19|downtown development authority (dda) board meeting": [],
   "DDA-WPB|2026-04-21|downtown development authority (dda) board meeting": [],
-  "DDA-WPB|2026-03-17|downtown development authority (dda) board meeting": [],
-  "PALMBEACH|2026-03-02|planning and zoning commission meeting": [],
-  "PALMBEACH|2026-03-03|town council regular meeting": [],
-  "PALMBEACH|2026-03-04|local planning agency (lpa)": [],
-  "PALMBEACH|2026-03-04|town council development review meeting": [],
-  "PALMBEACH|2026-03-30|special town council meeting": [],
   "PALMBEACH|2026-04-07|planning and zoning commission meeting": [],
   "PALMBEACH|2026-04-14|town council regular meeting": [],
   "RIVBEACH|2026-09-02|city council": [],
@@ -556,13 +529,6 @@
   "RIVBEACH|2026-04-22|community redevelopment agency": [],
   "RIVBEACH|2026-04-15|city council": [],
   "RIVBEACH|2026-04-13|city council": [],
-  "RIVBEACH|2026-03-26|planning and zoning board meeting": [],
-  "RIVBEACH|2026-03-26|city council workshop": [],
-  "RIVBEACH|2026-03-25|community redevelopment agency": [],
-  "RIVBEACH|2026-03-18|city council": [],
-  "RIVBEACH|2026-03-12|planning and zoning board meeting": [],
-  "RIVBEACH|2026-03-11|city council workshop": [],
-  "RIVBEACH|2026-03-04|city council": [],
   "JUNOBEACH|2026-08-26|town council regular meeting": [],
   "JUNOBEACH|2026-08-19|town council budget workshop #2": [
     {
@@ -768,7 +734,6 @@
   ],
   "JUNOBEACH|2026-04-07|special town council meeting": [],
   "JUNOBEACH|2026-04-06|planning and zoning board": [],
-  "JUNOBEACH|2026-03-25|town council regular meeting": [],
   "MANALAPAN|2026-05-12|town commission meeting": [
     {
       "topic_title": "Ordinance #401",
@@ -1083,147 +1048,9 @@
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_04232026-1329"
     }
   ],
-  "NPB|2026-03-26|village council meeting": [
-    {
-      "topic_title": "Change Order 1A (Marina Drive Roadway Improvements)",
-      "category": "Budget & Finance",
-      "description": "Approval and ratification of Change Order 1A in an amount not to exceed $920.00 to provide water quality monitoring associated with the Marina Drive Roadway Improvements, and authorization for the Village Manager to execute the Work Change Directive.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Village Council Meeting",
-      "date": "2026-03-26",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03262026-1321"
-    },
-    {
-      "topic_title": "Village Manager Merit Increase",
-      "category": "Other Governance Matters",
-      "description": "Approval of a 4% merit increase for the Village Manager based on the total score of each Councilmember's performance evaluation.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Village Council Meeting",
-      "date": "2026-03-26",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03262026-1321"
-    },
-    {
-      "topic_title": "FY 2025 Audit Report",
-      "category": "Budget & Finance",
-      "description": "Consideration of a resolution to adopt and accept the Annual Comprehensive Financial Report prepared by the Village Auditor for the Fiscal Year ending September 30, 2025, and authorization to file it with the State.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Village Council Meeting",
-      "date": "2026-03-26",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03262026-1321"
-    },
-    {
-      "topic_title": "Charter Review",
-      "category": "Other Governance Matters",
-      "description": "Discussion by the Mayor and Council regarding the Village Charter review.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Village Council Meeting",
-      "date": "2026-03-26",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03262026-1321"
-    }
-  ],
-  "NPB|2026-03-12|village council meeting": [
-    {
-      "topic_title": "Business of the Season Award - Winter - Hobo's Cafe",
-      "category": "Other Governance Matters",
-      "description": "Presentation of the Winter Business of the Season Award to Hobo's Cafe.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Village Council Meeting",
-      "date": "2026-03-12",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318"
-    },
-    {
-      "topic_title": "Part-Time Camp Counselor Comprehensive Pay Plan",
-      "category": "Budget & Finance",
-      "description": "Resolution amending the Comprehensive Pay Plan adopted as part of the Fiscal Year 2026 Budget to modify the Minimum and Maximum Pay Grade for Part-Time Camp Counselor.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Village Council Meeting",
-      "date": "2026-03-12",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318"
-    },
-    {
-      "topic_title": "Professional Firefighters/Paramedics Local 2928 MOU",
-      "category": "Other Governance Matters",
-      "description": "Resolution approving and ratifying a Memorandum of Understanding with the Professional Firefighters/Paramedics of Palm Beach County, Local 2928, IAFF, Inc. to amend Article 2, Section 1 of the Collective Bargaining Agreement to allow promotions to the rank of Lieutenant.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Village Council Meeting",
-      "date": "2026-03-12",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318"
-    },
-    {
-      "topic_title": "Supervisor of Elections Vote Processing Equipment Use and Elections Services Agreement",
-      "category": "Other Governance Matters",
-      "description": "Resolution approving an Agreement for Vote Processing Equipment Use and Elections Services with the Palm Beach County Supervisor of Elections and authorizing execution of the agreement.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Village Council Meeting",
-      "date": "2026-03-12",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03122026-1318"
-    }
-  ],
   "NPB|2026-05-20|village council workshop": [],
   "NPB|2026-05-06|village council workshop": [],
   "NPB|2026-04-09|village council workshop": [],
-  "MANALAPAN|2026-03-10|town commission meeting": [
-    {
-      "topic_title": "Paver Agreement \u2013 40 Curlew Road",
-      "category": "Other Governance Matters",
-      "description": "Consideration and approval of a paver agreement for the property located at 40 Curlew Road as part of the consent agenda.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-03-10",
-      "link": "https://manalapan.org/wp-content/uploads/2026/02/2026_0310-Agenda.pdf"
-    },
-    {
-      "topic_title": "RES 03-2026 - Eminent Domain Resolution 131 S. Ocean Blvd.",
-      "category": "Other Governance Matters",
-      "description": "Discussion and consideration of Resolution 03-2026, an eminent domain resolution concerning 131 S. Ocean Blvd., listed under old business.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-03-10",
-      "link": "https://manalapan.org/wp-content/uploads/2026/02/2026_0310-Agenda.pdf"
-    },
-    {
-      "topic_title": "Mock Roos Construction Services Agreement (CSA) #121",
-      "category": "Other Governance Matters",
-      "description": "Consideration of Mock Roos Construction Services Agreement (CSA) #121 for State Revolving Fund Loan Application Assistance relating to Septic to Sewer conversion.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-03-10",
-      "link": "https://manalapan.org/wp-content/uploads/2026/02/2026_0310-Agenda.pdf"
-    },
-    {
-      "topic_title": "LA COQUILLE CLUB PUD",
-      "category": "Zoning & Land Use",
-      "description": "A town commission workshop presentation and discussion regarding the La Coquille Club PUD, led by Town Attorney Davis.",
-      "method": "llm",
-      "muni_short": "MANALAPAN",
-      "muni_full": "Town of Manalapan",
-      "event_title": "Town Commission Meeting",
-      "date": "2026-03-10",
-      "link": "https://manalapan.org/wp-content/uploads/2026/02/2026_0310-Agenda.pdf"
-    }
-  ],
   "NPB|2026-08-25|village council": [
     {
       "topic_title": "FY 2027 Capital Improvement Projects",
@@ -1342,19 +1169,6 @@
       "event_title": "Planning, Zoning, and Adjustment Board",
       "date": "2026-06-02",
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06022026-1343"
-    }
-  ],
-  "NPB|2026-03-03|planning, zoning, and adjustment board": [
-    {
-      "topic_title": "301 Ebbtide Drive",
-      "category": "Zoning & Land Use",
-      "description": "Application by Ivan Medugorac on behalf of Faith Lutheran Church of North Palm Missouri Synod Inc. for Site Plan and Appearance Approval to install a new 45' x 9' fabric awning-covered entrance walkway at 301 Ebbtide Drive.",
-      "method": "llm",
-      "muni_short": "NPB",
-      "muni_full": "Village of North Palm Beach",
-      "event_title": "Planning, Zoning, and Adjustment Board",
-      "date": "2026-03-03",
-      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_03032026-1314"
     }
   ],
   "DELRAY|2026-09-08|city commission": [
@@ -1902,19 +1716,6 @@
     }
   ],
   "DDA-WPB|2026-09-15|downtown development authority (dda) board meeting": [],
-  "JUNOBEACH|2026-03-02|planning and zoning board": [
-    {
-      "topic_title": "390 Jupiter Lane",
-      "category": "Zoning & Land Use",
-      "description": "Consideration of an appeal of an administrative decision regarding the property located at 390 Jupiter Lane.",
-      "method": "llm",
-      "muni_short": "JUNOBEACH",
-      "muni_full": "Town of Juno Beach",
-      "event_title": "Planning and Zoning Board",
-      "date": "2026-03-02",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-b5080e1df64645708a719ad6e73d8c8a.pdf"
-    }
-  ],
   "PBC|2026-09-15|board of county commissioners meeting": [
     {
       "topic_title": "NAV Series 2026 NAV Rev Ref 2016 Debt Service Fund 2541 / Resolution R2026-0840",
@@ -1937,190 +1738,6 @@
       "event_title": "Board of County Commissioners Meeting",
       "date": "2026-09-15",
       "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
-    }
-  ],
-  "DELRAY|2026-03-24|community redevelopment agency": [
-    {
-      "topic_title": "File # 26-0046",
-      "category": "Community Redevelopment (CRA)",
-      "description": "Approval of a fourth amendment to the interlocal agreement with the Treasure Coast Regional Planning Council for the Delray Beach Community Redevelopment Agency's Redevelopment Plan Amendment.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Community Redevelopment Agency",
-      "date": "2026-03-24",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "330, 350, & 358 NE 4th STREET, AND AT 2400 & 2410 NORTH FEDERAL HIGHWAY",
-      "category": "Community Redevelopment (CRA)",
-      "description": "Due diligence studies for the properties located at 330, 350, & 358 NE 4th Street, and at 2400 & 2410 North Federal Highway.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Community Redevelopment Agency",
-      "date": "2026-03-24",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "SW 600 BLOCK OF WEST ATLANTIC AVENUE",
-      "category": "Community Redevelopment (CRA)",
-      "description": "Direction regarding the development of the SW 600 block of West Atlantic Avenue.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Community Redevelopment Agency",
-      "date": "2026-03-24",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "NW 800 BLOCK OF WEST ATLANTIC AVENUE",
-      "category": "Community Redevelopment (CRA)",
-      "description": "Discussion and direction regarding the development of the NW 800 block of West Atlantic Avenue.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Community Redevelopment Agency",
-      "date": "2026-03-24",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "SW 700 - 800 BLOCKS OF WEST ATLANTIC AVENUE",
-      "category": "Community Redevelopment (CRA)",
-      "description": "Discussion and direction regarding the development of the SW 700 - 800 blocks of West Atlantic Avenue.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Community Redevelopment Agency",
-      "date": "2026-03-24",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "SHARED FUTURE FOUNDATION",
-      "category": "Community Redevelopment (CRA)",
-      "description": "Discussion and direction regarding a revocable license with Shared Future Foundation, a Delaware tax-exempt corporation, for CRA-owned property.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Community Redevelopment Agency",
-      "date": "2026-03-24",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4304&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    }
-  ],
-  "DELRAY|2026-03-09|city commission": [
-    {
-      "topic_title": "RESOLUTION NO. 63-26",
-      "category": "Other Governance Matters",
-      "description": "Establishment of a Downtown Beautification Task Force to review the appearance of and recommend potential improvements to downtown streetscapes.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-09",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4338&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "Acceptance of Right-of-Way Dedication (333 NW 3rd Ave., 137 Coconut Rd., 329 NW 3rd Ave.)",
-      "category": "Zoning & Land Use",
-      "description": "Approval of right-of-way dedications for properties located at 333 NW 3rd Ave., 137 Coconut Rd., and 329 NW 3rd Ave.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-09",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4338&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "Lindell Boulevard Maintenance of Traffic Plan / Road Closure Plan",
-      "category": "Other Governance Matters",
-      "description": "Consideration of a maintenance of traffic plan and road closure plan for Lindell Boulevard between Bobolink Road and Albatross Road, and between Curlew Road and Bobolink Road.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-09",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4338&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "License Agreement with Palm Beach County (South County Courthouse)",
-      "category": "Other Governance Matters",
-      "description": "Approval of a license agreement between Palm Beach County and the City of Delray Beach allowing the city to utilize county-owned parking facilities at the South County Courthouse during special events.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-09",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4338&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "Hold Harmless Agreement for 777 E Atlantic Ave",
-      "category": "Other Governance Matters",
-      "description": "Approval of a hold harmless agreement for the property located at 777 E Atlantic Ave.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-09",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4338&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "Layton Pointe (3900 Sherwood Blvd)",
-      "category": "Housing & Development",
-      "description": "Acceptance of a water and sewer utility agreement and bill of sale for improvements for property located at 3900 Sherwood Blvd, known as Layton Pointe, owned by Toll Southeast LP Company, Inc.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-09",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4338&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    }
-  ],
-  "DELRAY|2026-03-26|city commission": [
-    {
-      "topic_title": "Resolution No. 69-26",
-      "category": "Other Governance Matters",
-      "description": "Approval of Resolution No. 69-26 to award an agreement with Man Con, Inc. for Construction Manager at Risk (CMAR) services for the Historic Marine Way Seawall, Roadway, Utility, and Drainage Improvements Project in the amount of $409,005.00.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-26",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4339&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    }
-  ],
-  "DELRAY|2026-03-16|planning and zoning board": [
-    {
-      "topic_title": "File PZ-000234-2025",
-      "category": "Zoning & Land Use",
-      "description": "Provide a recommendation to the City Commission regarding a Conditional Use request to allow the establishment of a 24-Hour or Late-Night Use for a Freestanding Emergency Department at 3921 West Atlantic Avenue by JFK Medical Center Limited Partnership.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Planning and Zoning Board",
-      "date": "2026-03-16",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4446&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "File No. PZ-000442-2026",
-      "category": "Zoning & Land Use",
-      "description": "Provide a recommendation to the City Commission on Ordinance No. 14-26, amending Section 4.5.18 regarding the Medical Arts Overlay District, and Ordinance No. 15-26, amending Land Development Regulations for the Planned Commercial, Planned Office Center, and Community Facilities Districts.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Planning and Zoning Board",
-      "date": "2026-03-16",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4446&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    },
-    {
-      "topic_title": "File No. PZ-000513-2026",
-      "category": "Zoning & Land Use",
-      "description": "Provide a recommendation to the City Commission on Ordinance No. 26-26, a City-initiated request to amend Section 4.4.13(F) of the Land Development Regulations to eliminate City Commission approval and add determinations by the Planning and Zoning Board for CBD Architectural Style Review.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "Planning and Zoning Board",
-      "date": "2026-03-16",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4446&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
   "DELRAY|2026-04-20|planning and zoning board": [
@@ -2430,32 +2047,6 @@
       "event_title": "Community Redevelopment Agency",
       "date": "2026-04-28",
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4586&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    }
-  ],
-  "DELRAY|2026-03-31|city commission": [
-    {
-      "topic_title": "RESOLUTION NO. 64-26",
-      "category": "Zoning & Land Use",
-      "description": "A quasi-judicial resolution requiring additional off-street parking spaces (44 spaces based on use) for the property located at 302 NE 6th Avenue pursuant to Section 4.6.9 of the Land Development Regulations.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-31",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4596&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-    }
-  ],
-  "DELRAY|2026-03-13|city commission": [
-    {
-      "topic_title": "File # 26-0351",
-      "category": "Other Governance Matters",
-      "description": "Request to declare the results of the March 10, 2026 first nonpartisan municipal election.",
-      "method": "llm",
-      "muni_short": "DELRAY",
-      "muni_full": "City of Delray Beach",
-      "event_title": "City Commission",
-      "date": "2026-03-13",
-      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4597&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
   "DELRAY|2026-05-05|city commission": [
@@ -3745,75 +3336,6 @@
       "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-47"
     }
   ],
-  "JUIC|2026-03-12|town commission meeting": [],
-  "JUIC|2026-03-09|regular town commission meeting": [
-    {
-      "topic_title": "Ordinance 2026-01",
-      "category": "Zoning & Land Use",
-      "description": "Second reading and vote on Ordinance 2026-01, creating Section 27 of the Zoning Code relating to the establishment of procedures for the review and approval of certified recovery residences and amending Section 20 of the Zoning Code.",
-      "method": "llm",
-      "muni_short": "JUIC",
-      "muni_full": "Town of Jupiter Inlet Colony",
-      "event_title": "Regular Town Commission Meeting",
-      "date": "2026-03-09",
-      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
-    },
-    {
-      "topic_title": "Daniel Comerford legal expenses reimbursement",
-      "category": "Other Governance Matters",
-      "description": "Vote on a request by Daniel Comerford for reimbursement of legal expenses related to a Palm Beach County Commission on Ethics inquiry into misuse of public office.",
-      "method": "llm",
-      "muni_short": "JUIC",
-      "muni_full": "Town of Jupiter Inlet Colony",
-      "event_title": "Regular Town Commission Meeting",
-      "date": "2026-03-09",
-      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
-    },
-    {
-      "topic_title": "Marie Rosner legal expenses reimbursement",
-      "category": "Other Governance Matters",
-      "description": "Vote on a request by Marie Rosner for reimbursement of legal expenses related to a Palm Beach County Commission on Ethics inquiry into misuse of public office.",
-      "method": "llm",
-      "muni_short": "JUIC",
-      "muni_full": "Town of Jupiter Inlet Colony",
-      "event_title": "Regular Town Commission Meeting",
-      "date": "2026-03-09",
-      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
-    },
-    {
-      "topic_title": "Installation of check valves at outfalls",
-      "category": "Other Governance Matters",
-      "description": "Vote on approving the award of a contract to the lowest and most responsive bidder for the installation of check valves at the Town's outfalls.",
-      "method": "llm",
-      "muni_short": "JUIC",
-      "muni_full": "Town of Jupiter Inlet Colony",
-      "event_title": "Regular Town Commission Meeting",
-      "date": "2026-03-09",
-      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
-    },
-    {
-      "topic_title": "Police Chief Brian McCallister employment agreement",
-      "category": "Other Governance Matters",
-      "description": "Vote on approving the employment agreement with Police Chief Brian McCallister.",
-      "method": "llm",
-      "muni_short": "JUIC",
-      "muni_full": "Town of Jupiter Inlet Colony",
-      "event_title": "Regular Town Commission Meeting",
-      "date": "2026-03-09",
-      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
-    },
-    {
-      "topic_title": "Lighthouse Drive resurfacing project",
-      "category": "Other Governance Matters",
-      "description": "Town Manager report discussion regarding the timeliness of the Lighthouse Drive resurfacing project.",
-      "method": "llm",
-      "muni_short": "JUIC",
-      "muni_full": "Town of Jupiter Inlet Colony",
-      "event_title": "Regular Town Commission Meeting",
-      "date": "2026-03-09",
-      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_03092026-44"
-    }
-  ],
   "JUIC|2026-09-17|town commission meeting": [
     {
       "topic_title": "136 Lighthouse Drive",
@@ -4151,5 +3673,29 @@
       "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260929.pdf"
     }
   ],
-  "JUNOBEACH|2026-09-30|town council workshop - strategic plan": []
+  "JUNOBEACH|2026-09-30|town council workshop - strategic plan": [],
+  "BOCA|2026-09-03|planning & zoning board": [],
+  "BOCA|2026-09-08|community redevelopment agency/city council workshop/city council regular meeting": [],
+  "BOCA|2026-09-22|community redevelopment agency/city council workshop/city council regular meeting": [],
+  "BOCA|2026-09-23|boca raton airport authority": [],
+  "BOCA|2026-09-29|boca raton housing authority workshop": [],
+  "BOCA|2026-09-30|boca raton housing authority": [],
+  "BOYNTON|2026-09-08|boynton beach community redevelopment agency (bbcra) board monthly meeting": [],
+  "BOYNTON|2026-09-10|city commission agenda review workshop": [],
+  "BOYNTON|2026-09-16|city commission meeting": [],
+  "BOYNTON|2026-09-16|cra advisory board meeting": [],
+  "BOYNTON|2026-09-24|city commission agenda review workshop": [],
+  "PBG|2026-09-10|city council meeting": [],
+  "PBG|2026-09-24|city council meeting": [],
+  "JUP|2026-09-08|community redevelopment agency (cra) regular meeting": [],
+  "JUP|2026-09-08|town council special meeting": [],
+  "JUP|2026-09-17|town council workshop": [],
+  "JUP|2026-09-22|community redevelopment agency (cra) regular meeting": [],
+  "JUP|2026-09-22|town council special meeting": [],
+  "DELRAY|2026-10-01|board of adjustment": [],
+  "PALMBEACH|2026-04-15|local planning agency (lpa)": [],
+  "PALMBEACH|2026-04-15|town council development review meeting": [],
+  "PALMBEACH|2026-05-05|planning and zoning commission meeting": [],
+  "PALMBEACH|2026-05-12|town council regular meeting": [],
+  "PALMBEACH|2026-05-13|town council development review meeting": []
 }
