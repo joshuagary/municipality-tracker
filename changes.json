@@ -1948,5 +1948,14 @@
     "type": "added",
     "time": "6:00 PM",
     "detected_at": "2026-10-03T04:17:09.754649+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop October 8, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-10-08",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-04T04:48:18.377454+00:00"
   }
 ]
