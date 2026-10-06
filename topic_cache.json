@@ -3698,5 +3698,211 @@
   "PALMBEACH|2026-05-05|planning and zoning commission meeting": [],
   "PALMBEACH|2026-05-12|town council regular meeting": [],
   "PALMBEACH|2026-05-13|town council development review meeting": [],
-  "WPB|2026-10-05|mayor/commission work session": []
+  "WPB|2026-10-05|mayor/commission work session": [],
+  "PBC|2026-10-06|board of county commissioners meeting": [
+    {
+      "topic_title": "International E-Waste Day",
+      "category": "Other Governance Matters",
+      "description": "Special Presentation / Proclamation (District 5) declaring October 14, 2026 as International E-Waste Day (deleted from agenda).",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-10-06",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
+    },
+    {
+      "topic_title": "Domestic Violence Awareness & Prevention Month",
+      "category": "Other Governance Matters",
+      "description": "Add-on Special Presentation / Proclamation (District 6) declaring October 2026 as Domestic Violence Awareness & Prevention Month.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-10-06",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
+    },
+    {
+      "topic_title": "Interlocal Agreement with Riviera Beach for traffic control jurisdiction",
+      "category": "Other Governance Matters",
+      "description": "Approval of an Interlocal Agreement with Riviera Beach concerning traffic control jurisdiction.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-10-06",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
+    },
+    {
+      "topic_title": "Adopt-A-Road Agreements for N. Congress Avenue and Lyons Road",
+      "category": "Other Governance Matters",
+      "description": "Approval of Adopt-A-Road Agreements for N. Congress Avenue and Lyons Road.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-10-06",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
+    },
+    {
+      "topic_title": "Country Club Acres stormwater improvements",
+      "category": "Budget & Finance",
+      "description": "Approval of an FDEP Grant and Budget Amendment for Country Club Acres stormwater improvements.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-10-06",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
+    },
+    {
+      "topic_title": "Amendment No. 1 with Walton, Lantaff, Schroeder & Carson",
+      "category": "Budget & Finance",
+      "description": "Approval of Amendment No. 1 with Walton, Lantaff, Schroeder & Carson for workers' compensation defense.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-10-06",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
+    }
+  ],
+  "DELRAY|2026-10-06|city commission": [
+    {
+      "topic_title": "RESOLUTION NO. 146-26",
+      "category": "Other Governance Matters",
+      "description": "A resolution recognizing Olivia Salvio for 30 years of service.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-06",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "802 SE 5TH AVENUE",
+      "category": "Zoning & Land Use",
+      "description": "Acceptance of an easement agreement for a pedestrian clear zone at 802 SE 5th Avenue.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-06",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "RIGHT-OF-WAY DEDICATIONS (Multiple Addresses)",
+      "category": "Zoning & Land Use",
+      "description": "Acceptance of right-of-way dedications for multiple locations including 333 N Swinton Ave, 617 SE 2nd Ave, 32 SW 5th Ave, 322 NW 6th Ave, 709 Enfield Rd, 625 Eldorado Ln, 629 Eldorado Ln, and 112 N Swinton Ave.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-06",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "RFQ NO. 2025-002",
+      "category": "Budget & Finance",
+      "description": "Approval of Amendment No. 1 to RFQ No. 2025-002 with Holtz Consulting Engineers, Inc. for Phase II Owner's Representative Services for the Northwest Neighborhood Improvements Project in the amount of $5,043,306.00, for a revised agreement total of $5,441,345.20.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-06",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "RESOLUTION 126-26",
+      "category": "Other Governance Matters",
+      "description": "Motion to correct a scrivener's error on Resolution 126-26 adopted at the August 18, 2026 City Commission meeting.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-06",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "RESOLUTION 118-26",
+      "category": "Other Governance Matters",
+      "description": "Approval of Resolution 118-26 to award a master contractor/services agreement.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-06",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "WESTLAKE|2026-10-06|city council regular meeting": [
+    {
+      "topic_title": "MSP-2026-06",
+      "category": "Zoning & Land Use",
+      "description": "Approval request for a Master Sign Plan for Chase Bank, located at 5040 Seminole Pratt Whitney Road within Grove Market Plaza, including three wall signs and one ATM sign, along with a request to waive Section 113-1.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Regular Meeting",
+      "date": "2026-10-06",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-1a73495139104b0091e01f9d7cae46cb.pdf"
+    },
+    {
+      "topic_title": "Proclamation 2026-19",
+      "category": "Other Governance Matters",
+      "description": "Proclamation designating Florida City Government Week in October 2026.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Regular Meeting",
+      "date": "2026-10-06",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-1a73495139104b0091e01f9d7cae46cb.pdf"
+    },
+    {
+      "topic_title": "Proclamation 2026-20",
+      "category": "Other Governance Matters",
+      "description": "Proclamation designating National Breast Cancer Awareness Month.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Regular Meeting",
+      "date": "2026-10-06",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-1a73495139104b0091e01f9d7cae46cb.pdf"
+    }
+  ],
+  "NPB|2026-10-06|planning, zoning and adjustment board": [
+    {
+      "topic_title": "Shore Club Apartments \u201cA\u201d Inc.",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a request by Shore Club Apartments \u201cA\u201d Inc. for Appearance Review approval regarding an amendment to the building paint colors.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning and Adjustment Board",
+      "date": "2026-10-06",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10062026-1377"
+    },
+    {
+      "topic_title": "420 US Highway 1",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a request by Mark Weber of Preferred Sign, on behalf of property owner SOVS HOLDINGS LLC, for a Master Sign Plan Amendment for the property located at 420 US Highway 1.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning and Adjustment Board",
+      "date": "2026-10-06",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10062026-1377"
+    },
+    {
+      "topic_title": "2601 Conroy Drive",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a request by property owner Elizabeth Melanson for a variance to allow a home addition to encroach into the required side setbacks on the west and east sides.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning and Adjustment Board",
+      "date": "2026-10-06",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10062026-1377"
+    }
+  ]
 }

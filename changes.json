@@ -2047,5 +2047,77 @@
     "time": "9:30 AM",
     "type": "removed",
     "detected_at": "2026-10-05T04:37:04.916887+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Planning and Zoning Commission Meeting",
+    "date": "2026-10-06",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-06T05:22:30.149470+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-10-13",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-06T05:22:30.149470+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Development Review Meeting",
+    "date": "2026-10-14",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-06T05:22:30.149470+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-10-14",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-06T05:22:30.149470+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Planning and Zoning Commission Meeting",
+    "date": "2026-11-03",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-06T05:22:30.149470+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-11-09",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-06T05:22:30.149470+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Development Review Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-06T05:22:30.149470+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-11-11",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-06T05:22:30.149470+00:00"
   }
 ]
