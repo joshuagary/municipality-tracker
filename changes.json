@@ -2137,5 +2137,59 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-10-07T04:51:24.976208+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-10-08",
+    "type": "added",
+    "time": "4:30 PM",
+    "detected_at": "2026-10-08T05:01:42.016887+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-10-13",
+    "type": "added",
+    "time": "6:30 PM",
+    "detected_at": "2026-10-08T05:01:42.016887+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Community Redevelopment Agency (CRA) Regular Meeting",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-08T05:01:42.016887+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "7:00 PM",
+    "detected_at": "2026-10-08T05:01:42.016887+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Community Redevelopment Agency",
+    "date": "2026-10-14",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-08T05:01:42.016887+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Special Meeting",
+    "date": "2026-11-05",
+    "time": "7:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-08T05:01:42.016887+00:00"
   }
 ]

@@ -1,70 +1,8 @@
 {
-  "generated_at": "2026-10-07T04:53:59.652326+00:00",
+  "generated_at": "2026-10-08T05:04:18.859560+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 285,
+  "historical_meetings_scanned": 284,
   "insights": [
-    {
-      "theme_title": "LPA Ordinance 2026-02",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUIC",
-        "WESTLAKE"
-      ],
-      "cross_municipality": true,
-      "occurrence_count": 4,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10), City of Westlake (2026-05-05), City of Westlake (2026-04-07)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
-          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-62",
-          "description": "Recommendation of approval to the Town Commission for Ordinance 2026-02, amending policies in the Comprehensive Plan's Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element relating to water supply, and adopting the 2026 Water Supply Plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Regular Meeting",
-          "date": "2026-05-05",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-fd5a6a68abc346e39f18ea714e77071b.pdf",
-          "description": "Second reading of an ordinance for a Chapter 101 & 119 Text Amendment regarding Accessory Structures, submitted by Planning and Zoning.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-04-07",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-7e3ddc029c6e42c595a7228edb84f659.pdf",
-          "description": "An ordinance amending the City of Westlake Code of Ordinances, Chapter 101 ('General and Administrative Provisions') to define 'cabana' and 'trellis or arbor', and amending Chapter 119 ('Zoning') to provide reduced rear yard setbacks for certain accessory structures, establish building separation and roof overhang standards for accessory structures with solid roofing systems, and set roof overhang standards for cabanas in mixed use districts.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 85,
-      "reasons": [
-        "recurring_across_municipalities"
-      ],
-      "starred": true,
-      "rank": 1
-    },
     {
       "theme_title": "Resolution No. 2026-07",
       "category": "Other Governance Matters",
@@ -116,6 +54,59 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
+      "rank": 1
+    },
+    {
+      "theme_title": "Ordinance 2026-02",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC",
+        "WESTLAKE"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 3,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10), City of Westlake (2026-05-05)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
+          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-62",
+          "description": "Recommendation of approval to the Town Commission for Ordinance 2026-02, amending policies in the Comprehensive Plan's Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element relating to water supply, and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Regular Meeting",
+          "date": "2026-05-05",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-fd5a6a68abc346e39f18ea714e77071b.pdf",
+          "description": "Second reading of an ordinance for a Chapter 101 & 119 Text Amendment regarding Accessory Structures, submitted by Planning and Zoning.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 70,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": false,
       "rank": 2
     },
     {

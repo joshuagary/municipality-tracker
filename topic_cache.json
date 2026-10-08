@@ -451,54 +451,6 @@
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-45e2727eb072455b85b2dc55c0979eed.pdf"
     }
   ],
-  "WESTLAKE|2026-04-07|city council regular meeting": [
-    {
-      "topic_title": "Proclamation 2026-08",
-      "category": "Other Governance Matters",
-      "description": "Presentation of Proclamation 2026-08 designating Water Conservation Month.",
-      "method": "llm",
-      "muni_short": "WESTLAKE",
-      "muni_full": "City of Westlake",
-      "event_title": "City Council Regular Meeting",
-      "date": "2026-04-07",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-b7c788e0ba1141b2aef00eb7f776e7cf.pdf"
-    },
-    {
-      "topic_title": "Proclamation 2026-09",
-      "category": "Other Governance Matters",
-      "description": "Presentation of Proclamation 2026-09 for National Days of Remembrance.",
-      "method": "llm",
-      "muni_short": "WESTLAKE",
-      "muni_full": "City of Westlake",
-      "event_title": "City Council Regular Meeting",
-      "date": "2026-04-07",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-b7c788e0ba1141b2aef00eb7f776e7cf.pdf"
-    },
-    {
-      "topic_title": "SPR-2025-01",
-      "category": "Zoning & Land Use",
-      "description": "Quasi-judicial public hearing for Site Plan approval and three waivers for a 24.29-acre retail center known as Walmart Supercenter, featuring a 188,779-square-foot retail building and a 1,618-square-foot convenience store with 10 fuel pumps.",
-      "method": "llm",
-      "muni_short": "WESTLAKE",
-      "muni_full": "City of Westlake",
-      "event_title": "City Council Regular Meeting",
-      "date": "2026-04-07",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-b7c788e0ba1141b2aef00eb7f776e7cf.pdf"
-    }
-  ],
-  "WESTLAKE|2026-04-07|local planning agency meeting": [
-    {
-      "topic_title": "LPA Ordinance 2026-02",
-      "category": "Zoning & Land Use",
-      "description": "An ordinance amending the City of Westlake Code of Ordinances, Chapter 101 ('General and Administrative Provisions') to define 'cabana' and 'trellis or arbor', and amending Chapter 119 ('Zoning') to provide reduced rear yard setbacks for certain accessory structures, establish building separation and roof overhang standards for accessory structures with solid roofing systems, and set roof overhang standards for cabanas in mixed use districts.",
-      "method": "llm",
-      "muni_short": "WESTLAKE",
-      "muni_full": "City of Westlake",
-      "event_title": "Local Planning Agency Meeting",
-      "date": "2026-04-07",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-7e3ddc029c6e42c595a7228edb84f659.pdf"
-    }
-  ],
   "DDA-WPB|2026-08-18|downtown development authority (dda) board meeting": [],
   "DDA-WPB|2026-07-21|downtown development authority (dda) board meeting": [],
   "DDA-WPB|2026-06-16|downtown development authority (dda) board meeting": [],
@@ -3905,5 +3857,73 @@
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10062026-1377"
     }
   ],
-  "RIVBEACH|2026-10-07|city council": []
+  "RIVBEACH|2026-10-07|city council": [],
+  "NPB|2026-10-08|village council meeting": [
+    {
+      "topic_title": "Waterways Board",
+      "category": "Other Governance Matters",
+      "description": "Introduction of applicants and consideration of a resolution appointing one resident member to the Waterways Board.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-08",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+      "topic_title": "Village Manager Cost-of-Living Adjustment (COLA) for Fiscal Year 2027",
+      "category": "Budget & Finance",
+      "description": "Motion approving the inclusion of the Village Manager position in the Cost-of-Living Adjustment (COLA) for Fiscal Year 2027 effective October 1st, 2026.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-08",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+      "topic_title": "Accounting Policies and Procedures Manual for Internal Controls",
+      "category": "Other Governance Matters",
+      "description": "Resolution ratifying and adopting a revised Accounting Policies and Procedures Manual for Internal Controls.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-08",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+      "topic_title": "Charter Review Committee Meeting Minutes (September 1, 2026 and September 22, 2026)",
+      "category": "Other Governance Matters",
+      "description": "Receive for file the minutes of the Regular Session held 9/1/26 and Draft Minutes held 9/22/26 of the Charter Review Committee.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-08",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+      "topic_title": "Fiscal Year 2027 Blanket Purchase Order for Miscellaneous Landscaping and Grounds Maintenance Services",
+      "category": "Budget & Finance",
+      "description": "Resolution considering a motion to adopt a resolution approving a Fiscal Year 2027 Blanket Purchase Order with Yard-Nique, Inc. d/b/a Precision Landscape Company, in an amount not to exceed $200,000.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-08",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+      "topic_title": "Purchase of Vehicles for Village Departments",
+      "category": "Budget & Finance",
+      "description": "Resolution considering a motion to adopt a resolution approving the purchase of a total of ten vehicles for the Police Department.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-08",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    }
+  ]
 }
