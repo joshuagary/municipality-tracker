@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-08T05:04:18.859560+00:00",
+  "generated_at": "2026-10-09T05:06:59.635547+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 284,
+  "historical_meetings_scanned": 285,
   "insights": [
     {
       "theme_title": "Resolution No. 2026-07",
@@ -106,7 +106,7 @@
       "reasons": [
         "recurring_across_municipalities"
       ],
-      "starred": false,
+      "starred": true,
       "rank": 2
     },
     {
@@ -408,49 +408,6 @@
       "rank": 8
     },
     {
-      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-09-08",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
-          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
-          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 9
-    },
-    {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
       "category": "Budget & Finance",
       "municipalities": [
@@ -491,7 +448,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 9
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -534,7 +491,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 10
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -577,7 +534,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 11
     },
     {
       "theme_title": "Code of Ordinances Chapter 4",
@@ -620,7 +577,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 12
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -649,6 +606,49 @@
           "date": "2026-07-14",
           "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
           "description": "Consideration of a maintenance of traffic plan and road closure plan for the intersection of SW 8th Avenue and SW 2nd Street for the SW 8th Avenue/SW 2nd Street intersection improvements project.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 13
+    },
+    {
+      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
           "method": "llm"
         }
       ],
