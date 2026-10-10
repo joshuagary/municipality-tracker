@@ -2200,5 +2200,32 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-10-09T05:04:45.889609+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Planning and Zoning Board Meeting",
+    "date": "2026-10-15",
+    "type": "added",
+    "time": "6:30 PM",
+    "detected_at": "2026-10-10T04:50:25.620844+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-10-15",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-10T04:50:25.620844+00:00"
+  },
+  {
+    "muni_short": "GULFSTREAM",
+    "muni_full": "Town of Gulf Stream",
+    "title": "Town Commission Regular Meeting",
+    "date": "2026-10-09",
+    "time": "9:00 AM",
+    "type": "removed",
+    "detected_at": "2026-10-10T04:50:25.620844+00:00"
   }
 ]
