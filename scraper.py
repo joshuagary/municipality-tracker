@@ -163,6 +163,8 @@ def is_qualifying_event(title):
         r'\bLocal Planning Agency\b',  # Jupiter Inlet Colony has "Local Planning Agency Meeting"
         r'\bZoning (?:Board|Commission|Board of Appeals)\b',
         r'\bBoard of Adjustment\b',
+        r'\bPlans?\s*(?:and|&)\s*Plats?\b',  # WPB "Plans & Plats Review Committee" - added
+        # per explicit user request (it was being silently missed).
         r'\bPlanning,?\s*Zoning,?\s*(?:and|&)\s*Adjustment\s*Board\b',  # North Palm
         # Beach's combined planning/zoning/appeals body - added per explicit user
         # request. Real site text is "Planning, Zoning, and Adjustment Board" (comma
@@ -652,6 +654,170 @@ def scrape_west_palm_beach_planning():
         })
 
     print(f"[WPB Planning Board] Extracted {len(events)} events "
+          f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
+          f"{sum(1 for e in events if not e['has_agenda'])} without).")
+    return events
+
+
+# --- 1c. WEST PALM BEACH PLANS & PLATS REVIEW COMMITTEE MODULE ---
+def scrape_west_palm_beach_plans_plats():
+    # WPB's "Plans & Plats Review Committee" (PPRC) was being silently missed: it isn't
+    # one of the three per-series annual pages scrape_west_palm_beach() requests, and
+    # its title matched nothing in is_qualifying_event(). Like the Planning Board it
+    # gets one page PER OCCURRENCE, named Events-Folder/{year}/{MMDDYY}-PPRC. Real
+    # examples seen on https://www.wpb.org/Our-City/Meetings-Agendas:
+    #   .../2026/111226-PPRC  "Thursday, November 12, 2026 | 01:00 PM"
+    #   .../2026/121026-PPRC  "Thursday, December 10, 2026 | 01:00 PM"
+    # (page <h1> is "Plans & Plats Review Committee"; the page's meta description calls
+    # it a "Bi-Weekly Meeting", but the two dates seen are 4 weeks apart, so the real
+    # cadence is NOT confirmed - which is why the date is NOT computed from a rule the
+    # way scrape_west_palm_beach_planning() does.)
+    #
+    # Two discovery strategies, unioned, so no cadence assumption is needed:
+    #   A. Fetch the Meetings-Agendas listing page and regex out every
+    #      "Events-Folder/YYYY/MMDDYY-PPRC" URL (works on raw HTML hrefs or on
+    #      markdown/plain text alike).
+    #   B. Probe the per-date URL for every THURSDAY in the lookahead window (both
+    #      known dates are Thursdays). A 404 just means no such meeting.
+    # Every candidate page must return 200, have an <h1>/text mentioning "Plans & Plats",
+    # and the DATE and TIME are read from the page's own "When" line
+    # ("Weekday, Month DD, YYYY | HH:MM AM/PM"), the same format the other WPB pages use.
+    # The slug date / 1:00 PM are only fallbacks if that line isn't found (logged).
+    #
+    # UNCONFIRMED by a real GitHub Actions run: the sandbox could not reach wpb.org
+    # directly; the page facts above came from a rendered-preview fetch (Lesson 1/2).
+    DEFAULT_TIME = "1:00 PM"
+    title = "Plans & Plats Review Committee"
+    base_domain = "https://www.wpb.org"
+    listing_url = f"{base_domain}/Our-City/Meetings-Agendas"
+
+    when_pattern = re.compile(
+        r'(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s*'
+        r'(January|February|March|April|May|June|July|August|September|October|November|December)'
+        r'\s+(\d{1,2}),\s*(\d{4})\s*\|\s*(\d{1,2}:\d{2}\s*[AP]M)',
+        re.I
+    )
+    plats_pattern = re.compile(r'Plans?\s*(?:and|&|&amp;)\s*Plats?', re.I)
+    slug_pattern = re.compile(r'Events-Folder/(\d{4})/(\d{2})(\d{2})(\d{2})-PPRC', re.I)
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    # candidate_urls: url -> slug date (datetime) used only as a fallback
+    candidate_urls = {}
+
+    def add_candidate(year, mm, dd, yy):
+        try:
+            slug_dt = datetime(2000 + int(yy), int(mm), int(dd))
+        except ValueError:
+            return
+        candidate_urls[f"{base_domain}/Events-Folder/{year}/{mm}{dd}{yy}-PPRC"] = slug_dt
+
+    # Strategy A: listing page
+    listing_res = fetch_hardened(listing_url)
+    if listing_res is None:
+        print("[WPB Plans & Plats] Listing page request failed - relying on date probing only.")
+    else:
+        print(f"[WPB Plans & Plats] Listing page | HTTP Status: {listing_res.status_code}, "
+              f"body length: {len(listing_res.text) if listing_res.text else 0}")
+        found = slug_pattern.findall(listing_res.text or "")
+        for year, mm, dd, yy in found:
+            add_candidate(year, mm, dd, yy)
+        print(f"[WPB Plans & Plats] Strategy A (listing page) found {len(set(found))} PPRC URL(s).")
+        if not found and listing_res.text and plats_pattern.search(listing_res.text):
+            # Title is on the page but no PPRC URL could be matched - the markup differs
+            # from what we expect. Dump a slice so the real structure can be seen.
+            m = plats_pattern.search(listing_res.text)
+            print("[WPB Plans & Plats] DEBUG: 'Plans & Plats' text present but no PPRC URL "
+                  "matched. Raw slice:\n" + listing_res.text[max(0, m.start() - 300): m.end() + 500])
+
+    # Strategy B: probe every Thursday in the window
+    probe_count = 0
+    day = current_month_start
+    while day < lookahead_end:
+        if day.weekday() == 3:  # Thursday
+            add_candidate(day.year, day.strftime("%m"), day.strftime("%d"), day.strftime("%y"))
+            probe_count += 1
+        day += timedelta(days=1)
+    print(f"[WPB Plans & Plats] Strategy B probing {probe_count} Thursday(s); "
+          f"{len(candidate_urls)} unique candidate URL(s) total.")
+
+    events = []
+    seen_dates = set()
+
+    for url, slug_dt in sorted(candidate_urls.items(), key=lambda kv: kv[1]):
+        res = fetch_hardened(url)
+        if res is None:
+            print(f"[WPB Plans & Plats] Request failed for {url}")
+            continue
+        if res.status_code == 404:
+            continue  # no such meeting on this date - expected for most probes
+        if res.status_code != 200:
+            print(f"[WPB Plans & Plats] {url} | HTTP Status: {res.status_code} - skipping.")
+            continue
+
+        soup = BeautifulSoup(res.text, "html.parser")
+        h1 = soup.find("h1")
+        h1_text = clean_event_title(h1.get_text(" ", strip=True)) if h1 else ""
+        page_text = soup.get_text(separator=' ')
+        if not (plats_pattern.search(h1_text) or plats_pattern.search(page_text)):
+            # Guards against a "soft 404" (200 response for a page that doesn't exist).
+            print(f"[WPB Plans & Plats] {url}: 200 but no 'Plans & Plats' text - ignoring.")
+            continue
+
+        match = when_pattern.search(page_text)
+        if match:
+            month_name, d, yr, time_str = match.groups()
+            try:
+                meeting_dt = datetime.strptime(f"{month_name} {d} {yr}", "%B %d %Y")
+            except ValueError:
+                meeting_dt = slug_dt
+            meeting_time = time_str.strip().upper()
+        else:
+            meeting_dt = slug_dt
+            meeting_time = DEFAULT_TIME
+            print(f"[WPB Plans & Plats] {url}: 'Weekday, Month DD, YYYY | HH:MM AM/PM' line "
+                  f"not found - using slug date {slug_dt.strftime('%Y-%m-%d')} and default "
+                  f"time {DEFAULT_TIME}.")
+
+        if not (current_month_start <= meeting_dt < lookahead_end):
+            continue
+        # Use the page's own title when it is the committee, else the constant.
+        event_title = h1_text if plats_pattern.search(h1_text) else title
+        if not is_qualifying_event(event_title):
+            print(f"[WPB Plans & Plats] '{event_title}' did not pass is_qualifying_event().")
+            continue
+
+        iso_date = meeting_dt.strftime("%Y-%m-%d")
+        if iso_date in seen_dates:
+            continue
+        seen_dates.add(iso_date)
+
+        # These pages carry no agenda by default. Treat the agenda as posted only if the
+        # page links a document (pdf/doc/docx) whose href or text mentions agenda/PPRC.
+        # Heuristic - markup of a page WITH an agenda has not been observed yet.
+        has_agenda = False
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            if re.search(r'\.(?:pdf|docx?)(?:\?|$)', href, re.I) and \
+               re.search(r'agenda|pprc', href + " " + a.get_text(" ", strip=True), re.I):
+                has_agenda = True
+                break
+
+        print(f"[WPB Plans & Plats] {iso_date} {meeting_time} | has_agenda={has_agenda} | {url}")
+        events.append({
+            "id": f"wpb-pprc-{iso_date}-{hash(url)}",
+            "muni_short": "WPB",
+            "muni_full": "City of West Palm Beach",
+            "title": event_title,
+            "date": iso_date,
+            "time": meeting_time,
+            "link": url,
+            "has_agenda": has_agenda,
+            "summary": f"Official {event_title} meeting." if has_agenda
+                       else f"Official {event_title} meeting. No agenda posted yet.",
+        })
+
+    print(f"[WPB Plans & Plats] Extracted {len(events)} events "
           f"({sum(1 for e in events if e['has_agenda'])} with agendas, "
           f"{sum(1 for e in events if not e['has_agenda'])} without).")
     return events
@@ -2822,6 +2988,7 @@ def main():
 
     all_events.extend(scrape_west_palm_beach())
     all_events.extend(scrape_west_palm_beach_planning())
+    all_events.extend(scrape_west_palm_beach_plans_plats())
     all_events.extend(scrape_palm_beach_county())
     all_events.extend(scrape_boca_raton())
     all_events.extend(scrape_boynton_beach())
