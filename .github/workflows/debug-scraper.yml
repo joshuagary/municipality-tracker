@@ -15,7 +15,7 @@ on:
       scraper_function:
         description: 'Exact scrape_*() function name to run, e.g. scrape_north_palm_beach'
         required: true
-        default: 'scrape_north_palm_beach'
+        default: 'scrape_west_palm_beach_plans_plats'
 
 jobs:
   debug-single-scraper:
