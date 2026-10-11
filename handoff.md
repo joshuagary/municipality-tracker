@@ -42,6 +42,7 @@ summarizes their state and history but doesn't reproduce the full code.
 | Boynton Beach | CivicPlus (`boynton-beach.org`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 12 events) |
 | West Palm Beach (WPB) | Granicus OpenCities (`wpb.org`) | Static per-series pages listing every date under a "When" heading | ✅ Working (confirmed 8 events) |
 | **West Palm Beach — Planning Board** | **Granicus OpenCities (`wpb.org`)** | **Own function, `scrape_west_palm_beach_planning()` — date is computed (3rd Tuesday of the month), not scraped; fetches the per-date page `Events-Folder/{year}/{MMDDYY}-PB` only to read the real time and to detect has_agenda, see below** | ✅ **Confirmed working — user-supplied historical URLs matched the computed dates exactly, and a live fetch of a 4th (future) date confirmed the time-scrape regex** |
+| **West Palm Beach — Plans & Plats Review Committee (PPRC)** | **Granicus OpenCities (`wpb.org`)** | **Own function, `scrape_west_palm_beach_plans_plats()` — per-date pages `Events-Folder/{year}/{MMDDYY}-PPRC`, found via listing-page regex + Thursday probing, see below** | ✅ **Confirmed working in a real debug-scraper run (2026-10-11): 3 events returned, correct title/dates/times, no fallback warnings. Not yet confirmed in the full daily workflow; `has_agenda` detection unverified against a page that actually has an agenda.** |
 | Wellington | CivicPlus (`wellingtonfl.gov`) | Own function, `scrape_wellington()` — Schema.org microdata | ✅ Working (confirmed 3 events, CIP Workshop correctly excluded) |
 | **Westlake** | **MuniCode (`meetings.municode.com`, jurisdiction `WESTLAKEFL`)** | **Own function, `scrape_westlake()` — HTML table parse, see below** | ⚠️ **First-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |
 | **Downtown WPB DDA** | **WordPress (`downtownwpb.com/dda/board-meetings/`)** | **Own function, `scrape_downtown_wpb_dda()` — `<li>` date-list parse, see below** | ⚠️ **First-pass draft — NOT yet confirmed against a real GitHub Actions log (see below)** |
@@ -189,6 +190,55 @@ the scraper is pointed at the wrong host.
 - **Not yet confirmed**: a real GitHub Actions run with this new function wired in.
   Everything above was verified either against the user's own real historical URLs or
   a live fetch this session, but the function itself hasn't produced a real log yet.
+
+### West Palm Beach — Plans & Plats Review Committee (added 2026-10-11 — CONFIRMED WORKING in debug run)
+
+- **User reported the bug**: WPB's "Plans & Plats Review Committee" (PPRC) meetings were
+  missing entirely. Confirmed root cause: no scraper function covered it AND the title
+  matched nothing in `is_qualifying_event()` — two independent gaps, no error or log line
+  either way (same silent-miss pattern as the Planning Board). `data.json` had zero
+  "plats" events before the fix.
+- **Real pages** (seen on `https://www.wpb.org/Our-City/Meetings-Agendas` via a rendered
+  preview; the sandbox's shell has no route to wpb.org): one page per occurrence at
+  `https://www.wpb.org/Events-Folder/{year}/{MMDDYY}-PPRC`, `<h1>` "Plans & Plats Review
+  Committee", "When" line `Thursday, November 12, 2026 | 01:00 PM` (same
+  `Weekday, Month DD, YYYY | HH:MM AM/PM` format as the other WPB pages). Location: City
+  Hall, 2nd Floor Open Planning Area, 401 Clematis St. Meta description says "Bi-Weekly
+  Meeting".
+- **Cadence is irregular — do NOT compute dates from a rule** (unlike Planning Board's 3rd
+  Tuesday). Confirmed dates so far: Oct 8, Oct 22, Nov 12, Dec 10 (2026) — gaps of 2, 3
+  and 4 weeks. All Thursdays.
+- **`scrape_west_palm_beach_plans_plats()`** (in `scraper.py` right after
+  `scrape_west_palm_beach_planning()`, wired into `main()` right after it) unions two
+  discovery strategies:
+  - **A.** Fetch the listing page and regex out every `Events-Folder/YYYY/MMDDYY-PPRC`
+    URL (works on raw HTML hrefs or markdown/plain text).
+  - **B.** Probe the per-date URL for every Thursday in the lookahead window (404 = no
+    meeting). In the real run this found Oct 22, which was NOT on the listing page as
+    seen earlier — so B is load-bearing, not just a backup.
+  Each candidate must be HTTP 200 and mention "Plans & Plats" (guards against soft
+  404s); date and time are read from the page's own "When" line (slug date / 1:00 PM only
+  as logged fallbacks). Title comes from the page `<h1>`.
+- **Whitelist**: added `\bPlans?\s*(?:and|&)\s*Plats?\b` to `is_qualifying_event()` per
+  explicit user request.
+- **`has_agenda`**: pages seen so far (Nov 12, Dec 10) had no agenda document.
+  `has_agenda` is True only if the page links a `.pdf/.doc/.docx` whose href or text
+  contains "agenda" or "PPRC". **This heuristic is a guess — markup of a PPRC page that
+  actually has an agenda has never been observed.** Real run returned `has_agenda=False`
+  for all 3 events (Oct 8 was already past, so worth checking whether it really has an
+  agenda posted). If it does and shows False, fix the detection from that page's markup.
+  Link always points at the PPRC event page itself.
+- **Verification**: mock test (fake pages incl. a soft-404, listing-page-blocked case,
+  whitelist checks) passed, then the user ran `Debug Single Scraper` with
+  `scrape_west_palm_beach_plans_plats` on 2026-10-11: listing HTTP 200, Strategy A found 2
+  URLs, B probed 9 Thursdays, 3 events returned (Oct 8, Oct 22, Nov 12; each 01:00 PM,
+  correct title/links), no fallback warnings. Dec 10 was outside the lookahead window at
+  the time (window ended Nov 30) and will appear once November starts.
+- **Not done / open**: not yet seen in a full `Municipality Scraper Automation` run;
+  `insights_engine.py` `SINGLE_WINDOW_SCRAPERS` does not include this scraper (nor the
+  Planning Board one), so historical Insights months don't cover PPRC/Planning Board.
+- **Debug workflow**: `.github/workflows/debug-scraper.yml` default input changed to
+  `scrape_west_palm_beach_plans_plats` (it takes any `scrape_*` function name).
 
 ### Wellington (added in an earlier session)
 
@@ -700,6 +750,7 @@ abandoned as an unmaintainable whack-a-mole). Current whitelist:
 - City Council, City Commission, Town Council, Village Council (added for Wellington)
 - Board of County Commissioners, BCC
 - Community Redevelopment Agency, CRA
+- Plans and Plats / Plans & Plats (WPB Plans & Plats Review Committee, added 2026-10-11)
 - Planning and Zoning, Planning Board/Commission, Zoning Board/Commission/Board of
   Appeals, Board of Adjustment
 - Downtown Development Authority, Housing Authority, Airport Authority
