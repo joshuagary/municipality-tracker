@@ -2227,5 +2227,14 @@
     "time": "9:00 AM",
     "type": "removed",
     "detected_at": "2026-10-10T04:50:25.620844+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting October 13, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-10-13",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-11T04:36:33.434664+00:00"
   }
 ]
