@@ -2236,5 +2236,41 @@
     "type": "added",
     "time": "6:00 PM",
     "detected_at": "2026-10-11T04:36:33.434664+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Plans & Plats Review Committee",
+    "date": "2026-10-08",
+    "type": "added",
+    "time": "01:00 PM",
+    "detected_at": "2026-10-12T04:51:38.251000+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Plans & Plats Review Committee",
+    "date": "2026-10-22",
+    "type": "added",
+    "time": "01:00 PM",
+    "detected_at": "2026-10-12T04:51:38.251000+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Plans & Plats Review Committee",
+    "date": "2026-11-12",
+    "type": "added",
+    "time": "01:00 PM",
+    "detected_at": "2026-10-12T04:51:38.251000+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Regular Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-12T04:51:38.251000+00:00"
   }
 ]
