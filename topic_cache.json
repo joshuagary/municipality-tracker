@@ -3925,5 +3925,74 @@
       "date": "2026-10-08",
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
     }
+  ],
+  "WPB|2026-10-13|city commission meeting": [],
+  "DELRAY|2026-10-13|city commission": [
+    {
+      "topic_title": "Tavarous Parks",
+      "category": "Other Governance Matters",
+      "description": "Presentation of the City Manager Recognition Award to Tavarous Parks.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-13",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4630&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Downtown Parking Program",
+      "category": "Downtown Development / DDA / DAC",
+      "description": "Presentation of the twelve-month review of changes to the downtown parking program, including the pilot employee parking program and an analysis of Free Parking Wednesdays.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-13",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4630&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Interlocal Agreement - Delray Beach Downtown Development Authority",
+      "category": "Downtown Development / DDA / DAC",
+      "description": "Approval of Amendment No. 5 to the interlocal agreement between the City of Delray Beach and the Delray Beach Downtown Development Authority.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-13",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4630&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Homeless Resource Center",
+      "category": "Housing & Development",
+      "description": "Approval of the second amendment to the interlocal agreement between the City of Delray Beach and Palm Beach County for the utilization of the Homeless Resource Center.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-13",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4630&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Resolution No. 134-26",
+      "category": "Budget & Finance",
+      "description": "Resolution No. 134-26 with Generic Chemical, under an approved city standard, for the supply and delivery of GP-143 polymer for a total contract value not to exceed $192,000.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-13",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4630&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "37 W Atlantic Ave",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a hold harmless agreement for 37 W Atlantic Ave.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-10-13",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4630&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
   ]
 }
