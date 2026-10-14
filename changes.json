@@ -2290,5 +2290,47 @@
     "type": "added",
     "time": "5:01 PM",
     "detected_at": "2026-10-13T05:54:26.401370+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting October 13, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-10-13",
+    "type": "modified",
+    "time": "9:00 AM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "9:00 AM"
+      }
+    },
+    "detected_at": "2026-10-14T03:58:22.356297+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-10-19",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-14T03:58:22.356297+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-10-08",
+    "time": "4:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-14T03:58:22.356297+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-10-13",
+    "time": "6:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-14T03:58:22.356297+00:00"
   }
 ]
