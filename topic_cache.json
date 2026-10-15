@@ -1641,30 +1641,6 @@
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf"
     }
   ],
-  "PBC|2026-09-15|board of county commissioners meeting": [
-    {
-      "topic_title": "NAV Series 2026 NAV Rev Ref 2016 Debt Service Fund 2541 / Resolution R2026-0840",
-      "category": "Budget & Finance",
-      "description": "Approval of a revised Budget Amendment of $87,891,803 in the 80.125M NAV Series 2026 NAV Rev Ref 2016 Debt Service Fund 2541 to reflect actual refunding bond proceeds, costs of issuance, and savings from the sale awarded to Wells Fargo following Resolution R2026-0840.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-15",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
-    },
-    {
-      "topic_title": "Health Care District of Palm Beach County Agreement / LPPF Ordinance R2021-024",
-      "category": "Budget & Finance",
-      "description": "Delegation of authority to the County Administrator, or designee, to execute an agreement with the Health Care District of Palm Beach County retroactive to September 10, 2026, to transfer remaining unutilized LPPF funds totaling $58,794,034 to the County as administrative oversight is assumed.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-15",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260915.pdf"
-    }
-  ],
   "DELRAY|2026-04-20|planning and zoning board": [
     {
       "topic_title": "City's Annual Infrastructure Improvement Hearing",
@@ -3967,5 +3943,59 @@
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4630&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
-  "RIVBEACH|2026-10-14|community redevelopment agency": []
+  "RIVBEACH|2026-10-14|community redevelopment agency": [],
+  "BOCA|2026-07-16|planning & zoning board": [],
+  "BOCA|2026-07-22|boca raton housing authority - special board meeting": [],
+  "BOCA|2026-07-27|community redevelopment agency/city council workshop": [],
+  "BOCA|2026-07-28|city council regular meeting": [],
+  "BOCA|2026-06-09|cra regular meeting/city council workshop/city council regular meeting": [],
+  "BOCA|2026-06-17|boca raton airport authority": [],
+  "BOCA|2026-06-18|special city council meeting: budget workshop": [
+    {
+      "topic_title": "Draft FY26-27 Budget and Capital Improvement Program",
+      "category": "Budget & Finance",
+      "description": "Staff will present an overview of the City's Draft FY26-27 Budget and Capital Improvement Program as part of the annual budgeting process to receive input from the City Council Members and the public.",
+      "method": "llm",
+      "muni_short": "BOCA",
+      "muni_full": "City of Boca Raton",
+      "event_title": "Special City Council Meeting: Budget Workshop",
+      "date": "2026-06-18",
+      "link": "https://www.myboca.us/Calendar.aspx?EID=15520&month=6&year=2026&day=15&calType=0"
+    }
+  ],
+  "BOCA|2026-05-07|planning & zoning board": [],
+  "BOCA|2026-05-11|community redevelopment agency/city council workshop": [],
+  "BOCA|2026-05-12|city council regular meeting": [],
+  "BOCA|2026-05-20|boca raton airport authority": [],
+  "BOCA|2026-05-26|community redevelopment agency/city council workshop/city council regular meeting": [],
+  "BOCA|2026-05-26|boca raton housing authority workshop": [],
+  "BOCA|2026-05-27|boca raton housing authority": [],
+  "BOCA|2026-04-13|community redevelopment agency/city council workshop": [],
+  "BOCA|2026-04-14|city council regular meeting": [],
+  "BOCA|2026-04-16|planning & zoning board": [],
+  "BOCA|2026-04-22|boca raton airport authority": [],
+  "BOCA|2026-04-27|community redevelopment agency/city council workshop": [],
+  "BOCA|2026-04-28|city council regular meeting": [],
+  "DDA-WPB|2026-09-22|downtown development authority (dda) board meeting": [],
+  "DDA-WPB|2026-09-15|downtown development authority (dda) board meeting": [],
+  "DDA-WPB|2026-09-10|downtown development authority (dda) board meeting": [],
+  "DDA-WPB|2026-08-18|downtown development authority (dda) board meeting": [],
+  "DDA-WPB|2026-07-21|downtown development authority (dda) board meeting": [],
+  "DDA-WPB|2026-06-16|downtown development authority (dda) board meeting": [],
+  "DDA-WPB|2026-05-19|downtown development authority (dda) board meeting": [],
+  "DDA-WPB|2026-04-21|downtown development authority (dda) board meeting": [],
+  "RIVBEACH|2026-10-15|planning and zoning board meeting": [],
+  "JUIC|2026-10-15|town commission meeting": [
+    {
+      "topic_title": "234 Shelter Lane",
+      "category": "Zoning & Land Use",
+      "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, including a new landscape, hardscape, and drainage plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-10-15",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10152026-71"
+    }
+  ]
 }
