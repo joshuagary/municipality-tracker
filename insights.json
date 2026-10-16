@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T03:44:44.008277+00:00",
+  "generated_at": "2026-10-16T03:38:32.126952+00:00",
   "lookback_months": 6,
   "historical_meetings_scanned": 288,
   "insights": [
@@ -447,7 +447,7 @@
       "reasons": [
         "recurring_over_time"
       ],
-      "starred": false,
+      "starred": true,
       "rank": 9
     },
     {
