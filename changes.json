@@ -2422,5 +2422,50 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-10-16T03:35:43.452389+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting October 20, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-10-20",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-17T03:25:33.622520+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "City Council",
+    "date": "2026-10-21",
+    "type": "added",
+    "time": "5:30 PM",
+    "detected_at": "2026-10-17T03:25:33.622520+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-10-22",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-17T03:25:33.622520+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-10-08",
+    "time": "4:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-17T03:25:33.622520+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-10-13",
+    "time": "6:30 PM",
+    "type": "removed",
+    "detected_at": "2026-10-17T03:25:33.622520+00:00"
   }
 ]
