@@ -2467,5 +2467,41 @@
     "time": "6:30 PM",
     "type": "removed",
     "detected_at": "2026-10-17T03:25:33.622520+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "CRA Advisory Board Meeting October 21, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-10-21",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-18T03:32:00.767707+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Council Agenda Review Meeting",
+    "date": "2026-10-08",
+    "type": "added",
+    "time": "4:30 PM",
+    "detected_at": "2026-10-18T03:32:00.767707+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Meeting",
+    "date": "2026-10-13",
+    "type": "added",
+    "time": "6:30 PM",
+    "detected_at": "2026-10-18T03:32:00.767707+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-11-16",
+    "type": "added",
+    "time": "4:00 PM",
+    "detected_at": "2026-10-18T03:32:00.767707+00:00"
   }
 ]
