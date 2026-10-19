@@ -3997,5 +3997,98 @@
   "DDA-WPB|2026-07-21|downtown development authority (dda) board meeting": [],
   "DDA-WPB|2026-06-16|downtown development authority (dda) board meeting": [],
   "DDA-WPB|2026-05-19|downtown development authority (dda) board meeting": [],
-  "DDA-WPB|2026-04-21|downtown development authority (dda) board meeting": []
+  "DDA-WPB|2026-04-21|downtown development authority (dda) board meeting": [],
+  "DELRAY|2026-10-19|planning and zoning board": [
+    {
+      "topic_title": "Easton at Atlantic (2025-191 & 2025-192)",
+      "category": "Housing & Development",
+      "description": "Level 3 Site Plan and associated Master Development Plan for The Easton at Atlantic, including architectural elevations and a landscape plan to construct an eight-story, 352-unit multifamily building, six three-story townhouse units, and an eight-level parking garage at 160, 190, and 220 Congress Park Drive.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-10-19",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4453&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Ordinance No. 47-26",
+      "category": "Zoning & Land Use",
+      "description": "Provide a recommendation to the City Commission on a privately initiated rezoning of the Delray Place Special Activities District (SAD) at 1801 South Federal Highway by repealing Ordinance No. 41-12 in its entirety and re-adopting the amended regulations.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-10-19",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4453&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Ordinance No. 49-26",
+      "category": "Zoning & Land Use",
+      "description": "Provide a recommendation to the City Commission on a privately initiated rezoning of the 1690-2350 South Congress Avenue SAD (File PZ-000548-2026), amending the Development Standards, Allowed Uses, Sequencing Plan, and Master Development.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-10-19",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4453&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "JUNOBEACH|2026-10-19|planning and zoning board": [],
+  "JUIC|2026-10-19|town commission meeting": [
+    {
+      "topic_title": "250/300 Beach Road, Tequesta Proposed Architecture, R-3 Multiple Family Dwelling Zoning District Amendment and Future Land Use Element Amendment",
+      "category": "Zoning & Land Use",
+      "description": "Presentation regarding the proposed architecture, R-3 Multiple Family Dwelling zoning district amendment, and future land use element amendment for 250/300 Beach Road, Tequesta.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-10-19",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72"
+    },
+    {
+      "topic_title": "Ordinance 2026-02",
+      "category": "Zoning & Land Use",
+      "description": "Final hearing and vote on Ordinance 2026-02, amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-10-19",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72"
+    },
+    {
+      "topic_title": "Community Camera Purchase",
+      "category": "Other Governance Matters",
+      "description": "Vote on the reconsideration of the community camera purchase, sponsored by the Police Chief.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-10-19",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72"
+    },
+    {
+      "topic_title": "Chen Moore and Associates",
+      "category": "Other Governance Matters",
+      "description": "Vote on the approval of an agreement with Chen Moore and Associates for general engineering services, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-10-19",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72"
+    },
+    {
+      "topic_title": "Gehring Group, dba RSC Insurance Brokerage Inc., a Brown & Brown Company",
+      "category": "Other Governance Matters",
+      "description": "Vote on the approval of an agreement with Gehring Group, dba RSC Insurance Brokerage Inc., a Brown & Brown Company for human resources consulting services, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-10-19",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72"
+    }
+  ]
 }
