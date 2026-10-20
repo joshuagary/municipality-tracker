@@ -2503,5 +2503,56 @@
     "type": "added",
     "time": "4:00 PM",
     "detected_at": "2026-10-18T03:32:00.767707+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Plans & Plats Review Committee",
+    "date": "2026-10-22",
+    "type": "modified",
+    "time": "01:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-10-20T03:54:01.898084+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "Local Planning Agency Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "5:30 PM",
+    "detected_at": "2026-10-20T03:54:01.898084+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "Planning and Zoning Board Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "5:00 PM",
+    "detected_at": "2026-10-20T03:54:01.898084+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-11-18",
+    "type": "added",
+    "time": "5:30 PM",
+    "detected_at": "2026-10-20T03:54:01.898084+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Town Council Special Meeting",
+    "date": "2026-10-28",
+    "type": "added",
+    "time": "5:30 PM",
+    "detected_at": "2026-10-20T03:54:01.898084+00:00"
   }
 ]
