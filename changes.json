@@ -2554,5 +2554,44 @@
     "type": "added",
     "time": "5:30 PM",
     "detected_at": "2026-10-20T03:54:01.898084+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting October 20, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-10-20",
+    "type": "modified",
+    "time": "9:00 AM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "9:00 AM"
+      }
+    },
+    "detected_at": "2026-10-21T03:43:59.967251+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Community Redevelopment Agency",
+    "date": "2026-10-27",
+    "type": "added",
+    "time": "4:00 PM",
+    "detected_at": "2026-10-21T03:43:59.967251+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-10-22",
+    "type": "modified",
+    "time": "2:37 PM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "2:37 PM"
+      }
+    },
+    "detected_at": "2026-10-21T03:43:59.967251+00:00"
   }
 ]
