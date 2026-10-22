@@ -1,65 +1,5 @@
 [
   {
-    "muni_short": "WESTLAKE",
-    "muni_full": "City of Westlake",
-    "title": "City Council Regular Meeting",
-    "date": "2026-10-06",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-09-06T10:09:15.890305+00:00"
-  },
-  {
-    "muni_short": "DDA-WPB",
-    "muni_full": "Downtown WPB DDA",
-    "title": "Downtown Development Authority (DDA) Board Meeting",
-    "date": "2026-09-10",
-    "type": "modified",
-    "time": "8:30 AM",
-    "fields_changed": {
-      "has_agenda": {
-        "old": false,
-        "new": true
-      }
-    },
-    "detected_at": "2026-09-07T00:23:07.410020+00:00"
-  },
-  {
-    "muni_short": "PBC",
-    "muni_full": "Palm Beach County",
-    "title": "Board of County Commissioners Meeting",
-    "date": "2026-09-01",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-09-07T00:23:07.410020+00:00"
-  },
-  {
-    "muni_short": "MANALAPAN",
-    "muni_full": "Town of Manalapan",
-    "title": "Town Commission Meeting",
-    "date": "2026-09-08",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-09-07T00:23:07.410020+00:00"
-  },
-  {
-    "muni_short": "MANALAPAN",
-    "muni_full": "Town of Manalapan",
-    "title": "Town Commission Meeting",
-    "date": "2026-09-28",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-09-07T00:23:07.410020+00:00"
-  },
-  {
-    "muni_short": "MANALAPAN",
-    "muni_full": "Town of Manalapan",
-    "title": "Town Commission Meeting",
-    "date": "2026-10-13",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-09-07T00:23:07.410020+00:00"
-  },
-  {
     "muni_short": "PBC",
     "muni_full": "Palm Beach County",
     "title": "Board of County Commissioners Meeting",
@@ -2593,5 +2533,47 @@
       }
     },
     "detected_at": "2026-10-21T03:43:59.967251+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-10-22T03:43:14.875374+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Development Review Meeting",
+    "date": "2026-11-10",
+    "type": "modified",
+    "time": "9:45 AM",
+    "fields_changed": {
+      "time": {
+        "old": "9:30 AM",
+        "new": "9:45 AM"
+      }
+    },
+    "detected_at": "2026-10-22T03:43:14.875374+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting October 20, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-10-20",
+    "time": "9:00 AM",
+    "type": "removed",
+    "detected_at": "2026-10-22T03:43:14.875374+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-11-11",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-10-22T03:43:14.875374+00:00"
   }
 ]

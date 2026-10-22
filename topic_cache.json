@@ -4093,5 +4093,62 @@
   ],
   "PBC|2026-10-20|board of county commissioners meeting": [],
   "RIVBEACH|2026-10-21|city council": [],
-  "JUNOBEACH|2026-10-21|town council regular meeting": []
+  "JUNOBEACH|2026-10-21|town council regular meeting": [],
+  "NPB|2026-10-22|village council meeting": [
+    {
+      "topic_title": "Master Fee Schedule (Building Department)",
+      "category": "Budget & Finance",
+      "description": "Amending the Master Fee Schedule adopted as part of the Fiscal Year 2027 Budget to amend the Building Department Fee Schedule.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-22",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+    },
+    {
+      "topic_title": "Interlocal Agreement with the School Board of Palm Beach County / The Conservatory School",
+      "category": "Other Governance Matters",
+      "description": "Approving an Interlocal Agreement with the School Board of Palm Beach County for the reciprocal use of facilities by the Village and The Conservatory School.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-22",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+    },
+    {
+      "topic_title": "Chen Moore & Associates, Inc. (Professional Services Agreement - Sixth Amendment)",
+      "category": "Other Governance Matters",
+      "description": "Approving a Sixth Amendment to the Professional Services Agreement with Chen Moore & Associates, Inc. to modify the hourly rate schedule.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-22",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+    },
+    {
+      "topic_title": "Holiday Lighting Contract",
+      "category": "Other Governance Matters",
+      "description": "Approving an increase in the scope of work to the Holiday Lighting Contract.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-22",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+    },
+    {
+      "topic_title": "FY 2026 Year-End Budget Amendment and CIP Funding Replenishment",
+      "category": "Budget & Finance",
+      "description": "Adopting a resolution amending the Adopted General Fund Budget for Fiscal Year 2026 to transfer $800,000 from the General Fund to the Capital Projects Fund and eliminate the $450,000 General Fund transfer to the Country Club.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council Meeting",
+      "date": "2026-10-22",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+    }
+  ]
 }

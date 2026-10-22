@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-21T03:46:26.380064+00:00",
+  "generated_at": "2026-10-22T03:45:53.450201+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 294,
+  "historical_meetings_scanned": 295,
   "insights": [
     {
       "theme_title": "Ordinance 2026-02",
@@ -119,6 +119,50 @@
       "rank": 2
     },
     {
+      "theme_title": "Palm Beach County Commission on Ethics Memorandum of Understanding",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "DELRAY",
+        "NPB"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-07-09)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-09-24",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of a memorandum of understanding between the Delray Beach Community Redevelopment Agency and the Palm Beach County Commission on Ethics.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-07-09",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352",
+          "description": "Gina A. Levesque, CFE presents the annual overview from the Palm Beach County Commission on Ethics.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 3
+    },
+    {
       "theme_title": "401 Olympus Drive",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -172,53 +216,9 @@
         "sources": [],
         "error": "HTTP 400"
       },
-      "confidence": 65,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 3
-    },
-    {
-      "theme_title": "Palm Beach County Commission on Ethics Memorandum of Understanding",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "DELRAY",
-        "NPB"
-      ],
-      "cross_municipality": true,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-07-09)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-09-24",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Consideration of a memorandum of understanding between the Delray Beach Community Redevelopment Agency and the Palm Beach County Commission on Ethics.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "NPB",
-          "muni_full": "Village of North Palm Beach",
-          "title": "Village Council Meeting",
-          "date": "2026-07-09",
-          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352",
-          "description": "Gina A. Levesque, CFE presents the annual overview from the Palm Beach County Commission on Ethics.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
       "confidence": 60,
       "reasons": [
-        "recurring_across_municipalities"
+        "recurring_over_time"
       ],
       "starred": true,
       "rank": 4
