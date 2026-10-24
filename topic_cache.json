@@ -418,19 +418,6 @@
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-d861e4bfb2f9429ab25c2355ce91f582.pdf"
     }
   ],
-  "WESTLAKE|2026-04-22|city council workshop": [
-    {
-      "topic_title": "City Manager Candidate - Howard Brown",
-      "category": "Other Governance Matters",
-      "description": "Discussion of contract negotiations for city manager candidate Howard Brown.",
-      "method": "llm",
-      "muni_short": "WESTLAKE",
-      "muni_full": "City of Westlake",
-      "event_title": "City Council Workshop",
-      "date": "2026-04-22",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-45e2727eb072455b85b2dc55c0979eed.pdf"
-    }
-  ],
   "PALMBEACH|2026-04-07|planning and zoning commission meeting": [],
   "PALMBEACH|2026-04-14|town council regular meeting": [],
   "RIVBEACH|2026-09-02|city council": [],
