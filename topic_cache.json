@@ -353,19 +353,6 @@
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-fd5a6a68abc346e39f18ea714e77071b.pdf"
     }
   ],
-  "WESTLAKE|2026-04-29|city council special meeting": [
-    {
-      "topic_title": "Professional Services Agreement with Local Government Consultant Group, LLC.",
-      "category": "Other Governance Matters",
-      "description": "Consideration and approval of a professional services agreement with Local Government Consultant Group, LLC. for the position of City Manager.",
-      "method": "llm",
-      "muni_short": "WESTLAKE",
-      "muni_full": "City of Westlake",
-      "event_title": "City Council Special Meeting",
-      "date": "2026-04-29",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-d861e4bfb2f9429ab25c2355ce91f582.pdf"
-    }
-  ],
   "PALMBEACH|2026-04-07|planning and zoning commission meeting": [],
   "PALMBEACH|2026-04-14|town council regular meeting": [],
   "RIVBEACH|2026-09-02|city council": [],

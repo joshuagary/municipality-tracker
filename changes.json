@@ -1,29 +1,5 @@
 [
   {
-    "muni_short": "BOCA",
-    "muni_full": "City of Boca Raton",
-    "title": "Joint Meeting of the City Council and Greater Boca Raton Beach and Park District",
-    "date": "2026-10-26",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-09-15T00:18:43.189846+00:00"
-  },
-  {
-    "muni_short": "DDA-WPB",
-    "muni_full": "Downtown WPB DDA",
-    "title": "Downtown Development Authority (DDA) Board Meeting",
-    "date": "2026-09-15",
-    "type": "modified",
-    "time": "8:30 AM",
-    "fields_changed": {
-      "has_agenda": {
-        "old": false,
-        "new": true
-      }
-    },
-    "detected_at": "2026-09-15T00:18:43.189846+00:00"
-  },
-  {
     "muni_short": "DELRAY",
     "muni_full": "City of Delray Beach",
     "title": "City Commission",
@@ -2359,5 +2335,62 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-10-29T04:53:44.062021+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "CANCELED - Planning & Zoning Board",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-30T04:53:45.580660+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Board of Adjustment",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "5:01 PM",
+    "detected_at": "2026-10-30T04:53:45.580660+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "Planning and Zoning Board Meeting",
+    "date": "2026-11-10",
+    "type": "modified",
+    "time": "5:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-10-30T04:53:45.580660+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Workshop",
+    "date": "2026-11-05",
+    "type": "modified",
+    "time": "4:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-10-30T04:53:45.580660+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Planning & Zoning Board",
+    "date": "2026-11-05",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-10-30T04:53:45.580660+00:00"
   }
 ]
