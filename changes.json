@@ -1,38 +1,5 @@
 [
   {
-    "muni_short": "DELRAY",
-    "muni_full": "City of Delray Beach",
-    "title": "City Commission",
-    "date": "2026-09-22",
-    "type": "added",
-    "time": "3:00 PM",
-    "detected_at": "2026-09-16T00:16:56.419801+00:00"
-  },
-  {
-    "muni_short": "JUP",
-    "muni_full": "Town of Jupiter",
-    "title": "Community Redevelopment Agency (CRA) Regular Meeting",
-    "date": "2026-09-22",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-09-16T00:16:56.419801+00:00"
-  },
-  {
-    "muni_short": "JUNOBEACH",
-    "muni_full": "Town of Juno Beach",
-    "title": "Planning and Zoning Board",
-    "date": "2026-09-21",
-    "type": "modified",
-    "time": "4:00 PM",
-    "fields_changed": {
-      "has_agenda": {
-        "old": false,
-        "new": true
-      }
-    },
-    "detected_at": "2026-09-16T00:16:56.419801+00:00"
-  },
-  {
     "muni_short": "RIVBEACH",
     "muni_full": "City of Riviera Beach",
     "title": "City Council",
@@ -2392,5 +2359,257 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-10-30T04:53:45.580660+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting November 3, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-03",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting November 5, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-10-06",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-10-08",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
+    "date": "2026-10-13",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop - CANCELLED",
+    "date": "2026-10-15",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-10-20",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "CRA Advisory Board Meeting",
+    "date": "2026-10-21",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-10-29",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-03",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-17",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "CRA Advisory Board Meeting",
+    "date": "2026-11-18",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-19",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "PBG",
+    "muni_full": "City of Palm Beach Gardens",
+    "title": "City Council Meeting",
+    "date": "2026-10-01",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "PBG",
+    "muni_full": "City of Palm Beach Gardens",
+    "title": "City Council Meeting",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-10-06",
+    "type": "added",
+    "time": "7:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-10-20",
+    "type": "added",
+    "time": "7:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Special Meeting",
+    "date": "2026-10-29",
+    "type": "added",
+    "time": "7:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Community Redevelopment Agency (CRA) Regular Meeting",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "7:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-11-17",
+    "type": "added",
+    "time": "7:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council",
+    "date": "2026-11-05",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-10-22",
+    "type": "added",
+    "time": "2:37 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council Meeting",
+    "date": "2026-10-08",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning, and Adjustment Board",
+    "date": "2026-11-04",
+    "type": "added",
+    "time": "5:00PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning and Adjustment Board",
+    "date": "2026-10-06",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-10-31T04:34:07.146398+00:00"
   }
 ]
