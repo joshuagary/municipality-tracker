@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-31T05:42:03.687362+00:00",
+  "generated_at": "2026-11-01T04:58:02.449811+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 297,
+  "historical_meetings_scanned": 273,
   "insights": [
     {
       "theme_title": "Ordinance 2026-02",
@@ -119,59 +119,6 @@
       "rank": 2
     },
     {
-      "theme_title": "Resolution No. 2026-07",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC",
-        "JUNOBEACH"
-      ],
-      "cross_municipality": true,
-      "occurrence_count": 3,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-05-11), Town of Jupiter Inlet Colony (2026-04-13)",
-      "meetings": [
-        {
-          "muni_short": "JUNOBEACH",
-          "muni_full": "Town of Juno Beach",
-          "title": "Town Council Regular Meeting",
-          "date": "2026-07-22",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-ea7e046505dd4992a98a4e4588e5aac0.pdf",
-          "description": "Consideration of Resolution No. 2026-07 regarding the MPSCC Fifth Amendment to Interlocal Agreement on the consent agenda.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-05-11",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48",
-          "description": "Vote on Resolution 2026-07 approving the Town of Jupiter Inlet Colony Employee Handbook, sponsored by the Town Manager and continued from the April 13, 2026, meeting.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-04-13",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46",
-          "description": "Vote on Resolution 2026-07 approving the Town of Jupiter Inlet Colony Employee Handbook, sponsored by the Town Manager.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 70,
-      "reasons": [
-        "recurring_across_municipalities"
-      ],
-      "starred": true,
-      "rank": 3
-    },
-    {
       "theme_title": "401 Olympus Drive",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -230,7 +177,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 4
+      "rank": 3
     },
     {
       "theme_title": "136 Lighthouse Drive",
@@ -291,7 +238,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 5
+      "rank": 4
     },
     {
       "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
@@ -335,44 +282,36 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 5
     },
     {
-      "theme_title": "Resolution 2026-05",
+      "theme_title": "Resolution No. 2026-07",
       "category": "Other Governance Matters",
       "municipalities": [
-        "JUIC"
+        "JUIC",
+        "JUNOBEACH"
       ],
-      "cross_municipality": false,
-      "occurrence_count": 3,
+      "cross_municipality": true,
+      "occurrence_count": 2,
       "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16), Town of Jupiter Inlet Colony (2026-04-13)",
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-05-11)",
       "meetings": [
         {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-09-14",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
-          "description": "Adoption of rules of conduct and decorum at public meetings as outlined in Resolution 2026-05.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Budget Workshop",
-          "date": "2026-06-16",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
-          "description": "Rules of conduct and decorum at public meetings adopted by the Town Commission.",
+          "muni_short": "JUNOBEACH",
+          "muni_full": "Town of Juno Beach",
+          "title": "Town Council Regular Meeting",
+          "date": "2026-07-22",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-ea7e046505dd4992a98a4e4588e5aac0.pdf",
+          "description": "Consideration of Resolution No. 2026-07 regarding the MPSCC Fifth Amendment to Interlocal Agreement on the consent agenda.",
           "method": "llm"
         },
         {
           "muni_short": "JUIC",
           "muni_full": "Town of Jupiter Inlet Colony",
           "title": "Regular Town Commission Meeting",
-          "date": "2026-04-13",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_04132026-46",
-          "description": "Vote on Resolution 2026-05 regarding Rules of Conduct and Decorum during public meetings of the Town Commission and any other public meetings, sponsored by Mayor Bill Muir.",
+          "date": "2026-05-11",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_05112026-48",
+          "description": "Vote on Resolution 2026-07 approving the Town of Jupiter Inlet Colony Employee Handbook, sponsored by the Town Manager and continued from the April 13, 2026, meeting.",
           "method": "llm"
         }
       ],
@@ -382,12 +321,12 @@
         "sources": [],
         "error": "HTTP 400"
       },
-      "confidence": 45,
+      "confidence": 55,
       "reasons": [
-        "recurring_over_time"
+        "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 6
     },
     {
       "theme_title": "234 Shelter Lane",
@@ -430,7 +369,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 7
     },
     {
       "theme_title": "ARTS WAREHOUSE REPORT",
@@ -473,7 +412,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 8
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -516,7 +455,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 9
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -559,7 +498,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 10
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -602,7 +541,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 11
     },
     {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
@@ -645,7 +584,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 12
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -674,6 +613,49 @@
           "date": "2026-07-14",
           "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
           "description": "Consideration of a maintenance of traffic plan and road closure plan for the intersection of SW 8th Avenue and SW 2nd Street for the SW 8th Avenue/SW 2nd Street intersection improvements project.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 13
+    },
+    {
+      "theme_title": "Resolution 2026-05",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
+          "description": "Adoption of rules of conduct and decorum at public meetings as outlined in Resolution 2026-05.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Budget Workshop",
+          "date": "2026-06-16",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
+          "description": "Rules of conduct and decorum at public meetings adopted by the Town Commission.",
           "method": "llm"
         }
       ],
@@ -861,49 +843,6 @@
       ],
       "starred": true,
       "rank": 18
-    },
-    {
-      "theme_title": "313 NE 3rd Street",
-      "category": "Community Redevelopment (CRA)",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Delray Beach (2026-04-28)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-07-23",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Approval of the third amendment to the construction services agreement with Waypoint Contracting, Inc. in an amount not to exceed $231,804.26, for additional construction services needed for roof repairs, bringing the total contract amount to not exceed $1,118,692.29 for the CRA-owned building.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "Community Redevelopment Agency",
-          "date": "2026-04-28",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4586&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Approval of the Second Amendment to the Construction Services Agreement with Waypoint Contracting, Inc. in an amount not to exceed $34,402.03 for interior concrete floor repairs, bringing the total contract sum not to exceed $886,888.03 for the CRA-owned building.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 19
     }
   ]
 }
