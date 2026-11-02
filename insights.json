@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-01T04:58:02.449811+00:00",
+  "generated_at": "2026-11-02T04:57:45.591715+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 273,
+  "historical_meetings_scanned": 274,
   "insights": [
     {
       "theme_title": "Ordinance 2026-02",
@@ -329,6 +329,49 @@
       "rank": 6
     },
     {
+      "theme_title": "802 SE 5TH AVENUE",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-10-06)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-11-02",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Acceptance of a landscape maintenance agreement and an FDOT landscape maintenance agreement for a portion of 802 SE 5th Avenue at the corner of SE 5th Avenue and SE 8th Street.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-10-06",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Acceptance of an easement agreement for a pedestrian clear zone at 802 SE 5th Avenue.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 7
+    },
+    {
       "theme_title": "234 Shelter Lane",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -369,7 +412,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 8
     },
     {
       "theme_title": "ARTS WAREHOUSE REPORT",
@@ -412,7 +455,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 9
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -455,7 +498,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 10
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -498,7 +541,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 11
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -541,7 +584,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 12
     },
     {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
@@ -584,7 +627,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 13
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -627,7 +670,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 14
     },
     {
       "theme_title": "Resolution 2026-05",
@@ -670,7 +713,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 15
     },
     {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
@@ -713,7 +756,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 16
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -756,7 +799,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 17
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -799,7 +842,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 18
     },
     {
       "theme_title": "Code of Ordinances Chapter 4",
@@ -842,7 +885,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 18
+      "rank": 19
     }
   ]
 }

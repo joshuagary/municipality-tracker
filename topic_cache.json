@@ -3222,5 +3222,73 @@
   "PALMBEACH|2026-06-02|planning and zoning commission meeting": [],
   "PALMBEACH|2026-06-09|town council regular meeting": [],
   "PALMBEACH|2026-06-10|local planning agency (lpa)": [],
-  "PALMBEACH|2026-06-10|town council development review meeting": []
+  "PALMBEACH|2026-06-10|town council development review meeting": [],
+  "DELRAY|2026-11-02|city commission": [
+    {
+      "topic_title": "File 26-1405",
+      "category": "Budget & Finance",
+      "description": "Presentation regarding Delray Beach municipal bond ratings and pending project financings.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-02",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "File 26-1417",
+      "category": "Other Governance Matters",
+      "description": "Presentation of the analysis of parking revenues and 'Free Parking Wednesdays'.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-02",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Florida Carry, Inc. vs. City of Delray Beach",
+      "category": "Other Governance Matters",
+      "description": "Ratification and indemnification of Chief of Police Darrell Hunter in the matter of Florida Carry, Inc. vs. City of Delray Beach, et al.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-02",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Evens Occenat v. The City of Delray Beach",
+      "category": "Other Governance Matters",
+      "description": "Proposed offer of settlement in the case of Evens Occenat v. The City of Delray Beach.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-02",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "2210 North Federal Highway",
+      "category": "Zoning & Land Use",
+      "description": "Acceptance of a right-of-way dedication along the southwest and southeast corner of the parcel located at 2210 North Federal Highway, known as Lenny's Car Wash.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-02",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "802 SE 5th Avenue",
+      "category": "Zoning & Land Use",
+      "description": "Acceptance of a landscape maintenance agreement and an FDOT landscape maintenance agreement for a portion of 802 SE 5th Avenue at the corner of SE 5th Avenue and SE 8th Street.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-02",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ]
 }
