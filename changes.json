@@ -1,50 +1,5 @@
 [
   {
-    "muni_short": "BOYNTON",
-    "muni_full": "City of Boynton Beach",
-    "title": "City Commission Agenda Review Workshop September 24, 2026 100 E. Ocean Avenue Event Details",
-    "date": "2026-09-24",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-09-19T00:17:37.369679+00:00"
-  },
-  {
-    "muni_short": "DELRAY",
-    "muni_full": "City of Delray Beach",
-    "title": "Board of Adjustment",
-    "date": "2026-10-01",
-    "type": "added",
-    "time": "5:01 PM",
-    "detected_at": "2026-09-19T00:17:37.369679+00:00"
-  },
-  {
-    "muni_short": "RIVBEACH",
-    "muni_full": "City of Riviera Beach",
-    "title": "Planning and Zoning Board Meeting",
-    "date": "2026-09-24",
-    "type": "added",
-    "time": "6:30 PM",
-    "detected_at": "2026-09-19T00:17:37.369679+00:00"
-  },
-  {
-    "muni_short": "NPB",
-    "muni_full": "Village of North Palm Beach",
-    "title": "Village Council Meeting",
-    "date": "2026-09-24",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-09-19T00:17:37.369679+00:00"
-  },
-  {
-    "muni_short": "DELRAY",
-    "muni_full": "City of Delray Beach",
-    "title": "Planning and Zoning Board",
-    "date": "2026-09-28",
-    "time": "5:01 PM",
-    "type": "removed",
-    "detected_at": "2026-09-19T00:17:37.369679+00:00"
-  },
-  {
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Planning Board",
@@ -3256,5 +3211,38 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-11-01T04:54:01.917260+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Town Commission Meeting",
+    "date": "2026-11-09",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-03T05:44:31.823040+00:00"
+  },
+  {
+    "muni_short": "JUIC",
+    "muni_full": "Town of Jupiter Inlet Colony",
+    "title": "Regular Town Commission Meeting",
+    "date": "2026-11-09",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-03T05:44:31.823040+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning, and Adjustment Board",
+    "date": "2026-11-04",
+    "type": "modified",
+    "time": "11:43 AM",
+    "fields_changed": {
+      "time": {
+        "old": "5:00PM",
+        "new": "11:43 AM"
+      }
+    },
+    "detected_at": "2026-11-03T05:44:31.823040+00:00"
   }
 ]
