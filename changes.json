@@ -1,68 +1,5 @@
 [
   {
-    "muni_short": "WPB",
-    "muni_full": "City of West Palm Beach",
-    "title": "Planning Board",
-    "date": "2026-09-15",
-    "type": "added",
-    "time": "06:00 PM",
-    "detected_at": "2026-09-20T00:18:43.184832+00:00"
-  },
-  {
-    "muni_short": "WPB",
-    "muni_full": "City of West Palm Beach",
-    "title": "Planning Board",
-    "date": "2026-10-20",
-    "type": "added",
-    "time": "06:00 PM",
-    "detected_at": "2026-09-20T00:18:43.184832+00:00"
-  },
-  {
-    "muni_short": "JUIC",
-    "muni_full": "Town of Jupiter Inlet Colony",
-    "title": "Town Commission Meeting",
-    "date": "2026-09-14",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-09-20T00:18:43.184832+00:00"
-  },
-  {
-    "muni_short": "JUIC",
-    "muni_full": "Town of Jupiter Inlet Colony",
-    "title": "Regular Town Commission Meeting",
-    "date": "2026-09-14",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-09-20T00:18:43.184832+00:00"
-  },
-  {
-    "muni_short": "JUIC",
-    "muni_full": "Town of Jupiter Inlet Colony",
-    "title": "Town Commission Meeting",
-    "date": "2026-09-08",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-09-20T00:18:43.184832+00:00"
-  },
-  {
-    "muni_short": "JUIC",
-    "muni_full": "Town of Jupiter Inlet Colony",
-    "title": "Special Town Commission Meeting",
-    "date": "2026-09-08",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-09-20T00:18:43.184832+00:00"
-  },
-  {
-    "muni_short": "JUIC",
-    "muni_full": "Town of Jupiter Inlet Colony",
-    "title": "Town Commission Meeting",
-    "date": "2026-09-17",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-09-20T00:18:43.184832+00:00"
-  },
-  {
     "muni_short": "BOCA",
     "muni_full": "City of Boca Raton",
     "title": "Mayor's Town Hall",
@@ -3244,5 +3181,71 @@
       }
     },
     "detected_at": "2026-11-03T05:44:31.823040+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "Board of County Commissioners Meeting",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-11-04T05:17:30.702287+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting November 5, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-05",
+    "type": "modified",
+    "time": "5:00 PM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "5:00 PM"
+      }
+    },
+    "detected_at": "2026-11-04T05:17:30.702287+00:00"
+  },
+  {
+    "muni_short": "JUP",
+    "muni_full": "Town of Jupiter",
+    "title": "Community Redevelopment Agency (CRA) Regular Meeting",
+    "date": "2026-11-05",
+    "type": "modified",
+    "time": "6:30 PM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "6:30 PM"
+      }
+    },
+    "detected_at": "2026-11-04T05:17:30.702287+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting November 3, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-03",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-04T05:17:30.702287+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-03",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-04T05:17:30.702287+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting",
+    "date": "2026-11-17",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-04T05:17:30.702287+00:00"
   }
 ]

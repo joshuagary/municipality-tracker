@@ -2067,19 +2067,6 @@
       "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
     }
   ],
-  "PBC|2026-09-29|board of county commissioners meeting": [
-    {
-      "topic_title": "CityPlace South Tower II, LLC / 940 South Rosemary Avenue",
-      "category": "Housing & Development",
-      "description": "Approval of a Purchase and Sale Agreement, Memorandum of Purchase and Sale Agreement, Termination of Convention Center Hotel Garage Easement, and Hotel Lease with CityPlace South Tower II, LLC for the acquisition of approximately 1.80 acres of land at 940 South Rosemary Avenue in West Palm Beach to develop an 18-story, 400-room hotel supporting the Palm Beach County Convention Center.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-09-29",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20260929.pdf"
-    }
-  ],
   "JUNOBEACH|2026-09-30|town council workshop - strategic plan": [],
   "BOCA|2026-09-03|planning & zoning board": [],
   "BOCA|2026-09-08|community redevelopment agency/city council workshop/city council regular meeting": [],
@@ -3289,6 +3276,31 @@
       "event_title": "City Commission",
       "date": "2026-11-02",
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "RIVBEACH|2026-11-04|city council": [],
+  "NPB|2026-11-04|planning, zoning, and adjustment board": [
+    {
+      "topic_title": "784 US Highway 1",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a request from 784 US1 LLC for Appearance Review approval regarding an amendment to the building paint colors.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning, and Adjustment Board",
+      "date": "2026-11-04",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+    },
+    {
+      "topic_title": "PZ-2026-60 9250 Alternate A1A. Agrusa Office",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a request from L&D Holdings, LLC for the development of a 3,000 square foot office and warehouse building on the southern half of the property and approval of a revised site plan for the northern half.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Planning, Zoning, and Adjustment Board",
+      "date": "2026-11-04",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
     }
   ]
 }
