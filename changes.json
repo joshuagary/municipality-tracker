@@ -3247,5 +3247,98 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-11-04T05:17:30.702287+00:00"
+  },
+  {
+    "muni_short": "WPB",
+    "muni_full": "City of West Palm Beach",
+    "title": "Plans & Plats Review Committee",
+    "date": "2026-11-12",
+    "type": "modified",
+    "time": "01:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-11-05T05:38:33.528658+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting November 10, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-05T05:38:33.528658+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Regular Meeting",
+    "date": "2026-11-10",
+    "type": "modified",
+    "time": "6:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-11-05T05:38:33.528658+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "Local Planning Agency Meeting",
+    "date": "2026-11-10",
+    "type": "modified",
+    "time": "5:30 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-11-05T05:38:33.528658+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Village Council",
+    "date": "2026-11-05",
+    "type": "modified",
+    "time": "12:05 PM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "12:05 PM"
+      }
+    },
+    "detected_at": "2026-11-05T05:38:33.528658+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning, and Adjustment Board",
+    "date": "2026-11-04",
+    "type": "modified",
+    "time": "2:59 PM",
+    "fields_changed": {
+      "time": {
+        "old": "11:43 AM",
+        "new": "2:59 PM"
+      }
+    },
+    "detected_at": "2026-11-05T05:38:33.528658+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-12-09",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-11-05T05:38:33.528658+00:00"
   }
 ]

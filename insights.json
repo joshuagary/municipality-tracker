@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-04T05:19:49.568355+00:00",
+  "generated_at": "2026-11-05T05:41:14.405820+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 275,
+  "historical_meetings_scanned": 278,
   "insights": [
     {
       "theme_title": "Ordinance 2026-02",
@@ -329,6 +329,49 @@
       "rank": 6
     },
     {
+      "theme_title": "755 SE 7th Avenue (PZ-000669-2026)",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-09-03)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Board of Adjustment",
+          "date": "2026-11-05",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4468&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of a variance request from Land Development Regulations (LDR) Section 4.6.9(C)(2)(a) regarding off-street parking regulations to allow one of the two required off-street parking spaces for a detached single-family dwelling to be located within the front setback, associated with converting half of an existing attached two-car garage to habitable floor area.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Board of Adjustment",
+          "date": "2026-09-03",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4466&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of a variance request to reduce the minimum required off-street parking for a detached single-family dwelling from two spaces to zero, associated with converting the existing attached two-car garage to habitable floor area.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 7
+    },
+    {
       "theme_title": "802 SE 5TH AVENUE",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -369,7 +412,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 8
     },
     {
       "theme_title": "234 Shelter Lane",
@@ -412,7 +455,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 9
     },
     {
       "theme_title": "ARTS WAREHOUSE REPORT",
@@ -455,7 +498,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 10
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -498,7 +541,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 11
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -541,7 +584,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 12
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -584,7 +627,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 13
     },
     {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
@@ -627,7 +670,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 14
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -670,7 +713,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 15
     },
     {
       "theme_title": "Resolution 2026-05",
@@ -713,7 +756,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 16
     },
     {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
@@ -756,7 +799,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 17
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -799,7 +842,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 18
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -842,7 +885,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 18
+      "rank": 19
     },
     {
       "theme_title": "Code of Ordinances Chapter 4",
@@ -885,7 +928,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 19
+      "rank": 20
     }
   ]
 }

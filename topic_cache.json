@@ -3302,5 +3302,88 @@
       "date": "2026-11-04",
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
     }
+  ],
+  "DELRAY|2026-11-05|board of adjustment": [
+    {
+      "topic_title": "September 3, 2026",
+      "category": "Other Governance Matters",
+      "description": "Consideration of the Advisory Board Agenda Item from the September 3, 2026 meeting.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Board of Adjustment",
+      "date": "2026-11-05",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4468&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "755 SE 7th Avenue (PZ-000669-2026)",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a variance request from Land Development Regulations (LDR) Section 4.6.9(C)(2)(a) regarding off-street parking regulations to allow one of the two required off-street parking spaces for a detached single-family dwelling to be located within the front setback, associated with converting half of an existing attached two-car garage to habitable floor area.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Board of Adjustment",
+      "date": "2026-11-05",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4468&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "WESTLAKE|2026-11-05|city council workshop": [
+    {
+      "topic_title": "Inframark Agreement",
+      "category": "Other Governance Matters",
+      "description": "Review and discussion of the Inframark Agreement by the City Council.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Workshop",
+      "date": "2026-11-05",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-bf21ebd9b6124bce9d5b9aedf73cc544.pdf"
+    }
+  ],
+  "NPB|2026-11-05|village council": [
+    {
+      "topic_title": "Second Amendment to the Lease Agreement with Yard-Nique, Inc.",
+      "category": "Other Governance Matters",
+      "description": "A resolution approving a second amendment to the lease agreement with Yard-Nique, Inc. for property located at 9555 Old Dixie Highway, and authorizing the Village Manager to execute the amendment.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-11-05",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11052026-1389"
+    },
+    {
+      "topic_title": "Ordinance 2026-08",
+      "category": "Budget & Finance",
+      "description": "First reading of Ordinance 2026-08 to amend Article I of Chapter 2 of the Village Code regarding the Village's Investment Policy to comply with statutory requirements and incorporate best practices for investment benchmarks, limits, maturity requirements, and procedures.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-11-05",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11052026-1389"
+    },
+    {
+      "topic_title": "Ordinances 2026-09 through 2026-16",
+      "category": "Other Governance Matters",
+      "description": "First reading of Ordinances 2026-09 through 2026-16 to amend the Village Charter and submit the proposed amendments to a referendum vote.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-11-05",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11052026-1389"
+    },
+    {
+      "topic_title": "713 Westwind Drive",
+      "category": "Other Governance Matters",
+      "description": "A motion regarding the sale of property located at 713 Westwind Drive.",
+      "method": "llm",
+      "muni_short": "NPB",
+      "muni_full": "Village of North Palm Beach",
+      "event_title": "Village Council",
+      "date": "2026-11-05",
+      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11052026-1389"
+    }
   ]
 }
