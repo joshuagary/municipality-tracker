@@ -325,30 +325,6 @@
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-feff43c0136540ba864a701307f07b1b.pdf"
     }
   ],
-  "WESTLAKE|2026-05-05|city council regular meeting": [
-    {
-      "topic_title": "MSP-2026-02",
-      "category": "Zoning & Land Use",
-      "description": "The applicant is requesting approval of a retroactive Master Sign Plan for the Cresswind Palm Beach residential development, including one pod entry monument sign and three waivers pursuant to Section 113-8 of the City of Westlake Sign Code.",
-      "method": "llm",
-      "muni_short": "WESTLAKE",
-      "muni_full": "City of Westlake",
-      "event_title": "City Council Regular Meeting",
-      "date": "2026-05-05",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-fd5a6a68abc346e39f18ea714e77071b.pdf"
-    },
-    {
-      "topic_title": "Ordinance 2026-02",
-      "category": "Zoning & Land Use",
-      "description": "Second reading of an ordinance for a Chapter 101 & 119 Text Amendment regarding Accessory Structures, submitted by Planning and Zoning.",
-      "method": "llm",
-      "muni_short": "WESTLAKE",
-      "muni_full": "City of Westlake",
-      "event_title": "City Council Regular Meeting",
-      "date": "2026-05-05",
-      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-fd5a6a68abc346e39f18ea714e77071b.pdf"
-    }
-  ],
   "RIVBEACH|2026-09-02|city council": [],
   "RIVBEACH|2026-08-27|community redevelopment agency": [],
   "RIVBEACH|2026-08-26|city council budget workshop": [],

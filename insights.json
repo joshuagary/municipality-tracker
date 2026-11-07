@@ -1,70 +1,8 @@
 {
-  "generated_at": "2026-11-06T05:36:45.511093+00:00",
+  "generated_at": "2026-11-07T05:04:34.301723+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 278,
+  "historical_meetings_scanned": 277,
   "insights": [
-    {
-      "theme_title": "Ordinance 2026-02",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUIC",
-        "WESTLAKE"
-      ],
-      "cross_municipality": true,
-      "occurrence_count": 4,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10), Town of Jupiter Inlet Colony (2026-08-10), City of Westlake (2026-05-05)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-10-19",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
-          "description": "Final hearing and vote on an ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
-          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-62",
-          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Regular Meeting",
-          "date": "2026-05-05",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-fd5a6a68abc346e39f18ea714e77071b.pdf",
-          "description": "Second reading of an ordinance for a Chapter 101 & 119 Text Amendment regarding Accessory Structures, submitted by Planning and Zoning.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 90,
-      "reasons": [
-        "recurring_across_municipalities"
-      ],
-      "starred": true,
-      "rank": 1
-    },
     {
       "theme_title": "Ordinance 2026-03",
       "category": "Other Governance Matters",
@@ -116,7 +54,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 2
+      "rank": 1
     },
     {
       "theme_title": "401 Olympus Drive",
@@ -177,7 +115,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 3
+      "rank": 2
     },
     {
       "theme_title": "136 Lighthouse Drive",
@@ -238,7 +176,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 4
+      "rank": 3
     },
     {
       "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
@@ -282,7 +220,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 5
+      "rank": 4
     },
     {
       "theme_title": "Resolution No. 2026-07",
@@ -324,6 +262,58 @@
       "confidence": 55,
       "reasons": [
         "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 5
+    },
+    {
+      "theme_title": "Ordinance 2026-02",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 3,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10), Town of Jupiter Inlet Colony (2026-08-10)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-19",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
+          "description": "Final hearing and vote on an ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
+          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-62",
+          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 50,
+      "reasons": [
+        "recurring_over_time"
       ],
       "starred": true,
       "rank": 6
