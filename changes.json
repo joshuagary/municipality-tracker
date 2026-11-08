@@ -1,20 +1,5 @@
 [
   {
-    "muni_short": "BOYNTON",
-    "muni_full": "City of Boynton Beach",
-    "title": "City Commission Agenda Review Workshop September 24, 2026 100 E. Ocean Avenue Event Details",
-    "date": "2026-09-24",
-    "type": "modified",
-    "time": "5:30 PM",
-    "fields_changed": {
-      "time": {
-        "old": "6:00 PM",
-        "new": "5:30 PM"
-      }
-    },
-    "detected_at": "2026-09-24T00:17:56.313266+00:00"
-  },
-  {
     "muni_short": "JUNOBEACH",
     "muni_full": "Town of Juno Beach",
     "title": "Planning and Zoning Board",
@@ -3271,5 +3256,14 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-11-07T05:02:36.945426+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-12-07",
+    "type": "added",
+    "time": "4:00 PM",
+    "detected_at": "2026-11-08T04:57:45.684407+00:00"
   }
 ]
