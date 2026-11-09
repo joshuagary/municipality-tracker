@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-08T05:00:10.612416+00:00",
+  "generated_at": "2026-11-09T05:09:29.061145+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 277,
+  "historical_meetings_scanned": 280,
   "insights": [
     {
       "theme_title": "Ordinance 2026-03",
@@ -55,6 +55,67 @@
       ],
       "starred": true,
       "rank": 1
+    },
+    {
+      "theme_title": "Ordinance 2026-02",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 4,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19), Town of Jupiter Inlet Colony (2026-08-10), Town of Jupiter Inlet Colony (2026-08-10)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-11-09",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74",
+          "description": "Final hearing vote on an ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town\u2019s Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-19",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
+          "description": "Final hearing and vote on an ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
+          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-62",
+          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 65,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 2
     },
     {
       "theme_title": "401 Olympus Drive",
@@ -115,7 +176,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 2
+      "rank": 3
     },
     {
       "theme_title": "136 Lighthouse Drive",
@@ -176,7 +237,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 3
+      "rank": 4
     },
     {
       "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
@@ -220,7 +281,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 4
+      "rank": 5
     },
     {
       "theme_title": "Resolution No. 2026-07",
@@ -264,44 +325,44 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 5
+      "rank": 6
     },
     {
-      "theme_title": "Ordinance 2026-02",
-      "category": "Zoning & Land Use",
+      "theme_title": "FY 2027 Millage Rate and Budget Estimates",
+      "category": "Budget & Finance",
       "municipalities": [
         "JUIC"
       ],
       "cross_municipality": false,
       "occurrence_count": 3,
       "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10), Town of Jupiter Inlet Colony (2026-08-10)",
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-14), Town of Jupiter Inlet Colony (2026-09-08)",
       "meetings": [
         {
           "muni_short": "JUIC",
           "muni_full": "Town of Jupiter Inlet Colony",
           "title": "Town Commission Meeting",
-          "date": "2026-10-19",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
-          "description": "Final hearing and vote on an ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "date": "2026-11-09",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-73",
+          "description": "Final Public Hearing on the FY 2027 millage rate at 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the associated budget.",
           "method": "llm"
         },
         {
           "muni_short": "JUIC",
           "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-60",
-          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68",
+          "description": "Final Public Hearing on the maximum millage rate of 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the budget for FY 2027.",
           "method": "llm"
         },
         {
           "muni_short": "JUIC",
           "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-62",
-          "description": "An ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town's Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-66",
+          "description": "Public hearing and votes to announce and approve the tentative maximum millage rate of 5.5600 mills for FY 2027 (greater than the rolled-back rate of 5.3209 mills by 4.49%) and to approve tentative estimates of Revenue and Expenses for the fiscal year commencing October 1, 2026, through September 30, 2027.",
           "method": "llm"
         }
       ],
@@ -316,7 +377,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 7
+    },
+    {
+      "theme_title": "Community Camera Purchase",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-11-09",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74",
+          "description": "Vote on the reconsideration of the Community Camera Purchase, sponsored by the Town Manager and Police Chief.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-19",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
+          "description": "Vote on the reconsideration of the community camera purchase, sponsored by the Police Chief.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 8
     },
     {
       "theme_title": "755 SE 7th Avenue (PZ-000669-2026)",
@@ -359,7 +463,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 9
     },
     {
       "theme_title": "802 SE 5TH AVENUE",
@@ -402,7 +506,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 10
     },
     {
       "theme_title": "234 Shelter Lane",
@@ -445,7 +549,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 11
     },
     {
       "theme_title": "ARTS WAREHOUSE REPORT",
@@ -488,7 +592,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 12
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -531,7 +635,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 13
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -574,7 +678,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 14
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -617,50 +721,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
-    },
-    {
-      "theme_title": "FY 2027 Millage Rate and Budget Estimates",
-      "category": "Budget & Finance",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-08)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-09-14",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-68",
-          "description": "Final Public Hearing on the maximum millage rate of 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the budget for FY 2027.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-09-08",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-66",
-          "description": "Public hearing and votes to announce and approve the tentative maximum millage rate of 5.5600 mills for FY 2027 (greater than the rolled-back rate of 5.3209 mills by 4.49%) and to approve tentative estimates of Revenue and Expenses for the fiscal year commencing October 1, 2026, through September 30, 2027.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 14
+      "rank": 15
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -703,7 +764,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 16
     },
     {
       "theme_title": "Resolution 2026-05",
@@ -746,7 +807,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 17
     },
     {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
@@ -789,7 +850,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 18
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -832,7 +893,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 18
+      "rank": 19
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -875,7 +936,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 19
+      "rank": 20
     },
     {
       "theme_title": "Code of Ordinances Chapter 4",
@@ -918,7 +979,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 20
+      "rank": 21
     }
   ]
 }

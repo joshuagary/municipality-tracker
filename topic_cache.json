@@ -3361,5 +3361,109 @@
       "date": "2026-11-05",
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11052026-1389"
     }
+  ],
+  "WPB|2026-11-09|city commission meeting": [],
+  "JUIC|2026-11-09|town commission meeting": [
+    {
+      "topic_title": "FY 2027 Millage Rate and Budget",
+      "category": "Budget & Finance",
+      "description": "Final Public Hearing on the FY 2027 millage rate at 5.560 mills (greater than the rolled-back rate of 5.3209 mills by 4.49%) and the associated budget.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-73"
+    },
+    {
+      "topic_title": "Resolution No. 2026-15",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution establishing and levying a tax upon all taxable property for the Town's operations and expenses for the fiscal year commencing October 1, 2026, and ending September 30, 2027, and certifying millages to the County Property Appraiser.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-73"
+    },
+    {
+      "topic_title": "Resolution No. 2026-16",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution approving the estimates of revenue and expense (Annual Budget) for the fiscal year commencing October 1, 2026, and ending September 30, 2027, as prepared by the Town Manager and reviewed by the Town Commission.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-73"
+    }
+  ],
+  "JUIC|2026-11-09|regular town commission meeting": [
+    {
+      "topic_title": "Town Hall Renovation",
+      "category": "Other Governance Matters",
+      "description": "Presentation on the Town Hall Renovation by Project Architect Robert Castrovinci of Song + Associates, Inc.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
+    },
+    {
+      "topic_title": "Ordinance 2026-02",
+      "category": "Zoning & Land Use",
+      "description": "Final hearing vote on an ordinance amending policies in the Sanitary Sewer, Solid Waste, Stormwater Management, Potable Water and Natural Groundwater Aquifer Recharge Element of the Town\u2019s Comprehensive Plan relating to water supply and adopting the 2026 Water Supply Plan.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
+    },
+    {
+      "topic_title": "Resolution 2026-17",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution amending the Fiscal Year 2025/2026 Budget for the general fund by appropriating certain monies, allocating such appropriations, and providing for additional revenues and expenditures.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
+    },
+    {
+      "topic_title": "Resolution 2026-18",
+      "category": "Budget & Finance",
+      "description": "Vote on a resolution authorizing the issuance of a Capital Improvement Refunding Note not to exceed $915,000 for refinancing prior Neighborhood Rehabilitation Project notes, awarding the sale to Southstate Bank, N.A., and approving the loan agreement and note execution.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
+    },
+    {
+      "topic_title": "Resolution 2026-19",
+      "category": "Other Governance Matters",
+      "description": "Vote on a resolution approving the Town of Jupiter Inlet Colony\u2019s 2027 Legislative Agenda, sponsored by the Town Manager.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
+    },
+    {
+      "topic_title": "Community Camera Purchase",
+      "category": "Other Governance Matters",
+      "description": "Vote on the reconsideration of the Community Camera Purchase, sponsored by the Town Manager and Police Chief.",
+      "method": "llm",
+      "muni_short": "JUIC",
+      "muni_full": "Town of Jupiter Inlet Colony",
+      "event_title": "Regular Town Commission Meeting",
+      "date": "2026-11-09",
+      "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
+    }
   ]
 }
