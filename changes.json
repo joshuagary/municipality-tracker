@@ -1,20 +1,5 @@
 [
   {
-    "muni_short": "MANALAPAN",
-    "muni_full": "Town of Manalapan",
-    "title": "Town Commission Meeting \u2013 4:30 PM",
-    "date": "2026-09-28",
-    "type": "modified",
-    "time": "4:30 PM",
-    "fields_changed": {
-      "has_agenda": {
-        "old": false,
-        "new": true
-      }
-    },
-    "detected_at": "2026-09-26T00:16:36.859366+00:00"
-  },
-  {
     "muni_short": "PBC",
     "muni_full": "Palm Beach County",
     "title": "Board of County Commissioners Meeting",
@@ -3220,5 +3205,77 @@
     "type": "added",
     "time": "4:00 PM",
     "detected_at": "2026-11-08T04:57:45.684407+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-12",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-10T06:22:53.034432+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-25",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-10T06:22:53.034432+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-12-10",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-10T06:22:53.034432+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Planning and Zoning Board",
+    "date": "2026-11-16",
+    "type": "added",
+    "time": "5:01 PM",
+    "detected_at": "2026-11-10T06:22:53.034432+00:00"
+  },
+  {
+    "muni_short": "JUNOBEACH",
+    "muni_full": "Town of Juno Beach",
+    "title": "Town Council Regular Meeting",
+    "date": "2026-12-09",
+    "type": "added",
+    "time": "5:30 PM",
+    "detected_at": "2026-11-10T06:22:53.034432+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-19",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-10T06:22:53.034432+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-12-03",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-10T06:22:53.034432+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-12-31",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-10T06:22:53.034432+00:00"
   }
 ]

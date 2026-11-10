@@ -3465,5 +3465,77 @@
       "date": "2026-11-09",
       "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
     }
+  ],
+  "WESTLAKE|2026-11-10|city council regular meeting": [
+    {
+      "topic_title": "MSP-2026-07",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a Master Sign Plan for Mavis Tires & Brakes at Publix at Westlake Plaza, Parcel A, including one wall sign on the south building elevation and the previously approved monument sign.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Regular Meeting",
+      "date": "2026-11-10",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-03996a538be94d01a43e193b329b39f0.pdf"
+    },
+    {
+      "topic_title": "MSP-2026-05",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of the Sandglass of Westlake Master Sign Plan, including two residential pod entry monument signs and one waiver comprising five deviations from Figure 113-11-3.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Regular Meeting",
+      "date": "2026-11-10",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-03996a538be94d01a43e193b329b39f0.pdf"
+    },
+    {
+      "topic_title": "SPM-2026-02",
+      "category": "Zoning & Land Use",
+      "description": "Request for approval of a Site Plan Modification for James Business Park, located at 17035 Persimmon Boulevard West, to accommodate an overnight kennel providing dog day care, overnight boarding, and grooming in Unit 700 (Bay 3A), including an outdoor pet relief and play area.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "City Council Regular Meeting",
+      "date": "2026-11-10",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-03996a538be94d01a43e193b329b39f0.pdf"
+    }
+  ],
+  "WESTLAKE|2026-11-10|local planning agency meeting": [
+    {
+      "topic_title": "LPA Ordinance No. 2026-11",
+      "category": "Zoning & Land Use",
+      "description": "An ordinance amending Chapter 101 and Chapter 107 of the City of Westlake Code of Ordinances to establish definitions and regulations for synthetic turf consistent with Florida Statutes and Administrative Code.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "Local Planning Agency Meeting",
+      "date": "2026-11-10",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-0abe4c65cec841dfad383a440bd92e86.pdf"
+    },
+    {
+      "topic_title": "LPA Ordinance No. 2026-13",
+      "category": "Data Centers",
+      "description": "An ordinance amending the City of Westlake Code of Ordinances to update criteria for small-scale comprehensive plan amendments, establish a definition for 'data center', allow data centers as a conditional use in the Mixed Use zoning district, and create design and operational standards.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "Local Planning Agency Meeting",
+      "date": "2026-11-10",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-0abe4c65cec841dfad383a440bd92e86.pdf"
+    }
+  ],
+  "WESTLAKE|2026-11-10|planning and zoning board meeting": [
+    {
+      "topic_title": "CU-2026-01",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of a Conditional Use application for an overnight kennel with dog day care, overnight boarding, grooming, and an accessory outdoor pet relief and play area located at James Business Park, 17035 Persimmon Boulevard West.",
+      "method": "llm",
+      "muni_short": "WESTLAKE",
+      "muni_full": "City of Westlake",
+      "event_title": "Planning and Zoning Board Meeting",
+      "date": "2026-11-10",
+      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-8ddbd7fed7b34dfc8f5654cd6502c975.pdf"
+    }
   ]
 }
