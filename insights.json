@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-10T06:25:56.094698+00:00",
+  "generated_at": "2026-11-11T05:10:52.198519+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 284,
+  "historical_meetings_scanned": 283,
   "insights": [
     {
       "theme_title": "Ordinance 2026-03",
@@ -380,49 +380,6 @@
       "rank": 7
     },
     {
-      "theme_title": "Community Camera Purchase",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-11-09",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74",
-          "description": "Vote on the reconsideration of the Community Camera Purchase, sponsored by the Town Manager and Police Chief.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-10-19",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
-          "description": "Vote on the reconsideration of the community camera purchase, sponsored by the Police Chief.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 8
-    },
-    {
       "theme_title": "755 SE 7th Avenue (PZ-000669-2026)",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -463,7 +420,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 8
     },
     {
       "theme_title": "802 SE 5TH AVENUE",
@@ -506,7 +463,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 9
     },
     {
       "theme_title": "234 Shelter Lane",
@@ -535,6 +492,49 @@
           "date": "2026-09-17",
           "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
           "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, along with a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 10
+    },
+    {
+      "theme_title": "Community Camera Purchase",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-11-09",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74",
+          "description": "Vote on the reconsideration of the Community Camera Purchase, sponsored by the Town Manager and Police Chief.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-19",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
+          "description": "Vote on the reconsideration of the community camera purchase, sponsored by the Police Chief.",
           "method": "llm"
         }
       ],
@@ -724,135 +724,6 @@
       "rank": 15
     },
     {
-      "theme_title": "Public Works Project No. 24-001",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "DELRAY"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Delray Beach (2026-07-14)",
-      "meetings": [
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "City Commission",
-          "date": "2026-07-14",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Approve and execute consent to easement agreements to use Army Corps of Engineers rights-of-way to construct, repair, and maintain two seawalls for the seawall replacement and repairs project located at SE 7th Street and at Mangrove Park.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "DELRAY",
-          "muni_full": "City of Delray Beach",
-          "title": "City Commission",
-          "date": "2026-07-14",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "description": "Consideration of a maintenance of traffic plan and road closure plan for the intersection of SW 8th Avenue and SW 2nd Street for the SW 8th Avenue/SW 2nd Street intersection improvements project.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 16
-    },
-    {
-      "theme_title": "Resolution 2026-05",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-09-14",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
-          "description": "Adoption of rules of conduct and decorum at public meetings as outlined in Resolution 2026-05.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Budget Workshop",
-          "date": "2026-06-16",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
-          "description": "Rules of conduct and decorum at public meetings adopted by the Town Commission.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 17
-    },
-    {
-      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-09-08",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
-          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending court case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Special Town Commission Meeting",
-          "date": "2026-08-10",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
-          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 18
-    },
-    {
       "theme_title": "Ordinance 2026-09",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -893,7 +764,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 19
+      "rank": 16
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -936,7 +807,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 20
+      "rank": 17
     },
     {
       "theme_title": "Code of Ordinances Chapter 4",
@@ -965,6 +836,135 @@
           "date": "2026-07-21",
           "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
           "description": "Discussion of proposed amendments to Code of Ordinances Chapter 4 regarding Buildings and Building Regulations.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 18
+    },
+    {
+      "theme_title": "Public Works Project No. 24-001",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "DELRAY"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-07-14)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-07-14",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Approve and execute consent to easement agreements to use Army Corps of Engineers rights-of-way to construct, repair, and maintain two seawalls for the seawall replacement and repairs project located at SE 7th Street and at Mangrove Park.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-07-14",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of a maintenance of traffic plan and road closure plan for the intersection of SW 8th Avenue and SW 2nd Street for the SW 8th Avenue/SW 2nd Street intersection improvements project.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 19
+    },
+    {
+      "theme_title": "Resolution 2026-05",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-06-16)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
+          "description": "Adoption of rules of conduct and decorum at public meetings as outlined in Resolution 2026-05.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Budget Workshop",
+          "date": "2026-06-16",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
+          "description": "Rules of conduct and decorum at public meetings adopted by the Town Commission.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 20
+    },
+    {
+      "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-08-10)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-09-08",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending court case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Special Town Commission Meeting",
+          "date": "2026-08-10",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08102026-61",
+          "description": "Recess into a closed attorney-client session pursuant to Section 286.011(8), Fla. Stat., regarding the pending case Marie Rosner vs. Town of Jupiter Inlet Colony in the Fifteenth Judicial Circuit in and for Palm Beach County, Florida.",
           "method": "llm"
         }
       ],

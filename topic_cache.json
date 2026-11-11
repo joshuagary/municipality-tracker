@@ -2055,74 +2055,6 @@
   "PALMBEACH|2026-05-12|town council regular meeting": [],
   "PALMBEACH|2026-05-13|town council development review meeting": [],
   "WPB|2026-10-05|mayor/commission work session": [],
-  "PBC|2026-10-06|board of county commissioners meeting": [
-    {
-      "topic_title": "International E-Waste Day",
-      "category": "Other Governance Matters",
-      "description": "Special Presentation / Proclamation (District 5) declaring October 14, 2026 as International E-Waste Day (deleted from agenda).",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-10-06",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
-    },
-    {
-      "topic_title": "Domestic Violence Awareness & Prevention Month",
-      "category": "Other Governance Matters",
-      "description": "Add-on Special Presentation / Proclamation (District 6) declaring October 2026 as Domestic Violence Awareness & Prevention Month.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-10-06",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
-    },
-    {
-      "topic_title": "Interlocal Agreement with Riviera Beach for traffic control jurisdiction",
-      "category": "Other Governance Matters",
-      "description": "Approval of an Interlocal Agreement with Riviera Beach concerning traffic control jurisdiction.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-10-06",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
-    },
-    {
-      "topic_title": "Adopt-A-Road Agreements for N. Congress Avenue and Lyons Road",
-      "category": "Other Governance Matters",
-      "description": "Approval of Adopt-A-Road Agreements for N. Congress Avenue and Lyons Road.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-10-06",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
-    },
-    {
-      "topic_title": "Country Club Acres stormwater improvements",
-      "category": "Budget & Finance",
-      "description": "Approval of an FDEP Grant and Budget Amendment for Country Club Acres stormwater improvements.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-10-06",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
-    },
-    {
-      "topic_title": "Amendment No. 1 with Walton, Lantaff, Schroeder & Carson",
-      "category": "Budget & Finance",
-      "description": "Approval of Amendment No. 1 with Walton, Lantaff, Schroeder & Carson for workers' compensation defense.",
-      "method": "llm",
-      "muni_short": "PBC",
-      "muni_full": "Palm Beach County",
-      "event_title": "Board of County Commissioners Meeting",
-      "date": "2026-10-06",
-      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261006.pdf"
-    }
-  ],
   "DELRAY|2026-10-06|city commission": [
     {
       "topic_title": "RESOLUTION NO. 146-26",
@@ -3536,6 +3468,30 @@
       "event_title": "Planning and Zoning Board Meeting",
       "date": "2026-11-10",
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-8ddbd7fed7b34dfc8f5654cd6502c975.pdf"
+    }
+  ],
+  "PBC|2026-11-10|board of county commissioners meeting": [
+    {
+      "topic_title": "Military Trail Business Interruption Grant (MTBIG) Program",
+      "category": "Housing & Development",
+      "description": "Approval of the County Administrator's creation of the Military Trail Business Interruption Grant (MTBIG) Program, including an allocation of up to $250,000 in FY 2027 ad valorem funding (with $150,000 transferred from General Fund Contingency Reserves) to provide one-time grants up to $5,000 for businesses and nonprofits disrupted by the November 1, 2026 airplane crash.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-11-10",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261110.pdf"
+    },
+    {
+      "topic_title": "Airplane Crash Building Permit Fee Waiver",
+      "category": "Zoning & Land Use",
+      "description": "Adoption of a resolution approving the temporary waiver of building permit fees for structural repairs related to damage caused by the private aircraft crash on November 1, 2026, in unincorporated Palm Beach County.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-11-10",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261110.pdf"
     }
   ]
 }

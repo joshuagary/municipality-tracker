@@ -3277,5 +3277,59 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-11-10T06:22:53.034432+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "Board of County Commissioners Meeting",
+    "date": "2026-11-17",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-11-11T05:08:12.648182+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop November 12, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-12",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-11T05:08:12.648182+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "City Commission",
+    "date": "2026-11-17",
+    "type": "added",
+    "time": "4:00 PM",
+    "detected_at": "2026-11-11T05:08:12.648182+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Community Redevelopment Agency",
+    "date": "2026-11-18",
+    "type": "added",
+    "time": "2:30 PM",
+    "detected_at": "2026-11-11T05:08:12.648182+00:00"
+  },
+  {
+    "muni_short": "WELL",
+    "muni_full": "Village of Wellington",
+    "title": "Wellington Village Council Special Meeting",
+    "date": "2026-11-16",
+    "type": "added",
+    "time": "5:00 PM",
+    "detected_at": "2026-11-11T05:08:12.648182+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting November 10, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-10",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-11T05:08:12.648182+00:00"
   }
 ]
