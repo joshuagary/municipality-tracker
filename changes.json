@@ -3331,5 +3331,23 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-11-11T05:08:12.648182+00:00"
+  },
+  {
+    "muni_short": "PBG",
+    "muni_full": "City of Palm Beach Gardens",
+    "title": "City Council Meeting",
+    "date": "2026-11-05",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-12T06:14:13.512993+00:00"
+  },
+  {
+    "muni_short": "PBG",
+    "muni_full": "City of Palm Beach Gardens",
+    "title": "City Council Meeting",
+    "date": "2026-12-03",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-12T06:14:13.512993+00:00"
   }
 ]
