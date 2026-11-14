@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-13T06:04:25.502227+00:00",
+  "generated_at": "2026-11-14T05:35:19.592550+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 202,
+  "historical_meetings_scanned": 283,
   "insights": [
     {
       "theme_title": "Ordinance 2026-03",
@@ -284,6 +284,50 @@
       "rank": 5
     },
     {
+      "theme_title": "Palm Beach County Commission on Ethics Memorandum of Understanding",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "DELRAY",
+        "NPB"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-07-09)",
+      "meetings": [
+        {
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-09-24",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of a memorandum of understanding between the Delray Beach Community Redevelopment Agency and the Palm Beach County Commission on Ethics.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-07-09",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352",
+          "description": "Gina A. Levesque, CFE presents an annual overview from the Palm Beach County Commission on Ethics.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 55,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": false,
+      "rank": 6
+    },
+    {
       "theme_title": "Resolution No. 2026-07",
       "category": "Other Governance Matters",
       "municipalities": [
@@ -325,7 +369,51 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 6
+      "rank": 7
+    },
+    {
+      "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC",
+        "NPB"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-08-31)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-09-14",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
+          "description": "Vote on the Fifth Amendment to the Interlocal Agreement to Establish Municipal Public Safety Communications Consortium of Palm Beach County, sponsored by the Police Chief.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council",
+          "date": "2026-08-31",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370",
+          "description": "Resolution approving the Fifth Amendment to the Interlocal Agreement to establish the Municipal Public Safety Communications Consortium of Palm Beach County and repealing Resolution No. 2026-11.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 55,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": false,
+      "rank": 8
     },
     {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
@@ -377,7 +465,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 9
     },
     {
       "theme_title": "755 SE 7th Avenue (PZ-000669-2026)",
@@ -420,7 +508,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 8
+      "rank": 10
     },
     {
       "theme_title": "802 SE 5TH AVENUE",
@@ -463,7 +551,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 11
     },
     {
       "theme_title": "234 Shelter Lane",
@@ -506,7 +594,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 12
     },
     {
       "theme_title": "Community Camera Purchase",
@@ -549,7 +637,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
+      "rank": 13
     },
     {
       "theme_title": "ARTS WAREHOUSE REPORT",
@@ -592,7 +680,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 12
+      "rank": 14
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -635,7 +723,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 15
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -678,7 +766,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 16
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -721,7 +809,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 17
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -764,7 +852,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 18
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -807,7 +895,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 19
     },
     {
       "theme_title": "Code of Ordinances Chapter 4",
@@ -850,7 +938,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 18
+      "rank": 20
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -893,7 +981,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 19
+      "rank": 21
     },
     {
       "theme_title": "Resolution 2026-05",
@@ -936,7 +1024,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 20
+      "rank": 22
     },
     {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
@@ -979,7 +1067,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 21
+      "rank": 23
     }
   ]
 }
