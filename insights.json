@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T05:35:19.592550+00:00",
+  "generated_at": "2026-11-15T05:25:10.907331+00:00",
   "lookback_months": 6,
   "historical_meetings_scanned": 283,
   "insights": [
@@ -240,6 +240,50 @@
       "rank": 4
     },
     {
+      "theme_title": "Chen Moore & Associates, Inc.",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC",
+        "NPB"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19)",
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-10-22",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383",
+          "description": "Consideration of a resolution approving a Sixth Amendment to the Professional Services Agreement with Chen Moore & Associates, Inc. to modify the hourly rate schedule.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-19",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
+          "description": "Vote on the approval of an agreement with Chen Moore and Associates for general engineering services, sponsored by the Town Manager.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": false,
+      "rank": 5
+    },
+    {
       "theme_title": "Budget Amendment No. 2, Fiscal Year 2025-2026",
       "category": "Budget & Finance",
       "municipalities": [
@@ -281,7 +325,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 5
+      "rank": 6
     },
     {
       "theme_title": "Palm Beach County Commission on Ethics Memorandum of Understanding",
@@ -324,8 +368,8 @@
       "reasons": [
         "recurring_across_municipalities"
       ],
-      "starred": false,
-      "rank": 6
+      "starred": true,
+      "rank": 7
     },
     {
       "theme_title": "Resolution No. 2026-07",
@@ -369,7 +413,7 @@
         "recurring_across_municipalities"
       ],
       "starred": true,
-      "rank": 7
+      "rank": 8
     },
     {
       "theme_title": "Fifth Amendment to the Interlocal Agreement to Establish the Municipal Public Safety Communications Consortium of Palm Beach County",
@@ -412,8 +456,8 @@
       "reasons": [
         "recurring_across_municipalities"
       ],
-      "starred": false,
-      "rank": 8
+      "starred": true,
+      "rank": 9
     },
     {
       "theme_title": "FY 2027 Millage Rate and Budget Estimates",
@@ -465,7 +509,102 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 9
+      "rank": 10
+    },
+    {
+      "theme_title": "Charter Review Committee Appointments",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 3,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-05-28), Village of North Palm Beach (2026-05-14)",
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-10-08",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378",
+          "description": "Receive for file the minutes from the September 1, 2026 meeting and draft minutes from the September 22, 2026 meeting of the Charter Review Committee.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-05-28",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05282026-1341",
+          "description": "A resolution appointing resident members to the Charter Review Committee.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-05-14",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339",
+          "description": "Applicant introductions and a resolution appointing members to the Charter Review Committee.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 45,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 11
+    },
+    {
+      "theme_title": "Community Development Department Fee Schedule",
+      "category": "Budget & Finance",
+      "municipalities": [
+        "NPB"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Village of North Palm Beach (2026-07-09)",
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-10-22",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383",
+          "description": "Consideration of a resolution amending the Master Fee Schedule adopted as part of the Fiscal Year 2027 Budget to amend the Building Department Fee Schedule.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-07-09",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352",
+          "description": "A resolution amending the Master Fee Schedule adopted as part of the Fiscal Year 2026 Budget regarding Building Permit Applications to comply with recent changes to State Law.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": false,
+      "rank": 12
     },
     {
       "theme_title": "755 SE 7th Avenue (PZ-000669-2026)",
@@ -508,7 +647,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 10
+      "rank": 13
     },
     {
       "theme_title": "802 SE 5TH AVENUE",
@@ -551,50 +690,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 11
-    },
-    {
-      "theme_title": "234 Shelter Lane",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-17)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-10-15",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10152026-71",
-          "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, new landscape, hardscape, and drainage plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-09-17",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
-          "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, along with a new landscape, hardscape, and drainage plan.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 35,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 12
+      "rank": 14
     },
     {
       "theme_title": "Community Camera Purchase",
@@ -637,7 +733,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 15
     },
     {
       "theme_title": "ARTS WAREHOUSE REPORT",
@@ -680,7 +776,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 16
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -723,7 +819,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 15
+      "rank": 17
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -766,7 +862,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 18
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -809,7 +905,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 19
     },
     {
       "theme_title": "Ordinance 2026-09",
@@ -852,7 +948,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 18
+      "rank": 20
     },
     {
       "theme_title": "Ordinance 2026-08",
@@ -895,7 +991,50 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 19
+      "rank": 21
+    },
+    {
+      "theme_title": "234 Shelter Lane",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-17)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-15",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10152026-71",
+          "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-17",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
+          "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, along with a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 22
     },
     {
       "theme_title": "Code of Ordinances Chapter 4",
@@ -938,7 +1077,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 20
+      "rank": 23
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -981,7 +1120,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 21
+      "rank": 24
     },
     {
       "theme_title": "Resolution 2026-05",
@@ -1024,7 +1163,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 22
+      "rank": 25
     },
     {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
@@ -1067,7 +1206,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 23
+      "rank": 26
     }
   ]
 }
