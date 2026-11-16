@@ -1,29 +1,5 @@
 [
   {
-    "muni_short": "WESTLAKE",
-    "muni_full": "City of Westlake",
-    "title": "City Council Regular Meeting",
-    "date": "2026-10-06",
-    "type": "modified",
-    "time": "6:00 PM",
-    "fields_changed": {
-      "has_agenda": {
-        "old": false,
-        "new": true
-      }
-    },
-    "detected_at": "2026-10-02T04:34:31.530963+00:00"
-  },
-  {
-    "muni_short": "BOYNTON",
-    "muni_full": "City of Boynton Beach",
-    "title": "City Commission Agenda Review Workshop October 8, 2026 100 E. Ocean Avenue Event Details",
-    "date": "2026-10-08",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-10-02T04:34:31.530963+00:00"
-  },
-  {
     "muni_short": "RIVBEACH",
     "muni_full": "City of Riviera Beach",
     "title": "City Council",
@@ -2800,5 +2776,14 @@
     "time": "9:00 AM",
     "type": "removed",
     "detected_at": "2026-11-14T05:25:34.313859+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Workshop",
+    "date": "2026-12-15",
+    "type": "added",
+    "time": "4:00 PM",
+    "detected_at": "2026-11-16T05:19:41.243666+00:00"
   }
 ]

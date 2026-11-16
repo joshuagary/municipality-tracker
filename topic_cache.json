@@ -4136,5 +4136,30 @@
       "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
     }
   ],
-  "NPB|2026-05-20|village council workshop": []
+  "NPB|2026-05-20|village council workshop": [],
+  "DELRAY|2026-11-16|planning and zoning board": [
+    {
+      "topic_title": "Site Plan and Conditional Use (Hatcher Office Building), 32 NW 6th Avenue (File PZ-000910-2026 and File PZ-911-2026)",
+      "category": "Zoning & Land Use",
+      "description": "Provide a recommendation to the City Commission on Resolution No. 179-26, approving a request for a Level 4 Site Plan Application with Architectural Elevations and Landscape Plan, including a Conditional Use to allow a one-story, 2,788 square foot office building at 32 NW 6th Avenue.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-11-16",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4454&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Rezoning, 1690-2350 South Congress Avenue SAD (File PZ-000548-2026)",
+      "category": "Zoning & Land Use",
+      "description": "Provide a recommendation to the City Commission on Ordinance No. 49-26, a privately initiated rezoning of the 1690-2350 South Congress Avenue SAD, amending development standards and allowed uses to permit townhouse development on parcels designated for commercial use.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Planning and Zoning Board",
+      "date": "2026-11-16",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4454&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "JUNOBEACH|2026-11-16|planning and zoning board": []
 }
