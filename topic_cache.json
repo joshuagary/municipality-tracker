@@ -4161,5 +4161,98 @@
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4454&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
-  "JUNOBEACH|2026-11-16|planning and zoning board": []
+  "JUNOBEACH|2026-11-16|planning and zoning board": [],
+  "PBC|2026-11-17|board of county commissioners meeting": [
+    {
+      "topic_title": "Flood Disaster Assistance Program (FDAP)",
+      "category": "Housing & Development",
+      "description": "Allocation of $2,000,000 of State Housing Initiatives Partnership (SHIP) Program funding to establish the Flood Disaster Assistance Program (FDAP) for financial assistance to eligible homeowners with flood-related damages from the November 1-2, 2026 severe rainfall event.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-11-17",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261117.pdf"
+    },
+    {
+      "topic_title": "Private Meeting on Security Plans",
+      "category": "Other Governance Matters",
+      "description": "Commencement of a private meeting pursuant to Section 286.0113, Florida Statutes, to discuss security plans considering elevated security risks to County Commissioners on December 8, 2026.",
+      "method": "llm",
+      "muni_short": "PBC",
+      "muni_full": "Palm Beach County",
+      "event_title": "Board of County Commissioners Meeting",
+      "date": "2026-11-17",
+      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261117.pdf"
+    }
+  ],
+  "DELRAY|2026-11-17|city commission": [
+    {
+      "topic_title": "2210 North Federal Highway",
+      "category": "Other Governance Matters",
+      "description": "Consideration of accepting a landscape maintenance agreement (LMA) along NE 22nd Lane for the property located at 2210 North Federal Highway, known as Lenny's Car Wash.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-17",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "2255 South Federal Highway",
+      "category": "Other Governance Matters",
+      "description": "Consideration of accepting a landscape maintenance agreement (LMA) along Florida Boulevard for the property located at 2255 South Federal Highway, known as Kia Delray.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-17",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Resolution No. 156-26",
+      "category": "Other Governance Matters",
+      "description": "Approval of Resolution No. 156-26 establishing an external auditor selection committee.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-17",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Community Redevelopment Agency Curb Appeal Residential Improvement Program Interlocal Agreement",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Request regarding the Community Redevelopment Agency (CRA) Curb Appeal Residential Improvement Program interlocal agreement.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-17",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "Resolution No. 172-26",
+      "category": "Other Governance Matters",
+      "description": "Approval of Resolution No. 172-26 authorizing free parking on Wednesdays throughout all city-operated parking lots and garages, excluding on-street parking.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-17",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "SS2026-004",
+      "category": "Budget & Finance",
+      "description": "Approval for additional spending on SS2026-004 with Southern Sewer Equipment Sales and Service, Inc. for OEM parts and services in the amount of $130,000.00 for a revised agreement total of $220,000.00.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "City Commission",
+      "date": "2026-11-17",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "RIVBEACH|2026-11-16|emergency city council meeting": []
 }

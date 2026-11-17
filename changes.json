@@ -1,23 +1,5 @@
 [
   {
-    "muni_short": "RIVBEACH",
-    "muni_full": "City of Riviera Beach",
-    "title": "City Council",
-    "date": "2026-10-07",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-10-03T04:17:09.754649+00:00"
-  },
-  {
-    "muni_short": "NPB",
-    "muni_full": "Village of North Palm Beach",
-    "title": "Village Council Meeting",
-    "date": "2026-10-08",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-10-03T04:17:09.754649+00:00"
-  },
-  {
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Agenda Review Workshop October 8, 2026 100 E. Ocean Avenue Event Details",
@@ -2785,5 +2767,32 @@
     "type": "added",
     "time": "4:00 PM",
     "detected_at": "2026-11-16T05:19:41.243666+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-12-09",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-11-17T06:59:28.777403+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Planning and Zoning Board Meeting",
+    "date": "2026-11-19",
+    "type": "added",
+    "time": "6:30 PM",
+    "detected_at": "2026-11-17T06:59:28.777403+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Emergency City Council Meeting",
+    "date": "2026-11-16",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-17T06:59:28.777403+00:00"
   }
 ]

@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-16T05:22:09.672124+00:00",
+  "generated_at": "2026-11-17T07:02:07.562742+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 285,
+  "historical_meetings_scanned": 288,
   "insights": [
     {
       "theme_title": "Ordinance 2026-03",
@@ -118,6 +118,50 @@
       "rank": 2
     },
     {
+      "theme_title": "Chen Moore & Associates, Inc.",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC",
+        "NPB"
+      ],
+      "cross_municipality": true,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19)",
+      "meetings": [
+        {
+          "muni_short": "NPB",
+          "muni_full": "Village of North Palm Beach",
+          "title": "Village Council Meeting",
+          "date": "2026-10-22",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383",
+          "description": "Consideration of a resolution approving a Sixth Amendment to the Professional Services Agreement with Chen Moore & Associates, Inc. to modify the hourly rate schedule.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-19",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
+          "description": "Vote on the approval of an agreement with Chen Moore and Associates for general engineering services, sponsored by the Town Manager.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 60,
+      "reasons": [
+        "recurring_across_municipalities"
+      ],
+      "starred": true,
+      "rank": 3
+    },
+    {
       "theme_title": "401 Olympus Drive",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -176,7 +220,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 3
+      "rank": 4
     },
     {
       "theme_title": "136 Lighthouse Drive",
@@ -235,50 +279,6 @@
       "confidence": 60,
       "reasons": [
         "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 4
-    },
-    {
-      "theme_title": "Chen Moore & Associates, Inc.",
-      "category": "Other Governance Matters",
-      "municipalities": [
-        "JUIC",
-        "NPB"
-      ],
-      "cross_municipality": true,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19)",
-      "meetings": [
-        {
-          "muni_short": "NPB",
-          "muni_full": "Village of North Palm Beach",
-          "title": "Village Council Meeting",
-          "date": "2026-10-22",
-          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383",
-          "description": "Consideration of a resolution approving a Sixth Amendment to the Professional Services Agreement with Chen Moore & Associates, Inc. to modify the hourly rate schedule.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-10-19",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
-          "description": "Vote on the approval of an agreement with Chen Moore and Associates for general engineering services, sponsored by the Town Manager.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 60,
-      "reasons": [
-        "recurring_across_municipalities"
       ],
       "starred": true,
       "rank": 5
@@ -607,6 +607,49 @@
       "rank": 12
     },
     {
+      "theme_title": "Community Camera Purchase",
+      "category": "Other Governance Matters",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Regular Town Commission Meeting",
+          "date": "2026-11-09",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74",
+          "description": "Vote on the reconsideration of the Community Camera Purchase, sponsored by the Town Manager and Police Chief.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-19",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
+          "description": "Vote on the reconsideration of the community camera purchase, sponsored by the Police Chief.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 35,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 13
+    },
+    {
       "theme_title": "755 SE 7th Avenue (PZ-000669-2026)",
       "category": "Zoning & Land Use",
       "municipalities": [
@@ -647,7 +690,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 13
+      "rank": 14
     },
     {
       "theme_title": "802 SE 5TH AVENUE",
@@ -690,35 +733,35 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 14
+      "rank": 15
     },
     {
-      "theme_title": "Community Camera Purchase",
-      "category": "Other Governance Matters",
+      "theme_title": "Community Redevelopment Agency Curb Appeal Residential Improvement Program Interlocal Agreement",
+      "category": "Community Redevelopment (CRA)",
       "municipalities": [
-        "JUIC"
+        "DELRAY"
       ],
       "cross_municipality": false,
       "occurrence_count": 2,
       "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-10-19)",
+      "citation_summary": "Previously discussed: City of Delray Beach (2026-09-24)",
       "meetings": [
         {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Regular Town Commission Meeting",
-          "date": "2026-11-09",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74",
-          "description": "Vote on the reconsideration of the Community Camera Purchase, sponsored by the Town Manager and Police Chief.",
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "City Commission",
+          "date": "2026-11-17",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Request regarding the Community Redevelopment Agency (CRA) Curb Appeal Residential Improvement Program interlocal agreement.",
           "method": "llm"
         },
         {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-10-19",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
-          "description": "Vote on the reconsideration of the community camera purchase, sponsored by the Police Chief.",
+          "muni_short": "DELRAY",
+          "muni_full": "City of Delray Beach",
+          "title": "Community Redevelopment Agency",
+          "date": "2026-09-24",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "description": "Consideration of the first amendment to the interlocal agreement between the City of Delray Beach and the Community Redevelopment Agency for the Curb Appeal Residential Improvement Program, along with an amendment to the program guidelines.",
           "method": "llm"
         }
       ],
@@ -732,8 +775,8 @@
       "reasons": [
         "recurring_over_time"
       ],
-      "starred": true,
-      "rank": 15
+      "starred": false,
+      "rank": 16
     },
     {
       "theme_title": "ARTS WAREHOUSE REPORT",
@@ -776,7 +819,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 16
+      "rank": 17
     },
     {
       "theme_title": "CRA FINANCIAL REPORT - April 2026",
@@ -819,7 +862,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 17
+      "rank": 18
     },
     {
       "theme_title": "City of Westlake Proposed Budget FY 2027",
@@ -862,7 +905,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 18
+      "rank": 19
     },
     {
       "theme_title": "2026-2027 Operating Budget",
@@ -905,179 +948,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 19
-    },
-    {
-      "theme_title": "Ordinance 2026-09",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Special Meeting",
-          "date": "2026-09-14",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
-          "description": "Second reading of a large-scale Future Land Use Map amendment to change approximately 22.617 acres (Westlake West) from Downtown Mixed Use (DMU) to Residential-2 (R-2).",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-04",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
-          "description": "An ordinance amending the City of Westlake Future Land Use Map as a large-scale amendment, changing the designation from Downtown Mixed Use category to Residential-2 category for approximately 22.617 acres located within Westlake West.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
       "rank": 20
-    },
-    {
-      "theme_title": "Ordinance 2026-08",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "WESTLAKE"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
-      "meetings": [
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "City Council Special Meeting",
-          "date": "2026-09-14",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
-          "description": "Second reading of a zoning change for approximately 22.617 acres located within Westlake West, generally west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West, from Mixed Use (MU) to Residential-2 (R-2).",
-          "method": "llm"
-        },
-        {
-          "muni_short": "WESTLAKE",
-          "muni_full": "City of Westlake",
-          "title": "Local Planning Agency Meeting",
-          "date": "2026-08-04",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
-          "description": "An ordinance approving a rezoning of approximately 22.617 acres located within Westlake West (west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West) from Mixed Use (MU) to Residential-2 (R-2).",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 21
-    },
-    {
-      "theme_title": "234 Shelter Lane",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-17)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-10-15",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10152026-71",
-          "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, new landscape, hardscape, and drainage plan.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-09-17",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
-          "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, along with a new landscape, hardscape, and drainage plan.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 22
-    },
-    {
-      "theme_title": "Code of Ordinances Chapter 4",
-      "category": "Zoning & Land Use",
-      "municipalities": [
-        "JUIC"
-      ],
-      "cross_municipality": false,
-      "occurrence_count": 2,
-      "all_heuristic": false,
-      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-07-21)",
-      "meetings": [
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-09-17",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
-          "description": "Discussion of proposed amendments to Chapter 4 (Buildings and Building Regulations) of the Code of Ordinances.",
-          "method": "llm"
-        },
-        {
-          "muni_short": "JUIC",
-          "muni_full": "Town of Jupiter Inlet Colony",
-          "title": "Town Commission Meeting",
-          "date": "2026-07-21",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
-          "description": "Discussion of proposed amendments to Code of Ordinances Chapter 4 regarding Buildings and Building Regulations.",
-          "method": "llm"
-        }
-      ],
-      "web_notability": {
-        "checked": true,
-        "corroborated": false,
-        "sources": [],
-        "error": "HTTP 400"
-      },
-      "confidence": 30,
-      "reasons": [
-        "recurring_over_time"
-      ],
-      "starred": true,
-      "rank": 23
     },
     {
       "theme_title": "Public Works Project No. 24-001",
@@ -1120,7 +991,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 24
+      "rank": 21
     },
     {
       "theme_title": "Resolution 2026-05",
@@ -1163,7 +1034,7 @@
         "recurring_over_time"
       ],
       "starred": true,
-      "rank": 25
+      "rank": 22
     },
     {
       "theme_title": "CASE NO. 50-2026-CC-007883-XXA-MB",
@@ -1206,7 +1077,179 @@
         "recurring_over_time"
       ],
       "starred": true,
+      "rank": 23
+    },
+    {
+      "theme_title": "Ordinance 2026-09",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Special Meeting",
+          "date": "2026-09-14",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
+          "description": "Second reading of a large-scale Future Land Use Map amendment to change approximately 22.617 acres (Westlake West) from Downtown Mixed Use (DMU) to Residential-2 (R-2).",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
+          "description": "An ordinance amending the City of Westlake Future Land Use Map as a large-scale amendment, changing the designation from Downtown Mixed Use category to Residential-2 category for approximately 22.617 acres located within Westlake West.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 24
+    },
+    {
+      "theme_title": "Ordinance 2026-08",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "WESTLAKE"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: City of Westlake (2026-08-04)",
+      "meetings": [
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "City Council Special Meeting",
+          "date": "2026-09-14",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-39f711312d204b3082f77ac08e0dc167.pdf",
+          "description": "Second reading of a zoning change for approximately 22.617 acres located within Westlake West, generally west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West, from Mixed Use (MU) to Residential-2 (R-2).",
+          "method": "llm"
+        },
+        {
+          "muni_short": "WESTLAKE",
+          "muni_full": "City of Westlake",
+          "title": "Local Planning Agency Meeting",
+          "date": "2026-08-04",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-30e850c58d6e4598bef96293a3fd9ca3.pdf",
+          "description": "An ordinance approving a rezoning of approximately 22.617 acres located within Westlake West (west of Seminole Pratt Whitney Road and north of Persimmon Boulevard West) from Mixed Use (MU) to Residential-2 (R-2).",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 25
+    },
+    {
+      "theme_title": "234 Shelter Lane",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-09-17)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-10-15",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10152026-71",
+          "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-17",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
+          "description": "Impact Review for a proposed 4,098 square foot two-story residence with an outdoor pool, along with a new landscape, hardscape, and drainage plan.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
       "rank": 26
+    },
+    {
+      "theme_title": "Code of Ordinances Chapter 4",
+      "category": "Zoning & Land Use",
+      "municipalities": [
+        "JUIC"
+      ],
+      "cross_municipality": false,
+      "occurrence_count": 2,
+      "all_heuristic": false,
+      "citation_summary": "Previously discussed: Town of Jupiter Inlet Colony (2026-07-21)",
+      "meetings": [
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-09-17",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09172026-70",
+          "description": "Discussion of proposed amendments to Chapter 4 (Buildings and Building Regulations) of the Code of Ordinances.",
+          "method": "llm"
+        },
+        {
+          "muni_short": "JUIC",
+          "muni_full": "Town of Jupiter Inlet Colony",
+          "title": "Town Commission Meeting",
+          "date": "2026-07-21",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-54",
+          "description": "Discussion of proposed amendments to Code of Ordinances Chapter 4 regarding Buildings and Building Regulations.",
+          "method": "llm"
+        }
+      ],
+      "web_notability": {
+        "checked": true,
+        "corroborated": false,
+        "sources": [],
+        "error": "HTTP 400"
+      },
+      "confidence": 30,
+      "reasons": [
+        "recurring_over_time"
+      ],
+      "starred": true,
+      "rank": 27
     }
   ]
 }
