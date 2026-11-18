@@ -4254,5 +4254,63 @@
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
-  "RIVBEACH|2026-11-16|emergency city council meeting": []
+  "RIVBEACH|2026-11-16|emergency city council meeting": [],
+  "DELRAY|2026-11-18|community redevelopment agency": [
+    {
+      "topic_title": "File # 26-0189",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Acceptance of Solid Waste Authority of Palm Beach County's Blighted and Distressed Property Clean-Up Grant of $62,500 for CRA-owned property located approximately at Lake Ida Road and Roosevelt Avenue.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-11-18",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4646&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "File # 26-0190",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Second Amendment to Interlocal Agreement between the City of Delray Beach and Delray Beach Community Redevelopment Agency for funding construction/professional services for Fiscal Year 2025-2026.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-11-18",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4646&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "CRA NO. 2026-08",
+      "category": "Housing & Development",
+      "description": "Request to issue Request for Proposals CRA No. 2026-08 for the disposition of one CRA-owned vacant lot located at 216 NW 8th Avenue for the development of affordable/workforce housing.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-11-18",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4646&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "File # 26-0194",
+      "category": "Community Redevelopment (CRA)",
+      "description": "Temporary Use Agreement with Kiewit Corporation to utilize CRA parcels located at 34 NW 10th Avenue, 19 NW 10th Avenue, 23 NW 10th Avenue, and 27 NW 10th Avenue for storage and staging.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-11-18",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4646&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+      "topic_title": "File # 26-0195",
+      "category": "Budget & Finance",
+      "description": "Delray Beach Community Redevelopment Agency Budget Amendment No. 3, Fiscal Year 2026-2027.",
+      "method": "llm",
+      "muni_short": "DELRAY",
+      "muni_full": "City of Delray Beach",
+      "event_title": "Community Redevelopment Agency",
+      "date": "2026-11-18",
+      "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4646&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+  ],
+  "JUNOBEACH|2026-11-18|town council regular meeting": []
 }

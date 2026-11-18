@@ -1,14 +1,5 @@
 [
   {
-    "muni_short": "BOYNTON",
-    "muni_full": "City of Boynton Beach",
-    "title": "City Commission Agenda Review Workshop October 8, 2026 100 E. Ocean Avenue Event Details",
-    "date": "2026-10-08",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-10-04T04:48:18.377454+00:00"
-  },
-  {
     "muni_short": "WELL",
     "muni_full": "Village of Wellington",
     "title": "Wellington Council Agenda Review Meeting",
@@ -2794,5 +2785,23 @@
     "type": "added",
     "time": "6:00 PM",
     "detected_at": "2026-11-17T06:59:28.777403+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Community Redevelopment Agency",
+    "date": "2026-11-23",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-18T06:23:03.672514+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting November 17, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-17",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-18T06:23:03.672514+00:00"
   }
 ]

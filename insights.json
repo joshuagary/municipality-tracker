@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-17T07:02:07.562742+00:00",
+  "generated_at": "2026-11-18T06:25:37.603404+00:00",
   "lookback_months": 6,
-  "historical_meetings_scanned": 288,
+  "historical_meetings_scanned": 290,
   "insights": [
     {
       "theme_title": "Ordinance 2026-03",
@@ -775,7 +775,7 @@
       "reasons": [
         "recurring_over_time"
       ],
-      "starred": false,
+      "starred": true,
       "rank": 16
     },
     {
