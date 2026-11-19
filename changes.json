@@ -1,95 +1,5 @@
 [
   {
-    "muni_short": "WELL",
-    "muni_full": "Village of Wellington",
-    "title": "Wellington Council Agenda Review Meeting",
-    "date": "2026-10-08",
-    "time": "4:30 PM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "WELL",
-    "muni_full": "Village of Wellington",
-    "title": "Wellington Village Council Meeting",
-    "date": "2026-10-13",
-    "time": "6:30 PM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "PALMBEACH",
-    "muni_full": "Town of Palm Beach",
-    "title": "Planning and Zoning Commission Meeting",
-    "date": "2026-10-06",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "PALMBEACH",
-    "muni_full": "Town of Palm Beach",
-    "title": "Town Council Regular Meeting",
-    "date": "2026-10-13",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "PALMBEACH",
-    "muni_full": "Town of Palm Beach",
-    "title": "Town Council Development Review Meeting",
-    "date": "2026-10-14",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "PALMBEACH",
-    "muni_full": "Town of Palm Beach",
-    "title": "Local Planning Agency (LPA)",
-    "date": "2026-10-14",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "PALMBEACH",
-    "muni_full": "Town of Palm Beach",
-    "title": "Planning and Zoning Commission Meeting",
-    "date": "2026-11-03",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "PALMBEACH",
-    "muni_full": "Town of Palm Beach",
-    "title": "Town Council Regular Meeting",
-    "date": "2026-11-09",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "PALMBEACH",
-    "muni_full": "Town of Palm Beach",
-    "title": "Town Council Development Review Meeting",
-    "date": "2026-11-10",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
-    "muni_short": "PALMBEACH",
-    "muni_full": "Town of Palm Beach",
-    "title": "Local Planning Agency (LPA)",
-    "date": "2026-11-11",
-    "time": "9:30 AM",
-    "type": "removed",
-    "detected_at": "2026-10-05T04:37:04.916887+00:00"
-  },
-  {
     "muni_short": "PALMBEACH",
     "muni_full": "Town of Palm Beach",
     "title": "Planning and Zoning Commission Meeting",
@@ -2803,5 +2713,32 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-11-18T06:23:03.672514+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "CRA Advisory Board Meeting November 18, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-11-18",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-19T06:24:14.348308+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting \u2013 Cancelled",
+    "date": "2026-11-10",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-19T06:24:14.348308+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Town Commission Meeting",
+    "date": "2026-12-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-19T06:24:14.348308+00:00"
   }
 ]
