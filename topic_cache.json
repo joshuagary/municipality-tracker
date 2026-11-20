@@ -3936,5 +3936,325 @@
     }
   ],
   "JUNOBEACH|2026-11-18|town council regular meeting": [],
-  "RIVBEACH|2026-11-19|planning and zoning board meeting": []
+  "RIVBEACH|2026-11-19|planning and zoning board meeting": [],
+  "MANALAPAN|2026-05-12|town commission meeting": [
+    {
+      "topic_title": "Ordinance #401",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of an ordinance amending Chapter 151 (Zoning) of the Manalapan Code of Ordinances to provide a revised official zoning map combining zoning district R1-F and portions of R3-A into R1-D, and eliminating metes and bounds descriptions.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-05-12",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf"
+    },
+    {
+      "topic_title": "Ordinance #402",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of an ordinance amending Chapter 151 (Zoning) to create a new division for boats, boathouses, docks, and bulkheads, dividing the town into 16 waterway zones and relocating existing regulations into this division.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-05-12",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf"
+    },
+    {
+      "topic_title": "Ordinance #403",
+      "category": "Zoning & Land Use",
+      "description": "Consideration of an ordinance adopting a newly revised and amended official zoning map that rezones R1-F and certain R3-A properties into R1-D, and adopting a new map for waterway zones in conjunction with Ordinances 401 and 402.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-05-12",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0512-Agenda.pdf"
+    }
+  ],
+  "MANALAPAN|2026-06-23|town commission meeting": [
+    {
+      "topic_title": "Amended Agreement with Town Manager Marmer",
+      "category": "Other Governance Matters",
+      "description": "Consideration of an amended agreement with Town Manager Marmer under the consent agenda.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-06-23",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0623-Agenda.pdf"
+    },
+    {
+      "topic_title": "Urban County Program Qualification Renewal 2027-2029",
+      "category": "Other Governance Matters",
+      "description": "Renewal of the Urban County Program Qualification for the years 2027-2029.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-06-23",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0623-Agenda.pdf"
+    },
+    {
+      "topic_title": "Police Department Oracle Software Agreement",
+      "category": "Other Governance Matters",
+      "description": "Approval of a software agreement between the Police Department and Oracle.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-06-23",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0623-Agenda.pdf"
+    },
+    {
+      "topic_title": "RES 05-2026",
+      "category": "Budget & Finance",
+      "description": "Consideration of Resolution No. 05-2026 regarding a budget amendment.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-06-23",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0623-Agenda.pdf"
+    },
+    {
+      "topic_title": "VAR-26-03 (2000 South Ocean Boulevard)",
+      "category": "Zoning & Land Use",
+      "description": "A quasi-judicial hearing for variance approval requested by Florida Realty, LLC to expand and improve the Tennis Building with a second story at 2000 South Ocean Boulevard.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-06-23",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0623-Agenda.pdf"
+    },
+    {
+      "topic_title": "SPR 26-01 (100 South Ocean Boulevard - Eau Resort)",
+      "category": "Zoning & Land Use",
+      "description": "A quasi-judicial hearing for Site Plan Modification Approval requested by Timothy Nardi, agent for MPB Property, LLC, to modify the prior approved site plan regarding monument and wall signs with low voltage back lighting.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-06-23",
+      "link": "https://manalapan.org/wp-content/uploads/2026/05/2026_0623-Agenda.pdf"
+    }
+  ],
+  "MANALAPAN|2026-08-11|town commission meeting": [
+    {
+      "topic_title": "Amendment to the By-Laws of the La Coquille Club",
+      "category": "Other Governance Matters",
+      "description": "Discussion regarding an amendment to the by-laws of the La Coquille Club under New Business.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-08-11",
+      "link": "https://manalapan.org/wp-content/uploads/2026/08/2026_0811-Agenda.pdf"
+    },
+    {
+      "topic_title": "New Guardhouse construction bid authorization discussion",
+      "category": "Housing & Development",
+      "description": "Discussion regarding authorization for the new guardhouse construction bid under New Business.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-08-11",
+      "link": "https://manalapan.org/wp-content/uploads/2026/08/2026_0811-Agenda.pdf"
+    },
+    {
+      "topic_title": "Mock Roos discussion surrounding potential water utility partners",
+      "category": "Other Governance Matters",
+      "description": "Discussion involving Mock Roos surrounding potential water utility partners under New Business.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-08-11",
+      "link": "https://manalapan.org/wp-content/uploads/2026/08/2026_0811-Agenda.pdf"
+    }
+  ],
+  "MANALAPAN|2026-09-08|town commission meeting \u2013 5:01 pm": [
+    {
+      "topic_title": "Site Plan Modification Review-SPR-26-02 \u2013 100 S. Ocean Blvd.",
+      "category": "Zoning & Land Use",
+      "description": "Timothy Nardi, agent for MPB Property, LLC, seeks to modify the existing approved site plan at 100 S. Ocean Blvd. by replacing guestroom balcony railings with black aluminum railings and adding teak-colored vertical wood cladding.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "Architectural Review-TARC-26-02 - 131 S. Ocean Blvd.",
+      "category": "Zoning & Land Use",
+      "description": "The Town of Manalapan seeks approval for architectural alterations at 131 S. Ocean Blvd., including an 8-foot high chain link fence for storage and a rolling chain link gate.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "131 S. Ocean Blvd. Lease Agreement with MPB Property LLC",
+      "category": "Other Governance Matters",
+      "description": "Consideration of a lease agreement between the Town and MPB Property LLC regarding 131 S. Ocean Blvd.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "Special Exception-SE-26-03 - 1860 S. Ocean Blvd.",
+      "category": "Zoning & Land Use",
+      "description": "The 1860 South Ocean Boulevard Trust requests approval for a Special Exception to allow a beach house on the East side of A-1-A, proposing modifications to the hardscape and landscape design.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "1860 S. Ocean Blvd. Pedestrian Passageway Exemption",
+      "category": "Zoning & Land Use",
+      "description": "A request from 1860 S. Ocean Blvd. for an exemption from Sec. 94.22(C) of the Town code for Pedestrian Passageway construction during certain months of the year.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    },
+    {
+      "topic_title": "Ordinance #407",
+      "category": "Zoning & Land Use",
+      "description": "An ordinance amending the Town Code of Ordinances at Chapter 155 (Beaches and Waterways), specifically Section 155.03 regarding prohibited fishing activities.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 5:01 PM",
+      "date": "2026-09-08",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0908-Agenda.pdf"
+    }
+  ],
+  "MANALAPAN|2026-09-28|town commission meeting \u2013 4:30 pm": [
+    {
+      "topic_title": "Ordinance #408",
+      "category": "Zoning & Land Use",
+      "description": "Consideration and public hearing for an ordinance amending the Comprehensive Development Plan to adopt an updated ten-year water supply facilities work plan pursuant to Florida Statutes.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "RES 07-2026",
+      "category": "Budget & Finance",
+      "description": "Consent agenda resolution regarding updated utility rates.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "Variance-VAR-26-06",
+      "category": "Zoning & Land Use",
+      "description": "A quasi-judicial hearing for a variance requested by Affinity Architects on behalf of the David F. MacNeil Trust for 1940 S. Ocean Blvd. regarding aggregate side yard width requirements.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "ARCOM Vacancy Appointment",
+      "category": "Other Governance Matters",
+      "description": "Discussion regarding an appointment to fill a vacancy on ARCOM.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "Pension Board discussion",
+      "category": "Budget & Finance",
+      "description": "Discussion surrounding employee buy back options for the Pension Board.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    },
+    {
+      "topic_title": "Currie Sowards Aguila Architects presentation",
+      "category": "Other Governance Matters",
+      "description": "A presentation by Currie Sowards Aguila Architects regarding the new Town Hall.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 4:30 PM",
+      "date": "2026-09-28",
+      "link": "https://manalapan.org/wp-content/uploads/2026/09/2026_0928-Agenda.pdf"
+    }
+  ],
+  "MANALAPAN|2026-10-27|town commission meeting \u2013 2 pm at the library": [
+    {
+      "topic_title": "Truist Bank Presentation",
+      "category": "Other Governance Matters",
+      "description": "A presentation delivered by Truist Bank to the Town Commission.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 2 PM at the Library",
+      "date": "2026-10-27",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_1027-Agenda_REV.pdf"
+    },
+    {
+      "topic_title": "Paver Agreement \u2013 30 Curlew Road",
+      "category": "Other Governance Matters",
+      "description": "Approval of the consent agenda item regarding a paver agreement for 30 Curlew Road.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 2 PM at the Library",
+      "date": "2026-10-27",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_1027-Agenda_REV.pdf"
+    },
+    {
+      "topic_title": "600 S. Ocean Blvd.",
+      "category": "Other Governance Matters",
+      "description": "New business discussion regarding the appraisal of the property located at 600 S. Ocean Blvd.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 2 PM at the Library",
+      "date": "2026-10-27",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_1027-Agenda_REV.pdf"
+    },
+    {
+      "topic_title": "Florida Public Utilities (FPU) gas line installation",
+      "category": "Other Governance Matters",
+      "description": "New business discussion regarding the Florida Public Utilities (FPU) gas line installation.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting \u2013 2 PM at the Library",
+      "date": "2026-10-27",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_1027-Agenda_REV.pdf"
+    }
+  ]
 }
