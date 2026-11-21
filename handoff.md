@@ -935,6 +935,34 @@ abandoned as an unmaintainable whack-a-mole). Current whitelist:
   for the actual class name(s) on the weekday row from browser dev tools rather than
   guessing further.
 
+### "Show cancelled meetings" toggle (added 2026-11-21 - UI only, `index.html` only)
+
+- **User request**: a toggle in the Meetings filters box to show or hide cancelled meetings.
+  Placement and styling are explicitly provisional ("we can tweak where and how later").
+- **UI**: a toggle switch (not a checkbox - user asked for a switch) labelled "Show cancelled
+  meetings", in its own row under the municipality filter buttons (`.filter-options-row`,
+  `.filter-switch`, `.switch-track`). It is a real `<input type="checkbox" role="switch"
+  id="showCancelledToggle">` underneath, so it is keyboard-accessible. It deliberately does NOT
+  use the `.filter-btn` class, because `buildMunicipalityButtons()` and its click handler treat
+  every `.filter-btn` as a municipality button.
+- **Default: ON** (cancelled meetings shown), so the page behaves exactly as before until the
+  user switches it off. The setting is NOT persisted - it resets on every page load.
+- **Definition of "cancelled"** (user decision): the event TITLE contains "cancelled" or
+  "canceled", case-insensitive - `CANCELLED_PATTERN = /cancell?ed/i`, defined just above
+  `getFilteredEvents()`. Title only; `summary` is not checked.
+- **Wiring**: `getFilteredEvents()` adds a third condition, `matchesCancelled`, alongside the
+  municipality and search filters; a `change` listener on the toggle calls `updateViews()`.
+  Applies to both the calendar and the List View (both read `getFilteredEvents()`).
+- **Not affected**: Insights tab, the new-records banner, and the Admin view. No backend
+  changes - the scraper already keeps "CANCELED"/"Cancelled" in titles (see the cancellation
+  rule used by `insights_engine.py`'s `CANCELLATION_PATTERN`). `data.json` had 4 cancelled
+  titles at the time (all matched by the pattern).
+- **Verification**: regex checked against real `data.json`; the control was previewed as a
+  mockup only. The real page was NOT rendered in a browser this session (headless-browser
+  attempt was blocked), so the visual result in the live page is unconfirmed.
+- **Possible follow-ups**: remember the setting in localStorage; a scraper-side `is_cancelled`
+  flag if a site ever marks cancellations outside the title; revisit placement/styling.
+
 ## New Records Notification Feature (added this session)
 
 A client-side "banner/badge" system that tells the app's user(s) what's changed since
