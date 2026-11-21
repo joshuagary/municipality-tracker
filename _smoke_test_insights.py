@@ -375,13 +375,17 @@ CAL_HTML = """
 <a href="/AgendaCenter/ViewFile/Minutes/_10122026-70">Minutes</a>
 <a href="mailto:clerk@example.com">Email agenda questions</a>
 <a href="/Calendar.aspx">Back to calendar</a>
+<a href="http://www.myboca.us/129/Agendas-Minutes">Agendas &amp; Minutes</a>
+<a href="/129/Agendas-Minutes">Agendas and Minutes</a>
 </body></html>
 """
 links = ie._find_agenda_links(CAL_HTML, "https://www.myboca.us/Calendar.aspx?EID=1&month=11")
 assert links[0] == "https://www.myboca.us/AgendaCenter/ViewFile/Agenda/_11092026-73", links
 assert all("Minutes" not in l and "mailto" not in l for l in links)
 assert "https://www.myboca.us/AgendaCenter" not in links
-ok("agenda link finder picks the agenda, skips minutes, mailto and the center root")
+assert not any("Agendas-Minutes" in l for l in links), links   # site-wide nav landing page (first real run's bug)
+assert any("Packet.pdf" in l for l in links) and links.index(next(l for l in links if "ViewFile" in l)) == 0 or len(links) == 1
+ok("agenda link finder picks the agenda document, skips minutes, mailto, the center root and nav landing pages")
 
 
 class FakeHttp:
@@ -541,6 +545,108 @@ assert llm_calls["n"] == 1, llm_calls            # only the one new past meeting
 assert lk2["DELRAY|addr|802 se 5th ave"]["is_new"] is True
 assert lk2["BOCA|addr|1200 n federal hwy"]["is_new"] is False
 ok("second run: cache honoured, brand-new lead flagged is_new")
+
+# --- 10b. fixes from the first real run (2026-11-21 log) --------------------
+import time as _time
+importlib.reload(ie)
+_real_sleep = _time.sleep
+_time.sleep = lambda s: None           # no real waiting in these tests
+try:
+    # (a) a calendar page with only a nav landing page logs what it did find, and yields no document
+    cal_only_nav = ("<html><body><a href='/129/Agendas-Minutes'>Agendas &amp; Minutes</a>"
+                    "<a href='/Calendar.aspx'>Calendar</a></body></html>")
+    ie._fetch = lambda url, timeout: FakeHttp(200, cal_only_nav, headers={"Content-Type": "text/html"})
+    ev_nav = {"muni_short": "JUP", "muni_full": "Town of Jupiter", "title": "Town Council", "date": "2026-11-03",
+              "link": "https://www.jupiter.fl.us/Calendar.aspx?EID=9"}
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        assert ie.fetch_document_text(ev_nav) is None
+        ie.fetch_document_text(dict(ev_nav, date="2026-11-04"))
+        ie.fetch_document_text(dict(ev_nav, date="2026-11-05"))
+    out = buf.getvalue()
+    assert out.count("no agenda document link on JUP") == 2, out      # capped at two per municipality per run
+    assert "/129/Agendas-Minutes" in out
+    ok("calendar page with no agenda document logs the anchors it saw (capped per municipality)")
+
+    # (b) _fetch: retries a 503 once, spaces requests per host, falls back to the alternate PBC host
+    importlib.reload(ie)
+    seen_urls = []
+    answers = {"n": 0}
+
+    def flaky(url, timeout=15, **k):
+        seen_urls.append(url)
+        answers["n"] += 1
+        return FakeHttp(503) if answers["n"] == 1 else FakeHttp(200, "ok")
+    ie.sc.fetch_hardened = flaky
+    res = ie._fetch("https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=1", 10)
+    assert res.status_code == 200 and len(seen_urls) == 2 and ie._fetch_transient_failure is False
+    ok("fetch retries a transient 503 once")
+
+    importlib.reload(ie)
+    seen_urls = []
+
+    def pbc(url, timeout=15, **k):
+        seen_urls.append(url)
+        if "discover.pbc.gov" in url:
+            return None
+        return FakeHttp(200, "pdf-bytes")
+    ie.sc.fetch_hardened = pbc
+    ie.requests.get = lambda *a, **k: (_ for _ in ()).throw(ConnectionError("blocked"))
+    res = ie._fetch("https://discover.pbc.gov/countycommissioners/Agenda_Master/20261117.pdf", 10)
+    assert res.status_code == 200
+    assert seen_urls[-1] == "https://www.pbcgov.org/countycommissioners/Agenda_Master/20261117.pdf"
+    ok("PBC: falls back to the www.pbcgov.org host when discover.pbc.gov is blocked")
+
+    # (c) a transient fetch failure is NOT remembered as 'no document'
+    importlib.reload(ie)
+    ie.GEMINI_API_KEY = "k"
+    cache = {"schema": ie.CACHE_SCHEMA, "events": {}, "nodoc": {}}
+
+    def failing_fetch(ev, timeout=25):
+        ie._fetch_transient_failure = True
+        return None
+    ie.fetch_document_text = failing_fetch
+    ev_t = {"muni_short": "DELRAY", "muni_full": "City of Delray Beach", "title": "City Commission",
+            "date": "2026-08-18", "link": "https://delraybeach.legistar.com/x"}
+    its, status, had = ie.analyze_event(ev_t, cache, TODAY, False)
+    assert status == "fetch_failed" and ie._cache_key(ev_t) not in cache["nodoc"]
+    ie.fetch_document_text = lambda ev, timeout=25: None
+    its, status, had = ie.analyze_event(ev_t, cache, TODAY, False)
+    assert status == "nodoc" and ie._cache_key(ev_t) in cache["nodoc"]   # a clean 'nothing there' is remembered
+    ok("transient fetch failures are retried next run; genuine no-document is remembered")
+
+    # (d) Gemini 503: retried and recovered; a streak of failures trips the breaker
+    importlib.reload(ie)
+    ie.GEMINI_API_KEY = "k"
+    ie._gemini_checked_available = False
+    class R503:  # noqa
+        status_code = 503
+    outcomes = [(None, False, ie.requests.HTTPError("HTTP 503: high demand", response=R503())),
+                ([], False, None)]
+    ie._call_gemini_once = lambda prompt: outcomes.pop(0)
+    with contextlib.redirect_stdout(io.StringIO()):
+        got = ie._llm_items(event, DOC)
+    assert got == [] and not outcomes and ie._gemini_unavailable is False
+    ok("Gemini 503 is retried and recovers within the same run")
+
+    importlib.reload(ie)
+    ie.GEMINI_API_KEY = "k"
+    ie._gemini_checked_available = False
+    n503 = {"n": 0}
+
+    def always_503(prompt):
+        n503["n"] += 1
+        return None, False, ie.requests.HTTPError("HTTP 503", response=R503())
+    ie._call_gemini_once = always_503
+    with contextlib.redirect_stdout(io.StringIO()) as buf3:
+        for _ in range(4):
+            ie._llm_items(event, DOC)
+    assert ie._gemini_unavailable is True
+    assert n503["n"] == 3 * 3, n503     # 3 meetings x (1 try + 2 retries), then the breaker stops further calls
+    ok("three meetings in a row failing with 5xx stops LLM calls for the run")
+finally:
+    _time.sleep = _real_sleep
+    importlib.reload(ie)
 
 # --- 11. every scraper main() runs is also covered by the engine's lists ---
 # Guards against the drift that once left WPB Planning, WPB Plans & Plats and the PBC Zoning
