@@ -192,7 +192,10 @@ MULTI_MONTH_LOOP_SCRAPERS = [
 # the source already returns for the whole window in one shot.
 SINGLE_WINDOW_SCRAPERS = [
     sc.scrape_west_palm_beach,
+    sc.scrape_west_palm_beach_planning,
+    sc.scrape_west_palm_beach_plans_plats,
     sc.scrape_palm_beach_county,
+    sc.scrape_pbc_zoning_calendar,
     sc.scrape_delray_beach,
     sc.scrape_westlake,
     sc.scrape_downtown_wpb_dda,
