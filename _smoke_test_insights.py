@@ -10,6 +10,7 @@ Run: python3 _smoke_test_insights.py
 """
 import os
 import io
+import re
 import json
 import tempfile
 import contextlib
@@ -540,5 +541,19 @@ assert llm_calls["n"] == 1, llm_calls            # only the one new past meeting
 assert lk2["DELRAY|addr|802 se 5th ave"]["is_new"] is True
 assert lk2["BOCA|addr|1200 n federal hwy"]["is_new"] is False
 ok("second run: cache honoured, brand-new lead flagged is_new")
+
+# --- 11. every scraper main() runs is also covered by the engine's lists ---
+# Guards against the drift that once left WPB Planning, WPB Plans & Plats and the PBC Zoning
+# calendar out of the historical lookup: a scraper added to scraper.main() but forgotten in
+# insights_engine's two lists would silently contribute no leads from past meetings.
+import inspect
+import scraper as _sc
+_main_scrapers = set(re.findall(r"all_events\.extend\((scrape_\w+)\(\)\)", inspect.getsource(_sc.main)))
+_covered = {f.__name__ for f in ie.MULTI_MONTH_LOOP_SCRAPERS + ie.SINGLE_WINDOW_SCRAPERS}
+assert _main_scrapers, "could not find any scrapers in main()"
+_missing = _main_scrapers - _covered
+assert not _missing, f"scrapers in main() but missing from insights_engine lists: {sorted(_missing)}"
+assert len(ie.MULTI_MONTH_LOOP_SCRAPERS + ie.SINGLE_WINDOW_SCRAPERS) == len(_covered), "a scraper is listed twice"
+ok(f"all {len(_main_scrapers)} scrapers in main() are covered by insights_engine")
 
 print(f"\nAll {passed} test groups passed.")
