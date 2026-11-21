@@ -38,6 +38,7 @@ summarizes their state and history but doesn't reproduce the full code.
 | Palm Beach Gardens (PBG) | CivicPlus (`pbgfl.gov`) | `calendar.aspx?view=list&year=&month=` | ✅ Working |
 | Delray Beach | Legistar | `webapi.legistar.com/v1/delraybeach/events` JSON API | ✅ Working (confirmed 9 events) |
 | Palm Beach County (PBC) | SharePoint (`www.pbcgov.org`) | Regex-parses `Agenda_Master/YYYYMMDD.pdf` links | ✅ Working (updated from discover.pbc.gov due to WAF blocking on GitHub Actions) |
+| **Palm Beach County — Zoning / Planning calendar** | **SharePoint calendar list (`discover.pbc.gov/pzb/Lists/MeetingsCal/all.aspx`)** | **Own function, `scrape_pbc_zoning_calendar()` — parses the JSON data blob SharePoint embeds in an inline `CalendarContainerFactory.create(...)` script; one fetch per month via `?CalendarDate=M%2F1%2FYYYY`, see below** | ✅ **Confirmed working in a real debug-scraper run (2026-11-21): 9 events across Nov–Dec, both months loaded, no WAF block. Not yet seen in a full daily workflow run.** |
 | Boca Raton | CivicPlus (`myboca.us`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 16 events) |
 | Boynton Beach | CivicPlus (`boynton-beach.org`) | Same `calendar.aspx?view=list` mechanism as PBG | ✅ Working (confirmed 12 events) |
 | West Palm Beach (WPB) | Granicus OpenCities (`wpb.org`) | Static per-series pages listing every date under a "When" heading | ✅ Working (confirmed 8 events) |
@@ -118,6 +119,20 @@ url directly**, the same pattern already used for Riviera Beach's Granicus ifram
 (`rivierabch.com/ccm` → `rivierabeach.granicus.com/ViewPublisher.php`). Don't assume a
 wrapper page's failure means "unfixable" or "needs a real browser" — it may just mean
 the scraper is pointed at the wrong host.
+
+**Lesson 4 — confirm the uploaded zip matches the live repo before editing, and use a Safari
+web archive when the user is on an iPad.** (a) The zip the user uploads at the start of a
+session can be stale: on 2026-11-21 the first zip predated the WPB Plans & Plats work, so a
+`scraper.py` edited from it would have silently deleted that function on commit (GitHub's
+auto-suggested commit message, "Remove WPB Plans & Plats scraping function", was the tell).
+If a commit message or diff shows removals nobody intended, stop, ask for a fresh download
+from GitHub, and re-apply only the new change on top of it. (b) The user often works from an
+iPad, which has no view-source. A reliable way to get real page HTML: Safari -> Share ->
+Options -> Web Archive -> Save to Files -> upload the `.webarchive`; it is a plist whose
+`WebMainResource.WebResourceData` is the page HTML (extract with Python's `plistlib`). Caveat:
+it is the page AFTER the browser ran its JavaScript, so confirm what a plain GET actually
+receives (here, the SharePoint script data blob was present in both, the rendered grid only
+in the archive) before trusting it.
 
 ### Key history / root causes fixed in prior sessions
 
@@ -235,10 +250,69 @@ the scraper is pointed at the wrong host.
   correct title/links), no fallback warnings. Dec 10 was outside the lookahead window at
   the time (window ended Nov 30) and will appear once November starts.
 - **Not done / open**: not yet seen in a full `Municipality Scraper Automation` run;
-  `insights_engine.py` `SINGLE_WINDOW_SCRAPERS` does not include this scraper (nor the
-  Planning Board one), so historical Insights months don't cover PPRC/Planning Board.
+  (RESOLVED 2026-11-21: this scraper, the Planning Board one and the PBC Zoning one were
+  added to `SINGLE_WINDOW_SCRAPERS` in `insights_engine.py` - see the PBC Zoning section.)
 - **Debug workflow**: `.github/workflows/debug-scraper.yml` default input changed to
   `scrape_west_palm_beach_plans_plats` (it takes any `scrape_*` function name).
+
+### Palm Beach County — Zoning / Planning calendar (added 2026-11-21 — CONFIRMED WORKING in debug run)
+
+- **User reported the bug**: the "BCC Zoning Hearing" on 2026-11-18 never appeared. Root
+  cause: `scrape_palm_beach_county()` only fetches the BCC agenda page
+  (`www.pbcgov.org/countycommissioners/pages/agenda.aspx`) and turns each
+  `Agenda_Master/YYYYMMDD.pdf` link into a hardcoded "Board of County Commissioners Meeting"
+  at 9:30 AM. It never reads a title, and nothing in the project fetched the county's
+  separate Planning, Zoning & Building calendar (a SharePoint list on `discover.pbc.gov/pzb`),
+  where Zoning Hearings, the Zoning Commission and Planning Commission hearings are listed.
+  The user confirmed the hearing is not on the BCC agenda page. No 4th-Thursday logic exists
+  in the code; "every month on the fourth Thursday" is just recurrence metadata on the
+  calendar entry, and real instances deviate from it (the 11/26 hearing was cancelled and a
+  11/18 one added instead), so dates are READ from the calendar, never computed.
+- **Source**: `https://discover.pbc.gov/pzb/Lists/MeetingsCal/all.aspx` (all divisions).
+  Sibling views exist (`zoning.aspx`, `planning.aspx`, `building.aspx`,
+  `CodeCompliance.aspx`) but were not used - the user chose all-events plus the normal
+  whitelist.
+- **Mechanism**: the calendar grid is drawn client-side, but the raw response carries every
+  event as JSON in an inline `CalendarContainerFactory.create(el,{...},'month','',[{...}])`
+  call. `_extract_sp_calendar_blob()` bracket-matches that trailing array (string-aware) and
+  parses it. `Items.Data` rows are index lists into `Items.Strings`: `[0]` id, `[1]` title,
+  `[2]` location, `[5]` start date (M/D/YYYY), `[7]` start time, `[8]` end time. Titles may
+  contain HTML entities (`&amp;`); they are unescaped. A month view also contains the
+  neighbouring weeks' days, so events are de-duplicated on (id, date).
+- **`scrape_pbc_zoning_calendar()`** (in `scraper.py` right after `scrape_palm_beach_county()`,
+  wired into `main()` right after it): one fetch per month in the lookahead window - the first
+  month uses the page default, later months use `?CalendarDate=M%2F1%2FYYYY` (confirmed to
+  work: the December fetch covered 11/29/2026-1/3/2027). Uses `fetch_hardened_retry()`
+  only; there is deliberately NO reader-proxy fallback, because proxies return rendered text,
+  not the inline script this parser needs. If a future run shows every fingerprint failing,
+  that is the old GitHub-Actions IP block on `discover.pbc.gov` coming back.
+- **Filtering and fields**: normal `is_qualifying_event()` whitelist. Kept: BCC Zoning
+  Hearing, BCC Comp Plan Public Hearing, Zoning Commission, Planning Commission Public
+  Hearing. Dropped by the whitelist: Construction Board of Adjustments & Appeals, Building
+  Code Advisory Board, Code Compliance Special Magistrate Hearing, AV Meeting, "Offices
+  Closed" holidays. Cancelled meetings are KEPT per the user's decision (they want to review
+  them in the UI); the county prefixes the title "CANCELLED-" or "CANCELLED - " and the title
+  is preserved verbatim, so `insights_engine.CANCELLATION_PATTERN` still excludes them from
+  theme analysis. `muni_short`/`muni_full` reuse "PBC"; event ids are
+  `pbczoning-{date}-{calendar id}`; time is the calendar's start time (9:30 AM when the entry
+  is all-day with no real start); `has_agenda` is always False (the entry never links an
+  agenda) and the link is the calendar entry's `EventDispForm.aspx?ID=...` page.
+- **Real run (2026-11-21, `Debug Single Scraper`, `scrape_pbc_zoning_calendar`)**: first
+  fingerprint returned HTTP 200 both times; 9 events: 11/4 BCC Comp Plan Public Hearing,
+  11/5 Zoning Commission, 11/13 CANCELLED - Planning Commission Public Hearing, 11/18 BCC
+  Zoning Hearing, 11/26 CANCELLED-BCC Zoning Hearing, 12/3 Zoning Commission, 12/11 Planning
+  Commission Public Hearing, 12/16 and 12/24 BCC Zoning Hearing.
+- **Insights engine**: `scrape_pbc_zoning_calendar`, `scrape_west_palm_beach_planning` and
+  `scrape_west_palm_beach_plans_plats` were missing from `insights_engine.py` and were added
+  to `SINGLE_WINDOW_SCRAPERS` (all three loop over the months in the window, so a single
+  widened-window call covers them). `_smoke_test_insights.py` now has Test 24, which fails if
+  any scraper called in `scraper.main()` is missing from the insights lists (or listed twice) -
+  add new scrapers to BOTH `main()` and the insights lists. Whether the Zoning calendar keeps
+  past months visible (for the 6-month history) is unverified.
+- **Not done / open**: not yet seen in a full `Municipality Scraper Automation` run; check the
+  UI for the 11/18 and 11/26 entries and how cancelled events render. The existing BCC scraper
+  and this one both emit "PBC" events on overlapping days (BCC agenda meeting vs. zoning
+  hearing) with different titles - no collision seen, but watch for double-counting.
 
 ### Wellington (added in an earlier session)
 
