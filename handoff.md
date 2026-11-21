@@ -156,6 +156,28 @@ commit message; commit to a new branch and open a pull request to see "Files cha
 or commit to main, confirm `def generate_leads_output` exists in the file on GitHub, and
 use Revert on the commit if anything looks off. (Extends Lesson 4.)
 
+**Lesson 7 - A long workflow run can lose its output if `main` moves while it runs.** The first
+full Leads run (2026-11-21, ~43 min) built 56 leads, then `git push` was rejected
+(`! [rejected] main -> main (fetch first)`) because index.html was pushed mid-run. All output
+and the cache were lost. `scrape.yml` now does `git pull --rebase -X theirs origin main`
+before `git push`, with 3 retries. Still avoid pushing during a run when you can.
+
+**Lesson 8 - Mocked tests did not catch what the first real run did.** Found in the log:
+(a) the agenda-link heuristic followed the site-wide nav page `/129/Agendas-Minutes` on Boca
+and Boynton (now: a link must look like a document URL: .pdf, ViewFile, DocumentCenter/View,
+AgendaViewer); (b) 42 Gemini 503 "high demand" errors (now: retry 10s then 30s, and stop LLM
+calls for the run after 3 meetings in a row still fail); (c) delraybeach.legistar.com dropped
+connections after a burst (now: 1s per-host spacing plus one retry); (d) transient fetch
+failures were cached as "no document" for 7 days (now: status `fetch_failed`, never cached);
+(e) Serper returned 400 "Not enough credits" (account issue; the breaker worked; the web
+check is optional). The engine now logs `no agenda document link on <MUNI> ...; agenda-like
+anchors: ...` (2 per municipality per run) so the next fix can be built from real markup.
+UNCONFIRMED until the next full run. The `discover.pbc.gov` -> `www.pbcgov.org` fallback is a
+guess modelled on what the scraper already does for PBC.
+
+Still blind or thin after run 1: JUP, PBG, PALMBEACH, GULFSTREAM (0 readable), PBC (3 of 27),
+WPB (45 readable, 7 items), Boca and Boynton (0 items). Also: Downtown WPB DDA scraper found 0 events.
+
 ### Key history / root causes fixed in prior sessions
 
 - **Boca & Boynton were never Legistar clients.** The original code (from an earlier
