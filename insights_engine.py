@@ -54,7 +54,7 @@ import time
 import hashlib
 from datetime import datetime, timedelta, timezone
 from collections import defaultdict
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -478,12 +478,24 @@ _MINUTES_WORD = re.compile(r"\bminutes\b", re.I)
 _AGENDACENTER_ROOT = re.compile(r"/agendacenter/?(\?.*)?$", re.I)
 
 
+_DOC_URL_HINTS = ("viewfile", "documentcenter/view", "agendaviewer", "/files/agenda")
+
+
+def _looks_like_document_url(lower_url):
+    return lower_url.split("?")[0].endswith(".pdf") or any(h in lower_url for h in _DOC_URL_HINTS)
+
+
 def _find_agenda_links(html, base_url, limit=2):
     """Calendar/event pages (CivicPlus Calendar.aspx, Granicus, etc.) usually
     only LINK to the agenda. Returns up to `limit` absolute URLs most likely
-    to be the agenda document, best first. Heuristic and unverified against
-    live pages: the first real run's '[Insights Docs] followed agenda link'
-    lines show whether it works per municipality."""
+    to be the agenda DOCUMENT, best first.
+
+    First real run (2026-11-21) showed the earlier text-only rule following the
+    site-wide "Agendas & Minutes" navigation page (.../129/Agendas-Minutes) on
+    nearly every Boca and Boynton event, which is a listing page, not an
+    agenda, and produced no items. A candidate must now look like a document
+    URL (a PDF, ViewFile, DocumentCenter/View, AgendaViewer) AND mention
+    "agenda" in its text or URL."""
     soup = BeautifulSoup(html, "html.parser")
     cands = {}
     for a in soup.find_all("a", href=True):
@@ -501,28 +513,106 @@ def _find_agenda_links(html, base_url, limit=2):
         if full.rstrip("/") == base_url.rstrip("/") or _AGENDACENTER_ROOT.search(full):
             continue
         lower = full.lower()
-        score = 0
-        if lower.split("?")[0].endswith(".pdf"):
-            score += 3
-        if any(s in lower for s in ("viewfile", "documentcenter/view", "agendaviewer", "/files/agenda")):
-            score += 3
+        if not _looks_like_document_url(lower):
+            continue
+        score = 3
         if text_hit:
             score += 2
         if href_hit:
             score += 1
         if "packet" in text.lower() or "packet" in lower:
-            score -= 3  # the plain agenda first: short, and it names every item; the packet follows if room remains
+            score -= 2  # the plain agenda first: short, and it names every item; the packet follows if room remains
         if score >= 3:
             cands[full] = max(cands.get(full, 0), score)
     ranked = sorted(cands.items(), key=lambda kv: -kv[1])
     return [u for u, _ in ranked[:limit]]
 
 
+_diag_printed = defaultdict(int)
+_DIAG_PER_MUNI = 2
+
+
+def _log_missing_agenda_link(event, html, link):
+    """When a calendar page yields no agenda document, print what agenda-ish
+    anchors the page DID have (first two per municipality per run) so the next
+    fix can be built from real markup instead of guesses."""
+    muni = event.get("muni_short") or "?"
+    if _diag_printed[muni] >= _DIAG_PER_MUNI:
+        return
+    _diag_printed[muni] += 1
+    try:
+        soup = BeautifulSoup(html or "", "html.parser")
+        found = []
+        for a in soup.find_all("a", href=True):
+            t = a.get_text(" ", strip=True)
+            h = a["href"].strip()
+            if re.search(r"agenda|packet|document|\.pdf|minutes", f"{t} {h}", re.I):
+                found.append(f"[{t[:40]}]({h[:110]})")
+            if len(found) >= 8:
+                break
+        print(f"[Insights Docs] no agenda document link on {muni} {event.get('date')} {link} "
+              f"(page text {len(_html_to_text(html or ''))} chars); agenda-like anchors: "
+              f"{' | '.join(found) if found else 'none'}")
+    except Exception as e:
+        print(f"[Insights Docs] diagnostic failed for {muni}: {e}")
+
+
+_HOST_MIN_GAP = 1.0           # seconds between requests to the same host
+_last_host_time = {}
+_fetch_transient_failure = False  # set when a fetch failed in a way worth retrying tomorrow
+_ALT_HOSTS = {"discover.pbc.gov": "www.pbcgov.org"}
+_UA = {"User-Agent": "Mozilla/5.0"}
+
+
+def _throttle(url):
+    host = urlparse(url).netloc
+    wait = _HOST_MIN_GAP - (time.time() - _last_host_time.get(host, 0))
+    if wait > 0:
+        time.sleep(wait)
+    _last_host_time[host] = time.time()
+
+
+def _candidate_urls(link):
+    """The link itself, then (for hosts known to block GitHub Actions) an
+    alternate host with the same path. The alternate is a best guess and
+    unverified: Palm Beach County's discover.pbc.gov WAF is why the scraper
+    itself uses www.pbcgov.org."""
+    urls = [link]
+    host = urlparse(link).netloc
+    if host in _ALT_HOSTS:
+        urls.append(link.replace(host, _ALT_HOSTS[host], 1))
+    return urls
+
+
 def _fetch(link, timeout):
-    res = sc.fetch_hardened(link, timeout=timeout)
-    if res is None:
-        res = requests.get(link, timeout=timeout, headers={"User-Agent": "Mozilla/5.0"})
-    return res
+    """GET with per-host spacing (the first full run saw delraybeach.legistar.com
+    drop every connection after a read timeout, a burst-rate symptom), one retry
+    on a connection error or 5xx, and an alternate host where one is known.
+    Returns a response or None. Sets _fetch_transient_failure when nothing
+    usable came back, so the caller does not remember the meeting as 'has no
+    document'."""
+    global _fetch_transient_failure
+    last = None
+    for url in _candidate_urls(link):
+        for attempt in (1, 2):
+            _throttle(url)
+            res = None
+            try:
+                res = sc.fetch_hardened(url, timeout=timeout)
+                if res is None:
+                    res = requests.get(url, timeout=timeout, headers=_UA)
+            except Exception:
+                res = None
+            if res is not None and res.status_code == 200:
+                return res
+            if res is not None and res.status_code < 500:
+                last = res      # a definite answer (404, 403...): do not retry this URL
+                break
+            if attempt == 1:
+                time.sleep(3)
+    if last is None or last.status_code >= 500:
+        _fetch_transient_failure = True
+    return last
 
 
 def _is_pdf_response(res, link):
@@ -579,9 +669,13 @@ def fetch_document_text(event, timeout=25):
                     parts.append(sub)
         text = "\n".join(parts).strip()
         if is_calendar_page:
+            if not text:
+                _log_missing_agenda_link(event, html, link)
             return text[:MAX_DOC_CHARS] if text else None
         return text[:MAX_DOC_CHARS] if len(text) >= 800 else None
     except Exception as e:
+        global _fetch_transient_failure
+        _fetch_transient_failure = True
         print(f"[Insights Docs] Failed to read document for "
               f"{event.get('muni_short')} {event.get('date')} "
               f"'{event.get('title')}': {e}")
@@ -724,6 +818,35 @@ Rules: copy addresses, numbers, names and quotes exactly as written. Never guess
 Return ONLY a JSON array."""
 
 
+_GEMINI_5XX_RETRY_DELAYS = (10, 30)
+_gemini_5xx_streak = 0
+_GEMINI_5XX_STREAK_LIMIT = 3
+
+
+def _call_gemini_with_retry(prompt):
+    """The first full run logged 42 'HTTP 503 ... high demand' responses. Those
+    are temporary, so retry twice with a pause. If three meetings in a row
+    still fail this way the service is struggling: stop for this run."""
+    global _gemini_unavailable, _gemini_5xx_streak
+    items, salvaged, err = _call_gemini_once(prompt)
+    for delay in _GEMINI_5XX_RETRY_DELAYS:
+        status = getattr(getattr(err, "response", None), "status_code", None)
+        if err is None or status not in (500, 502, 503, 504):
+            break
+        time.sleep(delay)
+        items, salvaged, err = _call_gemini_once(prompt)
+    status = getattr(getattr(err, "response", None), "status_code", None)
+    if err is None:
+        _gemini_5xx_streak = 0
+    elif status in (500, 502, 503, 504):
+        _gemini_5xx_streak += 1
+        if _gemini_5xx_streak >= _GEMINI_5XX_STREAK_LIMIT and not _gemini_unavailable:
+            print(f"[Insights LLM] Gemini returned server errors for {_gemini_5xx_streak} meetings in a "
+                  f"row even after retries; skipping further LLM calls this run (they retry tomorrow).")
+            _gemini_unavailable = True
+    return items, salvaged, err
+
+
 def _llm_items(event, text):
     """Raw item dicts from Gemini, or None on failure (the caller then does
     NOT cache, so the meeting is retried on the next run)."""
@@ -731,7 +854,7 @@ def _llm_items(event, text):
     if not gemini_available():
         return None
     prompt = build_extraction_prompt(event, text)
-    items, salvaged, err = _call_gemini_once(prompt)
+    items, salvaged, err = _call_gemini_with_retry(prompt)
 
     if err is not None:
         err_text = str(err)
@@ -981,7 +1104,9 @@ def _doc_hash(text):
 
 def analyze_event(event, cache, today_str, is_upcoming):
     """Returns (items, status, had_document). status is one of: cache, llm,
-    nodoc, pending (no LLM available / LLM call failed)."""
+    nodoc (no document exists or none could be found), fetch_failed (a
+    transient fetch error, retried next run), pending (no LLM available / LLM
+    call failed)."""
     key = _cache_key(event)
     entry = cache["events"].get(key)
 
@@ -998,8 +1123,14 @@ def analyze_event(event, cache, today_str, is_upcoming):
             if age < NODOC_RETRY_DAYS:
                 return [], "nodoc", False
 
+    global _fetch_transient_failure
+    _fetch_transient_failure = False
     text = fetch_document_text(event)
     if not text:
+        if _fetch_transient_failure:
+            # Timeout, connection reset or 5xx: say nothing about whether a
+            # document exists, so do not remember it as 'no document'.
+            return (entry["items"] if entry else []), "fetch_failed", False
         if not is_upcoming:
             cache["nodoc"][key] = today_str
         return (entry["items"] if entry else []), "nodoc", False
@@ -1595,7 +1726,7 @@ def generate_leads_output():
         c = coverage[event.get("muni_short") or "?"]
         c["meetings"] += 1
         c["with_document"] += 1 if had_doc else 0
-        c["pending"] += 1 if status == "pending" else 0
+        c["pending"] += 1 if status in ("pending", "fetch_failed") else 0
         if items:
             c["with_items"] += 1
             c["items"] += len(items)
@@ -1610,7 +1741,7 @@ def generate_leads_output():
     save_items_cache(cache)
     print(f"[Insights] Meetings: {counts['cache']} from cache, {counts['llm']} newly analyzed, "
           f"{counts['nodoc']} with no readable document, {counts['pending']} pending "
-          f"(LLM unavailable or failed; retried next run).")
+          f"(LLM unavailable or failed), {counts['fetch_failed']} fetch failure(s) (both retried next run).")
     for muni, c in sorted(coverage.items()):
         print(f"[Insights Coverage] {muni}: {c['meetings']} meeting(s), {c['with_document']} with "
               f"readable document, {c['with_items']} with items ({c['items']} item(s)), "
@@ -1633,7 +1764,7 @@ def generate_leads_output():
         "today": today_str,
         "lookback_months": HISTORICAL_MONTHS_BACK,
         "meetings_scanned": len(historical) + len(upcoming),
-        "meetings_pending_analysis": counts["pending"],
+        "meetings_pending_analysis": counts["pending"] + counts["fetch_failed"],
         "llm_available": bool(GEMINI_API_KEY) and not _gemini_unavailable,
         "coverage_by_municipality": dict(sorted(coverage.items())),
         "leads": leads,
