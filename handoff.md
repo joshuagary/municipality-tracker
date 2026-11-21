@@ -31,6 +31,11 @@ plus the update-notification banner, hosted directly from the repo (e.g. GitHub 
 `index.html`, and (if it exists yet) `changes.json` from this repo - this document
 summarizes their state and history but doesn't reproduce the full code.
 
+**2026-11-21 update:** the "Insights" tab was replaced by a "Leads" tab (see "Leads Feature"
+below). For any Leads work, also upload `insights_engine.py`, `leads.json` (if it exists),
+`_smoke_test_insights.py` and this file. `insights.json`, `insights_history.json` and
+`topic_cache.json` are no longer written and can be deleted from the repo.
+
 ## Municipality Status (as of last confirmed GitHub Actions run)
 
 | Muni | Platform | Mechanism | Status |
@@ -133,6 +138,23 @@ Options -> Web Archive -> Save to Files -> upload the `.webarchive`; it is a pli
 it is the page AFTER the browser ran its JavaScript, so confirm what a plain GET actually
 receives (here, the SharePoint script data blob was present in both, the rendered grid only
 in the archive) before trusting it.
+
+**Lesson 5 - when output is thin, check what the data actually points at before tuning the
+model.** The old Insights tab looked "generic", and the first instinct was prompt tuning.
+Counting per municipality showed otherwise: Boca, Boynton, WPB, Palm Beach and Riviera
+Beach produced almost nothing because each event's `link` is a calendar page, a series
+page or a JavaScript portal, not an agenda document, and Palm Beach County (a real PDF)
+yielded 2 of 23 meetings because only the first 3,000 characters were read. Always
+tabulate `topic_cache.json` / `leads.json` coverage by municipality first.
+
+**Lesson 6 - GitHub's auto-suggested commit message and the "Preview changes" diff are not
+reliable on very large rewrites.** On 2026-11-21 uploading the rewritten
+`insights_engine.py` produced a suggested message about changing a print statement from
+"Hello" to "Goodbye" (the file contains neither word) and "Preview changes" errored.
+Treat both as GitHub limits, not proof the upload is wrong. Safe routes: write your own
+commit message; commit to a new branch and open a pull request to see "Files changed";
+or commit to main, confirm `def generate_leads_output` exists in the file on GitHub, and
+use Revert on the commit if anything looks off. (Extends Lesson 4.)
 
 ### Key history / root causes fixed in prior sessions
 
@@ -305,7 +327,7 @@ in the archive) before trusting it.
 - **Insights engine**: `scrape_pbc_zoning_calendar`, `scrape_west_palm_beach_planning` and
   `scrape_west_palm_beach_plans_plats` were missing from `insights_engine.py` and were added
   to `SINGLE_WINDOW_SCRAPERS` (all three loop over the months in the window, so a single
-  widened-window call covers them). `_smoke_test_insights.py` now has Test 24, which fails if
+  widened-window call covers them). `_smoke_test_insights.py` has a guard test (section 11 after the 2026-11-21 rewrite, formerly Test 24), which fails if
   any scraper called in `scraper.main()` is missing from the insights lists (or listed twice) -
   add new scrapers to BOTH `main()` and the insights lists. Whether the Zoning calendar keeps
   past months visible (for the 6-month history) is unverified.
@@ -1083,6 +1105,20 @@ single-user (or small handful of browsers) app, so identity is handled cosmetica
 
 ## Goals for Next Session
 
+0000. **Check the first full run of the new Leads engine (started 2026-11-21).** Nothing in
+      it has run against the live internet. Paste back: (a) the `[Insights Docs] followed
+      agenda link` lines, (b) every `[Insights Coverage]` line, (c) the
+      `coverage_by_municipality` block in `leads.json`, (d) any `[Insights LLM]` and
+      `[Insights Search]` lines. Questions the run answers: which municipalities now
+      yield readable agenda text (Boca, Boynton, PBG, Wellington, Jupiter use the
+      calendar-page link-following path; WPB, Palm Beach CivicClerk, Juno Beach and
+      Riviera Beach are the likeliest to stay blind); whether Gemini accepted the much
+      larger prompts (watch for 429s / per-minute token limits); whether the Serper 400 is
+      now explained by the logged response body (suspect credits or key); how long the run
+      took (expect 30 to 60+ minutes for the Insights step the first time only). Then
+      open the Leads tab and judge whether the cards are useful to the journalist. See
+      "What to check on the first Leads run" in the Leads Feature section.
+
 00. **Confirm `scrape_west_palm_beach_planning()` against a real GitHub Actions log.**
     Added this session to fix missing WPB Planning Board meetings (see "West Palm
     Beach — Planning Board" above) — the date math and time-scrape regex are both
@@ -1273,7 +1309,170 @@ municipality (a first for this project).
 
 * * *
 
-## Insights Feature (added this session — UNCONFIRMED, zero network access to test LLM/search/live sites)
+## Leads Feature (2026-11-21) - REPLACES the Insights Feature - UNCONFIRMED until the first real run
+
+The "Insights" tab is now the **"Leads" tab**: a daily list of real-estate and land-use
+story leads for a local real-estate journalist, aimed at accelerating the next step of
+an investigation (what to ask, who to look up, what changed, what is coming up). The
+engine file is still `insights_engine.py` and the workflow still runs
+`python -u insights_engine.py`, so nothing about invocation changed.
+
+### Why the old design was replaced (findings from the real `insights.json`, 2026-11-21)
+- The #1 insight was a false link: Jupiter Inlet Colony's "Ordinance 2026-03" (building
+  code) matched Westlake's "Ordinance 2026-03" (solid waste) on the number alone.
+- Most cards were bare identifiers (ordinance numbers, case numbers, street addresses)
+  with no plain-English meaning, no vote date, no next step.
+- Serper corroboration failed with `HTTP 400` for all 27 insights and the response body
+  was never logged, so the cause was invisible.
+- All 27 insights were starred and confidence was a fixed formula, so neither carried
+  information.
+- Only 108 of 331 meetings produced topics and only 5 municipalities appeared. Cause:
+  the event `link` for Boca, Boynton, PBG, Wellington and Jupiter is a CivicPlus
+  `Calendar.aspx?EID=` page (not an agenda); WPB's is a series page; Palm Beach's is a
+  JavaScript CivicClerk portal; Juno Beach's is an iframe wrapper. Palm Beach County's is
+  a real PDF but only the first 3,000 characters were sent to the LLM (2 of 23 meetings
+  yielded anything).
+- It only looked backward; nothing about upcoming agendas.
+
+### Explicit user decisions (2026-11-21)
+- Audience: a local **real estate** journalist. The tab should generate leads, not
+  "recurring topics".
+- Alert model for followed leads: **Option A** only (badge + banner on page load,
+  stored in the browser). **No email yet** - it "needs to prove itself out". Email from
+  the GitHub Action (Option B) is deferred.
+- The mockup was approved before any code was written (the project convention).
+- Tab renamed "Leads". Internal DOM ids were left alone (`btnInsightsToggle`,
+  `insights-wrapper`, `insightsList`, `insightsMetaRow`) to keep the edit small.
+
+### Files and data flow
+- `insights_engine.py` (rewritten) writes `leads.json` and `agenda_items_cache.json`
+  (cache schema 2). `scrape.yml` now commits
+  `git add data.json changes.json leads.json agenda_items_cache.json`.
+- No longer written, safe to delete: `insights.json`, `insights_history.json`,
+  `topic_cache.json`.
+- `index.html`: new Leads CSS/HTML/JS replaces the Insights block. `leads.json` is the
+  only file it reads for this tab.
+
+### Pipeline (`insights_engine.py`)
+1. **Gather** past meetings with the existing scrapers over a 6-month window
+   (`gather_historical_events`, unchanged) plus **upcoming** meetings from `data.json`
+   (`load_upcoming_events`).
+2. **Read the agenda** (`fetch_document_text`): PDFs up to 60 pages with `[[PAGE n]]`
+   markers; for CivicPlus `Calendar.aspx` event pages, follow up to 2 agenda links found
+   on the page (`_find_agenda_links`; the plain agenda is ranked above the packet; minutes
+   and the AgendaCenter root are skipped). A calendar page with no agenda link yields no
+   document rather than junk text. Other short HTML pages also try link-following.
+3. **Extract line items** with Gemini, one request per meeting (up to 45,000 characters
+   sent). Output is structured JSON (`responseMimeType: application/json`, 8,192 output
+   tokens). Fields: headline, kind, address, case_no, entities, amount, action, consent,
+   summary, evidence quote. If the response is cut off, `_parse_json_array` keeps every
+   complete item (previously roughly half of calls fell back to the heuristic path).
+   There is **no heuristic fallback any more**: if the LLM is unavailable the meeting is
+   left uncached and retried next run.
+4. **Verify against the document** (`normalize_items`): an address, case number, party
+   name or amount that cannot be found in the document text is dropped; the evidence quote
+   is marked `verified` only if found word for word (alphanumerics only) and gets a page
+   number when the document has page markers. Government names are never kept as parties.
+5. **Group into leads** (`build_leads`): items are keyed `MUNI|addr|<normalized address>`
+   or `MUNI|case|<case no>` (a case number seen alongside an address in the same town
+   resolves to that address). Keys are always scoped to the municipality. Neighbouring
+   same-side addresses (within 10 house numbers) handled at the same meeting merge into one
+   lead keyed by the lowest address and are flagged as a **hypothesis**.
+6. **Signals** (deterministic, from verified fields): kind, on N agendas, on the Dec 8
+   agenda, amount, amount changed, consent agenda, tabled or continued, agenda wording
+   changed (only when both evidence quotes are verified and differ), adjacent parcels,
+   easements or state-road agreement (hypothesis).
+7. **Inclusion**: a lead needs an upcoming agenda, 2+ appearances, a strong kind
+   (rezoning, development agreement, comp plan change, annexation, land deal,
+   incentive or abatement, density or height), or a money / consent / adjacency /
+   easement signal. A single weak past item is not a lead. Max 60 leads. `score` is used
+   only for ordering, never shown as a percentage.
+8. **Entity leads**: a private party (developer, applicant, owner, vendor, engineer,
+   architect, attorney, contractor) appearing in 2+ municipalities, e.g. Chen Moore &
+   Associates in Jupiter Inlet Colony and North Palm Beach.
+9. **Next appearance**: `next_date` when the item is on an upcoming agenda we could read;
+   otherwise `next_body_meeting` (the next scheduled meeting of the same body, from
+   `data.json`), shown as a neutral chip, because the item itself may not be posted yet.
+10. **Optional web check** (`web_cross_reference`, top 10 leads only, needs
+    `SERPER_API_KEY`): now logs the response body, and the first 400/401/403/429 stops all
+    further calls for the run. A mention only counts if it contains the address (or most of
+    the entity name).
+11. **State across runs**: `first_seen` and `is_new` come from the previous `leads.json`
+    (never `is_new` on the very first run).
+12. **Coverage report**: `coverage_by_municipality` in `leads.json` (meetings, with
+    readable document, with items, items, pending) is printed as `[Insights Coverage]`
+    lines and shown in the tab footer so blind spots are visible.
+
+### Caching rules
+- Past meetings: analysed once, then served from cache without refetching.
+- Upcoming meetings: refetched daily, re-analysed only if the document hash changed.
+- LLM failures and quota exhaustion are **not** cached (retried next run).
+- Meetings with no readable document are negatively cached for 7 days.
+- The cache is written every 25 analyses, but it is only committed by the workflow's
+  last step, so cancelling a run loses that run's progress.
+- The cache file name and schema changed, so the first run re-analyses everything.
+
+### Frontend (Leads tab)
+- Cards: signal badges, plain-English headline, hook paragraph, Hypothesis box where
+  relevant, evidence quote with page and source link (unverified quotes are styled
+  differently and say so), appearance timeline linking to each agenda, Follow / Research
+  kit / Dismiss.
+- Research kit: questions to ask, lookup links, a records-request draft (cites Chapter
+  119, Florida Statutes), notes. **`RESEARCH_LINKS` at the top of the Leads script** holds
+  the lookup sites (Property Appraiser `pbcpao.gov` confirmed real; Sunbiz; the Clerk's
+  homepage). Edit that list to match the journalist's real sources.
+- Filters: All, Upcoming, Zoning, Development, Land and money, Entities, Following (n).
+  Sort: soonest vote (default), strongest signals, most recent.
+- **Follow** is stored in `localStorage` per profile (`leadFollows_<profile>`), with
+  dismissals (`leadDismissed_<profile>`) and notes (`leadNotes_<profile>`). A followed lead
+  shows "New activity" and a banner when `appearance_count` rose or `next_date` changed
+  since the user last marked it seen. Marking seen is explicit (button per lead or "Mark
+  all seen"); opening the research kit does not mark it seen. Storage is per browser, so
+  follows do not sync across devices. A followed lead that drops out of `leads.json` stays
+  under Following as a stub.
+- All dynamic text is HTML-escaped and only http(s) URLs are rendered as links.
+
+### Testing done
+- `_smoke_test_insights.py` was rewritten: 26 test groups, all network mocked, all
+  passing. It covers normalization, JSON salvage, document verification, the
+  cross-municipality false-match case, lead building and signals, caching and failure
+  handling, quota and Serper breakers, agenda-link finding and following, PDF page
+  markers (when `reportlab` is installed), an end-to-end two-run pass of
+  `generate_leads_output`, and the guard that every scraper in `scraper.main()` is also in
+  the engine's two lists (add new scrapers to BOTH).
+- The Leads tab was exercised in headless Chromium (Playwright) against sample data built
+  from real agenda wording: follow, filters, dismiss and undo, research kit, notes, new
+  activity banner, profile separation, and escaping of injected HTML. That harness and the
+  sample data are not in the repo.
+
+### NOT verified (nothing here has touched the live internet)
+- That agenda-link following works for any municipality's real calendar pages.
+- That Gemini accepts the larger prompts and the structured-output setting without rate
+  or token-per-minute errors.
+- The cause of the Serper 400 (likely credits or key; the body will now be logged).
+- PDF text extraction on real agendas at 60 pages (speed and quality).
+- Real-world signal quality: "agenda wording changed" in particular can false-positive.
+- Whether the journalist finds the cards useful. That is the actual success test.
+
+### What to check on the first Leads run
+Paste back the `[Insights Docs]`, `[Insights LLM]`, `[Insights Search]` and
+`[Insights Coverage]` lines and the `coverage_by_municipality` block. Rows with
+meetings but zero readable documents are the next scraping targets (likely approach: get
+the raw HTML of the event page, find the real agenda link, per Lessons 1 to 3). Then open
+the Leads tab and note which cards are wrong or noisy.
+
+### Deferred ideas (not built)
+- Email digest of followed leads (Option B); real push notifications (still Phase 2).
+- A separate Entities directory (developers, LLCs, vendors across all towns).
+- Shared watchlist across devices or people (needs a write path).
+- Saving agenda snapshots so changes between agenda versions can be shown (only the
+  document hash is stored today).
+- Money signals from backup packets, since agendas rarely state dollar amounts.
+- An LLM "why it matters" pass per lead; today the hook is built from verified fields.
+- Known mismatch to resolve: the merged adjacent-parcel lead's summary joins both
+  addresses' text with " / ", which reads a little clunky.
+
+## Insights Feature - SUPERSEDED 2026-11-21 by the Leads Feature (history only; do not build on this)
 
 A new **"Insights" tab**, separate from Calendar/List/Admin, that surfaces recurring
 governance topics (zoning, CRA, DDA/DAC, data centers, etc. — the same subject areas
