@@ -1,23 +1,5 @@
 [
   {
-    "muni_short": "DELRAY",
-    "muni_full": "City of Delray Beach",
-    "title": "City Commission",
-    "date": "2026-10-13",
-    "type": "added",
-    "time": "3:30 PM",
-    "detected_at": "2026-10-07T04:51:24.976208+00:00"
-  },
-  {
-    "muni_short": "BOYNTON",
-    "muni_full": "City of Boynton Beach",
-    "title": "City Commission Meeting October 6, 2026 100 E. Ocean Avenue Event Details",
-    "date": "2026-10-06",
-    "time": "6:00 PM",
-    "type": "removed",
-    "detected_at": "2026-10-07T04:51:24.976208+00:00"
-  },
-  {
     "muni_short": "WELL",
     "muni_full": "Village of Wellington",
     "title": "Wellington Council Agenda Review Meeting",
@@ -2686,5 +2668,95 @@
     "type": "added",
     "time": "6:00 PM",
     "detected_at": "2026-11-20T06:10:23.608001+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Special Town Council Meeting",
+    "date": "2026-12-04",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Event,Community Redevelopment Agency",
+    "date": "2026-11-23",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Event,Planning and Zoning Board Meeting",
+    "date": "2026-11-19",
+    "type": "added",
+    "time": "6:30 PM",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Event,Emergency City Council Meeting",
+    "date": "2026-11-16",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Event,City Council",
+    "date": "2026-11-04",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Local Planning Agency (LPA)",
+    "date": "2026-12-09",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Community Redevelopment Agency",
+    "date": "2026-11-23",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Planning and Zoning Board Meeting",
+    "date": "2026-11-19",
+    "time": "6:30 PM",
+    "type": "removed",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "Emergency City Council Meeting",
+    "date": "2026-11-16",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
+  },
+  {
+    "muni_short": "RIVBEACH",
+    "muni_full": "City of Riviera Beach",
+    "title": "City Council",
+    "date": "2026-11-04",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-21T06:00:41.474122+00:00"
   }
 ]

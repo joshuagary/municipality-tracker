@@ -325,25 +325,6 @@
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-feff43c0136540ba864a701307f07b1b.pdf"
     }
   ],
-  "RIVBEACH|2026-09-02|city council": [],
-  "RIVBEACH|2026-08-27|community redevelopment agency": [],
-  "RIVBEACH|2026-08-26|city council budget workshop": [],
-  "RIVBEACH|2026-08-19|city council": [],
-  "RIVBEACH|2026-08-13|planning and zoning board meeting": [],
-  "RIVBEACH|2026-08-12|community redevelopment agency": [],
-  "RIVBEACH|2026-08-11|fy 2027 budget workshop with city council": [],
-  "RIVBEACH|2026-08-05|city council": [],
-  "RIVBEACH|2026-07-15|city council": [],
-  "RIVBEACH|2026-07-08|community redevelopment agency": [],
-  "RIVBEACH|2026-07-01|city council": [],
-  "RIVBEACH|2026-06-17|city council": [],
-  "RIVBEACH|2026-06-10|community redevelopment agency": [],
-  "RIVBEACH|2026-06-03|city council": [],
-  "RIVBEACH|2026-05-21|community redevelopment agency": [],
-  "RIVBEACH|2026-05-20|city council": [],
-  "RIVBEACH|2026-05-14|planning and zoning board meeting": [],
-  "RIVBEACH|2026-05-13|community redevelopment agency": [],
-  "RIVBEACH|2026-05-06|city council": [],
   "JUNOBEACH|2026-08-26|town council regular meeting": [],
   "JUNOBEACH|2026-08-19|town council budget workshop #2": [
     {
@@ -628,8 +609,6 @@
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-09b0f941f990484ebb1dd6f9e38acf19.pdf"
     }
   ],
-  "RIVBEACH|2026-09-09|community redevelopment agency": [],
-  "RIVBEACH|2026-09-10|planning and zoning board meeting": [],
   "WPB|2026-09-14|city commission meeting": [],
   "WESTLAKE|2026-09-14|city council final budget hearing": [
     {
@@ -1571,7 +1550,6 @@
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
-  "RIVBEACH|2026-09-22|city council": [],
   "JUNOBEACH|2026-09-23|town council regular meeting": [
     {
       "topic_title": "Officer Zachary Smith",
@@ -1675,7 +1653,6 @@
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4644&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
-  "RIVBEACH|2026-09-24|planning and zoning board meeting": [],
   "WPB|2026-09-28|city commission meeting": [],
   "DELRAY|2026-09-28|planning and zoning board": [
     {
@@ -1827,7 +1804,6 @@
       "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-1a73495139104b0091e01f9d7cae46cb.pdf"
     }
   ],
-  "RIVBEACH|2026-10-07|city council": [],
   "WPB|2026-10-13|city commission meeting": [],
   "DELRAY|2026-10-13|city commission": [
     {
@@ -1897,8 +1873,6 @@
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4630&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
-  "RIVBEACH|2026-10-14|community redevelopment agency": [],
-  "RIVBEACH|2026-10-15|planning and zoning board meeting": [],
   "BOCA|2026-07-16|planning & zoning board": [],
   "BOCA|2026-07-22|boca raton housing authority - special board meeting": [],
   "BOCA|2026-07-27|community redevelopment agency/city council workshop": [],
@@ -1969,7 +1943,6 @@
   ],
   "JUNOBEACH|2026-10-19|planning and zoning board": [],
   "PBC|2026-10-20|board of county commissioners meeting": [],
-  "RIVBEACH|2026-10-21|city council": [],
   "JUNOBEACH|2026-10-21|town council regular meeting": [],
   "WPB|2026-10-26|city commission meeting": [],
   "DELRAY|2026-10-27|community redevelopment agency": [
@@ -2729,7 +2702,6 @@
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
-  "RIVBEACH|2026-11-04|city council": [],
   "DELRAY|2026-11-05|board of adjustment": [
     {
       "topic_title": "September 3, 2026",
@@ -3877,7 +3849,6 @@
       "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4632&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
     }
   ],
-  "RIVBEACH|2026-11-16|emergency city council meeting": [],
   "DELRAY|2026-11-18|community redevelopment agency": [
     {
       "topic_title": "File # 26-0189",
@@ -3936,7 +3907,6 @@
     }
   ],
   "JUNOBEACH|2026-11-18|town council regular meeting": [],
-  "RIVBEACH|2026-11-19|planning and zoning board meeting": [],
   "MANALAPAN|2026-05-12|town commission meeting": [
     {
       "topic_title": "Ordinance #401",
@@ -4255,6 +4225,92 @@
       "event_title": "Town Commission Meeting \u2013 2 PM at the Library",
       "date": "2026-10-27",
       "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_1027-Agenda_REV.pdf"
+    }
+  ],
+  "RIVBEACH|2026-11-19|event,planning and zoning board meeting": [],
+  "RIVBEACH|2026-11-16|event,emergency city council meeting": [],
+  "RIVBEACH|2026-11-04|event,city council": [],
+  "RIVBEACH|2026-10-21|event,city council": [],
+  "RIVBEACH|2026-10-15|event,planning and zoning board meeting": [],
+  "RIVBEACH|2026-10-14|event,community redevelopment agency": [],
+  "RIVBEACH|2026-10-07|event,city council": [],
+  "RIVBEACH|2026-09-24|event,planning and zoning board meeting": [],
+  "RIVBEACH|2026-09-22|event,city council": [],
+  "RIVBEACH|2026-09-10|event,planning and zoning board meeting": [],
+  "RIVBEACH|2026-09-09|event,community redevelopment agency": [],
+  "RIVBEACH|2026-09-02|event,city council": [],
+  "RIVBEACH|2026-08-27|event,community redevelopment agency": [],
+  "RIVBEACH|2026-08-26|event,city council budget workshop": [],
+  "RIVBEACH|2026-08-19|event,city council": [],
+  "RIVBEACH|2026-08-13|event,planning and zoning board meeting": [],
+  "RIVBEACH|2026-08-12|event,community redevelopment agency": [],
+  "RIVBEACH|2026-08-11|event,fy 2027 budget workshop with city council": [],
+  "RIVBEACH|2026-08-05|event,city council": [],
+  "RIVBEACH|2026-07-15|event,city council": [],
+  "RIVBEACH|2026-07-08|event,community redevelopment agency": [],
+  "RIVBEACH|2026-07-01|event,city council": [],
+  "RIVBEACH|2026-06-17|event,city council": [],
+  "RIVBEACH|2026-06-10|event,community redevelopment agency": [],
+  "RIVBEACH|2026-06-03|event,city council": [],
+  "RIVBEACH|2026-05-21|event,community redevelopment agency": [],
+  "RIVBEACH|2026-05-14|event,planning and zoning board meeting": [],
+  "RIVBEACH|2026-05-13|event,community redevelopment agency": [],
+  "RIVBEACH|2026-05-06|event,city council": [],
+  "MANALAPAN|2026-07-14|town commission meeting": [
+    {
+      "topic_title": "RES 06-2026",
+      "category": "Budget & Finance",
+      "description": "Consideration of Resolution 06-2026 regarding an updated fee schedule.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-07-14",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_0714-Agenda.pdf"
+    },
+    {
+      "topic_title": "Septic to Sewer project update",
+      "category": "Other Governance Matters",
+      "description": "An update from Mock Roos regarding the Septic to Sewer project, along with a discussion about resident connection options and financing.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-07-14",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_0714-Agenda.pdf"
+    },
+    {
+      "topic_title": "Special Exception-SE-26-02 - 1800 S. Ocean Blvd.",
+      "category": "Zoning & Land Use",
+      "description": "Loki2 Land Trust, by and through its authorized agent Loki2 LLC (Robert Wexler, Manager), requests a Special Exception to allow a beach house on the East side of A-1-A at 1800 South Ocean Boulevard in accordance with Sec.151.093(B) of the Town Zoning Code.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-07-14",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_0714-Agenda.pdf"
+    },
+    {
+      "topic_title": "Architectural Review-TARC-26-01 - 214 S. Ocean Blvd.",
+      "category": "Zoning & Land Use",
+      "description": "Manalapan Plaza Del Mar LLC seeks Town Commission approval for architectural alterations to storefronts at Suite 210 and Suite 214, including the installation of glass storefronts at 214 S. Ocean Blvd.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-07-14",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_0714-Agenda.pdf"
+    },
+    {
+      "topic_title": "Variance-VAR-26-04 \u2013 2000 S. Ocean Blvd.",
+      "category": "Zoning & Land Use",
+      "description": "Florida Realty LLC seeks approval for several variances at 2000 South Ocean Boulevard, including the expansion of a non-conforming lot by unification, the addition of a fourth pedestrian tunnel, and the construction of a new pedestrian access ramp.",
+      "method": "llm",
+      "muni_short": "MANALAPAN",
+      "muni_full": "Town of Manalapan",
+      "event_title": "Town Commission Meeting",
+      "date": "2026-07-14",
+      "link": "https://manalapan.org/wp-content/uploads/2026/07/2026_0714-Agenda.pdf"
     }
   ]
 }
