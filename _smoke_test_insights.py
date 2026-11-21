@@ -377,4 +377,18 @@ single_entry_summary = ie._build_citation_summary(entries[:1])
 assert single_entry_summary is None
 print("Test 23 (no citation summary for a single occurrence) passed.")
 
+# --- Test 24: every scraper main() runs is also covered by the insights engine ---
+# Guards against the drift that left WPB Planning, WPB Plans & Plats and the PBC Zoning
+# calendar out of the historical lookup: a scraper added to scraper.main() but forgotten
+# in insights_engine's two lists would silently have no insight history.
+import inspect, re as _re
+import scraper as _sc
+_main_scrapers = set(_re.findall(r"all_events\.extend\((scrape_\w+)\(\)\)", inspect.getsource(_sc.main)))
+_covered = {f.__name__ for f in ie.MULTI_MONTH_LOOP_SCRAPERS + ie.SINGLE_WINDOW_SCRAPERS}
+assert _main_scrapers, "could not find any scrapers in main()"
+_missing = _main_scrapers - _covered
+assert not _missing, f"scrapers in main() but missing from insights_engine lists: {sorted(_missing)}"
+assert len(ie.MULTI_MONTH_LOOP_SCRAPERS + ie.SINGLE_WINDOW_SCRAPERS) == len(_covered), "a scraper is listed twice in insights_engine"
+print(f"Test 24 (all {len(_main_scrapers)} scrapers in main() are covered by insights_engine) passed.")
+
 print("\nALL SMOKE TESTS PASSED")
