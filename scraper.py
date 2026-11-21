@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import html as _html
 import calendar
 import requests
 from bs4 import BeautifulSoup
@@ -922,6 +923,170 @@ def scrape_palm_beach_county():
                 })
 
     print(f"[PBC] Extracted {len(events)} events (via {fetch_method}).")
+    return events
+
+
+# --- PBC ZONING / PLANNING CALENDAR (SharePoint "MeetingsCal" list) ---
+def _extract_sp_calendar_blob(page_text):
+    """
+    SharePoint's calendar web part ships its event data inside an inline script call of
+    the form  CalendarContainerFactory.create(el, {...options...}, 'month', '', [ {...} ])
+    - the trailing array is plain JSON ({"Dates": [...], "Items": {"Data": [[...]],
+    "Strings": [...]}}). The visible calendar grid is drawn client-side from this blob,
+    so it is the only place the events exist in the raw HTTP response. Returns the parsed
+    first element of that array (a dict), or None if it can't be found/parsed.
+    """
+    m = re.search(r"CalendarContainerFactory\.create\(.*?,'(?:month|week|day)','[^']*',\[", page_text, re.S)
+    if not m:
+        return None
+    start = m.end() - 1  # index of the opening '['
+    depth, in_str, esc = 0, False, False
+    for i in range(start, len(page_text)):
+        ch = page_text[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == '\\':
+                esc = True
+            elif ch == '"':
+                in_str = False
+        else:
+            if ch == '"':
+                in_str = True
+            elif ch in '[{':
+                depth += 1
+            elif ch in ']}':
+                depth -= 1
+                if depth == 0:
+                    try:
+                        arr = json.loads(page_text[start:i + 1])
+                        return arr[0] if arr else None
+                    except (ValueError, IndexError) as e:
+                        print(f"[PBC-Zoning] Calendar blob found but JSON parse failed: {e}")
+                        return None
+    return None
+
+
+def _format_sp_time(t):
+    """'9:30 am' -> '9:30 AM' (matches the format every other scraper emits)."""
+    t = (t or "").strip()
+    mt = re.match(r'^(\d{1,2}:\d{2})\s*([ap])m$', t, re.I)
+    return f"{mt.group(1)} {mt.group(2).upper()}M" if mt else ""
+
+
+def scrape_pbc_zoning_calendar():
+    # Palm Beach County's Planning, Zoning & Building division publishes its own
+    # meeting calendar (a SharePoint list) at discover.pbc.gov/pzb - a completely
+    # different site from the BCC agenda page scrape_palm_beach_county() reads. It is
+    # where "BCC Zoning Hearing", "Zoning Commission", "Planning Commission Public
+    # Hearing", etc. live. Added after the 2026-11-18 BCC Zoning Hearing was missed.
+    #
+    # STRUCTURE (confirmed from a real Safari web-archive of all.aspx the user
+    # supplied - NOT yet confirmed against a live GitHub Actions fetch): the page is a
+    # SharePoint month-grid calendar. The raw response carries every event for the
+    # displayed month (plus the trailing days of the neighbouring weeks) as JSON inside
+    # an inline CalendarContainerFactory.create(...) call; see
+    # _extract_sp_calendar_blob(). Each row in Items.Data is a list of indexes into
+    # Items.Strings: [0]=event id, [1]=title, [2]=location, [5]=start date (M/D/YYYY),
+    # [7]=start time, [8]=end time.
+    #
+    # Filtering follows the project-wide whitelist (is_qualifying_event). Titles are
+    # kept verbatim, including the "CANCELLED-"/"CANCELLED - " prefix the county puts on
+    # cancelled meetings, so the UI and insights_engine's CANCELLATION_PATTERN see them.
+    #
+    # RISKS to check on the first real run (look at the [PBC-Zoning] log lines):
+    #  1. discover.pbc.gov previously blocked GitHub Actions IPs (see
+    #     scrape_palm_beach_county). If every fetch attempt fails, that is the cause. No
+    #     reader-proxy fallback is used here: such proxies return rendered text, not the
+    #     inline script this parser needs.
+    #  2. Month navigation via the ?CalendarDate= query parameter is the standard
+    #     SharePoint mechanism but is UNCONFIRMED on this site. The log prints each
+    #     fetch's date range so it is obvious whether next month really loaded.
+    events = []
+    base_domain = "https://discover.pbc.gov"
+    list_url = f"{base_domain}/pzb/Lists/MeetingsCal/all.aspx"
+
+    current_month_start, lookahead_end, _, _ = get_dual_month_bounds()
+
+    month_starts = []
+    cursor = datetime(current_month_start.year, current_month_start.month, 1)
+    while cursor < lookahead_end:
+        month_starts.append(cursor)
+        cursor = datetime(cursor.year + (cursor.month == 12), 1 if cursor.month == 12 else cursor.month + 1, 1)
+
+    seen_keys = set()
+    for idx, ms in enumerate(month_starts):
+        # First month: the page's own default view (current month). Later months: ask
+        # SharePoint for that month explicitly.
+        url = list_url if idx == 0 else f"{list_url}?CalendarDate={ms.month}%2F1%2F{ms.year}"
+        res = fetch_hardened_retry(url, log_prefix="[PBC-Zoning]")
+        if res is None or getattr(res, "status_code", None) != 200:
+            status = getattr(res, "status_code", "no response")
+            print(f"[PBC-Zoning] {ms:%Y-%m}: fetch failed (HTTP {status}); skipping this month.")
+            continue
+
+        blob = _extract_sp_calendar_blob(res.text)
+        if not blob:
+            print(f"[PBC-Zoning] {ms:%Y-%m}: HTTP 200 ({len(res.text)} bytes) but no calendar data blob found. "
+                  f"First 300 chars: {res.text[:300]!r}")
+            continue
+
+        dates = blob.get("Dates") or []
+        items = blob.get("Items") or {}
+        rows, strings = items.get("Data") or [], items.get("Strings") or []
+        print(f"[PBC-Zoning] {ms:%Y-%m}: calendar covers {dates[0] if dates else '?'} - "
+              f"{dates[-1] if dates else '?'}; {len(rows)} raw calendar item(s).")
+
+        def sv(row, i):
+            try:
+                return strings[row[i]]
+            except (IndexError, TypeError):
+                return ""
+
+        kept = 0
+        for row in rows:
+            ev_id = sv(row, 0).strip()
+            title = clean_event_title(re.sub(r'<[^>]+>', '', _html.unescape(sv(row, 1))))
+            date_str = sv(row, 5).strip()
+            try:
+                dt = datetime.strptime(date_str, "%m/%d/%Y")
+            except ValueError:
+                print(f"[PBC-Zoning] Skipping row with unparseable date {date_str!r}: {title!r}")
+                continue
+            if not (current_month_start <= dt < lookahead_end):
+                continue
+            if not title or not is_qualifying_event(title):
+                continue
+
+            start_t, end_t = sv(row, 7).strip().lower(), sv(row, 8).strip().lower()
+            if start_t == "12:00 am" and end_t == "11:59 pm":
+                meeting_time = "9:30 AM"  # all-day entry with no real start time
+            else:
+                meeting_time = _format_sp_time(start_t) or "9:30 AM"
+
+            iso_date = dt.strftime("%Y-%m-%d")
+            dedup_key = (ev_id, iso_date)
+            if dedup_key in seen_keys:
+                continue
+            seen_keys.add(dedup_key)
+
+            location = _html.unescape(sv(row, 2)).strip()
+            events.append({
+                "id": f"pbczoning-{iso_date}-{ev_id}",
+                "muni_short": "PBC",
+                "muni_full": "Palm Beach County",
+                "title": title,
+                "date": iso_date,
+                "time": meeting_time,
+                "link": f"{base_domain}/pzb/Lists/MeetingsCal/EventDispForm.aspx?ID={ev_id}",
+                "has_agenda": False,  # the calendar entry never links an agenda document
+                "summary": f"Official {title} meeting." + (f" Location: {location}." if location else "")
+                           + " No agenda posted on the calendar.",
+            })
+            kept += 1
+        print(f"[PBC-Zoning] {ms:%Y-%m}: kept {kept} qualifying event(s).")
+
+    print(f"[PBC-Zoning] Extracted {len(events)} events total.")
     return events
 
 
@@ -2990,6 +3155,7 @@ def main():
     all_events.extend(scrape_west_palm_beach_planning())
     all_events.extend(scrape_west_palm_beach_plans_plats())
     all_events.extend(scrape_palm_beach_county())
+    all_events.extend(scrape_pbc_zoning_calendar())
     all_events.extend(scrape_boca_raton())
     all_events.extend(scrape_boynton_beach())
     all_events.extend(scrape_delray_beach())
