@@ -39,4 +39,14 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json changes.json leads.json agenda_items_cache.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated update of municipal meeting data [skip ci]" && git push)
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Automated update of municipal meeting data [skip ci]"
+            # main can move during the ~45 min run (manual pushes), so rebase onto it and retry
+            for i in 1 2 3; do
+              git pull --rebase -X theirs origin main && git push && exit 0
+              echo "push attempt $i failed; retrying"; sleep 5
+            done
+            exit 1
+          fi
