@@ -366,6 +366,65 @@
             border-color: var(--primary);
         }
 
+        .filter-options-row {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .filter-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .filter-switch input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .switch-track {
+            position: relative;
+            width: 38px;
+            height: 22px;
+            background: #cbd5e1;
+            border-radius: 11px;
+            transition: background 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .switch-track::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+            transition: transform 0.2s ease;
+        }
+
+        .filter-switch input:checked + .switch-track {
+            background: var(--primary);
+        }
+
+        .filter-switch input:checked + .switch-track::after {
+            transform: translateX(16px);
+        }
+
+        .filter-switch input:focus-visible + .switch-track {
+            outline: 2px solid var(--primary-hover);
+            outline-offset: 2px;
+        }
+
         /* CALENDAR CONTAINER */
         #calendar-wrapper {
             background: var(--card-bg);
@@ -1002,6 +1061,14 @@
         <div class="muni-filter-wrapper" id="muniFilterContainer">
             <!-- Buttons generated dynamically -->
         </div>
+
+        <div class="filter-options-row">
+            <label class="filter-switch">
+                <input type="checkbox" id="showCancelledToggle" role="switch" checked>
+                <span class="switch-track" aria-hidden="true"></span>
+                Show cancelled meetings
+            </label>
+        </div>
     </section>
 
     <!-- CALENDAR DISPLAY -->
@@ -1154,6 +1221,7 @@
             initUpdatesBanner();
 
             document.getElementById("searchInput").addEventListener("input", updateViews);
+            document.getElementById("showCancelledToggle").addEventListener("change", updateViews);
             document.getElementById("btnCalendarView").addEventListener("click", () => switchView("calendar"));
             document.getElementById("btnListView").addEventListener("click", () => switchView("list"));
             document.getElementById("btnAdminToggleOn").addEventListener("click", () => switchView("admin"));
@@ -1413,8 +1481,12 @@
             });
         }
 
+        // A meeting counts as cancelled if its title contains "cancelled" or "canceled" (any case)
+        const CANCELLED_PATTERN = /cancell?ed/i;
+
         function getFilteredEvents() {
             const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
+            const showCancelled = document.getElementById("showCancelledToggle").checked;
 
             return allEvents.filter(event => {
                 const matchesMuni = (selectedMuni === "ALL") || (event.muni_short === selectedMuni);
@@ -1424,7 +1496,9 @@
                                       (event.muni_full && event.muni_full.toLowerCase().includes(searchTerm)) ||
                                       (event.summary && event.summary.toLowerCase().includes(searchTerm));
 
-                return matchesMuni && matchesSearch;
+                const matchesCancelled = showCancelled || !CANCELLED_PATTERN.test(event.title || "");
+
+                return matchesMuni && matchesSearch && matchesCancelled;
             });
         }
 
