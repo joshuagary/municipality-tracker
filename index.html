@@ -1,1842 +1,1652 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Municipal Public Meetings Portal</title>
-    
-    <!-- FullCalendar 6 Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
-    
-    <style>
-        :root {
-            --primary: #1e3a8a;
-            --primary-hover: #1d4ed8;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --border: #e2e8f0;
-            --radius: 8px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            padding: 24px 16px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        header {
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        header > div:first-child {
-            flex: 1;
-        }
-
-        h1 {
-            font-size: 1.75rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* TOP NAVIGATION */
-        .top-nav {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 16px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: var(--text-main);
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: var(--radius);
-            transition: all 0.2s ease;
-        }
-
-        .nav-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .nav-btn.active {
-            background: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
-        }
-
-        /* PROFILE SWITCHER (cosmetic identity - no real auth) */
-        .profile-switcher {
-            position: relative;
-        }
-
-        .profile-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px 6px 6px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .profile-avatar {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        .profile-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 42px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            min-width: 150px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            z-index: 20;
-            overflow: hidden;
-        }
-
-        .profile-menu.open {
-            display: block;
-        }
-
-        .profile-menu button {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: none;
-            border: none;
-            padding: 10px 14px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            cursor: pointer;
-        }
-
-        .profile-menu button:hover {
-            background: #f1f5f9;
-        }
-
-        /* ONE-TIME FEATURE TEASER (points at the profile badge on first visit) */
-        .feature-teaser {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 42px;
-            width: 240px;
-            background: var(--text-main);
-            color: #ffffff;
-            border-radius: var(--radius);
-            padding: 12px 14px;
-            font-size: 0.82rem;
-            line-height: 1.4;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 21;
-        }
-
-        .feature-teaser.open {
-            display: block;
-        }
-
-        .feature-teaser .teaser-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .feature-teaser button {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 0.78rem;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 0;
-            text-decoration: underline;
-        }
-
-        .feature-teaser button.teaser-dismiss-forever {
-            opacity: 0.75;
-            text-decoration: none;
-        }
-
-        /* NEW RECORDS BANNER */
-        .updates-banner {
-            display: none;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: var(--radius);
-            padding: 10px 14px;
-            margin-bottom: 16px;
-            cursor: pointer;
-        }
-
-        .updates-banner.visible {
-            display: block;
-        }
-
-        .updates-banner-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .updates-banner-chevron {
-            transition: transform 0.15s ease;
-            font-size: 0.75rem;
-        }
-
-        .updates-banner-chevron.open {
-            transform: rotate(180deg);
-        }
-
-        .updates-banner-list {
-            display: none;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #bfdbfe;
-        }
-
-        .updates-banner-list.open {
-            display: block;
-        }
-
-        .update-item {
-            display: flex;
-            gap: 8px;
-            align-items: flex-start;
-            padding: 6px 0;
-            font-size: 0.85rem;
-            color: var(--text-main);
-        }
-
-        .update-tag {
-            flex-shrink: 0;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 2px 7px;
-            border-radius: 4px;
-        }
-
-        .update-tag.added {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .update-tag.modified {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .update-tag.removed {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        /* CONTROLS CARD */
-        .controls-card {
-            background: var(--card-bg);
-            padding: 16px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            margin-bottom: 24px;
-            display: block;
-        }
-
-        .controls-card.hidden {
-            display: none;
-        }
-
-        .search-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .search-box {
-            flex: 1;
-            padding: 10px 14px;
-            font-size: 0.95rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            outline: none;
-        }
-
-        .search-box:focus {
-            border-color: var(--primary);
-        }
-
-        .view-toggle {
-            display: flex;
-            background: #f1f5f9;
-            padding: 2px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-        }
-
-        .toggle-btn {
-            padding: 8px 14px;
-            border: none;
-            background: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: var(--text-muted);
-            border-radius: 6px;
-        }
-
-        .toggle-btn.active {
-            background: #ffffff;
-            color: var(--primary);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .filter-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .muni-filter-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .filter-btn {
-            background-color: #f1f5f9;
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-btn.active {
-            background-color: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
-        }
-
-        .filter-options-row {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-        }
-
-        .filter-switch {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .filter-switch input {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .switch-track {
-            position: relative;
-            width: 38px;
-            height: 22px;
-            background: #cbd5e1;
-            border-radius: 11px;
-            transition: background 0.2s ease;
-            flex-shrink: 0;
-        }
-
-        .switch-track::after {
-            content: "";
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 18px;
-            height: 18px;
-            background: #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.25);
-            transition: transform 0.2s ease;
-        }
-
-        .filter-switch input:checked + .switch-track {
-            background: var(--primary);
-        }
-
-        .filter-switch input:checked + .switch-track::after {
-            transform: translateX(16px);
-        }
-
-        .filter-switch input:focus-visible + .switch-track {
-            outline: 2px solid var(--primary-hover);
-            outline-offset: 2px;
-        }
-
-        /* CALENDAR CONTAINER */
-        #calendar-wrapper {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        #calendar {
-            min-height: 650px;
-        }
-
-        /* Make all calendar day cells equal height */
-        .fc .fc-daygrid-day {
-            height: auto;
-            flex: 1 1 0;
-        }
-
-        .fc .fc-daygrid-day-frame {
-            min-height: 120px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .fc .fc-daygrid-day-bg {
-            flex: 1;
-        }
-
-        /* STICKY CALENDAR HEADER (month/year toolbar + day-of-week row) */
-        :root {
-            --fc-toolbar-height: 56px; /* fallback; JS measures and overrides this */
-        }
-
-        .fc .fc-toolbar.fc-header-toolbar {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: var(--card-bg);
-            padding-top: 4px;
-            padding-bottom: 12px;
-            margin-bottom: 0 !important;
-        }
-
-        .fc .fc-scrollgrid-section-header {
-            position: sticky;
-            top: var(--fc-toolbar-height);
-            z-index: 15;
-        }
-
-        .fc .fc-scrollgrid-section-header > * {
-            background: var(--card-bg);
-        }
-
-        /* Keep the day-name cells themselves opaque too, in case FullCalendar's
-           inner header table doesn't inherit the background from the row above */
-        .fc .fc-col-header-cell {
-            background: var(--card-bg);
-        }
-
-        /* LIST VIEW CONTAINER */
-        #list-wrapper {
-            display: none;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .event-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .event-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .muni-badge {
-            background-color: #eff6ff;
-            color: var(--primary);
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        .event-title {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .event-link {
-            color: var(--primary-hover);
-            font-size: 0.88rem;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .event-link:hover {
-            text-decoration: underline;
-        }
-
-        .event-link-disabled {
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .event-link-disabled:hover {
-            text-decoration: underline;
-        }
-
-        .fc-event {
-            cursor: pointer;
-            padding: 2px 4px;
-        }
-
-        /* CUSTOM EVENT TOOLTIP */
-        .event-tooltip {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            max-width: 280px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            padding: 12px 14px;
-            pointer-events: none;
-        }
-
-        .event-tooltip .tt-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 6px;
-        }
-
-        .event-tooltip .tt-title {
-            font-size: 0.92rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-
-        .event-tooltip .tt-datetime {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        .event-tooltip .tt-summary {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.35;
-            margin-bottom: 6px;
-        }
-
-        .event-tooltip .tt-hint {
-            font-size: 0.75rem;
-            font-weight: 600;
-            font-style: italic;
-            color: var(--text-muted);
-        }
-
-        /* ADMIN VIEW STYLES */
-        #admin-wrapper {
-            display: none;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .admin-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .admin-section h2 {
-            font-size: 1.25rem;
-            color: var(--primary);
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .admin-section h3 {
-            font-size: 1rem;
-            color: var(--text-main);
-            margin-top: 16px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .admin-description {
-            color: var(--text-muted);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .keyword-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        .keyword-item {
-            background: #ffffff;
-            padding: 14px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .keyword-item strong {
-            color: var(--primary);
-            font-size: 0.95rem;
-            font-weight: 700;
-        }
-
-        .keyword-item span {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        .monitoring-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 12px;
-        }
-
-        .info-card {
-            background: #ffffff;
-            padding: 18px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .info-card .label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .info-card .value {
-            font-size: 2rem;
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .update-frequency {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            padding: 14px 16px;
-            border-radius: 8px;
-            margin-top: 12px;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .update-frequency strong {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* SITES MONITORING TABLE */
-        .sites-table-wrapper {
-            overflow-x: auto;
-            margin-top: 12px;
-        }
-
-        .sites-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-
-        .sites-table thead {
-            background: #f1f5f9;
-        }
-
-        .sites-table th {
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            color: var(--primary);
-            border-bottom: 2px solid var(--border);
-        }
-
-        .sites-table td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-main);
-        }
-
-        .sites-table tbody tr:hover {
-            background: #f8fafc;
-        }
-
-        .sites-table .url-cell {
-            font-family: "Courier New", monospace;
-            font-size: 0.85rem;
-            word-break: break-all;
-        }
-
-        .sites-table .url-cell a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .sites-table .url-cell a:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
-        }
-
-        .sites-table .status-badge {
-            display: inline-block;
-            background: #dcfce7;
-            color: #166534;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        /* --- INSIGHTS TAB --- */
-        #insights-wrapper {
-            display: none;
-            flex-direction: column;
-            gap: 16px;
-            max-width: 900px;
-            margin: 24px auto;
-            padding: 0 20px 40px;
-        }
-
-        .insights-header p.admin-description {
-            margin-top: 6px;
-        }
-
-        .insights-meta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .insights-meta-row span {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 4px 10px;
-        }
-
-        .insight-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 18px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .insight-card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .insight-rank {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: #fff;
-            font-size: 0.8rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .insight-title-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .insight-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .insight-star {
-            color: #d97706;
-            font-size: 1rem;
-            cursor: default;
-        }
-
-        .insight-confidence {
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 3px 9px;
-            border-radius: 999px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .confidence-high { background: #dcfce7; color: #166534; }
-        .confidence-medium { background: #fef9c3; color: #854d0e; }
-        .confidence-low { background: #f1f5f9; color: #475569; }
-
-        .insight-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .insight-tag {
-            font-size: 0.72rem;
-            font-weight: 600;
-            padding: 3px 9px;
-            border-radius: 999px;
-            background: #eff6ff;
-            color: var(--primary);
-        }
-
-        .insight-tag.muni-tag {
-            background: #f1f5f9;
-            color: var(--text-muted);
-        }
-
-        .insight-summary {
-            font-size: 0.9rem;
-            color: var(--text-main);
-            line-height: 1.5;
-        }
-
-        .insight-details-toggle {
-            font-size: 0.8rem;
-            color: var(--primary);
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            text-align: left;
-            width: fit-content;
-        }
-        .insight-details-toggle:hover { text-decoration: underline; }
-
-        .insight-meetings-list {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            margin-top: 4px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border);
-        }
-        .insight-meetings-list.expanded { display: flex; }
-
-        .insight-meeting-row {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            align-items: baseline;
-        }
-        .insight-meeting-row a {
-            color: var(--primary-hover);
-            text-decoration: none;
-        }
-        .insight-meeting-row a:hover { text-decoration: underline; }
-
-        .insight-web-sources {
-            margin-top: 4px;
-            font-size: 0.8rem;
-        }
-        .insight-web-sources .web-badge {
-            display: inline-block;
-            font-size: 0.72rem;
-            font-weight: 600;
-            padding: 3px 9px;
-            border-radius: 999px;
-            background: #ecfdf5;
-            color: #047857;
-            margin-bottom: 4px;
-        }
-        .insight-web-sources ul {
-            list-style: none;
-            padding-left: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-        .insight-web-sources a {
-            color: var(--primary-hover);
-            font-size: 0.8rem;
-        }
-
-        .insights-empty, .insights-loading, .insights-error {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .insights-history-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 18px 20px;
-        }
-
-        .insights-history-day {
-            border-top: 1px solid var(--border);
-            padding: 10px 0;
-        }
-        .insights-history-day:first-of-type { border-top: none; }
-
-        .insights-history-day-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .insights-history-day-body {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            margin-top: 8px;
-            padding-left: 4px;
-        }
-        .insights-history-day-body.expanded { display: flex; }
-
-        .insights-history-item {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            display: flex;
-            gap: 6px;
-            align-items: baseline;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- CUSTOM EVENT TOOLTIP (hover) -->
-    <div id="eventTooltip" class="event-tooltip"></div>
-
-    <header>
-        <div>
-            <h1>Municipal Public Meetings</h1>
-            <p class="subtitle">Search upcoming agendas and governance schedules across Palm Beach County</p>
-        </div>
-        <nav class="top-nav">
-            <button class="nav-btn active" id="btnAdminToggleOff">Meetings</button>
-            <button class="nav-btn" id="btnInsightsToggle">Insights</button>
-            <button class="nav-btn" id="btnAdminToggleOn">Admin</button>
-            <div class="profile-switcher">
-                <button class="profile-btn" id="profileBtn">
-                    <span class="profile-avatar" id="profileAvatar">A</span>
-                    <span id="profileLabel">Alissa</span>
-                </button>
-                <div class="profile-menu" id="profileMenu">
-                    <button id="switchToGuest">Switch to guest</button>
-                    <button id="switchToAlissa" style="display:none;">Switch to Alissa</button>
-                </div>
-                <div class="feature-teaser" id="featureTeaser">
-                    New: this badge will tell you when meetings are added or updated since your last visit.
-                    <div class="teaser-actions">
-                        <button id="teaserGotIt">Got it</button>
-                        <button class="teaser-dismiss-forever" id="teaserDismissForever">Don't show this again</button>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <div class="updates-banner" id="updatesBanner">
-        <div class="updates-banner-row">
-            <span id="updatesBannerText"></span>
-            <span class="updates-banner-chevron" id="updatesBannerChevron">&#9660;</span>
-        </div>
-        <div class="updates-banner-list" id="updatesBannerList"></div>
-    </div>
-
-    <section class="controls-card" id="meetingsControls">
-        <div class="search-row">
-            <input type="text" id="searchInput" class="search-box" placeholder="Search by topic, board, or keyword (e.g. Zoning, CRA, Commission)...">
-            <div class="view-toggle">
-                <button class="toggle-btn active" id="btnCalendarView">Calendar</button>
-                <button class="toggle-btn" id="btnListView">List View</button>
-            </div>
-        </div>
-        
-        <div class="filter-label">Filter by Municipality:</div>
-        <div class="muni-filter-wrapper" id="muniFilterContainer">
-            <!-- Buttons generated dynamically -->
-        </div>
-
-        <div class="filter-options-row">
-            <label class="filter-switch">
-                <input type="checkbox" id="showCancelledToggle" role="switch" checked>
-                <span class="switch-track" aria-hidden="true"></span>
-                Show cancelled meetings
-            </label>
-        </div>
-    </section>
-
-    <!-- CALENDAR DISPLAY -->
-    <main id="calendar-wrapper">
-        <div id="calendar"></div>
-    </main>
-
-    <!-- LIST DISPLAY -->
-    <main id="list-wrapper">
-        <!-- Rendered when List View is active -->
-    </main>
-
-    <!-- ADMIN DISPLAY -->
-    <main id="admin-wrapper">
-        <!-- Application Overview -->
-        <section class="admin-section">
-            <h2>Application Overview</h2>
-            <p class="admin-description">
-                The Municipal Public Meetings Portal is a comprehensive application designed to aggregate, organize, and display public meeting schedules across Palm Beach County municipalities. It scrapes and monitors official municipal websites to provide residents, officials, and stakeholders with a centralized, searchable interface for discovering upcoming governance meetings and accessing related agendas.
-            </p>
-            <p class="admin-description" style="margin-top: 12px;">
-                This tool enables transparency and civic engagement by consolidating meeting information that would otherwise be scattered across multiple municipal websites.
-            </p>
-        </section>
-
-        <!-- Keywords & Search Terms -->
-        <section class="admin-section">
-            <h2>Keywords & Search Terms</h2>
-            <p class="admin-description">
-                The following keywords are used to identify and categorize relevant meeting types. These terms are matched against meeting titles, agendas, and summaries to help users discover meetings by topic or governance area:
-            </p>
-            <div class="keyword-list">
-                <div class="keyword-item">
-                    <strong>Zoning</strong>
-                    <span>Zoning board meetings, variance requests, land use decisions</span>
-                </div>
-                <div class="keyword-item">
-                    <strong>CRA</strong>
-                    <span>Community Redevelopment Agency meetings</span>
-                </div>
-                <div class="keyword-item">
-                    <strong>Commission</strong>
-                    <span>City/County commission and council meetings</span>
-                </div>
-                <div class="keyword-item">
-                    <strong>Planning</strong>
-                    <span>Planning board and development meetings</span>
-                </div>
-                <div class="keyword-item">
-                    <strong>Budget</strong>
-                    <span>Financial and budget-related meetings</span>
-                </div>
-                <div class="keyword-item">
-                    <strong>Board</strong>
-                    <span>General board meetings across departments</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Monitoring Timeline -->
-        <section class="admin-section">
-            <h2>Monitoring Timeline</h2>
-            <p class="admin-description">
-                The application monitors meeting schedules across a rolling two-month window consisting of the current month and the following month:
-            </p>
-            <div class="monitoring-info">
-                <div class="info-card">
-                    <div class="label">Current Month</div>
-                    <div class="value">1</div>
-                </div>
-                <div class="info-card">
-                    <div class="label">Lookahead Month</div>
-                    <div class="value">1</div>
-                </div>
-                <div class="info-card">
-                    <div class="label">Total Monitoring Window</div>
-                    <div class="value">2 Months</div>
-                </div>
-            </div>
-            <div class="update-frequency">
-                <strong>Update Frequency:</strong> Once daily at midnight (12:00 AM Eastern Time)
-            </div>
-        </section>
-
-        <!-- Sites Being Monitored -->
-        <section class="admin-section">
-            <h2>Sites Being Monitored</h2>
-            <p class="admin-description">
-                The following municipalities and sources are monitored for public meeting information:
-            </p>
-            <div class="sites-table-wrapper">
-                <table class="sites-table">
-                    <thead>
-                        <tr>
-                            <th>Municipality</th>
-                            <th>Type</th>
-                            <th>Monitoring URL</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sitesTableBody">
-                        <!-- Dynamically populated from sites.json -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-
-    <!-- INSIGHTS DISPLAY -->
-    <main id="insights-wrapper">
-        <section class="admin-section insights-header">
-            <h2>Insights</h2>
-            <p class="admin-description">
-                Specific governance topics that either <strong>recurred across multiple meetings</strong>
-                (the same ordinance, project, or matter coming up again &mdash; in one city over time,
-                or across different municipalities) or were <strong>independently confirmed by web
-                search</strong> as a real, notable matter. A single, unconfirmed mention of something
-                isn't shown here on its own &mdash; only things with real evidence behind them. Ranked
-                most-confident first. A &#9733; marks a topic that keeps coming back across multiple
-                days of analysis.
-            </p>
-            <div class="insights-meta-row" id="insightsMetaRow"></div>
-        </section>
-
-        <div id="insightsList"></div>
-
-        <section class="insights-history-section">
-            <h2 style="margin-bottom: 10px;">Past 7 Days</h2>
-            <div id="insightsHistoryList"></div>
-        </section>
-    </main>
-
-    <script>
-        let allEvents = [];
-        let allChanges = [];
-        let calendar = null;
-        let selectedMuni = "ALL";
-        let insightsLoaded = false;
-
-        // --- PROFILE (cosmetic identity, no real auth - see NOTIFICATIONS below) ---
-        let currentProfile = localStorage.getItem("currentProfile") || "alissa";
-
-        document.addEventListener("DOMContentLoaded", () => {
-            initCalendar();
-            fetchEvents();
-            fetchChanges();
-            loadSitesTable();
-            initProfileSwitcher();
-            initFeatureTeaser();
-            initUpdatesBanner();
-
-            document.getElementById("searchInput").addEventListener("input", updateViews);
-            document.getElementById("showCancelledToggle").addEventListener("change", updateViews);
-            document.getElementById("btnCalendarView").addEventListener("click", () => switchView("calendar"));
-            document.getElementById("btnListView").addEventListener("click", () => switchView("list"));
-            document.getElementById("btnAdminToggleOn").addEventListener("click", () => switchView("admin"));
-            document.getElementById("btnAdminToggleOff").addEventListener("click", () => switchView("calendar"));
-            document.getElementById("btnInsightsToggle").addEventListener("click", () => switchView("insights"));
-        });
-
-        // --- PROFILE SWITCHER ---
-        function applyProfileDisplay() {
-            const avatar = document.getElementById("profileAvatar");
-            const label = document.getElementById("profileLabel");
-            const toGuestBtn = document.getElementById("switchToGuest");
-            const toAlissaBtn = document.getElementById("switchToAlissa");
-
-            if (currentProfile === "alissa") {
-                avatar.textContent = "A";
-                label.textContent = "Alissa";
-                toGuestBtn.style.display = "block";
-                toAlissaBtn.style.display = "none";
-            } else {
-                avatar.textContent = "G";
-                label.textContent = "Guest";
-                toGuestBtn.style.display = "none";
-                toAlissaBtn.style.display = "block";
-            }
-        }
-
-        function setProfile(profile) {
-            currentProfile = profile;
-            localStorage.setItem("currentProfile", profile);
-            applyProfileDisplay();
-            document.getElementById("profileMenu").classList.remove("open");
-            renderUpdatesBanner();
-        }
-
-        function initProfileSwitcher() {
-            applyProfileDisplay();
-            const btn = document.getElementById("profileBtn");
-            const menu = document.getElementById("profileMenu");
-
-            btn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                menu.classList.toggle("open");
-            });
-            document.getElementById("switchToGuest").addEventListener("click", () => setProfile("guest"));
-            document.getElementById("switchToAlissa").addEventListener("click", () => setProfile("alissa"));
-            document.addEventListener("click", () => menu.classList.remove("open"));
-        }
-
-        // --- ONE-TIME FEATURE TEASER ---
-        // Reappears on every visit until the user explicitly clicks "Don't show
-        // this again" - just clicking "Got it" or navigating away does NOT
-        // permanently dismiss it.
-        function initFeatureTeaser() {
-            const teaser = document.getElementById("featureTeaser");
-            if (localStorage.getItem("featureTeaserDismissed") === "true") return;
-
-            teaser.classList.add("open");
-            document.getElementById("teaserGotIt").addEventListener("click", (e) => {
-                e.stopPropagation();
-                teaser.classList.remove("open");
-            });
-            document.getElementById("teaserDismissForever").addEventListener("click", (e) => {
-                e.stopPropagation();
-                localStorage.setItem("featureTeaserDismissed", "true");
-                teaser.classList.remove("open");
-            });
-            teaser.addEventListener("click", (e) => e.stopPropagation());
-        }
-
-        // --- NEW RECORDS BANNER ---
-        function lastSeenKey() {
-            return `lastSeen_${currentProfile}`;
-        }
-
-        function getLastSeen() {
-            const stored = localStorage.getItem(lastSeenKey());
-            if (stored) return stored;
-            // First time this profile has ever been seen on this browser -
-            // baseline to "now" so they aren't shown the entire historical
-            // changes.json backlog on their very first visit.
-            const now = new Date().toISOString();
-            localStorage.setItem(lastSeenKey(), now);
-            return now;
-        }
-
-        function markAllSeen() {
-            localStorage.setItem(lastSeenKey(), new Date().toISOString());
-        }
-
-        async function fetchChanges() {
-            try {
-                const response = await fetch("changes.json");
-                if (!response.ok) throw new Error("Failed to load changes.json");
-                allChanges = await response.json();
-            } catch (error) {
-                console.error("Error loading changes:", error);
-                allChanges = [];
-            }
-            renderUpdatesBanner();
-        }
-
-        function describeChange(c) {
-            if (c.type === "added") {
-                return `${c.title}, ${c.date} at ${c.time || "TBD"}`;
-            }
-            if (c.type === "removed") {
-                return `${c.title}, ${c.date} was removed from the calendar`;
-            }
-            // modified
-            const parts = [];
-            if (c.fields_changed && c.fields_changed.time) {
-                parts.push(`time changed ${c.fields_changed.time.old || "?"} &rarr; ${c.fields_changed.time.new || "?"}`);
-            }
-            if (c.fields_changed && c.fields_changed.has_agenda) {
-                parts.push(c.fields_changed.has_agenda.new ? "agenda now posted" : "agenda removed");
-            }
-            return `${c.title}, ${c.date} &mdash; ${parts.join(", ") || "updated"}`;
-        }
-
-        function renderUpdatesBanner() {
-            const banner = document.getElementById("updatesBanner");
-            const bannerText = document.getElementById("updatesBannerText");
-            const bannerList = document.getElementById("updatesBannerList");
-
-            const lastSeen = getLastSeen();
-            const unseen = allChanges.filter(c => c.detected_at > lastSeen);
-
-            if (unseen.length === 0) {
-                banner.classList.remove("visible");
-                return;
-            }
-
-            banner.classList.add("visible");
-            bannerText.textContent = `${unseen.length} update${unseen.length === 1 ? "" : "s"} since your last visit`;
-
-            bannerList.innerHTML = unseen.map(c => `
-                <div class="update-item">
-                    <span class="update-tag ${c.type}">${c.type}</span>
-                    <span>${c.muni_short ? `<span style="color:var(--text-muted);">${c.muni_short}</span> &mdash; ` : ""}${describeChange(c)}</span>
-                </div>
-            `).join("");
-        }
-
-        function initUpdatesBanner() {
-            const banner = document.getElementById("updatesBanner");
-            const list = document.getElementById("updatesBannerList");
-            const chevron = document.getElementById("updatesBannerChevron");
-
-            banner.addEventListener("click", () => {
-                const opening = !list.classList.contains("open");
-                list.classList.toggle("open");
-                chevron.classList.toggle("open");
-                if (opening) {
-                    // Expanding the banner marks everything as seen. If a
-                    // per-item "acknowledge" model is preferred instead, this
-                    // is the spot to change.
-                    markAllSeen();
-                }
-            });
-        }
-
-        function initCalendar() {
-            const calendarEl = document.getElementById("calendar");
-            calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,listMonth'
+"""
+insights_engine.py
+===================
+
+Powers the "Leads" tab (formerly "Insights"): a daily-refreshed list of
+real-estate / land-use story leads for a local journalist, built from the
+agendas of every monitored municipality.
+
+What changed from the old "recurring topics" design, and why
+------------------------------------------------------------
+The old pipeline read the first 3,000 characters of each agenda, asked an LLM
+for loose "topics", and clustered topics by word overlap. On the project's
+own data that produced:
+  * false links (two towns' unrelated "Ordinance 2026-03" matched on number),
+  * bare identifiers as card titles, with no plain-English meaning,
+  * only 108 of 331 meetings yielding anything, almost all from 5 towns,
+  * nothing about what is coming up.
+
+This version instead:
+  1. Reads whole agendas (up to 60 PDF pages), and for calendar pages that
+     only LINK to an agenda, follows the agenda link (see _find_agenda_links).
+  2. Asks the LLM for structured LINE ITEMS (kind, address, case number,
+     named private parties, dollar amount, action, plain-English summary and
+     a verbatim evidence quote), not "topics".
+  3. Checks every extracted fact against the document text. Quotes,
+     addresses, case numbers, party names and amounts that cannot be found in
+     the document are dropped, so nothing in a lead is a model invention.
+  4. Groups items into LEADS keyed by municipality + property (or case
+     number), never by a bare ordinance number, so unrelated matters in
+     different towns are never merged.
+  5. Attaches deterministic signals (repeat review, amount changed, tabled,
+     adjacent parcels, cross-town party, upcoming vote) and a research kit.
+  6. Also reads UPCOMING agendas from data.json, so a lead can say
+     "on the Dec 8 agenda".
+  7. Writes a per-municipality coverage report into leads.json, so the UI can
+     say plainly where the system cannot see agenda text.
+
+Fail-soft design is unchanged: no network, no key, or exhausted quota never
+crashes the workflow. Meetings that could not be analysed are NOT cached and
+are retried on the next run.
+
+STATUS: written without outbound network access. The document-link following
+and the Gemini structured-output call have not been exercised against the
+live internet. The first real run's "[Insights Docs]", "[Insights LLM]" and
+"[Insights Coverage]" log lines (and coverage_by_municipality in leads.json)
+show exactly what worked.
+"""
+
+import os
+import re
+import io
+import json
+import time
+import hashlib
+from datetime import datetime, timedelta, timezone
+from collections import defaultdict
+from urllib.parse import urljoin
+
+import requests
+from bs4 import BeautifulSoup
+
+import scraper as sc
+
+try:
+    import pdfplumber
+    HAVE_PDFPLUMBER = True
+except ImportError:
+    HAVE_PDFPLUMBER = False
+
+try:
+    from PyPDF2 import PdfReader
+    HAVE_PYPDF2 = True
+except ImportError:
+    HAVE_PYPDF2 = False
+
+
+# --- CONFIG -----------------------------------------------------------------
+
+HISTORICAL_MONTHS_BACK = 6
+
+LEADS_OUTPUT_PATH = "leads.json"
+ITEMS_CACHE_PATH = "agenda_items_cache.json"
+CACHE_SCHEMA = 2
+
+MAX_DOC_CHARS = 60000          # stored/extracted per document
+MAX_PDF_PAGES = 60
+MAX_LLM_DOC_CHARS = 45000      # sent to the LLM (one request per meeting)
+MAX_LLM_RESPONSE_TOKENS = 8192
+MAX_ITEMS_PER_MEETING = 25
+NODOC_RETRY_DAYS = 7           # re-try fetching a past meeting with no readable document this often
+CACHE_SAVE_EVERY = 25          # persist progress so a killed job does not lose LLM work
+MAX_LEADS = 60
+WEB_CHECK_TOP_N = 10
+
+GEMINI_MODEL = os.environ.get("INSIGHTS_LLM_MODEL", "gemini-3.5-flash-lite")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+
+
+def _gemini_endpoint():
+    # A function, since GEMINI_MODEL can be replaced mid-run by the
+    # self-healing retry in _llm_items().
+    return f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+
+
+# Free-tier Flash-Lite is documented around 15 requests/minute.
+GEMINI_MIN_SECONDS_BETWEEN_CALLS = 4.5
+
+SERPER_API_KEY = os.environ.get("SERPER_API_KEY")
+
+
+# --- ITEM VOCABULARY --------------------------------------------------------
+
+ITEM_KINDS = [
+    "variance", "rezoning", "site_plan", "development_agreement",
+    "land_transaction", "easement", "plat", "comp_plan_amendment",
+    "annexation", "demolition", "historic", "incentive_abatement",
+    "density_height", "cra_property", "design_review", "contract_vendor",
+    "other",
+]
+
+KIND_LABELS = {
+    "variance": "Variance", "rezoning": "Rezoning", "site_plan": "Site plan",
+    "development_agreement": "Development agreement", "land_transaction": "Land deal",
+    "easement": "Easement", "plat": "Plat", "comp_plan_amendment": "Comp plan change",
+    "annexation": "Annexation", "demolition": "Demolition", "historic": "Historic",
+    "incentive_abatement": "Incentive or abatement", "density_height": "Density or height",
+    "cra_property": "CRA property", "design_review": "Design review",
+    "contract_vendor": "Vendor contract", "other": "Property item",
+}
+
+KIND_WEIGHT = {
+    "rezoning": 30, "development_agreement": 30, "comp_plan_amendment": 28,
+    "annexation": 28, "land_transaction": 28, "incentive_abatement": 28,
+    "density_height": 26, "cra_property": 24, "variance": 18, "site_plan": 18,
+    "demolition": 16, "historic": 14, "plat": 12, "easement": 10,
+    "design_review": 10, "contract_vendor": 8, "other": 4,
+}
+
+# A single appearance of one of these is still worth a reporter's attention.
+STRONG_KINDS = {
+    "rezoning", "development_agreement", "comp_plan_amendment", "annexation",
+    "land_transaction", "incentive_abatement", "density_height",
+}
+
+# Kinds where a change in the agenda wording between hearings can mean the
+# request itself changed.
+CHANGE_KINDS = {
+    "variance", "site_plan", "rezoning", "development_agreement",
+    "land_transaction", "density_height", "comp_plan_amendment",
+}
+
+KIND_GROUP = {
+    "variance": "zoning", "rezoning": "zoning", "comp_plan_amendment": "zoning",
+    "annexation": "zoning", "density_height": "zoning",
+    "site_plan": "development", "development_agreement": "development",
+    "design_review": "development", "demolition": "development",
+    "historic": "development", "plat": "development", "other": "development",
+    "land_transaction": "land", "easement": "land", "cra_property": "land",
+    "incentive_abatement": "land", "contract_vendor": "development",
+}
+
+ENTITY_ROLES = {"developer", "applicant", "owner", "vendor", "engineer",
+                "architect", "attorney", "contractor"}
+
+QUESTIONS_BY_KIND = {
+    "variance": [
+        "What exactly is being waived, and what did staff recommend?",
+        "Who is the applicant and what do they plan to build or change?",
+        "Have there been code or permit issues at this address?",
+    ],
+    "rezoning": [
+        "What can be built under the new zoning that cannot be built now?",
+        "Who owns the land and who is the applicant?",
+        "What did staff and neighbors say?",
+    ],
+    "site_plan": [
+        "Who is the developer, and what is the unit count or square footage?",
+        "What conditions were attached to the approval?",
+        "What do the traffic and drainage reviews say?",
+    ],
+    "development_agreement": [
+        "What does the municipality give up and get in the agreement?",
+        "Who signs for the developer, and who owns the land?",
+        "What are the deadlines and penalties?",
+    ],
+    "land_transaction": [
+        "Who is buying or leasing, and at what price?",
+        "Was the property appraised or competitively offered?",
+        "Who owned it before and what was it last sold for?",
+    ],
+    "easement": [
+        "Which project requires this easement?",
+        "Who owns the property and who benefits?",
+        "Is this a condition of a development approval?",
+    ],
+    "plat": [
+        "How many lots or units does the plat create?",
+        "Who owns the land and who is the applicant?",
+    ],
+    "comp_plan_amendment": [
+        "Which parcels does this affect and who owns them?",
+        "What density or use change does it allow?",
+        "Is a specific developer behind the request?",
+    ],
+    "annexation": [
+        "Who owns the land being annexed and what do they plan?",
+        "What services and taxes change for the property?",
+    ],
+    "demolition": [
+        "What is being demolished and what replaces it?",
+        "Is the building historic or protected?",
+    ],
+    "historic": [
+        "Who owns the property and what do they want to do with it?",
+        "What would designation restrict?",
+    ],
+    "incentive_abatement": [
+        "What is the dollar value of the incentive, and over how many years?",
+        "What does the recipient have to deliver, and who checks?",
+    ],
+    "density_height": [
+        "How much more density or height is being allowed, and for whom?",
+        "Which parcels and owners benefit?",
+    ],
+    "cra_property": [
+        "Who is getting CRA property or money, and on what terms?",
+        "Was it competitively bid or offered?",
+    ],
+    "design_review": [
+        "Who is the owner or applicant?",
+        "Is an existing structure being replaced?",
+        "Why has this needed more than one review?",
+    ],
+    "contract_vendor": [
+        "What is the contract amount and term?",
+        "Was it competitively procured?",
+    ],
+    "other": [
+        "Who owns the property and who is the applicant?",
+        "What is the next decision and when?",
+    ],
+}
+
+ENTITY_QUESTIONS = [
+    "What are the contract or project amounts in the agenda backup?",
+    "Does this party also appear on private development applications?",
+    "Which other municipalities have they worked with?",
+]
+
+# Names that are governments / agencies, not private parties a reporter would
+# chase as developers or vendors.
+_GOV_ENTITY_RE = re.compile(
+    r"\b(city|town|village|county|state|commission|commissioners|board|authority|"
+    r"district|department|dept|council|school|agency|cra|dda|committee|government|"
+    r"municipal|municipality|clerk|sheriff|police|fdot|united states|federal)\b",
+    re.I,
+)
+
+_ENTITY_RE_KEYWORDS = re.compile(
+    r"engineer|survey|architect|planning|design|construction|develop|land|real estate|"
+    r"property|permit|zoning|site|plat|building|inspection|landscap|contractor",
+    re.I,
+)
+
+
+# --- STEP 0: DATES -----------------------------------------------------------
+
+def _today_et():
+    """Today's date in Eastern time (the workflow runs at 00:00 UTC, which is
+    still the previous evening in Florida)."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("America/New_York")).date()
+    except Exception:
+        return (datetime.now(timezone.utc) - timedelta(hours=5)).date()
+
+
+def _fmt_date(d):
+    try:
+        dt = datetime.strptime(d, "%Y-%m-%d")
+        return f"{dt.strftime('%b')} {dt.day}"
+    except (TypeError, ValueError):
+        return d or "?"
+
+
+def _month_start(dt):
+    return datetime(dt.year, dt.month, 1)
+
+
+def _add_months(dt, n):
+    month = dt.month - 1 + n
+    year = dt.year + month // 12
+    month = month % 12 + 1
+    return datetime(year, month, 1)
+
+
+# --- STEP 1: HISTORICAL EVENT GATHERING -------------------------------------
+# Reuses every existing scrape_*() function unchanged, just with a widened
+# date window (see set_date_window_override in scraper.py).
+
+MULTI_MONTH_LOOP_SCRAPERS = [
+    sc.scrape_boca_raton,
+    sc.scrape_boynton_beach,
+    sc.scrape_palm_beach_gardens,
+    sc.scrape_wellington,
+    sc.scrape_jupiter,
+]
+
+SINGLE_WINDOW_SCRAPERS = [
+    sc.scrape_west_palm_beach,
+    sc.scrape_west_palm_beach_planning,
+    sc.scrape_west_palm_beach_plans_plats,
+    sc.scrape_palm_beach_county,
+    sc.scrape_pbc_zoning_calendar,
+    sc.scrape_delray_beach,
+    sc.scrape_westlake,
+    sc.scrape_downtown_wpb_dda,
+    sc.scrape_palm_beach,
+    sc.scrape_riviera_beach,
+    sc.scrape_juno_beach,
+    sc.scrape_jupiter_inlet_colony,
+    sc.scrape_manalapan,
+    sc.scrape_gulf_stream,
+    sc.scrape_north_palm_beach,
+]
+
+CANCELLATION_PATTERN = re.compile(r'\bCANCEL(?:L)?ED\b', re.I)
+
+SCHEDULE_NOTE_PATTERN = re.compile(
+    r'\(\s*[^()]*\b(?:usual|instead of|rather than|moved from|different day|'
+    r'not the usual|will follow|is on a)\b[^()]*\)',
+    re.I,
+)
+
+
+def is_cancelled_event(title):
+    return bool(CANCELLATION_PATTERN.search(title or ""))
+
+
+def strip_schedule_notes(title):
+    cleaned = SCHEDULE_NOTE_PATTERN.sub("", title or "")
+    return re.sub(r'\s+', ' ', cleaned).strip()
+
+
+def gather_historical_events(months_back=HISTORICAL_MONTHS_BACK):
+    """Deduplicated qualifying events from the last `months_back` months,
+    reusing scraper.py's own scrape functions and whitelist filter."""
+    all_events = []
+    now = datetime.now()
+    this_month_start = _month_start(now)
+
+    for fn in MULTI_MONTH_LOOP_SCRAPERS:
+        for i in range(1, months_back + 1):
+            target_month = _add_months(this_month_start, -i)
+            next_month = _add_months(target_month, 1)
+            try:
+                sc.set_date_window_override(target_month, next_month)
+                all_events.extend(fn())
+            except Exception as e:
+                print(f"[Insights History] {fn.__name__} failed for "
+                      f"{target_month.strftime('%Y-%m')}: {e}")
+            finally:
+                sc.clear_date_window_override()
+
+    window_start = _add_months(this_month_start, -months_back)
+    window_end = now + timedelta(days=1)
+    for fn in SINGLE_WINDOW_SCRAPERS:
+        try:
+            sc.set_date_window_override(window_start, window_end)
+            all_events.extend(fn())
+        except Exception as e:
+            print(f"[Insights History] {fn.__name__} failed: {e}")
+        finally:
+            sc.clear_date_window_override()
+
+    seen = set()
+    deduped = []
+    for ev in all_events:
+        key = sc.compute_change_key(ev)
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(ev)
+
+    cutoff = _add_months(this_month_start, -months_back)
+    filtered = []
+    for ev in deduped:
+        try:
+            ev_dt = datetime.strptime(ev["date"], "%Y-%m-%d")
+        except (KeyError, ValueError):
+            continue
+        if cutoff <= ev_dt <= now:
+            filtered.append(ev)
+
+    cancelled_count = sum(1 for ev in filtered if is_cancelled_event(ev.get("title")))
+    filtered = [ev for ev in filtered if not is_cancelled_event(ev.get("title"))]
+    for ev in filtered:
+        ev["title"] = strip_schedule_notes(ev.get("title", ""))
+
+    print(f"[Insights History] Gathered {len(filtered)} unique qualifying "
+          f"historical events across {months_back} months "
+          f"(from {len(all_events)} raw rows before dedup, "
+          f"{cancelled_count} cancelled meeting(s) excluded).")
+    return filtered
+
+
+def load_upcoming_events(today_str, path="data.json"):
+    """Upcoming meetings already scraped into data.json by scraper.py. These
+    let a lead say 'on the Dec 8 agenda' and let a reporter see items before
+    the vote. Cancelled meetings are skipped."""
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return []
+    events, seen = [], set()
+    for ev in data if isinstance(data, list) else []:
+        d = ev.get("date") or ""
+        if d < today_str or is_cancelled_event(ev.get("title")):
+            continue
+        key = sc.compute_change_key(ev)
+        if key in seen:
+            continue
+        seen.add(key)
+        events.append(dict(ev))
+    return events
+
+
+# --- STEP 2: DOCUMENT TEXT ("reading the agenda") ---------------------------
+
+PAGE_MARK_RE = re.compile(r"\n?\[\[PAGE (\d+)\]\]\n")
+
+
+def _extract_pdf_text(pdf_bytes):
+    """Text of a PDF with [[PAGE n]] markers so evidence can cite a page."""
+    pages = []
+    total = 0
+    if HAVE_PDFPLUMBER:
+        try:
+            with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+                for i, page in enumerate(pdf.pages[:MAX_PDF_PAGES], 1):
+                    t = page.extract_text() or ""
+                    pages.append((i, t))
+                    total += len(t)
+                    if total >= MAX_DOC_CHARS:
+                        break
+        except Exception as e:
+            print(f"[Insights Docs] pdfplumber failed: {e}")
+            pages = []
+    if not any(t.strip() for _, t in pages) and HAVE_PYPDF2:
+        pages, total = [], 0
+        try:
+            reader = PdfReader(io.BytesIO(pdf_bytes))
+            for i, page in enumerate(reader.pages[:MAX_PDF_PAGES], 1):
+                t = page.extract_text() or ""
+                pages.append((i, t))
+                total += len(t)
+                if total >= MAX_DOC_CHARS:
+                    break
+        except Exception as e:
+            print(f"[Insights Docs] PyPDF2 fallback failed: {e}")
+            pages = []
+    text = "".join(f"\n[[PAGE {n}]]\n{t}" for n, t in pages if t.strip()).strip()
+    return text[:MAX_DOC_CHARS] if text else None
+
+
+def _html_to_text(html):
+    soup = BeautifulSoup(html, "html.parser")
+    for tag in soup(["script", "style", "noscript"]):
+        tag.decompose()
+    return soup.get_text(" ", strip=True)
+
+
+_AGENDA_WORD = re.compile(r"\bagenda\b", re.I)
+_MINUTES_WORD = re.compile(r"\bminutes\b", re.I)
+_AGENDACENTER_ROOT = re.compile(r"/agendacenter/?(\?.*)?$", re.I)
+
+
+def _find_agenda_links(html, base_url, limit=2):
+    """Calendar/event pages (CivicPlus Calendar.aspx, Granicus, etc.) usually
+    only LINK to the agenda. Returns up to `limit` absolute URLs most likely
+    to be the agenda document, best first. Heuristic and unverified against
+    live pages: the first real run's '[Insights Docs] followed agenda link'
+    lines show whether it works per municipality."""
+    soup = BeautifulSoup(html, "html.parser")
+    cands = {}
+    for a in soup.find_all("a", href=True):
+        href = a["href"].strip()
+        if href.startswith(("#", "mailto:", "javascript:", "tel:")):
+            continue
+        text = a.get_text(" ", strip=True)
+        text_hit = bool(_AGENDA_WORD.search(text))
+        href_hit = bool(re.search(r"agenda", href, re.I))
+        if not (text_hit or href_hit):
+            continue
+        if _MINUTES_WORD.search(text) and not text_hit:
+            continue
+        full = urljoin(base_url, href)
+        if full.rstrip("/") == base_url.rstrip("/") or _AGENDACENTER_ROOT.search(full):
+            continue
+        lower = full.lower()
+        score = 0
+        if lower.split("?")[0].endswith(".pdf"):
+            score += 3
+        if any(s in lower for s in ("viewfile", "documentcenter/view", "agendaviewer", "/files/agenda")):
+            score += 3
+        if text_hit:
+            score += 2
+        if href_hit:
+            score += 1
+        if "packet" in text.lower() or "packet" in lower:
+            score -= 3  # the plain agenda first: short, and it names every item; the packet follows if room remains
+        if score >= 3:
+            cands[full] = max(cands.get(full, 0), score)
+    ranked = sorted(cands.items(), key=lambda kv: -kv[1])
+    return [u for u, _ in ranked[:limit]]
+
+
+def _fetch(link, timeout):
+    res = sc.fetch_hardened(link, timeout=timeout)
+    if res is None:
+        res = requests.get(link, timeout=timeout, headers={"User-Agent": "Mozilla/5.0"})
+    return res
+
+
+def _is_pdf_response(res, link):
+    if link.lower().split("?")[0].endswith(".pdf"):
+        return True
+    ctype = (getattr(res, "headers", {}) or {}).get("Content-Type", "") or ""
+    if ctype.lower().startswith("application/pdf"):
+        return True
+    content = getattr(res, "content", b"") or b""
+    return content[:4] == b"%PDF"
+
+
+def _fetch_linked_text(url, timeout):
+    """Text of a document reached by following a link (no further following)."""
+    try:
+        res = _fetch(url, timeout)
+        if res is None or res.status_code != 200:
+            return None
+        if _is_pdf_response(res, url):
+            return _extract_pdf_text(res.content)
+        text = _html_to_text(res.text)
+        return text[:MAX_DOC_CHARS] if len(text) >= 400 else None
+    except Exception as e:
+        print(f"[Insights Docs] Failed to read linked agenda {url}: {e}")
+        return None
+
+
+def fetch_document_text(event, timeout=25):
+    """Best-effort agenda text behind an event's link; None (never a crash)
+    on any failure."""
+    if event.get("has_agenda") is False:
+        return None
+    link = event.get("link")
+    if not link or not str(link).startswith("http"):
+        return None
+    try:
+        res = _fetch(link, timeout)
+        if res is None or res.status_code != 200:
+            return None
+        if _is_pdf_response(res, link):
+            return _extract_pdf_text(res.content)
+
+        html = res.text or ""
+        page_text = _html_to_text(html)
+        is_calendar_page = "calendar.aspx" in link.lower()
+
+        parts = [] if is_calendar_page else ([page_text] if page_text else [])
+        if is_calendar_page or len(page_text) < 4000:
+            for alink in _find_agenda_links(html, link):
+                sub = _fetch_linked_text(alink, timeout)
+                if sub:
+                    print(f"[Insights Docs] followed agenda link for "
+                          f"{event.get('muni_short')} {event.get('date')}: {alink}")
+                    parts.append(sub)
+        text = "\n".join(parts).strip()
+        if is_calendar_page:
+            return text[:MAX_DOC_CHARS] if text else None
+        return text[:MAX_DOC_CHARS] if len(text) >= 800 else None
+    except Exception as e:
+        print(f"[Insights Docs] Failed to read document for "
+              f"{event.get('muni_short')} {event.get('date')} "
+              f"'{event.get('title')}': {e}")
+        return None
+
+
+# --- STEP 3: STRUCTURED ITEM EXTRACTION (LLM) -------------------------------
+
+_gemini_unavailable = False   # set True on quota exhaustion or auth/config error
+_gemini_checked_available = False
+_last_gemini_call_time = 0.0
+
+
+def gemini_available():
+    global _gemini_checked_available
+    if not _gemini_checked_available:
+        _gemini_checked_available = True
+        if not GEMINI_API_KEY:
+            print("[Insights LLM] No GEMINI_API_KEY set - no new meetings will be analyzed this run.")
+        else:
+            print(f"[Insights LLM] Using Gemini model '{GEMINI_MODEL}' via Google AI Studio free tier.")
+    return bool(GEMINI_API_KEY) and not _gemini_unavailable
+
+
+def _extract_suggested_replacement_model(err_text):
+    m = re.search(r"use models/([a-zA-Z0-9\-\.]+)", err_text)
+    return m.group(1) if m else None
+
+
+def _parse_json_array(raw):
+    """Parses the model's JSON array. If the output was cut off mid-array
+    (the old failure mode: ~half of calls), salvages every COMPLETE object
+    before the cut. Returns (list, salvaged_flag); raises ValueError if
+    nothing usable."""
+    raw = (raw or "").strip()
+    raw = re.sub(r"^```(?:json)?|```$", "", raw, flags=re.MULTILINE).strip()
+    try:
+        value = json.loads(raw)
+        if isinstance(value, dict):
+            for k in ("items", "results", "leads"):
+                if isinstance(value.get(k), list):
+                    value = value[k]
+                    break
+        if isinstance(value, list):
+            return value, False
+        raise ValueError("not a JSON array")
+    except json.JSONDecodeError:
+        pass
+    start = raw.find("[")
+    if start < 0:
+        raise ValueError("no JSON array in response")
+    dec = json.JSONDecoder()
+    i, out = start + 1, []
+    while True:
+        while i < len(raw) and raw[i] in " \n\r\t,":
+            i += 1
+        if i >= len(raw) or raw[i] != "{":
+            break
+        try:
+            obj, j = dec.raw_decode(raw, i)
+        except ValueError:
+            break
+        out.append(obj)
+        i = j
+    if not out:
+        raise ValueError("could not recover any complete item from truncated JSON")
+    return out, True
+
+
+def _call_gemini_once(prompt):
+    """One Gemini call. Returns (raw_items, salvaged, None) or (None, False, exc)."""
+    global _last_gemini_call_time
+    elapsed = time.time() - _last_gemini_call_time
+    if elapsed < GEMINI_MIN_SECONDS_BETWEEN_CALLS:
+        time.sleep(GEMINI_MIN_SECONDS_BETWEEN_CALLS - elapsed)
+    try:
+        resp = requests.post(
+            _gemini_endpoint(),
+            params={"key": GEMINI_API_KEY},
+            headers={"Content-Type": "application/json"},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "maxOutputTokens": MAX_LLM_RESPONSE_TOKENS,
+                    "temperature": 0.1,
+                    "responseMimeType": "application/json",
                 },
-                dayMaxEvents: 3,
-                moreLinkClick: 'popover',
-                events: [],
-                eventClick: function(info) {
-                    if (info.event.url) {
-                        info.jsEvent.preventDefault();
-                        window.open(info.event.url, "_blank");
-                    }
-                },
-                eventMouseEnter: function(info) {
-                    showEventTooltip(info.event, info.jsEvent);
-                },
-                eventMouseLeave: function() {
-                    hideEventTooltip();
-                },
-                datesSet: function() {
-                    // Toolbar height can change slightly (e.g. button wrapping on
-                    // narrow screens), so re-measure whenever the view redraws.
-                    updateStickyToolbarOffset();
-                }
-            });
-            calendar.render();
-            updateStickyToolbarOffset();
-            window.addEventListener('resize', updateStickyToolbarOffset);
-        }
+            },
+            timeout=90,
+        )
+        _last_gemini_call_time = time.time()
+        if resp.status_code != 200:
+            raise requests.HTTPError(f"HTTP {resp.status_code}: {resp.text[:300]}", response=resp)
+        data = resp.json()
+        candidates = data.get("candidates", [])
+        if not candidates:
+            return [], False, None  # safety-blocked: nothing found, retrying will not help
+        cand = candidates[0]
+        parts = (cand.get("content") or {}).get("parts") or []
+        text = "".join(p.get("text", "") for p in parts).strip()
+        if not text:
+            return [], False, None
+        items, salvaged = _parse_json_array(text)
+        if cand.get("finishReason") == "MAX_TOKENS":
+            salvaged = True
+        return items, salvaged, None
+    except Exception as e:
+        _last_gemini_call_time = time.time()
+        return None, False, e
 
-        async function fetchEvents() {
-            try {
-                const response = await fetch("data.json");
-                if (!response.ok) throw new Error("Failed to load data.json");
-                allEvents = await response.json();
 
-                buildMunicipalityButtons();
-                updateViews();
-            } catch (error) {
-                console.error("Error loading events:", error);
-            }
-        }
+def build_extraction_prompt(event, text):
+    excerpt = text[:MAX_LLM_DOC_CHARS]
+    kinds = ", ".join(ITEM_KINDS)
+    return f"""You are a research assistant for a local REAL ESTATE and development reporter. Read this public government meeting document and list the line items a reporter covering land use, development and property deals would want to chase.
 
-        async function loadSitesTable() {
-            try {
-                const response = await fetch("sites.json");
-                if (!response.ok) throw new Error("Failed to load sites.json");
-                const sites = await response.json();
+Municipality: {event.get('muni_full', '')}
+Meeting: {event.get('title', '')}
+Date: {event.get('date', '')}
 
-                const tbody = document.getElementById("sitesTableBody");
-                tbody.innerHTML = sites.map(site => `
-                    <tr>
-                        <td>${escapeHtml(site.muni_name)}</td>
-                        <td>${escapeHtml(site.type)}</td>
-                        <td class="url-cell"><a href="${escapeHtml(site.monitoring_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(site.monitoring_url)}</a></td>
-                        <td><span class="status-badge">${escapeHtml(site.status)}</span></td>
-                    </tr>
-                `).join("");
-            } catch (error) {
-                console.error("Error loading sites:", error);
-                document.getElementById("sitesTableBody").innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">Unable to load sites configuration</td></tr>`;
-            }
-        }
+Document (markers like [[PAGE 3]] show page breaks):
+\"\"\"{excerpt}\"\"\"
 
-        function buildMunicipalityButtons() {
-            const container = document.getElementById("muniFilterContainer");
-            const muniMap = {};
-            allEvents.forEach(e => {
-                if (e.muni_short) {
-                    muniMap[e.muni_short] = e.muni_full || e.muni_short;
-                }
-            });
+Include only items about: rezonings, variances, special exceptions, site plans, plats, comprehensive plan amendments, annexations, development agreements, density or height changes, demolitions, historic designations, design/appearance/impact reviews of specific properties, sales, leases, purchases or easements of land or buildings, CRA or DDA property or incentive deals, tax abatements or impact-fee changes, and contracts for engineering, planning, architecture, surveying or construction services.
+Exclude: budget lines unrelated to property, routine procedure (call to order, roll call, minutes, adjournment), proclamations, and general public comment.
 
-            const sortedKeys = Object.keys(muniMap).sort();
-            let buttonsHTML = `<button class="filter-btn active" data-muni="ALL">All Municipalities</button>`;
-            
-            sortedKeys.forEach(code => {
-                buttonsHTML += `<button class="filter-btn" data-muni="${code}">${muniMap[code]}</button>`;
-            });
+For EACH item return an object with exactly these keys:
+- "headline": plain English, 6 to 14 words, saying what is proposed. Never just an identifier.
+- "kind": one of: {kinds}
+- "address": street address as written in the document, or ""
+- "case_no": application, case, permit, ordinance or resolution number as written, or ""
+- "entities": private parties named in the item (developers, applicants, owners, vendors, engineers, architects, attorneys) as [{{"name": "...", "role": "developer|applicant|owner|vendor|engineer|architect|attorney|contractor"}}]. Never list governments, boards or agencies.
+- "amount": dollar value of the item as a number, or null
+- "action": what the body is asked to do (for example "first reading", "public hearing", "approve", "table")
+- "consent": true if the item is on a consent agenda, otherwise false
+- "summary": 1 to 2 factual sentences
+- "evidence": ONE short verbatim quote (under 200 characters) copied exactly from the document that supports the item
 
-            container.innerHTML = buttonsHTML;
+Rules: copy addresses, numbers, names and quotes exactly as written. Never guess or infer a value that is not in the document; use "" or null instead. Return at most {MAX_ITEMS_PER_MEETING} items. If there are none, return [].
+Return ONLY a JSON array."""
 
-            container.addEventListener("click", (e) => {
-                if (e.target.classList.contains("filter-btn")) {
-                    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
-                    e.target.classList.add("active");
-                    selectedMuni = e.target.getAttribute("data-muni");
-                    updateViews();
-                }
-            });
-        }
 
-        // A meeting counts as cancelled if its title contains "cancelled" or "canceled" (any case)
-        const CANCELLED_PATTERN = /cancell?ed/i;
+def _llm_items(event, text):
+    """Raw item dicts from Gemini, or None on failure (the caller then does
+    NOT cache, so the meeting is retried on the next run)."""
+    global _gemini_unavailable, GEMINI_MODEL
+    if not gemini_available():
+        return None
+    prompt = build_extraction_prompt(event, text)
+    items, salvaged, err = _call_gemini_once(prompt)
 
-        function getFilteredEvents() {
-            const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
-            const showCancelled = document.getElementById("showCancelledToggle").checked;
+    if err is not None:
+        err_text = str(err)
+        status = getattr(getattr(err, "response", None), "status_code", None)
+        if status == 404:
+            replacement = _extract_suggested_replacement_model(err_text)
+            if replacement and replacement != GEMINI_MODEL:
+                print(f"[Insights LLM] Model '{GEMINI_MODEL}' appears deprecated; Gemini suggested "
+                      f"'{replacement}' - switching for the rest of this run. Consider updating "
+                      f"INSIGHTS_LLM_MODEL permanently.")
+                GEMINI_MODEL = replacement
+                items, salvaged, err = _call_gemini_once(prompt)
+                if err is not None:
+                    err_text = str(err)
+                    status = getattr(getattr(err, "response", None), "status_code", None)
+        if err is not None:
+            if status == 429 or "RESOURCE_EXHAUSTED" in err_text:
+                if not _gemini_unavailable:
+                    print(f"[Insights LLM] Gemini free-tier quota appears exhausted ({err_text[:200]}). "
+                          f"Remaining meetings are skipped this run and retried tomorrow.")
+                _gemini_unavailable = True
+            elif status in (400, 401, 403, 404):
+                if not _gemini_unavailable:
+                    print(f"[Insights LLM] Gemini rejected the request ({err_text[:200]}). Likely a bad key "
+                          f"or model name '{GEMINI_MODEL}'. Skipping further LLM calls this run.")
+                _gemini_unavailable = True
+            else:
+                print(f"[Insights LLM] Extraction failed for {event.get('muni_full')} "
+                      f"'{event.get('title')}' ({event.get('date')}): {err_text[:200]}")
+            return None
 
-            return allEvents.filter(event => {
-                const matchesMuni = (selectedMuni === "ALL") || (event.muni_short === selectedMuni);
-                const matchesSearch = !searchTerm ||
-                                      event.title.toLowerCase().includes(searchTerm) ||
-                                      (event.muni_short && event.muni_short.toLowerCase().includes(searchTerm)) ||
-                                      (event.muni_full && event.muni_full.toLowerCase().includes(searchTerm)) ||
-                                      (event.summary && event.summary.toLowerCase().includes(searchTerm));
+    if salvaged:
+        print(f"[Insights LLM] Response for {event.get('muni_short')} {event.get('date')} was cut off; "
+              f"kept the {len(items)} complete item(s) recovered.")
+    return items
 
-                const matchesCancelled = showCancelled || !CANCELLED_PATTERN.test(event.title || "");
 
-                return matchesMuni && matchesSearch && matchesCancelled;
-            });
-        }
+# --- STEP 3b: VERIFY EVERYTHING AGAINST THE DOCUMENT ------------------------
+# A lead is only useful to a journalist if every fact in it can be traced.
+# Anything the model reports that cannot be found in the document text is
+# dropped, not shown.
 
-        function updateViews() {
-            const filtered = getFilteredEvents();
+_ABBR = {
+    "avenue": "ave", "street": "st", "drive": "dr", "road": "rd", "lane": "ln",
+    "boulevard": "blvd", "court": "ct", "place": "pl", "terrace": "ter",
+    "circle": "cir", "highway": "hwy", "parkway": "pkwy", "trail": "trl",
+    "northeast": "ne", "northwest": "nw", "southeast": "se", "southwest": "sw",
+    "north": "n", "south": "s", "east": "e", "west": "w",
+}
 
-            // 1. Update FullCalendar Events
-            const fcEvents = filtered.map(e => {
-                const hasAgenda = e.has_agenda !== false; // default true for scrapers that don't set this field
-                return {
-                    title: `[${e.muni_short}] ${e.title}`,
-                    start: `${e.date}T${formatTimeTo24H(e.time)}`,
-                    url: e.link, // when has_agenda is false, e.link is the general source/meetings page the event was found on, not a dead link
-                    extendedProps: {
-                        rawTitle: e.title,
-                        muniShort: e.muni_short,
-                        muniFull: e.muni_full,
-                        time: e.time,
-                        summary: e.summary,
-                        hasAgenda: hasAgenda
-                    }
-                };
-            });
 
-            calendar.removeAllEvents();
-            calendar.addEventSource(fcEvents);
+def _canon(s):
+    """Lowercase, punctuation to spaces, street words abbreviated, spaces
+    collapsed. Used for addresses on both sides of a comparison."""
+    toks = re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).split()
+    return " ".join(_ABBR.get(t, t) for t in toks)
 
-            // 2. Update List View HTML
-            const listWrapper = document.getElementById("list-wrapper");
-            if (filtered.length === 0) {
-                listWrapper.innerHTML = `<div class="event-card">No meetings match your filters.</div>`;
-            } else {
-                listWrapper.innerHTML = filtered.map(e => {
-                    const hasAgenda = e.has_agenda !== false;
-                    const linkHtml = hasAgenda
-                        ? `<a href="${e.link}" target="_blank" rel="noopener noreferrer" class="event-link">View Agenda &rarr;</a>`
-                        : `<a href="${e.link}" target="_blank" rel="noopener noreferrer" class="event-link event-link-disabled" title="No Agenda Available">No Agenda Available</a>`;
-                    return `
-                    <article class="event-card">
-                        <div class="event-header">
-                            <span class="muni-badge">${e.muni_short}</span>
-                            <span style="font-size:0.85rem; color: var(--text-muted);">${e.date} &bull; ${e.time}</span>
-                        </div>
-                        <div class="event-title">${e.title}</div>
-                        ${linkHtml}
-                    </article>
-                `;
-                }).join("");
-            }
-        }
 
-        function switchView(viewType) {
-            hideEventTooltip();
-            const calWrapper = document.getElementById("calendar-wrapper");
-            const listWrapper = document.getElementById("list-wrapper");
-            const adminWrapper = document.getElementById("admin-wrapper");
-            const insightsWrapper = document.getElementById("insights-wrapper");
-            const controlsCard = document.getElementById("meetingsControls");
-            const btnCal = document.getElementById("btnCalendarView");
-            const btnList = document.getElementById("btnListView");
-            const btnAdminOn = document.getElementById("btnAdminToggleOn");
-            const btnAdminOff = document.getElementById("btnAdminToggleOff");
-            const btnInsights = document.getElementById("btnInsightsToggle");
+def _squash(s):
+    return re.sub(r"[^a-z0-9]", "", (s or "").lower())
 
-            // Hide all views and controls
-            calWrapper.style.display = "none";
-            listWrapper.style.display = "none";
-            adminWrapper.style.display = "none";
-            insightsWrapper.style.display = "none";
-            controlsCard.classList.remove("hidden");
-            btnCal.classList.remove("active");
-            btnList.classList.remove("active");
-            btnAdminOn.classList.remove("active");
-            btnAdminOff.classList.remove("active");
-            btnInsights.classList.remove("active");
 
-            // Show selected view and update navigation
-            if (viewType === "calendar") {
-                calWrapper.style.display = "block";
-                btnCal.classList.add("active");
-                btnAdminOff.classList.add("active");
-                calendar.render(); // Redraw calendar view upon unhiding
-                updateStickyToolbarOffset();
-            } else if (viewType === "list") {
-                listWrapper.style.display = "flex";
-                btnList.classList.add("active");
-                btnAdminOff.classList.add("active");
-            } else if (viewType === "admin") {
-                adminWrapper.style.display = "flex";
-                btnAdminOn.classList.add("active");
-                controlsCard.classList.add("hidden");
-            } else if (viewType === "insights") {
-                insightsWrapper.style.display = "flex";
-                btnInsights.classList.add("active");
-                controlsCard.classList.add("hidden");
-                if (!insightsLoaded) {
-                    fetchInsights();
-                }
-            }
-        }
+_UNIT_RE = re.compile(r"\b(?:unit|apt|apartment|suite|ste|#)\s*[\w-]+\s*$", re.I)
 
-        function updateStickyToolbarOffset() {
-            const toolbar = document.querySelector('#calendar .fc-header-toolbar');
-            if (!toolbar) return;
-            const height = toolbar.getBoundingClientRect().height;
-            if (height > 0) {
-                document.documentElement.style.setProperty('--fc-toolbar-height', `${height}px`);
-            }
-        }
 
-        function escapeHtml(str) {
-            if (!str) return "";
-            const div = document.createElement("div");
-            div.textContent = str;
-            return div.innerHTML;
-        }
+def normalize_address(addr):
+    """Canonical address ('755 se 7th ave') or None if it has no street
+    number. City/state/zip after the first comma and unit numbers are dropped."""
+    if not addr:
+        return None
+    a = addr.split(",")[0].strip()
+    a = _UNIT_RE.sub("", a).strip()
+    c = _canon(a)
+    return c if re.match(r"^\d+\s+\S", c) else None
 
-        function showEventTooltip(event, jsEvent) {
-            const tooltip = document.getElementById("eventTooltip");
-            const props = event.extendedProps;
-            const dateStr = event.start ? event.start.toLocaleDateString(undefined, {
-                weekday: 'short', month: 'short', day: 'numeric'
-            }) : "";
 
-            tooltip.innerHTML = `
-                <div class="tt-header">
-                    <span class="muni-badge">${escapeHtml(props.muniShort)}</span>
-                </div>
-                <div class="tt-title">${escapeHtml(props.rawTitle)}</div>
-                <div class="tt-datetime">${dateStr}${props.time ? " &bull; " + escapeHtml(props.time) : ""}</div>
-                ${props.summary ? `<div class="tt-summary">${escapeHtml(props.summary)}</div>` : ""}
-                <div class="tt-hint">${props.hasAgenda ? "Click to view agenda" : "No Agenda Available"}</div>
-            `;
+def normalize_case(case_no):
+    s = _squash(case_no)
+    return s.upper() if len(s) >= 4 else None
 
-            tooltip.style.display = "block";
-            positionTooltip(tooltip, jsEvent);
-        }
 
-        function positionTooltip(tooltip, jsEvent) {
-            const offset = 14;
-            let left = jsEvent.clientX + offset;
-            let top = jsEvent.clientY + offset;
+_ENTITY_DROP = {"inc", "llc", "llp", "lp", "corp", "corporation", "co", "company",
+                "ltd", "pa", "pllc", "pc", "the", "incorporated"}
 
-            // Clamp so the tooltip never runs off the right or bottom edge of the viewport
-            const rect = tooltip.getBoundingClientRect();
-            if (left + rect.width > window.innerWidth - 8) {
-                left = jsEvent.clientX - rect.width - offset;
-            }
-            if (top + rect.height > window.innerHeight - 8) {
-                top = jsEvent.clientY - rect.height - offset;
-            }
 
-            tooltip.style.left = `${Math.max(8, left)}px`;
-            tooltip.style.top = `${Math.max(8, top)}px`;
-        }
+def normalize_entity(name):
+    toks = re.sub(r"[^a-z0-9 ]+", " ", (name or "").lower().replace("&", " and ")).split()
+    return " ".join(t for t in toks if t not in _ENTITY_DROP)
 
-        function hideEventTooltip() {
-            document.getElementById("eventTooltip").style.display = "none";
-        }
 
-        function formatTimeTo24H(timeStr) {
-            if (!timeStr) return "17:00:00";
-            const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
-            if (!match) return "17:00:00";
+_PRIVATE_HINT_RE = re.compile(
+    r"\b(llc|inc|corp|corporation|lp|llp|ltd|pllc|company|partners|associates|group|"
+    r"holdings|properties|development|developers|builders|engineering|architects|"
+    r"enterprises|investments|realty|homes)\b",
+    re.I,
+)
 
-            let hours = parseInt(match[1]);
-            const minutes = match[2];
-            const ampm = match[3] ? match[3].toUpperCase() : "PM";
 
-            if (ampm === "PM" && hours < 12) hours += 12;
-            if (ampm === "AM" && hours === 12) hours = 0;
+def is_government_entity(name):
+    """True for governments/agencies. A name with a clear private-company
+    marker (LLC, Inc, Partners...) is treated as private even if it contains
+    a word like 'Town' or 'Village' (e.g. 'Village Square Partners LLC')."""
+    name = name or ""
+    return bool(_GOV_ENTITY_RE.search(name)) and not _PRIVATE_HINT_RE.search(name)
 
-            return `${hours.toString().padStart(2, '0')}:${minutes}:00`;
-        }
 
-        // --- INSIGHTS TAB ---
-        async function fetchInsights() {
-            const listEl = document.getElementById("insightsList");
-            const metaEl = document.getElementById("insightsMetaRow");
-            listEl.innerHTML = `<div class="insights-loading">Loading insights&hellip;</div>`;
+def _clean(value, limit):
+    if not isinstance(value, str):
+        return ""
+    return re.sub(r"\s+", " ", value).strip()[:limit]
 
-            try {
-                const res = await fetch("insights.json", { cache: "no-store" });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const data = await res.json();
-                insightsLoaded = true;
-                renderInsightsMeta(data);
-                renderInsightsList(data.insights || []);
-            } catch (err) {
-                listEl.innerHTML = `<div class="insights-error">Insights haven't been generated yet for this repo (insights.json not found or unreadable). This tab populates after the daily workflow runs the Insights Engine at least once.</div>`;
-                metaEl.innerHTML = "";
-            }
 
-            try {
-                const histRes = await fetch("insights_history.json", { cache: "no-store" });
-                if (histRes.ok) {
-                    const histData = await histRes.json();
-                    renderInsightsHistory(histData.runs || []);
-                } else {
-                    document.getElementById("insightsHistoryList").innerHTML =
-                        `<div class="insights-empty">No history yet.</div>`;
-                }
-            } catch (err) {
-                document.getElementById("insightsHistoryList").innerHTML =
-                    `<div class="insights-empty">No history yet.</div>`;
-            }
-        }
+def _split_pages(text):
+    parts = PAGE_MARK_RE.split(text)
+    if len(parts) == 1:
+        return [(None, text)]
+    pages = []
+    if parts[0].strip():
+        pages.append((None, parts[0]))
+    for i in range(1, len(parts) - 1, 2):
+        pages.append((int(parts[i]), parts[i + 1]))
+    return pages
 
-        function renderInsightsMeta(data) {
-            const metaEl = document.getElementById("insightsMetaRow");
-            const generated = data.generated_at ? new Date(data.generated_at).toLocaleString() : "Unknown";
-            const scanned = data.historical_meetings_scanned ?? "?";
-            const lookback = data.lookback_months ?? "?";
-            metaEl.innerHTML = `
-                <span>Last analyzed: ${generated}</span>
-                <span>${scanned} historical meeting(s) scanned</span>
-                <span>${lookback}-month lookback window</span>
-            `;
-        }
 
-        function confidenceClass(score) {
-            if (score >= 65) return "confidence-high";
-            if (score >= 35) return "confidence-medium";
-            return "confidence-low";
-        }
+def _verified_amount(val, squashed_text):
+    if val is None or isinstance(val, bool):
+        return None
+    try:
+        amt = float(str(val).replace(",", "").replace("$", "").strip())
+    except ValueError:
+        return None
+    if amt <= 0 or amt > 1e11:
+        return None
+    digits = str(int(round(amt)))
+    if len(digits) >= 4 and digits in squashed_text:
+        return int(round(amt))
+    if amt >= 1e6 and f"{amt / 1e6:g}million".replace(".", "") in squashed_text:
+        return int(round(amt))
+    return None
 
-        function reasonLabel(reason) {
-            const labels = {
-                recurring_across_municipalities: "Recurring across municipalities",
-                recurring_over_time: "Recurring over time",
-                corroborated_by_web_search: "Confirmed by web search",
-            };
-            return labels[reason] || reason;
-        }
 
-        function renderInsightsList(insights) {
-            const listEl = document.getElementById("insightsList");
-            if (!insights.length) {
-                listEl.innerHTML = `<div class="insights-empty">No recurring or independently-confirmed topics identified yet. This tab only surfaces topics that either came up in multiple meetings or were independently verified via web search &mdash; check back after the next daily run.</div>`;
-                return;
-            }
+def normalize_items(raw_items, event, text, today_str):
+    """Validates and verifies raw model items against `text`. Returns the
+    list of clean item dicts (with evidence/page verification)."""
+    plain = PAGE_MARK_RE.sub(" ", text)
+    sq = _squash(plain)
+    canon_text = f" {_canon(plain)} "
+    pages = _split_pages(text)
+    page_sq = [(n, _squash(t)) for n, t in pages]
 
-            listEl.innerHTML = insights.map((insight, idx) => {
-                const star = insight.starred ? `<span class="insight-star" title="Recurring topic across multiple days">&#9733;</span>` : "";
-                const muniTags = (insight.municipalities || []).map(m => `<span class="insight-tag muni-tag">${m}</span>`).join("");
-                const categoryTag = `<span class="insight-tag">${insight.category || "Uncategorized"}</span>`;
-                const reasonTags = (insight.reasons || []).map(r => `<span class="insight-tag" style="background:#fef3c7; color:#92400e;">${reasonLabel(r)}</span>`).join("");
+    items = []
+    for raw in (raw_items or [])[:MAX_ITEMS_PER_MEETING]:
+        if not isinstance(raw, dict):
+            continue
+        kind = raw.get("kind")
+        if kind not in ITEM_KINDS:
+            kind = "other"
+        headline = _clean(raw.get("headline"), 140)
+        summary = _clean(raw.get("summary"), 500)
+        if not (headline or summary):
+            continue
 
-                const meetingsHtml = (insight.meetings || []).map(m => `
-                    <div class="insight-meeting-row">
-                        <span class="muni-badge" style="font-size:0.7rem;">${m.muni_short || ""}</span>
-                        <span>${m.title || ""}</span>
-                        <span>&bull; ${m.date || ""}</span>
-                        ${m.link ? `<a href="${m.link}" target="_blank" rel="noopener noreferrer">source &rarr;</a>` : ""}
-                    </div>
-                `).join("");
+        address = _clean(raw.get("address"), 120)
+        if address:
+            canon_addr = normalize_address(address)
+            if not canon_addr or f" {canon_addr} " not in canon_text:
+                address = ""
 
-                const web = insight.web_notability || {};
-                let webHtml = "";
-                if (web.checked && web.corroborated && (web.sources || []).length) {
-                    webHtml = `
-                        <div class="insight-web-sources">
-                            <span class="web-badge">&#10003; Corroborated by independent web coverage</span>
-                            <ul>
-                                ${web.sources.slice(0, 3).map(s => `<li><a href="${s.link}" target="_blank" rel="noopener noreferrer">${s.title || s.link}</a></li>`).join("")}
-                            </ul>
-                        </div>`;
-                }
+        case_no = _clean(raw.get("case_no"), 60)
+        if case_no and _squash(case_no) not in sq:
+            case_no = ""
 
-                const detailsId = `insight-details-${idx}`;
-                const summary = insight.meetings && insight.meetings[0] && insight.meetings[0].description
-                    ? insight.meetings[0].description
-                    : `Raised in ${insight.occurrence_count || (insight.meetings || []).length} meeting(s) across ${(insight.municipalities || []).length} municipality/municipalities.`;
+        entities = []
+        for e in raw.get("entities") or []:
+            if not isinstance(e, dict):
+                continue
+            name = _clean(e.get("name"), 100)
+            role = _clean(e.get("role"), 20).lower()
+            if (name and not is_government_entity(name) and role in ENTITY_ROLES
+                    and _squash(name) in sq):
+                entities.append({"name": name, "role": role})
 
-                const citationHtml = insight.citation_summary
-                    ? `<div class="insight-summary" style="color: var(--text-muted); font-size: 0.85rem;">${insight.citation_summary}</div>`
-                    : "";
+        quote = _clean(raw.get("evidence"), 300)
+        evidence = {"quote": quote, "page": None, "verified": False}
+        sq_quote = _squash(quote)
+        if len(sq_quote) >= 12 and sq_quote in sq:
+            evidence["verified"] = True
+            for n, psq in page_sq:
+                if n is not None and sq_quote in psq:
+                    evidence["page"] = n
+                    break
 
-                return `
-                <article class="insight-card">
-                    <div class="insight-card-top">
-                        <div class="insight-title-row">
-                            <span class="insight-rank">${insight.rank ?? (idx + 1)}</span>
-                            <span class="insight-title">${insight.theme_title || "Untitled topic"}</span>
-                            ${star}
-                        </div>
-                        <span class="insight-confidence ${confidenceClass(insight.confidence || 0)}">${insight.confidence ?? 0}% confidence</span>
-                    </div>
-                    <div class="insight-tags">${categoryTag}${muniTags}${reasonTags}</div>
-                    <div class="insight-summary">${summary}</div>
-                    ${citationHtml}
-                    ${webHtml}
-                    <button class="insight-details-toggle" onclick="toggleInsightDetails('${detailsId}')">Show source meetings (${(insight.meetings || []).length}) &#9662;</button>
-                    <div class="insight-meetings-list" id="${detailsId}">${meetingsHtml}</div>
-                </article>`;
-            }).join("");
-        }
+        items.append({
+            "headline": headline or summary[:100],
+            "kind": kind,
+            "address": address,
+            "case_no": case_no,
+            "entities": entities,
+            "amount": _verified_amount(raw.get("amount"), sq),
+            "action": _clean(raw.get("action"), 60),
+            "consent": bool(raw.get("consent")),
+            "summary": summary,
+            "evidence": evidence,
+            "muni_short": event.get("muni_short"),
+            "muni_full": event.get("muni_full"),
+            "body": event.get("title", ""),
+            "date": event.get("date", ""),
+            "link": event.get("link"),
+        })
+    return items
 
-        function toggleInsightDetails(id) {
-            const el = document.getElementById(id);
-            if (el) el.classList.toggle("expanded");
-        }
 
-        function renderInsightsHistory(runs) {
-            const el = document.getElementById("insightsHistoryList");
-            if (!runs.length) {
-                el.innerHTML = `<div class="insights-empty">No prior runs recorded yet.</div>`;
-                return;
-            }
+# --- ITEM CACHE -------------------------------------------------------------
+# Past agendas do not change, so a successfully analyzed past meeting is
+# never re-analyzed. Upcoming agendas can be amended, so they are re-fetched
+# daily and re-analyzed only when the document text changed (hash). Failures
+# are never cached.
 
-            // Most recent first
-            const sorted = [...runs].sort((a, b) => (a.date < b.date ? 1 : -1));
+def load_items_cache(path=ITEMS_CACHE_PATH):
+    empty = {"schema": CACHE_SCHEMA, "events": {}, "nodoc": {}}
+    if not os.path.exists(path):
+        return empty
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return empty
+    if not isinstance(data, dict) or data.get("schema") != CACHE_SCHEMA:
+        return empty
+    data.setdefault("events", {})
+    data.setdefault("nodoc", {})
+    return data
 
-            el.innerHTML = sorted.map((run, idx) => {
-                const dayId = `insight-history-day-${idx}`;
-                const items = (run.insights || []).map(i => `
-                    <div class="insights-history-item">
-                        ${i.starred ? `<span class="insight-star">&#9733;</span>` : ""}
-                        <span>#${i.rank} ${i.theme_title}</span>
-                        <span>&bull; ${i.category}</span>
-                        <span>&bull; ${i.confidence}% confidence</span>
-                    </div>
-                `).join("");
-                return `
-                    <div class="insights-history-day">
-                        <div class="insights-history-day-header" onclick="toggleHistoryDay('${dayId}')">
-                            <span>${run.date} &mdash; ${(run.insights || []).length} insight(s)</span>
-                            <span>&#9662;</span>
-                        </div>
-                        <div class="insights-history-day-body" id="${dayId}">${items || '<div class="insights-empty">No insights recorded this day.</div>'}</div>
-                    </div>`;
-            }).join("");
-        }
 
-        function toggleHistoryDay(id) {
-            const el = document.getElementById(id);
-            if (el) el.classList.toggle("expanded");
-        }
-    </script>
-</body>
-</html>
+def save_items_cache(cache, path=ITEMS_CACHE_PATH):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=1)
+
+
+def _cache_key(event):
+    return "|".join(sc.compute_change_key(event))
+
+
+def _doc_hash(text):
+    return hashlib.sha1(text.encode("utf-8", "ignore")).hexdigest()[:16]
+
+
+def analyze_event(event, cache, today_str, is_upcoming):
+    """Returns (items, status, had_document). status is one of: cache, llm,
+    nodoc, pending (no LLM available / LLM call failed)."""
+    key = _cache_key(event)
+    entry = cache["events"].get(key)
+
+    if entry and not is_upcoming:
+        return entry["items"], "cache", True
+
+    if not is_upcoming:
+        tried = cache["nodoc"].get(key)
+        if tried:
+            try:
+                age = (datetime.strptime(today_str, "%Y-%m-%d") - datetime.strptime(tried, "%Y-%m-%d")).days
+            except ValueError:
+                age = NODOC_RETRY_DAYS
+            if age < NODOC_RETRY_DAYS:
+                return [], "nodoc", False
+
+    text = fetch_document_text(event)
+    if not text:
+        if not is_upcoming:
+            cache["nodoc"][key] = today_str
+        return (entry["items"] if entry else []), "nodoc", False
+    cache["nodoc"].pop(key, None)
+
+    h = _doc_hash(text)
+    if entry and entry.get("doc_hash") == h:
+        return entry["items"], "cache", True
+
+    raw = _llm_items(event, text)
+    if raw is None:
+        # LLM unavailable or failed: keep any older analysis, retry next run.
+        return (entry["items"] if entry else []), "pending", True
+    items = normalize_items(raw, event, text, today_str)
+    cache["events"][key] = {"doc_hash": h, "analyzed_at": today_str, "items": items}
+    return items, "llm", True
+
+
+# --- STEP 4: GROUP ITEMS INTO LEADS -----------------------------------------
+
+def _normalize_topic_key(text):
+    text = re.sub(r"[^a-z0-9 ]", "", (text or "").lower())
+    return set(w for w in text.split() if len(w) > 2)
+
+
+def _similarity(a, b):
+    if not a or not b:
+        return 0.0
+    union = len(a | b)
+    return len(a & b) / union if union else 0.0
+
+
+def _body_key(body):
+    try:
+        return sc._normalize_title_for_key(body)
+    except Exception:
+        return re.sub(r"[^a-z0-9]", "", (body or "").lower())
+
+
+def assign_item_keys(items):
+    """Sets addr_norm / case_norm / key on each item. Keys are ALWAYS scoped
+    to the municipality, so 'Ordinance 2026-03' in two towns is two
+    different things. A case number seen with an address in the same town
+    resolves to that address's key."""
+    case_to_addr = {}
+    for it in items:
+        it["addr_norm"] = normalize_address(it.get("address"))
+        it["case_norm"] = normalize_case(it.get("case_no"))
+        if it["addr_norm"] and it["case_norm"]:
+            case_to_addr[(it["muni_short"], it["case_norm"])] = it["addr_norm"]
+    for it in items:
+        m = it["muni_short"]
+        if it["addr_norm"]:
+            it["key"] = f"{m}|addr|{it['addr_norm']}"
+        elif it["case_norm"]:
+            a = case_to_addr.get((m, it["case_norm"]))
+            it["key"] = f"{m}|addr|{a}" if a else f"{m}|case|{it['case_norm']}"
+        else:
+            it["key"] = None
+    return items
+
+
+def _street_core(addr_norm):
+    return re.sub(r"^\d+\s+", "", addr_norm or "")
+
+
+def _house_number(addr_norm):
+    m = re.match(r"^(\d+)", addr_norm or "")
+    return int(m.group(1)) if m else None
+
+
+def _meeting_ids(items):
+    return {(it["date"], _body_key(it["body"])) for it in items}
+
+
+def _merge_adjacent(groups):
+    """Groups of items for neighbouring same-side addresses (within 10 house
+    numbers) that were handled at the same meeting are merged into one lead
+    keyed by the lowest address. Returns {primary_key: {"items", "addresses"}}."""
+    by_street = defaultdict(list)
+    for key, its in groups.items():
+        if "|addr|" not in key:
+            continue
+        muni, _, addr = key.split("|", 2)
+        num = _house_number(addr)
+        if num is not None:
+            by_street[(muni, _street_core(addr))].append((num, key))
+
+    parent = {k: k for k in groups}
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for _, lst in by_street.items():
+        lst.sort()
+        for i in range(len(lst)):
+            for j in range(i + 1, len(lst)):
+                (na, ka), (nb, kb) = lst[i], lst[j]
+                if nb - na > 10:
+                    break
+                if (nb - na) % 2 != 0:
+                    continue
+                if _meeting_ids(groups[ka]) & _meeting_ids(groups[kb]):
+                    parent[find(kb)] = find(ka)
+
+    comps = defaultdict(list)
+    for k in groups:
+        comps[find(k)].append(k)
+
+    merged = {}
+    for root, keys in comps.items():
+        def sort_key(k):
+            muni, _, addr = k.split("|", 2) if "|addr|" in k else (k, "", "")
+            n = _house_number(addr)
+            return (n if n is not None else 10**9, k)
+        keys.sort(key=sort_key)
+        primary = keys[0]
+        items = [it for k in keys for it in groups[k]]
+        addresses = []
+        for k in keys:
+            if "|addr|" in k:
+                addresses.append(k.split("|", 2)[2])
+        merged[primary] = {"items": items, "addresses": addresses if len(keys) > 1 else [],
+                           "adjacent": len(keys) > 1}
+    return merged
+
+
+def _dedupe_appearances(items):
+    """One appearance per (date, body); keeps the richest summary and joins
+    per-address summaries when several addresses share one meeting."""
+    by_meeting = {}
+    for it in sorted(items, key=lambda x: (x["date"], x["body"])):
+        mid = (it["date"], _body_key(it["body"]))
+        cur = by_meeting.get(mid)
+        if cur is None:
+            by_meeting[mid] = {**it, "_addresses": [it.get("address")] if it.get("address") else []}
+            continue
+        if it.get("address") and it["address"] not in cur["_addresses"]:
+            cur["_addresses"].append(it["address"])
+            cur["summary"] = f"{cur['summary']} / {it['summary']}"[:700]
+        elif len(it.get("summary", "")) > len(cur.get("summary", "")):
+            keep_addrs = cur["_addresses"]
+            cur.update({k: it[k] for k in ("summary", "headline", "action", "consent", "evidence", "link")})
+            cur["_addresses"] = keep_addrs
+        if it.get("amount") and not cur.get("amount"):
+            cur["amount"] = it["amount"]
+        known = {e["name"] for e in cur["entities"]}
+        cur["entities"] = cur["entities"] + [e for e in it["entities"] if e["name"] not in known]
+    return sorted(by_meeting.values(), key=lambda x: x["date"])
+
+
+_TABLED_RE = re.compile(r"\b(tabl|defer|continu|postpon|withdraw)", re.I)
+_FDOT_RE = re.compile(r"\bFDOT\b|maintenance agreement|pedestrian clear zone", re.I)
+
+
+def _fmt_money(n):
+    if n >= 1_000_000:
+        v = n / 1_000_000
+        return f"${v:.1f}".rstrip("0").rstrip(".") + "M"
+    if n >= 1_000:
+        return f"${n / 1000:.0f}K"
+    return f"${n:,}"
+
+
+def _signals_for_appearances(apps, kind, today_str, adjacent_addresses):
+    """Deterministic signals; every one is derived from extracted, verified
+    fields, never from model opinion."""
+    sigs = []
+    hypothesis = None
+
+    strong = kind in STRONG_KINDS
+    sigs.append({"id": "kind", "label": KIND_LABELS.get(kind, "Property item"),
+                 "tone": "warn" if strong else "info"})
+
+    n = len(apps)
+    if n >= 2:
+        sigs.append({"id": "repeat", "label": f"On {n} agendas", "tone": "warn" if n >= 3 else "info"})
+
+    upcoming = [a for a in apps if a["date"] >= today_str]
+    if upcoming:
+        sigs.append({"id": "upcoming", "label": f"On {_fmt_date(upcoming[0]['date'])} agenda", "tone": "success"})
+
+    amounts = [a["amount"] for a in apps if a.get("amount")]
+    if amounts:
+        if len(set(amounts)) > 1:
+            sigs.append({"id": "amount_changed",
+                         "label": f"Amount changed {_fmt_money(amounts[0])} to {_fmt_money(amounts[-1])}",
+                         "tone": "warn"})
+        elif amounts[-1] >= 100_000:
+            sigs.append({"id": "amount", "label": _fmt_money(amounts[-1]), "tone": "info"})
+
+    if any(a.get("consent") for a in apps) and amounts and max(amounts) >= 100_000:
+        sigs.append({"id": "consent", "label": "On consent agenda", "tone": "warn"})
+
+    if any(_TABLED_RE.search(a.get("action") or "") for a in apps):
+        sigs.append({"id": "tabled", "label": "Tabled or continued", "tone": "warn"})
+
+    if n >= 2 and kind in CHANGE_KINDS:
+        first, last = apps[0], apps[-1]
+        q1, q2 = first["evidence"], last["evidence"]
+        if q1.get("verified") and q2.get("verified"):
+            sim = _similarity(_normalize_topic_key(q1["quote"]), _normalize_topic_key(q2["quote"]))
+            if sim < 0.5:
+                sigs.append({"id": "wording_changed", "label": "Agenda wording changed", "tone": "warn"})
+
+    if adjacent_addresses:
+        sigs.append({"id": "adjacent", "label": "Adjacent parcels", "tone": "warn"})
+        hypothesis = ("Neighboring addresses handled together can mean one owner assembling lots. "
+                      "Check ownership before treating this as fact.")
+    elif kind == "easement" or any(_FDOT_RE.search(a.get("summary", "")) for a in apps):
+        sigs.append({"id": "public_easement", "label": "Easements or state-road agreement", "tone": "info"})
+        hypothesis = ("Easements and maintenance agreements are often conditions of a site plan "
+                      "approval. Look for the project behind them.")
+    return sigs, hypothesis
+
+
+def _build_hook(apps, sigs, adjacent_addresses):
+    latest = apps[-1]
+    parts = [latest["summary"].rstrip(".") + "."]
+    n = len(apps)
+    if n >= 2:
+        parts.append(f"On agendas {n} times since {_fmt_date(apps[0]['date'])}.")
+    ids = {s["id"] for s in sigs}
+    if "amount_changed" in ids:
+        amts = [a["amount"] for a in apps if a.get("amount")]
+        parts.append(f"The amount moved from {_fmt_money(amts[0])} to {_fmt_money(amts[-1])}.")
+    if "wording_changed" in ids:
+        parts.append(f"The agenda wording differs between {_fmt_date(apps[0]['date'])} and "
+                     f"{_fmt_date(apps[-1]['date'])}. Compare the two entries.")
+    if "tabled" in ids:
+        parts.append("It was tabled or continued at least once.")
+    if adjacent_addresses:
+        parts.append("Handled together with neighboring addresses: " + ", ".join(adjacent_addresses) + ".")
+    return " ".join(parts)
+
+
+def _questions(kind, sigs, apps):
+    qs = []
+    ids = {s["id"] for s in sigs}
+    if "wording_changed" in ids:
+        qs.append(f"What changed between the {_fmt_date(apps[0]['date'])} and "
+                  f"{_fmt_date(apps[-1]['date'])} versions of this item?")
+    if "tabled" in ids:
+        qs.append("Why was the item tabled or continued?")
+    if "amount_changed" in ids:
+        qs.append("Why did the dollar amount change, and who pays?")
+    if "adjacent" in ids:
+        qs.append("Do the neighboring parcels share an owner?")
+    for q in QUESTIONS_BY_KIND.get(kind, QUESTIONS_BY_KIND["other"]):
+        if len(qs) >= 4:
+            break
+        qs.append(q)
+    return qs[:4]
+
+
+def _score(kind, apps, sigs, today_str):
+    s = KIND_WEIGHT.get(kind, 4)
+    s += min(10 * (len(apps) - 1), 30)
+    ids = {x["id"] for x in sigs}
+    if "upcoming" in ids:
+        s += 15
+    amounts = [a["amount"] for a in apps if a.get("amount")]
+    if amounts:
+        s += 20 if max(amounts) >= 1_000_000 else (10 if max(amounts) >= 100_000 else 0)
+    if "amount_changed" in ids or "wording_changed" in ids:
+        s += 12
+    if "tabled" in ids:
+        s += 10
+    if "adjacent" in ids:
+        s += 8
+    if "consent" in ids:
+        s += 10
+    return min(s, 100)
+
+
+def _primary_kind(apps):
+    for a in reversed(apps):
+        if a["kind"] != "other":
+            return a["kind"]
+    return "other"
+
+
+def _timeline(apps):
+    return [{
+        "date": a["date"], "body": a["body"], "action": a.get("action", ""),
+        "summary": a["summary"], "link": a.get("link"),
+        "addresses": a.get("_addresses", []),
+    } for a in apps]
+
+
+def _next_body_meeting(muni_short, body, upcoming_events, today_str):
+    bk = _body_key(body)
+    best = None
+    for ev in upcoming_events:
+        if ev.get("muni_short") != muni_short or (ev.get("date") or "") < today_str:
+            continue
+        if _body_key(ev.get("title")) != bk:
+            continue
+        if best is None or ev["date"] < best["date"]:
+            best = ev
+    if best:
+        return {"date": best["date"], "title": best.get("title"), "link": best.get("link")}
+    return None
+
+
+def _evidence_for(apps):
+    for a in reversed(apps):
+        ev = a.get("evidence") or {}
+        if ev.get("quote"):
+            return {"quote": ev["quote"], "page": ev.get("page"), "verified": ev.get("verified", False),
+                    "date": a["date"], "link": a.get("link")}
+    return None
+
+
+def _include(kind, apps, sigs):
+    ids = {s["id"] for s in sigs}
+    if "upcoming" in ids or len(apps) >= 2 or kind in STRONG_KINDS:
+        return True
+    if ids & {"amount", "amount_changed", "consent", "adjacent", "public_easement"}:
+        return True
+    return False
+
+
+def build_address_leads(items, upcoming_events, today_str):
+    groups = defaultdict(list)
+    for it in items:
+        k = it.get("key")
+        if not k:
+            continue
+        if it["kind"] == "contract_vendor" and not it.get("addr_norm"):
+            continue  # vendor-only items feed the entity leads
+        groups[k].append(it)
+
+    merged = _merge_adjacent(groups)
+    leads = []
+    for primary, info in merged.items():
+        apps = _dedupe_appearances(info["items"])
+        if not apps:
+            continue
+        kind = _primary_kind(apps)
+        # Display addresses in the form the document used.
+        shown = []
+        for a in info["addresses"]:
+            raw = next((it["address"] for it in info["items"] if it.get("addr_norm") == a and it.get("address")), a)
+            shown.append(raw)
+        sigs, hyp = _signals_for_appearances(apps, kind, today_str, shown if info["adjacent"] else [])
+        if not _include(kind, apps, sigs):
+            continue
+        latest = apps[-1]
+        addr_display = (latest.get("_addresses") or [None])[0] or next(
+            (it["address"] for it in reversed(info["items"]) if it.get("address")), "") or ""
+        title = latest["headline"]
+        if info["adjacent"]:
+            addr_display = " and ".join(shown)
+            title = f"Neighboring addresses handled together: {addr_display}"
+        entities = []
+        seen_e = set()
+        for a in apps:
+            for e in a["entities"]:
+                if e["name"] not in seen_e:
+                    seen_e.add(e["name"])
+                    entities.append(e)
+        amounts = [a["amount"] for a in apps if a.get("amount")]
+        upcoming_dates = [a["date"] for a in apps if a["date"] >= today_str]
+        leads.append({
+            "key": primary,
+            "type": "address",
+            "title": title,
+            "address": addr_display or latest.get("case_no", ""),
+            "munis": [latest["muni_short"]],
+            "muni_names": latest["muni_full"],
+            "body": latest["body"],
+            "kind": kind,
+            "kind_label": KIND_LABELS.get(kind, "Property item"),
+            "group": KIND_GROUP.get(kind, "development"),
+            "signals": sigs,
+            "hypothesis": bool(hyp),
+            "hypothesis_text": hyp,
+            "hook": _build_hook(apps, sigs, shown if info["adjacent"] else []),
+            "evidence": _evidence_for(apps),
+            "timeline": _timeline(apps),
+            "appearance_count": len(apps),
+            "first_date": apps[0]["date"],
+            "latest_date": latest["date"],
+            "next_date": min(upcoming_dates) if upcoming_dates else None,
+            "next_body_meeting": _next_body_meeting(latest["muni_short"], latest["body"],
+                                                    upcoming_events, today_str),
+            "entities": entities,
+            "amount": max(amounts) if amounts else None,
+            "questions": _questions(kind, sigs, apps),
+            "score": _score(kind, apps, sigs, today_str),
+            "web": {"checked": False, "mentions": []},
+        })
+    return leads
+
+
+def _entity_item_relevant(item, ent):
+    if item["kind"] in STRONG_KINDS or item["kind"] not in ("contract_vendor", "other"):
+        return True
+    if ent["role"] in ("developer", "applicant", "owner", "architect", "engineer", "attorney"):
+        return True
+    return bool(_ENTITY_RE_KEYWORDS.search(f"{item.get('headline', '')} {item.get('summary', '')}"))
+
+
+def build_entity_leads(items, upcoming_events, today_str):
+    """A private party (developer, applicant, engineer, vendor...) appearing
+    in two or more municipalities."""
+    by_entity = defaultdict(lambda: {"names": defaultdict(int), "items": [], "roles": set()})
+    for it in items:
+        for e in it["entities"]:
+            if not _entity_item_relevant(it, e):
+                continue
+            norm = normalize_entity(e["name"])
+            if len(norm) < 4:
+                continue
+            rec = by_entity[norm]
+            rec["names"][e["name"]] += 1
+            rec["items"].append(it)
+            rec["roles"].add(e["role"])
+
+    leads = []
+    for norm, rec in by_entity.items():
+        munis = sorted({it["muni_short"] for it in rec["items"]})
+        if len(munis) < 2:
+            continue
+        apps = _dedupe_appearances(rec["items"])
+        name = max(rec["names"].items(), key=lambda kv: (kv[1], len(kv[0])))[0]
+        latest = apps[-1]
+        muni_names = sorted({it["muni_full"] for it in rec["items"]})
+        amounts = [a["amount"] for a in apps if a.get("amount")]
+        upcoming_dates = [a["date"] for a in apps if a["date"] >= today_str]
+        role = sorted(rec["roles"])[0]
+        sigs = [
+            {"id": "cross_town", "label": f"{len(munis)} municipalities", "tone": "warn"},
+            {"id": "kind", "label": role.capitalize(), "tone": "info"},
+        ]
+        if upcoming_dates:
+            sigs.append({"id": "upcoming", "label": f"On {_fmt_date(min(upcoming_dates))} agenda", "tone": "success"})
+        if amounts and max(amounts) >= 100_000:
+            sigs.append({"id": "amount", "label": _fmt_money(max(amounts)), "tone": "info"})
+        score = min(40 + 10 * (len(munis) - 2) + 8 * min(len(apps), 4)
+                    + (15 if upcoming_dates else 0) + (10 if amounts and max(amounts) >= 100_000 else 0), 100)
+        hook_bits = [f"{_fmt_date(a['date'])} ({a['muni_short']}): {a['summary'].rstrip('.')}."
+                     for a in apps[-3:]]
+        leads.append({
+            "key": f"ENTITY|{norm}",
+            "type": "entity",
+            "title": f"{name} appears on agendas in {len(munis)} municipalities",
+            "address": name,
+            "munis": munis,
+            "muni_names": " and ".join(muni_names),
+            "body": latest["body"],
+            "kind": "contract_vendor",
+            "kind_label": role.capitalize(),
+            "group": "entity",
+            "signals": sigs,
+            "hypothesis": False,
+            "hypothesis_text": None,
+            "hook": " ".join(hook_bits),
+            "evidence": _evidence_for(apps),
+            "timeline": [{**t, "muni": a["muni_short"]} for t, a in zip(_timeline(apps), apps)],
+            "appearance_count": len(apps),
+            "first_date": apps[0]["date"],
+            "latest_date": latest["date"],
+            "next_date": min(upcoming_dates) if upcoming_dates else None,
+            "next_body_meeting": None,
+            "entities": [{"name": name, "role": role}],
+            "amount": max(amounts) if amounts else None,
+            "questions": ENTITY_QUESTIONS[:],
+            "score": score,
+            "web": {"checked": False, "mentions": []},
+        })
+    return leads
+
+
+def build_leads(items, upcoming_events, today_str):
+    items = assign_item_keys(items)
+    leads = build_address_leads(items, upcoming_events, today_str) + \
+        build_entity_leads(items, upcoming_events, today_str)
+    leads.sort(key=lambda l: (l["next_date"] is None, l["next_date"] or "", -l["score"], l["latest_date"]))
+    return leads
+
+
+# --- STEP 5: OPTIONAL WEB CHECK (Serper) ------------------------------------
+# Previously every call came back HTTP 400 and the body was never logged, so
+# the cause was invisible. Now the response body is logged, and the first
+# failure of a kind that will repeat (400/401/403, which includes an account
+# with no credits) stops further calls for the run instead of failing 27
+# times. Only the top leads are checked.
+
+_serper_unavailable = False
+
+
+def _lead_search_query(lead):
+    # For address leads this is the street address, for entity leads the name.
+    return f"{lead['address']} {lead['muni_names'].split(' and ')[0]} Florida"[:150]
+
+
+def _web_mention_matches(lead, source):
+    text = f"{source.get('title', '')} {source.get('snippet', '')}".lower()
+    if lead["type"] == "entity":
+        want = _normalize_topic_key(normalize_entity(lead["address"]))
+        return _similarity(want, _normalize_topic_key(text)) >= 0.3
+    canon = _canon(lead["address"])
+    return bool(canon) and f" {canon} " in f" {_canon(text)} "
+
+
+def web_cross_reference(lead, num_results=5):
+    global _serper_unavailable
+    if not SERPER_API_KEY or _serper_unavailable:
+        return {"checked": False, "mentions": []}
+    query = _lead_search_query(lead)
+    try:
+        resp = requests.post(
+            "https://google.serper.dev/search",
+            headers={"X-API-KEY": SERPER_API_KEY, "Content-Type": "application/json"},
+            json={"q": query, "num": num_results},
+            timeout=15,
+        )
+        if resp.status_code != 200:
+            body = (resp.text or "")[:300].replace("\n", " ")
+            print(f"[Insights Search] Serper returned HTTP {resp.status_code} for query '{query}': {body}")
+            if resp.status_code in (400, 401, 403, 429):
+                print("[Insights Search] This status will repeat for every query (bad key, no credits, "
+                      "or rate limit), so web checks are skipped for the rest of this run.")
+                _serper_unavailable = True
+            return {"checked": True, "mentions": [], "error": f"HTTP {resp.status_code}"}
+        organic = resp.json().get("organic", [])[:num_results]
+        mentions = [{"title": r.get("title"), "link": r.get("link")} for r in organic
+                    if _web_mention_matches(lead, r)]
+        return {"checked": True, "mentions": mentions[:3]}
+    except Exception as e:
+        print(f"[Insights Search] Serper request failed for query '{query}': {e}")
+        return {"checked": True, "mentions": [], "error": str(e)}
+
+
+# --- STEP 6: LEAD STATE ACROSS RUNS -----------------------------------------
+
+def load_previous_leads(path=LEADS_OUTPUT_PATH):
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def apply_first_seen(leads, previous, today_str):
+    """first_seen is the date a lead first appeared in leads.json; is_new is
+    true for leads that first appeared in this run (never on the very first
+    run, when everything would otherwise be 'new')."""
+    prev_map = {}
+    if previous:
+        prev_map = {l["key"]: l.get("first_seen") for l in previous.get("leads", [])}
+    for l in leads:
+        fs = prev_map.get(l["key"])
+        l["first_seen"] = fs or today_str
+        l["is_new"] = bool(previous) and not fs
+
+
+# --- ORCHESTRATION -----------------------------------------------------------
+
+def generate_leads_output():
+    print("Starting Leads Engine...")
+    print(f"[Insights] LLM key present: {bool(GEMINI_API_KEY)} (model={GEMINI_MODEL}) | "
+          f"Web check key present: {bool(SERPER_API_KEY)}")
+    today = _today_et()
+    today_str = today.isoformat()
+
+    historical = gather_historical_events()
+    upcoming = load_upcoming_events(today_str)
+    print(f"[Insights] {len(historical)} historical and {len(upcoming)} upcoming meeting(s) to consider.")
+
+    cache = load_items_cache()
+    valid = {_cache_key(ev) for ev in historical + upcoming}
+    cache["events"] = {k: v for k, v in cache["events"].items() if k in valid}
+    cache["nodoc"] = {k: v for k, v in cache["nodoc"].items() if k in valid}
+
+    coverage = defaultdict(lambda: {"meetings": 0, "with_document": 0, "with_items": 0,
+                                    "items": 0, "pending": 0})
+    all_items = []
+    counts = defaultdict(int)
+    llm_since_save = 0
+
+    todo = [(ev, False) for ev in historical] + [(ev, True) for ev in upcoming]
+    for event, is_upcoming in todo:
+        items, status, had_doc = analyze_event(event, cache, today_str, is_upcoming)
+        counts[status] += 1
+        c = coverage[event.get("muni_short") or "?"]
+        c["meetings"] += 1
+        c["with_document"] += 1 if had_doc else 0
+        c["pending"] += 1 if status == "pending" else 0
+        if items:
+            c["with_items"] += 1
+            c["items"] += len(items)
+        all_items.extend(items)
+        if status == "llm":
+            llm_since_save += 1
+            if llm_since_save >= CACHE_SAVE_EVERY:
+                save_items_cache(cache)
+                llm_since_save = 0
+        time.sleep(0.05)
+
+    save_items_cache(cache)
+    print(f"[Insights] Meetings: {counts['cache']} from cache, {counts['llm']} newly analyzed, "
+          f"{counts['nodoc']} with no readable document, {counts['pending']} pending "
+          f"(LLM unavailable or failed; retried next run).")
+    for muni, c in sorted(coverage.items()):
+        print(f"[Insights Coverage] {muni}: {c['meetings']} meeting(s), {c['with_document']} with "
+              f"readable document, {c['with_items']} with items ({c['items']} item(s)), "
+              f"{c['pending']} pending")
+
+    leads = build_leads(all_items, upcoming, today_str)
+    print(f"[Insights] Built {len(leads)} lead(s) from {len(all_items)} verified item(s).")
+
+    if SERPER_API_KEY:
+        for lead in sorted(leads, key=lambda l: -l["score"])[:WEB_CHECK_TOP_N]:
+            lead["web"] = web_cross_reference(lead)
+            time.sleep(0.2)
+
+    leads = sorted(leads, key=lambda l: (l["next_date"] is None, l["next_date"] or "", -l["score"]))[:MAX_LEADS]
+    apply_first_seen(leads, load_previous_leads(), today_str)
+
+    output = {
+        "schema": 2,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "today": today_str,
+        "lookback_months": HISTORICAL_MONTHS_BACK,
+        "meetings_scanned": len(historical) + len(upcoming),
+        "meetings_pending_analysis": counts["pending"],
+        "llm_available": bool(GEMINI_API_KEY) and not _gemini_unavailable,
+        "coverage_by_municipality": dict(sorted(coverage.items())),
+        "leads": leads,
+    }
+    with open(LEADS_OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2)
+    print(f"[Insights] Wrote {len(leads)} lead(s) to {LEADS_OUTPUT_PATH}.")
+    print("Leads Engine complete.")
+
+
+# Kept so anything still calling the old entry point keeps working.
+generate_insights_output = generate_leads_output
+
+
+if __name__ == "__main__":
+    generate_leads_output()
