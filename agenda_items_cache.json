@@ -12864,6 +12864,2238 @@
      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11052026-1389"
     }
    ]
+  },
+  "DELRAY|2026-09-03|board of adjustment": {
+   "doc_hash": "6bb4337a1a6c26d0",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Variance request to reduce off-street parking to zero at 755 SE 7th Avenue",
+     "kind": "variance",
+     "address": "755 SE 7th Avenue",
+     "case_no": "PZ-000669-2026",
+     "entities": [
+      {
+       "name": "Chimino Anthony D. Trust",
+       "role": "owner"
+      },
+      {
+       "name": "Smith Elizabeth R. Trust",
+       "role": "owner"
+      },
+      {
+       "name": "Andres Torres",
+       "role": "applicant"
+      },
+      {
+       "name": "Cesar Torres Construction, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "continued",
+     "consent": false,
+     "summary": "Consideration of a variance request to reduce minimum required off-street parking from two spaces to zero by converting the existing two-car garage to habitable floor area.",
+     "evidence": {
+      "quote": "Consideration of a variance request from Land Development Regulations (LDR) Section 4.6.9(C)(2)(a)",
+      "page": null,
+      "verified": true
+     },
+     "muni_short": "DELRAY",
+     "muni_full": "City of Delray Beach",
+     "body": "Board of Adjustment",
+     "date": "2026-09-03",
+     "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4466&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+     "headline": "Variance request to reduce side setback for second story addition at 101 NE 11th Street",
+     "kind": "variance",
+     "address": "101 NE 11th Street",
+     "case_no": "PZ-000748-2026",
+     "entities": [
+      {
+       "name": "Mallard Palm LLC",
+       "role": "owner"
+      },
+      {
+       "name": "Tyler Hoover",
+       "role": "applicant"
+      },
+      {
+       "name": "Tycon Management LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "approved",
+     "consent": false,
+     "summary": "Consideration of a variance request to reduce the minimum required west side-interior setback from 10 feet to 7 feet 8.4 inches for a second story expansion.",
+     "evidence": {
+      "quote": "Consideration of a variance request from Land Development Regulations (LDR) Section 4.3.4(K)",
+      "page": null,
+      "verified": true
+     },
+     "muni_short": "DELRAY",
+     "muni_full": "City of Delray Beach",
+     "body": "Board of Adjustment",
+     "date": "2026-09-03",
+     "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4466&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+     "headline": "Variance request to reduce rear setback for swimming pool at 1109 Miramar Drive",
+     "kind": "variance",
+     "address": "1109 Miramar Drive",
+     "case_no": "PZ-000734-2026",
+     "entities": [
+      {
+       "name": "McCann Family Trust",
+       "role": "owner"
+      },
+      {
+       "name": "Pasquale Gallo",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approved",
+     "consent": false,
+     "summary": "Consideration of a variance request to reduce the rear setback to six feet one inch for the construction of a swimming pool.",
+     "evidence": {
+      "quote": "Consideration of a variance request from Land Development Regulations (LDR) Section 4.6.15(G)(1)(a)",
+      "page": null,
+      "verified": true
+     },
+     "muni_short": "DELRAY",
+     "muni_full": "City of Delray Beach",
+     "body": "Board of Adjustment",
+     "date": "2026-09-03",
+     "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4466&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+   ]
+  },
+  "JUIC|2026-06-16|town commission budget workshop": {
+   "doc_hash": "d1add012340f3c0b",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Conduct due diligence planning for the town beach management plan",
+     "kind": "contract_vendor",
+     "address": "244 Ocean Drive",
+     "case_no": "",
+     "entities": [],
+     "amount": 55000,
+     "action": "Discussion",
+     "consent": false,
+     "summary": "The town is considering a budget request of $55,000 for Beach Management Plan due diligence planning as part of beach resiliency funding.",
+     "evidence": {
+      "quote": "Beach Management Plan -- Due Diligence Planning $55,000 $55,000",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "JUIC",
+     "muni_full": "Town of Jupiter Inlet Colony",
+     "body": "Town Commission Budget Workshop",
+     "date": "2026-06-16",
+     "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51"
+    },
+    {
+     "headline": "Provide coastal engineer planning and grant services for beach resiliency",
+     "kind": "contract_vendor",
+     "address": "244 Ocean Drive",
+     "case_no": "",
+     "entities": [],
+     "amount": 16000,
+     "action": "Discussion",
+     "consent": false,
+     "summary": "The town budget includes $16,000 for coastal engineer planning and grant services.",
+     "evidence": {
+      "quote": "Coastal Engineer Planning and Grant Services $16,000 $16,000",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "JUIC",
+     "muni_full": "Town of Jupiter Inlet Colony",
+     "body": "Town Commission Budget Workshop",
+     "date": "2026-06-16",
+     "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51"
+    },
+    {
+     "headline": "Perform a non-ad valorem assessment and impact fee study",
+     "kind": "contract_vendor",
+     "address": "244 Ocean Drive",
+     "case_no": "",
+     "entities": [],
+     "amount": 75000,
+     "action": "Discussion",
+     "consent": false,
+     "summary": "A budget request of $75,000 is proposed for a Non-Ad Valorem Assessment and Impact Fee Study.",
+     "evidence": {
+      "quote": "Non-Ad Valorem Assessment and Impact Fee Study $75,000 $25,000 $50,000",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "JUIC",
+     "muni_full": "Town of Jupiter Inlet Colony",
+     "body": "Town Commission Budget Workshop",
+     "date": "2026-06-16",
+     "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51"
+    },
+    {
+     "headline": "Update the code of ordinances and zoning code with planner and legal assistance",
+     "kind": "contract_vendor",
+     "address": "244 Ocean Drive",
+     "case_no": "",
+     "entities": [],
+     "amount": 100000,
+     "action": "Discussion",
+     "consent": false,
+     "summary": "The town is proposing a $100,000 budget item to update the Code of Ordinances and Zoning Code utilizing a planner and legal services.",
+     "evidence": {
+      "quote": "Code of Ordinances / Zoning Code Update (Planner and Legal) $100,000 $50,000 $50,000",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "JUIC",
+     "muni_full": "Town of Jupiter Inlet Colony",
+     "body": "Town Commission Budget Workshop",
+     "date": "2026-06-16",
+     "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51"
+    },
+    {
+     "headline": "Renovate and storm harden the town hall and police department building",
+     "kind": "contract_vendor",
+     "address": "244 Ocean Drive",
+     "case_no": "",
+     "entities": [],
+     "amount": 850000,
+     "action": "Discussion",
+     "consent": false,
+     "summary": "A project budget request of $850,000 has been allocated for Town Hall and Police Department renovation and storm hardening.",
+     "evidence": {
+      "quote": "Town Hall / Police Department Renovation and Storm Hardening $850,000 $510,000 $340,000",
+      "page": null,
+      "verified": false
+     },
+     "muni_short": "JUIC",
+     "muni_full": "Town of Jupiter Inlet Colony",
+     "body": "Town Commission Budget Workshop",
+     "date": "2026-06-16",
+     "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51"
+    }
+   ]
+  },
+  "NPB|2026-10-22|village council meeting": {
+   "doc_hash": "da4fa63c2af73a67",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve Sixth Amendment to Professional Services Agreement with Chen Moore and Associates",
+     "kind": "contract_vendor",
+     "address": "501 U.S. HIGHWAY 1",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Chen Moore & Associates, Inc.",
+       "role": "vendor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village Council will consider approving a sixth amendment to modify the hourly rate schedule for professional services with Chen Moore & Associates, Inc.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Approving a Sixth Amendment to the Professional Services Agreement with Chen Moore & Associates, Inc. to modify the hourly rate schedule",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-22",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+    },
+    {
+     "headline": "Approve Increase in Scope of Work to Holiday Lighting Contract",
+     "kind": "contract_vendor",
+     "address": "501 U.S. HIGHWAY 1",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village Council is asked to approve an increase in the scope of work for the holiday lighting contract.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Approving an increase in the scope of work to Holiday Lighting Contract.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-22",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+    },
+    {
+     "headline": "Adopt FY 2026 Year-End Budget Amendment and CIP Funding Replenishment",
+     "kind": "other",
+     "address": "501 U.S. HIGHWAY 1",
+     "case_no": "",
+     "entities": [],
+     "amount": 800000,
+     "action": "adopt",
+     "consent": false,
+     "summary": "Consideration of a resolution amending the General Fund Budget to transfer $800,000 to the Capital Projects Fund and eliminate the $450,000 transfer to the Country Club.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 FY 2026 YEAR-END BUDGET AMENDMENT AND CIP FUNDING REPLENISHMENT Consider a motion to adopt a resolution amending the Adopted General Fund Budget for Fiscal Year 2026 to transfer $800,000 from the General Fund to the Capital Projects Fund",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-22",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+    }
+   ]
+  },
+  "NPB|2026-10-08|village council meeting": {
+   "doc_hash": "1cdf801e7cea0fb0",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve Yard-Nique for landscaping and grounds maintenance services",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Yard-Nique, Inc. d/b/a Precision Landscape Company",
+       "role": "vendor"
+      }
+     ],
+     "amount": 200000,
+     "action": "approve",
+     "consent": false,
+     "summary": "Consider a resolution approving a Fiscal Year 2027 Blanket Purchase Order with Yard-Nique, Inc. for miscellaneous landscaping and grounds maintenance services.",
+     "evidence": {
+      "quote": "Consider a motion to adopt a resolution approving a Fiscal Year 2027 Blanket Purchase Order with Yard-Nique, Inc. d/b/a Precision Landscape Company, for miscellaneous landscaping and grounds maintenance services in an amount not to exceed $200,000.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-08",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+     "headline": "Purchase one 2027 Peterbilt Front Loader Truck for Public Works",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Peterbilt Store South Florida LLC",
+       "role": "vendor"
+      }
+     ],
+     "amount": 392496,
+     "action": "approve",
+     "consent": false,
+     "summary": "Approve the purchase of one 2027 Peterbilt Front Loader Truck and authorize a Budget Amendment while declaring an existing 2015 Mack Front Loader Truck as surplus.",
+     "evidence": {
+      "quote": "Consider a motion adopt a resolution approving the purchase of one 2027 Peterbilt Front Loader Truck from the Peterbilt Store South Florida LLC at a total cost of $392,496, authorizing a Budget Amendment to fund the purchase",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-08",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+     "headline": "Final payment and retainage release to Lox Construction LLC for East Alley Wall Replacement Project",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Lox Construction LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve a Final Payment and Retainage Release payable to Lox Construction LLC for the East Alley Wall Replacement Project.",
+     "evidence": {
+      "quote": "Motion approving a Final Payment/Retainage Release in the amount of $96,986.81 payable to Lox Construction LLC for the East Alley Wall Replacement Project.",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-08",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+     "headline": "Increase compensation for Chen Moore & Associates and JMorton Planning & Landscape Architecture",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Chen Moore & Associates, Inc.",
+       "role": "engineer"
+      },
+      {
+       "name": "JMorton Planning & Landscape Architecture, Inc.",
+       "role": "architect"
+      }
+     ],
+     "amount": 170000,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve amendments to professional services agreements increasing compensation for Chen Moore & Associates and JMorton Planning & Landscape Architecture.",
+     "evidence": {
+      "quote": "Resolution approving a Fifth Amendment to the Professional Services Agreement with Chen Moore & Associates, Inc. to increase the total amount of compensation for Fiscal Years 2026 and 2027 to 170,000 and approving an Amendment to the Professional Services with JMorton Planning & Landscape Architectu",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-08",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+     "headline": "Approve independent contractor agreement with NPB Aquatic Group for Country Club Pool Operations",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "NPB Aquatic Group, Inc.",
+       "role": "contractor"
+      }
+     ],
+     "amount": 56620,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve an Independent Contractor Agreement with NPB Aquatic Group, Inc. for operation and management of Country Club Pool Operations.",
+     "evidence": {
+      "quote": "Resolution approving an Independent Contractor Agreement with NPB Aquatic Group, Inc. for Operation and Management of Country Club Pool Operations at a total cost of $56,620 per year for the first two years",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-08",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    },
+    {
+     "headline": "Approve contract with NMP Golf Construction Corp. for Country Club Golf Course improvements",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "Resolution 2026-47",
+     "entities": [
+      {
+       "name": "NMP Golf Construction Corp.",
+       "role": "contractor"
+      },
+      {
+       "name": "Nicklaus Design",
+       "role": "architect"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Approve a contract with NMP Golf Construction Corp. for improvements to the practice putting green and Hole No. 11 green at the Country Club Golf Course, waiving purchasing policies.",
+     "evidence": {
+      "quote": "A RESOLUTION OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, FLORIDA, APPROVING A CONTRACT WITH NMP GOLF CONSTRUCTION CORP. FOR IMPROVEMENTS TO THE PRACTICE PUTTING GREEN AND THE HOLE NO. 11 GREEN AT THE COUNTRY CLUB GOLF COURSE",
+      "page": 8,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-10-08",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378"
+    }
+   ]
+  },
+  "NPB|2026-09-24|village council meeting": {
+   "doc_hash": "f08b7c20488998bc",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve final payment and retainage release for East Alley Wall Replacement Project",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "ITB 2026-PW-04",
+     "entities": [
+      {
+       "name": "Lox Construction LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village Council is asked to approve a final payment and release of retainage of $96,986.81 to Lox Construction LLC for the East Alley Wall Replacement Project.",
+     "evidence": {
+      "quote": "MOTION \u2013 Approval of Final Payment / Retainage Release in the amount of $96,986.81 payable to Lox Construction LLC for the East Alley Wall Replacement Project.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+     "headline": "Increase professional services compensation for Chen Moore & Associates and JMorton Planning",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Chen Moore & Associates, Inc.",
+       "role": "vendor"
+      },
+      {
+       "name": "JMorton Planning & Landscape Architecture, Inc.",
+       "role": "vendor"
+      }
+     ],
+     "amount": 170000,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of an amendment to increase total compensation for Chen Moore & Associates to $170,000 for FY 2026 and 2027, and JMorton Planning & Landscape Architecture to $55,000 for FY 2026.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Approving a Fifth Amendment to the Professional Services Agreement with Chen Moore & Associates, Inc. to increase the total amount of compensation for Fiscal Years 2026 and 2027 to $170,000 and approving an Amendment to the Professional Services with JMorton Planning & Landscape Archite",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+     "headline": "Approve independent contractor agreement with NPB Aquatic Group for Country Club pool operations",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "NPB Aquatic Group, Inc.",
+       "role": "contractor"
+      }
+     ],
+     "amount": 56620,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of an independent contractor agreement with NPB Aquatic Group for operating and managing Country Club pool operations at $56,620 per year for the first two years.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Approving an Independent Contractor Agreement with NPB Aquatic Group, Inc. for Operation and Management of Country Club Pool Operations at a total cost of $56,620 per year for the first two years; and authorizing execution of the Agreement.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+     "headline": "Adopt ad valorem tax millage rate and fiscal year village budget",
+     "kind": "other",
+     "address": "",
+     "case_no": "Ordinances 2026-06 and 2026-07",
+     "entities": [],
+     "amount": null,
+     "action": "adopt",
+     "consent": false,
+     "summary": "Consideration of a motion to adopt and enact on second reading the final ad-valorem tax millage rate and approved fiscal 2026-2027 village budget.",
+     "evidence": {
+      "quote": "PUBLIC HEARING AND 2ND READING OF ORDINANCES 2026-06 AND 2026-07 AD VALOREM TAX MILLAGE RATE AND BUDGET Consider a motion to adopt and enact on second reading Final Ad-Valorem Tax Millage Rate and Approved Fiscal 2026-2027 Village Budget.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+     "headline": "Approve purchase of police radios and infrastructure through Municipal Public Safety Communication Consortium",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Municipal Public Safety Communication Consortium of Palm Beach County, Inc.",
+       "role": "vendor"
+      }
+     ],
+     "amount": 1385152,
+     "action": "adopt",
+     "consent": false,
+     "summary": "Approval of a resolution for the purchase of police radios and related infrastructure costs through the communication consortium along with a budget amendment.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 CIP BUDGET AMENDMENT AND PURCHASE \u2013 POLICE RADIO REPLACEMENT Consider a motion to adopt a resolution approving the purchase of Police Radios and related Infrastructure Costs through the Municipal Public Safety Communication Consortium of Palm Beach County, Inc. at a cost not to exceed $",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+     "headline": "Approve golf course improvements contract with NMP Golf Construction Corp",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "NMP Golf Construction Corp.",
+       "role": "contractor"
+      }
+     ],
+     "amount": 125100,
+     "action": "adopt",
+     "consent": false,
+     "summary": "Approval of a contract with NMP Golf Construction for improvements to the practice putting green and Hole No. 11 green at the Country Club Golf Course, waiving purchasing policies.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 IMPROVEMENTS TO PUTTING GREEN AND HOLE NO. 11 GREEN AT THE COUNTRY CLUB GOLF COURSE Consider a motion to adopt a resolution approving a Contract with NMP Golf Construction Corp. for the improvements to the practice putting green and the Hole No. 11 green at the Country Club Golf Course ",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+     "headline": "Approve FPL easements at Anchorage Park and Lakeside Park for Storm Secure Underground Program",
+     "kind": "easement",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Florida Power and Light",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for installing transformers under the Storm Secure Underground Program.",
+     "evidence": {
+      "quote": "Resolution approving Easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for the installation of transformers as part of the Storm Secure Underground Program; and authorizing execution of the Easements.",
+      "page": 10,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+     "headline": "Approve special exception use and site plan appearance for 631 Northlake Boulevard",
+     "kind": "site_plan",
+     "address": "631 Northlake Boulevard",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Gentile and Co.",
+       "role": "applicant"
+      },
+      {
+       "name": "Nautical Ventures",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Approval of a Special Exception Use to allow vehicle sales or repair (restricted to no repairs) and a Site Plan Amendment to update the property and increase watercraft displays.",
+     "evidence": {
+      "quote": "MOTION \u2013 SPECIAL EXCEPTION USE APPROVAL AND SITE PLAN APPEARANCE APPROVAL FOR 631 NORTHLAKE BOULEVARD",
+      "page": 11,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    },
+    {
+     "headline": "Approve thirteenth amendment to grant services agreement with RMPK Funding",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "RMPK Funding, Inc.",
+       "role": "vendor"
+      }
+     ],
+     "amount": 20000,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of a thirteenth amendment to the agreement for grant services with RMPK Funding for a total compensation not to exceed $20,000.",
+     "evidence": {
+      "quote": "Resolution approving a Thirteenth Amendment to the Agreement for Grant Services with RMPK Funding, Inc. for a total compensation not to exceed $20,000; and authorizing execution of the Thirteenth Amendment.",
+      "page": 15,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-24",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+    }
+   ]
+  },
+  "NPB|2026-09-10|village council meeting": {
+   "doc_hash": "beb2df7a4ee74377",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve thirteenth amendment to grant preparation and management services agreement with RMPK Funding",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "RMPK Funding, Inc.",
+       "role": "vendor"
+      },
+      {
+       "name": "Ryan A. Ruskay",
+       "role": "vendor"
+      }
+     ],
+     "amount": 20000,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village is approving a one-year extension of the agreement for professional grant preparation and management services with RMPK Funding, Inc., with total compensation not to exceed $20,000 for Fiscal Year 2027.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Approving a Thirteenth Amendment to the Agreement for Grant Services with RMPK Funding, Inc. for a total compensation not to exceed $20,000; and authorizing execution of the Thirteenth Amendment.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-09-10",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09102026-1371"
+    }
+   ]
+  },
+  "NPB|2026-08-31|village council": {
+   "doc_hash": "75310a544ceab711",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve Florida Power and Light utility easements at Anchorage Park and Lakeside Park",
+     "kind": "easement",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Florida Power and Light",
+       "role": "applicant"
+      },
+      {
+       "name": "Katie Hudson",
+       "role": "applicant"
+      },
+      {
+       "name": "Bowman Consulting Group",
+       "role": "contractor"
+      },
+      {
+       "name": "Thomas M. Walker, Jr.",
+       "role": "engineer"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for the installation of transformers as part of the Storm Secure Underground Program.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Approving Easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for the installation of transformers as part of the Storm Secure Underground Program",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council",
+     "date": "2026-08-31",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    },
+    {
+     "headline": "Special exception and site plan approval for vehicle sales and repair at 631 Northlake Boulevard",
+     "kind": "site_plan",
+     "address": "631 Northlake Boulevard",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "consider",
+     "consent": false,
+     "summary": "Consideration of a Special Exception Use to add Vehicle Sales or Repair to the property's existing use, along with site plan and appearance approval.",
+     "evidence": {
+      "quote": "MOTION \u2013 SPECIAL EXCEPTION USE APPROVAL AND SITE PLAN APPEARANCE APPROVAL FOR 631 NORTHLAKE BOULEVARD",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council",
+     "date": "2026-08-31",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    },
+    {
+     "headline": "Approve utility easement for ground monitoring wells east of Old Dixie Highway",
+     "kind": "easement",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of a utility easement in favor of Seacoast Utility Authority over Village property for the installation of ground monitoring wells.",
+     "evidence": {
+      "quote": "Resolution approving a Utility Easement in favor of Seacoast Utility Authority over Village Property East of Old Dixie Highway and West of the FEC Railroad Tracks for the installation of Ground Monitoring Wells",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council",
+     "date": "2026-08-31",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    },
+    {
+     "headline": "Approve Florida Power and Light underground easement at 603 Anchorage Drive",
+     "kind": "easement",
+     "address": "603 Anchorage Drive",
+     "case_no": "14510026",
+     "entities": [
+      {
+       "name": "Florida Power & Light Company",
+       "role": "applicant"
+      },
+      {
+       "name": "Katie Hudson",
+       "role": "applicant"
+      },
+      {
+       "name": "Bowman Consulting Group",
+       "role": "contractor"
+      },
+      {
+       "name": "Thomas M. Walker, Jr.",
+       "role": "engineer"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Granting an underground utility easement to Florida Power & Light Company at 603 Anchorage Drive for electric utility facilities.",
+     "evidence": {
+      "quote": "The undersigned (\u201cGrantor\u201d), in consideration of the payment of $10.00 and other good and valuable consideration... grants and gives to Florida Power & Light Company",
+      "page": null,
+      "verified": false
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council",
+     "date": "2026-08-31",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    },
+    {
+     "headline": "Approve Florida Power and Light underground easement at 680 Lakeside Drive",
+     "kind": "easement",
+     "address": "680 Lakeside Drive",
+     "case_no": "14510383",
+     "entities": [
+      {
+       "name": "Florida Power & Light Company",
+       "role": "applicant"
+      },
+      {
+       "name": "Katie Hudson",
+       "role": "applicant"
+      },
+      {
+       "name": "Bowman Consulting Group",
+       "role": "contractor"
+      },
+      {
+       "name": "Thomas M. Walker, Jr.",
+       "role": "engineer"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Granting an underground utility easement to Florida Power & Light Company at 680 Lakeside Drive for underground electric utility facilities.",
+     "evidence": {
+      "quote": "The undersigned, in consideration of the payment of $1.00 and other good and valuable consideration... grant and give to Florida Power & Light Company",
+      "page": null,
+      "verified": false
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council",
+     "date": "2026-08-31",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370"
+    }
+   ]
+  },
+  "NPB|2026-08-25|village council": {
+   "doc_hash": "174dabd1b0a70e85",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Country Club parking expansion and tennis renovation project funding approval",
+     "kind": "contract_vendor",
+     "address": "501 U.S. HIGHWAY 1",
+     "case_no": "",
+     "entities": [],
+     "amount": 1509000,
+     "action": "approve",
+     "consent": false,
+     "summary": "The Village Council is considering funding $1,509,000 in FY 2027 for the Country Club parking expansion and tennis center renovation project.",
+     "evidence": {
+      "quote": "Country Club Parking Expansion & Tennis Renovation $1,509,000",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council",
+     "date": "2026-08-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08252026-1369"
+    },
+    {
+     "headline": "Construction contract funding for new public works facility west of Alt A1A",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": 816000,
+     "action": "approve",
+     "consent": false,
+     "summary": "The Village Council is reviewing an $816,000 engineering and project cost for FY 2027 to construct a new Public Works Facility on newly acquired property west of Alt A1A.",
+     "evidence": {
+      "quote": "New Public Works Facility $816,000",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council",
+     "date": "2026-08-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08252026-1369"
+    },
+    {
+     "headline": "Lakeside Park bulkhead replacement and living seawall construction project",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": 1000000,
+     "action": "approve",
+     "consent": false,
+     "summary": "The village is allocating $1,000,000 in FY 2027 for the Lakeside Park bulkhead replacement and living seawall installation.",
+     "evidence": {
+      "quote": "Lakeside Park Bulkhead Replacement $1,000,000",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council",
+     "date": "2026-08-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08252026-1369"
+    }
+   ]
+  },
+  "NPB|2026-07-23|village council meeting": {
+   "doc_hash": "eab424a4ae0f2421",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve a utility easement for ground monitoring wells on Village property",
+     "kind": "easement",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village Council is asked to approve a utility easement in favor of Seacoast Utility Authority for the installation of groundwater monitoring wells.",
+     "evidence": {
+      "quote": "Approving a Utility Easement in favor of Seacoast Utility Authority over Village Property East of Old Dixie Highway and West of the FEC Railroad Tracks for the installation of Ground Monitoring Wells",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-07-23",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07232026-1357"
+    },
+    {
+     "headline": "Award contract for stormwater repairs at 312 Northlake Drive",
+     "kind": "contract_vendor",
+     "address": "312 Northlake Drive",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Shenandoah General Construction, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": 65381,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village approved a proposal from Shenandoah General Construction, LLC for stormwater repairs at 312 Northlake Drive.",
+     "evidence": {
+      "quote": "accepting a proposal from Shenandoah General Construction, LLC for Stormwater Repairs at 312 Northlake Drive at a total cost of $65,381",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-07-23",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07232026-1357"
+    }
+   ]
+  },
+  "NPB|2026-07-09|village council meeting": {
+   "doc_hash": "740fe37ccca1adf8",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Authorize stormwater repairs and maintenance contract for 312 Northlake Drive",
+     "kind": "contract_vendor",
+     "address": "312 Northlake Drive",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Shenandoah General Construction, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": 65381,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village Council is accepting a proposal from Shenandoah General Construction, LLC for stormwater repairs including cleaning, televising, and installing a new tide flex check valve and liner at 312 Northlake Drive.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Accepting a Proposal from Shenandoah General Construction, LLC for Stormwater Repairs at 312 Northlake Drive at a total cost of $65,381",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-07-09",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07092026-1352"
+    }
+   ]
+  },
+  "NPB|2026-06-25|village council meeting": {
+   "doc_hash": "1f4a50f5171d603f",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve purchase of bridge amenities for U.S. Highway One Bridge Replacement Project",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Green Theory",
+       "role": "vendor"
+      }
+     ],
+     "amount": 46594,
+     "action": "approve",
+     "consent": true,
+     "summary": "Resolution approving the sole source purchase of bridge amenities for the U.S. Highway One Bridge Replacement Project over the Earman River from Green Theory.",
+     "evidence": {
+      "quote": "Resolution approving the Sole Source purchase of bridge amenities for the U.S. Highway One Bridge Replacement Project over the Earman River from Green Theory at a total cost of $46,594.40",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06252026-1349"
+    },
+    {
+     "headline": "Approve fifth amendment to contract for building department services with C.A.P. Government",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "Resolution 2026-20",
+     "entities": [
+      {
+       "name": "C.A.P. Government, Inc.",
+       "role": "vendor"
+      }
+     ],
+     "amount": null,
+     "action": "adopt",
+     "consent": false,
+     "summary": "The Village Council adopted a resolution approving a fifth amendment to the contract for building department services with C.A.P. Government, Inc. to increase compensation for fiscal year 2026.",
+     "evidence": {
+      "quote": "A RESOLUTION OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, FLORIDA APPROVING A FIFTH AMENDMENT TO THE CONTRACT FOR BUILDING DEPARTMENT SERVICES WITH C.A.P. GOVERNMENT, INC.",
+      "page": 7,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06252026-1349"
+    },
+    {
+     "headline": "Increase fiscal year 2026 blanket purchase order for landscaping and grounds maintenance",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "Resolution 2026-21",
+     "entities": [
+      {
+       "name": "Yard-Nique, Inc. d/b/a Precision Landscape Company",
+       "role": "vendor"
+      }
+     ],
+     "amount": 200000,
+     "action": "adopt",
+     "consent": false,
+     "summary": "The Village Council increased the fiscal year 2026 blanket purchase order with Yard-Nique, Inc. d/b/a Precision Landscape Company for miscellaneous landscaping and grounds maintenance services from $100,000 to $200,000.",
+     "evidence": {
+      "quote": "A RESOLUTION OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, FLORIDA INCREASING THE FISCAL YEAR 2026 BLANKET PURCHASE ORDER WITH YARD-NIQUE, INC. D/B/A PRECISION LANDSCAPE COMPANY",
+      "page": 7,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06252026-1349"
+    },
+    {
+     "headline": "Accept bid proposal from Boulder Construction for community center parking lot improvements",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "Resolution 2026-22",
+     "entities": [
+      {
+       "name": "Boulder Construction, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": 236307,
+     "action": "adopt",
+     "consent": false,
+     "summary": "The Village Council accepted a bid proposal from Boulder Construction, LLC for community center parking lot improvements and approved a budget amendment transferring funds.",
+     "evidence": {
+      "quote": "A RESOLUTION OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, FLORIDA ACCEPTING A BID PROPOSAL FROM BOULDER CONSTRUCTION, LLC FOR THE COMMUNITY CENTER PARKING LOT IMPROVEMENTS",
+      "page": 8,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06252026-1349"
+    },
+    {
+     "headline": "Accept bid proposal from TCLM Enterprise for Buoy Road improvements project",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "Resolution 2026-28",
+     "entities": [
+      {
+       "name": "TCLM Enterprise Inc.",
+       "role": "contractor"
+      }
+     ],
+     "amount": 449397,
+     "action": "adopt",
+     "consent": false,
+     "summary": "The Village Council accepted a bid proposal from TCLM Enterprise Inc. for the Buoy Road improvements project, which includes an interlocal cost-sharing agreement with Seacoast Utility Authority.",
+     "evidence": {
+      "quote": "A RESOLUTION OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, FLORIDA ACCEPTING A BID PROPOSAL FROM TCLM ENTERPRISE INC. FOR THE BUOY ROAD IMPROVEMENTS PROJECT",
+      "page": 13,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06252026-1349"
+    },
+    {
+     "headline": "Accept bid proposal from Diligent Construction Services for Anchorage Park amenities project",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "Resolution 2026-29",
+     "entities": [
+      {
+       "name": "Diligent Construction Services, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": 40469,
+     "action": "adopt",
+     "consent": false,
+     "summary": "The Village Council accepted a bid proposal from Diligent Construction Services, LLC for the Anchorage Park Amenities Improvement Project funded via grant revenue and capital transfers.",
+     "evidence": {
+      "quote": "A RESOLUTION OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, FLORIDA ACCEPTING A BID PROPOSAL FROM DILIGENT CONSTRUCTION SERVICES, LLC FOR THE ANCHORAGE PARK AMENITIES IMPROVEMENT PROJECT",
+      "page": 15,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-25",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06252026-1349"
+    }
+   ]
+  },
+  "NPB|2026-06-11|village council meeting": {
+   "doc_hash": "6f2e0f2a1a09c674",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Award contract for Buoy Road improvements project to TCLM Enterprise Inc.",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "ITB C25-PW-06",
+     "entities": [
+      {
+       "name": "TCLM Enterprise, Inc.",
+       "role": "contractor"
+      },
+      {
+       "name": "TCLM Enterprise",
+       "role": "contractor"
+      },
+      {
+       "name": "TCLM Enterprise Inc.",
+       "role": "contractor"
+      }
+     ],
+     "amount": 449397,
+     "action": "approve",
+     "consent": false,
+     "summary": "Consider a resolution accepting a bid proposal from TCLM Enterprise, Inc. for the Buoy Road Improvements Project at a total cost not to exceed $449,397.",
+     "evidence": {
+      "quote": "Consider a motion to adopt a resolution accepting a bid proposal from TCLM Enterprise, Inc. for the Buoy Road Improvements Project at a total cost not to exceed $449,397",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-11",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06112026-1346"
+    },
+    {
+     "headline": "Award contract for Anchorage Park amenities improvement project to Diligent Construction Services",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Diligent Construction Services, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": 168618,
+     "action": "approve",
+     "consent": false,
+     "summary": "Consider a motion to adopt a resolution accepting a bid proposal from Diligent Construction Services, LLC for the Anchorage Park Amenities Improvement Project at a cost not to exceed $168,618.32.",
+     "evidence": {
+      "quote": "Consider a motion to adopt a resolution accepting a bid proposal from Diligent Construction Services, LLC for the Anchorage Park Amenities Improvement Project at a cost not to exceed $168,618.32",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-11",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06112026-1346"
+    },
+    {
+     "headline": "Approve stormwater repairs contract at Hummingbird Way with BD Environmental Group",
+     "kind": "contract_vendor",
+     "address": "727 Hummingbird Way",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "BD Environmental Group, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": 26125,
+     "action": "approve",
+     "consent": true,
+     "summary": "Resolution accepting a proposal from BD Environmental Group, LLC for stormwater repairs at 727 Hummingbird Way at a total cost of $26,125.",
+     "evidence": {
+      "quote": "Resolution accepting a proposal from BD Environmental Group, LLC for stormwater repairs at 727 Hummingbird Way at a total cost of $26,125",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-11",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06112026-1346"
+    },
+    {
+     "headline": "Approve golf course irrigation system update contract with Brightview Golf Maintenance",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "Resolution 2026-26",
+     "entities": [
+      {
+       "name": "Brightview Golf Maintenance, Inc.",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Approve a proposal from Brightview Golf Maintenance, Inc. to update the irrigation system at the North Palm Beach Country Club Golf Course.",
+     "evidence": {
+      "quote": "A RESOLUTION OF THE VILLAGE COUNCIL OF THE VILLAGE OF NORTH PALM BEACH, FLORIDA, APPROVING A PROPOSAL FROM BRIGHTVIEW GOLF MAINTENANCE, INC. TO UPDATE THE IRRIGATION SYSTEM",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-06-11",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06112026-1346"
+    }
+   ]
+  },
+  "NPB|2026-05-28|village council meeting": {
+   "doc_hash": "83dd29a164600b02",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve stormwater repairs and asphalt contract for 727 Hummingbird Way",
+     "kind": "contract_vendor",
+     "address": "727 Hummingbird Way",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "BD Environmental Group, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": 26125,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village Council is asked to accept a proposal from BD Environmental Group, LLC for emergency stormwater repairs including CIPP lining and asphalt repairs at 727 Hummingbird Way.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Accepting a proposal from BD Environmental Group, LLC for stormwater repairs at 727 Hummingbird Way at a total cost of $26,125",
+      "page": 1,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-05-28",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05282026-1341"
+    },
+    {
+     "headline": "Approve contract to update the golf course irrigation system",
+     "kind": "contract_vendor",
+     "address": "501 U.S. Highway 1",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Brightview Golf Maintenance, Inc.",
+       "role": "contractor"
+      }
+     ],
+     "amount": 176708,
+     "action": "approve",
+     "consent": false,
+     "summary": "Consider a resolution approving a proposal from Brightview Golf Maintenance, Inc. to update the irrigation system at the North Palm Beach Country Club and waiving purchasing policies.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 GOLF COURSE IRRIGATION SYSTEM UPDATE CONTRACT Consider a motion to adopt a resolution approving a proposal from Brightview Golf Maintenance, Inc.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-05-28",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05282026-1341"
+    }
+   ]
+  },
+  "NPB|2026-05-14|village council meeting": {
+   "doc_hash": "e2a9fd3c17ef83c4",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approve sole source purchase of bridge amenities for U.S. Highway One Bridge Replacement Project",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Green Theory",
+       "role": "vendor"
+      }
+     ],
+     "amount": 46594,
+     "action": "approve",
+     "consent": true,
+     "summary": "The Village Council is asked to approve a sole source purchase of bridge amenities from Green Theory for the U.S. Highway One Bridge Replacement Project over the Earman River.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Approving the Sole Source purchase of bridge amenities for the U.S. Highway One Bridge Replacement Project over the Earman River from Green Theory at a total cost of $46,594.40",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-05-14",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    },
+    {
+     "headline": "Approve fifth amendment to contract for building department services with C.A.P. Government",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "C.A.P. Government, Inc.",
+       "role": "vendor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of a fifth amendment to increase total compensation for building department services with C.A.P. Government, Inc. for Fiscal Year 2026.",
+     "evidence": {
+      "quote": "RESOLUTION \u2013 Approving a Fifth Amendment to the Contract for Building Department Services with C.A.P. Government, Inc. to increase the total amount of compensation for Fiscal Year 2026",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-05-14",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    },
+    {
+     "headline": "Increase fiscal year 2026 blanket purchase order for landscaping and grounds maintenance services",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Yard-Nique, Inc. d/b/a Precision Landscape Company",
+       "role": "vendor"
+      }
+     ],
+     "amount": 200000,
+     "action": "adopt",
+     "consent": false,
+     "summary": "Consideration of a resolution to increase the Fiscal Year 2026 Blanket Purchase Order for miscellaneous landscaping and grounds maintenance services with Yard-Nique, Inc. from $100,000 to $200,000.",
+     "evidence": {
+      "quote": "Consider a motion to adopt a resolution increasing the Fiscal Year 2026 Blanket Purchase Order with Yard-Nique, Inc. d/b/a Precision Landscape Company for miscellaneous landscaping and ground maintenance services from $100,000 to $200,000.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-05-14",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    },
+    {
+     "headline": "Accept bid from Boulder Construction for community center parking lot improvements",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Boulder Construction, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "adopt",
+     "consent": false,
+     "summary": "Acceptance of a construction bid from Boulder Construction, LLC for Community Center Parking Lot Improvements and authorization to execute a contract.",
+     "evidence": {
+      "quote": "RESOLTUION - Acceptance of bid from Boulder Construction, LLC for Community Center Parking Lot Improvements and authorizing execution of a Contract.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-05-14",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    },
+    {
+     "headline": "Accept proposal from BD Environmental Group for cured in place pipe liner installation",
+     "kind": "contract_vendor",
+     "address": "68 Yacht Club Drive",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "BD Environmental Group, LLC",
+       "role": "vendor"
+      }
+     ],
+     "amount": 59950,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of a resolution accepting a proposal from BD Environmental Group, LLC for the installation of a Cured in Place Pipe Liner at 68 Yacht Club Drive.",
+     "evidence": {
+      "quote": "Resolution accepting a proposal from BD Environmental Group, LLC for the installation of Cured in Place Pipe Liner at 68 Yacht Club Drive at a total cost of $59,950.",
+      "page": 5,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Meeting",
+     "date": "2026-05-14",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05142026-1339"
+    }
+   ]
+  },
+  "NPB|2026-05-20|village council workshop": {
+   "doc_hash": "a4810904413a4d09",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Village considers replacing the Public Works Complex at an estimated cost",
+     "kind": "land_transaction",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "discuss",
+     "consent": false,
+     "summary": "The Village Council discussed the timing and potential development of a new Public Works Complex with an estimated cost of $9 million.",
+     "evidence": {
+      "quote": "Timing for public works complex (estimated $9M cost)",
+      "page": 27,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Workshop",
+     "date": "2026-05-20",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05202026-1330"
+    },
+    {
+     "headline": "Village evaluates major infrastructure replacement including Lighthouse Bridge and local bulkheads",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "discuss",
+     "consent": false,
+     "summary": "The Village is reviewing approaches for major infrastructure replacement projects, including the Lighthouse bridge and park bulkheads.",
+     "evidence": {
+      "quote": "How to approach major infrastructure replacement (e.g., Lighthouse bridge ($7M), Anchorage Park/Lakeside Park bulkheads ($2M, $1M)",
+      "page": 27,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Workshop",
+     "date": "2026-05-20",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05202026-1330"
+    },
+    {
+     "headline": "Village evaluates options for modernizing or replacing the aging library building",
+     "kind": "land_transaction",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "discuss",
+     "consent": false,
+     "summary": "The Village Council reviewed policy discussions regarding the long-term approach to library building modernization, safety, and replacement.",
+     "evidence": {
+      "quote": "Determine long-term approach towards building modernization and/or replacement",
+      "page": 46,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Workshop",
+     "date": "2026-05-20",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05202026-1330"
+    },
+    {
+     "headline": "Village considers replacing Village Hall and potential consolidation with the library",
+     "kind": "land_transaction",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "discuss",
+     "consent": false,
+     "summary": "The Village evaluated replacing Village Hall, consolidating it with the library, expanding parking, and adding revenue-producing uses to better utilize US1 land value.",
+     "evidence": {
+      "quote": "Consideration of building replacement \u2022 Consideration of Village Hall/Library consolidation",
+      "page": 49,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Workshop",
+     "date": "2026-05-20",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05202026-1330"
+    }
+   ]
+  },
+  "NPB|2026-05-06|village council workshop": {
+   "doc_hash": "91ccb13f6ad606df",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Lessing\u2019s Hospitality Group agreement for restaurant and catering services operations",
+     "kind": "land_transaction",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Lessing\u2019s Hospitality Group",
+       "role": "vendor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Lessing\u2019s Hospitality Group holds a 5-year lease agreement providing restaurant and catering services with a $1.2M capital improvement investment.",
+     "evidence": {
+      "quote": "Initial term of Lease five (5) years, with automatic renewal for additional five (5) years",
+      "page": 31,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Village Council Workshop",
+     "date": "2026-05-06",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05062026-1327"
+    }
+   ]
+  },
+  "NPB|2026-11-04|planning, zoning, and adjustment board": {
+   "doc_hash": "8b75363db021e015",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Approval requested for exterior paint color changes at a commercial shopping plaza",
+     "kind": "design_review",
+     "address": "784 US Highway 1",
+     "case_no": "PZ-2026-85",
+     "entities": [
+      {
+       "name": "784 US1 LLC",
+       "role": "owner"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The property owner requests appearance review approval to amend building paint colors without making other physical modifications.",
+     "evidence": {
+      "quote": "A request from 784 US1 LLC, owner of the subject property, requesting Appearance Review approval for an amendment to the building paint colors.",
+      "page": 1,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-11-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+    },
+    {
+     "headline": "Development of a new office and warehouse building with a revised site plan",
+     "kind": "site_plan",
+     "address": "9250 Alternate A1A",
+     "case_no": "PZ-2026-60",
+     "entities": [
+      {
+       "name": "L&D Holdings, LLC",
+       "role": "applicant"
+      },
+      {
+       "name": "Agrusa and Sons Contracting, Inc.",
+       "role": "developer"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The applicant requests approval to develop a 3,000 square foot office and warehouse building on the southern half of a commercial property and approve a revised site plan for the northern half.",
+     "evidence": {
+      "quote": "Consideration of Approval: A request from L&D Holdings, LLC, contract purchaser of the subject property located at 9250 Alternate A1A, for the development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approving a revised site plan for the no",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-11-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+    },
+    {
+     "headline": "Site plan approval and special exception for vehicle sales and marine store",
+     "kind": "site_plan",
+     "address": "631 North Lake Boulevard",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Lott Brothers",
+       "role": "applicant"
+      },
+      {
+       "name": "Nautical Ventures",
+       "role": "applicant"
+      },
+      {
+       "name": "George Gentile",
+       "role": "architect"
+      },
+      {
+       "name": "Gentile & Co.",
+       "role": "architect"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The applicant presented a request for site plan approval and a special exception to permit watercraft sales and repair alongside continued operation of an existing marina.",
+     "evidence": {
+      "quote": "The applicant, represented by George Gentile of Gentile & Co., presented a request for site plan approval and a special exception to permit vehicle sales or repair at the property.",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-11-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+    },
+    {
+     "headline": "Site plan and appearance amendment for mixed-use development with waivers",
+     "kind": "site_plan",
+     "address": "200 Yacht Club Drive",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Lindsay Jean-Louis",
+       "role": "applicant"
+      },
+      {
+       "name": "Urban Design Studio",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The applicant requested a site plan and appearance amendment for a previously approved mixed-use development, relocating the pool, revising unit mix, modifying Building C, and reducing parking spaces.",
+     "evidence": {
+      "quote": "Lindsay Jean-Louis of Urban Design Studio, representing the property owner and contract purchaser, presented a request for a site plan and appearance amendment to the previously approved mixed-use development at 200 Yacht Club Drive.",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-11-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+    },
+    {
+     "headline": "Appearance review for building paint color amendments on high density residential property",
+     "kind": "design_review",
+     "address": "100 Shore Court",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Shore Club Apartments \u201cA\u201d Inc.",
+       "role": "applicant"
+      },
+      {
+       "name": "Santiago Cleves",
+       "role": "applicant"
+      },
+      {
+       "name": "Chen Moore & Associates, Inc.",
+       "role": "vendor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The condominium association requested appearance review approval to change the exterior building paint colors to Blue Cruise and Snowbound.",
+     "evidence": {
+      "quote": "Consideration of Approval: A request from Shore Club Apartments \u201cA\u201d Inc., the condominium association for the subject property, requesting Appearance Review approval for an amendment to the building paint colors.",
+      "page": 7,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-11-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+    },
+    {
+     "headline": "Master sign plan amendment update for tenant signage criteria",
+     "kind": "design_review",
+     "address": "420 US Highway 1",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Mark Weber",
+       "role": "applicant"
+      },
+      {
+       "name": "Preferred Sign",
+       "role": "vendor"
+      },
+      {
+       "name": "SOVS HOLDINGS LLC",
+       "role": "owner"
+      },
+      {
+       "name": "Santiago Cleves",
+       "role": "applicant"
+      },
+      {
+       "name": "Chen Moore & Associates, Inc.",
+       "role": "vendor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The applicant requested a master sign plan amendment to update tenant signage criteria, construction specifications, and permitted colors for the commercial property.",
+     "evidence": {
+      "quote": "Consideration of Approval: A request from, Mark Weber, Preferred Sign, on behalf of the property owner, SOVS HOLDINGS LLC, for a Master Sign Plan Amendment for the property located at 420 US Highway 1.",
+      "page": 7,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-11-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+    },
+    {
+     "headline": "Variance requested for side setbacks to construct single-family home addition",
+     "kind": "variance",
+     "address": "2601 Conroy Drive",
+     "case_no": "68-43-42-17-05-000-0490",
+     "entities": [
+      {
+       "name": "Elizabeth Melanson",
+       "role": "owner"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The property owner requested a variance to allow a residential addition to encroach into the required 10-foot side setbacks using existing walls of the main structure.",
+     "evidence": {
+      "quote": "Consideration of Approval: A request from Elizabeth Melanson, property owner, for a variance to allow the construction of an addition that encroaches into the required 10-foot side setbacks by 0.3 feet (4 inches) on the west side and 0.8 feet (9 inches) on the east side.",
+      "page": 9,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-11-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+    }
+   ]
+  },
+  "NPB|2026-10-06|planning, zoning and adjustment board": {
+   "doc_hash": "59e4d655c2cb3857",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Appearance review requested for building paint color amendments at Shore Club Apartments",
+     "kind": "design_review",
+     "address": "100 Shore Court",
+     "case_no": "20261277",
+     "entities": [
+      {
+       "name": "Shore Club Apartments \u201cA\u201d Inc.",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The condominium association is requesting Appearance Review approval to change the building paint colors to Blue Cruise and Snowbound with no other physical modifications.",
+     "evidence": {
+      "quote": "requesting Appearance Review approval for an amendment to the building paint colors.",
+      "page": 1,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning and Adjustment Board",
+     "date": "2026-10-06",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10062026-1377"
+    },
+    {
+     "headline": "Master sign plan amendment requested for Shops at Village Square at 420 US Highway 1",
+     "kind": "design_review",
+     "address": "420 US Highway 1",
+     "case_no": "SP-2026-77",
+     "entities": [
+      {
+       "name": "Mark Weber",
+       "role": "applicant"
+      },
+      {
+       "name": "Preferred Sign",
+       "role": "applicant"
+      },
+      {
+       "name": "SOVS HOLDINGS LLC",
+       "role": "owner"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "An application for a Master Sign Plan Amendment to establish a new unified tenant wall sign design and associated sign standards for the property.",
+     "evidence": {
+      "quote": "request from, Mark Weber, Preferred Sign, on behalf of the property owner, SOVS HOLDINGS LLC, for a Master Sign Plan Amendment",
+      "page": 1,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning and Adjustment Board",
+     "date": "2026-10-06",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10062026-1377"
+    },
+    {
+     "headline": "Side setback variance requested for residential addition at 2601 Conroy Drive",
+     "kind": "variance",
+     "address": "2601 Conroy Drive",
+     "case_no": "68-43-42-17-05-000-0490",
+     "entities": [
+      {
+       "name": "Elizabeth Melanson",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "A property owner is seeking a variance to allow a home addition to encroach into the required side setbacks using existing walls of the main structure.",
+     "evidence": {
+      "quote": "request from Elizabeth Melanson, property owner, for a variance to allow the construction of an addition that encroaches into the required 10-foot side setbacks",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning and Adjustment Board",
+     "date": "2026-10-06",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10062026-1377"
+    }
+   ]
+  },
+  "NPB|2026-08-04|planning, zoning, and adjustment board": {
+   "doc_hash": "68000365cc70b1ef",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Site plan update and watercraft sales special exception for commercial marina",
+     "kind": "site_plan",
+     "address": "631 Northlake Boulevard",
+     "case_no": "SP-2026-43",
+     "entities": [
+      {
+       "name": "Gentile and Co.",
+       "role": "applicant"
+      },
+      {
+       "name": "Lott Brothers",
+       "role": "owner"
+      },
+      {
+       "name": "Lott Holdings",
+       "role": "applicant"
+      },
+      {
+       "name": "Nautical Venture Group, Inc.",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The applicant requests site plan approval for landscaping, parking, and signage updates along with a special exception use to add vehicle and watercraft sales at 631 Northlake Boulevard.",
+     "evidence": {
+      "quote": "A request from Gentile and Co., on behalf of the property owner and applicant, Lott Brothers/Lott Holdings, and Nautical Venture Group, Inc., for (1) site plan approval to update the property",
+      "page": 1,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-08-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363"
+    },
+    {
+     "headline": "Site plan and appearance amendment with waivers for mixed-use development project",
+     "kind": "site_plan",
+     "address": "200 Yacht Club Drive",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Urban Design Studio",
+       "role": "applicant"
+      },
+      {
+       "name": "Robbins NPB LLC",
+       "role": "owner"
+      },
+      {
+       "name": "Navarro Lowery, Inc.",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "public hearing",
+     "consent": false,
+     "summary": "An application was submitted for approval of a Site Plan and Appearance amendment with waivers for a previously approved mixed-use development project located at 200 Yacht Club Drive.",
+     "evidence": {
+      "quote": "A request from Urban Design Studio, agent for Robbins NPB LLC (property owner) and Navarro Lowery, Inc. (contract purchaser) for approval of Site Plan and Appearance amendment with waivers",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-08-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363"
+    },
+    {
+     "headline": "Variance approval for residential property located at 2585 Conroy Drive",
+     "kind": "variance",
+     "address": "2585 Conroy Drive",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The board reviewed and approved a variance request for 2585 Conroy Drive after a staff presentation and public discussion regarding hardship and code requirements.",
+     "evidence": {
+      "quote": "1. 2585 Conroy Drive Variance",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-08-04",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363"
+    }
+   ]
+  },
+  "NPB|2026-07-07|planning, zoning, and adjustment board": {
+   "doc_hash": "929429c13946107f",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Board to consider side setback variance for 2585 Conroy Drive addition",
+     "kind": "variance",
+     "address": "2585 Conroy Drive",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Pavel Just",
+       "role": "applicant"
+      },
+      {
+       "name": "Michal Velek",
+       "role": "owner"
+      }
+     ],
+     "amount": null,
+     "action": "public hearing",
+     "consent": false,
+     "summary": "A request for a variance to allow an addition to encroach the required 10-foot side setback by 0.6 feet to utilize an existing wall.",
+     "evidence": {
+      "quote": "A request from Pavel Just, on behalf of Michal Velek, property owner, for a variance to allow for the construction of an addition that encroaches the required 10-foot side setback by 0.6 feet",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-07-07",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07072026-1350"
+    },
+    {
+     "headline": "Site plan and appearance review for improvements at 719 Northlake Blvd",
+     "kind": "site_plan",
+     "address": "719 Northlake Blvd",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Jennifer Morton",
+       "role": "applicant"
+      },
+      {
+       "name": "JMorton",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The board approved proposed site improvements including landscaping, fa\u00e7ade changes, and repainting for the property.",
+     "evidence": {
+      "quote": "Ms. Lopez-Mojica gave a staff presentation explaining the proposed improvements on the site including landscaping, fa\u00e7ade changes, and repainting.",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-07-07",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07072026-1350"
+    }
+   ]
+  },
+  "NPB|2026-06-02|planning, zoning, and adjustment board": {
+   "doc_hash": "fd73fe598565769c",
+   "analyzed_at": "2026-11-22",
+   "items": [
+    {
+     "headline": "Site plan and appearance review for commercial property at 719 Northlake Blvd",
+     "kind": "site_plan",
+     "address": "719 Northlake Blvd",
+     "case_no": "SP-2026-45",
+     "entities": [
+      {
+       "name": "JMorton Planning and Landscape Architecture",
+       "role": "applicant"
+      },
+      {
+       "name": "Dawn Pfaff LLC",
+       "role": "owner"
+      },
+      {
+       "name": "Robert Pfaff LLC",
+       "role": "owner"
+      },
+      {
+       "name": "Michelle L. Duchene",
+       "role": "architect"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "A request for Site Plan and Appearance Approval for landscaping improvements, a 5-foot-wide landscape buffer, vesting of existing nonconforming elements, a new cantilever roof extension, stucco over the front facade, column architectural improvements, and new exterior paint colors.",
+     "evidence": {
+      "quote": "A request from JMorton Planning and Landscape Architecture, on behalf of the property owners, Dawn Pfaff LLC and Robert Pfaff LLC, for Site Plan and Appearance Approval",
+      "page": 1,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-06-02",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06022026-1343"
+    },
+    {
+     "headline": "Design review and site plan approval for an awning at Faith Lutheran Care Center",
+     "kind": "design_review",
+     "address": "301 Ebbtide Drive",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Faith Lutheran Care Center",
+       "role": "applicant"
+      },
+      {
+       "name": "Ivan Medugorac",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Consideration of a proposed awning to provide ADA and wheelchair weather shelter to the front of the building.",
+     "evidence": {
+      "quote": "Ivan Medugorac, representing the Faith Lutheran Care Center, gave a brief description of the proposed awning, and how its purpose is to provide ADA/wheelchair weather shelter to the front of the building.",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning, and Adjustment Board",
+     "date": "2026-06-02",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06022026-1343"
+    }
+   ]
+  },
+  "WPB|2026-11-23|city commission meeting": {
+   "doc_hash": "697a4105c1d28d54",
+   "analyzed_at": "2026-11-22",
+   "items": []
+  },
+  "WPB|2026-12-07|city commission meeting": {
+   "doc_hash": "697a4105c1d28d54",
+   "analyzed_at": "2026-11-22",
+   "items": []
+  },
+  "WPB|2026-12-21|city commission meeting": {
+   "doc_hash": "697a4105c1d28d54",
+   "analyzed_at": "2026-11-22",
+   "items": []
   }
  },
  "nodoc": {

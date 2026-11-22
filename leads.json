@@ -1,10 +1,10 @@
 {
   "schema": 2,
-  "generated_at": "2026-11-21T16:53:08.795180+00:00",
-  "today": "2026-11-21",
+  "generated_at": "2026-11-22T05:41:37.486924+00:00",
+  "today": "2026-11-22",
   "lookback_months": 6,
   "meetings_scanned": 368,
-  "meetings_pending_analysis": 27,
+  "meetings_pending_analysis": 3,
   "llm_available": false,
   "coverage_by_municipality": {
     "BOCA": {
@@ -31,9 +31,9 @@
     "DELRAY": {
       "meetings": 38,
       "with_document": 38,
-      "with_items": 32,
-      "items": 187,
-      "pending": 1
+      "with_items": 33,
+      "items": 190,
+      "pending": 0
     },
     "GULFSTREAM": {
       "meetings": 1,
@@ -45,9 +45,9 @@
     "JUIC": {
       "meetings": 21,
       "with_document": 20,
-      "with_items": 19,
-      "items": 69,
-      "pending": 1
+      "with_items": 20,
+      "items": 74,
+      "pending": 0
     },
     "JUNOBEACH": {
       "meetings": 26,
@@ -73,9 +73,9 @@
     "NPB": {
       "meetings": 20,
       "with_document": 20,
-      "with_items": 1,
-      "items": 4,
-      "pending": 19
+      "with_items": 20,
+      "items": 73,
+      "pending": 0
     },
     "PALMBEACH": {
       "meetings": 10,
@@ -117,10 +117,137 @@
       "with_document": 45,
       "with_items": 6,
       "items": 6,
-      "pending": 5
+      "pending": 2
     }
   },
   "leads": [
+    {
+      "key": "ENTITY|chen moore and associates",
+      "type": "entity",
+      "title": "Chen Moore & Associates, Inc. appears on agendas in 3 municipalities",
+      "address": "Chen Moore & Associates, Inc.",
+      "munis": [
+        "JUIC",
+        "JUNOBEACH",
+        "NPB"
+      ],
+      "muni_names": "Town of Juno Beach and Town of Jupiter Inlet Colony and Village of North Palm Beach",
+      "body": "Regular Town Commission Meeting",
+      "kind": "contract_vendor",
+      "kind_label": "Engineer",
+      "group": "entity",
+      "signals": [
+        {
+          "id": "cross_town",
+          "label": "3 municipalities",
+          "tone": "warn"
+        },
+        {
+          "id": "kind",
+          "label": "Engineer",
+          "tone": "info"
+        },
+        {
+          "id": "amount",
+          "label": "$170K",
+          "tone": "info"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Oct 19 (JUIC): The Town Commission will vote on approving an agreement with Chen Moore and Associates for general engineering services, sponsored by the Town Manager. Nov 4 (NPB): The condominium association requested appearance review approval to change the exterior building paint colors to Blue Cruise and Snowbound. / The applicant requested a master sign plan amendment to update tenant signage criteria, construction specifications, and permitted colors for the commercial property. Nov 9 (JUIC): The Town Commission approved an agreement with Chen Moore & Associates to provide general engineering services as a second firm to the Town.",
+      "evidence": {
+        "quote": "Vote: Approval of an Agreement with Chen Moore and Associates for General Engineering Services",
+        "page": 20,
+        "verified": true,
+        "date": "2026-11-09",
+        "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
+      },
+      "timeline": [
+        {
+          "date": "2026-06-24",
+          "body": "Town Council Regular Meeting",
+          "action": "discuss",
+          "summary": "The Town Council will receive an update from engineering and planning vendor Chen Moore and Associates.",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-dfbe193c47df43fd90af069c1f419fef.pdf",
+          "addresses": [],
+          "muni": "JUNOBEACH"
+        },
+        {
+          "date": "2026-09-24",
+          "body": "Village Council Meeting",
+          "action": "approve",
+          "summary": "Approval of an amendment to increase total compensation for Chen Moore & Associates to $170,000 for FY 2026 and 2027, and JMorton Planning & Landscape Architecture to $55,000 for FY 2026.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376",
+          "addresses": [],
+          "muni": "NPB"
+        },
+        {
+          "date": "2026-10-08",
+          "body": "Village Council Meeting",
+          "action": "approve",
+          "summary": "Approve amendments to professional services agreements increasing compensation for Chen Moore & Associates and JMorton Planning & Landscape Architecture.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378",
+          "addresses": [],
+          "muni": "NPB"
+        },
+        {
+          "date": "2026-10-19",
+          "body": "Town Commission Meeting",
+          "action": "vote",
+          "summary": "The Town Commission will vote on approving an agreement with Chen Moore and Associates for general engineering services, sponsored by the Town Manager.",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
+          "addresses": [],
+          "muni": "JUIC"
+        },
+        {
+          "date": "2026-11-04",
+          "body": "Planning, Zoning, and Adjustment Board",
+          "action": "approve",
+          "summary": "The condominium association requested appearance review approval to change the exterior building paint colors to Blue Cruise and Snowbound. / The applicant requested a master sign plan amendment to update tenant signage criteria, construction specifications, and permitted colors for the commercial property.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387",
+          "addresses": [
+            "100 Shore Court",
+            "420 US Highway 1"
+          ],
+          "muni": "NPB"
+        },
+        {
+          "date": "2026-11-09",
+          "body": "Regular Town Commission Meeting",
+          "action": "approve",
+          "summary": "The Town Commission approved an agreement with Chen Moore & Associates to provide general engineering services as a second firm to the Town.",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74",
+          "addresses": [],
+          "muni": "JUIC"
+        }
+      ],
+      "appearance_count": 6,
+      "first_date": "2026-06-24",
+      "latest_date": "2026-11-09",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "Chen Moore & Associates, Inc.",
+          "role": "engineer"
+        }
+      ],
+      "amount": 170000,
+      "questions": [
+        "What are the contract or project amounts in the agenda backup?",
+        "Does this party also appear on private development applications?",
+        "Which other municipalities have they worked with?"
+      ],
+      "score": 92,
+      "web": {
+        "checked": true,
+        "mentions": [],
+        "error": "HTTP 400"
+      },
+      "first_seen": "2026-11-21",
+      "is_new": false
+    },
     {
       "key": "RIVBEACH|addr|190 e 13th st",
       "type": "address",
@@ -323,9 +450,8 @@
       ],
       "score": 92,
       "web": {
-        "checked": true,
-        "mentions": [],
-        "error": "HTTP 400"
+        "checked": false,
+        "mentions": []
       },
       "first_seen": "2026-11-21",
       "is_new": false
@@ -351,18 +477,18 @@
         },
         {
           "id": "repeat",
-          "label": "On 8 agendas",
+          "label": "On 9 agendas",
           "tone": "warn"
         },
         {
           "id": "amount_changed",
-          "label": "Amount changed $4.4M to $3.9M",
+          "label": "Amount changed $55K to $3.9M",
           "tone": "warn"
         }
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "The Town Commission held a final public hearing to establish and levy a tax upon all taxable property within the town for the operation of departments and extraordinary expenses, setting the millage rate at 5.560 mills. On agendas 8 times since Aug 10. The amount moved from $4.4M to $3.9M.",
+      "hook": "The Town Commission held a final public hearing to establish and levy a tax upon all taxable property within the town for the operation of departments and extraordinary expenses, setting the millage rate at 5.560 mills. On agendas 9 times since Jun 16. The amount moved from $55K to $3.9M.",
       "evidence": {
         "quote": "Resolution No. 2026-15. A Resolution of the Town Commission of the Town of Jupiter Inlet Colony, Florida, Establishing and Levying a Tax Upon all Taxable Property",
         "page": 1,
@@ -371,6 +497,16 @@
         "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-73"
       },
       "timeline": [
+        {
+          "date": "2026-06-16",
+          "body": "Town Commission Budget Workshop",
+          "action": "Discussion",
+          "summary": "The town is considering a budget request of $55,000 for Beach Management Plan due diligence planning as part of beach resiliency funding.",
+          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_06162026-51",
+          "addresses": [
+            "244 Ocean Drive"
+          ]
+        },
         {
           "date": "2026-08-10",
           "body": "Local Planning Agency Meeting",
@@ -446,8 +582,8 @@
           ]
         }
       ],
-      "appearance_count": 8,
-      "first_date": "2026-08-10",
+      "appearance_count": 9,
+      "first_date": "2026-06-16",
       "latest_date": "2026-11-09",
       "next_date": null,
       "next_body_meeting": null,
@@ -494,6 +630,101 @@
       },
       "first_seen": "2026-11-21",
       "is_new": false
+    },
+    {
+      "key": "ENTITY|nmp golf construction",
+      "type": "entity",
+      "title": "NMP Golf Construction Corp. appears on agendas in 2 municipalities",
+      "address": "NMP Golf Construction Corp.",
+      "munis": [
+        "DELRAY",
+        "NPB"
+      ],
+      "muni_names": "City of Delray Beach and Village of North Palm Beach",
+      "body": "City Commission",
+      "kind": "contract_vendor",
+      "kind_label": "Contractor",
+      "group": "entity",
+      "signals": [
+        {
+          "id": "cross_town",
+          "label": "2 municipalities",
+          "tone": "warn"
+        },
+        {
+          "id": "kind",
+          "label": "Contractor",
+          "tone": "info"
+        },
+        {
+          "id": "amount",
+          "label": "$28.1M",
+          "tone": "info"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Sep 24 (NPB): Approval of a contract with NMP Golf Construction for improvements to the practice putting green and Hole No. 11 green at the Country Club Golf Course, waiving purchasing policies. Oct 8 (NPB): Approve a contract with NMP Golf Construction Corp. for improvements to the practice putting green and Hole No. 11 green at the Country Club Golf Course, waiving purchasing policies. Nov 2 (DELRAY): Approval of Amendment No. 3 with NMP Golf Construction Corp. in the amount of $140,000.00 for a revised agreement total of $28,100,667.14.",
+      "evidence": {
+        "quote": "APPROVAL OF AMENDMENT NO. 3 TO AGREEMENT ITBC NO. 2025-045 WITH NMP GOLF CONSTRUCTION CORP. FOR LANDSCAPE SERVICES RELATED TO THE DELRAY BEACH MUNICIPAL GOLF COURSE RENOVATION PROJECT",
+        "page": null,
+        "verified": true,
+        "date": "2026-11-02",
+        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+      },
+      "timeline": [
+        {
+          "date": "2026-09-24",
+          "body": "Village Council Meeting",
+          "action": "adopt",
+          "summary": "Approval of a contract with NMP Golf Construction for improvements to the practice putting green and Hole No. 11 green at the Country Club Golf Course, waiving purchasing policies.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376",
+          "addresses": [],
+          "muni": "NPB"
+        },
+        {
+          "date": "2026-10-08",
+          "body": "Village Council Meeting",
+          "action": "approve",
+          "summary": "Approve a contract with NMP Golf Construction Corp. for improvements to the practice putting green and Hole No. 11 green at the Country Club Golf Course, waiving purchasing policies.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10082026-1378",
+          "addresses": [],
+          "muni": "NPB"
+        },
+        {
+          "date": "2026-11-02",
+          "body": "City Commission",
+          "action": "approved",
+          "summary": "Approval of Amendment No. 3 with NMP Golf Construction Corp. in the amount of $140,000.00 for a revised agreement total of $28,100,667.14.",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4631&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "addresses": [],
+          "muni": "DELRAY"
+        }
+      ],
+      "appearance_count": 3,
+      "first_date": "2026-09-24",
+      "latest_date": "2026-11-02",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "NMP Golf Construction Corp.",
+          "role": "contractor"
+        }
+      ],
+      "amount": 28100667,
+      "questions": [
+        "What are the contract or project amounts in the agenda backup?",
+        "Does this party also appear on private development applications?",
+        "Which other municipalities have they worked with?"
+      ],
+      "score": 74,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-22",
+      "is_new": true
     },
     {
       "key": "DELRAY|addr|2210 n federal hwy",
@@ -875,18 +1106,18 @@
       "is_new": false
     },
     {
-      "key": "ENTITY|chen moore and associates",
+      "key": "ENTITY|florida power and light",
       "type": "entity",
-      "title": "Chen Moore and Associates appears on agendas in 2 municipalities",
-      "address": "Chen Moore and Associates",
+      "title": "Florida Power and Light appears on agendas in 2 municipalities",
+      "address": "Florida Power and Light",
       "munis": [
-        "JUIC",
-        "JUNOBEACH"
+        "JUNOBEACH",
+        "NPB"
       ],
-      "muni_names": "Town of Juno Beach and Town of Jupiter Inlet Colony",
-      "body": "Regular Town Commission Meeting",
+      "muni_names": "Town of Juno Beach and Village of North Palm Beach",
+      "body": "Village Council Meeting",
       "kind": "contract_vendor",
-      "kind_label": "Vendor",
+      "kind_label": "Applicant",
       "group": "entity",
       "signals": [
         {
@@ -896,58 +1127,61 @@
         },
         {
           "id": "kind",
-          "label": "Vendor",
+          "label": "Applicant",
           "tone": "info"
         }
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "Jun 24 (JUNOBEACH): The Town Council will receive an update from engineering and planning vendor Chen Moore and Associates. Oct 19 (JUIC): The Town Commission will vote on approving an agreement with Chen Moore and Associates for general engineering services, sponsored by the Town Manager. Nov 9 (JUIC): The Town Commission approved an agreement with Chen Moore & Associates to provide general engineering services as a second firm to the Town.",
+      "hook": "Jun 1 (JUNOBEACH): The Planning and Zoning Board will consider a Master Site Plan Major Amendment for Florida Power and Light. Aug 31 (NPB): Approval of easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for the installation of transformers as part of the Storm Secure Underground Program. / Granting an underground utility easement to Florida Power & Light Company at 603 Anchorage Drive for electric utility facilities. / Granting an underground utility easement to Florida Power & Light Company at 680 Lakeside Drive for underground electric utility facilities. Sep 24 (NPB): Approval of easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for installing transformers under the Storm Secure Underground Program.",
       "evidence": {
-        "quote": "Vote: Approval of an Agreement with Chen Moore and Associates for General Engineering Services",
-        "page": 20,
+        "quote": "Resolution approving Easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for the installation of transformers as part of the Storm Secure Underground Program; and authorizing execution of the Easements.",
+        "page": 10,
         "verified": true,
-        "date": "2026-11-09",
-        "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74"
+        "date": "2026-09-24",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
       },
       "timeline": [
         {
-          "date": "2026-06-24",
-          "body": "Town Council Regular Meeting",
-          "action": "discuss",
-          "summary": "The Town Council will receive an update from engineering and planning vendor Chen Moore and Associates.",
-          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-dfbe193c47df43fd90af069c1f419fef.pdf",
+          "date": "2026-06-01",
+          "body": "Planning and Zoning Board",
+          "action": "approve",
+          "summary": "The Planning and Zoning Board will consider a Master Site Plan Major Amendment for Florida Power and Light.",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/jnobeachfl-pubu/MEET-Agenda-82b5dbb3908144308d90de8f23e92484.pdf",
           "addresses": [],
           "muni": "JUNOBEACH"
         },
         {
-          "date": "2026-10-19",
-          "body": "Town Commission Meeting",
-          "action": "vote",
-          "summary": "The Town Commission will vote on approving an agreement with Chen Moore and Associates for general engineering services, sponsored by the Town Manager.",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_10192026-72",
-          "addresses": [],
-          "muni": "JUIC"
+          "date": "2026-08-31",
+          "body": "Village Council",
+          "action": "approve",
+          "summary": "Approval of easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for the installation of transformers as part of the Storm Secure Underground Program. / Granting an underground utility easement to Florida Power & Light Company at 603 Anchorage Drive for electric utility facilities. / Granting an underground utility easement to Florida Power & Light Company at 680 Lakeside Drive for underground electric utility facilities.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370",
+          "addresses": [
+            "603 Anchorage Drive",
+            "680 Lakeside Drive"
+          ],
+          "muni": "NPB"
         },
         {
-          "date": "2026-11-09",
-          "body": "Regular Town Commission Meeting",
+          "date": "2026-09-24",
+          "body": "Village Council Meeting",
           "action": "approve",
-          "summary": "The Town Commission approved an agreement with Chen Moore & Associates to provide general engineering services as a second firm to the Town.",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_11092026-74",
+          "summary": "Approval of easements in favor of Florida Power and Light at Anchorage Park and Lakeside Park for installing transformers under the Storm Secure Underground Program.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376",
           "addresses": [],
-          "muni": "JUIC"
+          "muni": "NPB"
         }
       ],
       "appearance_count": 3,
-      "first_date": "2026-06-24",
-      "latest_date": "2026-11-09",
+      "first_date": "2026-06-01",
+      "latest_date": "2026-09-24",
       "next_date": null,
       "next_body_meeting": null,
       "entities": [
         {
-          "name": "Chen Moore and Associates",
-          "role": "vendor"
+          "name": "Florida Power and Light",
+          "role": "applicant"
         }
       ],
       "amount": null,
@@ -961,8 +1195,8 @@
         "checked": false,
         "mentions": []
       },
-      "first_seen": "2026-11-21",
-      "is_new": false
+      "first_seen": "2026-11-22",
+      "is_new": true
     },
     {
       "key": "WESTLAKE|case|ORDINANCE202609",
@@ -1243,6 +1477,107 @@
       },
       "first_seen": "2026-11-21",
       "is_new": false
+    },
+    {
+      "key": "NPB|addr|501 u s hwy 1",
+      "type": "address",
+      "title": "Adopt FY 2026 Year-End Budget Amendment and CIP Funding Replenishment",
+      "address": "501 U.S. HIGHWAY 1",
+      "munis": [
+        "NPB"
+      ],
+      "muni_names": "Village of North Palm Beach",
+      "body": "Village Council Meeting",
+      "kind": "contract_vendor",
+      "kind_label": "Vendor contract",
+      "group": "development",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Vendor contract",
+          "tone": "info"
+        },
+        {
+          "id": "repeat",
+          "label": "On 3 agendas",
+          "tone": "warn"
+        },
+        {
+          "id": "amount_changed",
+          "label": "Amount changed $177K to $800K",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Consideration of a resolution amending the General Fund Budget to transfer $800,000 to the Capital Projects Fund and eliminate the $450,000 transfer to the Country Club. On agendas 3 times since May 28. The amount moved from $177K to $800K.",
+      "evidence": {
+        "quote": "RESOLUTION \u2013 FY 2026 YEAR-END BUDGET AMENDMENT AND CIP FUNDING REPLENISHMENT Consider a motion to adopt a resolution amending the Adopted General Fund Budget for Fiscal Year 2026 to transfer $800,000 from the General Fund to the Capital Projects Fund",
+        "page": 2,
+        "verified": true,
+        "date": "2026-10-22",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383"
+      },
+      "timeline": [
+        {
+          "date": "2026-05-28",
+          "body": "Village Council Meeting",
+          "action": "approve",
+          "summary": "Consider a resolution approving a proposal from Brightview Golf Maintenance, Inc. to update the irrigation system at the North Palm Beach Country Club and waiving purchasing policies.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_05282026-1341",
+          "addresses": [
+            "501 U.S. Highway 1"
+          ]
+        },
+        {
+          "date": "2026-08-25",
+          "body": "Village Council",
+          "action": "approve",
+          "summary": "The Village Council is considering funding $1,509,000 in FY 2027 for the Country Club parking expansion and tennis center renovation project.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08252026-1369",
+          "addresses": [
+            "501 U.S. HIGHWAY 1"
+          ]
+        },
+        {
+          "date": "2026-10-22",
+          "body": "Village Council Meeting",
+          "action": "adopt",
+          "summary": "Consideration of a resolution amending the General Fund Budget to transfer $800,000 to the Capital Projects Fund and eliminate the $450,000 transfer to the Country Club.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_10222026-1383",
+          "addresses": [
+            "501 U.S. HIGHWAY 1"
+          ]
+        }
+      ],
+      "appearance_count": 3,
+      "first_date": "2026-05-28",
+      "latest_date": "2026-10-22",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "Brightview Golf Maintenance, Inc.",
+          "role": "contractor"
+        },
+        {
+          "name": "Chen Moore & Associates, Inc.",
+          "role": "vendor"
+        }
+      ],
+      "amount": 1509000,
+      "questions": [
+        "Why did the dollar amount change, and who pays?",
+        "What is the contract amount and term?",
+        "Was it competitively procured?"
+      ],
+      "score": 60,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-22",
+      "is_new": true
     },
     {
       "key": "DELRAY|addr|802 se 5th ave",
@@ -1933,6 +2268,120 @@
       "is_new": false
     },
     {
+      "key": "NPB|addr|631 northlake blvd",
+      "type": "address",
+      "title": "Approve special exception use and site plan appearance for 631 Northlake Boulevard",
+      "address": "631 Northlake Boulevard",
+      "munis": [
+        "NPB"
+      ],
+      "muni_names": "Village of North Palm Beach",
+      "body": "Village Council Meeting",
+      "kind": "site_plan",
+      "kind_label": "Site plan",
+      "group": "development",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Site plan",
+          "tone": "info"
+        },
+        {
+          "id": "repeat",
+          "label": "On 3 agendas",
+          "tone": "warn"
+        },
+        {
+          "id": "wording_changed",
+          "label": "Agenda wording changed",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Approval of a Special Exception Use to allow vehicle sales or repair (restricted to no repairs) and a Site Plan Amendment to update the property and increase watercraft displays. On agendas 3 times since Aug 4. The agenda wording differs between Aug 4 and Sep 24. Compare the two entries.",
+      "evidence": {
+        "quote": "MOTION \u2013 SPECIAL EXCEPTION USE APPROVAL AND SITE PLAN APPEARANCE APPROVAL FOR 631 NORTHLAKE BOULEVARD",
+        "page": 11,
+        "verified": true,
+        "date": "2026-09-24",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376"
+      },
+      "timeline": [
+        {
+          "date": "2026-08-04",
+          "body": "Planning, Zoning, and Adjustment Board",
+          "action": "approve",
+          "summary": "The applicant requests site plan approval for landscaping, parking, and signage updates along with a special exception use to add vehicle and watercraft sales at 631 Northlake Boulevard.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363",
+          "addresses": [
+            "631 Northlake Boulevard"
+          ]
+        },
+        {
+          "date": "2026-08-31",
+          "body": "Village Council",
+          "action": "consider",
+          "summary": "Consideration of a Special Exception Use to add Vehicle Sales or Repair to the property's existing use, along with site plan and appearance approval.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08312026-1370",
+          "addresses": [
+            "631 Northlake Boulevard"
+          ]
+        },
+        {
+          "date": "2026-09-24",
+          "body": "Village Council Meeting",
+          "action": "approve",
+          "summary": "Approval of a Special Exception Use to allow vehicle sales or repair (restricted to no repairs) and a Site Plan Amendment to update the property and increase watercraft displays.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_09242026-1376",
+          "addresses": [
+            "631 Northlake Boulevard"
+          ]
+        }
+      ],
+      "appearance_count": 3,
+      "first_date": "2026-08-04",
+      "latest_date": "2026-09-24",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "Gentile and Co.",
+          "role": "applicant"
+        },
+        {
+          "name": "Lott Brothers",
+          "role": "owner"
+        },
+        {
+          "name": "Lott Holdings",
+          "role": "applicant"
+        },
+        {
+          "name": "Nautical Venture Group, Inc.",
+          "role": "applicant"
+        },
+        {
+          "name": "Nautical Ventures",
+          "role": "applicant"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "What changed between the Aug 4 and Sep 24 versions of this item?",
+        "Who is the developer, and what is the unit count or square footage?",
+        "What conditions were attached to the approval?",
+        "What do the traffic and drainage reviews say?"
+      ],
+      "score": 50,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-22",
+      "is_new": true
+    },
+    {
       "key": "RIVBEACH|addr|3501 broadway",
       "type": "address",
       "title": "Approve lease agreement with FoundCare for suites at 3501 Broadway",
@@ -2578,6 +3027,114 @@
       "is_new": false
     },
     {
+      "key": "NPB|addr|719 northlake blvd",
+      "type": "address",
+      "title": "Site plan and appearance review for improvements at 719 Northlake Blvd",
+      "address": "719 Northlake Blvd",
+      "munis": [
+        "NPB"
+      ],
+      "muni_names": "Village of North Palm Beach",
+      "body": "Planning, Zoning, and Adjustment Board",
+      "kind": "site_plan",
+      "kind_label": "Site plan",
+      "group": "development",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Site plan",
+          "tone": "info"
+        },
+        {
+          "id": "repeat",
+          "label": "On 2 agendas",
+          "tone": "info"
+        },
+        {
+          "id": "wording_changed",
+          "label": "Agenda wording changed",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "The board approved proposed site improvements including landscaping, fa\u00e7ade changes, and repainting for the property. On agendas 2 times since Jun 2. The agenda wording differs between Jun 2 and Jul 7. Compare the two entries.",
+      "evidence": {
+        "quote": "Ms. Lopez-Mojica gave a staff presentation explaining the proposed improvements on the site including landscaping, fa\u00e7ade changes, and repainting.",
+        "page": 4,
+        "verified": true,
+        "date": "2026-07-07",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07072026-1350"
+      },
+      "timeline": [
+        {
+          "date": "2026-06-02",
+          "body": "Planning, Zoning, and Adjustment Board",
+          "action": "approve",
+          "summary": "A request for Site Plan and Appearance Approval for landscaping improvements, a 5-foot-wide landscape buffer, vesting of existing nonconforming elements, a new cantilever roof extension, stucco over the front facade, column architectural improvements, and new exterior paint colors.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_06022026-1343",
+          "addresses": [
+            "719 Northlake Blvd"
+          ]
+        },
+        {
+          "date": "2026-07-07",
+          "body": "Planning, Zoning, and Adjustment Board",
+          "action": "approve",
+          "summary": "The board approved proposed site improvements including landscaping, fa\u00e7ade changes, and repainting for the property.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07072026-1350",
+          "addresses": [
+            "719 Northlake Blvd"
+          ]
+        }
+      ],
+      "appearance_count": 2,
+      "first_date": "2026-06-02",
+      "latest_date": "2026-07-07",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "JMorton Planning and Landscape Architecture",
+          "role": "applicant"
+        },
+        {
+          "name": "Dawn Pfaff LLC",
+          "role": "owner"
+        },
+        {
+          "name": "Robert Pfaff LLC",
+          "role": "owner"
+        },
+        {
+          "name": "Michelle L. Duchene",
+          "role": "architect"
+        },
+        {
+          "name": "Jennifer Morton",
+          "role": "applicant"
+        },
+        {
+          "name": "JMorton",
+          "role": "applicant"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "What changed between the Jun 2 and Jul 7 versions of this item?",
+        "Who is the developer, and what is the unit count or square footage?",
+        "What conditions were attached to the approval?",
+        "What do the traffic and drainage reviews say?"
+      ],
+      "score": 40,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-22",
+      "is_new": true
+    },
+    {
       "key": "MANALAPAN|addr|2000 s ocean blvd",
       "type": "address",
       "title": "Multiple variances requested for lot expansion and pedestrian tunnels at 2000 South Ocean Boulevard",
@@ -2903,6 +3460,98 @@
       "is_new": false
     },
     {
+      "key": "NPB|addr|2585 conroy dr",
+      "type": "address",
+      "title": "Variance approval for residential property located at 2585 Conroy Drive",
+      "address": "2585 Conroy Drive",
+      "munis": [
+        "NPB"
+      ],
+      "muni_names": "Village of North Palm Beach",
+      "body": "Planning, Zoning, and Adjustment Board",
+      "kind": "variance",
+      "kind_label": "Variance",
+      "group": "zoning",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Variance",
+          "tone": "info"
+        },
+        {
+          "id": "repeat",
+          "label": "On 2 agendas",
+          "tone": "info"
+        },
+        {
+          "id": "wording_changed",
+          "label": "Agenda wording changed",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "The board reviewed and approved a variance request for 2585 Conroy Drive after a staff presentation and public discussion regarding hardship and code requirements. On agendas 2 times since Jul 7. The agenda wording differs between Jul 7 and Aug 4. Compare the two entries.",
+      "evidence": {
+        "quote": "1. 2585 Conroy Drive Variance",
+        "page": 4,
+        "verified": true,
+        "date": "2026-08-04",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363"
+      },
+      "timeline": [
+        {
+          "date": "2026-07-07",
+          "body": "Planning, Zoning, and Adjustment Board",
+          "action": "public hearing",
+          "summary": "A request for a variance to allow an addition to encroach the required 10-foot side setback by 0.6 feet to utilize an existing wall.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_07072026-1350",
+          "addresses": [
+            "2585 Conroy Drive"
+          ]
+        },
+        {
+          "date": "2026-08-04",
+          "body": "Planning, Zoning, and Adjustment Board",
+          "action": "approve",
+          "summary": "The board reviewed and approved a variance request for 2585 Conroy Drive after a staff presentation and public discussion regarding hardship and code requirements.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363",
+          "addresses": [
+            "2585 Conroy Drive"
+          ]
+        }
+      ],
+      "appearance_count": 2,
+      "first_date": "2026-07-07",
+      "latest_date": "2026-08-04",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "Pavel Just",
+          "role": "applicant"
+        },
+        {
+          "name": "Michal Velek",
+          "role": "owner"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "What changed between the Jul 7 and Aug 4 versions of this item?",
+        "What exactly is being waived, and what did staff recommend?",
+        "Who is the applicant and what do they plan to build or change?",
+        "Have there been code or permit issues at this address?"
+      ],
+      "score": 40,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-22",
+      "is_new": true
+    },
+    {
       "key": "RIVBEACH|case|SP250002",
       "type": "address",
       "title": "City Council to review Special Exception and Site Plan for Great Blue assisted living facility",
@@ -3152,6 +3801,106 @@
       },
       "first_seen": "2026-11-21",
       "is_new": false
+    },
+    {
+      "key": "NPB|addr|200 yacht club dr",
+      "type": "address",
+      "title": "Site plan and appearance amendment for mixed-use development with waivers",
+      "address": "200 Yacht Club Drive",
+      "munis": [
+        "NPB"
+      ],
+      "muni_names": "Village of North Palm Beach",
+      "body": "Planning, Zoning, and Adjustment Board",
+      "kind": "site_plan",
+      "kind_label": "Site plan",
+      "group": "development",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Site plan",
+          "tone": "info"
+        },
+        {
+          "id": "repeat",
+          "label": "On 2 agendas",
+          "tone": "info"
+        },
+        {
+          "id": "wording_changed",
+          "label": "Agenda wording changed",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "The applicant requested a site plan and appearance amendment for a previously approved mixed-use development, relocating the pool, revising unit mix, modifying Building C, and reducing parking spaces. On agendas 2 times since Aug 4. The agenda wording differs between Aug 4 and Nov 4. Compare the two entries.",
+      "evidence": {
+        "quote": "Lindsay Jean-Louis of Urban Design Studio, representing the property owner and contract purchaser, presented a request for a site plan and appearance amendment to the previously approved mixed-use development at 200 Yacht Club Drive.",
+        "page": 4,
+        "verified": true,
+        "date": "2026-11-04",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387"
+      },
+      "timeline": [
+        {
+          "date": "2026-08-04",
+          "body": "Planning, Zoning, and Adjustment Board",
+          "action": "public hearing",
+          "summary": "An application was submitted for approval of a Site Plan and Appearance amendment with waivers for a previously approved mixed-use development project located at 200 Yacht Club Drive.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_08042026-1363",
+          "addresses": [
+            "200 Yacht Club Drive"
+          ]
+        },
+        {
+          "date": "2026-11-04",
+          "body": "Planning, Zoning, and Adjustment Board",
+          "action": "approve",
+          "summary": "The applicant requested a site plan and appearance amendment for a previously approved mixed-use development, relocating the pool, revising unit mix, modifying Building C, and reducing parking spaces.",
+          "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_11042026-1387",
+          "addresses": [
+            "200 Yacht Club Drive"
+          ]
+        }
+      ],
+      "appearance_count": 2,
+      "first_date": "2026-08-04",
+      "latest_date": "2026-11-04",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "Urban Design Studio",
+          "role": "applicant"
+        },
+        {
+          "name": "Robbins NPB LLC",
+          "role": "owner"
+        },
+        {
+          "name": "Navarro Lowery, Inc.",
+          "role": "applicant"
+        },
+        {
+          "name": "Lindsay Jean-Louis",
+          "role": "applicant"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "What changed between the Aug 4 and Nov 4 versions of this item?",
+        "Who is the developer, and what is the unit count or square footage?",
+        "What conditions were attached to the approval?",
+        "What do the traffic and drainage reviews say?"
+      ],
+      "score": 40,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-22",
+      "is_new": true
     },
     {
       "key": "WESTLAKE|addr|17035 persimmon blvd w",
@@ -4117,6 +4866,106 @@
       "is_new": false
     },
     {
+      "key": "DELRAY|addr|755 se 7th ave",
+      "type": "address",
+      "title": "Variance requested to allow off-street parking within the front setback",
+      "address": "755 SE 7th Avenue",
+      "munis": [
+        "DELRAY"
+      ],
+      "muni_names": "City of Delray Beach",
+      "body": "Board of Adjustment",
+      "kind": "variance",
+      "kind_label": "Variance",
+      "group": "zoning",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Variance",
+          "tone": "info"
+        },
+        {
+          "id": "repeat",
+          "label": "On 2 agendas",
+          "tone": "info"
+        },
+        {
+          "id": "tabled",
+          "label": "Tabled or continued",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "The Board of Adjustment will consider a variance from off-street parking regulations to allow a required parking space to be in the front setback due to converting part of an attached garage into habitable space. On agendas 2 times since Sep 3. It was tabled or continued at least once.",
+      "evidence": {
+        "quote": "755 SE 7th Avenue (PZ-000669-2026): Consideration of a variance request from Land Development Regulations (LDR) Section 4.6.9(C)(2)(a)",
+        "page": null,
+        "verified": true,
+        "date": "2026-11-05",
+        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4468&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+      },
+      "timeline": [
+        {
+          "date": "2026-09-03",
+          "body": "Board of Adjustment",
+          "action": "continued",
+          "summary": "Consideration of a variance request to reduce minimum required off-street parking from two spaces to zero by converting the existing two-car garage to habitable floor area.",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4466&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "addresses": [
+            "755 SE 7th Avenue"
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "body": "Board of Adjustment",
+          "action": "Consideration of a variance request",
+          "summary": "The Board of Adjustment will consider a variance from off-street parking regulations to allow a required parking space to be in the front setback due to converting part of an attached garage into habitable space.",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4468&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "addresses": [
+            "755 SE 7th Avenue"
+          ]
+        }
+      ],
+      "appearance_count": 2,
+      "first_date": "2026-09-03",
+      "latest_date": "2026-11-05",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "Chimino Anthony D. Trust",
+          "role": "owner"
+        },
+        {
+          "name": "Smith Elizabeth R. Trust",
+          "role": "owner"
+        },
+        {
+          "name": "Andres Torres",
+          "role": "applicant"
+        },
+        {
+          "name": "Cesar Torres Construction, LLC",
+          "role": "contractor"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "Why was the item tabled or continued?",
+        "What exactly is being waived, and what did staff recommend?",
+        "Who is the applicant and what do they plan to build or change?",
+        "Have there been code or permit issues at this address?"
+      ],
+      "score": 38,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-22",
+      "is_new": true
+    },
+    {
       "key": "DELRAY|addr|219 nw 12th st",
       "type": "address",
       "title": "Approve land development regulations waiver for floor area ratio and upper floor area at 219 Northwest 12th Street",
@@ -4726,509 +5575,6 @@
         },
         {
           "name": "Tezral Partners",
-          "role": "applicant"
-        }
-      ],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "RIVBEACH|case|ORDINANCE4310",
-      "type": "address",
-      "title": "Rezoning application for parcels from Downtown Core to Inlet Harbor Center-PUD",
-      "address": "Ordinance 4310",
-      "munis": [
-        "RIVBEACH"
-      ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,City Council",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "An ordinance to rezone approximately 2.448 acres consisting of 15 tax parcels from Downtown Core to Inlet Harbor Center-Planned Unit Development.",
-      "evidence": {
-        "quote": "Ordinance 4310: An Ordinance of the City Council of the City of Riviera Beach, Palm Beach County, Florida, amending the City Code of Ordinances Chapter 31 (ZA-24-0006)",
-        "page": 5,
-        "verified": true,
-        "date": "2026-05-20",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=620"
-      },
-      "timeline": [
-        {
-          "date": "2026-05-20",
-          "body": "Event,City Council",
-          "action": "approve",
-          "summary": "An ordinance to rezone approximately 2.448 acres consisting of 15 tax parcels from Downtown Core to Inlet Harbor Center-Planned Unit Development.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=620",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-05-20",
-      "latest_date": "2026-05-20",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [
-        {
-          "name": "Related Urban",
-          "role": "applicant"
-        },
-        {
-          "name": "BH Group",
-          "role": "applicant"
-        },
-        {
-          "name": "Tezral Partners",
-          "role": "applicant"
-        }
-      ],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|260793",
-      "type": "address",
-      "title": "Approve conditional use and waivers for multi-family housing in general commercial district",
-      "address": "26-0793",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "The city approved a conditional use for free-standing multi-family housing in the general commercial zoning district along with multiple land development regulation waivers.",
-      "evidence": {
-        "quote": "APPROVING A CONDITIONAL USE TO ALLOW FREE-STANDING MULTIPLE-FAMILY HOUSING IN THE GENERAL COMMERCIAL ZONING DISTRICT",
-        "page": null,
-        "verified": true,
-        "date": "2026-07-14",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-07-14",
-          "body": "City Commission",
-          "action": "approve",
-          "summary": "The city approved a conditional use for free-standing multi-family housing in the general commercial zoning district along with multiple land development regulation waivers.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4621&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-07-14",
-      "latest_date": "2026-07-14",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|260896",
-      "type": "address",
-      "title": "Ordinance amending land development regulations regarding rear setbacks and alleys",
-      "address": "26-0896",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Second reading and public hearing for an ordinance specifying that rear setback requirements apply to side lot lines adjoining alleys.",
-      "evidence": {
-        "quote": "ORDINANCE NO. 31-26: AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AMENDING THE LAND DEVELOPMENT REGULATIONS...",
-        "page": null,
-        "verified": true,
-        "date": "2026-08-11",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4651&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-08-11",
-          "body": "City Commission",
-          "action": "public hearing",
-          "summary": "Second reading and public hearing for an ordinance specifying that rear setback requirements apply to side lot lines adjoining alleys.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4651&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-08-11",
-      "latest_date": "2026-08-11",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|260895",
-      "type": "address",
-      "title": "Ordinance granting administrative authority to adjust setbacks and development standards",
-      "address": "26-0895",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Second reading and public hearing to grant the Director of Development Services authority to adjust setbacks up to five feet for right-of-way dedications.",
-      "evidence": {
-        "quote": "ORDINANCE NO. 32-26: AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AMENDING THE LAND DEVELOPMENT REGULATIONS...",
-        "page": null,
-        "verified": true,
-        "date": "2026-08-11",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4651&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-08-11",
-          "body": "City Commission",
-          "action": "public hearing",
-          "summary": "Second reading and public hearing to grant the Director of Development Services authority to adjust setbacks up to five feet for right-of-way dedications.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4651&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-08-11",
-      "latest_date": "2026-08-11",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "RIVBEACH|case|ORDINANCE4320",
-      "type": "address",
-      "title": "Ordinance Amending Municipal Employment and Affordable Housing Opportunity Plan Requirements",
-      "address": "Ordinance 4320",
-      "munis": [
-        "RIVBEACH"
-      ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,Planning and Zoning Board Meeting",
-      "kind": "development_agreement",
-      "kind_label": "Development agreement",
-      "group": "development",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Development agreement",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "An ordinance amending Chapter 26 to revise local hiring, definitions, and first-source hiring requirements for projects receiving zoning bonuses.",
-      "evidence": {
-        "quote": "repealing and replacing Section 26-6 with \u201cFirst Source Hiring\u201d establishing City-resident hiring, outreach, reporting, and compliance requirements for projects receiving zoning bonuses",
-        "page": 4,
-        "verified": true,
-        "date": "2026-08-13",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=670"
-      },
-      "timeline": [
-        {
-          "date": "2026-08-13",
-          "body": "Event,Planning and Zoning Board Meeting",
-          "action": "recommend approval",
-          "summary": "An ordinance amending Chapter 26 to revise local hiring, definitions, and first-source hiring requirements for projects receiving zoning bonuses.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=670",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-08-13",
-      "latest_date": "2026-08-13",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What does the municipality give up and get in the agreement?",
-        "Who signs for the developer, and who owns the land?",
-        "What are the deadlines and penalties?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|260930",
-      "type": "address",
-      "title": "Approve conditional use and various waivers for multiple-family housing project",
-      "address": "26-0930",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Approval of a conditional use to allow free-standing multiple-family housing in the general commercial zoning district along with multiple code waivers and adjustments.",
-      "evidence": {
-        "quote": "RESOLUTION NO. 96-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, APPROVING A CONDITIONAL USE TO ALLOW FREE-STANDING MULTIPLE-FAMILY HOUSING IN THE GENERAL COMMERCIAL ZONING DISTRICT",
-        "page": null,
-        "verified": true,
-        "date": "2026-08-18",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4624&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-08-18",
-          "body": "City Commission",
-          "action": "approve",
-          "summary": "Approval of a conditional use to allow free-standing multiple-family housing in the general commercial zoning district along with multiple code waivers and adjustments.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4624&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-08-18",
-      "latest_date": "2026-08-18",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|261200",
-      "type": "address",
-      "title": "Approve a workforce housing covenant with Delray Apartments Venture, LLC",
-      "address": "26-1200",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "development_agreement",
-      "kind_label": "Development agreement",
-      "group": "development",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Development agreement",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Approval of a workforce housing covenant between the city and Delray Apartments Venture pursuant to land development regulations.",
-      "evidence": {
-        "quote": "APPROVE A WORKFORCE HOUSING COVENANT BETWEEN THE CITY OF DELRAY BEACH AND DELRAY APARTMENTS VENTURE, LLC",
-        "page": null,
-        "verified": true,
-        "date": "2026-09-22",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-09-22",
-          "body": "City Commission",
-          "action": "approve",
-          "summary": "Approval of a workforce housing covenant between the city and Delray Apartments Venture pursuant to land development regulations.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4628&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-09-22",
-      "latest_date": "2026-09-22",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [
-        {
-          "name": "Delray Apartments Venture, LLC",
-          "role": "applicant"
-        }
-      ],
-      "amount": null,
-      "questions": [
-        "What does the municipality give up and get in the agreement?",
-        "Who signs for the developer, and who owns the land?",
-        "What are the deadlines and penalties?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|PZ0007412026",
-      "type": "address",
-      "title": "Rezoning North Congress Avenue parcels from PCC to MIC",
-      "address": "PZ-000741-2026",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "Planning and Zoning Board",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "A privately-initiated rezoning of a 5.11-acre parcel from Planned Commerce Center to Mixed Industrial and Commercial.",
-      "evidence": {
-        "quote": "Provide a recommendation to the City Commission on a privately-initiated rezoning from Planned Commerce Center (PCC) to Mixed Industrial and Commercial (MIC) (Ordinance No. 46-26) for a 5.11-acre parcel",
-        "page": null,
-        "verified": true,
-        "date": "2026-09-28",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4452&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-09-28",
-          "body": "Planning and Zoning Board",
-          "action": "Provide a recommendation to the City Commission",
-          "summary": "A privately-initiated rezoning of a 5.11-acre parcel from Planned Commerce Center to Mixed Industrial and Commercial.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4452&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-09-28",
-      "latest_date": "2026-09-28",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [
-        {
-          "name": "Kevin Lorne",
           "role": "applicant"
         }
       ],

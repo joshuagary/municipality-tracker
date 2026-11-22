@@ -1,59 +1,5 @@
 [
   {
-    "muni_short": "WELL",
-    "muni_full": "Village of Wellington",
-    "title": "Wellington Council Agenda Review Meeting",
-    "date": "2026-10-08",
-    "type": "added",
-    "time": "4:30 PM",
-    "detected_at": "2026-10-08T05:01:42.016887+00:00"
-  },
-  {
-    "muni_short": "WELL",
-    "muni_full": "Village of Wellington",
-    "title": "Wellington Village Council Meeting",
-    "date": "2026-10-13",
-    "type": "added",
-    "time": "6:30 PM",
-    "detected_at": "2026-10-08T05:01:42.016887+00:00"
-  },
-  {
-    "muni_short": "JUP",
-    "muni_full": "Town of Jupiter",
-    "title": "Community Redevelopment Agency (CRA) Regular Meeting",
-    "date": "2026-11-05",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-10-08T05:01:42.016887+00:00"
-  },
-  {
-    "muni_short": "JUP",
-    "muni_full": "Town of Jupiter",
-    "title": "Town Council Regular Meeting",
-    "date": "2026-11-05",
-    "type": "added",
-    "time": "7:00 PM",
-    "detected_at": "2026-10-08T05:01:42.016887+00:00"
-  },
-  {
-    "muni_short": "RIVBEACH",
-    "muni_full": "City of Riviera Beach",
-    "title": "Community Redevelopment Agency",
-    "date": "2026-10-14",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-10-08T05:01:42.016887+00:00"
-  },
-  {
-    "muni_short": "JUP",
-    "muni_full": "Town of Jupiter",
-    "title": "Town Council Special Meeting",
-    "date": "2026-11-05",
-    "time": "7:00 PM",
-    "type": "removed",
-    "detected_at": "2026-10-08T05:01:42.016887+00:00"
-  },
-  {
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Agenda Review Workshop October 8, 2026 100 E. Ocean Avenue Event Details",
@@ -2839,5 +2785,23 @@
     "type": "added",
     "time": "9:30 AM",
     "detected_at": "2026-11-21T13:12:19.404133+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Special Town Council Meeting - Election",
+    "date": "2026-12-04",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-11-22T05:37:03.247675+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Special Town Council Meeting",
+    "date": "2026-12-04",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-11-22T05:37:03.247675+00:00"
   }
 ]
