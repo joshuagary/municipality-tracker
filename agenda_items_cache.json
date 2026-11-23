@@ -15096,6 +15096,163 @@
    "doc_hash": "697a4105c1d28d54",
    "analyzed_at": "2026-11-22",
    "items": []
+  },
+  "RIVBEACH|2026-11-23|event,community redevelopment agency": {
+   "doc_hash": "38496bb6d742001f",
+   "analyzed_at": "2026-11-23",
+   "items": [
+    {
+     "headline": "Approval of payment applications and improvement allowance for Rafiki Tiki Restaurant Build-Out",
+     "kind": "other",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Staff requests approval of payment applications and determination of the improvement allowance for the Rafiki Tiki Restaurant build-out.",
+     "evidence": {
+      "quote": "Staff requests your approval of payment applications and determination of improvement allowance.",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,Community Redevelopment Agency",
+     "date": "2026-11-23",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+    },
+    {
+     "headline": "Resolution No. 2026-22 Approving purchase and sale agreement for the 1800 Parcel on Broadway with Forest Development Acquisitions",
+     "kind": "land_transaction",
+     "address": "1800 Parcel on Broadway",
+     "case_no": "Resolution No. 2026 - 22",
+     "entities": [
+      {
+       "name": "Forest Development Acquisitions, LLC",
+       "role": "developer"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The CRA is considering a resolution approving the purchase and sale agreement with Forest Development Acquisitions for the acquisition and redevelopment of the 1800 Parcel on Broadway.",
+     "evidence": {
+      "quote": "Resolution No. 2026 - 22 Approving the agreement for the purchase and sale of Real Property located on the 1800 Parcel on Broadway between the Riviera Beach CRA and Forest Development Acquisitions, LLC",
+      "page": 5,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,Community Redevelopment Agency",
+     "date": "2026-11-23",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+    },
+    {
+     "headline": "Resolution No. 2026-20 Accepting Solid Waste Authority Clean-up Grant for demolition and site clean-up at 2615 Broadway",
+     "kind": "demolition",
+     "address": "2615 Broadway",
+     "case_no": "Resolution No. 2026 - 20",
+     "entities": [],
+     "amount": 180500,
+     "action": "approve",
+     "consent": false,
+     "summary": "Staff requests approval of Resolution No. 2026-20 to accept a $180,500 Blighted and Distressed Property Clean-up Grant for demolition and site clean-up at 2615 Broadway.",
+     "evidence": {
+      "quote": "Resolution No. 2026 - 20 Accepting a $180,500 Blighted and Distressed Property Clean-up Grant Award from the Solid Waste Authority of Palm Beach County for demolition and site clean-up at 2615 Broadway",
+      "page": 5,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,Community Redevelopment Agency",
+     "date": "2026-11-23",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+    },
+    {
+     "headline": "Authorize negotiations with Blank Rome for Marina Village Phase II Redevelopment Development Counsel",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "RFP No. 26-035",
+     "entities": [
+      {
+       "name": "Blank Rome, LLP",
+       "role": "vendor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Staff requests approval to move forward with negotiations with Blank Rome, LLP as CRA Development Counsel for Marina Village Phase II Redevelopment.",
+     "evidence": {
+      "quote": "Recommendation to approve the Evaluation Committee Ranking and authorize negotiations with Blank Rome, LLP - RFP No. 26-035 CRA Development Counsel for Marina Village Phase II Redevelopment",
+      "page": 5,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,Community Redevelopment Agency",
+     "date": "2026-11-23",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+    },
+    {
+     "headline": "Resolution No. 2026-21 Amending Resolution No. 2026-17 to establish the RISE Grant Program",
+     "kind": "incentive_abatement",
+     "address": "",
+     "case_no": "Resolution No. 2026 - 21",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Staff recommends approval of the resolution amending Resolution No. 2026-17 to establish the RISE Program as a business micro-grant under the Business Assistance Grant Programs.",
+     "evidence": {
+      "quote": "Resolution No. 2026 - 21 Amending Resolution No. 2026 - 17 to establish the RISE Grant Program as a business micro-grant under the Business Assistance Grant Programs",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,Community Redevelopment Agency",
+     "date": "2026-11-23",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+    },
+    {
+     "headline": "Resolution No. 2026-23 Approving Commercial Sublease Agreement with Funky Cafe for 3501 Broadway, Suite B",
+     "kind": "land_transaction",
+     "address": "3501 Broadway, Suite B",
+     "case_no": "Resolution No. 2026 - 23",
+     "entities": [
+      {
+       "name": "Funky Cafe, LLC",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Staff requests the CRA Board approve a commercial sublease agreement with Funky Cafe for the food business incubator restaurant space at 3501 Broadway, Suite B for a three-year term.",
+     "evidence": {
+      "quote": "Resolution No. 2026 - 23 of the Board of Commissioners for the Riviera Beach Community Redevelopment Agency approving a Commercial Sublease Agreement with Funky Cafe, LLC for the restaurant space located at 3501 Broadway, Suite B",
+      "page": null,
+      "verified": false
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,Community Redevelopment Agency",
+     "date": "2026-11-23",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+    }
+   ]
+  },
+  "WPB|2026-12-14|mayor/commission work session": {
+   "doc_hash": "5809de6bc052b82b",
+   "analyzed_at": "2026-11-23",
+   "items": []
+  },
+  "WPB|2026-12-15|planning board": {
+   "doc_hash": "2e5a1b26de21d9bd",
+   "analyzed_at": "2026-11-23",
+   "items": []
   }
  },
  "nodoc": {

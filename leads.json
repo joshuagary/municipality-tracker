@@ -1,11 +1,11 @@
 {
   "schema": 2,
-  "generated_at": "2026-11-22T05:41:37.486924+00:00",
-  "today": "2026-11-22",
+  "generated_at": "2026-11-23T06:21:13.260725+00:00",
+  "today": "2026-11-23",
   "lookback_months": 6,
-  "meetings_scanned": 368,
-  "meetings_pending_analysis": 3,
-  "llm_available": false,
+  "meetings_scanned": 370,
+  "meetings_pending_analysis": 0,
+  "llm_available": true,
   "coverage_by_municipality": {
     "BOCA": {
       "meetings": 42,
@@ -99,11 +99,11 @@
       "pending": 0
     },
     "RIVBEACH": {
-      "meetings": 31,
-      "with_document": 31,
-      "with_items": 30,
-      "items": 99,
-      "pending": 1
+      "meetings": 32,
+      "with_document": 32,
+      "with_items": 32,
+      "items": 111,
+      "pending": 0
     },
     "WESTLAKE": {
       "meetings": 19,
@@ -113,14 +113,343 @@
       "pending": 0
     },
     "WPB": {
-      "meetings": 47,
-      "with_document": 45,
+      "meetings": 48,
+      "with_document": 46,
       "with_items": 6,
       "items": 6,
-      "pending": 2
+      "pending": 0
     }
   },
   "leads": [
+    {
+      "key": "RIVBEACH|addr|3501 broadway",
+      "type": "address",
+      "title": "Resolution No. 2026-23 Approving Commercial Sublease Agreement with Funky Cafe for 3501 Broadway, Suite B",
+      "address": "3501 Broadway, Suite B",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,Community Redevelopment Agency",
+      "kind": "land_transaction",
+      "kind_label": "Land deal",
+      "group": "land",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Land deal",
+          "tone": "warn"
+        },
+        {
+          "id": "repeat",
+          "label": "On 3 agendas",
+          "tone": "warn"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Nov 23 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Staff requests the CRA Board approve a commercial sublease agreement with Funky Cafe for the food business incubator restaurant space at 3501 Broadway, Suite B for a three-year term. On agendas 3 times since Jun 10.",
+      "evidence": {
+        "quote": "Resolution No. 2026 - 23 of the Board of Commissioners for the Riviera Beach Community Redevelopment Agency approving a Commercial Sublease Agreement with Funky Cafe, LLC for the restaurant space located at 3501 Broadway, Suite B",
+        "page": null,
+        "verified": false,
+        "date": "2026-11-23",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "timeline": [
+        {
+          "date": "2026-06-10",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "The CRA board is asked to approve a resolution authorizing a piggyback agreement with Centurion Security Group, LLC for armed security services at the CRA Office.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=699",
+          "addresses": [
+            "3501 Broadway"
+          ]
+        },
+        {
+          "date": "2026-10-14",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "The CRA board is asked to approve a lease agreement with FoundCare, Inc. for Suites B and C located at 3501 Broadway. / Approve a commercial sublease agreement with Funky Cafe, LLC for a three-year term for the food business incubator restaurant space at 3501 Broadway.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=755",
+          "addresses": [
+            "3501 Broadway, Riviera Beach, FL 33404",
+            "3501 Broadway, Suite B, Riviera Beach, FL 33404"
+          ]
+        },
+        {
+          "date": "2026-11-23",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "Staff requests the CRA Board approve a commercial sublease agreement with Funky Cafe for the food business incubator restaurant space at 3501 Broadway, Suite B for a three-year term.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
+          "addresses": [
+            "3501 Broadway, Suite B"
+          ]
+        }
+      ],
+      "appearance_count": 3,
+      "first_date": "2026-06-10",
+      "latest_date": "2026-11-23",
+      "next_date": "2026-11-23",
+      "next_body_meeting": {
+        "date": "2026-11-23",
+        "title": "Event,Community Redevelopment Agency",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "entities": [
+        {
+          "name": "Centurion Security Group, LLC",
+          "role": "vendor"
+        },
+        {
+          "name": "FoundCare, Inc.",
+          "role": "applicant"
+        },
+        {
+          "name": "Funky Cafe, LLC",
+          "role": "applicant"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "Who is buying or leasing, and at what price?",
+        "Was the property appraised or competitively offered?",
+        "Who owned it before and what was it last sold for?"
+      ],
+      "score": 63,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-21",
+      "is_new": false
+    },
+    {
+      "key": "RIVBEACH|addr|1800 parcel on broadway",
+      "type": "address",
+      "title": "Resolution No. 2026-22 Approving purchase and sale agreement for the 1800 Parcel on Broadway with Forest Development Acquisitions",
+      "address": "1800 Parcel on Broadway",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,Community Redevelopment Agency",
+      "kind": "land_transaction",
+      "kind_label": "Land deal",
+      "group": "land",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Land deal",
+          "tone": "warn"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Nov 23 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "The CRA is considering a resolution approving the purchase and sale agreement with Forest Development Acquisitions for the acquisition and redevelopment of the 1800 Parcel on Broadway.",
+      "evidence": {
+        "quote": "Resolution No. 2026 - 22 Approving the agreement for the purchase and sale of Real Property located on the 1800 Parcel on Broadway between the Riviera Beach CRA and Forest Development Acquisitions, LLC",
+        "page": 5,
+        "verified": true,
+        "date": "2026-11-23",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "timeline": [
+        {
+          "date": "2026-11-23",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "The CRA is considering a resolution approving the purchase and sale agreement with Forest Development Acquisitions for the acquisition and redevelopment of the 1800 Parcel on Broadway.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
+          "addresses": [
+            "1800 Parcel on Broadway"
+          ]
+        }
+      ],
+      "appearance_count": 1,
+      "first_date": "2026-11-23",
+      "latest_date": "2026-11-23",
+      "next_date": "2026-11-23",
+      "next_body_meeting": {
+        "date": "2026-11-23",
+        "title": "Event,Community Redevelopment Agency",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "entities": [
+        {
+          "name": "Forest Development Acquisitions, LLC",
+          "role": "developer"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "Who is buying or leasing, and at what price?",
+        "Was the property appraised or competitively offered?",
+        "Who owned it before and what was it last sold for?"
+      ],
+      "score": 43,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-23",
+      "is_new": true
+    },
+    {
+      "key": "RIVBEACH|case|RESOLUTIONNO202621",
+      "type": "address",
+      "title": "Resolution No. 2026-21 Amending Resolution No. 2026-17 to establish the RISE Grant Program",
+      "address": "Resolution No. 2026 - 21",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,Community Redevelopment Agency",
+      "kind": "incentive_abatement",
+      "kind_label": "Incentive or abatement",
+      "group": "land",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Incentive or abatement",
+          "tone": "warn"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Nov 23 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Staff recommends approval of the resolution amending Resolution No. 2026-17 to establish the RISE Program as a business micro-grant under the Business Assistance Grant Programs.",
+      "evidence": {
+        "quote": "Resolution No. 2026 - 21 Amending Resolution No. 2026 - 17 to establish the RISE Grant Program as a business micro-grant under the Business Assistance Grant Programs",
+        "page": 6,
+        "verified": true,
+        "date": "2026-11-23",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "timeline": [
+        {
+          "date": "2026-11-23",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "Staff recommends approval of the resolution amending Resolution No. 2026-17 to establish the RISE Program as a business micro-grant under the Business Assistance Grant Programs.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
+          "addresses": []
+        }
+      ],
+      "appearance_count": 1,
+      "first_date": "2026-11-23",
+      "latest_date": "2026-11-23",
+      "next_date": "2026-11-23",
+      "next_body_meeting": {
+        "date": "2026-11-23",
+        "title": "Event,Community Redevelopment Agency",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "entities": [],
+      "amount": null,
+      "questions": [
+        "What is the dollar value of the incentive, and over how many years?",
+        "What does the recipient have to deliver, and who checks?"
+      ],
+      "score": 43,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-23",
+      "is_new": true
+    },
+    {
+      "key": "RIVBEACH|addr|2615 broadway",
+      "type": "address",
+      "title": "Resolution No. 2026-20 Accepting Solid Waste Authority Clean-up Grant for demolition and site clean-up at 2615 Broadway",
+      "address": "2615 Broadway",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,Community Redevelopment Agency",
+      "kind": "demolition",
+      "kind_label": "Demolition",
+      "group": "development",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Demolition",
+          "tone": "info"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Nov 23 agenda",
+          "tone": "success"
+        },
+        {
+          "id": "amount",
+          "label": "$180K",
+          "tone": "info"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Staff requests approval of Resolution No. 2026-20 to accept a $180,500 Blighted and Distressed Property Clean-up Grant for demolition and site clean-up at 2615 Broadway.",
+      "evidence": {
+        "quote": "Resolution No. 2026 - 20 Accepting a $180,500 Blighted and Distressed Property Clean-up Grant Award from the Solid Waste Authority of Palm Beach County for demolition and site clean-up at 2615 Broadway",
+        "page": 5,
+        "verified": true,
+        "date": "2026-11-23",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "timeline": [
+        {
+          "date": "2026-11-23",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "Staff requests approval of Resolution No. 2026-20 to accept a $180,500 Blighted and Distressed Property Clean-up Grant for demolition and site clean-up at 2615 Broadway.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
+          "addresses": [
+            "2615 Broadway"
+          ]
+        }
+      ],
+      "appearance_count": 1,
+      "first_date": "2026-11-23",
+      "latest_date": "2026-11-23",
+      "next_date": "2026-11-23",
+      "next_body_meeting": {
+        "date": "2026-11-23",
+        "title": "Event,Community Redevelopment Agency",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "entities": [],
+      "amount": 180500,
+      "questions": [
+        "What is being demolished and what replaces it?",
+        "Is the building historic or protected?"
+      ],
+      "score": 41,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-23",
+      "is_new": true
+    },
     {
       "key": "ENTITY|chen moore and associates",
       "type": "entity",
@@ -724,7 +1053,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-22",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "DELRAY|addr|2210 n federal hwy",
@@ -1196,7 +1525,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-22",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "WESTLAKE|case|ORDINANCE202609",
@@ -1577,7 +1906,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-22",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "DELRAY|addr|802 se 5th ave",
@@ -2379,107 +2708,6 @@
         "mentions": []
       },
       "first_seen": "2026-11-22",
-      "is_new": true
-    },
-    {
-      "key": "RIVBEACH|addr|3501 broadway",
-      "type": "address",
-      "title": "Approve lease agreement with FoundCare for suites at 3501 Broadway",
-      "address": "3501 Broadway, Riviera Beach, FL 33404",
-      "munis": [
-        "RIVBEACH"
-      ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,Community Redevelopment Agency",
-      "kind": "land_transaction",
-      "kind_label": "Land deal",
-      "group": "land",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Land deal",
-          "tone": "warn"
-        },
-        {
-          "id": "repeat",
-          "label": "On 2 agendas",
-          "tone": "info"
-        },
-        {
-          "id": "wording_changed",
-          "label": "Agenda wording changed",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "The CRA board is asked to approve a lease agreement with FoundCare, Inc. for Suites B and C located at 3501 Broadway. / Approve a commercial sublease agreement with Funky Cafe, LLC for a three-year term for the food business incubator restaurant space at 3501 Broadway. On agendas 2 times since Jun 10. The agenda wording differs between Jun 10 and Oct 14. Compare the two entries.",
-      "evidence": {
-        "quote": "Resolution No. 2026 - 15 requesting the approval of Lease Agreement between FoundCare, Inc. and the Riviera Beach Community Redevelopment Agency for Suites B and C located at 3501 Broadway",
-        "page": 4,
-        "verified": true,
-        "date": "2026-10-14",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=755"
-      },
-      "timeline": [
-        {
-          "date": "2026-06-10",
-          "body": "Event,Community Redevelopment Agency",
-          "action": "approve",
-          "summary": "The CRA board is asked to approve a resolution authorizing a piggyback agreement with Centurion Security Group, LLC for armed security services at the CRA Office.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=699",
-          "addresses": [
-            "3501 Broadway"
-          ]
-        },
-        {
-          "date": "2026-10-14",
-          "body": "Event,Community Redevelopment Agency",
-          "action": "approve",
-          "summary": "The CRA board is asked to approve a lease agreement with FoundCare, Inc. for Suites B and C located at 3501 Broadway. / Approve a commercial sublease agreement with Funky Cafe, LLC for a three-year term for the food business incubator restaurant space at 3501 Broadway.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=755",
-          "addresses": [
-            "3501 Broadway, Riviera Beach, FL 33404",
-            "3501 Broadway, Suite B, Riviera Beach, FL 33404"
-          ]
-        }
-      ],
-      "appearance_count": 2,
-      "first_date": "2026-06-10",
-      "latest_date": "2026-10-14",
-      "next_date": null,
-      "next_body_meeting": {
-        "date": "2026-11-23",
-        "title": "Event,Community Redevelopment Agency",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
-      },
-      "entities": [
-        {
-          "name": "Centurion Security Group, LLC",
-          "role": "vendor"
-        },
-        {
-          "name": "FoundCare, Inc.",
-          "role": "applicant"
-        },
-        {
-          "name": "Funky Cafe, LLC",
-          "role": "applicant"
-        }
-      ],
-      "amount": null,
-      "questions": [
-        "What changed between the Jun 10 and Oct 14 versions of this item?",
-        "Who is buying or leasing, and at what price?",
-        "Was the property appraised or competitively offered?",
-        "Who owned it before and what was it last sold for?"
-      ],
-      "score": 50,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
       "is_new": false
     },
     {
@@ -3132,7 +3360,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-22",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "MANALAPAN|addr|2000 s ocean blvd",
@@ -3549,7 +3777,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-22",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "RIVBEACH|case|SP250002",
@@ -3900,7 +4128,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-22",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "WESTLAKE|addr|17035 persimmon blvd w",
@@ -4963,7 +5191,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-22",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "DELRAY|addr|219 nw 12th st",
@@ -5385,199 +5613,6 @@
       "next_date": null,
       "next_body_meeting": null,
       "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|ORDINANCENO1526",
-      "type": "address",
-      "title": "Relocation of Medical Arts Overlay District regulations across zoning districts",
-      "address": "ORDINANCE NO. 15-26",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Second reading and public hearing for an ordinance relocating Medical Arts Overlay District regulations from supplemental district regulations to principal uses and structures within planned commercial, office, and community facilities districts.",
-      "evidence": {
-        "quote": "ORDINANCE NO. 15-26: AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AMENDING THE LAND DEVELOPMENT REGULATIONS... TO RELOCATE MEDICAL ARTS OVERLAY DISTRICT REGULATIONS",
-        "page": null,
-        "verified": false,
-        "date": "2026-05-05",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4606&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-05-05",
-          "body": "City Commission",
-          "action": "approve",
-          "summary": "Second reading and public hearing for an ordinance relocating Medical Arts Overlay District regulations from supplemental district regulations to principal uses and structures within planned commercial, office, and community facilities districts.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4606&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-05-05",
-      "latest_date": "2026-05-05",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|ORDINANCENO2026",
-      "type": "address",
-      "title": "Amendment of LDRs to permit concrete products manufacturing and distribution in MIC and Industrial districts",
-      "address": "ORDINANCE NO. 20-26",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Amendment of land development regulations to allow concrete products manufacturing and distribution north of Atlantic Avenue as a conditional use within the Mixed Industrial and Commercial district and industrial district.",
-      "evidence": {
-        "quote": "ORDINANCE NO. 20-26: AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AMENDING THE LAND DEVELOPMENT REGULATIONS... TO ALLOW CONCRETE PRODUCTS MANUFACTURING AND DISTRIBUTION LOCATED NORTH OF ATLANTIC AVENUE AS A CONDITIONAL USE",
-        "page": null,
-        "verified": false,
-        "date": "2026-05-05",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4606&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-05-05",
-          "body": "City Commission",
-          "action": "approve",
-          "summary": "Amendment of land development regulations to allow concrete products manufacturing and distribution north of Atlantic Avenue as a conditional use within the Mixed Industrial and Commercial district and industrial district.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4606&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-05-05",
-      "latest_date": "2026-05-05",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "RIVBEACH|case|ORDINANCENUMBER4310",
-      "type": "address",
-      "title": "Rezoning 2.448 acres from Downtown Core to Inlet Harbor Center-Planned Unit Development",
-      "address": "Ordinance Number 4310",
-      "munis": [
-        "RIVBEACH"
-      ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,City Council",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Rezoning a 2.448 acre parcel consisting of 15 tax parcels from Downtown Core District to an Inlet Harbor Center-Planned Unit Development zoning district.",
-      "evidence": {
-        "quote": "Ordinance Number 4310: An Ordinance of the City Council of the City Of Riviera Beach, Palm Beach County, Florida, amending the City Code Of Ordinances Chapter 31 (ZA-25-0001)",
-        "page": 6,
-        "verified": true,
-        "date": "2026-05-06",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=619"
-      },
-      "timeline": [
-        {
-          "date": "2026-05-06",
-          "body": "Event,City Council",
-          "action": "approve",
-          "summary": "Rezoning a 2.448 acre parcel consisting of 15 tax parcels from Downtown Core District to an Inlet Harbor Center-Planned Unit Development zoning district.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=619",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-05-06",
-      "latest_date": "2026-05-06",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [
-        {
-          "name": "Related Urban",
-          "role": "applicant"
-        },
-        {
-          "name": "BH Group",
-          "role": "applicant"
-        },
-        {
-          "name": "Tezral Partners",
-          "role": "applicant"
-        }
-      ],
       "amount": null,
       "questions": [
         "What can be built under the new zoning that cannot be built now?",
