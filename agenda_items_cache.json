@@ -15088,13 +15088,13 @@
    "items": []
   },
   "WPB|2026-12-07|city commission meeting": {
-   "doc_hash": "697a4105c1d28d54",
-   "analyzed_at": "2026-11-22",
+   "doc_hash": "dcfa86c50f478b45",
+   "analyzed_at": "2026-11-24",
    "items": []
   },
   "WPB|2026-12-21|city commission meeting": {
-   "doc_hash": "697a4105c1d28d54",
-   "analyzed_at": "2026-11-22",
+   "doc_hash": "dcfa86c50f478b45",
+   "analyzed_at": "2026-11-24",
    "items": []
   },
   "RIVBEACH|2026-11-23|event,community redevelopment agency": {
@@ -15245,14 +15245,153 @@
    ]
   },
   "WPB|2026-12-14|mayor/commission work session": {
-   "doc_hash": "5809de6bc052b82b",
-   "analyzed_at": "2026-11-23",
+   "doc_hash": "3cc46742f1559f67",
+   "analyzed_at": "2026-11-24",
    "items": []
   },
   "WPB|2026-12-15|planning board": {
-   "doc_hash": "2e5a1b26de21d9bd",
-   "analyzed_at": "2026-11-23",
+   "doc_hash": "a10d9a71e553bf1f",
+   "analyzed_at": "2026-11-24",
    "items": []
+  },
+  "DELRAY|2026-12-03|board of adjustment": {
+   "doc_hash": "a8086f7bb49c6c6c",
+   "analyzed_at": "2026-11-24",
+   "items": [
+    {
+     "headline": "Variance requested to reduce side setback for carport enclosure at 1222 Vista Del Mar Drive N",
+     "kind": "variance",
+     "address": "1222 Vista Del Mar Drive N",
+     "case_no": "PZ-000820-2026",
+     "entities": [
+      {
+       "name": "Leigh & Gwen Gove",
+       "role": "owner"
+      },
+      {
+       "name": "Joshua Berkoff",
+       "role": "contractor"
+      },
+      {
+       "name": "Berkoff Builders, LLC",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "Consideration of a variance request",
+     "consent": false,
+     "summary": "The property owners seek a variance to reduce the required west side-interior setback from 10 feet to 7 feet 8 inches to enclose an existing carport.",
+     "evidence": {
+      "quote": "1222 Vista Del Mar Drive N (PZ-000820-2026): Consideration of a variance request from Land Development Regulations (LDR) Section 4.3.4(K)",
+      "page": null,
+      "verified": true
+     },
+     "muni_short": "DELRAY",
+     "muni_full": "City of Delray Beach",
+     "body": "Board of Adjustment",
+     "date": "2026-12-03",
+     "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    },
+    {
+     "headline": "Variance requested to reduce front setback for residential addition at 1016 Ingraham Avenue",
+     "kind": "variance",
+     "address": "1016 Ingraham Avenue",
+     "case_no": "PZ-000966-2026",
+     "entities": [
+      {
+       "name": "Augustus J Larson",
+       "role": "owner"
+      },
+      {
+       "name": "Nancy E Larson",
+       "role": "owner"
+      }
+     ],
+     "amount": null,
+     "action": "Consideration of a variance",
+     "consent": false,
+     "summary": "The property owners request a variance to reduce the required front setback from 25 feet to 20 feet for an addition to an existing single-family residence.",
+     "evidence": {
+      "quote": "1016 Ingraham Avenue (PZ-000966-2026): Consideration of a variance from Land Development Regulations (LDR) Section 4.3.4(K)",
+      "page": null,
+      "verified": true
+     },
+     "muni_short": "DELRAY",
+     "muni_full": "City of Delray Beach",
+     "body": "Board of Adjustment",
+     "date": "2026-12-03",
+     "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+    }
+   ]
+  },
+  "WESTLAKE|2026-12-01|city council regular meeting": {
+   "doc_hash": "31488c18ce678de7",
+   "analyzed_at": "2026-11-24",
+   "items": [
+    {
+     "headline": "Second reading for ordinance establishing regulations and definitions for synthetic turf",
+     "kind": "comp_plan_amendment",
+     "address": "",
+     "case_no": "Ordinance No. 2026-11",
+     "entities": [],
+     "amount": null,
+     "action": "second reading",
+     "consent": false,
+     "summary": "The City Council is holding a second reading on an ordinance to amend the code of ordinances to establish a definition and regulations for synthetic turf.",
+     "evidence": {
+      "quote": "SECOND READING Ordinance No. 2026-11 - Synthetic Turf Regulations",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "WESTLAKE",
+     "muni_full": "City of Westlake",
+     "body": "City Council Regular Meeting",
+     "date": "2026-12-01",
+     "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
+    },
+    {
+     "headline": "Second reading to amend code for data center definitions and mixed-use conditional zoning",
+     "kind": "comp_plan_amendment",
+     "address": "",
+     "case_no": "Ordinance No. 2026-13",
+     "entities": [],
+     "amount": null,
+     "action": "second reading",
+     "consent": false,
+     "summary": "The City Council is considering an ordinance update to define data centers, allow them as a conditional use in mixed-use districts, and set infrastructure and design standards.",
+     "evidence": {
+      "quote": "SECOND READING: Ordinance No. 2026-13 \u2013 Data Centers and Small-Scale Comprehensive Plan Amendments",
+      "page": 3,
+      "verified": true
+     },
+     "muni_short": "WESTLAKE",
+     "muni_full": "City of Westlake",
+     "body": "City Council Regular Meeting",
+     "date": "2026-12-01",
+     "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
+    },
+    {
+     "headline": "Resolution requesting Palm Beach County to fund and install traffic signal at Seminole Pratt Whitney Road and Water's Edge Drive",
+     "kind": "other",
+     "address": "",
+     "case_no": "Resolution 2026-33",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The City Council is reviewing a resolution to formally request Palm Beach County to design, fund, and install a traffic signal at a local intersection.",
+     "evidence": {
+      "quote": "Resolution 2026-33 - Requesting Palm Beach County to Fund and Install a Traffic Signal at Seminole Pratt Whitney Road and Water\u2019s Edge Drive",
+      "page": 3,
+      "verified": true
+     },
+     "muni_short": "WESTLAKE",
+     "muni_full": "City of Westlake",
+     "body": "City Council Regular Meeting",
+     "date": "2026-12-01",
+     "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
+    }
+   ]
   }
  },
  "nodoc": {

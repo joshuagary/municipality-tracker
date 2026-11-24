@@ -1,21 +1,21 @@
 {
   "schema": 2,
-  "generated_at": "2026-11-23T06:21:13.260725+00:00",
-  "today": "2026-11-23",
+  "generated_at": "2026-11-24T08:55:36.580708+00:00",
+  "today": "2026-11-24",
   "lookback_months": 6,
-  "meetings_scanned": 370,
+  "meetings_scanned": 368,
   "meetings_pending_analysis": 0,
   "llm_available": true,
   "coverage_by_municipality": {
     "BOCA": {
-      "meetings": 42,
+      "meetings": 41,
       "with_document": 1,
       "with_items": 0,
       "items": 0,
       "pending": 0
     },
     "BOYNTON": {
-      "meetings": 39,
+      "meetings": 40,
       "with_document": 0,
       "with_items": 0,
       "items": 0,
@@ -29,10 +29,10 @@
       "pending": 0
     },
     "DELRAY": {
-      "meetings": 38,
-      "with_document": 38,
-      "with_items": 33,
-      "items": 190,
+      "meetings": 39,
+      "with_document": 39,
+      "with_items": 34,
+      "items": 192,
       "pending": 0
     },
     "GULFSTREAM": {
@@ -85,7 +85,7 @@
       "pending": 0
     },
     "PBC": {
-      "meetings": 27,
+      "meetings": 26,
       "with_document": 3,
       "with_items": 3,
       "items": 26,
@@ -99,22 +99,22 @@
       "pending": 0
     },
     "RIVBEACH": {
-      "meetings": 32,
-      "with_document": 32,
-      "with_items": 32,
-      "items": 111,
+      "meetings": 31,
+      "with_document": 31,
+      "with_items": 31,
+      "items": 105,
       "pending": 0
     },
     "WESTLAKE": {
       "meetings": 19,
-      "with_document": 17,
-      "with_items": 13,
-      "items": 42,
+      "with_document": 18,
+      "with_items": 14,
+      "items": 45,
       "pending": 0
     },
     "WPB": {
-      "meetings": 48,
-      "with_document": 46,
+      "meetings": 47,
+      "with_document": 45,
       "with_items": 6,
       "items": 6,
       "pending": 0
@@ -122,332 +122,386 @@
   },
   "leads": [
     {
-      "key": "RIVBEACH|addr|3501 broadway",
+      "key": "WESTLAKE|case|ORDINANCENO202611",
       "type": "address",
-      "title": "Resolution No. 2026-23 Approving Commercial Sublease Agreement with Funky Cafe for 3501 Broadway, Suite B",
-      "address": "3501 Broadway, Suite B",
+      "title": "Second reading for ordinance establishing regulations and definitions for synthetic turf",
+      "address": "Ordinance No. 2026-11",
       "munis": [
-        "RIVBEACH"
+        "WESTLAKE"
       ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,Community Redevelopment Agency",
-      "kind": "land_transaction",
-      "kind_label": "Land deal",
-      "group": "land",
+      "muni_names": "City of Westlake",
+      "body": "City Council Regular Meeting",
+      "kind": "comp_plan_amendment",
+      "kind_label": "Comp plan change",
+      "group": "zoning",
       "signals": [
         {
           "id": "kind",
-          "label": "Land deal",
+          "label": "Comp plan change",
           "tone": "warn"
         },
         {
           "id": "repeat",
-          "label": "On 3 agendas",
-          "tone": "warn"
+          "label": "On 2 agendas",
+          "tone": "info"
         },
         {
           "id": "upcoming",
-          "label": "On Nov 23 agenda",
+          "label": "On Dec 1 agenda",
           "tone": "success"
         }
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "Staff requests the CRA Board approve a commercial sublease agreement with Funky Cafe for the food business incubator restaurant space at 3501 Broadway, Suite B for a three-year term. On agendas 3 times since Jun 10.",
+      "hook": "The City Council is holding a second reading on an ordinance to amend the code of ordinances to establish a definition and regulations for synthetic turf. On agendas 2 times since Nov 10.",
       "evidence": {
-        "quote": "Resolution No. 2026 - 23 of the Board of Commissioners for the Riviera Beach Community Redevelopment Agency approving a Commercial Sublease Agreement with Funky Cafe, LLC for the restaurant space located at 3501 Broadway, Suite B",
-        "page": null,
-        "verified": false,
-        "date": "2026-11-23",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
-      },
-      "timeline": [
-        {
-          "date": "2026-06-10",
-          "body": "Event,Community Redevelopment Agency",
-          "action": "approve",
-          "summary": "The CRA board is asked to approve a resolution authorizing a piggyback agreement with Centurion Security Group, LLC for armed security services at the CRA Office.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=699",
-          "addresses": [
-            "3501 Broadway"
-          ]
-        },
-        {
-          "date": "2026-10-14",
-          "body": "Event,Community Redevelopment Agency",
-          "action": "approve",
-          "summary": "The CRA board is asked to approve a lease agreement with FoundCare, Inc. for Suites B and C located at 3501 Broadway. / Approve a commercial sublease agreement with Funky Cafe, LLC for a three-year term for the food business incubator restaurant space at 3501 Broadway.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=755",
-          "addresses": [
-            "3501 Broadway, Riviera Beach, FL 33404",
-            "3501 Broadway, Suite B, Riviera Beach, FL 33404"
-          ]
-        },
-        {
-          "date": "2026-11-23",
-          "body": "Event,Community Redevelopment Agency",
-          "action": "approve",
-          "summary": "Staff requests the CRA Board approve a commercial sublease agreement with Funky Cafe for the food business incubator restaurant space at 3501 Broadway, Suite B for a three-year term.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
-          "addresses": [
-            "3501 Broadway, Suite B"
-          ]
-        }
-      ],
-      "appearance_count": 3,
-      "first_date": "2026-06-10",
-      "latest_date": "2026-11-23",
-      "next_date": "2026-11-23",
-      "next_body_meeting": {
-        "date": "2026-11-23",
-        "title": "Event,Community Redevelopment Agency",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
-      },
-      "entities": [
-        {
-          "name": "Centurion Security Group, LLC",
-          "role": "vendor"
-        },
-        {
-          "name": "FoundCare, Inc.",
-          "role": "applicant"
-        },
-        {
-          "name": "Funky Cafe, LLC",
-          "role": "applicant"
-        }
-      ],
-      "amount": null,
-      "questions": [
-        "Who is buying or leasing, and at what price?",
-        "Was the property appraised or competitively offered?",
-        "Who owned it before and what was it last sold for?"
-      ],
-      "score": 63,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "RIVBEACH|addr|1800 parcel on broadway",
-      "type": "address",
-      "title": "Resolution No. 2026-22 Approving purchase and sale agreement for the 1800 Parcel on Broadway with Forest Development Acquisitions",
-      "address": "1800 Parcel on Broadway",
-      "munis": [
-        "RIVBEACH"
-      ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,Community Redevelopment Agency",
-      "kind": "land_transaction",
-      "kind_label": "Land deal",
-      "group": "land",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Land deal",
-          "tone": "warn"
-        },
-        {
-          "id": "upcoming",
-          "label": "On Nov 23 agenda",
-          "tone": "success"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "The CRA is considering a resolution approving the purchase and sale agreement with Forest Development Acquisitions for the acquisition and redevelopment of the 1800 Parcel on Broadway.",
-      "evidence": {
-        "quote": "Resolution No. 2026 - 22 Approving the agreement for the purchase and sale of Real Property located on the 1800 Parcel on Broadway between the Riviera Beach CRA and Forest Development Acquisitions, LLC",
-        "page": 5,
+        "quote": "SECOND READING Ordinance No. 2026-11 - Synthetic Turf Regulations",
+        "page": 2,
         "verified": true,
-        "date": "2026-11-23",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+        "date": "2026-12-01",
+        "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
       },
       "timeline": [
         {
-          "date": "2026-11-23",
-          "body": "Event,Community Redevelopment Agency",
-          "action": "approve",
-          "summary": "The CRA is considering a resolution approving the purchase and sale agreement with Forest Development Acquisitions for the acquisition and redevelopment of the 1800 Parcel on Broadway.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
-          "addresses": [
-            "1800 Parcel on Broadway"
-          ]
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-11-23",
-      "latest_date": "2026-11-23",
-      "next_date": "2026-11-23",
-      "next_body_meeting": {
-        "date": "2026-11-23",
-        "title": "Event,Community Redevelopment Agency",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
-      },
-      "entities": [
+          "date": "2026-11-10",
+          "body": "City Council Regular Meeting",
+          "action": "first reading",
+          "summary": "An ordinance is introduced to amend landscaping and general code provisions to establish a definition and regulations for synthetic turf.",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-03996a538be94d01a43e193b329b39f0.pdf",
+          "addresses": []
+        },
         {
-          "name": "Forest Development Acquisitions, LLC",
-          "role": "developer"
+          "date": "2026-12-01",
+          "body": "City Council Regular Meeting",
+          "action": "second reading",
+          "summary": "The City Council is holding a second reading on an ordinance to amend the code of ordinances to establish a definition and regulations for synthetic turf.",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf",
+          "addresses": []
         }
       ],
+      "appearance_count": 2,
+      "first_date": "2026-11-10",
+      "latest_date": "2026-12-01",
+      "next_date": "2026-12-01",
+      "next_body_meeting": {
+        "date": "2026-12-01",
+        "title": "City Council Regular Meeting",
+        "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
+      },
+      "entities": [],
       "amount": null,
       "questions": [
-        "Who is buying or leasing, and at what price?",
-        "Was the property appraised or competitively offered?",
-        "Who owned it before and what was it last sold for?"
+        "Which parcels does this affect and who owns them?",
+        "What density or use change does it allow?",
+        "Is a specific developer behind the request?"
       ],
-      "score": 43,
+      "score": 53,
       "web": {
         "checked": false,
         "mentions": []
       },
-      "first_seen": "2026-11-23",
+      "first_seen": "2026-11-24",
       "is_new": true
     },
     {
-      "key": "RIVBEACH|case|RESOLUTIONNO202621",
+      "key": "WESTLAKE|case|ORDINANCENO202613",
       "type": "address",
-      "title": "Resolution No. 2026-21 Amending Resolution No. 2026-17 to establish the RISE Grant Program",
-      "address": "Resolution No. 2026 - 21",
+      "title": "Second reading to amend code for data center definitions and mixed-use conditional zoning",
+      "address": "Ordinance No. 2026-13",
       "munis": [
-        "RIVBEACH"
+        "WESTLAKE"
       ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,Community Redevelopment Agency",
-      "kind": "incentive_abatement",
-      "kind_label": "Incentive or abatement",
-      "group": "land",
+      "muni_names": "City of Westlake",
+      "body": "City Council Regular Meeting",
+      "kind": "comp_plan_amendment",
+      "kind_label": "Comp plan change",
+      "group": "zoning",
       "signals": [
         {
           "id": "kind",
-          "label": "Incentive or abatement",
+          "label": "Comp plan change",
           "tone": "warn"
         },
         {
           "id": "upcoming",
-          "label": "On Nov 23 agenda",
+          "label": "On Dec 1 agenda",
           "tone": "success"
         }
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "Staff recommends approval of the resolution amending Resolution No. 2026-17 to establish the RISE Program as a business micro-grant under the Business Assistance Grant Programs.",
+      "hook": "The City Council is considering an ordinance update to define data centers, allow them as a conditional use in mixed-use districts, and set infrastructure and design standards.",
       "evidence": {
-        "quote": "Resolution No. 2026 - 21 Amending Resolution No. 2026 - 17 to establish the RISE Grant Program as a business micro-grant under the Business Assistance Grant Programs",
-        "page": 6,
+        "quote": "SECOND READING: Ordinance No. 2026-13 \u2013 Data Centers and Small-Scale Comprehensive Plan Amendments",
+        "page": 3,
         "verified": true,
-        "date": "2026-11-23",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+        "date": "2026-12-01",
+        "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
       },
       "timeline": [
         {
-          "date": "2026-11-23",
-          "body": "Event,Community Redevelopment Agency",
-          "action": "approve",
-          "summary": "Staff recommends approval of the resolution amending Resolution No. 2026-17 to establish the RISE Program as a business micro-grant under the Business Assistance Grant Programs.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
+          "date": "2026-12-01",
+          "body": "City Council Regular Meeting",
+          "action": "second reading",
+          "summary": "The City Council is considering an ordinance update to define data centers, allow them as a conditional use in mixed-use districts, and set infrastructure and design standards.",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf",
           "addresses": []
         }
       ],
       "appearance_count": 1,
-      "first_date": "2026-11-23",
-      "latest_date": "2026-11-23",
-      "next_date": "2026-11-23",
+      "first_date": "2026-12-01",
+      "latest_date": "2026-12-01",
+      "next_date": "2026-12-01",
       "next_body_meeting": {
-        "date": "2026-11-23",
-        "title": "Event,Community Redevelopment Agency",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+        "date": "2026-12-01",
+        "title": "City Council Regular Meeting",
+        "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
       },
       "entities": [],
       "amount": null,
       "questions": [
-        "What is the dollar value of the incentive, and over how many years?",
-        "What does the recipient have to deliver, and who checks?"
+        "Which parcels does this affect and who owns them?",
+        "What density or use change does it allow?",
+        "Is a specific developer behind the request?"
       ],
       "score": 43,
       "web": {
         "checked": false,
         "mentions": []
       },
-      "first_seen": "2026-11-23",
+      "first_seen": "2026-11-24",
       "is_new": true
     },
     {
-      "key": "RIVBEACH|addr|2615 broadway",
+      "key": "WESTLAKE|case|RESOLUTION202633",
       "type": "address",
-      "title": "Resolution No. 2026-20 Accepting Solid Waste Authority Clean-up Grant for demolition and site clean-up at 2615 Broadway",
-      "address": "2615 Broadway",
+      "title": "Resolution requesting Palm Beach County to fund and install traffic signal at Seminole Pratt Whitney Road and Water's Edge Drive",
+      "address": "Resolution 2026-33",
       "munis": [
-        "RIVBEACH"
+        "WESTLAKE"
       ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,Community Redevelopment Agency",
-      "kind": "demolition",
-      "kind_label": "Demolition",
+      "muni_names": "City of Westlake",
+      "body": "City Council Regular Meeting",
+      "kind": "other",
+      "kind_label": "Property item",
       "group": "development",
       "signals": [
         {
           "id": "kind",
-          "label": "Demolition",
+          "label": "Property item",
           "tone": "info"
         },
         {
           "id": "upcoming",
-          "label": "On Nov 23 agenda",
+          "label": "On Dec 1 agenda",
           "tone": "success"
-        },
-        {
-          "id": "amount",
-          "label": "$180K",
-          "tone": "info"
         }
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "Staff requests approval of Resolution No. 2026-20 to accept a $180,500 Blighted and Distressed Property Clean-up Grant for demolition and site clean-up at 2615 Broadway.",
+      "hook": "The City Council is reviewing a resolution to formally request Palm Beach County to design, fund, and install a traffic signal at a local intersection.",
       "evidence": {
-        "quote": "Resolution No. 2026 - 20 Accepting a $180,500 Blighted and Distressed Property Clean-up Grant Award from the Solid Waste Authority of Palm Beach County for demolition and site clean-up at 2615 Broadway",
-        "page": 5,
+        "quote": "Resolution 2026-33 - Requesting Palm Beach County to Fund and Install a Traffic Signal at Seminole Pratt Whitney Road and Water\u2019s Edge Drive",
+        "page": 3,
         "verified": true,
-        "date": "2026-11-23",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+        "date": "2026-12-01",
+        "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
       },
       "timeline": [
         {
-          "date": "2026-11-23",
-          "body": "Event,Community Redevelopment Agency",
+          "date": "2026-12-01",
+          "body": "City Council Regular Meeting",
           "action": "approve",
-          "summary": "Staff requests approval of Resolution No. 2026-20 to accept a $180,500 Blighted and Distressed Property Clean-up Grant for demolition and site clean-up at 2615 Broadway.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
-          "addresses": [
-            "2615 Broadway"
-          ]
+          "summary": "The City Council is reviewing a resolution to formally request Palm Beach County to design, fund, and install a traffic signal at a local intersection.",
+          "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf",
+          "addresses": []
         }
       ],
       "appearance_count": 1,
-      "first_date": "2026-11-23",
-      "latest_date": "2026-11-23",
-      "next_date": "2026-11-23",
+      "first_date": "2026-12-01",
+      "latest_date": "2026-12-01",
+      "next_date": "2026-12-01",
       "next_body_meeting": {
-        "date": "2026-11-23",
-        "title": "Event,Community Redevelopment Agency",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+        "date": "2026-12-01",
+        "title": "City Council Regular Meeting",
+        "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
       },
       "entities": [],
-      "amount": 180500,
+      "amount": null,
       "questions": [
-        "What is being demolished and what replaces it?",
-        "Is the building historic or protected?"
+        "Who owns the property and who is the applicant?",
+        "What is the next decision and when?"
       ],
-      "score": 41,
+      "score": 19,
       "web": {
         "checked": false,
         "mentions": []
       },
-      "first_seen": "2026-11-23",
+      "first_seen": "2026-11-24",
+      "is_new": true
+    },
+    {
+      "key": "DELRAY|addr|1222 vista del mar dr n",
+      "type": "address",
+      "title": "Variance requested to reduce side setback for carport enclosure at 1222 Vista Del Mar Drive N",
+      "address": "1222 Vista Del Mar Drive N",
+      "munis": [
+        "DELRAY"
+      ],
+      "muni_names": "City of Delray Beach",
+      "body": "Board of Adjustment",
+      "kind": "variance",
+      "kind_label": "Variance",
+      "group": "zoning",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Variance",
+          "tone": "info"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 3 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "The property owners seek a variance to reduce the required west side-interior setback from 10 feet to 7 feet 8 inches to enclose an existing carport.",
+      "evidence": {
+        "quote": "1222 Vista Del Mar Drive N (PZ-000820-2026): Consideration of a variance request from Land Development Regulations (LDR) Section 4.3.4(K)",
+        "page": null,
+        "verified": true,
+        "date": "2026-12-03",
+        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+      },
+      "timeline": [
+        {
+          "date": "2026-12-03",
+          "body": "Board of Adjustment",
+          "action": "Consideration of a variance request",
+          "summary": "The property owners seek a variance to reduce the required west side-interior setback from 10 feet to 7 feet 8 inches to enclose an existing carport.",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "addresses": [
+            "1222 Vista Del Mar Drive N"
+          ]
+        }
+      ],
+      "appearance_count": 1,
+      "first_date": "2026-12-03",
+      "latest_date": "2026-12-03",
+      "next_date": "2026-12-03",
+      "next_body_meeting": {
+        "date": "2026-12-03",
+        "title": "Board of Adjustment",
+        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+      },
+      "entities": [
+        {
+          "name": "Leigh & Gwen Gove",
+          "role": "owner"
+        },
+        {
+          "name": "Joshua Berkoff",
+          "role": "contractor"
+        },
+        {
+          "name": "Berkoff Builders, LLC",
+          "role": "contractor"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "What exactly is being waived, and what did staff recommend?",
+        "Who is the applicant and what do they plan to build or change?",
+        "Have there been code or permit issues at this address?"
+      ],
+      "score": 33,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-24",
+      "is_new": true
+    },
+    {
+      "key": "DELRAY|addr|1016 ingraham ave",
+      "type": "address",
+      "title": "Variance requested to reduce front setback for residential addition at 1016 Ingraham Avenue",
+      "address": "1016 Ingraham Avenue",
+      "munis": [
+        "DELRAY"
+      ],
+      "muni_names": "City of Delray Beach",
+      "body": "Board of Adjustment",
+      "kind": "variance",
+      "kind_label": "Variance",
+      "group": "zoning",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Variance",
+          "tone": "info"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 3 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "The property owners request a variance to reduce the required front setback from 25 feet to 20 feet for an addition to an existing single-family residence.",
+      "evidence": {
+        "quote": "1016 Ingraham Avenue (PZ-000966-2026): Consideration of a variance from Land Development Regulations (LDR) Section 4.3.4(K)",
+        "page": null,
+        "verified": true,
+        "date": "2026-12-03",
+        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+      },
+      "timeline": [
+        {
+          "date": "2026-12-03",
+          "body": "Board of Adjustment",
+          "action": "Consideration of a variance",
+          "summary": "The property owners request a variance to reduce the required front setback from 25 feet to 20 feet for an addition to an existing single-family residence.",
+          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
+          "addresses": [
+            "1016 Ingraham Avenue"
+          ]
+        }
+      ],
+      "appearance_count": 1,
+      "first_date": "2026-12-03",
+      "latest_date": "2026-12-03",
+      "next_date": "2026-12-03",
+      "next_body_meeting": {
+        "date": "2026-12-03",
+        "title": "Board of Adjustment",
+        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+      },
+      "entities": [
+        {
+          "name": "Augustus J Larson",
+          "role": "owner"
+        },
+        {
+          "name": "Nancy E Larson",
+          "role": "owner"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "What exactly is being waived, and what did staff recommend?",
+        "Who is the applicant and what do they plan to build or change?",
+        "Have there been code or permit issues at this address?"
+      ],
+      "score": 33,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-24",
       "is_new": true
     },
     {
@@ -2926,11 +2980,7 @@
       "first_date": "2026-09-09",
       "latest_date": "2026-09-09",
       "next_date": null,
-      "next_body_meeting": {
-        "date": "2026-11-23",
-        "title": "Event,Community Redevelopment Agency",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
-      },
+      "next_body_meeting": null,
       "entities": [
         {
           "name": "Marina Annex Housing, LLC",
@@ -3004,11 +3054,7 @@
       "first_date": "2026-10-14",
       "latest_date": "2026-10-14",
       "next_date": null,
-      "next_body_meeting": {
-        "date": "2026-11-23",
-        "title": "Event,Community Redevelopment Agency",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
-      },
+      "next_body_meeting": null,
       "entities": [],
       "amount": 100000,
       "questions": [
@@ -3245,6 +3291,107 @@
         "Who is the developer, and what is the unit count or square footage?",
         "What conditions were attached to the approval?",
         "What do the traffic and drainage reviews say?"
+      ],
+      "score": 48,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-21",
+      "is_new": false
+    },
+    {
+      "key": "RIVBEACH|addr|3501 broadway",
+      "type": "address",
+      "title": "Resolution No. 2026-23 Approving Commercial Sublease Agreement with Funky Cafe for 3501 Broadway, Suite B",
+      "address": "3501 Broadway, Suite B",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,Community Redevelopment Agency",
+      "kind": "land_transaction",
+      "kind_label": "Land deal",
+      "group": "land",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Land deal",
+          "tone": "warn"
+        },
+        {
+          "id": "repeat",
+          "label": "On 3 agendas",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Staff requests the CRA Board approve a commercial sublease agreement with Funky Cafe for the food business incubator restaurant space at 3501 Broadway, Suite B for a three-year term. On agendas 3 times since Jun 10.",
+      "evidence": {
+        "quote": "Resolution No. 2026 - 23 of the Board of Commissioners for the Riviera Beach Community Redevelopment Agency approving a Commercial Sublease Agreement with Funky Cafe, LLC for the restaurant space located at 3501 Broadway, Suite B",
+        "page": null,
+        "verified": false,
+        "date": "2026-11-23",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
+      },
+      "timeline": [
+        {
+          "date": "2026-06-10",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "The CRA board is asked to approve a resolution authorizing a piggyback agreement with Centurion Security Group, LLC for armed security services at the CRA Office.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=699",
+          "addresses": [
+            "3501 Broadway"
+          ]
+        },
+        {
+          "date": "2026-10-14",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "The CRA board is asked to approve a lease agreement with FoundCare, Inc. for Suites B and C located at 3501 Broadway. / Approve a commercial sublease agreement with Funky Cafe, LLC for a three-year term for the food business incubator restaurant space at 3501 Broadway.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=755",
+          "addresses": [
+            "3501 Broadway, Riviera Beach, FL 33404",
+            "3501 Broadway, Suite B, Riviera Beach, FL 33404"
+          ]
+        },
+        {
+          "date": "2026-11-23",
+          "body": "Event,Community Redevelopment Agency",
+          "action": "approve",
+          "summary": "Staff requests the CRA Board approve a commercial sublease agreement with Funky Cafe for the food business incubator restaurant space at 3501 Broadway, Suite B for a three-year term.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796",
+          "addresses": [
+            "3501 Broadway, Suite B"
+          ]
+        }
+      ],
+      "appearance_count": 3,
+      "first_date": "2026-06-10",
+      "latest_date": "2026-11-23",
+      "next_date": null,
+      "next_body_meeting": null,
+      "entities": [
+        {
+          "name": "Centurion Security Group, LLC",
+          "role": "vendor"
+        },
+        {
+          "name": "FoundCare, Inc.",
+          "role": "applicant"
+        },
+        {
+          "name": "Funky Cafe, LLC",
+          "role": "applicant"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "Who is buying or leasing, and at what price?",
+        "Was the property appraised or competitively offered?",
+        "Who owned it before and what was it last sold for?"
       ],
       "score": 48,
       "web": {
@@ -4928,11 +5075,7 @@
       "first_date": "2026-10-14",
       "latest_date": "2026-10-14",
       "next_date": null,
-      "next_body_meeting": {
-        "date": "2026-11-23",
-        "title": "Event,Community Redevelopment Agency",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=796"
-      },
+      "next_body_meeting": null,
       "entities": [],
       "amount": 838000,
       "questions": [
@@ -5159,7 +5302,11 @@
       "first_date": "2026-09-03",
       "latest_date": "2026-11-05",
       "next_date": null,
-      "next_body_meeting": null,
+      "next_body_meeting": {
+        "date": "2026-12-03",
+        "title": "Board of Adjustment",
+        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4469&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
+      },
       "entities": [
         {
           "name": "Chimino Anthony D. Trust",
@@ -5498,128 +5645,6 @@
         "Was it competitively bid or offered?"
       ],
       "score": 34,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|addr|3921 w atlantic ave",
-      "type": "address",
-      "title": "Denial of conditional use for a 24-hour business at West Atlantic Avenue",
-      "address": "3921 West Atlantic Avenue",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Denial of a conditional use resolution to allow a 24-hour business to operate at 3921 West Atlantic Avenue.",
-      "evidence": {
-        "quote": "RESOLUTION NO. 20-26: A RESOLUTION OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, APPROVING A CONDITIONAL USE TO ALLOW A 24-HOUR BUSINESS TO OPERATE AT 3921 WEST ATLANTIC AVENUE",
-        "page": null,
-        "verified": true,
-        "date": "2026-05-05",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4606&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-05-05",
-          "body": "City Commission",
-          "action": "denied",
-          "summary": "Denial of a conditional use resolution to allow a 24-hour business to operate at 3921 West Atlantic Avenue.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4606&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": [
-            "3921 West Atlantic Avenue"
-          ]
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-05-05",
-      "latest_date": "2026-05-05",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|ORDINANCENO1426",
-      "type": "address",
-      "title": "Amendment of LDRs to allow medical office uses within the Medical Arts Overlay District",
-      "address": "ORDINANCE NO. 14-26",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Second reading and public hearing for an ordinance amending land development regulations to allow medical office uses within the Medical Arts Overlay District when co-located with nursing homes, assisted living facilities, and community residences.",
-      "evidence": {
-        "quote": "ORDINANCE NO. 14-26: AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AMENDING THE LAND DEVELOPMENT REGULATIONS... TO ALLOW MEDICAL OFFICE USES WITHIN THE MEDICAL ARTS OVERLAY DISTRICT",
-        "page": null,
-        "verified": false,
-        "date": "2026-05-05",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4606&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-05-05",
-          "body": "City Commission",
-          "action": "approve",
-          "summary": "Second reading and public hearing for an ordinance amending land development regulations to allow medical office uses within the Medical Arts Overlay District when co-located with nursing homes, assisted living facilities, and community residences.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4606&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-05-05",
-      "latest_date": "2026-05-05",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 30,
       "web": {
         "checked": false,
         "mentions": []

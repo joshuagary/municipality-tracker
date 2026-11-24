@@ -1,32 +1,5 @@
 [
   {
-    "muni_short": "RIVBEACH",
-    "muni_full": "City of Riviera Beach",
-    "title": "Planning and Zoning Board Meeting",
-    "date": "2026-10-15",
-    "type": "added",
-    "time": "6:30 PM",
-    "detected_at": "2026-10-10T04:50:25.620844+00:00"
-  },
-  {
-    "muni_short": "JUIC",
-    "muni_full": "Town of Jupiter Inlet Colony",
-    "title": "Town Commission Meeting",
-    "date": "2026-10-15",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-10-10T04:50:25.620844+00:00"
-  },
-  {
-    "muni_short": "GULFSTREAM",
-    "muni_full": "Town of Gulf Stream",
-    "title": "Town Commission Regular Meeting",
-    "date": "2026-10-09",
-    "time": "9:00 AM",
-    "type": "removed",
-    "detected_at": "2026-10-10T04:50:25.620844+00:00"
-  },
-  {
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting October 13, 2026 100 E. Ocean Avenue Event Details",
@@ -2794,5 +2767,92 @@
     "time": "9:30 AM",
     "type": "removed",
     "detected_at": "2026-11-22T05:37:03.247675+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "CANCELLED - Planning Commission Public Hearing",
+    "date": "2026-12-11",
+    "type": "added",
+    "time": "9:00 AM",
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop November 24, 2026 Event Details",
+    "date": "2026-11-24",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-24",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency Board Meeting",
+    "date": "2026-12-15",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "DELRAY",
+    "muni_full": "City of Delray Beach",
+    "title": "Board of Adjustment",
+    "date": "2026-12-03",
+    "type": "added",
+    "time": "5:01 PM",
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "WESTLAKE",
+    "muni_full": "City of Westlake",
+    "title": "City Council Regular Meeting",
+    "date": "2026-12-01",
+    "type": "modified",
+    "time": "6:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "Planning Commission Public Hearing",
+    "date": "2026-12-11",
+    "time": "9:00 AM",
+    "type": "removed",
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-25",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting",
+    "date": "2026-12-08",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-24T08:53:20.116456+00:00"
   }
 ]
