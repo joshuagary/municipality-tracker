@@ -1,14 +1,5 @@
 [
   {
-    "muni_short": "BOYNTON",
-    "muni_full": "City of Boynton Beach",
-    "title": "Boynton Beach Community Redevelopment Agency (BBCRA) Board Monthly Meeting October 13, 2026 100 E. Ocean Avenue Event Details",
-    "date": "2026-10-13",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-10-11T04:36:33.434664+00:00"
-  },
-  {
     "muni_short": "WPB",
     "muni_full": "City of West Palm Beach",
     "title": "Plans & Plats Review Committee",
@@ -2854,5 +2845,92 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-11-24T08:53:20.116456+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "Board of County Commissioners Meeting",
+    "date": "2026-12-01",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Boca Raton Airport Authority",
+    "date": "2026-12-11",
+    "type": "added",
+    "time": "3:00 PM",
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Meeting December 1, 2026 100 E. Ocean Avenue Event Details",
+    "date": "2026-12-01",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop",
+    "date": "2026-11-24",
+    "type": "modified",
+    "time": "11:00 AM",
+    "fields_changed": {
+      "time": {
+        "old": "6:00 PM",
+        "new": "11:00 AM"
+      }
+    },
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "PALMBEACH",
+    "muni_full": "Town of Palm Beach",
+    "title": "Town Council Development Review Meeting",
+    "date": "2026-12-09",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Special Town Commission Meeting",
+    "date": "2026-12-01",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning, and Adjustment Board",
+    "date": "2026-12-01",
+    "type": "added",
+    "time": "6:30PM",
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "BOCA",
+    "muni_full": "City of Boca Raton",
+    "title": "Boca Raton Airport Authority",
+    "date": "2026-12-16",
+    "time": "5:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "BOYNTON",
+    "muni_full": "City of Boynton Beach",
+    "title": "City Commission Agenda Review Workshop November 24, 2026 Event Details",
+    "date": "2026-11-24",
+    "time": "6:00 PM",
+    "type": "removed",
+    "detected_at": "2026-11-25T07:28:51.379382+00:00"
   }
 ]

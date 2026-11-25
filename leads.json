@@ -1,21 +1,21 @@
 {
   "schema": 2,
-  "generated_at": "2026-11-24T08:55:36.580708+00:00",
-  "today": "2026-11-24",
+  "generated_at": "2026-11-25T07:30:53.632716+00:00",
+  "today": "2026-11-25",
   "lookback_months": 6,
-  "meetings_scanned": 368,
+  "meetings_scanned": 369,
   "meetings_pending_analysis": 0,
   "llm_available": true,
   "coverage_by_municipality": {
     "BOCA": {
-      "meetings": 41,
+      "meetings": 40,
       "with_document": 1,
       "with_items": 0,
       "items": 0,
       "pending": 0
     },
     "BOYNTON": {
-      "meetings": 40,
+      "meetings": 39,
       "with_document": 0,
       "with_items": 0,
       "items": 0,
@@ -64,21 +64,21 @@
       "pending": 0
     },
     "MANALAPAN": {
-      "meetings": 8,
+      "meetings": 9,
       "with_document": 7,
       "with_items": 7,
       "items": 32,
       "pending": 0
     },
     "NPB": {
-      "meetings": 20,
-      "with_document": 20,
+      "meetings": 21,
+      "with_document": 21,
       "with_items": 20,
       "items": 73,
       "pending": 0
     },
     "PALMBEACH": {
-      "meetings": 10,
+      "meetings": 11,
       "with_document": 0,
       "with_items": 0,
       "items": 0,
@@ -88,7 +88,7 @@
       "meetings": 26,
       "with_document": 3,
       "with_items": 3,
-      "items": 26,
+      "items": 18,
       "pending": 0
     },
     "PBG": {
@@ -121,6 +121,91 @@
     }
   },
   "leads": [
+    {
+      "key": "PBC|addr|6650 rigger rd",
+      "type": "address",
+      "title": "Approve code compliance lien settlement for property at 6650 Rigger Road",
+      "address": "6650 Rigger Road, Lake Worth, FL",
+      "munis": [
+        "PBC"
+      ],
+      "muni_names": "Palm Beach County",
+      "body": "Board of County Commissioners Meeting",
+      "kind": "incentive_abatement",
+      "kind_label": "Incentive or abatement",
+      "group": "land",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Incentive or abatement",
+          "tone": "warn"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 1 agenda",
+          "tone": "success"
+        },
+        {
+          "id": "amount",
+          "label": "$132K",
+          "tone": "info"
+        },
+        {
+          "id": "consent",
+          "label": "On consent agenda",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Approve a negotiated settlement offer in the amount of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry.",
+      "evidence": {
+        "quote": "Approve a negotiated settlement offer in the amount of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry (Mr. Quisenberry) on February 6, 2008.",
+        "page": 24,
+        "verified": true,
+        "date": "2026-12-01",
+        "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+      },
+      "timeline": [
+        {
+          "date": "2026-12-01",
+          "body": "Board of County Commissioners Meeting",
+          "action": "approve",
+          "summary": "Approve a negotiated settlement offer in the amount of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry.",
+          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf",
+          "addresses": [
+            "6650 Rigger Road, Lake Worth, FL"
+          ]
+        }
+      ],
+      "appearance_count": 1,
+      "first_date": "2026-12-01",
+      "latest_date": "2026-12-01",
+      "next_date": "2026-12-01",
+      "next_body_meeting": {
+        "date": "2026-12-01",
+        "title": "Board of County Commissioners Meeting",
+        "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+      },
+      "entities": [
+        {
+          "name": "Roger F. Quisenberry",
+          "role": "owner"
+        }
+      ],
+      "amount": 132369,
+      "questions": [
+        "What is the dollar value of the incentive, and over how many years?",
+        "What does the recipient have to deliver, and who checks?"
+      ],
+      "score": 63,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-25",
+      "is_new": true
+    },
     {
       "key": "WESTLAKE|case|ORDINANCENO202611",
       "type": "address",
@@ -201,6 +286,89 @@
         "mentions": []
       },
       "first_seen": "2026-11-24",
+      "is_new": false
+    },
+    {
+      "key": "PBC|addr|6615 rigger rd",
+      "type": "address",
+      "title": "Approve code compliance lien settlement for property at 6615 Rigger Road",
+      "address": "6615 Rigger Road, Lake Worth, FL",
+      "munis": [
+        "PBC"
+      ],
+      "muni_names": "Palm Beach County",
+      "body": "Board of County Commissioners Meeting",
+      "kind": "incentive_abatement",
+      "kind_label": "Incentive or abatement",
+      "group": "land",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Incentive or abatement",
+          "tone": "warn"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 1 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "Approve a negotiated settlement offer of $39,345 for the full satisfaction of two code compliance liens entered against Roger F. Quisenberry.",
+      "evidence": {
+        "quote": "Approve a negotiated settlement offer in the amount of $39,345 for the full satisfaction of two code compliance liens entered against Roger F. Quisenberry",
+        "page": 23,
+        "verified": true,
+        "date": "2026-12-01",
+        "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+      },
+      "timeline": [
+        {
+          "date": "2026-12-01",
+          "body": "Board of County Commissioners Meeting",
+          "action": "approve",
+          "summary": "Approve a negotiated settlement offer of $39,345 for the full satisfaction of two code compliance liens entered against Roger F. Quisenberry.",
+          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf",
+          "addresses": [
+            "6615 Rigger Road, Lake Worth, FL"
+          ]
+        }
+      ],
+      "appearance_count": 1,
+      "first_date": "2026-12-01",
+      "latest_date": "2026-12-01",
+      "next_date": "2026-12-01",
+      "next_body_meeting": {
+        "date": "2026-12-01",
+        "title": "Board of County Commissioners Meeting",
+        "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+      },
+      "entities": [
+        {
+          "name": "Roger F. Quisenberry",
+          "role": "owner"
+        },
+        {
+          "name": "Estate of Quisenberry Trust",
+          "role": "owner"
+        },
+        {
+          "name": "Nason, Yeager, Gerson, Harris and Fumero, P.A.",
+          "role": "attorney"
+        }
+      ],
+      "amount": 39345,
+      "questions": [
+        "What is the dollar value of the incentive, and over how many years?",
+        "What does the recipient have to deliver, and who checks?"
+      ],
+      "score": 43,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-25",
       "is_new": true
     },
     {
@@ -270,6 +438,80 @@
         "mentions": []
       },
       "first_seen": "2026-11-24",
+      "is_new": false
+    },
+    {
+      "key": "PBC|case|52434218290010000",
+      "type": "address",
+      "title": "Release drainage easements within parcel control number 52-43-42-18-29-001-0000",
+      "address": "52-43-42-18-29-001-0000",
+      "munis": [
+        "PBC"
+      ],
+      "muni_names": "Palm Beach County",
+      "body": "Board of County Commissioners Meeting",
+      "kind": "easement",
+      "kind_label": "Easement",
+      "group": "land",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Easement",
+          "tone": "info"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 1 agenda",
+          "tone": "success"
+        },
+        {
+          "id": "public_easement",
+          "label": "Easements or state-road agreement",
+          "tone": "info"
+        }
+      ],
+      "hypothesis": true,
+      "hypothesis_text": "Easements and maintenance agreements are often conditions of a site plan approval. Look for the project behind them.",
+      "hook": "Approval to release drainage easements to accommodate the development of the site, with infrastructure relocated and covered by new easements.",
+      "evidence": {
+        "quote": "Approve the Release of Drainage Easements for a 70-foot relocatable drainage easement, a portion of a 30-foot relocatable drainage easement, and a portion of a 40-foot drainage easement",
+        "page": 13,
+        "verified": true,
+        "date": "2026-12-01",
+        "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+      },
+      "timeline": [
+        {
+          "date": "2026-12-01",
+          "body": "Board of County Commissioners Meeting",
+          "action": "approve",
+          "summary": "Approval to release drainage easements to accommodate the development of the site, with infrastructure relocated and covered by new easements.",
+          "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf",
+          "addresses": []
+        }
+      ],
+      "appearance_count": 1,
+      "first_date": "2026-12-01",
+      "latest_date": "2026-12-01",
+      "next_date": "2026-12-01",
+      "next_body_meeting": {
+        "date": "2026-12-01",
+        "title": "Board of County Commissioners Meeting",
+        "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+      },
+      "entities": [],
+      "amount": null,
+      "questions": [
+        "Which project requires this easement?",
+        "Who owns the property and who benefits?",
+        "Is this a condition of a development approval?"
+      ],
+      "score": 25,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-25",
       "is_new": true
     },
     {
@@ -338,7 +580,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-24",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "DELRAY|addr|1222 vista del mar dr n",
@@ -422,7 +664,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-24",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "DELRAY|addr|1016 ingraham ave",
@@ -502,7 +744,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-24",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "ENTITY|chen moore and associates",
@@ -3467,7 +3709,11 @@
       "first_date": "2026-06-02",
       "latest_date": "2026-07-07",
       "next_date": null,
-      "next_body_meeting": null,
+      "next_body_meeting": {
+        "date": "2026-12-01",
+        "title": "Planning, Zoning, and Adjustment Board",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1395"
+      },
       "entities": [
         {
           "name": "JMorton Planning and Landscape Architecture",
@@ -3900,7 +4146,11 @@
       "first_date": "2026-07-07",
       "latest_date": "2026-08-04",
       "next_date": null,
-      "next_body_meeting": null,
+      "next_body_meeting": {
+        "date": "2026-12-01",
+        "title": "Planning, Zoning, and Adjustment Board",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1395"
+      },
       "entities": [
         {
           "name": "Pavel Just",
@@ -4243,7 +4493,11 @@
       "first_date": "2026-08-04",
       "latest_date": "2026-11-04",
       "next_date": null,
-      "next_body_meeting": null,
+      "next_body_meeting": {
+        "date": "2026-12-01",
+        "title": "Planning, Zoning, and Adjustment Board",
+        "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1395"
+      },
       "entities": [
         {
           "name": "Urban Design Studio",
@@ -5416,235 +5670,6 @@
         "Have there been code or permit issues at this address?"
       ],
       "score": 38,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|ORDINANCENO4026",
-      "type": "address",
-      "title": "Amendment to the Community Redevelopment Plan for Delray Beach",
-      "address": "ORDINANCE NO. 40-26",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "cra_property",
-      "kind_label": "CRA property",
-      "group": "land",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "CRA property",
-          "tone": "info"
-        },
-        {
-          "id": "repeat",
-          "label": "On 2 agendas",
-          "tone": "info"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "The City Commission approved an ordinance amending the Community Redevelopment Plan pursuant to Florida Statute 163.360 on second reading. On agendas 2 times since Sep 8.",
-      "evidence": {
-        "quote": "ORDINANCE NO. 40-26: AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AMENDING THE COMMUNITY REDEVELOPMENT PLAN",
-        "page": null,
-        "verified": true,
-        "date": "2026-10-06",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-09-08",
-          "body": "City Commission",
-          "action": "approved on first reading",
-          "summary": "An ordinance was approved on first reading to amend the community redevelopment plan, finding modifications consistent with the comprehensive plan and state statutes.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4627&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        },
-        {
-          "date": "2026-10-06",
-          "body": "City Commission",
-          "action": "second reading/public hearing",
-          "summary": "The City Commission approved an ordinance amending the Community Redevelopment Plan pursuant to Florida Statute 163.360 on second reading.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4629&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 2,
-      "first_date": "2026-09-08",
-      "latest_date": "2026-10-06",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "Who is getting CRA property or money, and on what terms?",
-        "Was it competitively bid or offered?"
-      ],
-      "score": 34,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "RIVBEACH|addr|1851 broadway",
-      "type": "address",
-      "title": "Approve transfer of city-owned real property to the Riviera Beach Community Redevelopment Agency",
-      "address": "1851 Broadway",
-      "munis": [
-        "RIVBEACH"
-      ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,City Council",
-      "kind": "cra_property",
-      "kind_label": "CRA property",
-      "group": "land",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "CRA property",
-          "tone": "info"
-        },
-        {
-          "id": "repeat",
-          "label": "On 2 agendas",
-          "tone": "info"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "The city is authorizing the transfer of certain city-owned real property to the CRA to consolidate with CRA-owned property for the proposed 1851 Development. On agendas 2 times since Oct 7.",
-      "evidence": {
-        "quote": "Resolution Number 122-26: A Resolution of the City Council of the City of Riviera Beach, Florida, authorizing the transfer of certain City-Owned real property to the Riviera Beach Community Redevelopment Agency (RBCRA);",
-        "page": 10,
-        "verified": true,
-        "date": "2026-10-21",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=787"
-      },
-      "timeline": [
-        {
-          "date": "2026-10-07",
-          "body": "Event,City Council",
-          "action": "approve",
-          "summary": "The city council will consider transferring city-owned real property to the Riviera Beach Community Redevelopment Agency to consolidate with CRA-owned property for redevelopment in connection with the proposed 1851 Development.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=788",
-          "addresses": [
-            "1851 Broadway"
-          ]
-        },
-        {
-          "date": "2026-10-21",
-          "body": "Event,City Council",
-          "action": "approve",
-          "summary": "The city is authorizing the transfer of certain city-owned real property to the CRA to consolidate with CRA-owned property for the proposed 1851 Development.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=787",
-          "addresses": [
-            "1851 Broadway"
-          ]
-        }
-      ],
-      "appearance_count": 2,
-      "first_date": "2026-10-07",
-      "latest_date": "2026-10-21",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [
-        {
-          "name": "Forest Development",
-          "role": "developer"
-        }
-      ],
-      "amount": null,
-      "questions": [
-        "Who is getting CRA property or money, and on what terms?",
-        "Was it competitively bid or offered?"
-      ],
-      "score": 34,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|addr|216 nw 8th ave",
-      "type": "address",
-      "title": "Request to issue RFP for disposition of vacant lot for housing",
-      "address": "216 NW 8th Avenue",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "Community Redevelopment Agency",
-      "kind": "cra_property",
-      "kind_label": "CRA property",
-      "group": "land",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "CRA property",
-          "tone": "info"
-        },
-        {
-          "id": "repeat",
-          "label": "On 2 agendas",
-          "tone": "info"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "The CRA board is asked to issue an RFP for the disposition of a CRA-owned vacant lot to develop affordable or workforce housing. On agendas 2 times since Jul 23.",
-      "evidence": {
-        "quote": "REQUEST TO ISSUE REQUEST FOR PROPOSALS CRA NO. 2026-08 FOR THE DISPOSITION OF ONE CRA-OWNED VACANT LOT LOCATED AT 216 NW 8th AVENUE FOR THE DEVELOPMENT OF AFFORDABLE/WORKFORCE HOUSING",
-        "page": null,
-        "verified": true,
-        "date": "2026-11-18",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4646&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-07-23",
-          "body": "Community Redevelopment Agency",
-          "action": "discuss",
-          "summary": "Discussion and direction regarding the request for proposals for the disposition of a CRA-owned vacant lot for the development of affordable and workforce housing.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": [
-            "216 NW 8th Avenue"
-          ]
-        },
-        {
-          "date": "2026-11-18",
-          "body": "Community Redevelopment Agency",
-          "action": "REQUEST TO ISSUE REQUEST FOR PROPOSALS",
-          "summary": "The CRA board is asked to issue an RFP for the disposition of a CRA-owned vacant lot to develop affordable or workforce housing.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4646&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": [
-            "216 NW 8th Avenue"
-          ]
-        }
-      ],
-      "appearance_count": 2,
-      "first_date": "2026-07-23",
-      "latest_date": "2026-11-18",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "Who is getting CRA property or money, and on what terms?",
-        "Was it competitively bid or offered?"
-      ],
-      "score": 34,
       "web": {
         "checked": false,
         "mentions": []

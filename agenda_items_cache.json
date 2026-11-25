@@ -630,385 +630,6 @@
     }
    ]
   },
-  "PBC|2026-10-20|board of county commissioners meeting": {
-   "doc_hash": "580bf4084a32a075",
-   "analyzed_at": "2026-11-21",
-   "items": [
-    {
-     "headline": "Approve lighting agreements with FP&L for Belvedere Road and Lake Worth Road",
-     "kind": "contract_vendor",
-     "address": "",
-     "case_no": "",
-     "entities": [
-      {
-       "name": "Florida Power & Light Company",
-       "role": "contractor"
-      }
-     ],
-     "amount": null,
-     "action": "receive and file",
-     "consent": true,
-     "summary": "Receive and file two lighting agreements with Florida Power and Light Company for street lighting installations.",
-     "evidence": {
-      "quote": "Staff recommends motion to receive and file: two (2) Lighting Agreements (Agreements) with the Florida Power & Light Company (FP&L) for various locations within Palm Beach County.",
-      "page": 11,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve cargo building lease agreement with Sky Chefs at international airport",
-     "kind": "land_transaction",
-     "address": "1300 Belvedere Road",
-     "case_no": "",
-     "entities": [
-      {
-       "name": "Sky Chefs, LLC",
-       "role": "applicant"
-      }
-     ],
-     "amount": null,
-     "action": "receive and file",
-     "consent": true,
-     "summary": "Receive and file a cargo building lease agreement for 4,471 square feet of space at the airport for aviation catering storage.",
-     "evidence": {
-      "quote": "Cargo Building Lease Agreement (Lease) with Sky Chefs, LLC (Sky Chefs) for the lease of 4,471 square feet of cargo building space at the President Donald J. Trump International Airport (DJT)",
-      "page": 12,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve FAA grant and budget amendment for Concourse B expansion project",
-     "kind": "contract_vendor",
-     "address": "",
-     "case_no": "3-12-0085-084-2026",
-     "entities": [],
-     "amount": 10000000,
-     "action": "approve",
-     "consent": true,
-     "summary": "Receive and file a $10 million FAA grant agreement and approve a budget amendment for the Concourse B Expansion Phase 2B.",
-     "evidence": {
-      "quote": "receive and file Federal Aviation Administration (FAA) Grant Agreement Number 3-12-0085-084-2026 (Grant) with an effective date of August 12, 2026... in the amount of $10,000,000",
-      "page": null,
-      "verified": false
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve consulting agreement amendment for terminal and concourse modernization services",
-     "kind": "contract_vendor",
-     "address": "",
-     "case_no": "R2023-1820",
-     "entities": [
-      {
-       "name": "EXP U.S. Services Inc.",
-       "role": "contractor"
-      }
-     ],
-     "amount": 9363486,
-     "action": "approve",
-     "consent": true,
-     "summary": "Approve Amendment No. 5 to the consulting/professional services contract with EXP U.S. Services Inc. for modernization project services.",
-     "evidence": {
-      "quote": "Staff recommends motion to approve: Amendment No. 5 to the Contract for Consulting/Professional Services (Consulting Agreement) with EXP U.S. Services Inc. (EXP) in an amount not to exceed $619,088.40",
-      "page": 13,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Receive and file change orders for Suffolk Construction on Concourse B expansion",
-     "kind": "contract_vendor",
-     "address": "",
-     "case_no": "R2025-0108",
-     "entities": [
-      {
-       "name": "Suffolk Construction Company Inc.",
-       "role": "contractor"
-      }
-     ],
-     "amount": null,
-     "action": "receive and file",
-     "consent": true,
-     "summary": "Receive and file Change Orders Nos. 6, 7 and 8 for the Concourse B expansion construction manager at risk services contract.",
-     "evidence": {
-      "quote": "Staff recommends motion to receive and file: A) Change Order No. 6 to Amendment No. 3 to the Construction Manager (CM) at Risk Services Contract (Contract) with Suffolk Construction Company Inc. (Suffolk)",
-      "page": 14,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve underground utilities conversion agreement for the 45th Street Complex",
-     "kind": "contract_vendor",
-     "address": "4200 N Australian Ave",
-     "case_no": "",
-     "entities": [
-      {
-       "name": "Florida Power & Light",
-       "role": "contractor"
-      }
-     ],
-     "amount": null,
-     "action": "approve",
-     "consent": true,
-     "summary": "Approve an Underground Facilities Conversion Agreement with Florida Power & Light for conversion of overhead electric distribution facilities.",
-     "evidence": {
-      "quote": "Staff recommends motion to approve: an Underground Facilities Conversion Agreement (Agreement) with Florida Power & Light (FP&L), for the conversion of overhead electric distribution facilities located at 4200 N Australian Ave, West Palm Beach (45th Street Complex).",
-      "page": 20,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Ratify emergency archaeological services contract for Cam D. Milani Park",
-     "kind": "contract_vendor",
-     "address": "4705 S Ocean Boulevard",
-     "case_no": "",
-     "entities": [
-      {
-       "name": "Archaeological and Historical Conservancy, Inc.",
-       "role": "contractor"
-      },
-      {
-       "name": "Brooks + Scarpa Architects, Inc.",
-       "role": "architect"
-      },
-      {
-       "name": "Urban Design Studio, LLC",
-       "role": "contractor"
-      }
-     ],
-     "amount": null,
-     "action": "ratify",
-     "consent": true,
-     "summary": "Ratify an emergency contract for a Phase III archaeological assessment for the Cam D. Milani Park beach park project.",
-     "evidence": {
-      "quote": "Staff recommends motion to ratify: Emergency Contract with Archaeological and Historical Conservancy, Inc. (Vendor) in the not-to-exceed amount of $1,007,228.74 to complete a Phase III archaeological assessment for the Cam D. Milani Park project",
-      "page": 21,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve lease agreement with Digital Vibez for youth programming at Lake Lytal Park",
-     "kind": "land_transaction",
-     "address": "",
-     "case_no": "",
-     "entities": [
-      {
-       "name": "Digital Vibez, Inc.",
-       "role": "applicant"
-      }
-     ],
-     "amount": null,
-     "action": "approve",
-     "consent": true,
-     "summary": "Adopt a resolution and approve a five-year lease agreement with Digital Vibez, Inc. for a portion of Lake Lytal Park.",
-     "evidence": {
-      "quote": "adopt a Resolution authorizing a Lease Agreement with Digital Vibez, Inc., a Florida not-for-profit corporation, (Tenant) to lease a portion of Lake Lytal Park located in unincorporated West Palm Beach",
-      "page": 22,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve oyster monitoring consulting contract in Lake Worth Lagoon",
-     "kind": "contract_vendor",
-     "address": "",
-     "case_no": "",
-     "entities": [],
-     "amount": 253470,
-     "action": "approve",
-     "consent": true,
-     "summary": "Approve a consulting services contract with the Florida Fish and Wildlife Conservation Commission to provide oyster monitoring in the Lake Worth Lagoon.",
-     "evidence": {
-      "quote": "Staff recommends motion to: A) approve a Contract for Consulting/Professional Services (Contract) with the Florida Fish and Wildlife Conservation Commission (FWC), to provide oyster monitoring in the Lake Worth Lagoon (LWL) in an amount not to exceed $253,470",
-      "page": 23,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve eminent domain settlement for Parcels 125/325 with Stebbins",
-     "kind": "land_transaction",
-     "address": "",
-     "case_no": "",
-     "entities": [],
-     "amount": null,
-     "action": "approve",
-     "consent": false,
-     "summary": "Approve an eminent domain settlement including fees and costs for Parcels 125/325.",
-     "evidence": {
-      "quote": "Approve a $195,557.52 Stebbins eminent domain settlement for Parcels 125/325, including fees and costs.",
-      "page": 8,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve eminent domain settlement for Parcels 127/327 with Stebbins",
-     "kind": "land_transaction",
-     "address": "",
-     "case_no": "",
-     "entities": [],
-     "amount": null,
-     "action": "approve",
-     "consent": false,
-     "summary": "Approve an eminent domain settlement including fees and costs for Parcels 127/327.",
-     "evidence": {
-      "quote": "Approve a $128,703.64 Stebbins eminent domain settlement for Parcels 127/327, including fees and costs.",
-      "page": 8,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve Morganti amendment and budget transfer for terminal modernization work",
-     "kind": "contract_vendor",
-     "address": "",
-     "case_no": "",
-     "entities": [
-      {
-       "name": "Morganti",
-       "role": "contractor"
-      }
-     ],
-     "amount": 18768500,
-     "action": "approve",
-     "consent": false,
-     "summary": "Approve Morganti Amendment No. 2 for terminal modernization work and a budget transfer.",
-     "evidence": {
-      "quote": "Approve Morganti Amendment No. 2 for $18,768,500 in terminal modernization work, a contract renewal and a $9,300,944, $3,000,000, budget transfer.",
-      "page": 8,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Provide direction on JET GREENE airport property purchase and lease proposal",
-     "kind": "land_transaction",
-     "address": "",
-     "case_no": "",
-     "entities": [
-      {
-       "name": "JET GREENE",
-       "role": "applicant"
-      }
-     ],
-     "amount": 30000000,
-     "action": "approve",
-     "consent": false,
-     "summary": "Provide board direction on a proposed airport property purchase and second fixed base operation lease.",
-     "evidence": {
-      "quote": "Provide direction on JET GREENE\u2019s proposed $30 million airport property purchase and second fixed base operation lease.",
-      "page": 8,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Authorize Airport System Revenue Refunding Bonds",
-     "kind": "other",
-     "address": "",
-     "case_no": "Series 2026",
-     "entities": [],
-     "amount": 42000000,
-     "action": "approve",
-     "consent": false,
-     "summary": "Authorize up to $42 million in Airport System Revenue Refunding Bonds, Series 2026.",
-     "evidence": {
-      "quote": "Authorize up to $42 million in Airport System Revenue Refunding Bonds, Series 2026.",
-      "page": 8,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    },
-    {
-     "headline": "Approve Space Connect agreement for BuildLocal business development services",
-     "kind": "contract_vendor",
-     "address": "",
-     "case_no": "",
-     "entities": [
-      {
-       "name": "Space Connect",
-       "role": "contractor"
-      }
-     ],
-     "amount": 150000,
-     "action": "approve",
-     "consent": false,
-     "summary": "Approve a business development and contract readiness agreement with Space Connect.",
-     "evidence": {
-      "quote": "Approve a $150,000 Space Connect agreement for BuildLocal business development and contract readiness services.",
-      "page": 8,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-10-20",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261020.pdf"
-    }
-   ]
-  },
   "DELRAY|2026-05-18|planning and zoning board": {
    "doc_hash": "ec1c750025dbe67b",
    "analyzed_at": "2026-11-21",
@@ -15088,13 +14709,13 @@
    "items": []
   },
   "WPB|2026-12-07|city commission meeting": {
-   "doc_hash": "dcfa86c50f478b45",
-   "analyzed_at": "2026-11-24",
+   "doc_hash": "bf8dad181b1593fd",
+   "analyzed_at": "2026-11-25",
    "items": []
   },
   "WPB|2026-12-21|city commission meeting": {
-   "doc_hash": "dcfa86c50f478b45",
-   "analyzed_at": "2026-11-24",
+   "doc_hash": "bf8dad181b1593fd",
+   "analyzed_at": "2026-11-25",
    "items": []
   },
   "RIVBEACH|2026-11-23|event,community redevelopment agency": {
@@ -15392,6 +15013,196 @@
      "link": "https://mccmeetings.blob.core.usgovcloudapi.net/westlakefl-pubu/MEET-Agenda-2634067dfa81411f9a3044268d339bb6.pdf"
     }
    ]
+  },
+  "PBC|2026-12-01|board of county commissioners meeting": {
+   "doc_hash": "00776d4a5bd8a264",
+   "analyzed_at": "2026-11-25",
+   "items": [
+    {
+     "headline": "Approve traffic signal engineering continuing services contracts with two firms",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Simmons & White, Inc.",
+       "role": "contractor"
+      },
+      {
+       "name": "GOAL Associates, Inc",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval of 36-month traffic signal engineering professional continuing services contracts with Simmons & White, Inc. and GOAL Associates, Inc.",
+     "evidence": {
+      "quote": "Approve the Traffic Signal Engineering Professional Continuing Services Contract with Simmons & White, Inc.",
+      "page": null,
+      "verified": false
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Release drainage easements within parcel control number 52-43-42-18-29-001-0000",
+     "kind": "easement",
+     "address": "",
+     "case_no": "52-43-42-18-29-001-0000",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approval to release drainage easements to accommodate the development of the site, with infrastructure relocated and covered by new easements.",
+     "evidence": {
+      "quote": "Approve the Release of Drainage Easements for a 70-foot relocatable drainage easement, a portion of a 30-foot relocatable drainage easement, and a portion of a 40-foot drainage easement",
+      "page": 13,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve FDOT agreements and funding for Yamato Road and Clint Moore Road improvements",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": 12879928,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve a memorandum of agreement and locally funded agreement with the Florida Department of Transportation in the amount of $12,879,928 for bridge and roadway improvements.",
+     "evidence": {
+      "quote": "Approve a Locally Funded Agreement (LFA) in the amount of $12,879,928 with the Department for construction and construction engineering inspection (CEI) of the County Project",
+      "page": 14,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Adopt resolution for FDOT highway maintenance agreement on Linton Boulevard and Congress Avenue",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "FM 435384-2-52-01",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Adopt a resolution approving the highway maintenance memorandum of agreement with FDOT for construction of improvements on Linton Boulevard and Congress Avenue.",
+     "evidence": {
+      "quote": "adopt a Resolution approving the Highway Maintenance Memorandum of Agreement (HMMOA) with the State of Florida Department of Transportation (FDOT) for the construction of improvements on Linton Boulevard",
+      "page": 15,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve CLEAR concession agreement for biometric verification and concierge services at airport",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "R2021-1710",
+     "entities": [
+      {
+       "name": "Alclear, LLC",
+       "role": "vendor"
+      }
+     ],
+     "amount": 273069,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve a concession agreement with Alclear, LLC d/b/a CLEAR to provide biometric identity verification, enrollment services, and concierge services with an initial minimum annual guarantee of $273,069.30.",
+     "evidence": {
+      "quote": "Approve a Registered Traveler Verification Program Concession Agreement (Agreement) with Alclear, LLC, d/b/a CLEAR (CLEAR), commencing January 1, 2027",
+      "page": 22,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve code compliance lien settlement for property at 6615 Rigger Road",
+     "kind": "incentive_abatement",
+     "address": "6615 Rigger Road, Lake Worth, FL",
+     "case_no": "C-2006-02220030",
+     "entities": [
+      {
+       "name": "Roger F. Quisenberry",
+       "role": "owner"
+      },
+      {
+       "name": "Estate of Quisenberry Trust",
+       "role": "owner"
+      },
+      {
+       "name": "Nason, Yeager, Gerson, Harris and Fumero, P.A.",
+       "role": "attorney"
+      }
+     ],
+     "amount": 39345,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve a negotiated settlement offer of $39,345 for the full satisfaction of two code compliance liens entered against Roger F. Quisenberry.",
+     "evidence": {
+      "quote": "Approve a negotiated settlement offer in the amount of $39,345 for the full satisfaction of two code compliance liens entered against Roger F. Quisenberry",
+      "page": 23,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve code compliance lien settlement for property at 6650 Rigger Road",
+     "kind": "incentive_abatement",
+     "address": "6650 Rigger Road, Lake Worth, FL",
+     "case_no": "C-2006-02080058",
+     "entities": [
+      {
+       "name": "Roger F. Quisenberry",
+       "role": "owner"
+      }
+     ],
+     "amount": 132369,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve a negotiated settlement offer in the amount of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry.",
+     "evidence": {
+      "quote": "Approve a negotiated settlement offer in the amount of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry (Mr. Quisenberry) on February 6, 2008.",
+      "page": 24,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    }
+   ]
+  },
+  "NPB|2026-12-01|planning, zoning, and adjustment board": {
+   "doc_hash": "076fa60646170838",
+   "analyzed_at": "2026-11-25",
+   "items": []
   }
  },
  "nodoc": {
