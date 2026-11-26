@@ -1,41 +1,5 @@
 [
   {
-    "muni_short": "WPB",
-    "muni_full": "City of West Palm Beach",
-    "title": "Plans & Plats Review Committee",
-    "date": "2026-10-08",
-    "type": "added",
-    "time": "01:00 PM",
-    "detected_at": "2026-10-12T04:51:38.251000+00:00"
-  },
-  {
-    "muni_short": "WPB",
-    "muni_full": "City of West Palm Beach",
-    "title": "Plans & Plats Review Committee",
-    "date": "2026-10-22",
-    "type": "added",
-    "time": "01:00 PM",
-    "detected_at": "2026-10-12T04:51:38.251000+00:00"
-  },
-  {
-    "muni_short": "WPB",
-    "muni_full": "City of West Palm Beach",
-    "title": "Plans & Plats Review Committee",
-    "date": "2026-11-12",
-    "type": "added",
-    "time": "01:00 PM",
-    "detected_at": "2026-10-12T04:51:38.251000+00:00"
-  },
-  {
-    "muni_short": "WESTLAKE",
-    "muni_full": "City of Westlake",
-    "title": "City Council Regular Meeting",
-    "date": "2026-11-10",
-    "type": "added",
-    "time": "6:00 PM",
-    "detected_at": "2026-10-12T04:51:38.251000+00:00"
-  },
-  {
     "muni_short": "BOYNTON",
     "muni_full": "City of Boynton Beach",
     "title": "City Commission Agenda Review Workshop October 15, 2026 100 E. Ocean Avenue Event Details",
@@ -2932,5 +2896,65 @@
     "time": "6:00 PM",
     "type": "removed",
     "detected_at": "2026-11-25T07:28:51.379382+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "BCC Zoning Hearing",
+    "date": "2026-11-16",
+    "type": "added",
+    "time": "9:30 AM",
+    "detected_at": "2026-11-26T07:18:00.285239+00:00"
+  },
+  {
+    "muni_short": "MANALAPAN",
+    "muni_full": "Town of Manalapan",
+    "title": "Special Town Commission Meeting",
+    "date": "2026-12-01",
+    "type": "modified",
+    "time": "6:00 PM",
+    "fields_changed": {
+      "has_agenda": {
+        "old": false,
+        "new": true
+      }
+    },
+    "detected_at": "2026-11-26T07:18:00.285239+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning & Adjustment Board",
+    "date": "2026-12-01",
+    "type": "added",
+    "time": "6:00 PM",
+    "detected_at": "2026-11-26T07:18:00.285239+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "BCC Zoning Hearing",
+    "date": "2026-11-18",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-11-26T07:18:00.285239+00:00"
+  },
+  {
+    "muni_short": "PBC",
+    "muni_full": "Palm Beach County",
+    "title": "BCC Zoning Hearing",
+    "date": "2026-12-24",
+    "time": "9:30 AM",
+    "type": "removed",
+    "detected_at": "2026-11-26T07:18:00.285239+00:00"
+  },
+  {
+    "muni_short": "NPB",
+    "muni_full": "Village of North Palm Beach",
+    "title": "Planning, Zoning, and Adjustment Board",
+    "date": "2026-12-01",
+    "time": "6:30PM",
+    "type": "removed",
+    "detected_at": "2026-11-26T07:18:00.285239+00:00"
   }
 ]

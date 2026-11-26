@@ -14709,13 +14709,13 @@
    "items": []
   },
   "WPB|2026-12-07|city commission meeting": {
-   "doc_hash": "bf8dad181b1593fd",
-   "analyzed_at": "2026-11-25",
+   "doc_hash": "b2c490c4e9960b3d",
+   "analyzed_at": "2026-11-26",
    "items": []
   },
   "WPB|2026-12-21|city commission meeting": {
-   "doc_hash": "bf8dad181b1593fd",
-   "analyzed_at": "2026-11-25",
+   "doc_hash": "b2c490c4e9960b3d",
+   "analyzed_at": "2026-11-26",
    "items": []
   },
   "RIVBEACH|2026-11-23|event,community redevelopment agency": {
@@ -14866,13 +14866,13 @@
    ]
   },
   "WPB|2026-12-14|mayor/commission work session": {
-   "doc_hash": "3cc46742f1559f67",
-   "analyzed_at": "2026-11-24",
+   "doc_hash": "53085a5af5ee117b",
+   "analyzed_at": "2026-11-26",
    "items": []
   },
   "WPB|2026-12-15|planning board": {
-   "doc_hash": "a10d9a71e553bf1f",
-   "analyzed_at": "2026-11-24",
+   "doc_hash": "88001119d6393b31",
+   "analyzed_at": "2026-11-26",
    "items": []
   },
   "DELRAY|2026-12-03|board of adjustment": {
@@ -15015,8 +15015,8 @@
    ]
   },
   "PBC|2026-12-01|board of county commissioners meeting": {
-   "doc_hash": "00776d4a5bd8a264",
-   "analyzed_at": "2026-11-25",
+   "doc_hash": "e51637d7139ef01d",
+   "analyzed_at": "2026-11-26",
    "items": [
     {
      "headline": "Approve traffic signal engineering continuing services contracts with two firms",
@@ -15036,7 +15036,7 @@
      "amount": null,
      "action": "approve",
      "consent": true,
-     "summary": "Approval of 36-month traffic signal engineering professional continuing services contracts with Simmons & White, Inc. and GOAL Associates, Inc.",
+     "summary": "Approve 36-month traffic signal engineering professional continuing services contracts with Simmons & White, Inc. and GOAL Associates, Inc.",
      "evidence": {
       "quote": "Approve the Traffic Signal Engineering Professional Continuing Services Contract with Simmons & White, Inc.",
       "page": null,
@@ -15049,7 +15049,7 @@
      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
     },
     {
-     "headline": "Release drainage easements within parcel control number 52-43-42-18-29-001-0000",
+     "headline": "Approve release of drainage easements within specified parcel",
      "kind": "easement",
      "address": "",
      "case_no": "52-43-42-18-29-001-0000",
@@ -15057,9 +15057,30 @@
      "amount": null,
      "action": "approve",
      "consent": true,
-     "summary": "Approval to release drainage easements to accommodate the development of the site, with infrastructure relocated and covered by new easements.",
+     "summary": "Approve the release of drainage easements to accommodate the development of the site, with infrastructure relocated to new locations.",
      "evidence": {
-      "quote": "Approve the Release of Drainage Easements for a 70-foot relocatable drainage easement, a portion of a 30-foot relocatable drainage easement, and a portion of a 40-foot drainage easement",
+      "quote": "Approve the Release of Drainage Easements for a 70-foot relocatable drainage easement, a portion of a 30-foot relocatable drainage easement",
+      "page": 12,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve agreement and funding for Yamato Road and Clint Moore Road improvements",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": 12879928,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve a Locally Funded Agreement and Memorandum of Agreement with the Department of Transportation for construction and engineering inspection of road improvements.",
+     "evidence": {
+      "quote": "Approve a Locally Funded Agreement (LFA) in the amount of $12,879,928 with the Department for construction",
       "page": 13,
       "verified": true
      },
@@ -15070,17 +15091,17 @@
      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
     },
     {
-     "headline": "Approve FDOT agreements and funding for Yamato Road and Clint Moore Road improvements",
+     "headline": "Approve highway maintenance agreement for Linton Boulevard and Congress Avenue improvements",
      "kind": "contract_vendor",
      "address": "",
-     "case_no": "",
+     "case_no": "FM 435384-2-52-01",
      "entities": [],
-     "amount": 12879928,
+     "amount": null,
      "action": "approve",
      "consent": true,
-     "summary": "Approve a memorandum of agreement and locally funded agreement with the Florida Department of Transportation in the amount of $12,879,928 for bridge and roadway improvements.",
+     "summary": "Approve a Highway Maintenance Memorandum of Agreement with the state department of transportation for improvements on Linton Boulevard and Congress Avenue.",
      "evidence": {
-      "quote": "Approve a Locally Funded Agreement (LFA) in the amount of $12,879,928 with the Department for construction and construction engineering inspection (CEI) of the County Project",
+      "quote": "Approve the HMMOA with the FDOT for the Project.",
       "page": 14,
       "verified": true
      },
@@ -15091,28 +15112,7 @@
      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
     },
     {
-     "headline": "Adopt resolution for FDOT highway maintenance agreement on Linton Boulevard and Congress Avenue",
-     "kind": "contract_vendor",
-     "address": "",
-     "case_no": "FM 435384-2-52-01",
-     "entities": [],
-     "amount": null,
-     "action": "approve",
-     "consent": true,
-     "summary": "Adopt a resolution approving the highway maintenance memorandum of agreement with FDOT for construction of improvements on Linton Boulevard and Congress Avenue.",
-     "evidence": {
-      "quote": "adopt a Resolution approving the Highway Maintenance Memorandum of Agreement (HMMOA) with the State of Florida Department of Transportation (FDOT) for the construction of improvements on Linton Boulevard",
-      "page": 15,
-      "verified": true
-     },
-     "muni_short": "PBC",
-     "muni_full": "Palm Beach County",
-     "body": "Board of County Commissioners Meeting",
-     "date": "2026-12-01",
-     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
-    },
-    {
-     "headline": "Approve CLEAR concession agreement for biometric verification and concierge services at airport",
+     "headline": "Approve CLEAR concession agreement at President Donald J. Trump International Airport",
      "kind": "contract_vendor",
      "address": "",
      "case_no": "R2021-1710",
@@ -15125,10 +15125,10 @@
      "amount": 273069,
      "action": "approve",
      "consent": true,
-     "summary": "Approve a concession agreement with Alclear, LLC d/b/a CLEAR to provide biometric identity verification, enrollment services, and concierge services with an initial minimum annual guarantee of $273,069.30.",
+     "summary": "Approve a concession agreement with Alclear, LLC for biometric identity verification and concierge services with an initial minimum annual guarantee of $273,069.30.",
      "evidence": {
-      "quote": "Approve a Registered Traveler Verification Program Concession Agreement (Agreement) with Alclear, LLC, d/b/a CLEAR (CLEAR), commencing January 1, 2027",
-      "page": 22,
+      "quote": "Approve a Registered Traveler Verification Program Concession Agreement (Agreement) with Alclear, LLC",
+      "page": 21,
       "verified": true
      },
      "muni_short": "PBC",
@@ -15138,17 +15138,13 @@
      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
     },
     {
-     "headline": "Approve code compliance lien settlement for property at 6615 Rigger Road",
+     "headline": "Approve code compliance lien settlement for property on Rigger Road",
      "kind": "incentive_abatement",
      "address": "6615 Rigger Road, Lake Worth, FL",
      "case_no": "C-2006-02220030",
      "entities": [
       {
        "name": "Roger F. Quisenberry",
-       "role": "owner"
-      },
-      {
-       "name": "Estate of Quisenberry Trust",
        "role": "owner"
       },
       {
@@ -15159,9 +15155,39 @@
      "amount": 39345,
      "action": "approve",
      "consent": true,
-     "summary": "Approve a negotiated settlement offer of $39,345 for the full satisfaction of two code compliance liens entered against Roger F. Quisenberry.",
+     "summary": "Approve a negotiated settlement offer of $39,345 for the full satisfaction of two code compliance liens against Roger F. Quisenberry.",
      "evidence": {
       "quote": "Approve a negotiated settlement offer in the amount of $39,345 for the full satisfaction of two code compliance liens entered against Roger F. Quisenberry",
+      "page": 22,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve code compliance lien settlement for second Rigger Road property",
+     "kind": "incentive_abatement",
+     "address": "6650 Rigger Road, Lake Worth, FL",
+     "case_no": "C-2006-02080058",
+     "entities": [
+      {
+       "name": "Roger F. Quisenberry",
+       "role": "owner"
+      },
+      {
+       "name": "Nason, Yeager, Gerson, Harris and Fumero, P.A.",
+       "role": "attorney"
+      }
+     ],
+     "amount": 132369,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve a negotiated settlement offer of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry.",
+     "evidence": {
+      "quote": "Approve a negotiated settlement offer in the amount of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry",
       "page": 23,
       "verified": true
      },
@@ -15172,23 +15198,253 @@
      "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
     },
     {
-     "headline": "Approve code compliance lien settlement for property at 6650 Rigger Road",
+     "headline": "Approve code compliance lien settlement for property on Marion Place",
      "kind": "incentive_abatement",
-     "address": "6650 Rigger Road, Lake Worth, FL",
-     "case_no": "C-2006-02080058",
+     "address": "5163 Marion Place, West Palm Beach, FL",
+     "case_no": "C-2019-04290045",
      "entities": [
       {
-       "name": "Roger F. Quisenberry",
+       "name": "U.S. Bank Trust, N.A.",
        "role": "owner"
+      },
+      {
+       "name": "Theodore A. Topouzis",
+       "role": "attorney"
       }
      ],
-     "amount": 132369,
+     "amount": 88409,
      "action": "approve",
      "consent": true,
-     "summary": "Approve a negotiated settlement offer in the amount of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry.",
+     "summary": "Approve a negotiated settlement offer of $88,409 for full satisfaction of a code compliance lien entered against U.S. Bank Trust.",
      "evidence": {
-      "quote": "Approve a negotiated settlement offer in the amount of $132,369 for the full satisfaction of a code compliance lien entered against Roger F. Quisenberry (Mr. Quisenberry) on February 6, 2008.",
+      "quote": "Approve a negotiated settlement offer in the amount of $88,409 for the full satisfaction of a code compliance lien entered against U.S. Bank Trust, N.A.",
       "page": 24,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Receive and file assignments of continuing consultant services contracts",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "R2022-0842",
+     "entities": [
+      {
+       "name": "2GHO, Inc. Landscape Architects, Planners, Environmental Consultants",
+       "role": "contractor"
+      },
+      {
+       "name": "Gentile & Co Inc.",
+       "role": "contractor"
+      },
+      {
+       "name": "Harvard Jolly Inc.",
+       "role": "contractor"
+      },
+      {
+       "name": "PBK Architects Florida, Inc.",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "receive and file",
+     "consent": true,
+     "summary": "Receive and file assignments of continuing consultant services contracts from 2GHO to Gentile & Co Inc. and from Harvard Jolly Inc. to PBK Architects Florida, Inc.",
+     "evidence": {
+      "quote": "Receive and file assignments of continuing consultant services contracts.",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve Housing Finance Authority bonds for Everglades Townhomes",
+     "kind": "incentive_abatement",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": 14000000,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve the issuance of $14,000,000 in Housing Finance Authority bonds for Everglades Townhomes.",
+     "evidence": {
+      "quote": "Approve issuance of $14,000,000 in Housing Finance Authority bonds for Everglades Townhomes.",
+      "page": 5,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve wastewater gravity line and manhole rehabilitation contract",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Insituform Technologies",
+       "role": "contractor"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve a wastewater gravity line and manhole rehabilitation contract with Insituform Technologies.",
+     "evidence": {
+      "quote": "Approve the $17,954,831.54 wastewater gravity line and manhole rehabilitation contract with Insituform Technologies.",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve engineering services contract for air release valve rehabilitation",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Chen Moore and Associates",
+       "role": "engineer"
+      }
+     ],
+     "amount": 862012,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve construction engineering services contract with Chen Moore and Associates for air release valve rehabilitation.",
+     "evidence": {
+      "quote": "Approve $862,012.20 for Chen Moore and Associates construction engineering services for air release valve rehabilitation.",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve engineering services contract for Belle Glade mobile home parks project",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Thompson & Associates",
+       "role": "engineer"
+      }
+     ],
+     "amount": 616500,
+     "action": "approve",
+     "consent": true,
+     "summary": "Approve engineering services contract with Thompson & Associates for the Belle Glade mobile home parks project.",
+     "evidence": {
+      "quote": "Approve $616,500 for Thompson & Associates engineering services for the Belle Glade mobile home parks project.",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve conservation easement protecting Loxahatchee Slough Natural Area",
+     "kind": "easement",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Approve a conservation easement protecting approximately 12,086.38 acres of the Loxahatchee Slough Natural Area.",
+     "evidence": {
+      "quote": "Approve a conservation easement protecting approximately 12,086.38 acres of Loxahatchee Slough Natural Area.",
+      "page": 9,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Provide direction on conceptual RFP framework for F45 airport properties development",
+     "kind": "other",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "provide direction",
+     "consent": false,
+     "summary": "Provide direction on the conceptual Request for Proposals framework for the development of F45 airport properties.",
+     "evidence": {
+      "quote": "Provide direction on the conceptual RFP framework for development of F45 airport properties.",
+      "page": 9,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve additional demucking costs for affordable homes in Belle Glade",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "Harra Homes",
+       "role": "developer"
+      }
+     ],
+     "amount": 500000,
+     "action": "approve",
+     "consent": false,
+     "summary": "Approve an additional $500,000 for Harra Homes demucking costs for 18 affordable homes in Belle Glade.",
+     "evidence": {
+      "quote": "Approve an additional $500,000 for Harra Homes demucking costs for 18 affordable homes in Belle Glade.",
+      "page": 9,
+      "verified": true
+     },
+     "muni_short": "PBC",
+     "muni_full": "Palm Beach County",
+     "body": "Board of County Commissioners Meeting",
+     "date": "2026-12-01",
+     "link": "https://discover.pbc.gov/countycommissioners/Agenda_Master/20261201.pdf"
+    },
+    {
+     "headline": "Approve Wellington annexation dispute agreement and Artistry Lakes public benefit agreement",
+     "kind": "annexation",
+     "address": "",
+     "case_no": "",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Approve the Wellington annexation dispute agreement and the Artistry Lakes public benefit agreement.",
+     "evidence": {
+      "quote": "Approve the Wellington annexation dispute agreement and Artistry Lakes public benefit agreement.",
+      "page": 10,
       "verified": true
      },
      "muni_short": "PBC",
@@ -15199,10 +15455,166 @@
     }
    ]
   },
-  "NPB|2026-12-01|planning, zoning, and adjustment board": {
-   "doc_hash": "076fa60646170838",
-   "analyzed_at": "2026-11-25",
-   "items": []
+  "MANALAPAN|2026-12-01|special town commission meeting": {
+   "doc_hash": "0fed3c1951b063cc",
+   "analyzed_at": "2026-11-26",
+   "items": [
+    {
+     "headline": "Town Commission considers resolution regarding referendum ballot language for local matters",
+     "kind": "other",
+     "address": "",
+     "case_no": "RES 10-2026",
+     "entities": [],
+     "amount": null,
+     "action": "consider",
+     "consent": false,
+     "summary": "The Town Commission is reviewing Resolution 10-2026 concerning referendum ballot language under old business.",
+     "evidence": {
+      "quote": "RES 10-2026 - Referendum Ballot Language",
+      "page": 1,
+      "verified": true
+     },
+     "muni_short": "MANALAPAN",
+     "muni_full": "Town of Manalapan",
+     "body": "Special Town Commission Meeting",
+     "date": "2026-12-01",
+     "link": "https://manalapan.org/wp-content/uploads/2026/11/2026_1201-Agenda.pdf"
+    }
+   ]
+  },
+  "NPB|2026-12-01|planning, zoning & adjustment board": {
+   "doc_hash": "ca473b1236e27963",
+   "analyzed_at": "2026-11-26",
+   "items": [
+    {
+     "headline": "Safe Harbor Marina requests replacement monument sign for property",
+     "kind": "design_review",
+     "address": "1037 Marina Drive",
+     "case_no": "PZ-2023-95",
+     "entities": [
+      {
+       "name": "Alternative Sign Group Inc.",
+       "role": "applicant"
+      },
+      {
+       "name": "SHM North Palm Beach LLC",
+       "role": "owner"
+      }
+     ],
+     "amount": null,
+     "action": "Consideration of Approval",
+     "consent": false,
+     "summary": "A request for replacement of the monument sign for the property located at 1037 Marina Drive.",
+     "evidence": {
+      "quote": "Consideration of Approval: A request from, Alternative Sign Group Inc., on behalf of the property owner, SHM North Palm Beach LLC, for replacement of the monument sign for the property located at 1037 Marina Drive.",
+      "page": 1,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning & Adjustment Board",
+     "date": "2026-12-01",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396"
+    },
+    {
+     "headline": "Family Church requests master sign plan for Lighthouse Drive property",
+     "kind": "design_review",
+     "address": "757 Lighthouse Drive",
+     "case_no": "PZ-2026-86",
+     "entities": [
+      {
+       "name": "Addie Mentry",
+       "role": "applicant"
+      },
+      {
+       "name": "AMLU Consulting",
+       "role": "applicant"
+      },
+      {
+       "name": "Family Church 17 LLC",
+       "role": "owner"
+      }
+     ],
+     "amount": null,
+     "action": "Consideration of Approval",
+     "consent": false,
+     "summary": "A request for the establishment of a Master Sign Plan for the property located at 757 Lighthouse Drive.",
+     "evidence": {
+      "quote": "Consideration of Approval: A request from Addie Mentry with AMLU Consulting, on behalf of the property owner, Family Church 17 LLC, for the establishment of a Master Sign Plan for the property locate at 757 Lighthouse Drive.",
+      "page": 2,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning & Adjustment Board",
+     "date": "2026-12-01",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396"
+    },
+    {
+     "headline": "784 US1 LLC requests appearance review approval for building paint colors",
+     "kind": "design_review",
+     "address": "784 U.S. Highway 1",
+     "case_no": "",
+     "entities": [
+      {
+       "name": "784 US1 LLC",
+       "role": "owner"
+      },
+      {
+       "name": "Zachary Parmisciano",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The property owner requested appearance review approval for an amendment to the building paint colors and a whitewash finish for the brick.",
+     "evidence": {
+      "quote": "Consideration of Approval: A request from 784 US1 LLC, owner of the subject property, requesting Appearance Review approval for an amendment to the building paint colors.",
+      "page": 4,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning & Adjustment Board",
+     "date": "2026-12-01",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396"
+    },
+    {
+     "headline": "L&D Holdings requests development of office and warehouse building",
+     "kind": "site_plan",
+     "address": "9250 Alternate A1A",
+     "case_no": "PZ-2026-60",
+     "entities": [
+      {
+       "name": "L&D Holdings, LLC",
+       "role": "applicant"
+      },
+      {
+       "name": "Dino Agrusa",
+       "role": "applicant"
+      },
+      {
+       "name": "Stephan Yeckes",
+       "role": "architect"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "Development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approval of a revised site plan for the north half.",
+     "evidence": {
+      "quote": "Consideration of Approval: A request from L&D Holdings, LLC, contract purchaser of the subject property located at 9252 Alternate A1A, for the development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approving a revised site plan for the no",
+      "page": 5,
+      "verified": true
+     },
+     "muni_short": "NPB",
+     "muni_full": "Village of North Palm Beach",
+     "body": "Planning, Zoning & Adjustment Board",
+     "date": "2026-12-01",
+     "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396"
+    }
+   ]
   }
  },
  "nodoc": {
@@ -15304,7 +15716,6 @@
   "WPB|2026-10-08|plans & plats review committee": "2026-11-21",
   "PBC|2026-11-04|bcc comp plan public hearing": "2026-11-21",
   "PBC|2026-11-05|zoning commission": "2026-11-21",
-  "PBC|2026-11-18|bcc zoning hearing": "2026-11-21",
   "PBC|2026-06-04|zoning commission": "2026-11-21",
   "PBC|2026-06-12|planning commission public hearing": "2026-11-21",
   "PBC|2026-06-17|bcc zoning hearing": "2026-11-21",
@@ -15337,6 +15748,7 @@
   "JUNOBEACH|2026-10-21|town council regular meeting": "2026-11-21",
   "JUNOBEACH|2026-10-19|planning and zoning board": "2026-11-21",
   "JUNOBEACH|2026-09-30|town council workshop - strategic plan": "2026-11-21",
-  "JUIC|2026-06-03|town commission meeting": "2026-11-21"
+  "JUIC|2026-06-03|town commission meeting": "2026-11-21",
+  "PBC|2026-11-16|bcc zoning hearing": "2026-11-26"
  }
 }
