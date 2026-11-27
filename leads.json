@@ -1,9 +1,9 @@
 {
   "schema": 2,
-  "generated_at": "2026-11-26T07:21:49.481717+00:00",
-  "today": "2026-11-26",
+  "generated_at": "2026-11-27T07:17:27.823634+00:00",
+  "today": "2026-11-27",
   "lookback_months": 6,
-  "meetings_scanned": 368,
+  "meetings_scanned": 369,
   "meetings_pending_analysis": 0,
   "llm_available": true,
   "coverage_by_municipality": {
@@ -99,10 +99,10 @@
       "pending": 0
     },
     "RIVBEACH": {
-      "meetings": 31,
-      "with_document": 31,
-      "with_items": 31,
-      "items": 105,
+      "meetings": 32,
+      "with_document": 32,
+      "with_items": 32,
+      "items": 110,
       "pending": 0
     },
     "WESTLAKE": {
@@ -371,7 +371,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-26",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "PBC|addr|6650 rigger rd",
@@ -547,7 +547,7 @@
     {
       "key": "NPB|addr|9250 alternate a1a",
       "type": "address",
-      "title": "L&D Holdings requests development of office and warehouse building",
+      "title": "Development of an office and warehouse building at 9250 Alternate A1A",
       "address": "9250 Alternate A1A",
       "munis": [
         "NPB"
@@ -576,9 +576,9 @@
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "Development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approval of a revised site plan for the north half. On agendas 2 times since Nov 4.",
+      "hook": "L&D Holdings, LLC requested development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approval of a revised site plan for the north half. On agendas 2 times since Nov 4.",
       "evidence": {
-        "quote": "Consideration of Approval: A request from L&D Holdings, LLC, contract purchaser of the subject property located at 9252 Alternate A1A, for the development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approving a revised site plan for the no",
+        "quote": "A request from L&D Holdings, LLC, contract purchaser of the subject property located at 9252 Alternate A1A, for the development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approving a revised site plan for the north half of the property.",
         "page": 5,
         "verified": true,
         "date": "2026-12-01",
@@ -599,7 +599,7 @@
           "date": "2026-12-01",
           "body": "Planning, Zoning & Adjustment Board",
           "action": "approve",
-          "summary": "Development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approval of a revised site plan for the north half.",
+          "summary": "L&D Holdings, LLC requested development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approval of a revised site plan for the north half.",
           "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396",
           "addresses": [
             "9250 Alternate A1A"
@@ -645,7 +645,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-26",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "PBC|addr|6615 rigger rd",
@@ -803,7 +803,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-26",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "WESTLAKE|case|ORDINANCENO202613",
@@ -951,7 +951,7 @@
     {
       "key": "NPB|addr|1037 marina dr",
       "type": "address",
-      "title": "Safe Harbor Marina requests replacement monument sign for property",
+      "title": "Request to replace monument sign at Safe Harbor Marina",
       "address": "1037 Marina Drive",
       "munis": [
         "NPB"
@@ -975,9 +975,9 @@
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "A request for replacement of the monument sign for the property located at 1037 Marina Drive.",
+      "hook": "Alternative Sign Group Inc., on behalf of property owner SHM North Palm Beach LLC, requested approval for the replacement of a monument sign at 1037 Marina Drive.",
       "evidence": {
-        "quote": "Consideration of Approval: A request from, Alternative Sign Group Inc., on behalf of the property owner, SHM North Palm Beach LLC, for replacement of the monument sign for the property located at 1037 Marina Drive.",
+        "quote": "A request from, Alternative Sign Group Inc., on behalf of the property owner, SHM North Palm Beach LLC, for replacement of the monument sign for the property located at 1037 Marina Drive.",
         "page": 1,
         "verified": true,
         "date": "2026-12-01",
@@ -988,7 +988,7 @@
           "date": "2026-12-01",
           "body": "Planning, Zoning & Adjustment Board",
           "action": "Consideration of Approval",
-          "summary": "A request for replacement of the monument sign for the property located at 1037 Marina Drive.",
+          "summary": "Alternative Sign Group Inc., on behalf of property owner SHM North Palm Beach LLC, requested approval for the replacement of a monument sign at 1037 Marina Drive.",
           "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396",
           "addresses": [
             "1037 Marina Drive"
@@ -1026,12 +1026,12 @@
         "mentions": []
       },
       "first_seen": "2026-11-26",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "NPB|addr|757 lighthouse dr",
       "type": "address",
-      "title": "Family Church requests master sign plan for Lighthouse Drive property",
+      "title": "Establishment of a Master Sign Plan for Family Church",
       "address": "757 Lighthouse Drive",
       "munis": [
         "NPB"
@@ -1055,9 +1055,9 @@
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "A request for the establishment of a Master Sign Plan for the property located at 757 Lighthouse Drive.",
+      "hook": "Addie Mentry with AMLU Consulting, on behalf of property owner Family Church 17 LLC, requested the establishment of a Master Sign Plan for 757 Lighthouse Drive.",
       "evidence": {
-        "quote": "Consideration of Approval: A request from Addie Mentry with AMLU Consulting, on behalf of the property owner, Family Church 17 LLC, for the establishment of a Master Sign Plan for the property locate at 757 Lighthouse Drive.",
+        "quote": "A request from Addie Mentry with AMLU Consulting, on behalf of the property owner, Family Church 17 LLC, for the establishment of a Master Sign Plan for the property locate at 757 Lighthouse Drive.",
         "page": 2,
         "verified": true,
         "date": "2026-12-01",
@@ -1068,7 +1068,7 @@
           "date": "2026-12-01",
           "body": "Planning, Zoning & Adjustment Board",
           "action": "Consideration of Approval",
-          "summary": "A request for the establishment of a Master Sign Plan for the property located at 757 Lighthouse Drive.",
+          "summary": "Addie Mentry with AMLU Consulting, on behalf of property owner Family Church 17 LLC, requested the establishment of a Master Sign Plan for 757 Lighthouse Drive.",
           "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396",
           "addresses": [
             "757 Lighthouse Drive"
@@ -1110,12 +1110,12 @@
         "mentions": []
       },
       "first_seen": "2026-11-26",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "NPB|addr|784 u s hwy 1",
       "type": "address",
-      "title": "784 US1 LLC requests appearance review approval for building paint colors",
+      "title": "Appearance review for building paint color amendments at 784 U.S. Highway 1",
       "address": "784 U.S. Highway 1",
       "munis": [
         "NPB"
@@ -1139,9 +1139,9 @@
       ],
       "hypothesis": false,
       "hypothesis_text": null,
-      "hook": "The property owner requested appearance review approval for an amendment to the building paint colors and a whitewash finish for the brick.",
+      "hook": "784 US1 LLC sought appearance review approval for an amendment to the building paint colors and a whitewash finish for the brick.",
       "evidence": {
-        "quote": "Consideration of Approval: A request from 784 US1 LLC, owner of the subject property, requesting Appearance Review approval for an amendment to the building paint colors.",
+        "quote": "A request from 784 US1 LLC, owner of the subject property, requesting Appearance Review approval for an amendment to the building paint colors.",
         "page": 4,
         "verified": true,
         "date": "2026-12-01",
@@ -1152,7 +1152,7 @@
           "date": "2026-12-01",
           "body": "Planning, Zoning & Adjustment Board",
           "action": "approve",
-          "summary": "The property owner requested appearance review approval for an amendment to the building paint colors and a whitewash finish for the brick.",
+          "summary": "784 US1 LLC sought appearance review approval for an amendment to the building paint colors and a whitewash finish for the brick.",
           "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396",
           "addresses": [
             "784 U.S. Highway 1"
@@ -1190,7 +1190,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-26",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "WESTLAKE|case|RESOLUTION202633",
@@ -1326,6 +1326,369 @@
         "mentions": []
       },
       "first_seen": "2026-11-26",
+      "is_new": false
+    },
+    {
+      "key": "RIVBEACH|case|ORDINANCENUMBER4321",
+      "type": "address",
+      "title": "Ordinance creates local program for administrative approval of affordable housing on religious properties",
+      "address": "Ordinance Number 4321",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,City Council",
+      "kind": "density_height",
+      "kind_label": "Density or height",
+      "group": "zoning",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Density or height",
+          "tone": "warn"
+        },
+        {
+          "id": "repeat",
+          "label": "On 3 agendas",
+          "tone": "warn"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 2 agenda",
+          "tone": "success"
+        },
+        {
+          "id": "wording_changed",
+          "label": "Agenda wording changed",
+          "tone": "warn"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "The city council considers an ordinance to amend zoning definitions and supplemental district regulations to implement a local program for administrative approval of affordable housing on religious institution property. On agendas 3 times since Aug 13. The agenda wording differs between Aug 13 and Dec 2. Compare the two entries.",
+      "evidence": {
+        "quote": "Ordinance Number 4321: An Ordinance of the City Council of the City of Riviera Beach, Palm Beach County, Florida, amending the Code of Ordinances, Chapter 31, entitled, \u201cZoning,\u201d",
+        "page": 6,
+        "verified": true,
+        "date": "2026-12-02",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
+      "timeline": [
+        {
+          "date": "2026-08-13",
+          "body": "Event,Planning and Zoning Board Meeting",
+          "action": "recommend approval",
+          "summary": "An ordinance amending zoning regulations to create a new section authorizing administrative approval of affordable housing on property owned by religious institutions.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=670",
+          "addresses": []
+        },
+        {
+          "date": "2026-09-22",
+          "body": "Event,City Council",
+          "action": "approve",
+          "summary": "An ordinance amending the zoning code to define religious institutions and create a local program authorizing administrative approval of affordable housing on religious property.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=781",
+          "addresses": []
+        },
+        {
+          "date": "2026-12-02",
+          "body": "Event,City Council",
+          "action": "approve",
+          "summary": "The city council considers an ordinance to amend zoning definitions and supplemental district regulations to implement a local program for administrative approval of affordable housing on religious institution property.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783",
+          "addresses": []
+        }
+      ],
+      "appearance_count": 3,
+      "first_date": "2026-08-13",
+      "latest_date": "2026-12-02",
+      "next_date": "2026-12-02",
+      "next_body_meeting": {
+        "date": "2026-12-02",
+        "title": "Event,City Council",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
+      "entities": [],
+      "amount": null,
+      "questions": [
+        "What changed between the Aug 13 and Dec 2 versions of this item?",
+        "How much more density or height is being allowed, and for whom?",
+        "Which parcels and owners benefit?"
+      ],
+      "score": 73,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-21",
+      "is_new": false
+    },
+    {
+      "key": "RIVBEACH|case|ORDINANCENUMBER4327",
+      "type": "address",
+      "title": "Comprehensive plan amendments proposed for goals, objectives, policies, and map series updates",
+      "address": "Ordinance Number 4327",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,City Council",
+      "kind": "comp_plan_amendment",
+      "kind_label": "Comp plan change",
+      "group": "zoning",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Comp plan change",
+          "tone": "warn"
+        },
+        {
+          "id": "repeat",
+          "label": "On 3 agendas",
+          "tone": "warn"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 2 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "An ordinance is introduced on first reading to adopt amendments to the Comprehensive Plan of the City of Riviera Beach, including updated goals, objectives, policies, and an updated Map Series. On agendas 3 times since Sep 24.",
+      "evidence": {
+        "quote": "Ordinance Number 4327: An Ordinance of the City Council of the City of Riviera Beach, Palm Beach County, Florida, adopting amendments to the Comprehensive Plan",
+        "page": 7,
+        "verified": true,
+        "date": "2026-12-02",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
+      "timeline": [
+        {
+          "date": "2026-09-24",
+          "body": "Event,Planning and Zoning Board Meeting",
+          "action": "recommend approval",
+          "summary": "The Planning and Zoning Board, acting as the Local Planning Agency, recommends that the City Council approve the update to the Comprehensive Plan, including goals, objectives, policies, and an updated Map Series.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=673",
+          "addresses": []
+        },
+        {
+          "date": "2026-11-04",
+          "body": "Event,City Council",
+          "action": "approve",
+          "summary": "Adopts comprehensive plan amendments to update goals, objectives, policies, and the map series.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=786",
+          "addresses": []
+        },
+        {
+          "date": "2026-12-02",
+          "body": "Event,City Council",
+          "action": "first reading",
+          "summary": "An ordinance is introduced on first reading to adopt amendments to the Comprehensive Plan of the City of Riviera Beach, including updated goals, objectives, policies, and an updated Map Series.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783",
+          "addresses": []
+        }
+      ],
+      "appearance_count": 3,
+      "first_date": "2026-09-24",
+      "latest_date": "2026-12-02",
+      "next_date": "2026-12-02",
+      "next_body_meeting": {
+        "date": "2026-12-02",
+        "title": "Event,City Council",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
+      "entities": [],
+      "amount": null,
+      "questions": [
+        "Which parcels does this affect and who owns them?",
+        "What density or use change does it allow?",
+        "Is a specific developer behind the request?"
+      ],
+      "score": 63,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-27",
+      "is_new": true
+    },
+    {
+      "key": "RIVBEACH|case|ORDINANCENUMBER4279",
+      "type": "address",
+      "title": "HHC Singer Island seeks zoning text amendment for high density multifamily district setbacks",
+      "address": "Ordinance Number 4279",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,City Council",
+      "kind": "rezoning",
+      "kind_label": "Rezoning",
+      "group": "zoning",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Rezoning",
+          "tone": "warn"
+        },
+        {
+          "id": "repeat",
+          "label": "On 2 agendas",
+          "tone": "info"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 2 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "An ordinance is considered for approval regarding a zoning code text amendment requested by HHC Singer Island, LLC to amend minimum building setbacks and create a Parks and Recreation Trust Fund. On agendas 2 times since Oct 21.",
+      "evidence": {
+        "quote": "Ordinance Number 4279: An Ordinance of the City Council of the City of Riviera Beach, Palm Beach County, Florida, approving a zoning code text amendment (ZA-24-0005) requested by the applicant, HHC Singer Island",
+        "page": 5,
+        "verified": true,
+        "date": "2026-12-02",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
+      "timeline": [
+        {
+          "date": "2026-10-21",
+          "body": "Event,City Council",
+          "action": "approve",
+          "summary": "The applicant HHC Singer Island, LLC requested a zoning code text amendment to amend minimum building setbacks and create a Parks and Recreation Trust Fund.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=787",
+          "addresses": []
+        },
+        {
+          "date": "2026-12-02",
+          "body": "Event,City Council",
+          "action": "second and final reading",
+          "summary": "An ordinance is considered for approval regarding a zoning code text amendment requested by HHC Singer Island, LLC to amend minimum building setbacks and create a Parks and Recreation Trust Fund.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783",
+          "addresses": []
+        }
+      ],
+      "appearance_count": 2,
+      "first_date": "2026-10-21",
+      "latest_date": "2026-12-02",
+      "next_date": "2026-12-02",
+      "next_body_meeting": {
+        "date": "2026-12-02",
+        "title": "Event,City Council",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
+      "entities": [
+        {
+          "name": "HHC Singer Island, LLC",
+          "role": "applicant"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "What can be built under the new zoning that cannot be built now?",
+        "Who owns the land and who is the applicant?",
+        "What did staff and neighbors say?"
+      ],
+      "score": 55,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-27",
+      "is_new": true
+    },
+    {
+      "key": "RIVBEACH|addr|3930 n ocean dr",
+      "type": "address",
+      "title": "Approval sought for a 52-unit high-rise residential condominium building on North Ocean Drive",
+      "address": "3930 North Ocean Drive",
+      "munis": [
+        "RIVBEACH"
+      ],
+      "muni_names": "City of Riviera Beach",
+      "body": "Event,City Council",
+      "kind": "site_plan",
+      "kind_label": "Site plan",
+      "group": "development",
+      "signals": [
+        {
+          "id": "kind",
+          "label": "Site plan",
+          "tone": "info"
+        },
+        {
+          "id": "repeat",
+          "label": "On 2 agendas",
+          "tone": "info"
+        },
+        {
+          "id": "upcoming",
+          "label": "On Dec 2 agenda",
+          "tone": "success"
+        }
+      ],
+      "hypothesis": false,
+      "hypothesis_text": null,
+      "hook": "A resolution is presented to approve a site plan application by HHC Singer Island, LLC to construct a 200-foot-tall, 52-unit high-rise residential condominium building with a parking podium. On agendas 2 times since Oct 21.",
+      "evidence": {
+        "quote": "Resolution Number 54-26: A Resolution of the City Council of the City of Riviera Beach, Palm Beach County, Florida, approving a Site Plan application (SP-24-0013) by the applicant, HHC Singer Island, LLC",
+        "page": 8,
+        "verified": true,
+        "date": "2026-12-02",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
+      "timeline": [
+        {
+          "date": "2026-10-21",
+          "body": "Event,City Council",
+          "action": "approve",
+          "summary": "HHC Singer Island, LLC applied to construct a 200-foot-tall, 52-unit high-rise residential condominium building over a two-story parking podium.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=787",
+          "addresses": [
+            "3930 North Ocean Drive"
+          ]
+        },
+        {
+          "date": "2026-12-02",
+          "body": "Event,City Council",
+          "action": "approve",
+          "summary": "A resolution is presented to approve a site plan application by HHC Singer Island, LLC to construct a 200-foot-tall, 52-unit high-rise residential condominium building with a parking podium.",
+          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783",
+          "addresses": [
+            "3930 North Ocean Drive"
+          ]
+        }
+      ],
+      "appearance_count": 2,
+      "first_date": "2026-10-21",
+      "latest_date": "2026-12-02",
+      "next_date": "2026-12-02",
+      "next_body_meeting": {
+        "date": "2026-12-02",
+        "title": "Event,City Council",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
+      "entities": [
+        {
+          "name": "HHC Singer Island, LLC",
+          "role": "applicant"
+        }
+      ],
+      "amount": null,
+      "questions": [
+        "Who is the developer, and what is the unit count or square footage?",
+        "What conditions were attached to the approval?",
+        "What do the traffic and drainage reviews say?"
+      ],
+      "score": 43,
+      "web": {
+        "checked": false,
+        "mentions": []
+      },
+      "first_seen": "2026-11-27",
       "is_new": true
     },
     {
@@ -3081,7 +3444,11 @@
       "first_date": "2026-06-17",
       "latest_date": "2026-07-15",
       "next_date": null,
-      "next_body_meeting": null,
+      "next_body_meeting": {
+        "date": "2026-12-02",
+        "title": "Event,City Council",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
       "entities": [],
       "amount": 115000000,
       "questions": [
@@ -3089,85 +3456,6 @@
         "What does the recipient have to deliver, and who checks?"
       ],
       "score": 58,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "RIVBEACH|case|ORDINANCENUMBER4321",
-      "type": "address",
-      "title": "City Council to consider new zoning regulations for affordable housing on religious institution property",
-      "address": "Ordinance Number 4321",
-      "munis": [
-        "RIVBEACH"
-      ],
-      "muni_names": "City of Riviera Beach",
-      "body": "Event,City Council",
-      "kind": "rezoning",
-      "kind_label": "Rezoning",
-      "group": "zoning",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Rezoning",
-          "tone": "warn"
-        },
-        {
-          "id": "repeat",
-          "label": "On 2 agendas",
-          "tone": "info"
-        },
-        {
-          "id": "wording_changed",
-          "label": "Agenda wording changed",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "An ordinance amending the zoning code to define religious institutions and create a local program authorizing administrative approval of affordable housing on religious property. On agendas 2 times since Aug 13. The agenda wording differs between Aug 13 and Sep 22. Compare the two entries.",
-      "evidence": {
-        "quote": "Ordinance Number 4321: An Ordinance of the City Council of the City of Riviera Beach, Palm Beach County, Florida, amending the Code of Ordinances, Chapter 31, entitled, \u201cZoning,\u201d",
-        "page": 8,
-        "verified": true,
-        "date": "2026-09-22",
-        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=781"
-      },
-      "timeline": [
-        {
-          "date": "2026-08-13",
-          "body": "Event,Planning and Zoning Board Meeting",
-          "action": "recommend approval",
-          "summary": "An ordinance amending zoning regulations to create a new section authorizing administrative approval of affordable housing on property owned by religious institutions.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=670",
-          "addresses": []
-        },
-        {
-          "date": "2026-09-22",
-          "body": "Event,City Council",
-          "action": "approve",
-          "summary": "An ordinance amending the zoning code to define religious institutions and create a local program authorizing administrative approval of affordable housing on religious property.",
-          "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=781",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 2,
-      "first_date": "2026-08-13",
-      "latest_date": "2026-09-22",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What changed between the Aug 13 and Sep 22 versions of this item?",
-        "What can be built under the new zoning that cannot be built now?",
-        "Who owns the land and who is the applicant?",
-        "What did staff and neighbors say?"
-      ],
-      "score": 52,
       "web": {
         "checked": false,
         "mentions": []
@@ -3765,7 +4053,11 @@
       "first_date": "2026-05-14",
       "latest_date": "2026-06-03",
       "next_date": null,
-      "next_body_meeting": null,
+      "next_body_meeting": {
+        "date": "2026-12-02",
+        "title": "Event,City Council",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
       "entities": [
         {
           "name": "Core",
@@ -4849,7 +5141,11 @@
       "first_date": "2026-08-13",
       "latest_date": "2026-09-22",
       "next_date": null,
-      "next_body_meeting": null,
+      "next_body_meeting": {
+        "date": "2026-12-02",
+        "title": "Event,City Council",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
       "entities": [
         {
           "name": "Schmidt Nichols",
@@ -4936,7 +5232,11 @@
       "first_date": "2026-09-02",
       "latest_date": "2026-10-07",
       "next_date": null,
-      "next_body_meeting": null,
+      "next_body_meeting": {
+        "date": "2026-12-02",
+        "title": "Event,City Council",
+        "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+      },
       "entities": [],
       "amount": null,
       "questions": [
@@ -5458,246 +5758,6 @@
         "Who is buying or leasing, and at what price?",
         "Was the property appraised or competitively offered?",
         "Who owned it before and what was it last sold for?"
-      ],
-      "score": 38,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|case|ORDINANCENO3426",
-      "type": "address",
-      "title": "Ordinance amending land development regulations and establishing new impact fees",
-      "address": "ORDINANCE NO. 34-26",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "City Commission",
-      "kind": "incentive_abatement",
-      "kind_label": "Incentive or abatement",
-      "group": "land",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Incentive or abatement",
-          "tone": "warn"
-        },
-        {
-          "id": "repeat",
-          "label": "On 2 agendas",
-          "tone": "info"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "An ordinance amending land development regulations to remove the parks impact fee subsection, enact a new Article 8.1 for impact fees, increase parks impact fees, and establish new impact fees for municipal, police, fire rescue, water, wastewater, and stormwater facilities. On agendas 2 times since Jun 15.",
-      "evidence": {
-        "quote": "ORDINANCE NO. 34-26: AN ORDINANCE OF THE CITY COMMISSION OF THE CITY OF DELRAY BEACH, FLORIDA, AMENDING THE LAND DEVELOPMENT REGULATIONS",
-        "page": null,
-        "verified": true,
-        "date": "2026-07-21",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4623&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-06-15",
-          "body": "Planning and Zoning Board",
-          "action": "Provide a recommendation to the City Commission",
-          "summary": "The city initiated an amendment to the Land Development Regulations to enact impact fees for municipal facilities, police, fire rescue, water, wastewater, and stormwater management, relocate the parks fee, and increase the parks fee.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4449&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        },
-        {
-          "date": "2026-07-21",
-          "body": "City Commission",
-          "action": "approved as amended",
-          "summary": "An ordinance amending land development regulations to remove the parks impact fee subsection, enact a new Article 8.1 for impact fees, increase parks impact fees, and establish new impact fees for municipal, police, fire rescue, water, wastewater, and stormwater facilities.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4623&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": []
-        }
-      ],
-      "appearance_count": 2,
-      "first_date": "2026-06-15",
-      "latest_date": "2026-07-21",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": null,
-      "questions": [
-        "What is the dollar value of the incentive, and over how many years?",
-        "What does the recipient have to deliver, and who checks?"
-      ],
-      "score": 38,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "DELRAY|addr|94 sw 5th ave",
-      "type": "address",
-      "title": "CRA approves purchase and sale agreement for property at 94 SW 5th Avenue",
-      "address": "94 SW 5th Avenue",
-      "munis": [
-        "DELRAY"
-      ],
-      "muni_names": "City of Delray Beach",
-      "body": "Community Redevelopment Agency",
-      "kind": "land_transaction",
-      "kind_label": "Land deal",
-      "group": "land",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Land deal",
-          "tone": "warn"
-        },
-        {
-          "id": "amount",
-          "label": "$265K",
-          "tone": "info"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "The CRA is asked to approve a purchase and sale agreement for a portion of the property located at 94 SW 5th Avenue for $265,000.",
-      "evidence": {
-        "quote": "RESOLUTION NO. 2026-06 - APPROVAL OF THE PURCHASE AND SALE AGREEMENT FOR A PORTION OF THE PROPERTY LOCATED AT 94 SW 5TH AVENUE FOR A PURCHASE PRICE OF $265,000",
-        "page": null,
-        "verified": true,
-        "date": "2026-07-23",
-        "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314"
-      },
-      "timeline": [
-        {
-          "date": "2026-07-23",
-          "body": "Community Redevelopment Agency",
-          "action": "approve",
-          "summary": "The CRA is asked to approve a purchase and sale agreement for a portion of the property located at 94 SW 5th Avenue for $265,000.",
-          "link": "https://delraybeach.legistar.com/MeetingDetail.aspx?LEGID=4643&GID=616&G=64FA97B3-79BD-4514-A475-83678FBA9314",
-          "addresses": [
-            "94 SW 5th Avenue"
-          ]
-        }
-      ],
-      "appearance_count": 1,
-      "first_date": "2026-07-23",
-      "latest_date": "2026-07-23",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [],
-      "amount": 265000,
-      "questions": [
-        "Who is buying or leasing, and at what price?",
-        "Was the property appraised or competitively offered?",
-        "Who owned it before and what was it last sold for?"
-      ],
-      "score": 38,
-      "web": {
-        "checked": false,
-        "mentions": []
-      },
-      "first_seen": "2026-11-21",
-      "is_new": false
-    },
-    {
-      "key": "JUIC|addr|50 colony rd",
-      "type": "address",
-      "title": "Review Renovation Scope of Work with Town Hall Design/Build Team",
-      "address": "50 Colony Road",
-      "munis": [
-        "JUIC"
-      ],
-      "muni_names": "Town of Jupiter Inlet Colony",
-      "body": "Regular Town Commission Meeting",
-      "kind": "contract_vendor",
-      "kind_label": "Vendor contract",
-      "group": "development",
-      "signals": [
-        {
-          "id": "kind",
-          "label": "Vendor contract",
-          "tone": "info"
-        },
-        {
-          "id": "repeat",
-          "label": "On 4 agendas",
-          "tone": "warn"
-        }
-      ],
-      "hypothesis": false,
-      "hypothesis_text": null,
-      "hook": "Town manager met with the Design/Build team for the renovation of Town Hall to review the scope of work. On agendas 4 times since Jul 21.",
-      "evidence": {
-        "quote": "Met with Design/Build team for the renovation of Town Hall to review scope of work.",
-        "page": 3,
-        "verified": true,
-        "date": "2026-09-14",
-        "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69"
-      },
-      "timeline": [
-        {
-          "date": "2026-07-21",
-          "body": "Special Town Commission Meeting",
-          "action": "approve",
-          "summary": "The Town Commission is considering Resolution 2026-09a to establish the proposed maximum millage rate of 5.560 mills for FY 2026-2027 and set the schedule for two budget public hearings.",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_07212026-55",
-          "addresses": [
-            "50 Colony Road, Jupiter Inlet Colony, Florida 33469"
-          ]
-        },
-        {
-          "date": "2026-08-19",
-          "body": "Town Commission Budget Workshop",
-          "action": "public hearing",
-          "summary": "The town is proposing a non-ad valorem assessment and impact fee study as part of its fiscal and operational responsibility initiatives in the FY 2027 budget.",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_08192026-65",
-          "addresses": [
-            "50 Colony Road, Jupiter Inlet Colony, FL 33469"
-          ]
-        },
-        {
-          "date": "2026-09-08",
-          "body": "Special Town Commission Meeting",
-          "action": "approve",
-          "summary": "The Town Commission recesses into a closed attorney-client session to discuss pending litigation involving Marie Rosner versus the Town of Jupiter Inlet Colony.",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09082026-67",
-          "addresses": [
-            "50 Colony Road"
-          ]
-        },
-        {
-          "date": "2026-09-14",
-          "body": "Regular Town Commission Meeting",
-          "action": "approve",
-          "summary": "Town manager met with the Design/Build team for the renovation of Town Hall to review the scope of work.",
-          "link": "https://www.jupiterinletcolony.gov/AgendaCenter/ViewFile/Agenda/_09142026-69",
-          "addresses": [
-            "50 Colony Road"
-          ]
-        }
-      ],
-      "appearance_count": 4,
-      "first_date": "2026-07-21",
-      "latest_date": "2026-09-14",
-      "next_date": null,
-      "next_body_meeting": null,
-      "entities": [
-        {
-          "name": "Marie Rosner",
-          "role": "applicant"
-        }
-      ],
-      "amount": null,
-      "questions": [
-        "What is the contract amount and term?",
-        "Was it competitively procured?"
       ],
       "score": 38,
       "web": {

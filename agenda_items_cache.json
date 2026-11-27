@@ -15483,11 +15483,11 @@
    ]
   },
   "NPB|2026-12-01|planning, zoning & adjustment board": {
-   "doc_hash": "ca473b1236e27963",
-   "analyzed_at": "2026-11-26",
+   "doc_hash": "6e17f9e4c0320348",
+   "analyzed_at": "2026-11-27",
    "items": [
     {
-     "headline": "Safe Harbor Marina requests replacement monument sign for property",
+     "headline": "Request to replace monument sign at Safe Harbor Marina",
      "kind": "design_review",
      "address": "1037 Marina Drive",
      "case_no": "PZ-2023-95",
@@ -15504,9 +15504,9 @@
      "amount": null,
      "action": "Consideration of Approval",
      "consent": false,
-     "summary": "A request for replacement of the monument sign for the property located at 1037 Marina Drive.",
+     "summary": "Alternative Sign Group Inc., on behalf of property owner SHM North Palm Beach LLC, requested approval for the replacement of a monument sign at 1037 Marina Drive.",
      "evidence": {
-      "quote": "Consideration of Approval: A request from, Alternative Sign Group Inc., on behalf of the property owner, SHM North Palm Beach LLC, for replacement of the monument sign for the property located at 1037 Marina Drive.",
+      "quote": "A request from, Alternative Sign Group Inc., on behalf of the property owner, SHM North Palm Beach LLC, for replacement of the monument sign for the property located at 1037 Marina Drive.",
       "page": 1,
       "verified": true
      },
@@ -15517,7 +15517,7 @@
      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396"
     },
     {
-     "headline": "Family Church requests master sign plan for Lighthouse Drive property",
+     "headline": "Establishment of a Master Sign Plan for Family Church",
      "kind": "design_review",
      "address": "757 Lighthouse Drive",
      "case_no": "PZ-2026-86",
@@ -15538,9 +15538,9 @@
      "amount": null,
      "action": "Consideration of Approval",
      "consent": false,
-     "summary": "A request for the establishment of a Master Sign Plan for the property located at 757 Lighthouse Drive.",
+     "summary": "Addie Mentry with AMLU Consulting, on behalf of property owner Family Church 17 LLC, requested the establishment of a Master Sign Plan for 757 Lighthouse Drive.",
      "evidence": {
-      "quote": "Consideration of Approval: A request from Addie Mentry with AMLU Consulting, on behalf of the property owner, Family Church 17 LLC, for the establishment of a Master Sign Plan for the property locate at 757 Lighthouse Drive.",
+      "quote": "A request from Addie Mentry with AMLU Consulting, on behalf of the property owner, Family Church 17 LLC, for the establishment of a Master Sign Plan for the property locate at 757 Lighthouse Drive.",
       "page": 2,
       "verified": true
      },
@@ -15551,7 +15551,7 @@
      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396"
     },
     {
-     "headline": "784 US1 LLC requests appearance review approval for building paint colors",
+     "headline": "Appearance review for building paint color amendments at 784 U.S. Highway 1",
      "kind": "design_review",
      "address": "784 U.S. Highway 1",
      "case_no": "",
@@ -15568,9 +15568,9 @@
      "amount": null,
      "action": "approve",
      "consent": false,
-     "summary": "The property owner requested appearance review approval for an amendment to the building paint colors and a whitewash finish for the brick.",
+     "summary": "784 US1 LLC sought appearance review approval for an amendment to the building paint colors and a whitewash finish for the brick.",
      "evidence": {
-      "quote": "Consideration of Approval: A request from 784 US1 LLC, owner of the subject property, requesting Appearance Review approval for an amendment to the building paint colors.",
+      "quote": "A request from 784 US1 LLC, owner of the subject property, requesting Appearance Review approval for an amendment to the building paint colors.",
       "page": 4,
       "verified": true
      },
@@ -15581,7 +15581,7 @@
      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396"
     },
     {
-     "headline": "L&D Holdings requests development of office and warehouse building",
+     "headline": "Development of an office and warehouse building at 9250 Alternate A1A",
      "kind": "site_plan",
      "address": "9250 Alternate A1A",
      "case_no": "PZ-2026-60",
@@ -15602,9 +15602,9 @@
      "amount": null,
      "action": "approve",
      "consent": false,
-     "summary": "Development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approval of a revised site plan for the north half.",
+     "summary": "L&D Holdings, LLC requested development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approval of a revised site plan for the north half.",
      "evidence": {
-      "quote": "Consideration of Approval: A request from L&D Holdings, LLC, contract purchaser of the subject property located at 9252 Alternate A1A, for the development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approving a revised site plan for the no",
+      "quote": "A request from L&D Holdings, LLC, contract purchaser of the subject property located at 9252 Alternate A1A, for the development of a 3,000 square foot office and warehouse building on the southern half of the commercial property and approving a revised site plan for the north half of the property.",
       "page": 5,
       "verified": true
      },
@@ -15613,6 +15613,132 @@
      "body": "Planning, Zoning & Adjustment Board",
      "date": "2026-12-01",
      "link": "https://www.village-npb.org/AgendaCenter/ViewFile/Agenda/_12012026-1396"
+    }
+   ]
+  },
+  "RIVBEACH|2026-12-02|event,city council": {
+   "doc_hash": "29ad0d699fdce9e0",
+   "analyzed_at": "2026-11-27",
+   "items": [
+    {
+     "headline": "HHC Singer Island seeks zoning text amendment for high density multifamily district setbacks",
+     "kind": "rezoning",
+     "address": "",
+     "case_no": "Ordinance Number 4279",
+     "entities": [
+      {
+       "name": "HHC Singer Island, LLC",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "second and final reading",
+     "consent": false,
+     "summary": "An ordinance is considered for approval regarding a zoning code text amendment requested by HHC Singer Island, LLC to amend minimum building setbacks and create a Parks and Recreation Trust Fund.",
+     "evidence": {
+      "quote": "Ordinance Number 4279: An Ordinance of the City Council of the City of Riviera Beach, Palm Beach County, Florida, approving a zoning code text amendment (ZA-24-0005) requested by the applicant, HHC Singer Island",
+      "page": 5,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,City Council",
+     "date": "2026-12-02",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+    },
+    {
+     "headline": "Ordinance creates local program for administrative approval of affordable housing on religious properties",
+     "kind": "density_height",
+     "address": "",
+     "case_no": "Ordinance Number 4321",
+     "entities": [],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "The city council considers an ordinance to amend zoning definitions and supplemental district regulations to implement a local program for administrative approval of affordable housing on religious institution property.",
+     "evidence": {
+      "quote": "Ordinance Number 4321: An Ordinance of the City Council of the City of Riviera Beach, Palm Beach County, Florida, amending the Code of Ordinances, Chapter 31, entitled, \u201cZoning,\u201d",
+      "page": 6,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,City Council",
+     "date": "2026-12-02",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+    },
+    {
+     "headline": "Comprehensive plan amendments proposed for goals, objectives, policies, and map series updates",
+     "kind": "comp_plan_amendment",
+     "address": "",
+     "case_no": "Ordinance Number 4327",
+     "entities": [],
+     "amount": null,
+     "action": "first reading",
+     "consent": false,
+     "summary": "An ordinance is introduced on first reading to adopt amendments to the Comprehensive Plan of the City of Riviera Beach, including updated goals, objectives, policies, and an updated Map Series.",
+     "evidence": {
+      "quote": "Ordinance Number 4327: An Ordinance of the City Council of the City of Riviera Beach, Palm Beach County, Florida, adopting amendments to the Comprehensive Plan",
+      "page": 7,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,City Council",
+     "date": "2026-12-02",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+    },
+    {
+     "headline": "Approval sought for a 52-unit high-rise residential condominium building on North Ocean Drive",
+     "kind": "site_plan",
+     "address": "3930 North Ocean Drive",
+     "case_no": "Resolution Number 54-26",
+     "entities": [
+      {
+       "name": "HHC Singer Island, LLC",
+       "role": "applicant"
+      }
+     ],
+     "amount": null,
+     "action": "approve",
+     "consent": false,
+     "summary": "A resolution is presented to approve a site plan application by HHC Singer Island, LLC to construct a 200-foot-tall, 52-unit high-rise residential condominium building with a parking podium.",
+     "evidence": {
+      "quote": "Resolution Number 54-26: A Resolution of the City Council of the City of Riviera Beach, Palm Beach County, Florida, approving a Site Plan application (SP-24-0013) by the applicant, HHC Singer Island, LLC",
+      "page": 8,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,City Council",
+     "date": "2026-12-02",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
+    },
+    {
+     "headline": "Contract authorization for storm sewer rehabilitation and failing drainage pipes repair",
+     "kind": "contract_vendor",
+     "address": "",
+     "case_no": "Resolution Number 130-26",
+     "entities": [
+      {
+       "name": "Flotech Environmental, LLC",
+       "role": "vendor"
+      }
+     ],
+     "amount": 250000,
+     "action": "approve",
+     "consent": false,
+     "summary": "Resolution authorizes using a city storm sewer rehabilitation contract with Flotech Environmental, LLC to repair failing drainage pipes, with purchase orders not exceeding $250,000.",
+     "evidence": {
+      "quote": "Resolution Number 130-26: A Resolution of the City Council of the City of Riviera Beach, Palm Beach County, Florida, authorizing the use of the City of Oviedo, Florida Storm Sewer Rehabilitation contract with Flotech Environmental, LLC",
+      "page": 8,
+      "verified": true
+     },
+     "muni_short": "RIVBEACH",
+     "muni_full": "City of Riviera Beach",
+     "body": "Event,City Council",
+     "date": "2026-12-02",
+     "link": "https://rivierabeach.granicus.com/AgendaViewer.php?view_id=1&event_id=783"
     }
    ]
   }
