@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "generated_at": "2026-11-27T07:17:27.823634+00:00",
-  "today": "2026-11-27",
+  "generated_at": "2026-11-28T06:51:46.505392+00:00",
+  "today": "2026-11-28",
   "lookback_months": 6,
   "meetings_scanned": 369,
   "meetings_pending_analysis": 0,
@@ -1511,7 +1511,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-27",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "RIVBEACH|case|ORDINANCENUMBER4279",
@@ -1598,7 +1598,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-27",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "RIVBEACH|addr|3930 n ocean dr",
@@ -1689,7 +1689,7 @@
         "mentions": []
       },
       "first_seen": "2026-11-27",
-      "is_new": true
+      "is_new": false
     },
     {
       "key": "DELRAY|addr|1222 vista del mar dr n",
